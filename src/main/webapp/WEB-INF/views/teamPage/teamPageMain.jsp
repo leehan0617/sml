@@ -66,7 +66,7 @@
 	</div>
 	
 	<div>
-		<img alt="팀 로고 이미지 넣어야함" src=""/>
+		<img alt="팀 로고 이미지 넣어야함" src="${root }/img/teamImg/${team.emblem}"/>
 		<h3>팀 이름 : ${team.teamName}</h3>
 		<input id="teamState" style="color: gray;"type="button" value="매칭 대기 중">
 	</div>

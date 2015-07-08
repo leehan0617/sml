@@ -24,7 +24,7 @@ public class MemberDaoImpl implements MemberDao{
 	@Override
 	public int insertMember(MemberDto memberDto, String teamId,
 							String teamPassword, String teamName, String sportType,
-							String teamGrade,String teamReaderName,String emblem, String homeGround){
+							String teamGrade,String teamReaderName,String emblem, String homeGround, String path){
 
 		HashMap<String,Object> Hmap=new HashMap<String,Object>();
 		Hmap.put("teamId",teamId);
@@ -35,6 +35,7 @@ public class MemberDaoImpl implements MemberDao{
 		Hmap.put("teamReaderName",teamReaderName);
 		Hmap.put("emblem",emblem);
 		Hmap.put("homeGround", homeGround);
+		Hmap.put("path",	path);
 		
 	    int value=0;
 	   
