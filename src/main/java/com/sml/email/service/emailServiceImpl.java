@@ -36,6 +36,8 @@ public class emailServiceImpl implements emailService{
 		String memberName=request.getParameter("memberName");
 		String memberPhone=request.getParameter("memberPhone");
 		
+		System.out.println("name : " + memberName + ", phone : " + memberPhone);
+		
 		MemberDto memberDto=dao.search(memberName,memberPhone);
 		String email = memberDto.getMemberEmail();
 		String number = this.RandomNum();
@@ -51,8 +53,10 @@ public class emailServiceImpl implements emailService{
 			 MailSetting mt = new MailSetting();
 			 // 메일보내기
 			 mt.sendEmail(from, to, cc, subject, content);
+			 mav.addObject("phone" , memberPhone);
 			 mav.addObject("hintNumber" , number);
 			 System.out.println("메일 전송에 성공하였습니다.");
+			 dao.addCertification(number,memberPhone);
 		  	}catch(MessagingException me) {
 		  		System.out.println("메일 전송에 실패하였습니다.");
 		  		System.out.println("실패 이유 : " + me.getMessage());
@@ -78,4 +82,31 @@ public class emailServiceImpl implements emailService{
 		}
 		return buffer.toString();
 	}
+
+	@Override
+	public void compareNumber(ModelAndView mav) {
+		Map <String , Object> map = mav.getModelMap();
+		HttpServletRequest request = (HttpServletRequest) map.get("request");
+		
+		System.out.println("#####eeeee$$$$$");
+		
+		String number = request.getParameter("number");
+		String phone = request.getParameter("phone");
+		String key = dao.getCertificationNumber(phone);
+		
+		System.out.println("key : " + key + "number : " + number);
+		
+		
+		if(number.equals(key)){
+			int check = 1;
+			mav.addObject("check" , check);
+			mav.setViewName("teamPage/resultCertification");
+		}else{
+			int check = 0;
+			mav.addObject("check" , check);
+			mav.setViewName("teamPage/resultCertification");
+		}
+	}
+	
+	
 }

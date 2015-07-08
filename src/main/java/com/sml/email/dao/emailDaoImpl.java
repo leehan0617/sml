@@ -7,7 +7,6 @@ import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
-import com.sml.email.dto.emailDto;
 import com.sml.member.dto.MemberDto;
 
 @Component
@@ -29,6 +28,17 @@ public class emailDaoImpl implements emailDao {
 		
 
 		return sqlSession.selectOne("dao.emailMapper.search",Hmap);
+	}
+	@Override
+	public int addCertification(String number,String phone) {
+		HashMap<String , Object> hMap = new HashMap<String ,Object>();
+		hMap.put("number", number);
+		hMap.put("phone", phone);
+		return sqlSession.insert("dao.emailMapper.addCertification",hMap);
+	}
+	@Override
+	public String getCertificationNumber(String phone) {
+		return sqlSession.selectOne("dao.emailMapper.getCertification", phone);
 	}
 
 }

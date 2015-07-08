@@ -6,37 +6,73 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>Insert title here</title>
+<link rel="stylesheet" type="text/css" href="${root }/resources/css/bootstrap.css"/>
+<title>인증번호 인증란</title>
+<style>
+	body {
+  padding-top: 40px;
+  padding-bottom: 40px;
+  background-color: #eee;
+}
+
+.form-signin {
+  max-width: 330px;
+  padding: 15px;
+  margin: 0 auto;
+}
+.form-signin .form-signin-heading,
+.form-signin .checkbox {
+  margin-bottom: 10px;
+}
+.form-signin .checkbox {
+  font-weight: normal;
+}
+.form-signin .form-control {
+  position: relative;
+  height: auto;
+  -webkit-box-sizing: border-box;
+     -moz-box-sizing: border-box;
+          box-sizing: border-box;
+  padding: 10px;
+  font-size: 16px;
+}
+.form-signin .form-control:focus {
+  z-index: 2;
+}
+.form-signin input[type="email"] {
+  margin-bottom: -1px;
+  border-bottom-right-radius: 0;
+  border-bottom-left-radius: 0;
+}
+.form-signin input[type="password"] {
+  margin-bottom: 10px;
+  border-top-left-radius: 0;
+  border-top-right-radius: 0;
+}
+</style>
 </head>
+
 <body>
 	<c:choose>
 		<c:when test="${hintNumber == null }">
 			<script type="text/javascript">
 			alert("이름 또는 핸드폰번호가 틀립니다");
+			location.href="${root}/start.jsp";
 			</script>
-			<form action="${root}/email/sendEmail.do" method="POST" onsubmit="">
-			<div>
-				<label>이름</label>
-				<input type="text" name="memberName" placeholder="이름을 입력하세요" /><br/><br/>
-				
-				<label>핸드폰번호</label>
-				<input type="text" name="memberPhone" placeholder="핸드폰번호를 입력하세요"/><br/><br/>
-				
-				<input type="submit" value="인증받기"/>
-				<input type="reset" value="닫기" onclick="javascript:self.close()"/>
-			</div>
-			</form>
 		</c:when>
 		<c:otherwise>
-			<form action="">
-			<div>
-			<label>인증번호를 써주세요.</label><input type="text" name="hintNumber"/>
-			</div>
-			<h3>${hintNumber }</h3>
-	</form>		
+			<div class="container">
+				<form class="form-signin" action="${root }/findAccountInfo" method="post">
+		        <h2 class="form-signin-heading">인증번호를 써주세요.</h2>
+		        <label class="sr-only">인증번호</label>
+		        <input type="text" name="number" id="number" class="form-control" placeholder="인증번호를 써주세요.">
+		        <input type="hidden" name="phone" value="${phone }"/>
+		        <hr/>
+		        <button class="btn btn-lg btn-primary btn-block" type="submit" >인증 요청</button>
+		      	</form>
+	
+   			 </div> <!-- /container -->	
 		</c:otherwise>
 	</c:choose>
-	
-	
 </body>
 </html>

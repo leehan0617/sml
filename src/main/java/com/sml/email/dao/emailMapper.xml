@@ -6,4 +6,12 @@
 	<select id="search" parameterType="java.util.HashMap" resultType="com.sml.member.dto.MemberDto">
 		select memberName,memberPhone,memberEmail from TeamMember where memberName=#{memberName} and memberPhone=#{memberPhone}
 	</select>
+	
+	<insert id="addCertification" parameterType="java.util.HashMap">
+		insert into certification values (#{number} , #{phone} )
+	</insert>
+	
+	<select id="getCertification" parameterType="String" resultType="String">
+		select key from certification where phone = #{phone}
+	</select>
 </mapper>

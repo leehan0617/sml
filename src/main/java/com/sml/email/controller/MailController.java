@@ -46,4 +46,15 @@ public class MailController {
 		service.sendEmail(mav);
 		return mav;
 	}
+	
+	@RequestMapping(value="/findAccountInfo" , method=RequestMethod.POST)
+	public ModelAndView compareNumber(HttpServletRequest request){
+		System.out.println("#####dddddd###");
+		
+		ModelAndView mav = new ModelAndView();
+		mav.addObject("request" , request);
+		service.compareNumber(mav);
+		
+		return mav;
+	}
 }
