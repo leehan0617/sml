@@ -123,6 +123,7 @@
 	<div class="row well">
 		<div class="col-md-1"></div>
 		<div class="col-md-10">
+			<div class="row">
 			<div class="col-md-2">
 				<input type="text" class="form-control" name="nickName" id="replyNickName" placeholder="닉네임">
 			</div>
@@ -137,16 +138,32 @@
 			      </span>
 			    </div><!-- /input-group -->
 			</div>
+			</div>
 			<br/>
 			<div class="col-md-10">
-				<h3>LIST</h3>
-				<span>작성자</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span>내용</span>
+				<hr/>
+				<div class="row">
+					<div class="col-md-2 alert alert-success" style="padding:10px;"><span>작성자</span></div>
+					<div class="col-md-1"></div>
+					<div class="col-md-7 alert alert-success" style="padding:10px;"><span>내용</span></div>
+					<div class="col-md-2"></div>
+				</div>
+				<hr/>
 				<c:forEach var="teamLogDtoList" items="${teamLogDtoList}">
-					<div class="replyList" id="${teamLogDtoList.replyCode}">
-						<span>${teamLogDtoList.replyNickName}</span>
-						<input type="text" value="${teamLogDtoList.replyContent}" disabled="disabled"></input>				
-						<a href="javascript:teamLogDelete('${root}','${teamLogDtoList.replyCode}','${teamLogDtoList.replyPassword}')">삭제</a>
-						<br/>			
+					<div class="replyList row" id="${teamLogDtoList.replyCode}">
+						<div class="col-md-2 alert alert-warning" role="alert" style="padding:10px;">
+							<span>${teamLogDtoList.replyNickName}</span>				
+						</div>
+						<div class="col-md-1"></div>
+						<div class="col-md-7 alert alert-info" role="alert" style="padding:10px;">
+							${teamLogDtoList.replyContent}
+						</div>
+						<div class="col-md-2">
+							<c:if test="${teamGrade !=null }">
+							<a class="btn btn-danger" href="javascript:teamLogDelete('${root}','${teamLogDtoList.replyCode}','${teamLogDtoList.replyPassword}')" role="button">삭제</a>
+							<br/>
+							</c:if>
+						</div>			
 					</div>		
 		   		</c:forEach>
 			</div>
