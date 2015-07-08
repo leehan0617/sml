@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+  
+ <mapper namespace="dao.RecordMapper">
+ 	<select id="getAllRecordList" parameterType="String" resultType="java.util.HashMap">
+ 		<![CDATA[
+ 			select a.*, b.teamname as team1, c.teamname as team2, d.* from gamerecord a, team b, team c, referee d
+			where a.teamcode=b.teamcode
+			and a.teamcode2=c.teamcode
+			and a.refereenumber=d.refereenumber
+			and a.sportType=#{sport}
+ 		]]>
+ 	</select>
+ </mapper>

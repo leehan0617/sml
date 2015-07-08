@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="dao.BoardMapper">
+	<insert id="addCommonBoard" parameterType="com.sml.common.dto.CommonBoardDto">
+		insert into Board(boardNumber,sportCode,boardWriter,boardDate,boardTitle,boardContent)
+		values(Board_boardNumber_sql.nextval,#{sportCode},#{boardWriter},#{boardDate},#{boardTitle},#{boardContent})
+	</insert>
+	
+	<select id="getCommonBoardCount" resultType="int">
+		select count(*) from Board
+	</select>
+	
+	<select id="getCommonBoardList" parameterType="java.util.HashMap" resultType="com.sml.common.dto.CommonBoardDto">
+		<![CDATA[
+			select * from 
+				(select rownum rnum,a.* from
+					(select * from board order by boardDate desc)a)
+				where rnum>=#{startRow} and rnum<=#{endRow}
+		]]>
+	</select>
+	
+	<delete id="deleteCommonBoard">
+		delete from board where boardNumber=#{boardNumber}
+	</delete>
+	
+	<select id="readCommonBoard" parameterType="int" resultType="com.sml.common.dto.CommonBoardDto">
+		select * from board where boardNumber=#{boardNumber}
+	</select>
+	
+	<select id="updateCommonBoardSelect" parameterType="int" resultType="com.sml.common.dto.CommonBoardDto">
+		select * from board where boardNumber=#{boardNumber}
+	</select>
+	
+	<update id="updateCommonBoardOk" parameterType="com.sml.common.dto.CommonBoardDto">
+		update board set sportCode=#{sportCode},boardWriter=#{boardWriter},boardTitle=#{boardTitle},boardContent=#{boardContent} where boardNumber=#{boardNumber}
+	</update>
+	
+	<select id="autoSearch" parameterType="String" resultType="String">
+		select teamname from team where teamname like concat('%',concat(UPPER(#{result}),'%')) or 
+								teamname like concat('%',concat(LOWER(#{result}),'%'))
+	</select>
+</mapper>

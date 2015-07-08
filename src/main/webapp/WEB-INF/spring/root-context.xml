@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+	
+	<!-- Root Context: defines shared resources visible to all other web components -->
+	<bean class="org.apache.commons.dbcp.BasicDataSource" destroy-method="close" id="dataSource">
+		<property value="oracle.jdbc.driver.OracleDriver" name="driverClassName"/>
+		<property value="jdbc:oracle:thin:@192.168.7.109:1521:xe" name="url"/>
+		<property value="sml" name="username"/>
+		<property value="1234" name="password"/>
+		<property value="30" name="maxActive"/>
+		<property value="30" name="maxIdle"/>
+		<property value="1000" name="maxWait"/>
+		<property value="true" name="defaultAutoCommit"/>
+	</bean>
+	
+	<!-- 5.2 Mapper Resource-->
+		<bean class="org.mybatis.spring.SqlSessionFactoryBean" id="sqlSessionFactoryBean">
+		<property name="mapperLocations">
+			<list>
+				<value>classpath:com/sml/team/dao/TeamMapper.xml</value>
+				<value>classpath:com/sml/common/dao/commonDaoMapper.xml</value>
+				<value>classpath:com/sml/referee/dao/RefereeMapper.xml</value>
+				<value>classpath:com/sml/soccer/dao/SoccerMapper.xml</value>
+				<value>classpath:com/sml/record/dao/RecordMapper.xml</value>
+				<value>classpath:com/sml/member/dao/MemberMapper.xml</value>
+				<value>classpath:com/sml/admin/dao/adminDaoMapper.xml</value>
+
+			</list>
+		</property>
+			<property name="dataSource" ref="dataSource"/>
+		</bean>
+	<!-- 5.3 SqlSessionFactoryBuilder().build(DriverManager,Mapper Resource-->
+	<bean class="org.mybatis.spring.SqlSessionTemplate" id="sqlSessionTemplate">
+		<constructor-arg ref="sqlSessionFactoryBean"/>
+	</bean>
+</beans>

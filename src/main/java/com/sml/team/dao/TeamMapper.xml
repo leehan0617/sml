@@ -1,0 +1,148 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+  
+<mapper namespace="team.dao.TeamMapper">
+	
+	<select id="loginOk" parameterType="java.util.HashMap" resultType="com.sml.team.dto.TeamDto">
+		select * from team where TEAMID=#{id} and TEAMPASSWORD=#{password}
+	</select>
+	
+	<select id="viewTeamBoardList" parameterType="java.util.HashMap" resultType="com.sml.team.dto.TeamBoardDto">
+		<![CDATA[
+			select * from 
+				(select rownum as rrownum, d.*  from 
+					((select rownum as rnum, c.* from 
+						(select a.* from TEAMBOARD a, team b where b.teamName=#{teamName} and a.teamcode=b.teamcode order by boardNumber asc) c order by rnum desc) d) )e 
+							where rrownum>=#{startRow} and rrownum <=#{endRow}
+		]]>
+
+	</select>
+	
+	<select id="scheduleList" resultType="com.sml.team.dto.ScheduleDto">
+		select * from TEAMSCHEDULE
+	</select>
+	
+	<insert id="searchMatching" parameterType="com.sml.team.dto.MatchingDto">
+		insert into MATCHING values (matching_matchingcode_sql.nextval , #{teamCode} , #{matchingSport} , #{matchingDistance} , #{matchingTime} , #{matchingState}, #{matchingDay}, #{matchingPlace}, #{matchingLatlng})
+	</insert>
+	
+ 	<select id="idCheckSelect" parameterType="String" resultType="String">
+ 		select teamId from team where teamId=#{teamId}
+ 	</select>
+ 	
+ 	<select id="teamIdCheck" parameterType="String" resultType="String">
+ 		select teamName from team where teamId=#{teamName}
+ 	</select>
+ 	
+
+ 	<select id="scheduleTeamid" parameterType="String" resultType="int">
+ 		select teamCode from team where teamId=#{teamId}
+ 	</select>
+ 	
+	<insert id="insertSchedule" parameterType="com.sml.team.dto.ScheduleDto">
+		insert into TEAMSCHEDULE values(teamschedule_num_sql.nextval,#{teamCode},#{scheduleType},#{scheduleDate},#{scheduleTitle},#{scheduleContent})
+	</insert>
+
+	<select id="getTeamInfo" parameterType="String" resultType="com.sml.team.dto.TeamDto">
+ 		select * from team where teamName=#{teamName}
+ 	</select>
+ 	
+ 	<select id="getTeamMemberList" parameterType="java.util.HashMap" resultType="com.sml.member.dto.MemberDto">
+ 		<![CDATA[
+			select * from 
+				(select rownum as rrownum, d.*  from 
+					((select rownum as rnum, c.* from 
+						(select a.* from teamMember a, team b where b.teamName=#{teamName} and a.teamcode=b.teamcode order by memberCode asc) c order by rnum desc) d) )e 
+							where rrownum>=#{startRow} and rrownum <=#{endRow}
+		]]>
+ 	</select>
+ 	
+ 	<select id="getBoardCount" parameterType="String" resultType="int">
+ 		select count(*) from teamBoard a, team b where b.teamName=#{teamName} and a.teamcode=b.teamcode order by boardNumber asc
+ 	</select>
+
+	<select id="getBoardDto" parameterType="int" resultType="com.sml.team.dto.TeamBoardDto">
+		select * from teamBoard where boardNumber=#{boardNumber}
+	</select>
+	
+	<insert id="writeTeamBoard" parameterType="com.sml.team.dto.TeamBoardDto">
+		insert into teamBoard values (teamboard_boardNumber_sql.nextval, #{teamCode}, #{boardWriter}, #{boardDate}, #{boardTitle}, #{boardContent})
+	</insert>
+	
+	<delete id="deleteTeamBoard" parameterType="int">
+		delete teamBoard where boardNumber=#{boardNumber}
+	</delete>
+	
+	<update id="updateTeamBoard" parameterType="com.sml.team.dto.TeamBoardDto">
+		update teamBoard set boardDate=#{boardDate}, boardTitle=#{boardTitle}, boardContent=#{boardContent} where boardNumber=#{boardNumber}
+	</update>
+	
+	<select id="getTeamMemberCount" parameterType="String" resultType="int">
+		select count(*) from teamMember a, team b where b.teamName=#{name} and a.teamcode=b.teamcode
+	</select>
+	
+	<insert id="addMember" parameterType="java.util.HashMap">
+		<![CDATA[
+			insert into teamMember values (teammember_membercode_sql.nextval, #{teamCode}, #{member.memberName}, sysdate, #{member.memberRegion},#{member.memberEmail}, #{member.memberPhone} , #{member.memberGender})
+		]]>	
+	</insert>
+	
+	<delete id="deleteMember" parameterType="int">
+		delete teamMember where memberCode=#{memberCode}
+	</delete>
+	
+	<select id="recordList" parameterType="java.util.HashMap" resultType="java.util.HashMap">
+		<![CDATA[
+			select * from (
+				select rownum as rnum, d.* from
+				(select a.*, b.teamName as team1, c.teamName as team2 
+					from gameRecord a, team b, team c 
+						where a.teamcode=b.teamcode and a.teamcode2=c.teamcode and (b.teamName=#{teamName} or c.teamName=#{teamName}) 
+							order by gameCode desc) d ) where rnum >= #{startRow} and rnum <= #{endRow}
+		]]>	
+	</select>
+	
+	<select id="getRecordCount" parameterType="String" resultType="int">
+		<![CDATA[
+			select count(*) from (
+				select rownum as rnum, d.* from
+				(select a.*, b.teamName as team1, c.teamName as team2 
+					from gameRecord a, team b, team c 
+						where a.teamcode=b.teamcode and a.teamcode2=c.teamcode and (b.teamName=#{teamName} or c.teamName=#{teamName}) 
+							order by gameCode desc) d )
+		]]>	
+	</select>
+	
+	<select id="getGugunList" parameterType="String" resultType="String">
+		<![CDATA[
+			select distinct(gugun) from zipcode where sido=#{sido}
+		]]>	
+	</select>
+	
+	<select id="getSidoList" parameterType="String" resultType="String">
+		<![CDATA[
+			select distinct(sido) from zipcode
+		]]>	
+	</select>
+	
+	<select id="getTeamGround" parameterType="int" resultType="String">
+		<![CDATA[
+			select ground from homeGround where teamCode=#{teamCode}
+		]]>	
+	</select>
+	
+	<select id="getTeamMatchingInfo" parameterType="int" resultType="com.sml.team.dto.MatchingDto">
+		select * from matching where teamCode=#{teamCode}
+	</select>
+	
+	<delete id="deleteMatching" parameterType="int">
+		delete matching where matchingCode=#{matchingCode}
+	</delete>
+	
+	<select id="getOtherMatchingInfo" parameterType="java.util.HashMap" resultType="com.sml.team.dto.MatchingDto">
+		select * from matching where not teamCode=#{teamCode} and matchingState=#{matchingState} and matchingSport=#{sportType}
+	</select>
+	
+</mapper>

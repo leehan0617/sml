@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="member.dao.MemberMapper">
+	<select id="teamMemberList" resultType="com.sml.member.dto.MemberDto">
+		select * from TEAMMEMBER
+	</select>
+	
+	<insert id="TeamInsert" parameterType="java.util.HashMap">
+		insert into Team values(TEAM_TEAMCODE_SQL.nextval,#{teamName},#{teamReaderName},#{teamId},#{teamPassword},#{sportType},#{emblem},#{teamGrade})
+	</insert> 
+		
+	<delete id="Teamdelete" parameterType="int">
+		delete from Team where TEAMCODE=#{team}
+	</delete>
+	
+	<select id="TeamCodeSelect" parameterType="String" resultType="int">
+		select TEAMCODE from Team where teamid = #{teamId}
+	</select>
+	<insert id="memberInsert" parameterType="com.sml.member.dto.MemberDto">
+		insert into TeamMember values(TEAMMEMBER_MEMBERCODE_SQL.nextval,#{teamCode},#{memberName},#{memberBirth},#{memberRegion},#{memberEmail},#{memberPhone},#{memberGender})
+	</insert> 
+	
+	<select id="teamReader" parameterType="int" resultType="String">
+		select teamLeaderName from team where TEAMCODE=#{team}
+	</select>
+	
+	<insert id="updateTeamReader" parameterType="java.util.HashMap">
+		update team set teamLeaderName=#{teamLeaderName} where TEAMCODE=#{team}
+	</insert>
+	
+	<insert id="insertHomeGround" parameterType="java.util.HashMap">
+		insert into homeGround (teamCode, ground) values (#{team}, #{homeGround})
+	</insert>
+</mapper>  

@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="dao.adminDaoMapper">
+
+	<select id="getManageTeamCount" resultType="int">
+		<![CDATA[
+		select count(*) from team
+		]]>
+	</select>
+
+	<select id="getManageTeam" parameterType="java.util.HashMap"
+		resultType="java.util.HashMap">
+		<![CDATA[
+		select * from
+		(select rownum as rnum, c.* from
+			(select a.emblem,a.teamname,a.teamleadername, b.* from team a, teamMember b 
+				where a.teamcode=b.teamcode) c)
+					where rnum>=#{startRow} and rnum<=#{endRow}
+		]]>
+
+	</select>
+
+	<delete id="manageTeamDelete" parameterType="int">
+		DELETE FROM (SELECT * FROM team ,teammember WHERE team.teamcode = teammember.teamcode and team.teamcode=#{teamcode})
+	</delete>
+
+
+	<select resultType="int" id="refereeCount">
+		<![CDATA[ select count(*) from referee ]]>
+	</select>
+
+
+	<select resultType="com.sml.referee.dto.RefereeDto" id="refereeList"	parameterType="java.util.Map">
+		<![CDATA[ select * from (select rownum rnum, a.* from (select * from referee order by refereeName asc)a) where rnum >=#{startRow} and rnum <=#{endRow} ]]>
+	</select>
+
+	<delete id="refereeDelete" parameterType="int"> 
+		delete from referee where refereeNumber=#{refereeNumber} 
+	</delete>
+
+	<update id="refereeAccept" parameterType="int"> 
+		update referee set refereeyes='1' where refereeNumber=#{refereeNumber} 
+	</update>
+
+	<select resultType="com.sml.referee.dto.RefereeDto" id="refereeSearch"
+		parameterType="String"> select * from referee where refereeName=#{refereeName}
+	</select>
+	
+	<insert id="createLeague" parameterType="com.sml.league.dto.LeagueDto">
+		insert into leagueinfo(leagueCode,leagueSport,leagueRegion,leagueTeamNumber,leagueDay,leagueTime,leagueStartDate,leagueImage,leagueName,leagueEndDate)
+		values(leagueinfo_leagueCode_sql.nextval,#{leagueSport},#{leagueRegion},#{leagueTeamNumber},#{leagueDay},#{leagueTime},#{leagueStartDate},#{leagueImage},#{leagueName},#{leagueEndDate})
+	</insert>
+
+	
+	<select id="getManageLeagueCount" resultType="int">
+		<![CDATA[ select count(*) from leagueInfo ]]>
+	</select>
+	
+	<select id="manageLeagueList" parameterType="java.util.HashMap" resultType="com.sml.league.dto.LeagueDto">
+		<![CDATA[ select * from (select rownum rnum, a.* from (select * from leagueInfo order by leagueStartDate asc)a) where rnum >=#{startRow} and rnum <=#{endRow} ]]>
+	</select>
+	
+	<delete id="leagueDelete" parameterType="int">
+		delete from leagueInfo where leagueCode=#{leagueCode} 
+	</delete>
+	
+	<select id="leagueInfo" parameterType="int" resultType="com.sml.league.dto.LeagueDto">
+		select * from leagueInfo where leagueCode=#{leagueCode}
+	</select>
+	
+	<select id="leagueUpdate" parameterType="int" resultType="com.sml.league.dto.LeagueDto">
+		select * from leagueInfo where leagueCode=#{leagueCode}
+	</select>
+	
+	<update id="leagueUpdateOk" parameterType="com.sml.league.dto.LeagueDto">
+		update leagueInfo set leagueSport=#{leagueSport},leagueImage=#{leagueImage},leagueRegion=#{leagueRegion},leagueName=#{leagueName},leagueTeamNumber=#{leagueTeamNumber},leagueDay=#{leagueDay},leagueTime=#{leagueTime},leagueStartDate=#{leagueStartDate},leagueEndDate=#{leagueEndDate} where leagueCode=#{leagueCode}
+	</update>
+	
+
+	
+	
+	
+</mapper>
