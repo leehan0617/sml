@@ -29,7 +29,7 @@ public class MemberController {
 	 * @설명문:팀원등록을 위한 이동메소드
 	 */
 	@RequestMapping(value="/member/registerMember.do" , method=RequestMethod.POST)
-	public ModelAndView teamMember(MultipartHttpServletRequest request,HttpServletResponse response,MemberDto memberDto){
+	public ModelAndView teamMember(HttpServletRequest request,HttpServletResponse response,MemberDto memberDto){
 		logger.info("MemberController teamMemberInfo");
 		ModelAndView mav = new ModelAndView();
 		mav.addObject("request",request);

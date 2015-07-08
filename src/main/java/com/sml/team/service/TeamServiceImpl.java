@@ -1053,6 +1053,7 @@ public class TeamServiceImpl implements TeamService{
 	public void showSchedule(ModelAndView mav) {
 		HashMap<String,Object> map=mav.getModelMap();
 		HttpServletRequest request=(HttpServletRequest) map.get("request");
+		String teamId=request.getParameter("teamId");
 		
 		mav.setViewName("teamPage/editSchedule");
 		
