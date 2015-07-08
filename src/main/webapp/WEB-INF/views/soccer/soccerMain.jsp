@@ -56,16 +56,13 @@
 	
 	<div id="matchingList">
 		<h3><a href="">금주매치</a></h3>
-		<ul>
-			<li>
-				<span><input type="button" value="이전" onclick="moveMatchDay('${root}', '${-1}', '${matchDay}')"/></span>
-				<%-- <span><fmt:formatDate value="${now }" type="date" pattern="MM월 dd일" /></span> --%>
-				<span>${matchDay }</span>
-				<span>요일</span>
-				<span><input type="button" value="다음" onclick="moveMatchDay('${root}', '${1}', '${matchDay}')"/></span>
-				
-			</li>				
-		</ul>	
+		<div>
+			<span><input type="button" value="이전" onclick="moveMatchDay('${root}', '${-1}', '${matchDay}')"/></span>
+			<%-- <span><fmt:formatDate value="${now }" type="date" pattern="MM월 dd일" /></span> --%>
+			<span>${matchDay }</span>
+			<span>요일</span>
+			<span><input type="button" value="다음" onclick="moveMatchDay('${root}', '${1}', '${matchDay}')"/></span>
+		</div>
 		
 		<c:if test="${todayMatchList==null }">
 			<span>매치 없음</span>
@@ -73,23 +70,21 @@
 		
 		<c:if test="${todayMatchList!=null }">
 			<c:forEach var="todayMatch" items="${todayMatchList }">
-			<ul>				
-				<li> 	
+				<div>	
 					<span id="teamCode">
-						<a href="${root }/teamPage/teamPageMain.do?teamName=${todayMatch.TEAMNAME1 }" target="_blank"><img alt="팀엠블럼1:${todayMatch.EMBLEM1 }" src="${root }/img/soccer/emblem/${todayMatch.EMBLEM1 }"/></a>
-					</span>
+						<a href="${root }/teamPage/teamPageMain.do?teamName=${todayMatch.TEAMNAME1 }" target="_blank"><img alt="팀엠블럼1:${todayMatch.EMBLEM1 }" src="${root }/img/teamImg/${todayMatch.EMBLEM1 }"/></a>
+					</span>${todayMatch.EMBLEM1 }
 					<span>${todayMatch.TEAMNAME1 }</span>
 					
 					<span>vs</span>
 					
 					<span id="teamcode2">
-						<a href="${root }/teamPage/teamPageMain.do?teamName=${todayMatch.TEAMNAME2 }" target="_blank"><img alt="팀엠블럼2:${todayMatch.EMBLEM2 }" src="${root }/img/soccer/emblem/${todayMatch.EMBLEM2 }"/></a>
+						<a href="${root }/teamPage/teamPageMain.do?teamName=${todayMatch.TEAMNAME2 }" target="_blank"><img alt="팀엠블럼2:${todayMatch.EMBLEM2 }" src="${root }/img/teamImg/${todayMatch.EMBLEM2 }"/></a>
 					</span>
 					<span>${todayMatch.TEAMNAME2 }</span>
 					
 					<a href=""><span>${todayMatch.GAMEPLACE }</span></a>
-				</li>		
-			</ul>
+				</div>
 			</c:forEach>
 		</c:if>
 	</div>
@@ -146,13 +141,17 @@
 		
 	<div>
 		<h3>리그</h3>
-		<ul>
-			<li>
-				<span><input type="button" value="<"/></span>
-				<img alt="리그 이미지 넣어야함" src=""/>
-				<span><input type="button" value=">"/></span>
-			</li>
-		</ul>		
+		<div>
+			<span><input type="button" value="<"/></span>
+			<img alt="리그 이미지 넣어야함" src=""/>
+			<span><input type="button" value=">"/></span>
+			<%-- 
+			<c:forEach value="" items="">
+				<div>
+					
+				</div>
+			</c:forEach> --%>
+		</div>	
 	</div>	
 	
 		
