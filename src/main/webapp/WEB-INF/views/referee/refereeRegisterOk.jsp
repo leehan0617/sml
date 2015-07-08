@@ -13,14 +13,14 @@
 	<c:if test="${check ==1 }">
 		<script type="text/javascript">
 			alert("신청 완료");
-			location.href="${root}/referee/refereeList.do";
+			location.href="${root}/referee/refereeList.do?sportType=${sportType}";
 		</script>
 	</c:if>
 	
 	<c:if test="${check ==0 }">
 		<script type="text/javascript">
 			alert("신청 실패");
-			location.href="${root}/referee/refereeList.do";
+			location.href="${root}/referee/refereeList.do?sportType=${sportType}";
 		</script>
 	</c:if>
 </body>

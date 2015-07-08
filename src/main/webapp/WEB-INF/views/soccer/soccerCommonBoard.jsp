@@ -2,7 +2,7 @@
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
-<c:set var="root" value="${pageContext.request.contextPath }"></c:set>
+<c:set var="root" value="${pageContext.request.contextPath }"/>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -18,8 +18,7 @@
 	
 	<c:if test="${count>0}">	
 		<tr> 
-			<td align="center" width="30">종목</td>
-			<td align="center" width="30">작성자</td>	
+			<td align="center" width="30">종목</td>	
 			<td align="center" width="250">제목</td>
 			<td align="center" width="70">날짜</td>			
 		</tr>		
@@ -27,18 +26,11 @@
 	</c:if>	
 	
 	<c:forEach var="commonBoard" items="${commonBoardList}">
-		<tr>			
-			<td>
-							
-			</td>
-			<td>${commonBoard.boardWriter}</td>
-			<td><a href="${root }/board/readCommonBoard.do?boardNumber=${commonBoard.boardNumber}&pageNumber=${currentPage}">${commonBoard.boardTitle}</a></td>					
+		<tr>				
+			<td><a href="${root }/soccer/readCommonBoard.do?boardNumber=${commonBoard.boardNumber}&pageNumber=${currentPage}">${commonBoard.boardTitle}</a></td>					
 			<td><fmt:formatDate value="${commonBoard.boardDate}" type="date"/></td>
-		</tr>
-			&nbsp;&nbsp;
-			<a href="${root }/board/deleteCommonBoard.do?boardNumber=${commonBoard.boardNumber}">[삭제]</a>
-			&nbsp;&nbsp;
 			<br/>
+		</tr>			
 	</c:forEach>
 	
 	<!-- 페이지 번호 -->

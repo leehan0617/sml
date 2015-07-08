@@ -8,10 +8,10 @@
 <title>Insert title here</title>
 </head>
 <body>
-	<c:set var="root" value="${pageContext.request.contextPath }"></c:set>
-	<a href="${root}/mainPage.jsp"><img alt="logo" src=""></a>
-	<a href="${root}/mainPage.jsp">SML Korea</a>
-	
-	<h3>경기 규칙</h3>
+<select id="resultOption">
+<c:forEach var="result" items="${list}">
+		<option>${result}</option>
+</c:forEach>
+</select>
 </body>
 </html>

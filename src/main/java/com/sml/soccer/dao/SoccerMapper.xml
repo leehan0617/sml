@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+  
+ <mapper namespace="dao.SoccerMapper">
+ 	<select id="teamSearch" parameterType="String" resultType="int">
+ 	<![CDATA[
+ 		select teamcode from team where teamname=#{teamname}
+ 	]]>
+ 	</select>	
+ 	
+ 	<select id="todayMatch" parameterType="String" resultType="java.util.HashMap">
+ 		<![CDATA[
+ 			select t1.emblem as emblem1, t1.teamname as teamName1, t2.emblem as emblem2, t2.teamname as teamName2, g.GAMEPLACE as gamePlace	from gamerecord g, team t1 , team t2 	where g.TEAMCODE=t1.TEAMCODE and g.TEAMCODE2=t2.TEAMCODE and g.sporttype='축구' and gamedate=#{matchDay}
+ 		]]>
+ 	</select>
+ 	
+ 	<select id="getAllTeamSearch" resultType="com.sml.team.dto.TeamDto">
+ 		<![CDATA[
+ 			select * from team where sporttype=#{sportType}
+ 		]]>
+ 	</select>	
+ 	
+ 	<select resultType="com.sml.common.dto.CommonBoardDto" parameterType="java.util.Map" id="commonBoard">
+		<![CDATA[ 
+			select * from (select rownum rnum, a.* from (select * from board where sportCode=#{sportCode} order by boardDate desc)a) where rnum >=#{startRow} and rnum <=#{endRow} 
+		]]>
+	</select>
+	
+	<select id="nextMatchDay" parameterType="String" resultType="java.sql.Date">
+		<![CDATA[
+			select gamedate from(select rownum, gamedate from(select gamedate from GAMERECORD where gameDate>=#{matchDay} and sporttype='축구' order by gamedate asc) where rownum='1')
+		]]>
+	</select>
+	
+	<select id="prevMatchDay" parameterType="String" resultType="java.sql.Date">
+		<![CDATA[
+			select gamedate from(select rownum, gamedate from(select gamedate from GAMERECORD where gameDate<=#{matchDay} and sporttype='축구' order by gamedate desc) where rownum='1')
+		]]>
+	</select>
+ </mapper>

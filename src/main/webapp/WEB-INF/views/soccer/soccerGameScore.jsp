@@ -9,8 +9,8 @@
 </head>
 <body>
 	<c:set var="root" value="${pageContext.request.contextPath }"></c:set>
-	<a href="${root}/start.jsp"><img alt="logo" src=""></a>
-	<a href="${root}/start.jsp">SML Korea</a>
+	<a href="${root}/mainPage.jsp"><img alt="logo" src=""></a>
+	<a href="${root}/mainPage.jsp">SML Korea</a>
 	
 	<h3>기록실</h3>
 	
