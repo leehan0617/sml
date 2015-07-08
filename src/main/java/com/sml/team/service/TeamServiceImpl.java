@@ -876,7 +876,7 @@ public class TeamServiceImpl implements TeamService{
 		
 		int check=dao.addTeamLog(teamLogDto);		
 		int replyCode=teamLogDto.getReplyCode();
-		//System.out.println("replyCode:"+replyCode);		
+		System.out.println("replyCodeWrite:"+replyCode);		
 		
 		mav.addObject("replyCode",replyCode);
 		mav.addObject("teamName",teamName);

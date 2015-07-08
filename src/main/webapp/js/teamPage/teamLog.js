@@ -4,7 +4,7 @@
 var root=null;
 function teamLog(requestRoot,teamName){
 	root=requestRoot;
-	//alert("teamName"+teamName);
+	alert("teamName"+teamName);
 	
 	var replyNickName=$("#replyNickName").val();
 	var replyContent=$("#replyContent").val();	
@@ -14,7 +14,7 @@ function teamLog(requestRoot,teamName){
 	
 	var sendData="replyNickName="+replyNickName+"&replyContent="+replyContent+"&teamName="+teamName+"&replyPassword="+replyPassword;
 	var url=root+"/teamPage/teamLog.do?"+sendData;
-	//alert(url);
+	alert(url);
 	
 	
 	$.ajax({
