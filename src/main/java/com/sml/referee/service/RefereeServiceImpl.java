@@ -128,8 +128,7 @@ public class RefereeServiceImpl implements RefereeService{
 		
 		if(fileSize!=0){
 			try{
-				String dir="C:\\Users\\kosta\\git\\SmlProject\\smlProject\\src\\main\\webapp\\img\\refereeImg";
-				//String dir="C:\\mavenSpring\\workspace\\smlProject\\src\\main\\webapp\\img\\refereeImg"
+				String dir="C:\\Users\\kosta\\git\\sml\\src\\main\\webapp\\img\\refereeImg";
 				//String dir=request.getSession().getServletContext().getRealPath("/") + File.separator + "img/refereeImg";
 				
 				logger.info("dir:" + dir);
