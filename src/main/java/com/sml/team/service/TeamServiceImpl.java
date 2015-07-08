@@ -252,7 +252,7 @@ public class TeamServiceImpl implements TeamService{
 		
 		mav.addObject("teamLogDtoList",teamLogDtoList);	
 		mav.addObject("team",team);
-		mav.setViewName("teamPage/teamPageMain");
+		mav.setViewName("team/teamMain");
 	}
 
 	/**
