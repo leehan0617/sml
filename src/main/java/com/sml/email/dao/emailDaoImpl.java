@@ -7,6 +7,9 @@ import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
+import com.sml.email.dto.emailDto;
+import com.sml.member.dto.MemberDto;
+
 @Component
 public class emailDaoImpl implements emailDao {
 	final Logger logger=Logger.getLogger(this.getClass().getName());
@@ -19,11 +22,12 @@ public class emailDaoImpl implements emailDao {
 	 * @설명문:팀장이름,폰번호 여부 확인을위한 데이터베이스연결
 	 */
 	@Override
-	public String search(String memberName, String memberPhone,String memberEmail) {
+	public MemberDto search(String memberName, String memberPhone) {
 		HashMap<String,Object> Hmap=new HashMap<String,Object>();
 		Hmap.put("memberName", memberName);
 		Hmap.put("memberPhone", memberPhone);
-		Hmap.put("memberEmail", memberEmail);
+		
+
 		return sqlSession.selectOne("dao.emailMapper.search",Hmap);
 	}
 

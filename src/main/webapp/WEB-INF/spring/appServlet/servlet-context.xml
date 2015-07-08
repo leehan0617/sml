@@ -35,4 +35,4 @@
 		<beans:property name="defaultEncoding" value="UTF-8"/>
 		<beans:property name="maxUploadSize" value="100000000"/>
 	</beans:bean>
-</beans:beans>
+	</beans:beans>

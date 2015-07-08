@@ -1,5 +1,8 @@
 package com.sml.email.dao;
 
+
+import com.sml.member.dto.MemberDto;
+
 public interface emailDao {
-	public String search(String memberName,String memberPhone,String memberEmail);
+	public MemberDto search(String memberName,String memberPhone);
 }

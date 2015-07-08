@@ -3,7 +3,7 @@
   PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="dao.emailMapper">
-	<select id="search" parameterType="String" resultType="String">
-		select memberName,memberPhone,memberEmail from TeamMember where memberName=#{memberName} and memberPhone=#{memberPhone} and memberEmail=#{memberEmail}
+	<select id="search" parameterType="java.util.HashMap" resultType="com.sml.member.dto.MemberDto">
+		select memberName,memberPhone,memberEmail from TeamMember where memberName=#{memberName} and memberPhone=#{memberPhone}
 	</select>
 </mapper>

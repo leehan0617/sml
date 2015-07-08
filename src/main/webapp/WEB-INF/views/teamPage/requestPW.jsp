@@ -17,9 +17,6 @@
 		<label>핸드폰번호</label>
 		<input type="text" name="memberPhone" placeholder="핸드폰번호를 입력하세요"/><br/><br/>
 		
-		<label>email</label>
-		<input type="text" name="memberEmail" placeholder="e-mail을 입력해주세요"/><br/><br/>
-		
 		<input type="submit" value="인증받기"/>
 		<input type="reset" value="닫기" onclick="javascript:self.close()"/>
 	</div>
