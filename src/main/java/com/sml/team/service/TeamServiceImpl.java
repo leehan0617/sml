@@ -863,7 +863,7 @@ public class TeamServiceImpl implements TeamService{
 		
 		TeamLogDto teamLogDto=(TeamLogDto) map.get("teamLogDto");
 		String teamName=request.getParameter("teamName");		
-		System.out.println("teamName:"+teamName);
+		//System.out.println("teamName:"+teamName);
 		
 		int teamCode=dao.selectTeamCode(teamName);
 		
@@ -876,7 +876,7 @@ public class TeamServiceImpl implements TeamService{
 		
 		int check=dao.addTeamLog(teamLogDto);		
 		int replyCode=teamLogDto.getReplyCode();
-		System.out.println("replyCodeWrite:"+replyCode);		
+		//System.out.println("replyCodeWrite:"+replyCode);		
 		
 		mav.addObject("replyCode",replyCode);
 		mav.addObject("teamName",teamName);
