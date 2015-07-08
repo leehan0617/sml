@@ -32,19 +32,19 @@ public class MemberServiceImpl implements MemberService{
 	public void teamMember(ModelAndView mav) {	
 		logger.info("MemberService teamMemberInfo");
 		Map<String,Object> map=mav.getModelMap();
-		MultipartHttpServletRequest request=(MultipartHttpServletRequest)map.get("request");
+		HttpServletRequest request=(HttpServletRequest)map.get("request");
 		MemberDto memberDto=(MemberDto)map.get("memberDto");
 		
-		
-		//
-		MultipartFile upFile=request.getFile("teamImage");
-		String fileName=upFile.getOriginalFilename();
+	
+		/*//MultipartFile upFile=request.getFile("teamImage");
+		//String fileName=upFile.getOriginalFilename();
 		String timeName=Long.toString(System.currentTimeMillis()) + "_" + fileName;
 		long fileSize=upFile.getSize();		
 		logger.info("fileName:" + fileName);
 		logger.info("timeName:" + timeName);
-		
-		String path=null;		
+		*/
+		String path="";	
+		/*
 		if(fileSize!=0){
 			try{
 				//String dir=request.getSession().getServletContext().getRealPath("/") + File.separator + "img/teamImg";
@@ -58,17 +58,15 @@ public class MemberServiceImpl implements MemberService{
 			}catch(Exception e){
 				logger.info("파일 입출력 에러:" + e);
 			}
-		}
-				
-		
-		
+		}*/
+						
 		String teamId=request.getParameter("teamId");
 		String teamPassword=request.getParameter("teamPassword");
 		String teamName=request.getParameter("teamName");
 		String sportType=request.getParameter("sportType");
 		String homeGround=request.getParameter("homeGround");
 		String teamReaderName="";
-		String emblem=timeName;
+		String emblem="";//timename
 		
 		String teamGrade="AA";
 		

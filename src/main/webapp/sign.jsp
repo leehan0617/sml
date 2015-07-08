@@ -30,7 +30,7 @@
 	});
 </script>
 
-<form action="${root}/member/registerMember.do" method="post" enctype="multipart/form-data" name="registerModal" onsubmit="return teamCheck(this)">
+<form action="${root}/member/registerMember.do" method="post" name="registerModal" onsubmit="return teamCheck(this)">
 <div class="modal fade" id="popupJoin" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
 		  <div class="modal-dialog">
 		    <div class="modal-content">
@@ -77,18 +77,7 @@
 					      	</div>
 					    </div>
 					    <br/>
-					    
-					    <div class="row">
-					    	<div class="col-xs-8 col-sm-3"></div>
-					    	 <div class="col-xs-4 col-sm-6">
-					    	 	<label>팀 이미지</label>
-						        <div class="input-group">
-							      <input type="file" class="form-control" name="teamImage">		     
-							    </div><!-- /input-group -->
-					      	</div>
-					    </div>
-					    <br/>
-					    
+					  					    
 					    <div class="row">
 					    	<div class="col-xs-8 col-sm-3"></div>
 					    	<div class="col-xs-4 col-sm-6">    		
