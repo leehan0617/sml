@@ -16,6 +16,8 @@ import com.sml.member.dto.MemberDto;
 import com.sml.team.dto.MatchingDto;
 import com.sml.team.dto.ScheduleDto;
 import com.sml.team.dto.TeamBoardDto;
+import com.sml.team.dto.TeamDto;
+import com.sml.team.dto.TeamLogDto;
 import com.sml.team.service.TeamService;
 
 
@@ -103,11 +105,12 @@ public class TeamController {
 	 * @설명문:로그인 이동 메소드 
 	 */
 	@RequestMapping(value="/teamPage/login.do" , method=RequestMethod.POST)
-	public ModelAndView login(HttpServletRequest request,HttpServletResponse response){
+	public ModelAndView login(HttpServletRequest request,HttpServletResponse response,TeamDto teamDto,TeamLogDto teamLogDto){
 		ModelAndView mav=new ModelAndView();
 		
 		mav.addObject("request",request);
-		
+		mav.addObject("teamLogDto",teamLogDto);
+		mav.addObject("teamDto",teamDto);
 		service.login(mav);
 		return mav;
 	}
@@ -503,8 +506,7 @@ public class TeamController {
 		service.matching(mav);
 		
 		return mav;
-	}
-	
+	}	
 
 	/**
 	 * 
@@ -559,7 +561,7 @@ public class TeamController {
 	}
 	
 	/**
-	 * @name : searchRegion
+	 * @name : manageTeamEmblem
 	 * @date : 2015. 7. 7.
 	 * @author : 변형린
 	 * @description : 팀 로고 변경 창 이동
@@ -587,4 +589,33 @@ public class TeamController {
 		
 		return mav;
 	}
+	
+	/**
+	 * @name : TeamLog
+	 * @date : 2015. 7. 3.
+	 * @author : 정성남
+	 * @description : 팀 방명록(LOG)
+	 */	
+	
+	@RequestMapping(value="/teamPage/teamLog.do", method=RequestMethod.GET)
+	 public ModelAndView addTeamLog(HttpServletRequest request,TeamLogDto teamLogDto){
+		ModelAndView mav=new ModelAndView();		
+		mav.addObject("request",request);	
+		mav.addObject("teamLogDto",teamLogDto);		
+		service.addTeamLog(mav);		
+		return mav;
+	}
+	
+	@RequestMapping(value="/teamPage/teamLogDelete.do", method=RequestMethod.GET)
+	 public ModelAndView teamLogDelete(HttpServletRequest request){
+		ModelAndView mav=new ModelAndView();
+		mav.addObject("request",request);	
+		int replyCode=Integer.parseInt(request.getParameter("replyCode"));		
+		System.out.println(replyCode+"replyCode---------");		
+		mav.addObject("replyCode",replyCode);
+		service.teamLogDelete(mav);		
+		return mav;
+	}
+	
+	
 }

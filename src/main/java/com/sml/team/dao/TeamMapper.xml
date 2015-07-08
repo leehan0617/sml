@@ -148,4 +148,16 @@
 	<update id="updateTeamEmblem" parameterType="com.sml.team.dto.TeamDto">
 		update team set emblem=#{emblem}, path=#{path} where teamName=#{teamName}
 	</update>
+	
+	<insert id="addTeamLog" parameterType="com.sml.team.dto.TeamLogDto" >
+	 insert into TeamLog values(BOARDREPLY_REPLYCODE_SQL.nextval,#{teamCode},#{replyNickName},#{replyPassword},#{replyContent},#{replyDate})
+	 </insert>
+
+	<select id="teamLogDtoList" resultType="com.sml.team.dto.TeamLogDto" parameterType="int" >
+	 select * from teamLog where teamCode=#{teamCode} order by replyCode desc
+    </select>
+
+	<delete id="teamLogDelete" parameterType="java.util.HashMap" >
+	 delete from teamLog where replyPassword=#{replyPassword} and replyCode=#{replyCode}
+    </delete>
 </mapper>

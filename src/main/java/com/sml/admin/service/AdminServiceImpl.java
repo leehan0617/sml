@@ -1,6 +1,5 @@
 package com.sml.admin.service;
 
-
 import java.io.File;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -17,12 +16,10 @@ import org.springframework.web.multipart.MultipartHttpServletRequest;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.sml.admin.dao.AdminDao;
-import com.sml.common.dto.CommonBoardDto;
 import com.sml.league.dto.LeagueDto;
 import com.sml.member.dto.MemberDto;
 import com.sml.referee.dto.RefereeDto;
 import com.sml.team.dto.TeamDto;
-
 
 @Component
 public class AdminServiceImpl implements AdminService{

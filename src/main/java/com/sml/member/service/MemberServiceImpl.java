@@ -1,5 +1,6 @@
 package com.sml.member.service;
 
+import java.io.File;
 import java.util.List;
 import java.util.Map;
 
@@ -8,6 +9,8 @@ import javax.servlet.http.HttpServletRequest;
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.web.multipart.MultipartFile;
+import org.springframework.web.multipart.MultipartHttpServletRequest;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.sml.member.dao.MemberDao;
@@ -29,19 +32,48 @@ public class MemberServiceImpl implements MemberService{
 	public void teamMember(ModelAndView mav) {	
 		logger.info("MemberService teamMemberInfo");
 		Map<String,Object> map=mav.getModelMap();
-		HttpServletRequest request=(HttpServletRequest)map.get("request");
+		MultipartHttpServletRequest request=(MultipartHttpServletRequest)map.get("request");
 		MemberDto memberDto=(MemberDto)map.get("memberDto");
-
+		
+		
+		//
+		MultipartFile upFile=request.getFile("teamImage");
+		String fileName=upFile.getOriginalFilename();
+		String timeName=Long.toString(System.currentTimeMillis()) + "_" + fileName;
+		long fileSize=upFile.getSize();		
+		logger.info("fileName:" + fileName);
+		logger.info("timeName:" + timeName);
+		
+		String path=null;		
+		if(fileSize!=0){
+			try{
+				String dir=request.getSession().getServletContext().getRealPath("/") + File.separator + "img/teamImg";
+				
+				logger.info("dir:" + dir);
+				
+				File file=new File(dir, timeName);	
+				upFile.transferTo(file);
+				path=file.getAbsolutePath();
+				//logger.info("file.getPath() : " + file.getPath());
+			}catch(Exception e){
+				logger.info("파일 입출력 에러:" + e);
+			}
+		}
+				
+		
+		
 		String teamId=request.getParameter("teamId");
 		String teamPassword=request.getParameter("teamPassword");
 		String teamName=request.getParameter("teamName");
 		String sportType=request.getParameter("sportType");
 		String homeGround=request.getParameter("homeGround");
 		String teamReaderName="";
-		String emblem="";
+		String emblem=timeName;
+		
 		String teamGrade="AA";
 		
-		int check=dao.insertMember(memberDto,teamId,teamPassword,teamName,sportType,teamGrade,teamReaderName,emblem,homeGround);
+		int check=dao.insertMember(memberDto,teamId,teamPassword,teamName,sportType,teamGrade,teamReaderName,emblem,homeGround, path);
+		logger.info("REGISTER CHECK: " + check);
 		mav.addObject("check",check);
 		mav.setViewName("member/registerResult");
 	}

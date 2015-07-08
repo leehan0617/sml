@@ -80,6 +80,17 @@
 					    
 					    <div class="row">
 					    	<div class="col-xs-8 col-sm-3"></div>
+					    	 <div class="col-xs-4 col-sm-6">
+					    	 	<label>팀 이미지</label>
+						        <div class="input-group">
+							      <input type="file" class="form-control" name="teamImage">		     
+							    </div><!-- /input-group -->
+					      	</div>
+					    </div>
+					    <br/>
+					    
+					    <div class="row">
+					    	<div class="col-xs-8 col-sm-3"></div>
 					    	<div class="col-xs-4 col-sm-6">    		
 								<label>종목</label>
 								<select class="form-control" name="sportType">

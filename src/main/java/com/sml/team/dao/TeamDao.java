@@ -4,12 +4,11 @@ import java.util.HashMap;
 import java.util.List;
 
 import com.sml.member.dto.MemberDto;
-import com.sml.record.dto.RecordDto;
 import com.sml.team.dto.MatchingDto;
 import com.sml.team.dto.ScheduleDto;
 import com.sml.team.dto.TeamBoardDto;
 import com.sml.team.dto.TeamDto;
-
+import com.sml.team.dto.TeamLogDto;
 
 public interface TeamDao {
 	public String idCheck(String teamId);
@@ -38,4 +37,9 @@ public interface TeamDao {
 	public int deleteMatching(int matchingCode);
 	public List<MatchingDto> getOtherMatchingInfo(int teamCode, String sportType);
 	public int updateTeamEmblem(TeamDto teamDto);
+	public int selectTeamCode(String teamName);
+	public List<TeamLogDto> teamLogDtoList(int teamCode);
+	public int addTeamLog(TeamLogDto teamLogDto);
+	public int teamLogDelete(String replyPassword,int replyCode);
+	
 }

@@ -9,6 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.multipart.MultipartHttpServletRequest;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.sml.member.dto.MemberDto;
@@ -28,7 +29,7 @@ public class MemberController {
 	 * @설명문:팀원등록을 위한 이동메소드
 	 */
 	@RequestMapping(value="/member/registerMember.do" , method=RequestMethod.POST)
-	public ModelAndView teamMember(HttpServletRequest request,HttpServletResponse response,MemberDto memberDto){
+	public ModelAndView teamMember(MultipartHttpServletRequest request,HttpServletResponse response,MemberDto memberDto){
 		logger.info("MemberController teamMemberInfo");
 		ModelAndView mav = new ModelAndView();
 		mav.addObject("request",request);

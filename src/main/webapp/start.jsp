@@ -62,7 +62,7 @@
 	              	<li><a href="#login" data-toggle="modal" data-target="#popupLogin">로그인</a></li>
 	              </c:when>
 	              <c:otherwise>
-	              	<li><a href="#logout">로그아웃</a></li>
+	              	<li><a href="${root }/teamPage/logout.do">로그아웃</a></li>
 	              </c:otherwise>
               </c:choose>
               <li><a href="#nearGround">주변 경기장</a></li>
@@ -307,6 +307,6 @@
   <div class="login" id="login"></div>
   
   <!-- 작업중 -->
-  <div><a href="${root}/teamPage/teamPageMain.do?teamName=${teamName}">teamPage</a></div>  
+  <div><a href="WEB-INF/views/team/teamMain.jsp">작업중</a></div>  
 </body>
 </html>
