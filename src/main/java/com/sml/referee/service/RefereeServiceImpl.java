@@ -59,13 +59,14 @@ public class RefereeServiceImpl implements RefereeService{
 		int count=refereeDao.refereeCount();
 		logger.info("count:" + count);
 		
+		//심판 리스트
 		List<RefereeDto> refereeList=null;
 		if(count>0){
 			refereeList=refereeDao.refereeList(startRow, endRow, sportType, regionSido);//sportType="축구"
 		}
 		logger.info("boardSize:" + refereeList.size());
 		
-		//sido 리스트
+		//심판 지역 리스트
 		List<String> sidoList=refereeDao.sidoList(regionSido);
 		sidoList.add(0, regionSido);
 		
@@ -123,7 +124,6 @@ public class RefereeServiceImpl implements RefereeService{
 		long fileSize=upFile.getSize();
 		
 		logger.info("fileName:" + fileName);
-		//logger.info("fileSize" + fileSize);
 		logger.info("timeName:" + timeName);
 		
 		if(fileSize!=0){

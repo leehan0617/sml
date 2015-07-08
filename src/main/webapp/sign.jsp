@@ -30,7 +30,7 @@
 	});
 </script>
 
-<form action="${root}/member/registerMember.do" method="post" name="registerModal" onsubmit="return teamCheck(this)">
+<form action="${root}/member/registerMember.do" method="post" enctype="multipart/form-data" name="registerModal" onsubmit="return teamCheck(this)">
 <div class="modal fade" id="popupJoin" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
 		  <div class="modal-dialog">
 		    <div class="modal-content">

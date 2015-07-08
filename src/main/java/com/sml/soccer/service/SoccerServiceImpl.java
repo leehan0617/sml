@@ -47,6 +47,7 @@ public class SoccerServiceImpl implements SoccerService {
 		//////////////////////////////////////////////////////////////////////
 		String sportType="축구";
 		//////////////////////////////////////////////////////////////////////
+		
 		//금주매치
 		String matchDay=request.getParameter("matchDay");
 		String moveMatchDay=request.getParameter("moveMatchDay");// 1, -1

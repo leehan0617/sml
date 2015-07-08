@@ -47,8 +47,8 @@ public class MemberServiceImpl implements MemberService{
 		String path=null;		
 		if(fileSize!=0){
 			try{
-				String dir=request.getSession().getServletContext().getRealPath("/") + File.separator + "img/teamImg";
-				
+				//String dir=request.getSession().getServletContext().getRealPath("/") + File.separator + "img/teamImg";
+				String dir="C:\\Users\\kosta\\git\\sml\\src\\main\\webapp\\img\\teamImg";
 				logger.info("dir:" + dir);
 				
 				File file=new File(dir, timeName);	
