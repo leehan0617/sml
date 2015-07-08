@@ -30,26 +30,33 @@
 				    빠른이동<span class="caret"></span>
 				  </button>
 				  <ul class="dropdown-menu" role="menu">
-				    	<li><a href="#">${teamId }님</a></li>
+			    	  <c:if test="${teamGrade != null }">
+						<li><a href="#">${teamId }님</a></li>
 						<li><a href="${root }/teamPage/teamPageMain.do?teamName=${team.teamName}">메인</a></li>
 						<li><a href="${root }/teamPage/viewTeamBoard.do?teamName=${team.teamName}">팀 공지사항</a></li>
 						<li><a href="${root }/teamPage/teamMemberInfo.do?teamName=${team.teamName}">팀원소개</a></li>
-						<li><a href="${root }/teamPage/teamSchedule.do?teamName=${team.teamName}">팀 스케쥴</a></li>
+						<li><a href="${root }/teamPage/teamScheduleEdit.do?teamName=${teamName}">팀 스케쥴</a></li>
 						<li><a href="${root }/teamPage/viewTeamRecord.do?teamName=${team.teamName}">팀 기록</a></li>
+		
+						<li class="divider"></li>
 						<li><a href="${root }/teamPage/manageTeamBoard.do?teamName=${team.teamName}">공지사항관리</a></li>
 						<li><a href="${root }/teamPage/manageTeamMember.do?teamName=${team.teamName}">팀원관리</a></li>
-						<li><a href="${root }/teamPage/teamScheduleEdit.do">스케쥴관리</a></li>
+						<li><a href="${root }/teamPage/teamScheduleEdit.do?teamName=${teamName}">스케쥴관리</a></li>
 						<li><a href="${root }/teamPage/matching.do?teamName=${team.teamName}">매칭관리</a></li>
+						<li><a href="${root }/teamPage/manageTeamEmblem.do?teamName=${team.teamName}">팀 로고 관리</a></li>
 						<li class="divider"></li>
-						<c:if test="${teamId==null }">
 						<li><a href="${root}/teamPage/logout.do?teamId='${teamId}'">로그아웃</a></li>
+				  	</c:if>
+				  	
+				  	<c:if test="${teamGrade == null }">
 						<li><a href="${root }/teamPage/teamPageMain.do?teamName=${team.teamName}">메인</a></li>
 						<li><a href="${root }/teamPage/viewTeamBoard.do?teamName=${team.teamName}">팀 공지사항</a></li>
 						<li><a href="${root }/teamPage/teamMemberInfo.do?teamName=${team.teamName}">팀원소개</a></li>
 						<li><a href="${root }/teamPage/viewTeamRecord.do?teamName=${team.teamName}">팀 기록</a></li>
-						<li><a href="${root }/viewSchedule.do">팀 스케쥴</a></li>
-						</c:if>
+						<li><a href="${root }/teamPage/teamScheduleEdit.do?teamName=${teamName}">팀 스케쥴</a></li>
+					</c:if>
 				  </ul>
+				  
 				</div>
 	  	   </div>
 	</div>
