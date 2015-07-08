@@ -21,7 +21,7 @@
 		var text='${jsonObject}';
 	 	var obj=JSON.parse(text);
 		
-	 	if(obj.scheduleDtoList[1]!=null){
+	 	if(obj.scheduleDtoList!=null){
 		 	var events_array = [];
 		 	for(var i in obj.scheduleDtoList){
 		 		var schedule_object =
