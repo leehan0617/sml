@@ -11,13 +11,12 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
-import com.sml.email.dto.emailDto;
 import com.sml.email.service.emailService;
 
 
 
 @Controller
-public class EmailController {
+public class MailController {
 	final Logger logger=Logger.getLogger(this.getClass().getName());
 	@Autowired
 	private emailService service;
