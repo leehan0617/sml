@@ -625,7 +625,7 @@ function matching(form, root){
 	
 }
 
-function doSearching(root,teamCode){
+function doSearching(root,teamCode, teamName){
 	
 	$.ajax ({
 	      type: 'get', // POST 로 전송
@@ -651,6 +651,6 @@ function doSearching(root,teamCode){
 	      }
 	});
 	
-	$("#teamState").attr("value", "매칭 중 ");
-	$("#teamState").attr("style", "color:green");
+	alert("매칭이 시작되었습니다. ");
+	location.href=root + '/team/teamMain.do?teamName=' +teamName;
 }

@@ -14,7 +14,6 @@ import com.sml.team.dto.TeamBoardDto;
 import com.sml.team.dto.TeamDto;
 import com.sml.team.dto.TeamLogDto;
 
-
 @Component
 public class TeamDaoImpl implements TeamDao{
 	@Autowired
@@ -467,5 +466,51 @@ public class TeamDaoImpl implements TeamDao{
 	public int deleteSchedule(int scheduleNumber) {
 		
 		return sqlSession.delete("team.dao.TeamMapper.deleteSchedule",scheduleNumber);
+	}
+
+
+	/**
+	 * @name : TeamDaoImpl
+	 * @date : 2015. 7. 8.
+	 * @author : 이희재
+	 * @description : 매칭이 완료되면 매칭의 상태를 전->중 으로 바꿔줌
+	 */
+	@Override
+	public void changeMatchingState(MatchingDto matchingDto) {
+		HashMap<String, Object> hMap=new HashMap<String, Object>();
+		hMap.put("matchingState", "중");
+		hMap.put("matchingCode", matchingDto.getMatchingCode());
+		sqlSession.update("team.dao.TeamMapper.changeMatchingState", hMap);
+	}
+
+	/**
+	 * @name : TeamDaoImpl
+	 * @date : 2015. 7. 8.
+	 * @author : 이희재
+	 * @description : 성사된 매칭을 이용하여 경기 시작 전 상태의 친선 gameRecord 생성
+	 */
+	@Override
+	public void createGameRecord(MatchingDto myMatchingDto,
+			MatchingDto otherMatchingDto) {
+		HashMap<String, Object> hMap=new HashMap<String, Object>();
+		hMap.put("teamCode", myMatchingDto.getTeamCode());
+		hMap.put("teamCode2", otherMatchingDto.getTeamCode());
+		hMap.put("gameType", 0);
+		hMap.put("refereeNumber",1);
+		hMap.put("gameState", "경기 전");
+		hMap.put("sportType", myMatchingDto.getMatchingSport());
+		
+		sqlSession.insert("team.dao.TeamMapper.createGameRecord", hMap);
+	}
+
+	/**
+	 * @name : TeamDaoImpl
+	 * @date : 2015. 7. 8.
+	 * @author : 이희재
+	 * @description : 경기 시작 전인 친선 경기의 매치 정보와 해당 팀의 정보를 모두 가져옴
+	 */
+	@Override
+	public HashMap<String, Object> getNormalMatchInfo(int teamCode) {
+		return sqlSession.selectOne("team.dao.TeamMapper.getNormalMatchInfo", teamCode);
 	}
 }

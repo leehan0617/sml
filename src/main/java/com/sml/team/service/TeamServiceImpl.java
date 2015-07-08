@@ -2,6 +2,7 @@ package com.sml.team.service;
 
 
 import java.io.File;
+import java.math.BigInteger;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashMap;
@@ -639,10 +640,38 @@ public class TeamServiceImpl implements TeamService{
 			mav.addObject("teamName",teamName);
 			mav.setViewName("teamPage/matching");
 		}else if(matchingDto!=null){
-			mav.addObject("matchingDto", matchingDto);
-			mav.addObject("teamCode", teamCode);
-			mav.addObject("teamName",teamName);
-			mav.setViewName("teamPage/matching");
+			if(matchingDto.getMatchingState().equals("전")){
+				mav.addObject("matchingDto", matchingDto);
+				mav.addObject("teamCode", teamCode);
+				mav.addObject("teamName",teamName);
+				mav.setViewName("teamPage/matching");
+			}
+			if(matchingDto.getMatchingState().equals("중")){
+				HashMap<String, Object> normalMatchInfo=dao.getNormalMatchInfo(teamCode);
+				MatchingDto otherMatchingDto=null;
+				
+//				String tempTeamName=String.valueOf(normalMatchInfo.get("TEAM1"));
+//				String tempTeamName2=String.valueOf(normalMatchInfo.get("TEAM2"));
+//				
+//				if(teamName.equals(tempTeamName)){
+//					
+//				}
+				int tempTeamCode=Integer.valueOf(String.valueOf(normalMatchInfo.get("TEAMCODE")));
+				int tempTeamCode2=Integer.valueOf(String.valueOf(normalMatchInfo.get("TEAMCODE2")));
+				
+				if(teamCode==tempTeamCode){
+					otherMatchingDto=dao.getTeamMatchingInfo(tempTeamCode2);
+				}else if(teamCode!=tempTeamCode){
+					otherMatchingDto=dao.getTeamMatchingInfo(tempTeamCode);
+				}
+				
+				mav.addObject("normalMatchInfo",normalMatchInfo);
+				mav.addObject("otherMatchingDto",otherMatchingDto);
+				mav.addObject("matchingDto", matchingDto);
+				mav.addObject("teamCode", teamCode);
+				mav.addObject("teamName",teamName);
+				mav.setViewName("teamPage/matchingResult");
+			}
 		}
 		
 	}
@@ -760,6 +789,10 @@ public class TeamServiceImpl implements TeamService{
 		}
 		
 		int resultIdx=getResultIdx(resultMap);
+		dao.changeMatchingState(otherMatchingInfo.get(resultIdx));
+		dao.changeMatchingState(myMatchingDto);
+		dao.createGameRecord(myMatchingDto, otherMatchingInfo.get(resultIdx));
+		
 	}
 	
 	/**

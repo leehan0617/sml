@@ -46,4 +46,7 @@ public interface TeamDao {
 	public ScheduleDto scheduleContents(int scheduleNumber);
 	public TeamDto selectMember(int scheduleNumber);
 	public int deleteSchedule(int scheduleNumber);
+	public void changeMatchingState(MatchingDto matchingDto);
+	public void createGameRecord(MatchingDto myMatchingDto, MatchingDto otherMatchingDto);
+	public HashMap<String, Object> getNormalMatchInfo(int teamCode);
 }

@@ -188,4 +188,21 @@
 	<delete id="deleteSchedule" parameterType="int">
 		delete from TEAMSCHEDULE where scheduleNumber=#{scheduleNumber}
 	</delete>
+	
+	<update id="changeMatchingState" parameterType="java.util.HashMap">
+		update matching set matchingState=#{matchingState} where matchingCode=#{matchingCode}
+	</update>
+	
+	<insert id="createGameRecord" parameterType="java.util.HashMap">
+		insert into gameRecord (gameCode, teamCode, teamCode2, gameType, refereeNumber, gameState, sportType)
+		values (gameRecord_gameCode_sql.nextVal, #{teamCode}, #{teamCode2}, #{gameType}, #{refereeNumber}, #{gameState}, #{sportType})
+	</insert>
+	
+	<select id="getNormalMatchInfo" parameterType="int" resultType="java.util.HashMap">
+		select d.* from (
+			select a.*, b.teamName as team1, c.teamName as team2 
+				from gameRecord a, team b, team c 
+					where a.teamcode=b.teamcode and a.teamcode2=c.teamcode and (b.teamCode=#{teamCode} or c.teamCode=#{teamCode}) and gameState='경기 전'
+						order by gameCode desc) d
+	</select>
 </mapper>

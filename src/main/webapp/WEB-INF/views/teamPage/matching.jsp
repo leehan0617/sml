@@ -143,9 +143,8 @@
 		<div><span>매칭 장소 :</span><span style="color:blue;">${matchingDto.matchingPlace }</span></div>
 		<div><span>매칭 상태 :</span><span style="color:blue;">${matchingDto.matchingState }</span></div>
 		<div><span>매칭 위도, 경도 :</span><span style="color:blue;">${matchingDto.matchingLatlng }</span></div>
-		<input type="button" value="매칭 시작" onclick="doSearching('${root}','${teamCode}')">
+		<input type="button" value="매칭 시작" onclick="doSearching('${root}','${teamCode}','${teamName }')">
 		<input type="button" value="매칭 취소" onclick="javascript:location.href='${root}/teamPage/deleteMatching.do?matchingCode=${matchingDto.matchingCode }&teamName=${teamName}'">
-		<input id="teamState" type="button" value="매칭 대기중">
 		<div id="result" style="display:none;"></div>
 	</c:if>
 </body>
