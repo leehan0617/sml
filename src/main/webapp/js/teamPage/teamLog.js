@@ -29,6 +29,7 @@ function teamLog(requestRoot,teamName){
 			
 			$(".replyList").append("<a href=''>삭제</a>"+"&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;");
 			
+			location.href=root+"/teamPage/teamPageMain.do?teamName="+teamName;
 			
 			
 			//alert("gggg------"+replyNickName+","+replyContent);	

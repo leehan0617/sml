@@ -137,6 +137,10 @@
 		update team set emblem=#{emblem}, path=#{path} where teamName=#{teamName}
 	</update>
 	
+	<select id="selectTeamCode" parameterType="String" resultType="int">
+ 		select teamCode from team where teamName=#{teamName}
+ 	</select>
+ 		
 	<insert id="addTeamLog" parameterType="com.sml.team.dto.TeamLogDto" >
 	 insert into TeamLog values(BOARDREPLY_REPLYCODE_SQL.nextval,#{teamCode},#{replyNickName},#{replyPassword},#{replyContent},#{replyDate})
 	 </insert>

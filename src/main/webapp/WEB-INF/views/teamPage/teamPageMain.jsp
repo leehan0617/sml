@@ -19,7 +19,7 @@
 		<c:set var="teamId" value="${teamId}" scope="session"/>
 		<c:set var="teamGrade" value="${teamGrade }" scope="session"/>
 		<c:set var="teamName" value="${teamName }" scope="session"/>
-		<c:set var="teamCode" value="${teamCode }" scope="session"/>
+		
 	</c:if>
 	
 	<div>

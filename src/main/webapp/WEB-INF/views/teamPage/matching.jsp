@@ -116,7 +116,7 @@
 			<h3>희망 경기시간</h3>
 				<input type="checkbox" name="time" value="오전"><label>오전 (12시 이전)</label>
 				<input type="checkbox" name="time" value="오후"><label>오후 (12시~ 7시)</label>
-				<input type="checkbox" name="time" value="오전"><label>저녁 (7시 이후)</label>
+				<input type="checkbox" name="time" value="저녁"><label>저녁 (7시 이후)</label>
 			<input type="hidden" name="matchingTime"/>
 			
 			<h3>최대 검색거리</h3>

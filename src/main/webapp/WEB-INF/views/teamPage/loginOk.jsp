@@ -16,7 +16,7 @@
 	<c:if test="${teamGrade!=null}">
 		<script type="text/javascript">
 			alert("환영합니다");
-			$(location).attr("href","${root}/teamPage/teamPageMain.do?teamName=${teamName}"); 
+			$(location).attr("href","${root}/team/teamMain.do?teamName=${teamName}"); 
 		</script>
 	</c:if>
 	
