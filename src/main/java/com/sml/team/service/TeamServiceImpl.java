@@ -2,6 +2,7 @@ package com.sml.team.service;
 
 
 import java.io.File;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
@@ -728,7 +729,7 @@ public class TeamServiceImpl implements TeamService{
 //			}
 //		}
 		
-		matchingDistance(teamCode);
+		matchingTeam(teamCode);
 		int check=1;
 		mav.addObject("check",check);
 		mav.addObject("teamCode", teamCode);
@@ -739,28 +740,33 @@ public class TeamServiceImpl implements TeamService{
 	 * @name : matchingDistance
 	 * @date : 2015. 7. 7.
 	 * @author : 이희재
-	 * @description : teamCode를 이용하여 자신의 matching 정보와 다른 팀 매칭 정보와 비교하여 거리를 계산하는 함수
+	 * @description : teamCode를 이용하여 자신의 matching 정보와 다른 팀 매칭 정보와 비교하여 매칭하는 함수
 	 */
-	public void matchingDistance(int teamCode){
+	public void matchingTeam(int teamCode){		
 		MatchingDto myMatchingDto=dao.getTeamMatchingInfo(teamCode);
-		StringTokenizer myToken=new StringTokenizer(myMatchingDto.getMatchingLatlng(),",");
-		double myLat=Double.parseDouble(myToken.nextToken());
-		double myLng=Double.parseDouble(myToken.nextToken());
-		int myDistance=myMatchingDto.getMatchingDistance();
-		
 		List<MatchingDto> otherMatchingInfo=dao.getOtherMatchingInfo(teamCode,myMatchingDto.getMatchingSport());
-		for(int i=0;i<otherMatchingInfo.size();i++){
-			String latLng=otherMatchingInfo.get(i).getMatchingLatlng();
-			int otherDistance=otherMatchingInfo.get(i).getMatchingDistance();
-			StringTokenizer token=new StringTokenizer(latLng,",");
-			
-			double otherLat=Double.parseDouble(token.nextToken());
-			double otherLng=Double.parseDouble(token.nextToken());
-			
-			int distance=calcDistance(myLat,otherLat,myLng,otherLng);
-			System.out.println("매칭 코드 : " + otherMatchingInfo.get(i).getMatchingCode());
-			System.out.println("실제 측정 거리 : " +distance);
-			System.out.println("매칭 거리 : "+ (myDistance + otherDistance));
+		
+		if(otherMatchingInfo!=null){
+			for(int i=0;i<otherMatchingInfo.size();i++){
+				int myDistance=myMatchingDto.getMatchingDistance();
+				int otherDistance=otherMatchingInfo.get(i).getMatchingDistance();
+				
+				int distance=calcDistance(myMatchingDto,otherMatchingInfo.get(i));
+				// 두 매칭 지역간의 거리를 비교 한다.
+				
+				String matchingDay=compareDay(myMatchingDto,otherMatchingInfo.get(i));
+				// 두 매칭 정보간의 요일 정보를 매칭한다.
+				
+				String matchingTime=compareTime(myMatchingDto,otherMatchingInfo.get(i));
+				// 두 매칭 정보간의 시간 정보 비교
+				
+				System.out.println("매칭 코드 : " + otherMatchingInfo.get(i).getMatchingCode());
+				System.out.println("실제 측정 거리 : " +distance);
+				System.out.println("매칭 거리 : "+ (myDistance + otherDistance));
+				System.out.println("매칭 요일 : " + matchingDay);
+				System.out.println("매칭 시간 : " + matchingTime);
+				System.out.println();
+			}
 		}
 	}
 	
@@ -770,8 +776,61 @@ public class TeamServiceImpl implements TeamService{
 	 * @author : 이희재
 	 * @description : 위도와 경도를 이용한 거리 측정 함수 
 	 */
-	public int calcDistance(double lat1, double lat2, double lng1, double lng2){
-		int result=(int) (Math.sqrt(Math.pow(lat2-lat1,2)+Math.pow(lng2-lng1, 2))*100000);
+	public int calcDistance(MatchingDto myMatchingDto,MatchingDto otherMatchingInfo){
+		
+		StringTokenizer myToken=new StringTokenizer(myMatchingDto.getMatchingLatlng(),",");
+		double myLat=Double.parseDouble(myToken.nextToken());
+		double myLng=Double.parseDouble(myToken.nextToken());
+		
+		String latLng=otherMatchingInfo.getMatchingLatlng();
+		StringTokenizer token=new StringTokenizer(latLng,",");
+		
+		double otherLat=Double.parseDouble(token.nextToken());
+		double otherLng=Double.parseDouble(token.nextToken());
+		
+		int result=(int) (Math.sqrt(Math.pow(otherLat-myLat,2)+Math.pow(otherLng-myLng, 2))*100000);
+		return result;
+	}
+	
+	/**
+	 * @name : compareDay
+	 * @date : 2015. 7. 8.
+	 * @author : 이희재
+	 * @description : 두 매칭 정보간의 요일을 비교한다.
+	 */
+	public String compareDay(MatchingDto myMatchingDto,MatchingDto otherMatchingInfo){
+		StringTokenizer myToken=new StringTokenizer(myMatchingDto.getMatchingTime(),",");
+		String otherTime=otherMatchingInfo.getMatchingTime();
+		String result="";
+		while(myToken.hasMoreTokens()){
+			String temp=myToken.nextToken();
+			if(otherTime!=null){
+				if(otherTime.contains(temp)){
+					result+=temp + ",";
+				}
+			}
+		}
+		return result;
+	}
+	
+	/**
+	 * @name : compareTime
+	 * @date : 2015. 7. 8.
+	 * @author : 이희재
+	 * @description : 두 매칭 정보간의 시간 정보를 비교한다.
+	 */
+	public String compareTime(MatchingDto myMatchingDto,MatchingDto otherMatchingInfo){
+		StringTokenizer myToken=new StringTokenizer(myMatchingDto.getMatchingDay(),",");
+		String otherDay=otherMatchingInfo.getMatchingDay();
+		String result="";
+		while(myToken.hasMoreTokens()){
+			String temp=myToken.nextToken();
+			if(otherDay!=null){
+				if(otherDay.contains(temp)){
+					result+=temp + ",";
+				}
+			}
+		}
 		return result;
 	}
 	
