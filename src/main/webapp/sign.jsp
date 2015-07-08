@@ -12,10 +12,6 @@
 		$('#popupJoin2').modal('toggle');
 	});
 	
-	$("#date1").click(function(){
-		alert("test");
-	});
-	
 	$("#date1").datepicker({
 		dateFormat:"yy-mm-dd",
 		yearRange: "1950:2015",
@@ -29,6 +25,9 @@
 		changeMonth:true
 	});
 </script>
+<script src="${root }/js/xhr/xhr.js"></script>
+<script src="${root }/js/teamPage/teamPage.js"></script>
+<script src="${root }/js/member/member.js"></script>
 
 <form action="${root}/member/registerMember.do" method="post" name="registerModal" onsubmit="return teamCheck(this)">
 <div class="modal fade" id="popupJoin" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">

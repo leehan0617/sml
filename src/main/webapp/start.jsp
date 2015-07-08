@@ -40,7 +40,7 @@
 		      			<input type="text" class="form-control" placeholder="팀명을 검색하세요." id="searchTeamName">
 			    		<span class="input-group-btn">
 			      		<button class="btn btn-default" type="button">
-			      		  <span class="glyphicon glyphicon-search" aria-hidden="true"></span>찾기
+			      		  <span class="glyphicon glyphicon-search" aria-hidden="true"></span>이동
 			      		</button>
 			      		</span>
 		    		</div><!-- /input-group -->

@@ -14,13 +14,13 @@
 		<c:if test="${check>0}">
 			<script type="text/javascript">
 				alert("가입이완료되었습니다");
-				location.href="${root}/mainPage.jsp";
+				location.href="${root}/start.jsp";
 			</script>	
 		</c:if>
 		<c:if test="${check==0}">
 			<script type="text/javascript">
 				alert("가입에 실패하였습니다.");
-				location.href="${root}/mainPage.jsp";
+				location.href="${root}/start.jsp";
 			</script>	
 		</c:if>
 </body>
