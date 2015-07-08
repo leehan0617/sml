@@ -5,8 +5,10 @@ import java.io.File;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashMap;
+import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
+import java.util.Set;
 import java.util.StringTokenizer;
 
 import javax.servlet.http.HttpServletRequest;
@@ -727,6 +729,7 @@ public class TeamServiceImpl implements TeamService{
 	public void matchingTeam(int teamCode){		
 		MatchingDto myMatchingDto=dao.getTeamMatchingInfo(teamCode);
 		List<MatchingDto> otherMatchingInfo=dao.getOtherMatchingInfo(teamCode,myMatchingDto.getMatchingSport());
+		HashMap<Integer, Integer> resultMap=new HashMap<Integer, Integer>();
 		
 		if(otherMatchingInfo!=null){
 			for(int i=0;i<otherMatchingInfo.size();i++){
@@ -737,10 +740,15 @@ public class TeamServiceImpl implements TeamService{
 				// 두 매칭 지역간의 거리를 비교 한다.
 				
 				String matchingDay=compareDay(myMatchingDto,otherMatchingInfo.get(i));
-				// 두 매칭 정보간의 요일 정보를 매칭한다.
+				// 두 매칭 정보간의 요일 정보를 비교 (공통 부분 출력)
 				
 				String matchingTime=compareTime(myMatchingDto,otherMatchingInfo.get(i));
-				// 두 매칭 정보간의 시간 정보 비교
+				// 두 매칭 정보간의 시간 정보 비교 (공통 부분 출력)
+				
+				if((distance<myDistance+otherDistance)&&(!matchingDay.equals(""))&&(!matchingTime.equals(""))){
+					resultMap.put(i, distance);
+				}
+				// 매칭이 가능한 상태인 정보들을 hashMap에 거리와 인덱스를 저장.
 				
 				System.out.println("매칭 코드 : " + otherMatchingInfo.get(i).getMatchingCode());
 				System.out.println("실제 측정 거리 : " +distance);
@@ -750,6 +758,8 @@ public class TeamServiceImpl implements TeamService{
 				System.out.println();
 			}
 		}
+		
+		int resultIdx=getResultIdx(resultMap);
 	}
 	
 	/**
@@ -814,6 +824,36 @@ public class TeamServiceImpl implements TeamService{
 			}
 		}
 		return result;
+	}
+	
+	/**
+	 * @name : getResultIdx
+	 * @date : 2015. 7. 8.
+	 * @author : 이희재
+	 * @description : index인 key값을 이용하여 value인 거리를 출력하고 최소의 거리를 이용하여 해당 key값을 반환
+	 */
+	public int getResultIdx(HashMap<Integer, Integer> resultMap){
+		Set<Integer> keySet=resultMap.keySet();
+		Iterator<Integer> iter=keySet.iterator();
+		int key=0;
+		int tempDistance=-1;
+		while(iter.hasNext()){
+			int tempKey=iter.next();
+//			System.out.println(key + ","+resultMap.get(key));
+			if(tempDistance==-1){
+				tempDistance=resultMap.get(tempKey);
+				key=tempKey;
+			}else{
+				if(tempDistance>resultMap.get(tempKey)){
+					tempDistance=resultMap.get(tempKey);
+					key=tempKey;
+				}
+			}
+		}
+//		System.out.println("매칭 키 : " + key);
+//		System.out.println("tempDistance : "+ tempDistance);
+//		System.out.println("매칭 될 거리 : " + resultMap.get(key));
+		return key;
 	}
 	
 	/**
