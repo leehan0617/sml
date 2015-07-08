@@ -17,7 +17,7 @@ import com.sml.email.service.emailService;
 
 
 @Controller
-public class emailController {
+public class EmailController {
 	final Logger logger=Logger.getLogger(this.getClass().getName());
 	@Autowired
 	private emailService service;
