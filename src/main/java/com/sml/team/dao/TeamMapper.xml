@@ -145,4 +145,7 @@
 		select * from matching where not teamCode=#{teamCode} and matchingState=#{matchingState} and matchingSport=#{sportType}
 	</select>
 	
+	<update id="updateTeamEmblem" parameterType="com.sml.team.dto.TeamDto">
+		update team set emblem=#{emblem}, path=#{path} where teamName=#{teamName}
+	</update>
 </mapper>

@@ -14,6 +14,7 @@
 	<div>	
 		<span>종목</span>
 		<span>이름</span>
+		<span>성별</span>
 		<span>생년월일</span>
 		<span>주소</span>
 		<span>연락처</span>			
@@ -31,8 +32,9 @@
 				<div>	
 							<span>${referee.refereeSport }</span>
 							<span>${referee.refereeName}</span>
+							<span>${referee.refereeGender }</span>
 							<span>${referee.refereeBirth}</span>
-							<span>${referee.refereeAddress}</span>
+							<span>${referee.sido} ${referee.gugun}</span>
 							<span>${referee.refereePhoneNumber}</span>
 							<c:if test="${referee.refereeYes==0 }">
 								<input type="button" value="거절" onclick="location.href='${root}/admin/refereeDelete.do?pageNumber=${currentPage}&refereeNumber=${referee.refereeNumber }'"/>
@@ -41,7 +43,6 @@
 							</c:if>
 							<c:if test="${referee.refereeYes==1 }">
 								<input type="button" value="삭제" onclick="location.href='${root}/admin/refereeDelete.do?pageNumber=${currentPage}&refereeNumber=${referee.refereeNumber }'"/>
-								
 							</c:if>												
 				</div>
 			</c:forEach>															

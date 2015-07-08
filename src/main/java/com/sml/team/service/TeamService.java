@@ -29,4 +29,6 @@ public interface TeamService {
 	public void matching(ModelAndView mav);
 	public void deleteMatching(ModelAndView mav);
 	public void searching(ModelAndView mav);
+	public void updateTeamEmblem(ModelAndView mav);
+	public void updateTeamEmblemOk(ModelAndView mav);
 }

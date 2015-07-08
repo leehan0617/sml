@@ -9,7 +9,14 @@ public class TeamDto {
 	private String sportType;
 	private String emblem;
 	private String teamGrade;
+	private String path;
 	
+	public String getPath() {
+		return path;
+	}
+	public void setPath(String path) {
+		this.path = path;
+	}
 	public int getTeamCode() {
 		return teamCode;
 	}

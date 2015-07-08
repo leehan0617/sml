@@ -4,10 +4,12 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import java.util.logging.Logger;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.multipart.MultipartHttpServletRequest;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.sml.member.dto.MemberDto;
@@ -556,4 +558,33 @@ public class TeamController {
 		return mav;
 	}
 	
+	/**
+	 * @name : searchRegion
+	 * @date : 2015. 7. 7.
+	 * @author : 변형린
+	 * @description : 팀 로고 변경 창 이동
+	 */
+	@RequestMapping(value="/teamPage/manageTeamEmblem.do", method=RequestMethod.GET)
+	 public ModelAndView updateTeamEmblem(HttpServletRequest request){
+		ModelAndView mav=new ModelAndView();
+		mav.addObject("request",request);
+		service.updateTeamEmblem(mav);
+		
+		return mav;
+	}
+	
+	/**
+	 * @name : updateTeamEmblemOk
+	 * @date : 2015. 7. 8.
+	 * @author : 변형린
+	 * @description : 팀 로고 변경 
+	 */
+	@RequestMapping(value="/teamPage/manageTeamEmblem.do", method=RequestMethod.POST)
+	public ModelAndView updateTeamEmblemOk(MultipartHttpServletRequest request){
+		ModelAndView mav=new ModelAndView();
+		mav.addObject("request", request);
+		service.updateTeamEmblemOk(mav);
+		
+		return mav;
+	}
 }

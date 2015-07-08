@@ -48,7 +48,7 @@
 				<li><a href="${root }/teamPage/manageTeamBoard.do?teamName=${team.teamName}">공지사항관리</a></li>
 				<li><a href="${root }/teamPage/manageTeamMember.do?teamName=${team.teamName}">팀원관리</a></li>
 				<li><a href="${root }/teamPage/teamScheduleEdit.do">스케쥴관리</a></li>
-				<li><a href="${root }/teamPage/matching.do?teamName=${team.teamName}">매칭관리</a></li>
+				<li><a href="${root }/startMatching.do">매칭관리</a></li>
 				<li><a href="${root }/teamPage/manageTeamEmblem.do?teamName=${team.teamName}">팀 로고 관리</a></li>
 				<li>-----------</li>
 				<li><a href="${root}/teamPage/logout.do?teamId='${teamId}'">로그아웃</a></li>
@@ -66,9 +66,9 @@
 	</div>
 	
 	<div>
-		<img alt="팀 로고 이미지 넣어야함" src=""/>
+		<img alt="팀 로고 이미지 넣어야함" src="${root }/img/teamImg/${team.emblem}"/>
 		<h3>팀 이름 : ${team.teamName}</h3>
-		<input id="teamState" style="color: gray;"type="button" value="매칭 대기 중">
+		<input type="button" value="매칭대기중">
 	</div>
 	
 	<div>
@@ -102,7 +102,6 @@
 	
 	<div>
 		<div>
-			기록실 넣는칸
 			기록실 넣는칸
 			
 			<c:forEach var="record" items="${recordList}">

@@ -37,4 +37,5 @@ public interface TeamDao {
 	public MatchingDto getTeamMatchingInfo(int teamCode);
 	public int deleteMatching(int matchingCode);
 	public List<MatchingDto> getOtherMatchingInfo(int teamCode, String sportType);
+	public int updateTeamEmblem(TeamDto teamDto);
 }

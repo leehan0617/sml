@@ -1,6 +1,7 @@
 package com.sml.team.service;
 
 
+import java.io.File;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
@@ -13,6 +14,8 @@ import java.util.logging.Logger;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.web.multipart.MultipartFile;
+import org.springframework.web.multipart.MultipartHttpServletRequest;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.sml.member.dto.MemberDto;
@@ -770,5 +773,74 @@ public class TeamServiceImpl implements TeamService{
 	public int calcDistance(double lat1, double lat2, double lng1, double lng2){
 		int result=(int) (Math.sqrt(Math.pow(lat2-lat1,2)+Math.pow(lng2-lng1, 2))*100000);
 		return result;
+	}
+	
+	/**
+	 * @name : changeTeamEmblem
+	 * @date : 2015. 7. 7.
+	 * @author : 변형린
+	 * @description : 팀 로고 변경
+	 */
+	@Override
+	public void updateTeamEmblem(ModelAndView mav) {
+		HashMap<String, Object> map=mav.getModelMap();
+		HttpServletRequest request=(HttpServletRequest) map.get("request");
+		String teamName=request.getParameter("teamName");
+		logger.info("teamName : " + teamName);
+		TeamDto team=dao.getTeamInfo(teamName);
+		
+		mav.addObject("team", team);
+		mav.setViewName("teamPage/updateTeamEmblem");
+	}
+
+	/**
+	 * @name : updateTeamEmblemOk
+	 * @date : 2015. 7. 7.
+	 * @author : 변형린
+	 * @description : 팀 로고 변경 OK
+	 */
+	@Override
+	public void updateTeamEmblemOk(ModelAndView mav) {
+		HashMap<String, Object> hMap=mav.getModelMap();
+		MultipartHttpServletRequest request=(MultipartHttpServletRequest)hMap.get("request");
+		
+		String teamName=request.getParameter("teamName");
+		TeamDto teamDto=dao.getTeamInfo(teamName);
+		logger.info("teamName2345 : " + teamName);
+		MultipartFile upFile=request.getFile("teamImage");		
+		
+		String fileName=upFile.getOriginalFilename();
+		String timeName=Long.toString(System.currentTimeMillis()) + "_" +  fileName ;
+		long fileSize=upFile.getSize();
+	
+		if(fileSize!=0){
+			try{
+				//절대경로
+				String dir="C:\\Users\\kosta\\git\\SmlProject\\smlProject\\src\\main\\webapp\\img\\teamImg";				
+				//상대경로				
+				//String dir=request.getSession().getServletContext().getRealPath("/fileUp");
+				
+				File file=new File(dir, timeName);			
+				
+				upFile.transferTo(file);
+				
+				teamDto.setPath(file.getAbsolutePath());
+				teamDto.setEmblem(timeName);				
+			}catch(Exception e){
+				logger.info("파일 입출력 에러:" + e);
+			}
+			
+			TeamDto prevTeamDto=dao.getTeamInfo(teamName);
+			if(prevTeamDto.getEmblem()!=null){
+				File file=new File(prevTeamDto.getPath());
+				if(file.exists() && file.isFile()) file.delete();
+			}					
+		}
+		
+		int check=dao.updateTeamEmblem(teamDto);
+		logger.info("check:" + check);
+		
+		mav.addObject("check", check);
+		mav.setViewName("teamPage/teamPageMain");
 	}
 }

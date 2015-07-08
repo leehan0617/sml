@@ -336,6 +336,15 @@ public class TeamDaoImpl implements TeamDao{
 		return sqlSession.selectList("team.dao.TeamMapper.getOtherMatchingInfo",hMap);
 	}
 	
-	
+	/**
+	 * @name : updateTeamEmblem
+	 * @date : 2015. 7. 8.
+	 * @author : 변형린
+	 * @description : 팀 로고 변경
+	 */
+	@Override
+	public int updateTeamEmblem(TeamDto teamDto) {
+		return sqlSession.update("team.dao.TeamMapper.updateTeamEmblem", teamDto);
+	}
 	
 }
