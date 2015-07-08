@@ -2,22 +2,40 @@
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <c:set var="root" value="${pageContext.request.contextPath }"/>
-<!DOCTYPE html>
-<html>
-<head>
-<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>팀페이지</title>
-<script src="${root }/js/jquery/jquery.js"></script>
-<script src="${root }/js/jquery/jquery-ui.js"></script>
-<script src="${root }/js/teamPage/teamPage.js"></script>
-</head>
-<body>
-	<c:if test="${team!=null}">
+<c:if test="${team!=null}">
 		<c:set var="teamId" value="${teamId}" scope="session"/>
 		<c:set var="teamGrade" value="${teamGrade }" scope="session"/>
 		<c:set var="teamName" value="${teamName }" scope="session"/>
-	</c:if>
+</c:if>
+<!DOCTYPE html>
+<html>
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+	<title>팀페이지</title>
+	<link rel="stylesheet" type="text/css" href="${root }/resources/css/bootstrap.css"/>
 	
+	<script src="${root }/resources/js/jquery.js"></script>
+	<script src="${root }/resources/js/angular.js"></script>
+	<script src="${root }/resources/js/bootstrap.js"></script>
+</head>
+<body>
+	<div class="row">
+	  		<div class="col-md-1"></div>
+	  		<div class="col-md-3"><h3><strong>SML KOREA</strong></h3></div>
+	  		<div class="col-md-4"></div>
+	  		<div class="col-md-4">
+	  			<form class="form-inline"  id="searchForm" name="searchForm" style="padding-top:15px;">
+		  			<div class="input-group">
+		      			<input type="text" class="form-control" placeholder="팀명을 검색하세요." id="searchTeamName">
+			    		<span class="input-group-btn">
+			      		<button class="btn btn-default" type="button">
+			      		  <span class="glyphicon glyphicon-search" aria-hidden="true"></span>찾기
+			      		</button>
+			      		</span>
+		    		</div><!-- /input-group -->
+	  			</form>
+	  	   </div>
+	 </div>
 	<div>
 		<a href="${root}/mainPage.jsp"><img alt="logo" src=""></a>
 		<a href="${root}/mainPage.jsp">SML Korea</a>
