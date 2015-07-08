@@ -20,18 +20,20 @@
 		var toDay=new Date();
 		var text='${jsonObject}';
 	 	var obj=JSON.parse(text);
-	 	
-	 	var events_array = [];
-	 	for(var i in obj.scheduleDtoList){
-	 		var schedule_object =
-	 				{
-	 					title:obj.scheduleDtoList[i].scheduleTitle,
-	 					url:obj.scheduleDtoList[i].scheduleNumber,
-	 					start: obj.scheduleDtoList[i].startDate,
-	 					end: obj.scheduleDtoList[i].endDate,
-	 				};
-	 				events_array.push(schedule_object);
-	 		}
+		
+	 	if(obj.scheduleDtoList[1]!=null){
+		 	var events_array = [];
+		 	for(var i in obj.scheduleDtoList){
+		 		var schedule_object =
+		 				{
+		 					title:obj.scheduleDtoList[i].scheduleTitle,
+		 					url:obj.scheduleDtoList[i].scheduleNumber,
+		 					start: obj.scheduleDtoList[i].startDate,
+		 					end: obj.scheduleDtoList[i].endDate,
+		 				};
+		 				events_array.push(schedule_object);
+		 		}
+	 	}
 	 	
 		$('#calendar').fullCalendar({
 			header: {

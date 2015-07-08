@@ -419,8 +419,8 @@ public class TeamDaoImpl implements TeamDao{
 	 * @설명문:스케쥴 총 갯수 구하는 메소드 
 	 */
 	@Override
-	public int readCount(String teamId) {
-		int teamCode=sqlSession.selectOne("team.dao.TeamMapper.scheduleTeamid",teamId);
+	public int readCount(String teamName) {
+		int teamCode=sqlSession.selectOne("team.dao.TeamMapper.scheduleTeamid",teamName);
 		
 		return sqlSession.selectOne("team.dao.TeamMapper.readCount",teamCode);
 	}
