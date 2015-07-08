@@ -923,7 +923,7 @@ public class TeamServiceImpl implements TeamService{
 		if(check>0){
 			logger.info("작성완료");
 		}		
-		mav.setViewName("teamPage/teamPageMain");
+		mav.setViewName("team/teamMain");
 	}
 	/**
 	 * @함수명: teamLogDelete
@@ -950,7 +950,7 @@ public class TeamServiceImpl implements TeamService{
 		}		
 		mav.addObject("replyCode",replyCode);
 		mav.addObject("replyPassword",replyPassword);
-		mav.setViewName("teamPage/teamPageMain");
+		mav.setViewName("team/teamMain");
 	}
 	
 	/**

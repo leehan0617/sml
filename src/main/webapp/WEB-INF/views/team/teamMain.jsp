@@ -17,6 +17,10 @@
 	<script src="${root }/resources/js/jquery.js"></script>
 	<script src="${root }/resources/js/angular.js"></script>
 	<script src="${root }/resources/js/bootstrap.js"></script>
+	
+	<!-- 정성남 댓글 스크립트 -->
+	<script src="${root }/js/teamPage/teamLog.js"></script>
+	<script src="${root }/js/teamPage/teamLogDelete.js"></script>
 </head>
 <body>
 	<div class="row">
@@ -32,7 +36,6 @@
 				  <ul class="dropdown-menu" role="menu">
 			    	  <c:if test="${teamGrade != null }">
 						<li><a href="#">${teamId }님</a></li>
-						<li><a href="${root }/teamPage/teamPageMain.do?teamName=${team.teamName}">메인</a></li>
 						<li><a href="${root }/teamPage/viewTeamBoard.do?teamName=${team.teamName}">팀 공지사항</a></li>
 						<li><a href="${root }/teamPage/teamMemberInfo.do?teamName=${team.teamName}">팀원소개</a></li>
 						<li><a href="${root }/teamPage/teamScheduleEdit.do?teamName=${teamName}">팀 스케쥴</a></li>
@@ -49,7 +52,6 @@
 				  	</c:if>
 				  	
 				  	<c:if test="${teamGrade == null }">
-						<li><a href="${root }/teamPage/teamPageMain.do?teamName=${team.teamName}">메인</a></li>
 						<li><a href="${root }/teamPage/viewTeamBoard.do?teamName=${team.teamName}">팀 공지사항</a></li>
 						<li><a href="${root }/teamPage/teamMemberInfo.do?teamName=${team.teamName}">팀원소개</a></li>
 						<li><a href="${root }/teamPage/viewTeamRecord.do?teamName=${team.teamName}">팀 기록</a></li>
@@ -71,7 +73,7 @@
 	  </div>
 	  <div class="col-md-4">
 	  	<br/><br/><br/><br/><br/><br/>
-		<h3>SML UNITED ${team.teamName}</h3>
+		<h3>${team.teamName}</h3>
 	  </div>
 	  <div class="col-md-1"></div>
 	  <div class="col-md-3">
@@ -122,21 +124,32 @@
 		<div class="col-md-1"></div>
 		<div class="col-md-10">
 			<div class="col-md-2">
-				<input type="text" class="form-control" name="nickName" placeholder="닉네임">
+				<input type="text" class="form-control" name="nickName" id="replyNickName" placeholder="닉네임">
 			</div>
 			<div class="col-md-2">
-				<input type="password" class="form-control" name="password" placeholder="암호">
+				<input type="password" class="form-control" name="password" id="replyPassword" placeholder="암호">
 			</div>
 			<div class="col-md-8">
 				<div class="input-group">
-			      <input type="text" class="form-control" name="content" placeholder="한줄 답글을써주세요.">
+			      <input type="text" class="form-control" name="content" id="replyContent" placeholder="한줄 답글을써주세요.">
 			      <span class="input-group-btn">
-			        <button class="btn btn-default" type="button">작성</button>
+			        <button class="btn btn-default" type="button" id="addTeamLog" onclick="teamLog('${root}','${team.teamName}')">작성</button>
 			      </span>
 			    </div><!-- /input-group -->
 			</div>
 			<br/>
-			<div class="col-md-10">댓글 내용들어가는 칸</div>
+			<div class="col-md-10">
+				<h3>LIST</h3>
+				<span>작성자</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span>내용</span>
+				<c:forEach var="teamLogDtoList" items="${teamLogDtoList}">
+					<div class="replyList" id="${teamLogDtoList.replyCode}">
+						<span>${teamLogDtoList.replyNickName}</span>
+						<input type="text" value="${teamLogDtoList.replyContent}" disabled="disabled"></input>				
+						<a href="javascript:teamLogDelete('${root}','${teamLogDtoList.replyCode}','${teamLogDtoList.replyPassword}')">삭제</a>
+						<br/>			
+					</div>		
+		   		</c:forEach>
+			</div>
 		</div>
 		<div class="col-md-1"></div>
 	  
