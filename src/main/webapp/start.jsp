@@ -305,6 +305,8 @@
   
   <div class="sign" id="sign"></div>
   <div class="login" id="login"></div>
-    
+  
+  <!-- 작업중 -->
+  <div><a href="${root}/teamPage/teamPageMain.do?teamName=${teamName}">teamPage</a></div>  
 </body>
 </html>
