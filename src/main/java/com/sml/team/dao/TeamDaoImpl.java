@@ -6,13 +6,12 @@ import java.util.List;
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
-
 import com.sml.member.dto.MemberDto;
-import com.sml.record.dto.RecordDto;
 import com.sml.team.dto.MatchingDto;
 import com.sml.team.dto.ScheduleDto;
 import com.sml.team.dto.TeamBoardDto;
 import com.sml.team.dto.TeamDto;
+import com.sml.team.dto.TeamLogDto;
 
 
 @Component
@@ -346,5 +345,57 @@ public class TeamDaoImpl implements TeamDao{
 	public int updateTeamEmblem(TeamDto teamDto) {
 		return sqlSession.update("team.dao.TeamMapper.updateTeamEmblem", teamDto);
 	}
+	
+	/**
+	 * @함수명: selectTeamCode
+	 * @작성일: 2015. 7. 3.
+	 * @작성자: 정성남
+	 * @설명 :
+	 */
+	@Override
+	public int selectTeamCode(String teamName) {
+		
+		return sqlSession.selectOne("team.dao.TeamMapper.selectTeamCode",teamName);
+	}
+
+	/**
+	 * @함수명: addTeamLog
+	 * @작성일: 2015. 7. 3.
+	 * @작성자: 정성남
+	 * @설명 :
+	 */
+	@Override
+	public int addTeamLog(TeamLogDto teamLogDto) {
+		
+		return sqlSession.insert("team.dao.TeamMapper.addTeamLog",teamLogDto);
+	}
+
+	/**
+	 * @함수명: teamLogList
+	 * @작성일: 2015. 7. 6.
+	 * @작성자: 정성남
+	 * @설명 :
+	 */
+	@Override
+	public List<TeamLogDto> teamLogDtoList(int teamCode) {
+		
+		return sqlSession.selectList("team.dao.TeamMapper.teamLogDtoList",teamCode);
+	}
+
+	/**
+	 * @함수명: teamLogDelete
+	 * @작성일: 2015. 7. 7.
+	 * @작성자: 정성남
+	 * @설명 :
+	 */
+	@Override
+	public int teamLogDelete(String replyPassword, int replyCode) {
+		HashMap<String,Object> hMap=new HashMap<String,Object>();
+		hMap.put("replyPassword", replyPassword);
+		hMap.put("replyCode", replyCode);
+		
+		return sqlSession.delete("team.dao.TeamMapper.teamLogDelete",hMap);
+	}
+
 	
 }

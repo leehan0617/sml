@@ -41,8 +41,7 @@ public class AdminDaoImpl implements AdminDao {
 	public int manageTeamDelete(int teamCode) {
 		// TODO Auto-generated method stub
 		return sqlSession.delete("dao.adminDaoMapper.manageTeamDelete",teamCode);
-	}
-	
+	}	
 
 	/**
 	 * @name : refereeCount

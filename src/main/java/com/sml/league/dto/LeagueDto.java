@@ -1,7 +1,5 @@
 package com.sml.league.dto;
 
-import java.io.File;
-
 public class LeagueDto {
 	private int leagueCode;
 	private String leagueName;

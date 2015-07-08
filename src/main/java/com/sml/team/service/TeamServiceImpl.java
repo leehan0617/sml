@@ -24,6 +24,7 @@ import com.sml.team.dto.MatchingDto;
 import com.sml.team.dto.ScheduleDto;
 import com.sml.team.dto.TeamBoardDto;
 import com.sml.team.dto.TeamDto;
+import com.sml.team.dto.TeamLogDto;
 
 
 @Service
@@ -245,6 +246,10 @@ public class TeamServiceImpl implements TeamService{
 		logger.info(request.getParameter("teamName"));
 		TeamDto team=dao.getTeamInfo(teamName);
 		
+		int teamCode=team.getTeamCode();				
+		List<TeamLogDto> teamLogDtoList=dao.teamLogDtoList(teamCode);
+		
+		mav.addObject("teamLogDtoList",teamLogDtoList);	
 		mav.addObject("team",team);
 		mav.setViewName("teamPage/teamPageMain");
 	}
@@ -723,7 +728,7 @@ public class TeamServiceImpl implements TeamService{
 //			try {
 //				Thread.sleep(5000);
 //			} catch (InterruptedException e) {
-//				// TODO Auto-generated catch block
+//				
 //				e.printStackTrace();
 //			}
 //		}
@@ -841,6 +846,74 @@ public class TeamServiceImpl implements TeamService{
 		logger.info("check:" + check);
 		
 		mav.addObject("check", check);
+		mav.setViewName("teamPage/teamPageMain");
+	}
+	
+	/**
+	 * @함수명: addTeamLog
+	 * @작성일: 2015. 7. 7.
+	 * @작성자: 정성남
+	 * @설명 :
+	 */
+	@Override
+	public void addTeamLog(ModelAndView mav) {
+		logger.info("TeamLog-SErvice");
+		HashMap<String,Object> map=mav.getModelMap();
+		HttpServletRequest request=(HttpServletRequest) map.get("request");
+		
+		TeamLogDto teamLogDto=(TeamLogDto) map.get("teamLogDto");
+		String teamName=request.getParameter("teamName");		
+		System.out.println("teamName:"+teamName);
+		
+		int teamCode=dao.selectTeamCode(teamName);
+		
+		teamLogDto.setReplyDate(new Date());
+		teamLogDto.setTeamCode(teamCode);
+		
+		String replyNickName=request.getParameter("replyNickName");
+		String replyContent=request.getParameter("replyContent");
+		String replyPassword=request.getParameter("replyPassword");
+		
+		int check=dao.addTeamLog(teamLogDto);		
+		int replyCode=teamLogDto.getReplyCode();
+		//System.out.println("replyCode:"+replyCode);		
+		
+		mav.addObject("replyCode",replyCode);
+		mav.addObject("teamName",teamName);
+		mav.addObject("replyNickName",replyNickName);
+		mav.addObject("replyPassword",replyPassword);		
+		mav.addObject("replyContent",replyContent);
+		
+		if(check>0){
+			logger.info("작성완료");
+		}		
+		mav.setViewName("teamPage/teamPageMain");
+	}
+	/**
+	 * @함수명: teamLogDelete
+	 * @작성일: 2015. 7. 7.
+	 * @작성자: 정성남
+	 * @설명 :
+	 */
+	
+	@Override
+	public void teamLogDelete(ModelAndView mav) {
+		logger.info("teamLogDelete-SErvice");
+		HashMap<String,Object> map=mav.getModelMap();
+		HttpServletRequest request=(HttpServletRequest) map.get("request");
+		
+		
+		String replyPassword=request.getParameter("replyPassword");		
+		//System.out.println("replyPassword:"+replyPassword);		
+		int replyCode=Integer.parseInt(request.getParameter("replyCode"));		
+		//System.out.println("replyCodeService:"+replyCode);		
+		int check=dao.teamLogDelete(replyPassword,replyCode);		
+		
+		if(check>0){
+			logger.info("삭제완료");
+		}		
+		mav.addObject("replyCode",replyCode);
+		mav.addObject("replyPassword",replyPassword);
 		mav.setViewName("teamPage/teamPageMain");
 	}
 }

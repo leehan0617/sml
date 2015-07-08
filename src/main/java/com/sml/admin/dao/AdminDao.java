@@ -2,11 +2,8 @@ package com.sml.admin.dao;
 
 import java.util.HashMap;
 import java.util.List;
-
-import com.sml.common.dto.CommonBoardDto;
 import com.sml.league.dto.LeagueDto;
 import com.sml.referee.dto.RefereeDto;
-
 
 public interface AdminDao {
 	public int getManageTeamCount();
