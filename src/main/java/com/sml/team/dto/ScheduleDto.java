@@ -1,16 +1,28 @@
 package com.sml.team.dto;
 
-import java.util.Date;
 
 public class ScheduleDto {
 	private int scheduleNumber;
 	private int teamCode;
+	private String startDate;
+	private String endDate;
 	private String scheduleType;
 	private String scheduleTitle;
 	private String scheduleContent;
-	private Date scheduleDate;
 	
 	
+	public String getStartDate() {
+		return startDate;
+	}
+	public void setStartDate(String startDate) {
+		this.startDate = startDate;
+	}
+	public String getEndDate() {
+		return endDate;
+	}
+	public void setEndDate(String endDate) {
+		this.endDate = endDate;
+	}
 	public String getscheduleTitle() {
 		return scheduleTitle;
 	}
@@ -40,11 +52,5 @@ public class ScheduleDto {
 	}
 	public void setScheduleType(String scheduleType) {
 		this.scheduleType = scheduleType;
-	}
-	public Date getScheduleDate() {
-		return scheduleDate;
-	}
-	public void setScheduleDate(Date scheduleDate) {
-		this.scheduleDate = scheduleDate;
 	}
 }

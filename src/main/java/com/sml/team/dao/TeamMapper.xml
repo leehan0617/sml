@@ -20,9 +20,6 @@
 
 	</select>
 	
-	<select id="scheduleList" resultType="com.sml.team.dto.ScheduleDto">
-		select * from TEAMSCHEDULE
-	</select>
 	
 	<insert id="searchMatching" parameterType="com.sml.team.dto.MatchingDto">
 		insert into MATCHING values (matching_matchingcode_sql.nextval , #{teamCode} , #{matchingSport} , #{matchingDistance} , #{matchingTime} , #{matchingState}, #{matchingDay}, #{matchingPlace}, #{matchingLatlng})
@@ -36,15 +33,6 @@
  		select teamName from team where teamId=#{teamName}
  	</select>
  	
-
- 	<select id="scheduleTeamid" parameterType="String" resultType="int">
- 		select teamCode from team where teamId=#{teamId}
- 	</select>
- 	
-	<insert id="insertSchedule" parameterType="com.sml.team.dto.ScheduleDto">
-		insert into TEAMSCHEDULE values(teamschedule_num_sql.nextval,#{teamCode},#{scheduleType},#{scheduleDate},#{scheduleTitle},#{scheduleContent})
-	</insert>
-
 	<select id="getTeamInfo" parameterType="String" resultType="com.sml.team.dto.TeamDto">
  		select * from team where teamName=#{teamName}
  	</select>
@@ -164,4 +152,40 @@
 	<delete id="teamLogDelete" parameterType="java.util.HashMap" >
 	 delete from teamLog where replyPassword=#{replyPassword} and replyCode=#{replyCode}
     </delete>
+    
+    <select id="scheduleList" resultType="com.sml.team.dto.ScheduleDto">
+		select * from TEAMSCHEDULE 
+	</select>
+	
+	<select id="scheduleTeamid" parameterType="String" resultType="int">
+ 		select teamCode from team where teamId=#{teamId}
+ 	</select>
+ 	
+ 	<insert id="insertSchedule" parameterType="com.sml.team.dto.ScheduleDto">
+		insert into TEAMSCHEDULE values(teamschedule_num_sql.nextval,#{teamCode},#{scheduleType},#{endDate},#{scheduleTitle},#{scheduleContent},#{startDate})
+	</insert>
+	
+	<select id="readSchedule" resultType="com.sml.team.dto.ScheduleDto" parameterType="com.sml.team.dto.ScheduleDto" >
+		select * from TEAMSCHEDULE where teamCode=#{teamCode}
+	</select>
+	
+	<select id="readCount" parameterType="int" resultType="int">
+		select count(*) from TEAMSCHEDULE where teamCode=#{teamCode}
+	</select>
+	
+	<select id="scheduleContent" parameterType="java.util.HashMap" resultType="com.sml.team.dto.ScheduleDto">
+		select * from TEAMSCHEDULE where scheduleNumber=#{scheduleNumber}
+	</select>
+	
+	<select id="scheduleNumber" parameterType="int" resultType="int">
+		select teamCode from TEAMSCHEDULE where scheduleNumber=#{scheduleNumber}
+	</select>
+	
+	<select id="selectTeam" parameterType="int" resultType="com.sml.team.dto.TeamDto" >
+		select * from TEAM where teamCode=#{teamCode}
+	</select>
+	
+	<delete id="deleteSchedule" parameterType="int">
+		delete from TEAMSCHEDULE where scheduleNumber=#{scheduleNumber}
+	</delete>
 </mapper>
