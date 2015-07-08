@@ -1,5 +1,5 @@
 /*!
- * FullCalendar v2.3.1 Stylesheet
+ * FullCalendar v2.3.2 Stylesheet
  * Docs & License: http://fullcalendar.io/
  * (c) 2015 Adam Shaw
  */
@@ -79,7 +79,15 @@ body .fc { /* extra precedence to overcome jqui */
 	text-align: center;
 	overflow: hidden;
 	font-family: "Courier New", Courier, monospace;
-}
+
+	/* don't allow browser text-selection */
+	-webkit-touch-callout: none;
+	-webkit-user-select: none;
+	-khtml-user-select: none;
+	-moz-user-select: none;
+	-ms-user-select: none;
+	user-select: none;
+	}
 
 /*
 Acceptable font-family overrides for individual icons:
@@ -1059,7 +1067,6 @@ be a descendant of the grid when it is being dragged.
 .fc-time-grid-event .fc-resizer:after {
 	content: "=";
 }
-
 
 .fc-sat {color:blue;}
 .fc-sun {color:red;}

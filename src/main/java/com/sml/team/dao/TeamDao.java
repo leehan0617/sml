@@ -17,7 +17,6 @@ public interface TeamDao {
 	public List<TeamBoardDto> viewTeamBoard(String teamName, int startRow, int endRow);
 	public List<ScheduleDto> viewSchedule();
 	public int searchMatching(MatchingDto matchingDto);
-	public int editSchedule(ScheduleDto scheduleDto,String teamId);
 	public TeamDto getTeamInfo(String teamName);
 	public List<MemberDto> getTeamMemberList(String teamName,int startRow, int endRow);
 	public int getBoardCount(String teamName);
@@ -41,5 +40,10 @@ public interface TeamDao {
 	public List<TeamLogDto> teamLogDtoList(int teamCode);
 	public int addTeamLog(TeamLogDto teamLogDto);
 	public int teamLogDelete(String replyPassword,int replyCode);
-	
+	public int editSchedule(ScheduleDto scheduleDto,String teamId);
+	public List<ScheduleDto> readSchedule(String teamName);
+	public int readCount(String teamId);
+	public ScheduleDto scheduleContents(int scheduleNumber);
+	public TeamDto selectMember(int scheduleNumber);
+	public int deleteSchedule(int scheduleNumber);
 }

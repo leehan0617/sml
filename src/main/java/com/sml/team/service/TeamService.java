@@ -11,7 +11,6 @@ public interface TeamService {
 	public void registerTeam(ModelAndView mav);
 	public void idCheck(ModelAndView mav);
 	public void teamIdCheck(ModelAndView mav);
-	public void editSchedule(ModelAndView mav);
 	public void goTeamPage(ModelAndView mav);
 	public void viewTeamMemberInfo(ModelAndView mav);
 	public void readTeamBoard(ModelAndView mav);
@@ -33,4 +32,9 @@ public interface TeamService {
 	public void updateTeamEmblemOk(ModelAndView mav);
 	public void addTeamLog(ModelAndView mav);
 	public void teamLogDelete(ModelAndView mav);
+	public void scheduleContent(ModelAndView mav);
+	public void deleteSchedule(ModelAndView mav);
+	public void showSchedule(ModelAndView mav);
+	public void readteamSchedule(ModelAndView mav);
+	public void editSchedule(ModelAndView mav);
 }

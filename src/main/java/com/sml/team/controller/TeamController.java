@@ -199,26 +199,45 @@ public class TeamController {
 	 * @설명문:스케쥴관리용 달력 jsp페이지 이동 메소드
 	 */
 	@RequestMapping(value="/teamPage/teamScheduleEdit.do",method=RequestMethod.GET)	
-	public String teamSchedule(){
-		return "teamPage/teamSchedule";
+	public ModelAndView teamSchedule(HttpServletRequest request,HttpServletResponse response){
+		ModelAndView mav=new ModelAndView();
+		mav.addObject("request",request);
+		service.readteamSchedule(mav);
+		return mav;
 	}
 	
-	
 	/**
-	 * @함수명:Schedule
-	 * @작성일:2015. 6. 25.
+	 * @함수명:editScheduleView
+	 * @작성일:2015. 7. 3.
 	 * @작성자:조영석
-	 * @설명문:스케쥴 세부관리용 jsp 페이지 이동메소드
+	 * @설명문:스케쥴 세부일정 페이지 이동 메소드
 	 */
 	@RequestMapping(value="/teamPage/Schedule.do",method=RequestMethod.GET)
-	 public String Schedule(){
-		return "teamPage/editSchedule";
+	public ModelAndView editScheduleView(HttpServletRequest request,HttpServletResponse response){
+		ModelAndView mav=new ModelAndView();
+		mav.addObject("request",request);
+		
+		service.showSchedule(mav);
+		return mav;
 	}
 	
-	
+	/**
+	 * @함수명:ScheduleContent
+	 * @작성일:2015. 7. 7.
+	 * @작성자:조영석
+	 * @설명문:스케쥴 내용 이동 메소드 
+	 */
+	@RequestMapping(value="/teamPage/ScheduleContent.do",method=RequestMethod.GET)
+	public ModelAndView ScheduleContent(HttpServletRequest request,HttpServletResponse response){
+		ModelAndView mav=new ModelAndView();
+		mav.addObject("request",request);
+		
+		service.scheduleContent(mav);
+		return mav;
+	}
 	/**
 	 * @함수명:editSchedule
-	 * @작성일:2015. 6. 25.
+	 * @작성일:2015. 7. 6
 	 * @작성자:조영석
 	 * @설명문:스케쥴 일정 입력용 서비스 이동 메소드
 	 */
@@ -230,9 +249,24 @@ public class TeamController {
 		mav.addObject("scheduleDto",scheduleDto);
 		service.editSchedule(mav);
 		
-		return null;
+		return mav;
 	}
 	
+	/**
+	 * @함수명:deleteSchedule
+	 * @작성일:2015. 7. 7.
+	 * @작성자:조영석
+	 * @설명문:스케쥴 삭제 이동 메소드
+	 */
+	@RequestMapping(value="/teamPage/deleteSchedule.do", method=RequestMethod.GET)
+	public ModelAndView deleteSchedule(HttpServletRequest request,HttpServletResponse response){
+		System.out.println("deleteScheduledeleteScheduledeleteScheduledeleteScheduledeleteSchedule");
+		ModelAndView mav=new ModelAndView();
+		mav.addObject("request",request);
+		
+		service.deleteSchedule(mav);
+		return mav;
+	}
 	/**
 	 * @name : teamPage
 	 * @date : 2015. 6. 25.
