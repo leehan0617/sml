@@ -33,7 +33,7 @@
 					     <div class="row">
 					    	<div class="col-xs-8 col-sm-3"></div>
 					    	 <div class="col-xs-4 col-sm-6">
-					         <a href="#">아이디 or 비밀번호 찾기</a>
+					         <a href="${root}/email/requestPW.do">아이디 or 비밀번호 찾기</a>
 					      </div>
 					    </div>
 					    <br/>

@@ -26,6 +26,7 @@
 				<value>classpath:com/sml/record/dao/RecordMapper.xml</value>
 				<value>classpath:com/sml/member/dao/MemberMapper.xml</value>
 				<value>classpath:com/sml/admin/dao/adminDaoMapper.xml</value>
+				<value>classpath:com/sml/email/dao/emailMapper.xml</value>
 			</list>
 		</property>
 			<property name="dataSource" ref="dataSource"/>
