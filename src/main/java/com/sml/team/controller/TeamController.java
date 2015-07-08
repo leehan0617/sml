@@ -240,7 +240,7 @@ public class TeamController {
 	 * @description : 팀 페이지로 이동하는 함수
 	 * 					팀 명에 따라 달라지는 함수
 	 */
-	@RequestMapping(value="/teamPage/teamPageMain.do",method=RequestMethod.GET)
+	@RequestMapping(value="/team/teamMain.do",method=RequestMethod.GET)
 	 public ModelAndView teamPage(HttpServletRequest request){
 		ModelAndView mav=new ModelAndView();
 		
