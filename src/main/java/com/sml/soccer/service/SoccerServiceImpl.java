@@ -264,5 +264,49 @@ public class SoccerServiceImpl implements SoccerService {
 		mav.addObject("boardNumber",boardNumber);
 		mav.setViewName("soccer/soccerCommonBoardRead");
 	}
+
+	/**
+	 * @함수명:soccerLeague
+	 * @작성일:2015. 7. 9.
+	 * @작성자:조영석
+	 * @설명문:축구전용 리그정보 열람 
+	 */
+	@Override
+	public void soccerLeague(ModelAndView mav) {
+Map<String,Object> map=mav.getModelMap();
+		
+		HttpServletRequest request=(HttpServletRequest) map.get("request");			
+		
+		String pageNumber=request.getParameter("pageNumber");
+		String leagueSport=request.getParameter("leagueSport");
+		if(pageNumber==null)pageNumber="1";
+		
+		int boardSize=6;		
+		int currentPage=Integer.parseInt(pageNumber);
+		int startRow=(currentPage-1)*boardSize+1;
+		int endRow=currentPage*boardSize;
+		
+		int count=soccerDao.LeagueCount(leagueSport);
+		logger.info("count:"+count);
+		logger.info("currentPage"+currentPage);
+		logger.info("startRow"+startRow);
+		logger.info("endRow"+endRow);		
+		
+		List<LeagueDto> soccerLeagueList=null;	
+
+		soccerLeagueList=soccerDao.LeagueList(startRow,endRow,leagueSport);
+		
+		for(int i=0;i<soccerLeagueList.size();i++){
+			System.out.println(soccerLeagueList.get(i).getLeagueState());
+		}
+		mav.addObject("count",count);
+		mav.addObject("soccerLeagueList",soccerLeagueList);		
+		mav.addObject("boardSize",boardSize);
+		mav.addObject("currentPage",currentPage);
+		mav.addObject("pageNumber",pageNumber);
+		
+		mav.setViewName("soccer/soccerLeagueInfo");		
+		
+	}
 	
 }

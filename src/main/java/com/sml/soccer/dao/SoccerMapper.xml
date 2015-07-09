@@ -39,4 +39,14 @@
 			select gamedate from(select rownum, gamedate from(select gamedate from GAMERECORD where gameDate<=#{matchDay} and sporttype='축구' order by gamedate desc) where rownum='1')
 		]]>
 	</select>
+	
+	<select id="count" parameterType="String" resultType="int">
+		select count(*) from leagueInfo where leagueSport=#{leagueSport}
+	</select>
+	
+	<select id="soccerList" parameterType="java.util.HashMap" resultType="com.sml.league.dto.LeagueDto">
+		<![CDATA[
+		 select * from (select rownum rnum, a.* from (select * from leagueInfo order by leagueStartDate asc)a) where rnum >=#{startRow} and rnum <=#{endRow} and leagueSport=#{leagueSport}
+		 ]]>
+	</select>
  </mapper>

@@ -146,18 +146,20 @@
 			<img alt="리그 이미지 넣어야함" src=""/>
 			<span><input type="button" value=">"/></span> 
 			
-			<c:forEach var="league" items="${leagueList }">
+			<c:forEach var="league" items="${leagueList}">
+				<a href="${root}/soccer/soccerLeague.do?leagueSport=${league.leagueSport}">리그전체정보	</a>
 				<div>
 					<span><img src="${root}/img/leagueImg/${league.leagueImage}"/></span>
 					<span>리그이름 : ${league.leagueName}</span>
 					<span>리그지역 : ${league.leagueRegion }</span>
 					<span>리그시간 : ${league.leagueTime }</span>
 					<span>리그시작일 : ${league.leagueStartDate }</span>
-					<span>리그종료일 : ${league.leagueEndDate }</span>					
+					<span>리그종료일 : ${league.leagueEndDate }</span>	
+									
 				</div>
 
 			 		<div>
-						<input type="button" value="신청하기" onclick="applicate('${root}','${teamId}','${league.leagueCode}')"/>
+						<input type="button" value="신청하기" onclick="applicate('${root}','${teamId}','${league.leagueCode}','${league.leagueTeamNumber}')"/>
 					</div> 
 		
 			</c:forEach>

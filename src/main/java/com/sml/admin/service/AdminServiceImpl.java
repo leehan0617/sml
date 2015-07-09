@@ -250,7 +250,7 @@ public class AdminServiceImpl implements AdminService{
 		HttpServletRequest request=(HttpServletRequest) map.get("request");			
 		
 		String pageNumber=request.getParameter("pageNumber");
-		if(pageNumber==null) pageNumber="1";
+		if(pageNumber==null)pageNumber="1";
 		
 		int boardSize=5;		
 		int currentPage=Integer.parseInt(pageNumber);

@@ -10,6 +10,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import com.sml.common.dto.CommonBoardDto;
+import com.sml.league.dto.LeagueDto;
 import com.sml.record.dto.RecordDto;
 import com.sml.team.dto.TeamDto;
 
@@ -84,5 +85,32 @@ public class SoccerDaoImpl implements SoccerDao {
 			value= sqlSession.selectOne("dao.SoccerMapper.prevMatchDay", matchDay);
 		}		
 		return value;
+	}
+
+	/**
+	 * @함수명:LeagueCount
+	 * @작성일:2015. 7. 9.
+	 * @작성자:조영석
+	 * @설명문:진행중인 리그 갯수 데이터베이스 열람
+	 */
+	@Override
+	public int LeagueCount(String leagueSport) {
+		System.out.println("leagueSport"+leagueSport);
+		return sqlSession.selectOne("dao.SoccerMapper.count",leagueSport);
+	}
+
+	/**
+	 * @함수명:LeagueList
+	 * @작성일:2015. 7. 9.
+	 * @작성자:조영석
+	 * @설명문:리그정보 데이터베이스 열람
+	 */
+	@Override
+	public List<LeagueDto> LeagueList(int startRow, int endRow,String leagueSport) {
+		HashMap<String,Object> map=new HashMap<String,Object>();
+		map.put("startRow", startRow);
+		map.put("endRow", endRow);
+		map.put("leagueSport", leagueSport);
+		return sqlSession.selectList("dao.SoccerMapper.soccerList",map);
 	}	
 }

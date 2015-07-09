@@ -16,6 +16,10 @@
  		select count(LEAGUECODE) from LEAGUEJOIN where teamCode=#{teamCode}
  	</select>
  	
+ 	<select id="count" resultType="int">
+ 		select count(*) from LEAGUEJOIN where leagueCode=#{leagueCode}
+ 	</select>
+ 	
  	<insert id="applicate" parameterType="java.util.HashMap">
  		insert into LEAGUEJOIN values(#{leagueCode},#{teamCode})
  	</insert>

@@ -5,6 +5,7 @@ import java.util.HashMap;
 import java.util.List;
 
 import com.sml.common.dto.CommonBoardDto;
+import com.sml.league.dto.LeagueDto;
 import com.sml.team.dto.TeamDto;
 
 public interface SoccerDao {
@@ -13,4 +14,6 @@ public interface SoccerDao {
 	public List<TeamDto> getAllTeamList(String sportType);
 	public List<CommonBoardDto> commonBoard(int startRow, int endRow, int sportCode);
 	public Date moveMatchDay(String matchDay, String moveMatchDay);	
+	public int LeagueCount(String leagueSport);
+	public List<LeagueDto> LeagueList(int startRow,int endRow,String leagueSport);
 }

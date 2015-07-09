@@ -10,7 +10,7 @@
 <script type="text/javascript" src="${root}/js/member/jquery.js"></script>
 </head>
 <body>
-<c:if test="${check>0}">
+<c:if test="${check==1}">
 	<script type="text/javascript">
 		alert("신청이 완료되었습니다")
 		
@@ -24,6 +24,15 @@
 		alert("이미 신청처리된 아이디입니다.")
 		
 		var url="${root}/soccer/soccerMain.do";
+ 		$(location).attr("href",url); 
+	</script>
+</c:if>
+
+<c:if test="${check==3}">
+	<script type="text/javascript">
+		alert("죄송합니다! 마감되었습니다.")
+		
+		var url="${root}/soccer/soccerMain.do?check=${check}";
  		$(location).attr("href",url); 
 	</script>
 </c:if>

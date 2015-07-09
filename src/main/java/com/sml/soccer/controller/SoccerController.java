@@ -147,4 +147,20 @@ public class SoccerController{
 		
 		return mav;
 	}
+	
+	/**
+	 * @함수명:soccerLeague
+	 * @작성일:2015. 7. 9.
+	 * @작성자:조영석
+	 * @설명문:축구전용 리그정보 열람
+	 */
+	@RequestMapping(value="/soccer/soccerLeague.do", method=RequestMethod.GET)
+	public ModelAndView soccerLeague(HttpServletRequest request, HttpServletResponse response){
+		ModelAndView mav=new ModelAndView();
+		mav.addObject("request", request);
+		
+		soccerService.soccerLeague(mav);
+		return mav;
+	}
+	
 }

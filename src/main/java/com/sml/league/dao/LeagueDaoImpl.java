@@ -33,27 +33,30 @@ public class LeagueDaoImpl implements LeagueDao{
 	 * @설명문:리그신청관리 데이트베이스연결
 	 */
 	@Override
-	public int applicate(String teamId, int leagueCode) {
+	public int applicate(String teamId, int leagueCode,int leagueTeamNumber) {
+		int check=0;
+		HashMap<String,Object> Hmap=new HashMap<String,Object>();
+		int leagueCount=sqlSession.selectOne("dao.LeagueMapper.count",leagueCode);
+		
+		if(leagueCount<leagueTeamNumber){
 		int teamCode=sqlSession.selectOne("dao.LeagueMapper.teamSelect", teamId);
 		
-		HashMap<String,Object> Hmap=new HashMap<String,Object>();
 		Hmap.put("teamCode", teamCode);
 		Hmap.put("leagueCode", leagueCode);
 		
 		System.out.println("teamCode"+teamCode);
 		
 		int value=sqlSession.selectOne("dao.LeagueMapper.leagueJoinSelect",teamCode);
-		
-		System.out.println("value"+value);
-		int check=0;
+
 		
 		if(value==0){
 			check=sqlSession.insert("dao.LeagueMapper.applicate",Hmap);
 		}else if(value>0){
 			return 0;
 		}
-
-
+	 }else if(leagueCount>=leagueTeamNumber){
+		 return 3;
+	 }
 		return check;
 	}
 

@@ -9,6 +9,7 @@ import org.springframework.stereotype.Component;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.sml.league.dao.LeagueDao;
+import com.sml.league.dto.LeagueDto;
 
 @Component
 public class LeagueServiceImpl implements LeagueService{
@@ -25,13 +26,11 @@ public class LeagueServiceImpl implements LeagueService{
 	public void applicate(ModelAndView mav) {
 		Map<String,Object> map=mav.getModel();
 		HttpServletRequest request=(HttpServletRequest) map.get("request");
-		
 		String teamId=request.getParameter("teamId");
 		int leagueCode=Integer.parseInt(request.getParameter("leagueCode"));
+		int leagueTeamNumber=Integer.parseInt(request.getParameter("leagueTeamNumber"));
+		int check=dao.applicate(teamId,leagueCode,leagueTeamNumber);
 		
-		int check=dao.applicate(teamId,leagueCode);
-		
-		System.out.println("check"+check);
 		mav.addObject("check",check);
 		mav.setViewName("soccer/applicateOk");
 	}

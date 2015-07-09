@@ -22,7 +22,7 @@ public class LeagueController {
 	 * @작성자:조영석
 	 * @설명문:리그신청관리 이동 메소드
 	 */
-	@RequestMapping(value="/soccer/aplicate.do",method=RequestMethod.GET)
+	@RequestMapping(value="/soccer/applicate.do",method=RequestMethod.GET)
 	public ModelAndView applicate(HttpServletRequest request,HttpServletResponse response){
 		ModelAndView mav=new ModelAndView();
 		

@@ -1079,7 +1079,6 @@ public class TeamServiceImpl implements TeamService{
 		HttpServletRequest request = (HttpServletRequest) map.get("request");
 		ScheduleDto scheduleDto=(ScheduleDto)map.get("scheduleDto");
 		String teamId=request.getParameter("teamId");
-		
 		int check=dao.editSchedule(scheduleDto,teamId);
 		
 		

@@ -12,7 +12,14 @@ public class LeagueDto {
 	private String leagueEndDate;
 	private String leagueImage;
 	private int leagueState;
+	private int legueCount;
 	
+	public int getLegueCount() {
+		return legueCount;
+	}
+	public void setLegueCount(int legueCount) {
+		this.legueCount = legueCount;
+	}
 	public int getLeagueState() {
 		return leagueState;
 	}
