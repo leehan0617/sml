@@ -198,17 +198,19 @@ public class AdminServiceImpl implements AdminService{
 
 	/**
 	 * @함수명: createLeague
-	 * @작성일: 2015. 6. 26.
-	 * @작성자: 정성남
-	 * @설명 :
+	 * @작성일: 2015. 7. 8.
+	 * @작성자: 정성남, 변형린
+	 * @설명 : 리그개설 정보를 db로 보내는 서비스 클래스
 	 */
 	public void createLeague(ModelAndView mav){
 		Map<String , Object> map = mav.getModelMap();	
 		MultipartHttpServletRequest request=(MultipartHttpServletRequest)map.get("request");
 		LeagueDto leagueDto = (LeagueDto) map.get("leagueDto");
+		leagueDto.setLeagueState(-1);//1일때 리그정보를 각 종목 페이지에 게시 -1일때 게시 안함
+		
 		logger.info("createLeague---------------------");
 		
-		MultipartFile upFile=request.getFile("leagueImage");
+		MultipartFile upFile=request.getFile("file");
 		String fileName=upFile.getOriginalFilename();
 		long fileSize=upFile.getSize();
 		logger.info("fileName"+fileName);
@@ -216,13 +218,11 @@ public class AdminServiceImpl implements AdminService{
 		
 		if(fileSize!=0){
 			try{
-
-//				String dir="C:\\mavenSpring\\workspace\\mavenHomePage\\src\\main\\webapp\\resources";  
-//				String dir="C:\\Users\\KOSTA\\git\\SmlProject\\smlProject\\src\\main\\webapp\\resources";
-				String dir=request.getSession().getServletContext().getRealPath("/resources");
+				String dir="C:\\Users\\kosta\\git\\sml\\src\\main\\webapp\\img\\leagueImg";
+				//String dir=request.getSession().getServletContext().getRealPath("/resources");
 				
-				File file=new File(dir);
-				upFile.transferTo(file);//inputStream,outputStream 
+				File file=new File(dir, fileName);
+				upFile.transferTo(file);
 				
 				leagueDto.setLeagueImage(fileName);
 			}catch(Exception e){
@@ -360,5 +360,29 @@ public class AdminServiceImpl implements AdminService{
 		mav.addObject("check",check);
 		mav.setViewName("admin/leagueUpdateOk");
 		
+	}
+
+	/**
+	 * @name : leagueSwitch
+	 * @date : 2015. 7. 8.
+	 * @author : 변형린
+	 * @description : 리그 각 종목 게시 상태 변경하기
+	 */
+	@Override
+	public void leagueSwitch(ModelAndView mav) {
+		Map<String,Object> map=mav.getModelMap();
+		
+		HttpServletRequest request=(HttpServletRequest)map.get("request");
+		int leagueState=Integer.parseInt(request.getParameter("leagueState"))*-1;		
+		int leagueCode=Integer.parseInt(request.getParameter("leagueCode"));
+		int pageNumber=Integer.parseInt(request.getParameter("pageNumber"));
+		
+		int check=adminDao.leagueSwitch(leagueState, leagueCode);
+		logger.info("switch check:" + check);
+		
+		mav.addObject("check", check);
+		mav.addObject("leagueState", leagueState);
+		mav.addObject("pageNumber", pageNumber);
+		mav.setViewName("admin/leagueSwitchOk");
 	}
 }

@@ -11,8 +11,14 @@ public class LeagueDto {
 	private String leagueStartDate;
 	private String leagueEndDate;
 	private String leagueImage;
+	private int leagueState;
 	
-	
+	public int getLeagueState() {
+		return leagueState;
+	}
+	public void setLeagueState(int leagueState) {
+		this.leagueState = leagueState;
+	}
 	public String getLeagueImage() {
 		return leagueImage;
 	}

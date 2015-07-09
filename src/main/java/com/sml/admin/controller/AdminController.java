@@ -144,9 +144,9 @@ public class AdminController {
 			mav.addObject("leagueDto" , leagueDto);
 			
 			System.out.println("requee:");
-/*			adminService.createLeague(mav);*/
+			adminService.createLeague(mav);
 			
-			return null;
+			return mav;
 		}
 		
 		
@@ -242,5 +242,20 @@ public class AdminController {
 			return mav;
 		}		
 		
-	
+		/**
+		 * @함수명: leagueSwitch
+		 * @작성일: 2015. 7. 08
+		 * @작성자: 변형린
+		 * @설명 : 리그 정보를 각 종목 페이지에 보낼지에 대한 값(-1,1)을 스위치하는 메소드
+		 */		
+		@RequestMapping(value="/admin/leagueSwitch.do",method=RequestMethod.GET)
+		public ModelAndView leagueSwitch(HttpServletRequest request){
+			logger.info("leagueSwitch-----------");
+			ModelAndView mav=new ModelAndView();
+			mav.addObject("request",request);
+
+			adminService.leagueSwitch(mav);
+			return mav;
+		}	
+		
 }

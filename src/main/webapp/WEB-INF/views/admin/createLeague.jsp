@@ -23,7 +23,7 @@
 	</script>	
 </head>
 <body>	
-	<form class="" action="${root}/admin/createLeague.do" method="post" enctype="multipart/form-data">
+	<form class="" action="${root}/admin/createLeague.do" enctype="multipart/form-data" method="post" >
 		
 	<h2>SML KOREA</h2>
 	<div align="center">
@@ -81,7 +81,7 @@
 	<div>
 		<label>파일명</label> 
 		<span> 
-			<input type="file" name="leagueImage"/>			
+			<input type="file" name="file"/>			
 		</span>
 	</div>
 	<br/><br/>	

@@ -108,10 +108,8 @@ public class AdminDaoImpl implements AdminDao {
 	 * @설명 :
 	 */
 	@Override
-	public int createLeague(LeagueDto leagueDto) {		
-		
-		// sqlSession.insert("dao.adminDaoMapper.createLeague",leagueDto);
-		return 0;
+	public int createLeague(LeagueDto leagueDto) {					
+		return sqlSession.insert("dao.adminDaoMapper.createLeague",leagueDto);
 	}
 	
 	/**
@@ -188,6 +186,21 @@ public class AdminDaoImpl implements AdminDao {
 	public int leagueUpdateOk(LeagueDto leagueDto) {
 		
 		return sqlSession.update("dao.adminDaoMapper.leagueUpdateOk",leagueDto);
+	}
+
+	/**
+	 * @name : leagueSwitch
+	 * @date : 2015. 7. 8.
+	 * @author : 변형린
+	 * @description : 리그 정보 게시할지 안할지
+	 */
+	@Override
+	public int leagueSwitch(int leagueState, int leagueCode) {
+		HashMap<String,Object> map=new HashMap<String,Object>();
+		map.put("leagueState", leagueState);
+		map.put("leagueCode", leagueCode);
+		return sqlSession.update("dao.adminDaoMapper.leagueSwitch", map);
+		
 	}
 
 	

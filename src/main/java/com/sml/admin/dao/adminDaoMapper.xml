@@ -49,8 +49,8 @@
 	</select>
 	
 	<insert id="createLeague" parameterType="com.sml.league.dto.LeagueDto">
-		insert into leagueinfo(leagueCode,leagueSport,leagueRegion,leagueTeamNumber,leagueDay,leagueTime,leagueStartDate,leagueImage,leagueName,leagueEndDate)
-		values(leagueinfo_leagueCode_sql.nextval,#{leagueSport},#{leagueRegion},#{leagueTeamNumber},#{leagueDay},#{leagueTime},#{leagueStartDate},#{leagueImage},#{leagueName},#{leagueEndDate})
+		insert into leagueinfo(leagueCode,leagueSport,leagueRegion,leagueTeamNumber,leagueDay,leagueTime,leagueStartDate,leagueImage,leagueName,leagueEndDate, leagueState)
+		values(leagueinfo_leagueCode_sql.nextval,#{leagueSport},#{leagueRegion},#{leagueTeamNumber},#{leagueDay},#{leagueTime},#{leagueStartDate},#{leagueImage},#{leagueName},#{leagueEndDate}, #{leagueState})
 	</insert>
 
 	
@@ -78,8 +78,12 @@
 		update leagueInfo set leagueSport=#{leagueSport},leagueImage=#{leagueImage},leagueRegion=#{leagueRegion},leagueName=#{leagueName},leagueTeamNumber=#{leagueTeamNumber},leagueDay=#{leagueDay},leagueTime=#{leagueTime},leagueStartDate=#{leagueStartDate},leagueEndDate=#{leagueEndDate} where leagueCode=#{leagueCode}
 	</update>
 	
-
+	<select id="getLeagueList" parameterType="String" resultType="com.sml.league.dto.LeagueDto">
+		select * from leagueInfo where leagueSport=#{leagueSport}
+	</select>
 	
-	
+	<update id="leagueSwitch" parameterType="java.util.HashMap">
+		update leagueInfo set leagueState=${leagueState} where leagueCode=${leagueCode}
+	</update>
 	
 </mapper>

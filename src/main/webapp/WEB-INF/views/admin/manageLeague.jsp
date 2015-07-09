@@ -43,15 +43,21 @@
 	<c:forEach var="manageLeagueList" items="${manageLeagueList}">
 			<span>${manageLeagueList.leagueSport}</span>
 			&nbsp;&nbsp;&nbsp;
-			<span>${manageLeagueList.leagueImage}</span>&nbsp;&nbsp;&nbsp;	
+			<span><img src="${root }/img/leagueImg/${manageLeagueList.leagueImage}"></span>&nbsp;&nbsp;&nbsp;	
 			<span>${manageLeagueList.leagueRegion}</span>&nbsp;&nbsp;&nbsp;		
 			<span><a href="${root }/admin/leagueInfo.do?leagueCode=${manageLeagueList.leagueCode}&pageNumber=${currentPage}">${manageLeagueList.leagueName}</a></span>&nbsp;&nbsp;&nbsp;	
-			
 			<span>${manageLeagueList.leagueTeamNumber}</span>&nbsp;&nbsp;&nbsp;	
 			<span>${manageLeagueList.leagueDay}</span>&nbsp;&nbsp;&nbsp;	
 			<span>${manageLeagueList.leagueTime}</span>&nbsp;&nbsp;&nbsp;	
 			<span>${manageLeagueList.leagueStartDate}</span>&nbsp;&nbsp;&nbsp;	
 			<span>${manageLeagueList.leagueEndDate}</span>&nbsp;&nbsp;&nbsp;	
+			<c:if test="${manageLeagueList.leagueState==-1 }">
+				<input type="button" value="게시하기" onclick="location.href='${root}/admin/leagueSwitch.do?pageNumber=${currentPage }&leagueCode=${manageLeagueList.leagueCode }&leagueState=${manageLeagueList.leagueState}'"/>
+			</c:if>
+			
+			<c:if test="${manageLeagueList.leagueState== 1 }">
+				<input type="button" value="게시하지 않기" onclick="location.href='${root}/admin/leagueSwitch.do?pageNumber=${currentPage }&leagueCode=${manageLeagueList.leagueCode }&leagueState=${manageLeagueList.leagueState}'"/>
+			</c:if>
 			<a href="${root }/admin/leagueDelete.do?leagueCode=${manageLeagueList.leagueCode}">[삭제]</a>	
 			<br/>
 			<br/>

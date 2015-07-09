@@ -8,7 +8,7 @@
 <html>
 <head>
 	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-	<title>팀삭제</title>
+	<title>리그개설</title>
 </head>
 <body>
 	<c:if test="${check>0}">

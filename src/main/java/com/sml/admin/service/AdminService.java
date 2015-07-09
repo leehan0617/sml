@@ -17,6 +17,7 @@ public interface AdminService {
 	public void leagueInfo(ModelAndView mav);
 	public void leagueUpdate(ModelAndView mav);
 	public void leagueUpdateOk(ModelAndView mav);
+	public void leagueSwitch(ModelAndView mav);
 	
 
 }

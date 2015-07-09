@@ -21,4 +21,5 @@ public interface AdminDao {
 	public LeagueDto leagueInfo(int leagueCode);
 	public LeagueDto leagueUpdate(int leagueCode);
 	public int leagueUpdateOk(LeagueDto leagueDto);
+	public int leagueSwitch(int leagueState, int leagueCode);
 }

@@ -16,6 +16,8 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.sml.common.dao.CommonDao;
 import com.sml.common.dto.CommonBoardDto;
+import com.sml.league.dao.LeagueDao;
+import com.sml.league.dto.LeagueDto;
 import com.sml.record.dto.RecordDto;
 import com.sml.soccer.dao.SoccerDao;
 import com.sml.team.dto.TeamDto;
@@ -30,6 +32,8 @@ public class SoccerServiceImpl implements SoccerService {
 	private SoccerDao soccerDao;
 	@Autowired
 	private CommonDao commonDao;
+	@Autowired
+	private LeagueDao leagueDao;
 	
 	//종목 공지게시판 코드
 	private int sportCode=0;
@@ -109,7 +113,11 @@ public class SoccerServiceImpl implements SoccerService {
 		} catch (Exception e1) {
 			e1.printStackTrace();
 		}
-				
+		
+		//리그 정보 가져오기
+		List<LeagueDto> leagueList=leagueDao.getLeagueList(sportType);
+		
+		mav.addObject("leagueList", leagueList);
 		mav.addObject("sportType", sportType);//종목 구분
 		mav.addObject("matchDay", matchDay);
 		mav.addObject("boardSize", boardSize);

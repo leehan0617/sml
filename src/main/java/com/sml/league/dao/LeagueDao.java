@@ -1,5 +1,9 @@
 package com.sml.league.dao;
 
-public interface LeagueDao {
+import java.util.List;
 
+import com.sml.league.dto.LeagueDto;
+
+public interface LeagueDao {
+	public List<LeagueDto> getLeagueList(String sportType);
 }

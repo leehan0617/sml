@@ -144,13 +144,19 @@
 		<div>
 			<span><input type="button" value="<"/></span>
 			<img alt="리그 이미지 넣어야함" src=""/>
-			<span><input type="button" value=">"/></span>
-			<%-- 
-			<c:forEach value="" items="">
+			<span><input type="button" value=">"/></span> 
+			
+			<c:forEach var="league" items="${leagueList }">
 				<div>
+					<span><img src="${root}/img/leagueImg/${league.leagueImage}"/></span>
+					<span>리그이름 : ${leagueName }</span>
+					<span>리그지역 : ${league.leagueRegion }</span>
+					<span>리그시간 : ${league.leagueTime }</span>
+					<span>리그시작일 : ${league.leagueStartDate }</span>
+					<span>리그종료일 : ${league.leagueEndDate }</span>					
 					
 				</div>
-			</c:forEach> --%>
+			</c:forEach>
 		</div>	
 	</div>	
 	
