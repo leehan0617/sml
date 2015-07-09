@@ -13,6 +13,13 @@
 <link href="${root}/css/teamPage/matchingMap.css" type="text/css" rel="stylesheet"/>
 </head>
 <body onload="viewMap('${myTeamName }','${otherTeamName}','${myMatchingDto.matchingLatlng }','${myMatchingDto.matchingDistance }','${otherMatchingDto.matchingLatlng }','${otherMatchingDto.matchingDistance }')">
-	<div id="map" style="width:100%;height:450px;"></div>
+	<div id="map" style="width:100%;height:450px;position:relative;overflow:hidden;"></div>
+
+    <div id="menu_wrap" class="bg_white">
+        <hr>
+        <ul id="placesList" style="margin-left:-50px;"></ul>
+        <div id="pagination"></div>
+    </div>
+	<div style="text-align: center;"><input type="button" value="확인" onclick="closeMap()"></div>
 </body>
 </html>
