@@ -205,4 +205,8 @@
 					where a.teamcode=b.teamcode and a.teamcode2=c.teamcode and (b.teamCode=#{teamCode} or c.teamCode=#{teamCode}) and gameState='경기 전'
 						order by gameCode desc) d
 	</select>
+	
+	<update id="setWaitMatching" parameterType="java.util.HashMap">
+		update matching set matchingState=#{matchingState} where teamCode=#{teamCode}
+	</update>
 </mapper>

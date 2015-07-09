@@ -315,7 +315,7 @@ public class TeamDaoImpl implements TeamDao{
 		HashMap<String, Object> hMap=new HashMap<String, Object>();
 		hMap.put("teamCode", teamCode);
 		hMap.put("sportType", sportType);
-		hMap.put("matchingState", "전");
+		hMap.put("matchingState", "중");
 		return sqlSession.selectList("team.dao.TeamMapper.getOtherMatchingInfo",hMap);
 	}
 	
@@ -478,7 +478,7 @@ public class TeamDaoImpl implements TeamDao{
 	@Override
 	public void changeMatchingState(MatchingDto matchingDto) {
 		HashMap<String, Object> hMap=new HashMap<String, Object>();
-		hMap.put("matchingState", "중");
+		hMap.put("matchingState", "후");
 		hMap.put("matchingCode", matchingDto.getMatchingCode());
 		sqlSession.update("team.dao.TeamMapper.changeMatchingState", hMap);
 	}
@@ -512,5 +512,19 @@ public class TeamDaoImpl implements TeamDao{
 	@Override
 	public HashMap<String, Object> getNormalMatchInfo(int teamCode) {
 		return sqlSession.selectOne("team.dao.TeamMapper.getNormalMatchInfo", teamCode);
+	}
+
+	/**
+	 * @name : TeamDaoImpl
+	 * @date : 2015. 7. 9.
+	 * @author : 이희재
+	 * @description : 매칭의 상태를 전 -> 중으로 변경
+	 */
+	@Override
+	public void setWaitMatching(int teamCode) {
+		HashMap<String, Object> hMap=new HashMap<String, Object>();
+		hMap.put("teamCode", teamCode);
+		hMap.put("matchingState", "중");
+		sqlSession.update("team.dao.TeamMapper.setWaitMatching", hMap);
 	}
 }

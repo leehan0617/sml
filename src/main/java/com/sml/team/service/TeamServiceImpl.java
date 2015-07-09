@@ -629,6 +629,8 @@ public class TeamServiceImpl implements TeamService{
 		int teamCode=dao.getTeamInfo(teamName).getTeamCode();
 		
 		MatchingDto matchingDto=dao.getTeamMatchingInfo(teamCode);
+		TeamDto myTeamDto=dao.getTeamInfo(teamName);
+		TeamDto otherTeamDto=null;
 		
 		if(matchingDto==null){
 			String homeGround=dao.getTeamGround(teamCode);
@@ -639,33 +641,39 @@ public class TeamServiceImpl implements TeamService{
 			mav.setViewName("teamPage/matching");
 		}else if(matchingDto!=null){
 			if(matchingDto.getMatchingState().equals("전")){
+				// 매칭 전일때 매칭 시작을 위한 페이지 이동
 				mav.addObject("matchingDto", matchingDto);
 				mav.addObject("teamCode", teamCode);
 				mav.addObject("teamName",teamName);
 				mav.setViewName("teamPage/matching");
-			}
-			if(matchingDto.getMatchingState().equals("중")){
+			}else if(matchingDto.getMatchingState().equals("중")){
+				// 매칭 중 일때 애니메이션을 이용하여 매칭 중이라는 것을 표시
+				mav.addObject("matchingDto", matchingDto);
+				mav.addObject("teamCode", teamCode);
+				mav.addObject("teamName",teamName);
+				mav.addObject("myTeamDto", myTeamDto);
+				mav.setViewName("teamPage/matchingResult");
+			}else if(matchingDto.getMatchingState().equals("후")){
+				// 매칭이 된 이후에는 해당 매칭에 대한 정보를 제공
 				HashMap<String, Object> normalMatchInfo=dao.getNormalMatchInfo(teamCode);
 				MatchingDto otherMatchingDto=null;
 				
-//				String tempTeamName=String.valueOf(normalMatchInfo.get("TEAM1"));
-//				String tempTeamName2=String.valueOf(normalMatchInfo.get("TEAM2"));
-//				
-//				if(teamName.equals(tempTeamName)){
-//					
-//				}
 				int tempTeamCode=Integer.valueOf(String.valueOf(normalMatchInfo.get("TEAMCODE")));
 				int tempTeamCode2=Integer.valueOf(String.valueOf(normalMatchInfo.get("TEAMCODE2")));
 				
 				if(teamCode==tempTeamCode){
 					otherMatchingDto=dao.getTeamMatchingInfo(tempTeamCode2);
+					otherTeamDto=dao.getTeamInfo(String.valueOf(normalMatchInfo.get("TEAM2")));
 				}else if(teamCode!=tempTeamCode){
 					otherMatchingDto=dao.getTeamMatchingInfo(tempTeamCode);
+					otherTeamDto=dao.getTeamInfo(String.valueOf(normalMatchInfo.get("TEAM1")));
 				}
 				
 				mav.addObject("normalMatchInfo",normalMatchInfo);
 				mav.addObject("otherMatchingDto",otherMatchingDto);
 				mav.addObject("matchingDto", matchingDto);
+				mav.addObject("myTeamDto",myTeamDto);
+				mav.addObject("otherTeamDto", otherTeamDto);
 				mav.addObject("teamCode", teamCode);
 				mav.addObject("teamName",teamName);
 				mav.setViewName("teamPage/matchingResult");
@@ -740,6 +748,7 @@ public class TeamServiceImpl implements TeamService{
 //			}
 //		}
 		
+		dao.setWaitMatching(teamCode);
 		matchingTeam(teamCode);
 		int check=1;
 		mav.addObject("check",check);
@@ -787,9 +796,12 @@ public class TeamServiceImpl implements TeamService{
 		}
 		
 		int resultIdx=getResultIdx(resultMap);
-		dao.changeMatchingState(otherMatchingInfo.get(resultIdx));
-		dao.changeMatchingState(myMatchingDto);
-		dao.createGameRecord(myMatchingDto, otherMatchingInfo.get(resultIdx));
+		if(resultIdx!=-1){
+			dao.changeMatchingState(otherMatchingInfo.get(resultIdx));
+			dao.changeMatchingState(myMatchingDto);
+			dao.createGameRecord(myMatchingDto, otherMatchingInfo.get(resultIdx));
+		}
+		
 		
 	}
 	
@@ -866,7 +878,7 @@ public class TeamServiceImpl implements TeamService{
 	public int getResultIdx(HashMap<Integer, Integer> resultMap){
 		Set<Integer> keySet=resultMap.keySet();
 		Iterator<Integer> iter=keySet.iterator();
-		int key=0;
+		int key=-1;
 		int tempDistance=-1;
 		while(iter.hasNext()){
 			int tempKey=iter.next();

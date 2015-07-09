@@ -49,4 +49,5 @@ public interface TeamDao {
 	public void changeMatchingState(MatchingDto matchingDto);
 	public void createGameRecord(MatchingDto myMatchingDto, MatchingDto otherMatchingDto);
 	public HashMap<String, Object> getNormalMatchInfo(int teamCode);
+	public void setWaitMatching(int teamCode);
 }
