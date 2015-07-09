@@ -1,9 +1,9 @@
 package com.sml.team.controller;
 
+import java.util.logging.Logger;
+
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-
-import java.util.logging.Logger;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -12,9 +12,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
 import org.springframework.web.servlet.ModelAndView;
 
-import com.sml.matching.dto.MatchingDto;
 import com.sml.member.dto.MemberDto;
-import com.sml.team.dto.ScheduleDto;
 import com.sml.team.dto.TeamBoardDto;
 import com.sml.team.dto.TeamDto;
 import com.sml.team.dto.TeamLogDto;
@@ -147,21 +145,6 @@ public class TeamController {
 	}
 	
 	/**
-	 * @함수명 : viewSchedule
-	 * @작성일 : 2015. 6. 23.
-	 * @작성자 : 이한빈
-	 * @설명   :  팀스케쥴 보는 메소드 (팀장이랑 비회원 구분은 JSP페이지에서 JSTL로 구분 해야할듯)
-	 */
-	@RequestMapping(value="/viewSchedule.do" , method=RequestMethod.GET)
-	public ModelAndView viewSchedule(){
-		logger.info("TeamController viewSchedule");
-		ModelAndView mav = new ModelAndView("teamPage/teamSchedule");
-		
-		service.viewSchedule(mav);
-		return mav;
-	}
-	
-	/**
 	 * 
 	 * @함수명 : gameRecord
 	 * @작성일 : 2015. 6. 23.
@@ -190,83 +173,6 @@ public class TeamController {
 		return "teamPage/matching";
 	}
 	
-	
-	
-	/**
-	 * @함수명:teamSchedule
-	 * @작성일:2015. 6. 25.
-	 * @작성자:조영석
-	 * @설명문:스케쥴관리용 달력 jsp페이지 이동 메소드
-	 */
-	@RequestMapping(value="/teamPage/teamScheduleEdit.do",method=RequestMethod.GET)	
-	public ModelAndView teamSchedule(HttpServletRequest request,HttpServletResponse response){
-		ModelAndView mav=new ModelAndView();
-		mav.addObject("request",request);
-		service.readteamSchedule(mav);
-		return mav;
-	}
-	
-	/**
-	 * @함수명:editScheduleView
-	 * @작성일:2015. 7. 3.
-	 * @작성자:조영석
-	 * @설명문:스케쥴 세부일정 페이지 이동 메소드
-	 */
-	@RequestMapping(value="/teamPage/Schedule.do",method=RequestMethod.GET)
-	public ModelAndView editScheduleView(HttpServletRequest request,HttpServletResponse response){
-		ModelAndView mav=new ModelAndView();
-		mav.addObject("request",request);
-		
-		service.showSchedule(mav);
-		return mav;
-	}
-	
-	/**
-	 * @함수명:ScheduleContent
-	 * @작성일:2015. 7. 7.
-	 * @작성자:조영석
-	 * @설명문:스케쥴 내용 이동 메소드 
-	 */
-	@RequestMapping(value="/teamPage/ScheduleContent.do",method=RequestMethod.GET)
-	public ModelAndView ScheduleContent(HttpServletRequest request,HttpServletResponse response){
-		ModelAndView mav=new ModelAndView();
-		mav.addObject("request",request);
-		
-		service.scheduleContent(mav);
-		return mav;
-	}
-	/**
-	 * @함수명:editSchedule
-	 * @작성일:2015. 7. 6
-	 * @작성자:조영석
-	 * @설명문:스케쥴 일정 입력용 서비스 이동 메소드
-	 */
-	@RequestMapping(value="/teamPage/editSchedule.do",method=RequestMethod.GET)
-	public ModelAndView editSchedule(HttpServletRequest request,HttpServletResponse response,ScheduleDto scheduleDto){
-		ModelAndView mav=new ModelAndView();
-		
-		mav.addObject("request",request);
-		mav.addObject("scheduleDto",scheduleDto);
-		service.editSchedule(mav);
-		
-		return mav;
-	}
-	
-	/**
-	 * @함수명:deleteSchedule
-	 * @작성일:2015. 7. 7.
-	 * @작성자:조영석
-	 * @설명문:스케쥴 삭제 이동 메소드
-	 */
-	@RequestMapping(value="/teamPage/deleteSchedule.do", method=RequestMethod.GET)
-	public ModelAndView deleteSchedule(HttpServletRequest request,HttpServletResponse response){
-		System.out.println("deleteScheduledeleteScheduledeleteScheduledeleteScheduledeleteSchedule");
-		ModelAndView mav=new ModelAndView();
-		mav.addObject("request",request);
-		
-		service.deleteSchedule(mav);
-		return mav;
-	}
 	/**
 	 * @name : teamPage
 	 * @date : 2015. 6. 25.

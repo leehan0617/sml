@@ -15,8 +15,9 @@
 	<link rel="stylesheet" type="text/css" href="${root }/resources/css/bootstrap.css"/>
 	
 	<script src="${root }/resources/js/jquery.js"></script>
-	<script src="${root }/resources/js/angular.js"></script>
 	<script src="${root }/resources/js/bootstrap.js"></script>
+	
+	<script src="${root }/resources/js/teamMain.js"></script>
 	
 	<!-- 정성남 댓글 스크립트 -->
 	<script src="${root }/js/teamPage/teamLog.js"></script>
@@ -104,7 +105,7 @@
 	  	공지사항
 	  </div>
 	  <div class="col-md-5 well">
-	  	팀스케쥴
+	  	<%@include file="../teamTemplate/scheduleTemplate.jsp" %>
 	  </div>
 	  <div class="col-md-1"></div>
 	</div>

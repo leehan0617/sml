@@ -4,7 +4,6 @@ import org.springframework.web.servlet.ModelAndView;
 
 public interface TeamService {
 	public void login(ModelAndView mav);
-	public void viewSchedule(ModelAndView mav);
 	public void viewTeamBoard(ModelAndView mav);
 	public void viewRecord(ModelAndView mav);
 	public void registerTeam(ModelAndView mav);
@@ -28,9 +27,4 @@ public interface TeamService {
 	public void updateTeamEmblemOk(ModelAndView mav);
 	public void addTeamLog(ModelAndView mav);
 	public void teamLogDelete(ModelAndView mav);
-	public void scheduleContent(ModelAndView mav);
-	public void deleteSchedule(ModelAndView mav);
-	public void showSchedule(ModelAndView mav);
-	public void readteamSchedule(ModelAndView mav);
-	public void editSchedule(ModelAndView mav);
 }

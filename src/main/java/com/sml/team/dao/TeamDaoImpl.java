@@ -7,9 +7,7 @@ import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
-import com.sml.matching.dto.MatchingDto;
 import com.sml.member.dto.MemberDto;
-import com.sml.team.dto.ScheduleDto;
 import com.sml.team.dto.TeamBoardDto;
 import com.sml.team.dto.TeamDto;
 import com.sml.team.dto.TeamLogDto;
@@ -77,20 +75,6 @@ public class TeamDaoImpl implements TeamDao{
 		
 		return sqlSession.selectList("team.dao.TeamMapper.viewTeamBoardList",map);
 	}
-
-	@Override
-	/**
-	 * 
-	 * @함수명 : viewSchedule
-	 * @작성일 : 2015. 6. 23.
-	 * @작성자 : 이한빈
-	 * @설명   : 서비스에서 요청받은 값을 데이터베이스에서 연결해서 스케쥴 값들을 반환 받는 메소드
-	 */
-	public List<ScheduleDto> viewSchedule() {
-		return sqlSession.selectList("team.dao.TeamMapper.teamScheduleList");
-	}
-
-	
 
 	/**
 	 * @name : TeamDaoImpl
@@ -336,92 +320,6 @@ public class TeamDaoImpl implements TeamDao{
 		return sqlSession.delete("team.dao.TeamMapper.teamLogDelete",hMap);
 	}
 	
-	/**
-	 * @함수명:editSchedule
-	 * @작성일:2015. 7. 6.
-	 * @작성자:조영석
-	 * @설명문:스케쥴일정 값을 데이터베이스에 집어넣는 메소드 
-	 */
-	@Override
-	public int editSchedule(ScheduleDto scheduleDto,String teamId) {
-		int value=0;
-		int teamCode=sqlSession.selectOne("team.dao.TeamMapper.scheduleTeamid",teamId);
-		scheduleDto.setTeamCode(teamCode);
-		value=sqlSession.insert("team.dao.TeamMapper.insertSchedule",scheduleDto);
-		return value;
-	}
-	
-	/**
-	 * @함수명:readSchedule
-	 * @작성일:2015. 7. 6.
-	 * @작성자:조영석
-	 * @설명문:스케쥴 정보 불러오기 메소드
-	 */
-	@Override
-	public List<ScheduleDto> readSchedule(String teamName) {
-		int teamCode=sqlSession.selectOne("team.dao.TeamMapper.scheduleTeamid",teamName);
-		ScheduleDto scheduleDto=new ScheduleDto();
-		scheduleDto.setTeamCode(teamCode);
-		
-		return sqlSession.selectList("team.dao.TeamMapper.readSchedule",scheduleDto);
-	}
-	
-	/**
-	 * @함수명:readCount
-	 * @작성일:2015. 7. 6.
-	 * @작성자:조영석
-	 * @설명문:스케쥴 총 갯수 구하는 메소드 
-	 */
-	@Override
-	public int readCount(String teamName) {
-		int teamCode=sqlSession.selectOne("team.dao.TeamMapper.scheduleTeamid",teamName);
-		
-		return sqlSession.selectOne("team.dao.TeamMapper.readCount",teamCode);
-	}
-	
-	/**
-	 * @함수명:scheduleContent
-	 * @작성일:2015. 7. 7.
-	 * @작성자:조영석
-	 * @설명문:스케쥴 세부일정 내용열람을 위한 데이터베이스연결
-	 */
-	@Override
-	public ScheduleDto scheduleContents(int scheduleNumber) {
-//		HashMap<String,Object> Hmap=new HashMap<String,Object>();
-//		Hmap.put("teamCode", teamCode);
-//		Hmap.put("scheduleNumber", scheduleNumber);
-		return sqlSession.selectOne("team.dao.TeamMapper.scheduleContent",scheduleNumber);
-	}
-
-	/**
-	 * @함수명:selectMember
-	 * @작성일:2015. 7. 7.
-	 * @작성자:조영석
-	 * @설명문:스케쥴 권한 부여를 위한 데이터베이스연결
-	 */
-	@Override
-	public TeamDto selectMember(int scheduleNumber) {
-		int teamCode=sqlSession.selectOne("team.dao.TeamMapper.scheduleNumber",scheduleNumber);
-		
-		TeamDto teamDto=null;
-		if(teamCode>0){
-			 teamDto=sqlSession.selectOne("team.dao.TeamMapper.selectTeam",teamCode);
-		}
-		
-		return teamDto;
-	}
-
-	/**
-	 * @함수명:deleteSchedule
-	 * @작성일:2015. 7. 7.
-	 * @작성자:조영석
-	 * @설명문:스케쥴 삭제를 위한 데이터베이스연결
-	 */
-	@Override
-	public int deleteSchedule(int scheduleNumber) {
-		
-		return sqlSession.delete("team.dao.TeamMapper.deleteSchedule",scheduleNumber);
-	}
 
 	/**
 	 * @name : TeamDaoImpl

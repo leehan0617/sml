@@ -2,6 +2,7 @@
  * 
  */
 var app = angular.module('app', []);
+var root="/home";
 
 app.directive("login", function() {
     return {

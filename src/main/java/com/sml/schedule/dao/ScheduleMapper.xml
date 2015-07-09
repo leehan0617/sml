@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+  
+ <mapper namespace="schedule.dao.ScheduleMapper">
+	<select id="scheduleList" resultType="com.sml.schedule.dto.ScheduleDto">
+		select * from TEAMSCHEDULE 
+	</select>
+	
+	<select id="scheduleTeamid" parameterType="String" resultType="int">
+ 		select teamCode from team where teamName=#{teamName}
+ 	</select> 
+ 	
+ 	<insert id="insertSchedule" parameterType="com.sml.schedule.dto.ScheduleDto">
+		insert into TEAMSCHEDULE values(teamschedule_num_sql.nextval,#{teamCode},#{scheduleType},#{endDate},#{scheduleTitle},#{scheduleContent},#{startDate})
+	</insert>
+	
+	<select id="readSchedule" resultType="com.sml.schedule.dto.ScheduleDto" parameterType="com.sml.schedule.dto.ScheduleDto" >
+		select * from TEAMSCHEDULE where teamCode=#{teamCode}
+	</select>
+	
+	<select id="readCount" parameterType="int" resultType="int">
+		select count(*) from TEAMSCHEDULE where teamCode=#{teamCode}
+	</select>
+	
+	<select id="scheduleContent" parameterType="java.util.HashMap" resultType="com.sml.schedule.dto.ScheduleDto">
+		select * from TEAMSCHEDULE where scheduleNumber=#{scheduleNumber}
+	</select>
+	
+	<select id="scheduleNumber" parameterType="int" resultType="int">
+		select teamCode from TEAMSCHEDULE where scheduleNumber=#{scheduleNumber}
+	</select>
+	
+	<select id="selectTeam" parameterType="int" resultType="com.sml.schedule.dto.ScheduleDto" >
+		select * from TEAM where teamCode=#{teamCode}
+	</select>
+	
+	<delete id="deleteSchedule" parameterType="int">
+		delete from TEAMSCHEDULE where scheduleNumber=#{scheduleNumber}
+	</delete>
+ </mapper>
