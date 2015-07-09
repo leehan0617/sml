@@ -62,11 +62,11 @@
 		</c:when>
 		<c:otherwise>
 			<div class="container">
-				<form class="form-signin" action="${root }/findAccountInfo" method="post">
+				<form class="form-signin" action="${root }/checkAuthentication" method="post">
 		        <h2 class="form-signin-heading">인증번호를 써주세요.</h2>
 		        <label class="sr-only">인증번호</label>
-		        <input type="text" name="number" id="number" class="form-control" placeholder="인증번호를 써주세요.">
-		        <input type="hidden" name="phone" value="${phone }"/>
+		        <input type="text" name="userNumber" id="number" class="form-control" placeholder="인증번호를 써주세요.">
+		        <input type="hidden" name="teamCode" value="${teamCode }"/>
 		        <hr/>
 		        <button class="btn btn-lg btn-primary btn-block" type="submit" >인증 요청</button>
 		      	</form>

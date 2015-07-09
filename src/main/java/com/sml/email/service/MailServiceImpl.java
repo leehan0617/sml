@@ -19,33 +19,6 @@ public class MailServiceImpl implements MailService{
 	@Autowired
 	private MailDao dao;
 	
-	/*
-	
-	@Override
-	public void compareNumber(ModelAndView mav) {
-		Map <String , Object> map = mav.getModelMap();
-		HttpServletRequest request = (HttpServletRequest) map.get("request");
-		
-		System.out.println("#####eeeee$$$$$");
-		
-		String number = request.getParameter("number");
-		String phone = request.getParameter("phone");
-		String key = dao.getCertificationNumber(phone);
-		
-		System.out.println("key : " + key + "number : " + number);
-		
-		
-		if(number.equals(key)){
-			int check = 1;
-			mav.addObject("check" , check);
-			mav.setViewName("teamPage/resultCertification");
-		}else{
-			int check = 0;
-			mav.addObject("check" , check);
-			mav.setViewName("teamPage/resultCertification");
-		}
-	}
-	*/
 	/**
 	 * @함수명:requestKey
 	 * @작성일:2015. 7. 9.
@@ -82,6 +55,7 @@ public class MailServiceImpl implements MailService{
 				MailSetting mt = new MailSetting();
 				mt.sendEmail(from, to, cc, subject, content);
 				mav.addObject("teamCode" , teamCode);
+				dao.insertAuthenticationInfo(authenticationNumber , teamCode );
 				System.out.println("메일 전송에 성공하였습니다.");
 			}catch(MessagingException me){
 				System.out.println("메일 전송에 실패하였습니다.");
@@ -108,6 +82,12 @@ public class MailServiceImpl implements MailService{
 		return teamCode;
 	}
 	
+	/**
+	 * @함수명:RandomNum
+	 * @작성일:2015. 7. 9.
+	 * @작성자:이한빈 
+	 * @설명문:랜덤숫자생성.
+	 */
 	private String RandomNum(){
 		StringBuffer buffer=new StringBuffer();
 		
@@ -117,19 +97,46 @@ public class MailServiceImpl implements MailService{
 		}
 		return buffer.toString();
 	}
-
-
+	
+	/**
+	 * @함수명:checkAuthentication
+	 * @작성일:2015. 7. 9.
+	 * @작성자:이한빈 
+	 * @설명문:정보를 입력받고 인증번호가 맞으면 정보를 알려주고 인증테이블의 값을 삭제한다.
+	 */
 	@Override
-	public void sendEmail(ModelAndView mav) throws Exception {
-		// TODO Auto-generated method stub
+	public void checkAuthentication(ModelAndView mav) {
+		Map<String , Object> map = mav.getModelMap();
 		
-	}
-
-	@Override
-	public void compareNumber(ModelAndView mav) {
-		// TODO Auto-generated method stub
+		HttpServletRequest request = (HttpServletRequest) map.get("request");
 		
+		int teamCode = Integer.parseInt(request.getParameter("teamCode"));
+		String userNumber = request.getParameter("userNumber");
+		
+		String userId = dao.findMyAccount(teamCode , userNumber);
+		mav.addObject("userId" , userId);
+		dao.deleteAuthenticationData(teamCode , userNumber);
+		
+		mav.setViewName("team/changeMyAccountInfo");
 	}
 	
+	/**
+	 * @함수명:changeTeamAccount
+	 * @작성일:2015. 7. 9.
+	 * @작성자:이한빈 
+	 * @설명문:정보를 수정해주는 함수
+	 */
+	@Override
+	public void changeTeamAccount(ModelAndView mav) {
+		Map<String , Object> map = mav.getModelMap();
+		HttpServletRequest request = (HttpServletRequest) map.get("request");
+		
+		String teamId = request.getParameter("teamId");
+		String teamPassword = request.getParameter("teamPassword");
+		
+		int check = dao.updateInfo(teamId , teamPassword);
+		mav.addObject("check" , check);
+		mav.setViewName("team/updateFinish");
+	}
 	
 }

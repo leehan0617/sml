@@ -34,14 +34,33 @@ public class MailController {
 		service.requestKey(mav);
 		return mav;
 	}
-	
-	@RequestMapping(value="/findAccountInfo" , method=RequestMethod.POST)
-	public ModelAndView compareNumber(HttpServletRequest request){
-		System.out.println("#####dddddd###");
-		
+	/**
+	 * 
+	 * @함수명:checkAuthentication
+	 * @작성일:2015. 7. 9.
+	 * @작성자:이한빈 
+	 * @설명문:사용자가 인증번호를 보내면 디비에 저장된 값과 사용자가 보낸 인증번호가 맞는지 비교하는 함
+	 *
+	 */
+	@RequestMapping(value="/checkAuthentication" , method=RequestMethod.POST)
+	public ModelAndView checkAuthentication(HttpServletRequest request){
 		ModelAndView mav = new ModelAndView();
 		mav.addObject("request" , request);
-		service.compareNumber(mav);
+		service.checkAuthentication(mav);
+		return mav;
+	}
+	
+	/**
+	 * @함수명:changeTeamAccount
+	 * @작성일:2015. 7. 9.
+	 * @작성자:이한빈 
+	 * @설명문:인증번호가 맞으면 아이디를 띄워주고 비밀번호 입력을 새로받고 비밀번호를 사용자가 입력한 비밀번호로 수정해주는 함수 
+	 */
+	@RequestMapping(value="/changeTeamAccount" , method=RequestMethod.POST)
+	public ModelAndView changeTeamAccount(HttpServletRequest request){
+		ModelAndView mav = new ModelAndView();
+		mav.addObject("request" , request);
+		service.changeTeamAccount(mav);
 		
 		return mav;
 	}
