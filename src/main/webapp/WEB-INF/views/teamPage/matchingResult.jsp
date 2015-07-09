@@ -45,51 +45,71 @@
 	
 	<h3>matching(${teamName })</h3>
 	<br/>
-	<h1>Result Matching</h1>
 	
+	
+	<c:if test="${matchingDto.matchingState=='후' }">
+	<h1>Result Matching</h1>
 	<div style="font-size: 40px; font: bold;">
 		${normalMatchInfo.TEAM1 }
 		<span style="color: red;">VS</span>
 		${normalMatchInfo.TEAM2 }
 	</div>
 	
-	<c:if test="${normalMatchInfo.TEAM1==teamName }"><div>team1</div>
-		<h2>나의 팀</h2>
-		<h4>name : ${normalMatchInfo.TEAM1}</h4>
-		<h4>place : ${matchingDto.matchingPlace}</h4>
-		<h4>Day : ${matchingDto.matchingDay}</h4>
-		<h4>Time : ${matchingDto.matchingTime}</h4>
-		<br/><br/>
-		
-		<h2>상대 팀</h2>
-		<h4>name : ${normalMatchInfo.TEAM2 }</h4>
-		<h4>place : ${otherMatchingDto.matchingPlace}</h4>
-		<h4>Day : ${otherMatchingDto.matchingDay}</h4>
-		<h4>Time : ${otherMatchingDto.matchingTime}</h4>
-		<br/><br/>
-	</c:if>
-	<c:if test="${normalMatchInfo.TEAM2==teamName }"><div>team2</div>
-		<h2>나의 팀</h2>
-		<h4>name : ${normalMatchInfo.TEAM2}</h4>
-		<h4>place : ${matchingDto.matchingPlace}</h4>
-		<h4>Day : ${matchingDto.matchingDay}</h4>
-		<h4>Time : ${matchingDto.matchingTime}</h4>
-		<br/><br/>
-		
-		<h2>상대 팀</h2>
-		<h4>name : ${normalMatchInfo.TEAM1 }</h4>
-		<h4>place : ${otherMatchingDto.matchingPlace}</h4>
-		<h4>Day : ${otherMatchingDto.matchingDay}</h4>
-		<h4>Time : ${otherMatchingDto.matchingTime}</h4>
-		<br/><br/>
-	</c:if>
-	
-	
+		<c:if test="${normalMatchInfo.TEAM1==teamName }"><div>team1</div>
+			<h2>나의 팀</h2>
+			<h4>emblem : ${myTeamDto.emblem }</h4>
+			<h4>name : ${normalMatchInfo.TEAM1}</h4>
+			<h4>place : ${matchingDto.matchingPlace}</h4>
+			<h4>Day : ${matchingDto.matchingDay}</h4>
+			<h4>Time : ${matchingDto.matchingTime}</h4>
+			<br/><br/>
+			
+			<h2>상대 팀</h2>
+			<h4>emblem : ${otherTeamDto.emblem }</h4>
+			<h4>name : ${normalMatchInfo.TEAM2 }</h4>
+			<h4>place : ${otherMatchingDto.matchingPlace}</h4>
+			<h4>Day : ${otherMatchingDto.matchingDay}</h4>
+			<h4>Time : ${otherMatchingDto.matchingTime}</h4>
+			<br/><br/>
+		</c:if>
+		<c:if test="${normalMatchInfo.TEAM2==teamName }"><div>team2</div>
+			<h2>나의 팀</h2>
+			<h4>emblem : ${myTeamDto.emblem }</h4>
+			<h4>name : ${normalMatchInfo.TEAM2}</h4>
+			<h4>place : ${matchingDto.matchingPlace}</h4>
+			<h4>Day : ${matchingDto.matchingDay}</h4>
+			<h4>Time : ${matchingDto.matchingTime}</h4>
+			<br/><br/>
+			
+			<h2>상대 팀</h2>
+			<h4>emblem : ${otherTeamDto.emblem }</h4>
+			<h4>name : ${normalMatchInfo.TEAM1 }</h4>
+			<h4>place : ${otherMatchingDto.matchingPlace}</h4>
+			<h4>Day : ${otherMatchingDto.matchingDay}</h4>
+			<h4>Time : ${otherMatchingDto.matchingTime}</h4>
+			<br/><br/>
+		</c:if>
 	
 	<h3>경기장 정보 부분 </h3>
 	
 	<input type="button" value="경기 결과 입력">
 	<input type="button" value="경기장 정보">
 	<input type="button" value="상대팀 정보">
+	</c:if>
+	
+	<c:if test="${matchingDto.matchingState=='중' }">
+		<h1>Waiting Matching</h1>
+		<h2>애니메이션 삽입</h2>
+		<h4>emblem : ${myTeamDto.emblem }</h4>
+		<h4>name : ${myTeamDto.teamName }</h4>
+		<h4>place : ${matchingDto.matchingPlace}</h4>
+		<h4>Day : ${matchingDto.matchingDay}</h4>
+		<h4>Time : ${matchingDto.matchingTime}</h4>
+		<br/><br/>
+		
+		<div style="color:green;"><h5>도움말 : 매칭이 잘 이루어지지 않는다면..</h5></div>
+		<h6> -> 거리, 요일, 시간대 등의 조건을 넓히면 매칭이 더욱 쉬워 질 수 있습니다. </h6>
+		<input type="button" value="매칭 취소" onclick="javascript:location.href='${root}/teamPage/deleteMatching.do?matchingCode=${matchingDto.matchingCode }&teamName=${teamName}'">
+	</c:if>
 </body>
 </html>
