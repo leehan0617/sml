@@ -54,9 +54,9 @@
 
 <body>
 	<c:choose>
-		<c:when test="${hintNumber == null }">
+		<c:when test="${check == 0 }">
 			<script type="text/javascript">
-			alert("이름 또는 핸드폰번호가 틀립니다");
+			alert("이름 또는 핸드폰번호에 관한 정보가 없습니다.");
 			location.href="${root}/start.jsp";
 			</script>
 		</c:when>

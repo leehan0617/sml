@@ -1,6 +1,6 @@
 package com.sml.email.dto;
 
-public class emailDto {
+public class MailDto {
 	private String subject;
 	private String content;
 	private String receiver;

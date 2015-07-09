@@ -17,19 +17,7 @@
 	
 	<!-- 5.2 Mapper Resource-->
 		<bean class="org.mybatis.spring.SqlSessionFactoryBean" id="sqlSessionFactoryBean">
-		<property name="mapperLocations">
-			<list>
-				<value>classpath:com/sml/team/dao/TeamMapper.xml</value>
-				<value>classpath:com/sml/common/dao/commonDaoMapper.xml</value>
-				<value>classpath:com/sml/referee/dao/RefereeMapper.xml</value>
-				<value>classpath:com/sml/soccer/dao/SoccerMapper.xml</value>
-				<value>classpath:com/sml/record/dao/RecordMapper.xml</value>
-				<value>classpath:com/sml/member/dao/MemberMapper.xml</value>
-				<value>classpath:com/sml/admin/dao/adminDaoMapper.xml</value>
-				<value>classpath:com/sml/league/dao/LeagueMapper.xml</value>
-				<value>classpath:com/sml/email/dao/emailMapper.xml</value>
-			</list>
-		</property>
+			<property name="mapperLocations" value="classpath*:com/sml/**/**/*.xml"/>
 			<property name="dataSource" ref="dataSource"/>
 		</bean>
 	<!-- 5.3 SqlSessionFactoryBuilder().build(DriverManager,Mapper Resource-->
