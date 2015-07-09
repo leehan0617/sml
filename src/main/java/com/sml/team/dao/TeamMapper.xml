@@ -21,7 +21,7 @@
 	</select>
 	
 	
-	<insert id="searchMatching" parameterType="com.sml.team.dto.MatchingDto">
+	<insert id="searchMatching" parameterType="com.sml.matching.dto.MatchingDto">
 		insert into MATCHING values (matching_matchingcode_sql.nextval , #{teamCode} , #{matchingSport} , #{matchingDistance} , #{matchingTime} , #{matchingState}, #{matchingDay}, #{matchingPlace}, #{matchingLatlng})
 	</insert>
 	
@@ -121,7 +121,7 @@
 		]]>	
 	</select>
 	
-	<select id="getTeamMatchingInfo" parameterType="int" resultType="com.sml.team.dto.MatchingDto">
+	<select id="getTeamMatchingInfo" parameterType="int" resultType="com.sml.matching.dto.MatchingDto">
 		select * from matching where teamCode=#{teamCode}
 	</select>
 	
@@ -129,7 +129,7 @@
 		delete matching where matchingCode=#{matchingCode}
 	</delete>
 	
-	<select id="getOtherMatchingInfo" parameterType="java.util.HashMap" resultType="com.sml.team.dto.MatchingDto">
+	<select id="getOtherMatchingInfo" parameterType="java.util.HashMap" resultType="com.sml.matching.dto.MatchingDto">
 		select * from matching where not teamCode=#{teamCode} and matchingState=#{matchingState} and matchingSport=#{sportType}
 	</select>
 	
@@ -209,4 +209,8 @@
 	<update id="setWaitMatching" parameterType="java.util.HashMap">
 		update matching set matchingState=#{matchingState} where teamCode=#{teamCode}
 	</update>
+	
+	<select id="getTeamCodeInfo" parameterType="int" resultType="com.sml.team.dto.TeamDto">
+		select * from team where teamCode=#{teamCode}
+	</select> 
 </mapper>

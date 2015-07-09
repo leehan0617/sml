@@ -7,7 +7,6 @@ public interface TeamService {
 	public void viewSchedule(ModelAndView mav);
 	public void viewTeamBoard(ModelAndView mav);
 	public void viewRecord(ModelAndView mav);
-	public void searchMatching(ModelAndView mav);
 	public void registerTeam(ModelAndView mav);
 	public void idCheck(ModelAndView mav);
 	public void teamIdCheck(ModelAndView mav);
@@ -25,9 +24,6 @@ public interface TeamService {
 	public void deleteMember(ModelAndView mav);
 	public void viewTeamRecord(ModelAndView mav);
 	public void searchRegion(ModelAndView mav);
-	public void matching(ModelAndView mav);
-	public void deleteMatching(ModelAndView mav);
-	public void searching(ModelAndView mav);
 	public void updateTeamEmblem(ModelAndView mav);
 	public void updateTeamEmblemOk(ModelAndView mav);
 	public void addTeamLog(ModelAndView mav);

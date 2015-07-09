@@ -7,8 +7,8 @@ import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
+import com.sml.matching.dto.MatchingDto;
 import com.sml.member.dto.MemberDto;
-import com.sml.team.dto.MatchingDto;
 import com.sml.team.dto.ScheduleDto;
 import com.sml.team.dto.TeamBoardDto;
 import com.sml.team.dto.TeamDto;
@@ -18,6 +18,7 @@ import com.sml.team.dto.TeamLogDto;
 public class TeamDaoImpl implements TeamDao{
 	@Autowired
 	private SqlSessionTemplate sqlSession;
+	
 	private HashMap<String , Object> hMap;
 	
 	/**
@@ -89,18 +90,7 @@ public class TeamDaoImpl implements TeamDao{
 		return sqlSession.selectList("team.dao.TeamMapper.teamScheduleList");
 	}
 
-	@Override
-	/**
-	 * 
-	 * @함수명 : searchMatching
-	 * @작성일 : 2015. 6. 23.
-	 * @작성자 : 이한빈
-	 * @설명   : 서비스에서 요청받은 값을 데이터베이스에 연결해서 값을 삽입하는 메소드
-	 */
-	public int searchMatching(MatchingDto matchingDto) {
-		return sqlSession.insert("team.dao.TeamMapper.searchMatching" , matchingDto);
-	}
-
+	
 
 	/**
 	 * @name : TeamDaoImpl
@@ -282,42 +272,7 @@ public class TeamDaoImpl implements TeamDao{
 		return sqlSession.selectOne("team.dao.TeamMapper.getTeamGround", teamCode);
 	}
 
-	/**
-	 * @name : TeamDaoImpl
-	 * @date : 2015. 7. 6.
-	 * @author : 이희재
-	 * @description : 해당 팀에 대한 매칭 등록 정보가 있는지 확인
-	 */
-	@Override
-	public MatchingDto getTeamMatchingInfo(int teamCode) {
-		return sqlSession.selectOne("team.dao.TeamMapper.getTeamMatchingInfo", teamCode);
-	}
-
-	/**
-	 * @name : TeamDaoImpl
-	 * @date : 2015. 7. 6.
-	 * @author : 이희재
-	 * @description : 매칭 정보 삭제
-	 */
-	@Override
-	public int deleteMatching(int matchingCode) {
-		return sqlSession.delete("team.dao.TeamMapper.deleteMatching", matchingCode);
-	}
-
-	/**
-	 * @name : TeamDaoImpl
-	 * @date : 2015. 7. 7.
-	 * @author : 이희재
-	 * @description : 자신의 매칭 정보를 제외한 같은 종목의 매칭 정보 가져오기
-	 */
-	@Override
-	public List<MatchingDto> getOtherMatchingInfo(int teamCode, String sportType) {
-		HashMap<String, Object> hMap=new HashMap<String, Object>();
-		hMap.put("teamCode", teamCode);
-		hMap.put("sportType", sportType);
-		hMap.put("matchingState", "중");
-		return sqlSession.selectList("team.dao.TeamMapper.getOtherMatchingInfo",hMap);
-	}
+	
 	
 	/**
 	 * @name : updateTeamEmblem
@@ -468,41 +423,6 @@ public class TeamDaoImpl implements TeamDao{
 		return sqlSession.delete("team.dao.TeamMapper.deleteSchedule",scheduleNumber);
 	}
 
-
-	/**
-	 * @name : TeamDaoImpl
-	 * @date : 2015. 7. 8.
-	 * @author : 이희재
-	 * @description : 매칭이 완료되면 매칭의 상태를 전->중 으로 바꿔줌
-	 */
-	@Override
-	public void changeMatchingState(MatchingDto matchingDto) {
-		HashMap<String, Object> hMap=new HashMap<String, Object>();
-		hMap.put("matchingState", "후");
-		hMap.put("matchingCode", matchingDto.getMatchingCode());
-		sqlSession.update("team.dao.TeamMapper.changeMatchingState", hMap);
-	}
-
-	/**
-	 * @name : TeamDaoImpl
-	 * @date : 2015. 7. 8.
-	 * @author : 이희재
-	 * @description : 성사된 매칭을 이용하여 경기 시작 전 상태의 친선 gameRecord 생성
-	 */
-	@Override
-	public void createGameRecord(MatchingDto myMatchingDto,
-			MatchingDto otherMatchingDto) {
-		HashMap<String, Object> hMap=new HashMap<String, Object>();
-		hMap.put("teamCode", myMatchingDto.getTeamCode());
-		hMap.put("teamCode2", otherMatchingDto.getTeamCode());
-		hMap.put("gameType", 0);
-		hMap.put("refereeNumber",1);
-		hMap.put("gameState", "경기 전");
-		hMap.put("sportType", myMatchingDto.getMatchingSport());
-		
-		sqlSession.insert("team.dao.TeamMapper.createGameRecord", hMap);
-	}
-
 	/**
 	 * @name : TeamDaoImpl
 	 * @date : 2015. 7. 8.
@@ -514,17 +434,15 @@ public class TeamDaoImpl implements TeamDao{
 		return sqlSession.selectOne("team.dao.TeamMapper.getNormalMatchInfo", teamCode);
 	}
 
+
 	/**
 	 * @name : TeamDaoImpl
 	 * @date : 2015. 7. 9.
 	 * @author : 이희재
-	 * @description : 매칭의 상태를 전 -> 중으로 변경
+	 * @description : 팀 코드를 이용하여 팀의 정보를 가져 옴
 	 */
 	@Override
-	public void setWaitMatching(int teamCode) {
-		HashMap<String, Object> hMap=new HashMap<String, Object>();
-		hMap.put("teamCode", teamCode);
-		hMap.put("matchingState", "중");
-		sqlSession.update("team.dao.TeamMapper.setWaitMatching", hMap);
+	public TeamDto getTeamInfo(int teamCode) {
+		return sqlSession.selectOne("team.dao.TeamMapper.getTeamCodeInfo",teamCode);
 	}
 }

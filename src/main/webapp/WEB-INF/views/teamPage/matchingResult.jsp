@@ -10,6 +10,7 @@
 </head>
 <script src="${root }/js/jquery/jquery.js"></script>
 <script src="${root }/js/teamPage/teamPage.js"></script>
+<script src="${root }/js/teamPage/teamMatching.js"></script>
 <script type="text/javascript" src="//apis.daum.net/maps/maps3.js?apikey=1442260e0c6af86974001269a7312e42&libraries=services"></script>
 <link href="${root}/css/teamPage/matchingMap.css" type="text/css" rel="stylesheet"/>
 <body>
@@ -93,7 +94,7 @@
 	<h3>경기장 정보 부분 </h3>
 	
 	<input type="button" value="경기 결과 입력">
-	<input type="button" value="경기장 정보">
+	<input type="button" value="경기장 정보" onclick="viewMatchingPlace('${root }','${myTeamDto.teamCode }','${otherTeamDto.teamCode }')">
 	<input type="button" value="상대팀 정보">
 	</c:if>
 	

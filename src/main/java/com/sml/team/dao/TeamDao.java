@@ -4,7 +4,6 @@ import java.util.HashMap;
 import java.util.List;
 
 import com.sml.member.dto.MemberDto;
-import com.sml.team.dto.MatchingDto;
 import com.sml.team.dto.ScheduleDto;
 import com.sml.team.dto.TeamBoardDto;
 import com.sml.team.dto.TeamDto;
@@ -16,7 +15,6 @@ public interface TeamDao {
 	public TeamDto login(String id, String password);
 	public List<TeamBoardDto> viewTeamBoard(String teamName, int startRow, int endRow);
 	public List<ScheduleDto> viewSchedule();
-	public int searchMatching(MatchingDto matchingDto);
 	public TeamDto getTeamInfo(String teamName);
 	public List<MemberDto> getTeamMemberList(String teamName,int startRow, int endRow);
 	public int getBoardCount(String teamName);
@@ -32,9 +30,6 @@ public interface TeamDao {
 	public List<String> getGugunList(String sido);
 	public List<String> getSidoList();
 	public String getTeamGround(int teamCode);
-	public MatchingDto getTeamMatchingInfo(int teamCode);
-	public int deleteMatching(int matchingCode);
-	public List<MatchingDto> getOtherMatchingInfo(int teamCode, String sportType);
 	public int updateTeamEmblem(TeamDto teamDto);
 	public int selectTeamCode(String teamName);
 	public List<TeamLogDto> teamLogDtoList(int teamCode);
@@ -46,8 +41,6 @@ public interface TeamDao {
 	public ScheduleDto scheduleContents(int scheduleNumber);
 	public TeamDto selectMember(int scheduleNumber);
 	public int deleteSchedule(int scheduleNumber);
-	public void changeMatchingState(MatchingDto matchingDto);
-	public void createGameRecord(MatchingDto myMatchingDto, MatchingDto otherMatchingDto);
 	public HashMap<String, Object> getNormalMatchInfo(int teamCode);
-	public void setWaitMatching(int teamCode);
+	public TeamDto getTeamInfo(int teamCode);
 }
