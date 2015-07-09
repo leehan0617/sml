@@ -26,32 +26,6 @@ public class TeamController {
 	private TeamService service;
 	
 	/**
-	 * @함수명:registerTeam
-	 * @작성일:2015. 6. 23.
-	 * @작성자:조영석
-	 * @설명문:팀등록 페이지로 이동하는 이동 메소드
-	 */
-	@RequestMapping(value="/member/registerTeam.do",method=RequestMethod.GET)
-		public String registerTeam(){
-			return "member/registerTeam";
-		}
-
-	/**
-	 * @함수명:registerTeamOK
-	 * @작성일:2015. 6. 23.
-	 * @작성자:조영석
-	 * @설명문:팀등록을 위한 이동 메소드 
-	 */
-	@RequestMapping(value="/member/registerTeam.do",method=RequestMethod.POST)
-		public ModelAndView registerTeamOK(HttpServletRequest request,HttpServletResponse response){
-		
-			ModelAndView mav=new ModelAndView();
-			mav.addObject("request",request);
-			service.registerTeam(mav);
-			return mav;
-		}
-
-	/**
 	 * @함수명:idCheck
 	 * @작성일:2015. 6. 23.
 	 * @작성자:조영석
@@ -82,19 +56,7 @@ public class TeamController {
 			
 			service.teamIdCheck(mav);
 			return mav;
-		}
-	/**
-	 * 
-	 * @함수명 : teamPage
-	 * @작성일 : 2015. 6. 23.
-	 * @작성자 : 이한빈
-	 * @설명   :  스타트페이지에서 메인페이지로 이동하는 메소드
-	 */
-//	@RequestMapping(value="/teamPage.do" , method=RequestMethod.GET)
-//	public String teamPage(HttpServletRequest request){
-//		logger.info("TeamController teamPage");
-//		return "teamPage/teamPageMain";
-//	}
+	}
 	
 	/**
 	 * @함수명:login
@@ -124,53 +86,6 @@ public class TeamController {
 	public String logout(){
 		logger.info("TeamController logout");
 		return "teamPage/logout";
-	}
-		
-	/**
-	 * 
-	 * @함수명 : viewTeamBoard
-	 * @작성일 : 2015. 6. 23.
-	 * @작성자 : 이한빈
-	 * @설명   :  팀게시판 보는 메소드 (팀장이랑 비회원 구분은  JSP페이지에서 JSTL로 구분 해야할듯)
-	 */
-	@RequestMapping(value="/teamPage/viewTeamBoard.do" , method=RequestMethod.GET)
-	public ModelAndView viewTeamBoard(HttpServletRequest request){
-		logger.info("TeamController viewTeamBoard");
-		
-		ModelAndView mav=new ModelAndView();
-		mav.addObject("request",request);
-		service.viewTeamBoard(mav);
-		
-		return mav;
-	}
-	
-	/**
-	 * 
-	 * @함수명 : gameRecord
-	 * @작성일 : 2015. 6. 23.
-	 * @작성자 : 이한빈
-	 * @설명   : 팀페이지에서 경기기록을 보는 메소드
-	 */
-	@RequestMapping(value="/viewRecord.do", method=RequestMethod.GET)
-	public ModelAndView viewRecord(){
-		logger.info("TeamController viewRecord");
-		ModelAndView mav = new ModelAndView("teamPage/teamRecord");
-		
-		service.viewRecord(mav);
-		return mav;
-	}
-		
-	/**
-	 * 
-	 * @함수명 : startMatching
-	 * @작성일 : 2015. 6. 23.
-	 * @작성자 : 이한빈
-	 * @설명   :  매칭관리 페이지이동하는 메소드
-	 */
-	@RequestMapping(value="/startMatching.do" , method=RequestMethod.GET)
-	public String startMatching(){
-		logger.info("TeamController startMatching");
-		return "teamPage/matching";
 	}
 	
 	/**
@@ -301,7 +216,6 @@ public class TeamController {
 	 * @author : 이희재
 	 * @description : 팀 게시판 공지사항 수정
 	 */
-	
 	@RequestMapping(value="/teamPage/updateTeamBoard.do",method=RequestMethod.GET)
 	 public ModelAndView updateTeamBoard(HttpServletRequest request){
 		logger.info("TeamController updateTeamBoard");
@@ -319,7 +233,6 @@ public class TeamController {
 	 * @author : 이희재
 	 * @description : 팀 게시판 공지사항 수정
 	 */
-	
 	@RequestMapping(value="/teamPage/updateTeamBoard.do",method=RequestMethod.POST)
 	 public ModelAndView updateTeamBoard(HttpServletRequest request, TeamBoardDto board){
 		logger.info("TeamController updateTeamBoard");
@@ -338,7 +251,6 @@ public class TeamController {
 	 * @author : 이희재
 	 * @description : 팀 멤버 관리 페이지
 	 */
-	
 	@RequestMapping(value="/teamPage/manageTeamMember.do",method=RequestMethod.GET)
 	 public ModelAndView manageTeamMember(HttpServletRequest request){
 		logger.info("TeamController manageTeamMember");
@@ -490,8 +402,5 @@ public class TeamController {
 		service.teamLogDelete(mav);		
 		return mav;
 	}
-	
-	
-	
-	
+
 }

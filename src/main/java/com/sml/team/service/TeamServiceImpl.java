@@ -29,32 +29,6 @@ public class TeamServiceImpl implements TeamService{
 	@Autowired
 	private TeamDao dao;
 	
-
-	/**
-	 * @함수명:registerTeam
-	 * @작성일:2015. 6. 23.
-	 * @작성자:조영석
-	 * @설명문:팀만들기를 위한 서비스메소드
-	 */
-	@Override
-	public void registerTeam(ModelAndView mav) {
-		Map<String,Object> map=mav.getModelMap();
-		
-		HttpServletRequest request=(HttpServletRequest)map.get("request");
-		String teamId=request.getParameter("teamId");
-		String teamPassword=request.getParameter("teamPassword");
-		String teamName=request.getParameter("teamName");
-		String sportType=request.getParameter("sportType");
-		String homeGround=request.getParameter("homeGround");
-		
-		mav.addObject("teamId",teamId);
-		mav.addObject("teamPassword",teamPassword);
-		mav.addObject("teamName",teamName);
-		mav.addObject("sportType",sportType);
-		mav.addObject("homeGround", homeGround);
-		mav.setViewName("member/registerMember");
-		}
-	
 	/**
 	 * @함수명:idCheck
 	 * @작성일:2015. 6. 23.
@@ -129,7 +103,7 @@ public class TeamServiceImpl implements TeamService{
 	@Override
 	/**
 	 * 
-	 * @함수명 : viewSchedule
+	 * @함수명 : viewTeamBoard
 	 * @작성일 : 2015. 6. 25.
 	 * @작성자 : 이희재
 	 * @설명   : 팀 게시판에서 팀 공지사항 보기
@@ -170,18 +144,6 @@ public class TeamServiceImpl implements TeamService{
 		mav.addObject("currentPage",currentPage);
 		mav.addObject("teamBoardList" , teamBoardList);
 		mav.setViewName("teamPage/teamBoard");
-	}
-
-	@Override
-	/**
-	 * 
-	 * @함수명 : viewRecord
-	 * @작성일 : 2015. 6. 23.
-	 * @작성자 : 이한빈
-	 * @설명   : 희재가 기록에 관한 패키지 만든후에 만들기로함 
-	 */
-	public void viewRecord(ModelAndView mav) {
-		logger.info("Service viewRecord");
 	}
 
 	/**

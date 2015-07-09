@@ -59,23 +59,6 @@ public class TeamDaoImpl implements TeamDao{
 		return srt;
 	}
 
-	@Override
-	/**
-	 * 
-	 * @함수명 : viewTeamBoard
-	 * @작성일 : 2015. 6. 23.
-	 * @작성자 : 이한빈
-	 * @설명   : 서비스에서 요청받은 값을 데이터베이스에 연결시켜 팀게시판 목록 리스트를 반환 받는 메소드
-	 */
-	public List<TeamBoardDto> viewTeamBoard(String teamName,int startRow, int endRow) {
-		HashMap<String, Object> map=new HashMap<String, Object>();
-		map.put("teamName", teamName);
-		map.put("startRow", startRow);
-		map.put("endRow", endRow);
-		
-		return sqlSession.selectList("team.dao.TeamMapper.viewTeamBoardList",map);
-	}
-
 	/**
 	 * @name : TeamDaoImpl
 	 * @date : 2015. 6. 25.
@@ -342,5 +325,22 @@ public class TeamDaoImpl implements TeamDao{
 	@Override
 	public TeamDto getTeamInfo(int teamCode) {
 		return sqlSession.selectOne("team.dao.TeamMapper.getTeamCodeInfo",teamCode);
+	}
+	
+	/**
+	 * @함수명:viewTeamBoard
+	 * @작성일:2015. 7. 9.
+	 * @작성자:이한빈 
+	 * @설명문:팀게시판 보는 코드
+	 */
+	@Override
+	public List<TeamBoardDto> viewTeamBoard(String teamName, int startRow,
+			int endRow) {
+		HashMap<String , Object> map = new HashMap<String , Object>();
+		map.put("teamName", teamName);
+		map.put("startRow", startRow);
+		map.put("endRow", endRow);
+		
+		return sqlSession.selectList("team.dao.TeamMapper.viewTeamBoardList" , map);
 	}
 }
