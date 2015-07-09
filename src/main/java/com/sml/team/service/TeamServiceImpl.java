@@ -125,7 +125,6 @@ public class TeamServiceImpl implements TeamService{
 		TeamDto team = dao.login(id,password);
 		
 		if(team!=null){
-			System.out.println("teamteamteamteamteam!!!"+team);
 			String teamGrade = team.getTeamGrade();
 			String teamId = team.getTeamId();
 			String teamName= team.getTeamName();
@@ -151,7 +150,6 @@ public class TeamServiceImpl implements TeamService{
 		HashMap<String,Object> map=mav.getModelMap();
 		HttpServletRequest request=(HttpServletRequest) map.get("request");
 		String teamName=request.getParameter("teamName");
-		System.out.println(teamName);
 		
 		int count=dao.getBoardCount(teamName);
 		// 팀 전체 게시물 수
@@ -173,7 +171,7 @@ public class TeamServiceImpl implements TeamService{
 		
 		List<TeamBoardDto> teamBoardList = dao.viewTeamBoard(teamName,startRow,endRow);
 		// 팀 게시물 전체 가져오기
-		System.out.println(teamBoardList.size());
+//		System.out.println(teamBoardList.size());
 		
 		mav.addObject("blockCount", blockCount);
 		mav.addObject("teamName",teamName);
@@ -385,7 +383,7 @@ public class TeamServiceImpl implements TeamService{
 		board.setTeamCode(teamCode);
 		board.setBoardDate(new Date());
 		int value=dao.writeTeamBoard(board);
-		System.out.println(value);
+//		System.out.println(value);
 		
 		mav.addObject("writeValue",value);
 		mav.addObject("teamName",teamName);
@@ -1074,7 +1072,7 @@ public class TeamServiceImpl implements TeamService{
 		
 		
 		mav.addObject("check",check);
-		mav.setViewName("teamPage/teamSchedule");
+		mav.setViewName("teamPage/editSchedule");
 	}
 	/**
 	 * @함수명:showSchedule
@@ -1088,6 +1086,7 @@ public class TeamServiceImpl implements TeamService{
 		HttpServletRequest request=(HttpServletRequest) map.get("request");
 		String teamId=request.getParameter("teamId");
 		
+		mav.addObject("teamId",teamId);
 		mav.setViewName("teamPage/editSchedule");
 		
 	}

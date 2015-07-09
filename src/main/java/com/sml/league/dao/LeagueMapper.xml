@@ -7,4 +7,16 @@
  	<select id="getLeagueList" parameterType="String" resultType="com.sml.league.dto.LeagueDto">
  		select * from leagueInfo where leagueSport=#{sportType} and leagueState='1'
  	</select> 	
+ 	
+ 	<select id="teamSelect" parameterType="String" resultType="int">
+ 		select teamcode from Team where teamId=#{teamId}
+ 	</select>
+ 	
+ 	<select id="leagueJoinSelect" parameterType="int" resultType="int">
+ 		select count(LEAGUECODE) from LEAGUEJOIN where teamCode=#{teamCode}
+ 	</select>
+ 	
+ 	<insert id="applicate" parameterType="java.util.HashMap">
+ 		insert into LEAGUEJOIN values(#{leagueCode},#{teamCode})
+ 	</insert>
  </mapper>

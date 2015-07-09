@@ -149,13 +149,17 @@
 			<c:forEach var="league" items="${leagueList }">
 				<div>
 					<span><img src="${root}/img/leagueImg/${league.leagueImage}"/></span>
-					<span>리그이름 : ${leagueName }</span>
+					<span>리그이름 : ${league.leagueName}</span>
 					<span>리그지역 : ${league.leagueRegion }</span>
 					<span>리그시간 : ${league.leagueTime }</span>
 					<span>리그시작일 : ${league.leagueStartDate }</span>
 					<span>리그종료일 : ${league.leagueEndDate }</span>					
-					
 				</div>
+
+			 		<div>
+						<input type="button" value="신청하기" onclick="applicate('${root}','${teamId}','${league.leagueCode}')"/>
+					</div> 
+		
 			</c:forEach>
 		</div>	
 	</div>	

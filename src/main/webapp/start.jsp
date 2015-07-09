@@ -37,7 +37,7 @@
 	  		<div class="col-md-4">
 	  			<form class="form-inline"  id="searchForm" name="searchForm" style="padding-top:15px;">
 		  			<div class="input-group">
-		      			<input type="text" class="form-control" placeholder="팀명을 검색하세요." id="searchTeamName">
+		      			<input type="text" class="form-control" placeholder="팀명을 검색하세요." name="teamName" id="searchTeamName">
 			    		<span class="input-group-btn">
 			      		<button class="btn btn-default" type="button" id="goTeamPage">
 			      		  <span class="glyphicon glyphicon-search" aria-hidden="true"></span>이동

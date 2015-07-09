@@ -1,5 +1,7 @@
 package com.sml.league.service;
 
-public interface LeagueService {
+import org.springframework.web.servlet.ModelAndView;
 
+public interface LeagueService {
+	public void applicate(ModelAndView mav);
 }

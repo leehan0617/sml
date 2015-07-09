@@ -50,10 +50,7 @@
 			eventLimit: true,
 			events:events_array,
  	 		eventClick: function(event) {
- 	 /* 			alert("event"+calEvent.title);
- 	 			alert("event"+view.name); */
  	 		   if (event.url) {
- 	 			   alert(event.url)
  	 			   var scheduleNumber=event.url;
  	 			   var url="${root}/teamPage/ScheduleContent.do?scheduleNumber="+scheduleNumber;
  	 	            window.open(url,"","width=400 height=400");

@@ -11,3 +11,14 @@ function commboard(root, boardNumber){
 	return false; 
 	target="_blank";
 }
+
+function applicate(root,teamId,leagueCode){
+	if(teamId==""){
+		alert("로그인이 필요합니다!");
+		var url=root+"";
+		window.open(url,"","height=350 width=350");
+	}
+	
+	var url=root+"/soccer/aplicate.do?teamId="+teamId+"&leagueCode="+leagueCode;
+	$(location).attr("href",url);
+}

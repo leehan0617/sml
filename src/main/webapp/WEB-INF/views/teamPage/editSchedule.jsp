@@ -7,7 +7,7 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Insert title here</title>
-<script type="text/javascript" src="${root}/js/carlendar/scheDule.js"></script>
+<script type="text/javascript" src="${root}/js/carlendar/write.js"></script>
 <script src='${root}/js/carlendar/jquery.js' type="text/javascript"></script>
 <script src='${root}/js/carlendar/jquery-ui.js' type="text/javascript"></script>
 <link rel="stylesheet" href="http://code.jquery.com/ui/1.8.18/themes/base/jquery-ui.css" type="text/css" />
@@ -47,9 +47,16 @@
 		<input type="text" name="scheduleTitle"/><br/><br/>
 		<label>일정내용</label>
 		<input type="text" name="scheduleContent"/><br/>
-		<input type="submit" value="입력" onclick="javascirpt:window.opener.location.reload();window.close()"/>
+		<input type="submit" value="입력"/>
 		<input type="reset" value="취소" onclick="javascript:self.close();"/>
 	</div>
   </form>
+  
+  <c:if test="${check>0}">
+  	<script type="text/javascript">
+  	 	window.opener.location.reload();
+  	 	window.close();
+  	</script>
+  </c:if>
 </body>
 </html>

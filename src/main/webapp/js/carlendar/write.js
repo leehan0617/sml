@@ -1,6 +1,15 @@
+function scheDule(form){
+	if(form.scheduleType.value=="종류"){
+		alert("일정의 종류를 입력하세요");
+		form.scheduleType.focus();
+		return false;
+	}
+	
+}
+
 function writeSchedule(root){
 	var url=root+"/teamPage/Schedule.do";
-	window.open(url,"","width=500 height=500")
+	window.open(url,"schedule","width=500 height=500")
 	
 }
 

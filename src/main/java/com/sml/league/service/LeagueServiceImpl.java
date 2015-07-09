@@ -1,5 +1,39 @@
 package com.sml.league.service;
 
-public class LeagueServiceImpl implements LeagueService{
+import java.util.Map;
 
+import javax.servlet.http.HttpServletRequest;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
+import org.springframework.web.servlet.ModelAndView;
+
+import com.sml.league.dao.LeagueDao;
+
+@Component
+public class LeagueServiceImpl implements LeagueService{
+	@Autowired
+	private LeagueDao dao;
+
+	/**
+	 * @함수명:applicate
+	 * @작성일:2015. 7. 9.
+	 * @작성자:조영석
+	 * @설명문:리그신청관리 서비스 메소드
+	 */
+	@Override
+	public void applicate(ModelAndView mav) {
+		Map<String,Object> map=mav.getModel();
+		HttpServletRequest request=(HttpServletRequest) map.get("request");
+		
+		String teamId=request.getParameter("teamId");
+		int leagueCode=Integer.parseInt(request.getParameter("leagueCode"));
+		
+		int check=dao.applicate(teamId,leagueCode);
+		
+		System.out.println("check"+check);
+		mav.addObject("check",check);
+		mav.setViewName("soccer/applicateOk");
+	}
+	
 }
