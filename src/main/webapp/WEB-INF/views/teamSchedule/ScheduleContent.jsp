@@ -24,9 +24,10 @@
 			<label>내용</label><br/>
 			<input type="text" name="scheduleContent" value="${scheduleDto.scheduleContent }"disabled="disabled"/>
 			<br/><br/>
-
+			
+			<c:if test="${teamId!=guest}">
 				<input type="button" id="btn" value="삭제" onclick="deleteSchedule('${root}','${scheduleDto.scheduleNumber}','${teamDto.teamGrade}')"/>
-
+			</c:if>
 			
 			<input type="button" value="닫기"  onclick="javascirpt:self.close()"/>
 			

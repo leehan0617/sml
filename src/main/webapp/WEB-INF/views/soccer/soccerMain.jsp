@@ -166,7 +166,7 @@
 	
 		
 	<div>
-		<h3>통계</h3>
+		<a href="${root}/static/chart.do"><Strong>통계</Strong></a>
 	</div>
 				
 		

@@ -11,6 +11,7 @@ import org.springframework.stereotype.Component;
 
 import com.sml.common.dto.CommonBoardDto;
 import com.sml.league.dto.LeagueDto;
+import com.sml.member.dto.MemberDto;
 import com.sml.record.dto.RecordDto;
 import com.sml.team.dto.TeamDto;
 
@@ -105,6 +106,18 @@ public class SoccerDaoImpl implements SoccerDao {
 	@Override
 	public List<LeagueDto> LeagueList(String leagueSport) {
 		return sqlSession.selectList("dao.SoccerMapper.soccerList",leagueSport);
+	}
+
+	/**
+	 * @함수명:map
+	 * @작성일:2015. 7. 10.
+	 * @작성자:조영석
+	 * @설명문:
+	 */
+	@Override
+	public  List<MemberDto> cards() {;
+		
+		return sqlSession.selectList("dao.SoccerMapper.cards");
 	}
 
 }

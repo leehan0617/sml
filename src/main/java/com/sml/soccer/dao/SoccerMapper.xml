@@ -49,4 +49,8 @@
 	<select id="count" parameterType="int" resultType="int">
 		select count(*) from LEAGUEJOIN where leagueCode=#{leagueCode}
 	</select>
+	
+	<select id="cards" resultType="java.util.HashMap">
+		select MEMBERREGION from teammember
+	</select>
  </mapper>

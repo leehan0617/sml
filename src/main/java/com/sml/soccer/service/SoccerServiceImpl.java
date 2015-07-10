@@ -10,7 +10,12 @@ import java.util.logging.Logger;
 
 import javax.servlet.http.HttpServletRequest;
 
+import net.sf.json.JSON;
+import net.sf.json.JSONArray;
+import net.sf.json.JSONObject;
+
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.dao.support.DaoSupport;
 import org.springframework.stereotype.Component;
 import org.springframework.web.servlet.ModelAndView;
 
@@ -18,6 +23,7 @@ import com.sml.common.dao.CommonDao;
 import com.sml.common.dto.CommonBoardDto;
 import com.sml.league.dao.LeagueDao;
 import com.sml.league.dto.LeagueDto;
+import com.sml.member.dto.MemberDto;
 import com.sml.record.dto.RecordDto;
 import com.sml.soccer.dao.SoccerDao;
 import com.sml.team.dto.TeamDto;
@@ -279,7 +285,6 @@ public class SoccerServiceImpl implements SoccerService {
 	
 		String leagueSport=request.getParameter("leagueSport");
 		int leagueCode=Integer.parseInt(request.getParameter("leagueCode"));
-		int leagueTeamNumber=Integer.parseInt(request.getParameter("leagueTeamNumber"));
 		
 		if(leagueSport==null) leagueSport="축구";
 		int count=soccerDao.LeagueCount(leagueCode);
@@ -294,5 +299,27 @@ public class SoccerServiceImpl implements SoccerService {
 		mav.setViewName("soccer/soccerLeagueInfo");		
 		
 	}
-	
+
+	/**
+	 * @함수명:cards
+	 * @작성일:2015. 7. 10.
+	 * @작성자:조영석
+	 * @설명문:
+	 */
+	@Override
+	public void cards(ModelAndView mav) {;
+	    List<MemberDto> cardsList=soccerDao.cards();
+		
+	    JSONArray jsonArray=JSONArray.fromObject(cardsList);
+	    System.out.println("cardsList:"+jsonArray);
+	    
+	    Map<String,Object> Map=new HashMap<String,Object>();
+		Map.put("cardsList", jsonArray);
+		
+		JSONObject jsonObject=JSONObject.fromObject(Map);
+		System.out.println("json-"+jsonObject);
+
+		mav.addObject("jsonObject",jsonObject);
+		mav.setViewName("static/chart");
+	}	
 }
