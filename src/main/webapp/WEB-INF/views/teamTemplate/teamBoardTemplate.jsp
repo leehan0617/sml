@@ -4,44 +4,51 @@
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <c:set var="root" value="${pageContext.request.contextPath }"/>
 
-<h1>공지사항</h1>
+	<c:set var="count" value="${count}"></c:set>
+	<c:set var="boardSize" value="${boardSize}"></c:set>
+	<c:set var="blockSize" value="${blockSize}"></c:set>
+	<c:set var="blockCount" value="${blockCount}"></c:set>
+	<fmt:parseNumber var="rs" value="${(currentPage-1)/blockSize}" integerOnly="true"></fmt:parseNumber>
+	
+	<c:set var="startBlock" value="${rs*blockSize+1 }"></c:set>
+	<c:set var="endBlock" value="${startBlock+blockSize-1}"></c:set>
+	
+	<!--  -->
+	<h3 style="text-align:center">공지사항</h3>
 <br/>
-<div>
-	<span>글 번호</span>
-	<span>작성자</span>
-	<span>글 제목</span>
-	<span>작성일</span>
+<div class="table-responsive">
+<table class="table table-striped">
+	<thead>
+		<tr> <th>글번호</th> <th>제목</th> <th>작성자</th><th>작성일</th> </tr> 
+	</thead>
+	<tbody>
+		 <c:forEach var="board" items="${teamBoardList}">
+		<tr>
+			<td style="width:10%">${board.rnum}</td>
+			<td style="width:50%">
+				<a href="${root }/teamPage/readTeamBoard.do?teamName=${teamName}&currentPage=${currentPage}&boardNumber=${board.boardNumber}">${board.boardTitle}</a>
+			</td>
+			<td style="width:10%">${board.boardWriter }</td>
+			<td style="width:30%"><fmt:formatDate value="${board.boardDate }" pattern="yy-MM-dd"/></td>
+		</tr>
+		</c:forEach>
+	</tbody>
+</table>
+
+ <nav>
+  <ul class="pager">
+  	<c:if test="${startBlock>blockSize}">
+  		<li><a href="${root }/teamPage/viewTeamBoard.do?teamName=${teamName}&currentPage=${startBlock-blockSize}">Previous</a></li>
+  	</c:if>
+  	<c:if test="${endBlock>blockCount}">
+		<c:set var="endBlock" value="${blockCount}"></c:set>
+	</c:if>
+	<c:forEach var="blockNumber" begin="${startBlock}" end="${endBlock}">
+		<li><a href="${root }/teamPage/viewTeamBoard.do?teamName=${teamName}&currentPage=${blockNumber}">${blockNumber}</a></li>
+	</c:forEach>
+    <c:if test="${endBlock<blockCount}">
+		<li><a href="${root }/teamPage/viewTeamBoard.do?teamName=${teamName}&currentPage=${startBlock+blockSize}">Next</a></li>
+	</c:if>
+  </ul>
+</nav>
 </div>
-<c:set var="count" value="${count}"></c:set>
-<c:set var="boardSize" value="${boardSize}"></c:set>
-<c:set var="blockSize" value="${blockSize}"></c:set>
-<c:set var="blockCount" value="${blockCount}"></c:set>
-<fmt:parseNumber var="rs" value="${(currentPage-1)/blockSize}" integerOnly="true"></fmt:parseNumber>
-
-<c:set var="startBlock" value="${rs*blockSize+1 }"></c:set>
-<c:set var="endBlock" value="${startBlock+blockSize-1}"></c:set>
-
-<c:forEach var="board" items="${teamBoardList}">
-	<div>
-		<span>${board.rnum}</span>
-		<span>${board.boardWriter}</span>
-		<span><a href="${root }/teamPage/readTeamBoard.do?teamName=${teamName}&currentPage=${currentPage}&boardNumber=${board.boardNumber}">${board.boardTitle}</a></span>
-		<span>${board.boardDate}</span>
-	</div>
-</c:forEach>
-
-<c:if test="${startBlock>blockSize}">
-	<a href="${root }/teamPage/viewTeamBoard.do?teamName=${teamName}&currentPage=${startBlock-blockSize}">[이전]</a>
-</c:if>
-
-<c:if test="${endBlock>blockCount}">
-	<c:set var="endBlock" value="${blockCount}"></c:set>
-</c:if>
-
-<c:forEach var="blockNumber" begin="${startBlock}" end="${endBlock}">
-	<a href="${root }/teamPage/viewTeamBoard.do?teamName=${teamName}&currentPage=${blockNumber}">[${blockNumber}]</a>
-</c:forEach>
-
-<c:if test="${endBlock<blockCount}">
-	<a href="${root }/teamPage/viewTeamBoard.do?teamName=${teamName}&currentPage=${startBlock+blockSize}">[다음]</a>
-</c:if>
