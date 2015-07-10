@@ -17,6 +17,7 @@ import com.sml.schedule.service.ScheduleService;
 import com.sml.team.dto.TeamDto;
 import com.sml.team.dto.TeamLogDto;
 import com.sml.team.service.TeamService;
+import com.sml.teamBoard.service.TeamBoardService;
 
 
 @Controller
@@ -26,6 +27,8 @@ public class TeamController {
 	private TeamService service;
 	@Autowired 
 	private ScheduleService scheduleService;
+	@Autowired
+	private TeamBoardService teamBoardService;
 	
 	/**
 	 * @함수명:idCheck
@@ -104,7 +107,9 @@ public class TeamController {
 		
 		mav.addObject("request",request);
 		service.goTeamPage(mav);
+		teamBoardService.viewTeamBoard(mav);
 		scheduleService.readteamSchedule(mav);
+		
 		mav.setViewName("team/teamMain");
 		
 		return mav;

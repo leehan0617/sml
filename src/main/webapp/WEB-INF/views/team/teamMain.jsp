@@ -102,10 +102,10 @@
 	<div class="row well">
 	  <div class="col-md-1"></div>
 	  <div class="col-md-5 well">
-	  	공지사항
+	  	<%@include file="../teamTemplate/teamBoardTemplate.jsp" %>
 	  </div>
 	  <div class="col-md-5 well">
-	  	<%@include file="../teamTemplate/scheduleTemplate.jsp" %>
+	  	<%@include file="../teamTemplate/scheduleTemplate.jsp" %> 
 	  </div>
 	  <div class="col-md-1"></div>
 	</div>
