@@ -286,6 +286,7 @@ Map<String,Object> map=mav.getModelMap();
 		int startRow=(currentPage-1)*boardSize+1;
 		int endRow=currentPage*boardSize;
 		
+		if(leagueSport==null) leagueSport="축구";
 		int count=soccerDao.LeagueCount(leagueSport);
 		logger.info("count:"+count);
 		logger.info("currentPage"+currentPage);

@@ -9,8 +9,8 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Insert title here</title>
 <script type="text/javascript" src="${root }/js/soccer/soccer.js"></script>
-<script type="text/javascript" src="${root }/js/member/jquery.js"></script>	
 <script type="text/javascript" src="${root }/js/scrollnews.js"></script>
+<script type="text/javascript" src="${root }/js/member/jquery.js"></script>
 <head>
 	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 	<title>팀목록보기</title>
@@ -18,7 +18,7 @@
 <body>
 	<form class=""  action="" method="GET">
 	
-		<h2>리그관리 by Manager</h2>
+		<h2>개최된 리그정보</h2>
 	<c:if test="${count==0}">	
 		<span>
 			<span style="text-align: center">등록된 리그가없습니다.</span>
@@ -53,8 +53,9 @@
 				<span>${soccerLeagueList.leagueTime}</span>&nbsp;&nbsp;&nbsp;	
 				<span>${soccerLeagueList.leagueStartDate}</span>&nbsp;&nbsp;&nbsp;	
 				<span>${soccerLeagueList.leagueEndDate}</span>&nbsp;&nbsp;&nbsp;
-
+						
 				<input type="button" value="참가하기" onclick="applicate('${root}','${teamId}','${soccerLeagueList.leagueCode}','${soccerLeagueList.leagueTeamNumber}')"/>
+
 				<br/>
 				<br/>
 		</c:if>
@@ -75,19 +76,19 @@
 			</c:if>
 			
 			<c:if test="${startPage>pageBlock }">
-				<a href="${root }/admin/manageLeague.do?pageNumber=${startPage-pageBlock}">[이전]</a>
+				<a href="${root }/soccer/soccerLeague.do?pageNumber=${startPage-pageBlock}">[이전]</a>
 			</c:if>
 			
 			<c:forEach var="i" begin="${startPage}" end="${endPage}">
-				<a href="${root }/admin/manageLeague.do?pageNumber=${i}">[${i }]</a>
+				<a href="${root }/soccer/soccerLeague.do?pageNumber=${i}">[${i }]</a>
 			</c:forEach>
 			
 			<c:if test="${endPage<pageCount }">
-				<a href="${root }/admin/manageLeague.do?pageNumber=${startPage+pageBlock}">[다음]</a>
+				<a href="${root }/soccer/soccerLeague.do?pageNumber=${startPage+pageBlock}">[다음]</a>
 			</c:if>
 		</c:if>
 		
-		
+			
 	</center>
 </form>		
 </body>

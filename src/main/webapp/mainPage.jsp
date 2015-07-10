@@ -24,7 +24,8 @@
 <style>
 .ui-autocomplete { 
     overflow-y: scroll; 
-    overflow-x: hidden;}
+    overflow-x: hidden;
+    }
 </style>
 <script>
 $(document).ready(function() {

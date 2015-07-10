@@ -16,7 +16,7 @@
  		select count(LEAGUECODE) from LEAGUEJOIN where teamCode=#{teamCode}
  	</select>
  	
- 	<select id="count" resultType="int">
+ 	<select id="count" parameterType="int" resultType="int">
  		select count(*) from LEAGUEJOIN where leagueCode=#{leagueCode}
  	</select>
  	

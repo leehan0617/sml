@@ -1,7 +1,6 @@
 package com.sml.league.dao;
 
 import java.util.List;
-import java.util.Map;
 
 import com.sml.league.dto.LeagueDto;
 

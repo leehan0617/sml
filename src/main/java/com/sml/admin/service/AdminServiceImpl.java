@@ -257,6 +257,7 @@ public class AdminServiceImpl implements AdminService{
 		int startRow=(currentPage-1)*boardSize+1;
 		int endRow=currentPage*boardSize;
 		
+		
 		int count=adminDao.getManageLeagueCount();
 		logger.info("count:"+count);
 		logger.info("currentPage"+currentPage);

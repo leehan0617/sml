@@ -112,5 +112,6 @@ public class SoccerDaoImpl implements SoccerDao {
 		map.put("endRow", endRow);
 		map.put("leagueSport", leagueSport);
 		return sqlSession.selectList("dao.SoccerMapper.soccerList",map);
-	}	
+	}
+
 }

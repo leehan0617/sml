@@ -37,14 +37,12 @@ public class LeagueDaoImpl implements LeagueDao{
 		int check=0;
 		HashMap<String,Object> Hmap=new HashMap<String,Object>();
 		int leagueCount=sqlSession.selectOne("dao.LeagueMapper.count",leagueCode);
-		
+		System.out.println("leagueCount"+leagueCount);
 		if(leagueCount<leagueTeamNumber){
 		int teamCode=sqlSession.selectOne("dao.LeagueMapper.teamSelect", teamId);
 		
 		Hmap.put("teamCode", teamCode);
 		Hmap.put("leagueCode", leagueCode);
-		
-		System.out.println("teamCode"+teamCode);
 		
 		int value=sqlSession.selectOne("dao.LeagueMapper.leagueJoinSelect",teamCode);
 
@@ -57,6 +55,7 @@ public class LeagueDaoImpl implements LeagueDao{
 	 }else if(leagueCount>=leagueTeamNumber){
 		 return 3;
 	 }
+
 		return check;
 	}
 
