@@ -13,6 +13,7 @@ import org.springframework.web.multipart.MultipartHttpServletRequest;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.sml.member.dto.MemberDto;
+import com.sml.schedule.service.ScheduleService;
 import com.sml.team.dto.TeamBoardDto;
 import com.sml.team.dto.TeamDto;
 import com.sml.team.dto.TeamLogDto;
@@ -24,6 +25,8 @@ public class TeamController {
 	private Logger logger = Logger.getLogger(TeamController.class.getName());
 	@Autowired
 	private TeamService service;
+	@Autowired 
+	private ScheduleService scheduleService;
 	
 	/**
 	 * @함수명:idCheck
@@ -97,10 +100,13 @@ public class TeamController {
 	 */
 	@RequestMapping(value="/team/teamMain.do",method=RequestMethod.GET)
 	 public ModelAndView teamPage(HttpServletRequest request){
+		logger.info("controller : teamPage/teamMemberInfo");
 		ModelAndView mav=new ModelAndView();
 		
 		mav.addObject("request",request);
 		service.goTeamPage(mav);
+		scheduleService.readteamSchedule(mav);
+		mav.setViewName("team/teamMain");
 		
 		return mav;
 	}
@@ -120,7 +126,21 @@ public class TeamController {
 		
 		return mav;
 	}
-	
+	/**
+	 * @함수명:viewTeamBoard
+	 * @작성일:2015. 7. 10.
+	 * @작성자:이한빈 
+	 * @설명문:팀공지사항 이동함수 
+	 */
+	@RequestMapping(value="/teamPage/viewTeamBoard.do" , method=RequestMethod.GET)
+	public ModelAndView viewTeamBoard(HttpServletRequest request){
+		logger.info("TeamController viewTeamBoard");
+		ModelAndView mav = new ModelAndView();
+		mav.addObject("request" , request);
+		service.viewTeamBoard(mav);
+		
+		return mav;
+	}
 	/**
 	 * @name : TeamController
 	 * @date : 2015. 6. 26.

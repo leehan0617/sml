@@ -70,4 +70,4 @@
 	}
 
 </style>
-<div id='calendar'>dd</div>
+<div id='calendar'></div>

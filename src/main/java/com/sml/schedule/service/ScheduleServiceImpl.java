@@ -31,11 +31,13 @@ public class ScheduleServiceImpl implements ScheduleService{
 	 */
 	@Override
 	public void readteamSchedule(ModelAndView mav) {
-		logger.info("#####read######");
+		logger.info("ScheduleService readTeamSchedule");
 		Map<String , Object> map = mav.getModelMap();
 		HttpServletRequest request = (HttpServletRequest) map.get("request");
 		List<ScheduleDto> scheduleDtoList=null;
 		String teamName=request.getParameter("teamName");
+		
+		System.out.println("teamName : " + teamName);
 		int count=dao.readCount(teamName);
 		if(count>0){
 			scheduleDtoList=dao.readSchedule(teamName); 

@@ -155,6 +155,7 @@ public class TeamServiceImpl implements TeamService{
 	 */
 	@Override
 	public void goTeamPage(ModelAndView mav) {
+		logger.info("TeamService goTeamPage");
 		Map<String,Object> map=mav.getModelMap();
 		HttpServletRequest request=(HttpServletRequest) map.get("request");
 		String teamName=request.getParameter("teamName");
@@ -166,6 +167,7 @@ public class TeamServiceImpl implements TeamService{
 		
 		mav.addObject("teamLogDtoList",teamLogDtoList);	
 		mav.addObject("team",team);
+		mav.addObject("teamName" , teamName);
 		mav.setViewName("team/teamMain");
 	}
 
