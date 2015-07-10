@@ -4,22 +4,9 @@
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
   
 <mapper namespace="team.dao.TeamMapper">
-	
 	<select id="loginOk" parameterType="java.util.HashMap" resultType="com.sml.team.dto.TeamDto">
 		select * from team where TEAMID=#{id} and TEAMPASSWORD=#{password}
 	</select>
-	
-	<select id="viewTeamBoardList" parameterType="java.util.HashMap" resultType="com.sml.team.dto.TeamBoardDto">
-		<![CDATA[
-			select * from 
-				(select rownum as rrownum, d.*  from 
-					((select rownum as rnum, c.* from 
-						(select a.* from TEAMBOARD a, team b where b.teamName=#{teamName} and a.teamcode=b.teamcode order by boardNumber asc) c order by rnum desc) d) )e 
-							where rrownum>=#{startRow} and rrownum <=#{endRow}
-		]]>
-
-	</select>
-	
 	
 	<insert id="searchMatching" parameterType="com.sml.matching.dto.MatchingDto">
 		insert into MATCHING values (matching_matchingcode_sql.nextval , #{teamCode} , #{matchingSport} , #{matchingDistance} , #{matchingTime} , #{matchingState}, #{matchingDay}, #{matchingPlace}, #{matchingLatlng})
@@ -46,26 +33,6 @@
 							where rrownum>=#{startRow} and rrownum <=#{endRow}
 		]]>
  	</select>
- 	
- 	<select id="getBoardCount" parameterType="String" resultType="int">
- 		select count(*) from teamBoard a, team b where b.teamName=#{teamName} and a.teamcode=b.teamcode order by boardNumber asc
- 	</select>
-
-	<select id="getBoardDto" parameterType="int" resultType="com.sml.team.dto.TeamBoardDto">
-		select * from teamBoard where boardNumber=#{boardNumber}
-	</select>
-	
-	<insert id="writeTeamBoard" parameterType="com.sml.team.dto.TeamBoardDto">
-		insert into teamBoard values (teamboard_boardNumber_sql.nextval, #{teamCode}, #{boardWriter}, #{boardDate}, #{boardTitle}, #{boardContent})
-	</insert>
-	
-	<delete id="deleteTeamBoard" parameterType="int">
-		delete teamBoard where boardNumber=#{boardNumber}
-	</delete>
-	
-	<update id="updateTeamBoard" parameterType="com.sml.team.dto.TeamBoardDto">
-		update teamBoard set boardDate=#{boardDate}, boardTitle=#{boardTitle}, boardContent=#{boardContent} where boardNumber=#{boardNumber}
-	</update>
 	
 	<select id="getTeamMemberCount" parameterType="String" resultType="int">
 		select count(*) from teamMember a, team b where b.teamName=#{name} and a.teamcode=b.teamcode

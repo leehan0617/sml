@@ -14,9 +14,8 @@ function commboard(root, boardNumber){
 
 function applicate(root,teamId,leagueCode,leagueTeamNumber){
 	if(teamId==""){
-		alert("로그인이 필요합니다!");
-		var url=root+"";
-		window.open(url,"","height=350 width=350");
+		alert("로그인후 이용해주시기 바랍니다!");
+		return false;
 	}
 	
 	var url=root+"/league/applicate.do?teamId="+teamId+"&leagueCode="+leagueCode+"&leagueTeamNumber="+leagueTeamNumber;

@@ -54,7 +54,7 @@ public class ScheduleServiceImpl implements ScheduleService{
 		
 		mav.addObject("jsonObject",jsonObject);
 		mav.addObject("teamName",teamName);
-		mav.setViewName("teamPage/teamSchedule");
+		mav.setViewName("teamSchedule/teamSchedule");
 	}
 	
 	/**
@@ -74,7 +74,7 @@ public class ScheduleServiceImpl implements ScheduleService{
 		
 		
 		mav.addObject("check",check);
-		mav.setViewName("teamPage/editSchedule");
+		mav.setViewName("teamSchedule/editSchedule");
 	}
 	/**
 	 * @함수명:showSchedule
@@ -89,7 +89,7 @@ public class ScheduleServiceImpl implements ScheduleService{
 		String teamId=request.getParameter("teamId");
 		
 		mav.addObject("teamId",teamId);
-		mav.setViewName("teamPage/editSchedule");
+		mav.setViewName("teamSchedule/editSchedule");
 		
 	}
 	
@@ -113,7 +113,7 @@ public class ScheduleServiceImpl implements ScheduleService{
 		}
 		mav.addObject("scheduleDto",scheduleDto);
 		mav.addObject("teamDto",teamDto);
-		mav.setViewName("teamPage/ScheduleContent");
+		mav.setViewName("teamSchedule/ScheduleContent");
 	}
 
 	/**
@@ -131,6 +131,6 @@ public class ScheduleServiceImpl implements ScheduleService{
 		int check=dao.deleteSchedule(scheduleNumber);	
 
 		mav.addObject("check",check);
-		mav.setViewName("teamPage/ScheduleContent");
+		mav.setViewName("teamSchedule/ScheduleContent");
 	}
 }

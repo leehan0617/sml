@@ -33,7 +33,7 @@
 		select teamCode from TEAMSCHEDULE where scheduleNumber=#{scheduleNumber}
 	</select>
 	
-	<select id="selectTeam" parameterType="int" resultType="com.sml.schedule.dto.ScheduleDto" >
+	<select id="selectTeam" parameterType="int" resultType="com.sml.team.dto.TeamDto" >
 		select * from TEAM where teamCode=#{teamCode}
 	</select>
 	

@@ -10,7 +10,7 @@
 <title>Insert title here</title>
 <script type="text/javascript" src="${root }/js/soccer/soccer.js"></script>
 <script type="text/javascript" src="${root }/js/scrollnews.js"></script>
-<script type="text/javascript" src="${root }/js/member/jquery.js"></script>
+<script src="${root }/js/external/jquery-1.11.3.min.js"></script>
 <head>
 	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 	<title>팀목록보기</title>
@@ -40,7 +40,7 @@
 										
 		</div>		
 	<br/>
-	</c:if>	
+	</c:if>
 		<c:forEach var="soccerLeagueList" items="${soccerLeagueList}">
 		<c:if test="${soccerLeagueList.leagueState==1}">
 				<span>${soccerLeagueList.leagueSport}</span>
@@ -60,36 +60,6 @@
 				<br/>
 		</c:if>
 		</c:forEach>
-	
-	<!-- 페이지 번호 -->
-	<center>
-		<c:if test="${count>0 }">
-			<c:set var="pageBlock" value="${6}"/>
-			<c:set var="pageCount" value="${count/boardSize+(count%boardSize==0 ? 0:1)}"/>
-			<fmt:parseNumber var="rs" value="${(currentPage-1)/pageBlock }" integerOnly="true"/>
-			
-			<c:set var="startPage" value="${rs*pageBlock+1 }"/>
-			<c:set var="endPage" value="${startPage+pageBlock-1 }"/>
-			
-			<c:if test="${endPage>pageCount }">
-				<c:set var="endPage" value="${pageCount }"/>
-			</c:if>
-			
-			<c:if test="${startPage>pageBlock }">
-				<a href="${root }/soccer/soccerLeague.do?pageNumber=${startPage-pageBlock}">[이전]</a>
-			</c:if>
-			
-			<c:forEach var="i" begin="${startPage}" end="${endPage}">
-				<a href="${root }/soccer/soccerLeague.do?pageNumber=${i}">[${i }]</a>
-			</c:forEach>
-			
-			<c:if test="${endPage<pageCount }">
-				<a href="${root }/soccer/soccerLeague.do?pageNumber=${startPage+pageBlock}">[다음]</a>
-			</c:if>
-		</c:if>
-		
-			
-	</center>
 </form>		
 </body>
 </html>

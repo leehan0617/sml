@@ -147,7 +147,6 @@
 			<span><input type="button" value=">"/></span> 
 			
 			<c:forEach var="league" items="${leagueList}">
-				<a href="${root}/soccer/soccerLeague.do?leagueSport=${league.leagueSport}&leagueCode=${league.leagueCode}&leagueTeamNumber=${league.leagueTeamNumber}">리그전체정보	</a>
 				<div>
 					<span><img src="${root}/img/leagueImg/${league.leagueImage}"/></span>
 					<span>리그이름 : ${league.leagueName}</span>
@@ -158,7 +157,7 @@
 				</div>
 
 			 		<div>
-						<input type="button" value="신청하기" onclick="applicate('${root}','${teamId}','${league.leagueCode}','${league.leagueTeamNumber}')"/>
+			 			<a href="${root}/soccer/soccerLeague.do?leagueSport=${league.leagueSport}&leagueCode=${league.leagueCode}&leagueTeamNumber=${league.leagueTeamNumber}">신청하기</a>
 					</div> 
 		
 			</c:forEach>

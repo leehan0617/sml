@@ -15,16 +15,16 @@
 		alert("신청이 완료되었습니다")
 		
 		var url="${root}/soccer/soccerMain.do";
- 		$(location).attr("href",url); 
+ 		$(location).attr("href",url);  
 	</script>
 </c:if>
 
 <c:if test="${check==0}">
 	<script type="text/javascript">
-		alert("이미 신청처리된 아이디입니다.")
+		alert("이미 처리된 아이디입니다.")
 		
-		var url="${root}/soccer/soccerMain.do";
- 		$(location).attr("href",url); 
+  		var url="${root}/soccer/soccerMain.do";
+ 		$(location).attr("href",url);    
 	</script>
 </c:if>
 

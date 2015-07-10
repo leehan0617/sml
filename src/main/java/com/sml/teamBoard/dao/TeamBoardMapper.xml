@@ -5,5 +5,38 @@
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
   
 <mapper namespace="teamBoard.dao.TeamBoardMapper">
+	<select id="viewTeamBoardList" parameterType="java.util.HashMap" resultType="com.sml.teamBoard.dto.TeamBoardDto">
+		<![CDATA[
+			select * from 
+				(select rownum as rrownum, d.*  from 
+					((select rownum as rnum, c.* from 
+						(select a.* from TEAMBOARD a, team b where b.teamName=#{teamName} and a.teamcode=b.teamcode order by boardNumber asc) c order by rnum desc) d) )e 
+							where rrownum>=#{startRow} and rrownum <=#{endRow}
+		]]>
 
+	</select>
+	
+	<select id="getBoardCount" parameterType="String" resultType="int">
+ 		select count(*) from teamBoard a, team b where b.teamName=#{teamName} and a.teamcode=b.teamcode order by boardNumber asc
+ 	</select>
+ 	
+ 	<select id="getBoardDto" parameterType="int" resultType="com.sml.teamBoard.dto.TeamBoardDto">
+		select * from teamBoard where boardNumber=#{boardNumber}
+	</select>
+	
+	<insert id="writeTeamBoard" parameterType="com.sml.teamBoard.dto.TeamBoardDto">
+		insert into teamBoard values (teamboard_boardNumber_sql.nextval, #{teamCode}, #{boardWriter}, #{boardDate}, #{boardTitle}, #{boardContent})
+	</insert>
+	
+	<delete id="deleteTeamBoard" parameterType="int">
+		delete teamBoard where boardNumber=#{boardNumber}
+	</delete>
+	
+	<update id="updateTeamBoard" parameterType="com.sml.teamBoard.dto.TeamBoardDto">
+		update teamBoard set boardDate=#{boardDate}, boardTitle=#{boardTitle}, boardContent=#{boardContent} where boardNumber=#{boardNumber}
+	</update>
+	
+	<select id="getTeamInfo" parameterType="String" resultType="com.sml.team.dto.TeamDto">
+ 		select * from team where teamName=#{teamName}
+ 	</select>
 </mapper>

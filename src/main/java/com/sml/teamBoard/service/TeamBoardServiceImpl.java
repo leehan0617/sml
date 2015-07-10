@@ -65,7 +65,7 @@ public class TeamBoardServiceImpl implements TeamBoardService{
 		mav.addObject("blockSize", blockSize);
 		mav.addObject("currentPage",currentPage);
 		mav.addObject("teamBoardList" , teamBoardList);
-		mav.setViewName("teamPage/teamBoard");
+		mav.setViewName("teamBoard/teamBoard");
 	}
 	
 	/**
@@ -88,7 +88,7 @@ public class TeamBoardServiceImpl implements TeamBoardService{
 		mav.addObject("board",board);
 		mav.addObject("teamName", teamName);
 		mav.addObject("currentPage", currentPage);
-		mav.setViewName("teamPage/readTeamBoard");
+		mav.setViewName("teamBoard/readTeamBoard");
 	}
 	
 	/**
@@ -131,7 +131,7 @@ public class TeamBoardServiceImpl implements TeamBoardService{
 		mav.addObject("blockSize", blockSize);
 		mav.addObject("currentPage",currentPage);
 		mav.addObject("teamBoardList" , teamBoardList);
-		mav.setViewName("teamPage/manageTeamBoard");
+		mav.setViewName("teamBoard/manageTeamBoard");
 	}
 
 	/**
@@ -152,7 +152,7 @@ public class TeamBoardServiceImpl implements TeamBoardService{
 		mav.addObject("writer",dto.getTeamLeaderName());
 		mav.addObject("teamName",teamName);
 		mav.addObject("currentPage", currentPage);
-		mav.setViewName("teamPage/writeTeamBoard");
+		mav.setViewName("teamBoard/writeTeamBoard");
 	}
 	
 	/**
@@ -180,7 +180,7 @@ public class TeamBoardServiceImpl implements TeamBoardService{
 		mav.addObject("writeValue",value);
 		mav.addObject("teamName",teamName);
 		mav.addObject("currentPage", currentPage);
-		mav.setViewName("teamPage/okTeamBoard");
+		mav.setViewName("teamBoard/okTeamBoard");
 	}
 
 	/**
@@ -203,7 +203,7 @@ public class TeamBoardServiceImpl implements TeamBoardService{
 		mav.addObject("teamName", teamName);
 		mav.addObject("deleteValue", deleteValue);
 		mav.addObject("currentPage",currentPage);
-		mav.setViewName("teamPage/okTeamBoard");
+		mav.setViewName("teamBoard/okTeamBoard");
 	}
 
 	/**
@@ -225,7 +225,7 @@ public class TeamBoardServiceImpl implements TeamBoardService{
 		mav.addObject("teamName", teamName);
 		mav.addObject("board", board);
 		mav.addObject("currentPage",currentPage);
-		mav.setViewName("teamPage/writeTeamBoard");
+		mav.setViewName("teamBoard/writeTeamBoard");
 	}
 
 	/**
@@ -248,8 +248,6 @@ public class TeamBoardServiceImpl implements TeamBoardService{
 		mav.addObject("teamName", teamName);
 		mav.addObject("updateValue", updateValue);
 		mav.addObject("currentPage",currentPage);
-		mav.setViewName("teamPage/okTeamBoard");
+		mav.setViewName("teamBoard/okTeamBoard");
 	}
-
-
 }

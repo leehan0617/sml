@@ -60,12 +60,9 @@ public class SoccerDaoImpl implements SoccerDao {
 	 * @description : 축구페이지에 공지사항 가져오는 DAO
 	 */
 	@Override
-	public List<CommonBoardDto> commonBoard(int startRow, int endRow, int sportCode) {
-		Map<String, Integer> hMap=new HashMap<String, Integer>();
-		hMap.put("startRow", startRow);
-		hMap.put("endRow", endRow);
-		hMap.put("sportCode", sportCode);
-		return sqlSession.selectList("dao.SoccerMapper.commonBoard", hMap);
+	public List<CommonBoardDto> commonBoard(int startRow, int endRow,int sportCode) {
+
+		return sqlSession.selectList("dao.SoccerMapper.commonBoard", sportCode);
 	}
 	
 	/**
@@ -94,9 +91,9 @@ public class SoccerDaoImpl implements SoccerDao {
 	 * @설명문:진행중인 리그 갯수 데이터베이스 열람
 	 */
 	@Override
-	public int LeagueCount(String leagueSport) {
+	public int LeagueCount(int leagueCode) {
 		
-		return sqlSession.selectOne("dao.SoccerMapper.count",leagueSport);
+		return sqlSession.selectOne("dao.SoccerMapper.count",leagueCode);
 	}
 
 	/**
@@ -106,24 +103,8 @@ public class SoccerDaoImpl implements SoccerDao {
 	 * @설명문:리그정보 데이터베이스 열람
 	 */
 	@Override
-	public List<LeagueDto> LeagueList(int startRow, int endRow,String leagueSport) {
-		HashMap<String,Object> map=new HashMap<String,Object>();
-		map.put("startRow", startRow);
-		map.put("endRow", endRow);
-		map.put("leagueSport", leagueSport);
-		return sqlSession.selectList("dao.SoccerMapper.soccerList",map);
-	}
-
-	/**
-	 * @함수명:remitCount
-	 * @작성일:2015. 7. 10.
-	 * @작성자:조영석
-	 * @설명문:리그 지원제한을 위한 데이터베이스
-	 */
-	@Override
-	public int remitCount(int leagueCode) {
-		System.out.println("leagueCode"+leagueCode);
-		return sqlSession.selectOne("dao.SoccerMapper.remitCount",leagueCode);
+	public List<LeagueDto> LeagueList(String leagueSport) {
+		return sqlSession.selectList("dao.SoccerMapper.soccerList",leagueSport);
 	}
 
 }
