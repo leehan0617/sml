@@ -4,6 +4,7 @@ import java.util.HashMap;
 import java.util.List;
 
 import com.sml.matching.dto.MatchingDto;
+import com.sml.member.dto.MemberDto;
 import com.sml.team.dto.TeamDto;
 
 public interface MatchingDao {
@@ -18,4 +19,6 @@ public interface MatchingDao {
 	public String getTeamGround(int teamCode);
 	public HashMap<String, Object> getNormalMatchInfo(int teamCode);
 	public TeamDto getTeamInfo(int myTeamCode);
+	public MemberDto getTeamLeaderInfo(int teamCode, String leaderName);
+	
 }

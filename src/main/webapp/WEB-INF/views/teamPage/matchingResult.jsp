@@ -95,7 +95,7 @@
 	
 	<input type="button" value="경기 결과 입력">
 	<input type="button" value="경기장 정보" onclick="viewMatchingPlace('${root }','${myTeamDto.teamCode }','${otherTeamDto.teamCode }')">
-	<input type="button" value="상대팀 정보">
+	<input type="button" value="상대 팀 및 팀장 정보" onclick="viewOtherTeamInfo('${root}','${otherMatchingDto.teamCode}')">
 	</c:if>
 	
 	<c:if test="${matchingDto.matchingState=='중' }">

@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import com.sml.matching.dto.MatchingDto;
+import com.sml.member.dto.MemberDto;
 import com.sml.team.dto.TeamDto;
 
 @Component
@@ -158,5 +159,20 @@ public class MatchingDaoImpl implements MatchingDao {
 	@Override
 	public TeamDto getTeamInfo(int teamCode) {
 		return sqlSession.selectOne("matching.dao.matchingMapper.getTeamCodeInfo",teamCode);
+	}
+
+
+	/**
+	 * @name : getTeamLeaderInfo
+	 * @date : 2015. 7. 10.
+	 * @author : 이희재
+	 * @description : 팀 코드와 팀 리더이름을 이용하여 팀장 정보를 가져 옴
+	 */
+	@Override
+	public MemberDto getTeamLeaderInfo(int teamCode, String leaderName) {
+		HashMap<String, Object> hMap=new HashMap<String, Object>();
+		hMap.put("teamCode", teamCode);
+		hMap.put("leaderName", leaderName);
+		return sqlSession.selectOne("matching.dao.matchingMapper.getTeamLeaderInfo", hMap);
 	}
 }

@@ -8,4 +8,5 @@ public interface MatchingService {
 	public void deleteMatching(ModelAndView mav);
 	public void searching(ModelAndView mav);
 	public void viewMatchingPlace(ModelAndView mav);
+	public void viewOtherTeamInfo(ModelAndView mav);
 }

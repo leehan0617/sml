@@ -7,6 +7,11 @@ function viewMatchingPlace(root,myTeamCode, otherTeamCode){
 	window.open(url,"","width=1000,height=600");
 }
 
+function viewOtherTeamInfo(root, otherTeamCode){
+	var url=root + "/matching/viewOtherTeamInfo.do?otherTeamCode="+otherTeamCode;
+	window.open(url,"","width=1000,height=600");
+}
+
 function viewMap(myTeamName, otherTeamName, myLatlng, myDistance, otherLatlng, otherDistance){
 	var myData=myLatlng.split(",");
 	var myLat=myData[0];

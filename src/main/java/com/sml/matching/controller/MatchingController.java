@@ -101,4 +101,18 @@ public class MatchingController {
 		return mav;
 	}
 	
+	/**
+	 * @name : viewOtherTeamInfo
+	 * @date : 2015. 7. 10.
+	 * @author : 이희재
+	 * @description : 매칭을 완료한 후 상대 팀의 정보를 얻기 위한 페이지 이동
+	 */
+	@RequestMapping(value="/matching/viewOtherTeamInfo.do", method=RequestMethod.GET)
+	 public ModelAndView viewOtherTeamInfo(HttpServletRequest request){
+		ModelAndView mav=new ModelAndView();
+		mav.addObject("request",request);	
+		service.viewOtherTeamInfo(mav);		
+		return mav;
+	}
+	
 }

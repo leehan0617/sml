@@ -58,4 +58,8 @@
 	<select id="getTeamCodeInfo" parameterType="int" resultType="com.sml.team.dto.TeamDto">
 		select * from team where teamCode=#{teamCode}
 	</select> 
+	
+	<select id="getTeamLeaderInfo" parameterType="java.util.HashMap" resultType="com.sml.member.dto.MemberDto">
+		select * from teamMember where teamCode=#{teamCode} and memberName=#{leaderName}
+	</select>
 </mapper>

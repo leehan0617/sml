@@ -16,6 +16,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.sml.matching.dao.MatchingDao;
 import com.sml.matching.dto.MatchingDto;
+import com.sml.member.dto.MemberDto;
 import com.sml.team.dto.TeamDto;
 import com.sml.team.service.TeamServiceImpl;
 
@@ -335,5 +336,28 @@ public class MatchingServiceImpl implements MatchingService {
 //		System.out.println("tempDistance : "+ tempDistance);
 //		System.out.println("매칭 될 거리 : " + resultMap.get(key));
 		return key;
+	}
+
+	/**
+	 * @name : viewOtherTeamInfo
+	 * @date : 2015. 7. 10.
+	 * @author : 이희재
+	 * @description : 매칭이 완료된 후 상대 팀의 정보를 얻기 위한 페이지 이동
+	 */
+	@Override
+	public void viewOtherTeamInfo(ModelAndView mav) {
+		HashMap<String,Object> map=mav.getModelMap();
+		HttpServletRequest request=(HttpServletRequest) map.get("request");
+		int otherTeamCode=Integer.parseInt(request.getParameter("otherTeamCode"));
+//		System.out.println(otherTeamCode);
+		
+		TeamDto otherTeam=dao.getTeamInfo(otherTeamCode);
+		String otherGround=dao.getTeamGround(otherTeamCode);
+		MemberDto teamLeaderDto=dao.getTeamLeaderInfo(otherTeamCode,otherTeam.getTeamLeaderName());
+		
+		mav.addObject("otherTeamLeader",teamLeaderDto);
+		mav.addObject("otherTeam",otherTeam);
+		mav.addObject("otherGround", otherGround);
+		mav.setViewName("matching/viewOtherTeamInfo");
 	}
 }
