@@ -22,7 +22,6 @@ $(document).ready(function() {
 	
 	$("#goTeamPage").click(function(){
 		var text = $("input[id='searchTeamName']").val();
-		alert(text);
 		
 		var url = "/home/team/teamMain.do?teamName="+text;
 		window.open(url);

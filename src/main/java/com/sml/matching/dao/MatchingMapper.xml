@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="matching.dao.matchingMapper">
+	
+	<insert id="searchMatching" parameterType="com.sml.matching.dto.MatchingDto">
+		insert into MATCHING values (matching_matchingcode_sql.nextval , #{teamCode} , #{matchingSport} , #{matchingDistance} , #{matchingTime} , #{matchingState}, #{matchingDay}, #{matchingPlace}, #{matchingLatlng})
+	</insert>
+	
+	<select id="getTeamMatchingInfo" parameterType="int" resultType="com.sml.matching.dto.MatchingDto">
+		select * from matching where teamCode=#{teamCode}
+	</select>
+	
+	<select id="getTeamInfo" parameterType="String" resultType="com.sml.team.dto.TeamDto">
+ 		select * from team where teamName=#{teamName}
+ 	</select>
+	
+	<select id="getTeamGround" parameterType="int" resultType="String">
+		<![CDATA[
+			select ground from homeGround where teamCode=#{teamCode}
+		]]>	
+	</select>
+	
+	<delete id="deleteMatching" parameterType="int">
+		delete matching where matchingCode=#{matchingCode}
+	</delete>
+	
+	<select id="getOtherMatchingInfo" parameterType="java.util.HashMap" resultType="com.sml.matching.dto.MatchingDto">
+		select * from matching where not teamCode=#{teamCode} and matchingState=#{matchingState} and matchingSport=#{sportType}
+	</select>
+	
+	<select id="selectTeamCode" parameterType="String" resultType="int">
+ 		select teamCode from team where teamName=#{teamName}
+ 	</select>
+	
+	<update id="changeMatchingState" parameterType="java.util.HashMap">
+		update matching set matchingState=#{matchingState} where matchingCode=#{matchingCode}
+	</update>
+	
+	<insert id="createGameRecord" parameterType="java.util.HashMap">
+		insert into gameRecord (gameCode, teamCode, teamCode2, gameType, refereeNumber, gameState, sportType)
+		values (gameRecord_gameCode_sql.nextVal, #{teamCode}, #{teamCode2}, #{gameType}, #{refereeNumber}, #{gameState}, #{sportType})
+	</insert>
+	
+	<select id="getNormalMatchInfo" parameterType="int" resultType="java.util.HashMap">
+		select d.* from (
+			select a.*, b.teamName as team1, c.teamName as team2 
+				from gameRecord a, team b, team c 
+					where a.teamcode=b.teamcode and a.teamcode2=c.teamcode and (b.teamCode=#{teamCode} or c.teamCode=#{teamCode}) and gameState='경기 전'
+						order by gameCode desc) d
+	</select>
+	
+	<update id="setWaitMatching" parameterType="java.util.HashMap">
+		update matching set matchingState=#{matchingState} where teamCode=#{teamCode}
+	</update>
+	
+	<select id="getTeamCodeInfo" parameterType="int" resultType="com.sml.team.dto.TeamDto">
+		select * from team where teamCode=#{teamCode}
+	</select> 
+</mapper>

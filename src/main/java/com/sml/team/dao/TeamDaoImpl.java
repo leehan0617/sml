@@ -8,9 +8,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import com.sml.member.dto.MemberDto;
-import com.sml.team.dto.MatchingDto;
-import com.sml.team.dto.ScheduleDto;
-import com.sml.team.dto.TeamBoardDto;
 import com.sml.team.dto.TeamDto;
 import com.sml.team.dto.TeamLogDto;
 
@@ -18,6 +15,7 @@ import com.sml.team.dto.TeamLogDto;
 public class TeamDaoImpl implements TeamDao{
 	@Autowired
 	private SqlSessionTemplate sqlSession;
+	
 	private HashMap<String , Object> hMap;
 	
 	/**
@@ -60,48 +58,6 @@ public class TeamDaoImpl implements TeamDao{
 		return srt;
 	}
 
-	@Override
-	/**
-	 * 
-	 * @함수명 : viewTeamBoard
-	 * @작성일 : 2015. 6. 23.
-	 * @작성자 : 이한빈
-	 * @설명   : 서비스에서 요청받은 값을 데이터베이스에 연결시켜 팀게시판 목록 리스트를 반환 받는 메소드
-	 */
-	public List<TeamBoardDto> viewTeamBoard(String teamName,int startRow, int endRow) {
-		HashMap<String, Object> map=new HashMap<String, Object>();
-		map.put("teamName", teamName);
-		map.put("startRow", startRow);
-		map.put("endRow", endRow);
-		
-		return sqlSession.selectList("team.dao.TeamMapper.viewTeamBoardList",map);
-	}
-
-	@Override
-	/**
-	 * 
-	 * @함수명 : viewSchedule
-	 * @작성일 : 2015. 6. 23.
-	 * @작성자 : 이한빈
-	 * @설명   : 서비스에서 요청받은 값을 데이터베이스에서 연결해서 스케쥴 값들을 반환 받는 메소드
-	 */
-	public List<ScheduleDto> viewSchedule() {
-		return sqlSession.selectList("team.dao.TeamMapper.teamScheduleList");
-	}
-
-	@Override
-	/**
-	 * 
-	 * @함수명 : searchMatching
-	 * @작성일 : 2015. 6. 23.
-	 * @작성자 : 이한빈
-	 * @설명   : 서비스에서 요청받은 값을 데이터베이스에 연결해서 값을 삽입하는 메소드
-	 */
-	public int searchMatching(MatchingDto matchingDto) {
-		return sqlSession.insert("team.dao.TeamMapper.searchMatching" , matchingDto);
-	}
-
-
 	/**
 	 * @name : TeamDaoImpl
 	 * @date : 2015. 6. 25.
@@ -127,63 +83,6 @@ public class TeamDaoImpl implements TeamDao{
 		map.put("endRow", endRow);
 		
 		return sqlSession.selectList("team.dao.TeamMapper.getTeamMemberList",map);
-	}
-
-	
-	/**
-	 * @name : TeamDaoImpl
-	 * @date : 2015. 6. 25.
-	 * @author : 이희재
-	 * @description : 페이징 기법을 위한 전체 게시물 수 출력
-	 */
-	@Override
-	public int getBoardCount(String teamName) {
-		return sqlSession.selectOne("team.dao.TeamMapper.getBoardCount",teamName);
-	}
-
-	/**
-	 * @name : TeamDaoImpl
-	 * @date : 2015. 6. 26.
-	 * @author : 이희재
-	 * @description : boardNumber를 이용한 게시물 읽기
-	 */
-	@Override
-	public TeamBoardDto getBoardDto(int boardNumber) {
-		return sqlSession.selectOne("team.dao.TeamMapper.getBoardDto", boardNumber);
-	}
-
-	/**
-	 * @name : TeamDaoImpl
-	 * @date : 2015. 6. 26.
-	 * @author : 이희재
-	 * @description : teamName과 TeamBoardDto를 이용한 공지 작성
-	 */
-	@Override
-	public int writeTeamBoard(TeamBoardDto board) {
-		return sqlSession.insert("team.dao.TeamMapper.writeTeamBoard",board);
-	}
-
-	/**
-	 * @name : TeamDaoImpl
-	 * @date : 2015. 6. 26.
-	 * @author : 이희재
-	 * @description : 팀 게시판 공지 지우기
-	 */
-	
-	@Override
-	public int deleteTeamBoard(int boardNumber) {
-		return sqlSession.delete("team.dao.TeamMapper.deleteTeamBoard", boardNumber);
-	}
-
-	/**
-	 * @name : TeamDaoImpl
-	 * @date : 2015. 6. 26.
-	 * @author : 이희재
-	 * @description : 팀 게시판 수정 완료
-	 */
-	@Override
-	public int updateTeamBoard(TeamBoardDto board) {
-		return sqlSession.update("team.dao.TeamMapper.updateTeamBoard", board);
 	}
 
 	/**
@@ -282,42 +181,7 @@ public class TeamDaoImpl implements TeamDao{
 		return sqlSession.selectOne("team.dao.TeamMapper.getTeamGround", teamCode);
 	}
 
-	/**
-	 * @name : TeamDaoImpl
-	 * @date : 2015. 7. 6.
-	 * @author : 이희재
-	 * @description : 해당 팀에 대한 매칭 등록 정보가 있는지 확인
-	 */
-	@Override
-	public MatchingDto getTeamMatchingInfo(int teamCode) {
-		return sqlSession.selectOne("team.dao.TeamMapper.getTeamMatchingInfo", teamCode);
-	}
-
-	/**
-	 * @name : TeamDaoImpl
-	 * @date : 2015. 7. 6.
-	 * @author : 이희재
-	 * @description : 매칭 정보 삭제
-	 */
-	@Override
-	public int deleteMatching(int matchingCode) {
-		return sqlSession.delete("team.dao.TeamMapper.deleteMatching", matchingCode);
-	}
-
-	/**
-	 * @name : TeamDaoImpl
-	 * @date : 2015. 7. 7.
-	 * @author : 이희재
-	 * @description : 자신의 매칭 정보를 제외한 같은 종목의 매칭 정보 가져오기
-	 */
-	@Override
-	public List<MatchingDto> getOtherMatchingInfo(int teamCode, String sportType) {
-		HashMap<String, Object> hMap=new HashMap<String, Object>();
-		hMap.put("teamCode", teamCode);
-		hMap.put("sportType", sportType);
-		hMap.put("matchingState", "중");
-		return sqlSession.selectList("team.dao.TeamMapper.getOtherMatchingInfo",hMap);
-	}
+	
 	
 	/**
 	 * @name : updateTeamEmblem
@@ -381,127 +245,6 @@ public class TeamDaoImpl implements TeamDao{
 		return sqlSession.delete("team.dao.TeamMapper.teamLogDelete",hMap);
 	}
 	
-	/**
-	 * @함수명:editSchedule
-	 * @작성일:2015. 7. 6.
-	 * @작성자:조영석
-	 * @설명문:스케쥴일정 값을 데이터베이스에 집어넣는 메소드 
-	 */
-	@Override
-	public int editSchedule(ScheduleDto scheduleDto,String teamId) {
-		int value=0;
-		int teamCode=sqlSession.selectOne("team.dao.TeamMapper.scheduleTeamid",teamId);
-		scheduleDto.setTeamCode(teamCode);
-		value=sqlSession.insert("team.dao.TeamMapper.insertSchedule",scheduleDto);
-		return value;
-	}
-	
-	/**
-	 * @함수명:readSchedule
-	 * @작성일:2015. 7. 6.
-	 * @작성자:조영석
-	 * @설명문:스케쥴 정보 불러오기 메소드
-	 */
-	@Override
-	public List<ScheduleDto> readSchedule(String teamName) {
-		int teamCode=sqlSession.selectOne("team.dao.TeamMapper.scheduleTeamid",teamName);
-		ScheduleDto scheduleDto=new ScheduleDto();
-		scheduleDto.setTeamCode(teamCode);
-		
-		return sqlSession.selectList("team.dao.TeamMapper.readSchedule",scheduleDto);
-	}
-	
-	/**
-	 * @함수명:readCount
-	 * @작성일:2015. 7. 6.
-	 * @작성자:조영석
-	 * @설명문:스케쥴 총 갯수 구하는 메소드 
-	 */
-	@Override
-	public int readCount(String teamName) {
-		int teamCode=sqlSession.selectOne("team.dao.TeamMapper.scheduleTeamid",teamName);
-		
-		return sqlSession.selectOne("team.dao.TeamMapper.readCount",teamCode);
-	}
-	
-	/**
-	 * @함수명:scheduleContent
-	 * @작성일:2015. 7. 7.
-	 * @작성자:조영석
-	 * @설명문:스케쥴 세부일정 내용열람을 위한 데이터베이스연결
-	 */
-	@Override
-	public ScheduleDto scheduleContents(int scheduleNumber) {
-//		HashMap<String,Object> Hmap=new HashMap<String,Object>();
-//		Hmap.put("teamCode", teamCode);
-//		Hmap.put("scheduleNumber", scheduleNumber);
-		return sqlSession.selectOne("team.dao.TeamMapper.scheduleContent",scheduleNumber);
-	}
-
-	/**
-	 * @함수명:selectMember
-	 * @작성일:2015. 7. 7.
-	 * @작성자:조영석
-	 * @설명문:스케쥴 권한 부여를 위한 데이터베이스연결
-	 */
-	@Override
-	public TeamDto selectMember(int scheduleNumber) {
-		int teamCode=sqlSession.selectOne("team.dao.TeamMapper.scheduleNumber",scheduleNumber);
-		
-		TeamDto teamDto=null;
-		if(teamCode>0){
-			 teamDto=sqlSession.selectOne("team.dao.TeamMapper.selectTeam",teamCode);
-		}
-		
-		return teamDto;
-	}
-
-	/**
-	 * @함수명:deleteSchedule
-	 * @작성일:2015. 7. 7.
-	 * @작성자:조영석
-	 * @설명문:스케쥴 삭제를 위한 데이터베이스연결
-	 */
-	@Override
-	public int deleteSchedule(int scheduleNumber) {
-		
-		return sqlSession.delete("team.dao.TeamMapper.deleteSchedule",scheduleNumber);
-	}
-
-
-	/**
-	 * @name : TeamDaoImpl
-	 * @date : 2015. 7. 8.
-	 * @author : 이희재
-	 * @description : 매칭이 완료되면 매칭의 상태를 전->중 으로 바꿔줌
-	 */
-	@Override
-	public void changeMatchingState(MatchingDto matchingDto) {
-		HashMap<String, Object> hMap=new HashMap<String, Object>();
-		hMap.put("matchingState", "후");
-		hMap.put("matchingCode", matchingDto.getMatchingCode());
-		sqlSession.update("team.dao.TeamMapper.changeMatchingState", hMap);
-	}
-
-	/**
-	 * @name : TeamDaoImpl
-	 * @date : 2015. 7. 8.
-	 * @author : 이희재
-	 * @description : 성사된 매칭을 이용하여 경기 시작 전 상태의 친선 gameRecord 생성
-	 */
-	@Override
-	public void createGameRecord(MatchingDto myMatchingDto,
-			MatchingDto otherMatchingDto) {
-		HashMap<String, Object> hMap=new HashMap<String, Object>();
-		hMap.put("teamCode", myMatchingDto.getTeamCode());
-		hMap.put("teamCode2", otherMatchingDto.getTeamCode());
-		hMap.put("gameType", 0);
-		hMap.put("refereeNumber",1);
-		hMap.put("gameState", "경기 전");
-		hMap.put("sportType", myMatchingDto.getMatchingSport());
-		
-		sqlSession.insert("team.dao.TeamMapper.createGameRecord", hMap);
-	}
 
 	/**
 	 * @name : TeamDaoImpl
@@ -514,17 +257,16 @@ public class TeamDaoImpl implements TeamDao{
 		return sqlSession.selectOne("team.dao.TeamMapper.getNormalMatchInfo", teamCode);
 	}
 
+
 	/**
 	 * @name : TeamDaoImpl
 	 * @date : 2015. 7. 9.
 	 * @author : 이희재
-	 * @description : 매칭의 상태를 전 -> 중으로 변경
+	 * @description : 팀 코드를 이용하여 팀의 정보를 가져 옴
 	 */
 	@Override
-	public void setWaitMatching(int teamCode) {
-		HashMap<String, Object> hMap=new HashMap<String, Object>();
-		hMap.put("teamCode", teamCode);
-		hMap.put("matchingState", "중");
-		sqlSession.update("team.dao.TeamMapper.setWaitMatching", hMap);
+	public TeamDto getTeamInfo(int teamCode) {
+		return sqlSession.selectOne("team.dao.TeamMapper.getTeamCodeInfo",teamCode);
 	}
+	
 }

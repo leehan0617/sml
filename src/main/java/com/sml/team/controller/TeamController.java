@@ -1,9 +1,9 @@
 package com.sml.team.controller;
 
+import java.util.logging.Logger;
+
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-
-import java.util.logging.Logger;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -13,9 +13,7 @@ import org.springframework.web.multipart.MultipartHttpServletRequest;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.sml.member.dto.MemberDto;
-import com.sml.team.dto.MatchingDto;
-import com.sml.team.dto.ScheduleDto;
-import com.sml.team.dto.TeamBoardDto;
+import com.sml.schedule.service.ScheduleService;
 import com.sml.team.dto.TeamDto;
 import com.sml.team.dto.TeamLogDto;
 import com.sml.team.service.TeamService;
@@ -26,33 +24,9 @@ public class TeamController {
 	private Logger logger = Logger.getLogger(TeamController.class.getName());
 	@Autowired
 	private TeamService service;
+	@Autowired 
+	private ScheduleService scheduleService;
 	
-	/**
-	 * @함수명:registerTeam
-	 * @작성일:2015. 6. 23.
-	 * @작성자:조영석
-	 * @설명문:팀등록 페이지로 이동하는 이동 메소드
-	 */
-	@RequestMapping(value="/member/registerTeam.do",method=RequestMethod.GET)
-		public String registerTeam(){
-			return "member/registerTeam";
-		}
-
-	/**
-	 * @함수명:registerTeamOK
-	 * @작성일:2015. 6. 23.
-	 * @작성자:조영석
-	 * @설명문:팀등록을 위한 이동 메소드 
-	 */
-	@RequestMapping(value="/member/registerTeam.do",method=RequestMethod.POST)
-		public ModelAndView registerTeamOK(HttpServletRequest request,HttpServletResponse response){
-		
-			ModelAndView mav=new ModelAndView();
-			mav.addObject("request",request);
-			service.registerTeam(mav);
-			return mav;
-		}
-
 	/**
 	 * @함수명:idCheck
 	 * @작성일:2015. 6. 23.
@@ -84,19 +58,7 @@ public class TeamController {
 			
 			service.teamIdCheck(mav);
 			return mav;
-		}
-	/**
-	 * 
-	 * @함수명 : teamPage
-	 * @작성일 : 2015. 6. 23.
-	 * @작성자 : 이한빈
-	 * @설명   :  스타트페이지에서 메인페이지로 이동하는 메소드
-	 */
-//	@RequestMapping(value="/teamPage.do" , method=RequestMethod.GET)
-//	public String teamPage(HttpServletRequest request){
-//		logger.info("TeamController teamPage");
-//		return "teamPage/teamPageMain";
-//	}
+	}
 	
 	/**
 	 * @함수명:login
@@ -127,146 +89,7 @@ public class TeamController {
 		logger.info("TeamController logout");
 		return "teamPage/logout";
 	}
-		
-	/**
-	 * 
-	 * @함수명 : viewTeamBoard
-	 * @작성일 : 2015. 6. 23.
-	 * @작성자 : 이한빈
-	 * @설명   :  팀게시판 보는 메소드 (팀장이랑 비회원 구분은  JSP페이지에서 JSTL로 구분 해야할듯)
-	 */
-	@RequestMapping(value="/teamPage/viewTeamBoard.do" , method=RequestMethod.GET)
-	public ModelAndView viewTeamBoard(HttpServletRequest request){
-		logger.info("TeamController viewTeamBoard");
-		
-		ModelAndView mav=new ModelAndView();
-		mav.addObject("request",request);
-		service.viewTeamBoard(mav);
-		
-		return mav;
-	}
 	
-	/**
-	 * @함수명 : viewSchedule
-	 * @작성일 : 2015. 6. 23.
-	 * @작성자 : 이한빈
-	 * @설명   :  팀스케쥴 보는 메소드 (팀장이랑 비회원 구분은 JSP페이지에서 JSTL로 구분 해야할듯)
-	 */
-	@RequestMapping(value="/viewSchedule.do" , method=RequestMethod.GET)
-	public ModelAndView viewSchedule(){
-		logger.info("TeamController viewSchedule");
-		ModelAndView mav = new ModelAndView("teamPage/teamSchedule");
-		
-		service.viewSchedule(mav);
-		return mav;
-	}
-	
-	/**
-	 * 
-	 * @함수명 : gameRecord
-	 * @작성일 : 2015. 6. 23.
-	 * @작성자 : 이한빈
-	 * @설명   : 팀페이지에서 경기기록을 보는 메소드
-	 */
-	@RequestMapping(value="/viewRecord.do", method=RequestMethod.GET)
-	public ModelAndView viewRecord(){
-		logger.info("TeamController viewRecord");
-		ModelAndView mav = new ModelAndView("teamPage/teamRecord");
-		
-		service.viewRecord(mav);
-		return mav;
-	}
-		
-	/**
-	 * 
-	 * @함수명 : startMatching
-	 * @작성일 : 2015. 6. 23.
-	 * @작성자 : 이한빈
-	 * @설명   :  매칭관리 페이지이동하는 메소드
-	 */
-	@RequestMapping(value="/startMatching.do" , method=RequestMethod.GET)
-	public String startMatching(){
-		logger.info("TeamController startMatching");
-		return "teamPage/matching";
-	}
-	
-	
-	
-	/**
-	 * @함수명:teamSchedule
-	 * @작성일:2015. 6. 25.
-	 * @작성자:조영석
-	 * @설명문:스케쥴관리용 달력 jsp페이지 이동 메소드
-	 */
-	@RequestMapping(value="/teamPage/teamScheduleEdit.do",method=RequestMethod.GET)	
-	public ModelAndView teamSchedule(HttpServletRequest request,HttpServletResponse response){
-		ModelAndView mav=new ModelAndView();
-		mav.addObject("request",request);
-		service.readteamSchedule(mav);
-		return mav;
-	}
-	
-	/**
-	 * @함수명:editScheduleView
-	 * @작성일:2015. 7. 3.
-	 * @작성자:조영석
-	 * @설명문:스케쥴 세부일정 페이지 이동 메소드
-	 */
-	@RequestMapping(value="/teamPage/Schedule.do",method=RequestMethod.GET)
-	public ModelAndView editScheduleView(HttpServletRequest request,HttpServletResponse response){
-		ModelAndView mav=new ModelAndView();
-		mav.addObject("request",request);
-		
-		service.showSchedule(mav);
-		return mav;
-	}
-	
-	/**
-	 * @함수명:ScheduleContent
-	 * @작성일:2015. 7. 7.
-	 * @작성자:조영석
-	 * @설명문:스케쥴 내용 이동 메소드 
-	 */
-	@RequestMapping(value="/teamPage/ScheduleContent.do",method=RequestMethod.GET)
-	public ModelAndView ScheduleContent(HttpServletRequest request,HttpServletResponse response){
-		ModelAndView mav=new ModelAndView();
-		mav.addObject("request",request);
-		
-		service.scheduleContent(mav);
-		return mav;
-	}
-	/**
-	 * @함수명:editSchedule
-	 * @작성일:2015. 7. 6
-	 * @작성자:조영석
-	 * @설명문:스케쥴 일정 입력용 서비스 이동 메소드
-	 */
-	@RequestMapping(value="/teamPage/editSchedule.do",method=RequestMethod.GET)
-	public ModelAndView editSchedule(HttpServletRequest request,HttpServletResponse response,ScheduleDto scheduleDto){
-		ModelAndView mav=new ModelAndView();
-		
-		mav.addObject("request",request);
-		mav.addObject("scheduleDto",scheduleDto);
-		service.editSchedule(mav);
-		
-		return mav;
-	}
-	
-	/**
-	 * @함수명:deleteSchedule
-	 * @작성일:2015. 7. 7.
-	 * @작성자:조영석
-	 * @설명문:스케쥴 삭제 이동 메소드
-	 */
-	@RequestMapping(value="/teamPage/deleteSchedule.do", method=RequestMethod.GET)
-	public ModelAndView deleteSchedule(HttpServletRequest request,HttpServletResponse response){
-		System.out.println("deleteScheduledeleteScheduledeleteScheduledeleteScheduledeleteSchedule");
-		ModelAndView mav=new ModelAndView();
-		mav.addObject("request",request);
-		
-		service.deleteSchedule(mav);
-		return mav;
-	}
 	/**
 	 * @name : teamPage
 	 * @date : 2015. 6. 25.
@@ -276,10 +99,13 @@ public class TeamController {
 	 */
 	@RequestMapping(value="/team/teamMain.do",method=RequestMethod.GET)
 	 public ModelAndView teamPage(HttpServletRequest request){
+		logger.info("controller : teamPage/teamMemberInfo");
 		ModelAndView mav=new ModelAndView();
 		
 		mav.addObject("request",request);
 		service.goTeamPage(mav);
+		scheduleService.readteamSchedule(mav);
+		mav.setViewName("team/teamMain");
 		
 		return mav;
 	}
@@ -304,135 +130,8 @@ public class TeamController {
 	 * @name : TeamController
 	 * @date : 2015. 6. 26.
 	 * @author : 이희재
-	 * @description : 게시판 읽기 페이지
-	 */
-	@RequestMapping(value="/teamPage/readTeamBoard.do",method=RequestMethod.GET)
-	 public ModelAndView readTeamBoard(HttpServletRequest request){
-		ModelAndView mav=new ModelAndView();
-		
-		mav.addObject("request",request);
-		service.readTeamBoard(mav);
-		
-		return mav;
-	}
-	
-	/**
-	 * @name : TeamController
-	 * @date : 2015. 6. 26.
-	 * @author : 이희재
-	 * @description : 팀 게시판 공지 관리 페이지
-	 */
-	
-	@RequestMapping(value="/teamPage/manageTeamBoard.do",method=RequestMethod.GET)
-	 public ModelAndView manageTeamBoard(HttpServletRequest request){
-		logger.info("TeamController viewTeamBoard");
-		
-		ModelAndView mav=new ModelAndView();
-		mav.addObject("request",request);
-		service.manageTeamBoard(mav);
-		
-		return mav;
-	}
-	
-	/**
-	 * @name : TeamController
-	 * @date : 2015. 6. 26.
-	 * @author : 이희재
-	 * @description : 팀 게시판 공지 쓰기 페이지
-	 */
-	
-	@RequestMapping(value="/teamPage/writeTeamBoard.do",method=RequestMethod.GET)
-	 public ModelAndView writeTeamBoard(HttpServletRequest request){
-		logger.info("TeamController writeTeamBoard");
-		
-		ModelAndView mav=new ModelAndView();
-		mav.addObject("request",request);
-		service.writeTeamBoard(mav);
-		
-		return mav;
-	}
-	
-	/**
-	 * @name : TeamController
-	 * @date : 2015. 6. 26.
-	 * @author : 이희재
-	 * @description : 팀 게시판 공지 쓰기 완료 페이지
-	 */
-	
-	@RequestMapping(value="/teamPage/writeTeamBoard.do",method=RequestMethod.POST)
-	 public ModelAndView writeTeamBoard(HttpServletRequest request, TeamBoardDto teamBoardDto){
-		logger.info("TeamController writeTeamBoard");
-		
-		ModelAndView mav=new ModelAndView();
-		mav.addObject("request",request);
-		mav.addObject("teamBoardDto", teamBoardDto);
-		service.writeOkTeamBoard(mav);
-		
-		return mav;
-	}
-	
-	/**
-	 * @name : TeamController
-	 * @date : 2015. 6. 26.
-	 * @author : 이희재
-	 * @description : 팀 게시판 공지사항 삭제
-	 */
-	
-	@RequestMapping(value="/teamPage/deleteTeamBoard.do",method=RequestMethod.GET)
-	 public ModelAndView deleteTeamBoard(HttpServletRequest request){
-		logger.info("TeamController deleteTeamBoard");
-		
-		ModelAndView mav=new ModelAndView();
-		mav.addObject("request",request);
-		service.deleteTeamBoard(mav);
-		
-		return mav;
-	}
-	
-	/**
-	 * @name : TeamController
-	 * @date : 2015. 6. 26.
-	 * @author : 이희재
-	 * @description : 팀 게시판 공지사항 수정
-	 */
-	
-	@RequestMapping(value="/teamPage/updateTeamBoard.do",method=RequestMethod.GET)
-	 public ModelAndView updateTeamBoard(HttpServletRequest request){
-		logger.info("TeamController updateTeamBoard");
-		
-		ModelAndView mav=new ModelAndView();
-		mav.addObject("request",request);
-		service.updateTeamBoard(mav);
-		
-		return mav;
-	}
-	
-	/**
-	 * @name : TeamController
-	 * @date : 2015. 6. 26.
-	 * @author : 이희재
-	 * @description : 팀 게시판 공지사항 수정
-	 */
-	
-	@RequestMapping(value="/teamPage/updateTeamBoard.do",method=RequestMethod.POST)
-	 public ModelAndView updateTeamBoard(HttpServletRequest request, TeamBoardDto board){
-		logger.info("TeamController updateTeamBoard");
-		
-		ModelAndView mav=new ModelAndView();
-		mav.addObject("request",request);
-		mav.addObject("board", board);
-		service.updateOkTeamBoard(mav);
-		
-		return mav;
-	}
-	
-	/**
-	 * @name : TeamController
-	 * @date : 2015. 6. 26.
-	 * @author : 이희재
 	 * @description : 팀 멤버 관리 페이지
 	 */
-	
 	@RequestMapping(value="/teamPage/manageTeamMember.do",method=RequestMethod.GET)
 	 public ModelAndView manageTeamMember(HttpServletRequest request){
 		logger.info("TeamController manageTeamMember");
@@ -527,72 +226,6 @@ public class TeamController {
 		return mav;
 	}
 	
-	/**
-	 * @name : TeamController
-	 * @date : 2015. 7. 2.
-	 * @author : 이희재
-	 * @description : 매칭 페이지로 이동
-	 */
-	@RequestMapping(value="/teamPage/matching.do", method=RequestMethod.GET)
-	 public ModelAndView matching(HttpServletRequest request){
-		ModelAndView mav=new ModelAndView();
-		mav.addObject("request",request);
-		service.matching(mav);
-		
-		return mav;
-	}	
-
-	/**
-	 * 
-	 * @함수명 : searchMatching
-	 * @작성일 : 2015. 7. 6.
-	 * @작성자 : 이희재
-	 * @설명   :  매칭 시작과 동시에 매칭 정보를 매칭 테이블에 입력
-	 */
-	@RequestMapping(value="/teamPage/searchMatching.do" , method=RequestMethod.POST)
-	public ModelAndView searchMatching(HttpServletRequest request , MatchingDto matchingDto){
-		logger.info("TeamController searchMatching");
-		ModelAndView mav = new ModelAndView();
-		mav.addObject("request" , request);
-		mav.addObject("matchingDto" , matchingDto);
-		
-		service.searchMatching(mav);
-		return mav;
-	}
-	
-	/**
-	 * 
-	 * @함수명 : searchMatching
-	 * @작성일 : 2015. 7. 6.
-	 * @작성자 : 이희재
-	 * @설명   :  매칭 취소하기 
-	 */
-	@RequestMapping(value="/teamPage/deleteMatching.do" , method=RequestMethod.GET)
-	public ModelAndView deleteMatching(HttpServletRequest request){
-		logger.info("TeamController searchMatching");
-		ModelAndView mav = new ModelAndView();
-		mav.addObject("request" , request);
-		
-		service.deleteMatching(mav);
-		return mav;
-	}
-	
-	/**
-	 * 
-	 * @함수명 : searchMatching
-	 * @작성일 : 2015. 7. 6.
-	 * @작성자 : 이희재
-	 * @설명   :  매칭 시작하기
-	 */
-	@RequestMapping(value="/teamPage/searching.do" , method=RequestMethod.GET)
-	public ModelAndView searching(HttpServletRequest request){
-		logger.info("TeamController searchMatching");
-		ModelAndView mav = new ModelAndView();
-		mav.addObject("request" , request);
-		
-		service.searching(mav);
-		return mav;
-	}
 	
 	/**
 	 * @name : manageTeamEmblem
@@ -650,6 +283,5 @@ public class TeamController {
 		service.teamLogDelete(mav);		
 		return mav;
 	}
-	
-	
+
 }

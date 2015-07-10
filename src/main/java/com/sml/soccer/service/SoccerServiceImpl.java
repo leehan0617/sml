@@ -273,12 +273,14 @@ public class SoccerServiceImpl implements SoccerService {
 	 */
 	@Override
 	public void soccerLeague(ModelAndView mav) {
-Map<String,Object> map=mav.getModelMap();
+		Map<String,Object> map=mav.getModelMap();
 		
 		HttpServletRequest request=(HttpServletRequest) map.get("request");			
 		
 		String pageNumber=request.getParameter("pageNumber");
 		String leagueSport=request.getParameter("leagueSport");
+		int leagueCode=Integer.parseInt(request.getParameter("leagueCode"));
+		int leagueTeamNumber=Integer.parseInt(request.getParameter("leagueTeamNumber"));
 		if(pageNumber==null)pageNumber="1";
 		
 		int boardSize=6;		
@@ -296,10 +298,13 @@ Map<String,Object> map=mav.getModelMap();
 		List<LeagueDto> soccerLeagueList=null;	
 
 		soccerLeagueList=soccerDao.LeagueList(startRow,endRow,leagueSport);
-		
+		int remitCount=soccerDao.remitCount(leagueCode);
+
 		for(int i=0;i<soccerLeagueList.size();i++){
 			System.out.println(soccerLeagueList.get(i).getLeagueState());
 		}
+		
+		mav.addObject("remitCount",remitCount);
 		mav.addObject("count",count);
 		mav.addObject("soccerLeagueList",soccerLeagueList);		
 		mav.addObject("boardSize",boardSize);

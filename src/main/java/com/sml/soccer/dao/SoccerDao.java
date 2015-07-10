@@ -16,4 +16,5 @@ public interface SoccerDao {
 	public Date moveMatchDay(String matchDay, String moveMatchDay);	
 	public int LeagueCount(String leagueSport);
 	public List<LeagueDto> LeagueList(int startRow,int endRow,String leagueSport);
+	public int remitCount(int leagueCode);
 }

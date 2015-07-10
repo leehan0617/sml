@@ -95,7 +95,7 @@ public class SoccerDaoImpl implements SoccerDao {
 	 */
 	@Override
 	public int LeagueCount(String leagueSport) {
-		System.out.println("leagueSport"+leagueSport);
+		
 		return sqlSession.selectOne("dao.SoccerMapper.count",leagueSport);
 	}
 
@@ -112,6 +112,18 @@ public class SoccerDaoImpl implements SoccerDao {
 		map.put("endRow", endRow);
 		map.put("leagueSport", leagueSport);
 		return sqlSession.selectList("dao.SoccerMapper.soccerList",map);
+	}
+
+	/**
+	 * @함수명:remitCount
+	 * @작성일:2015. 7. 10.
+	 * @작성자:조영석
+	 * @설명문:리그 지원제한을 위한 데이터베이스
+	 */
+	@Override
+	public int remitCount(int leagueCode) {
+		System.out.println("leagueCode"+leagueCode);
+		return sqlSession.selectOne("dao.SoccerMapper.remitCount",leagueCode);
 	}
 
 }

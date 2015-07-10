@@ -13,13 +13,13 @@ function commboard(root, boardNumber){
 }
 
 function applicate(root,teamId,leagueCode,leagueTeamNumber){
-	alert("leagueCode"+leagueCode);
 	if(teamId==""){
 		alert("로그인이 필요합니다!");
 		var url=root+"";
 		window.open(url,"","height=350 width=350");
 	}
 	
-	var url=root+"/soccer/applicate.do?teamId="+teamId+"&leagueCode="+leagueCode+"&leagueTeamNumber="+leagueTeamNumber;
+	var url=root+"/league/applicate.do?teamId="+teamId+"&leagueCode="+leagueCode+"&leagueTeamNumber="+leagueTeamNumber;
 	$(location).attr("href",url);
 }
+

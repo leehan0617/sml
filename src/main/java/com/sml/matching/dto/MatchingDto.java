@@ -1,4 +1,4 @@
-package com.sml.team.dto;
+package com.sml.matching.dto;
 
 public class MatchingDto {
 	private int matchingCode;

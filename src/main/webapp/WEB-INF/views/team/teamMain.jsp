@@ -1,13 +1,13 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<!DOCTYPE html>
 <c:set var="root" value="${pageContext.request.contextPath }"/>
 <c:if test="${team!=null}">
 	<c:set var="teamId" value="${teamId}" scope="session"/>
 	<c:set var="teamGrade" value="${teamGrade }" scope="session"/>
 	<c:set var="teamName" value="${teamName }" scope="session"/>
 </c:if>
-<!DOCTYPE html>
 <html>
 <head>
 	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
@@ -15,8 +15,9 @@
 	<link rel="stylesheet" type="text/css" href="${root }/resources/css/bootstrap.css"/>
 	
 	<script src="${root }/resources/js/jquery.js"></script>
-	<script src="${root }/resources/js/angular.js"></script>
 	<script src="${root }/resources/js/bootstrap.js"></script>
+	
+	<script src="${root }/resources/js/teamMain.js"></script>
 	
 	<!-- 정성남 댓글 스크립트 -->
 	<script src="${root }/js/teamPage/teamLog.js"></script>
@@ -104,7 +105,7 @@
 	  	공지사항
 	  </div>
 	  <div class="col-md-5 well">
-	  	팀스케쥴
+	  	<%@include file="../teamTemplate/scheduleTemplate.jsp" %>
 	  </div>
 	  <div class="col-md-1"></div>
 	</div>
