@@ -3,10 +3,8 @@
  */
 
 function viewMatchingPlace(root,myTeamCode, otherTeamCode){
-//	alert(myTeamCode);
-//	alert(otherTeamCode);
 	var url=root + "/teamPage/viewMatchingPlace.do?myTeamCode="+myTeamCode+"&otherTeamCode="+otherTeamCode;
-	window.open(url,"","width=1000,height=500");
+	window.open(url,"","width=1000,height=600");
 }
 
 function viewMap(myTeamName, otherTeamName, myLatlng, myDistance, otherLatlng, otherDistance){
@@ -19,6 +17,7 @@ function viewMap(myTeamName, otherTeamName, myLatlng, myDistance, otherLatlng, o
 	var otherLng=otherData[1];
 	
 	var markers = [];
+	var distanceFromPlace=parseInt(myDistance)+parseInt(otherDistance);
 	
 	// 검색 결과 목록이나 마커를 클릭했을 때 장소명을 표출할 인포윈도우를 생성합니다
 	var myInfo = new daum.maps.InfoWindow({zIndex:2});
@@ -51,6 +50,12 @@ function viewMap(myTeamName, otherTeamName, myLatlng, myDistance, otherLatlng, o
 	    position: otherPosition,
 	});
 	
+	var options = {
+		    location : new daum.maps.LatLng(centerLat, centerLng),
+		    sort : daum.maps.services.SortBy.DISTANCE, 
+		    sort : daum.maps.services.SortBy.POPULARITY
+	};
+
 	
 	windowInfo(myMarker, "나의 팀 ", myInfo);
 	windowInfo(otherMarker, "상대 팀 ", otherInfo);
@@ -82,7 +87,7 @@ function viewMap(myTeamName, otherTeamName, myLatlng, myDistance, otherLatlng, o
 	    strokeOpacity: 0.3, // 선의 불투명도 입니다 1에서 0 사이의 값이며 0에 가까울수록 투명합니다
 	    fillColor: '#CC3D3D', // 채우기 색깔입니다
 	    fillOpacity: 0.1  // 채우기 불투명도 입니다   
-	}); 
+	});
 	
 	otherCircle.setMap(map);
 	myCircle.setMap(map);
@@ -93,13 +98,21 @@ function viewMap(myTeamName, otherTeamName, myLatlng, myDistance, otherLatlng, o
 	
 	// 장소 검색 객체를 생성합니다
 	var ps = new daum.maps.services.Places();
-	
-	// 키워드로 장소를 검색합니다
-	searchPlaces("경기장");
 
+	$("#stadium").bind("click",function(){
+		searchPlaces("경기장");
+	});
+	
+	$("#university").bind("click",function(){
+		searchPlaces("대학교");
+	});
+
+	$("#highSchool").bind("click",function(){
+		searchPlaces("고등학교");
+	});
+	
 	// 키워드 검색을 요청하는 함수입니다
 	function searchPlaces(placeName) {
-
 	    var keyword = placeName;
 
 	    if (!keyword.replace(/^\s+|\s+$/g, '')) {
@@ -108,8 +121,9 @@ function viewMap(myTeamName, otherTeamName, myLatlng, myDistance, otherLatlng, o
 	    }
 
 	    // 장소검색 객체를 통해 키워드로 장소검색을 요청합니다
-	    ps.keywordSearch( keyword, placesSearchCB); 
+	    ps.keywordSearch( keyword, placesSearchCB, options); 
 	}
+	
 	
 	// 장소검색이 완료됐을 때 호출되는 콜백함수 입니다
 	function placesSearchCB(status, data, pagination) {
@@ -152,37 +166,47 @@ function viewMap(myTeamName, otherTeamName, myLatlng, myDistance, otherLatlng, o
 	    
 	    for ( var i=0; i<places.length; i++ ) {
 
-	        // 마커를 생성하고 지도에 표시합니다
-	        var placePosition = new daum.maps.LatLng(places[i].latitude, places[i].longitude),
-	            marker = addMarker(placePosition, i), 
-	            itemEl = getListItem(i, places[i], marker); // 검색 결과 항목 Element를 생성합니다
+//	    	alert(distanceFromPlace);
+	    	var distance=parseInt(Math.sqrt(Math.pow((places[i].latitude-centerLat),2)+Math.pow((places[i].longitude-centerLng),2))*100000);
+	    	if(distance<distanceFromPlace){
+	    		 // 마커를 생성하고 지도에 표시합니다
+		        var placePosition = new daum.maps.LatLng(places[i].latitude, places[i].longitude),
+		            marker = addMarker(placePosition, i), 
+		            itemEl = getListItem(i, places[i], marker); // 검색 결과 항목 Element를 생성합니다
 
-	        // 검색된 장소 위치를 기준으로 지도 범위를 재설정하기위해
-	        // LatLngBounds 객체에 좌표를 추가합니다
-//	        bounds.extend(placePosition);
+		        // 검색된 장소 위치를 기준으로 지도 범위를 재설정하기위해
+		        // LatLngBounds 객체에 좌표를 추가합니다
+//		        bounds.extend(placePosition);
 
-	        // 마커와 검색결과 항목에 mouseover 했을때
-	        // 해당 장소에 인포윈도우에 장소명을 표시합니다
-	        // mouseout 했을 때는 인포윈도우를 닫습니다
-	        (function(marker, title) {
-	            daum.maps.event.addListener(marker, 'mouseover', function() {
-	                displayInfowindow(marker, title);
-	            });
+		        // 마커와 검색결과 항목에 mouseover 했을때
+		        // 해당 장소에 인포윈도우에 장소명을 표시합니다
+		        // mouseout 했을 때는 인포윈도우를 닫습니다
+		        (function(marker, title) {
+		            daum.maps.event.addListener(marker, 'mouseover', function() {
+		                displayInfowindow(marker, title);
+		            });
 
-	            daum.maps.event.addListener(marker, 'mouseout', function() {
-	                infowindow.close();
-	            });
+		            daum.maps.event.addListener(marker, 'mouseout', function() {
+		                infowindow.close();
+		            });
 //
-//	            itemEl.onmouseover =  function () {
-//	                displayInfowindow(marker, title);
-//	            };
+//		            itemEl.onmouseover =  function () {
+//		                displayInfowindow(marker, title);
+//		            };
 //
-//	            itemEl.onmouseout =  function () {
-//	                infowindow.close();
-//	            };
-	        })(marker, places[i].title);
+//		            itemEl.onmouseout =  function () {
+//		                infowindow.close();
+//		            };
+		            
 
-	        fragment.appendChild(itemEl);
+		            itemEl.onclick=function(){
+			           map.setCenter(marker.getPosition());
+			        };
+		        })(marker, places[i].title);
+
+		        fragment.appendChild(itemEl);
+	    	}
+	       
 	    }
 
 	    // 검색결과 항목들을 검색결과 목록 Elemnet에 추가합니다

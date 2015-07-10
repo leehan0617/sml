@@ -15,11 +15,15 @@
 <body onload="viewMap('${myTeamName }','${otherTeamName}','${myMatchingDto.matchingLatlng }','${myMatchingDto.matchingDistance }','${otherMatchingDto.matchingLatlng }','${otherMatchingDto.matchingDistance }')">
 	<div id="map" style="width:100%;height:450px;position:relative;overflow:hidden;"></div>
 
-    <div id="menu_wrap" class="bg_white">
+    <div style="margin-bottom: 120px" id="menu_wrap" class="bg_white">
         <hr>
         <ul id="placesList" style="margin-left:-50px;"></ul>
         <div id="pagination"></div>
     </div>
+    <br/><br/>
+    <label>경기장 타입 : </label><input id="stadium" type="button" value="경기장"><input id="university" type="button" value="대학교"><input id="highSchool" type="button" value="고등학교">
+	<br/><br/>
+	
 	<div style="text-align: center;"><input type="button" value="확인" onclick="closeMap()"></div>
 </body>
 </html>
