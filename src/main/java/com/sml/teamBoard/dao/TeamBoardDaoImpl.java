@@ -26,7 +26,7 @@ public class TeamBoardDaoImpl implements TeamBoardDao{
 	@Override
 	public int getBoardCount(String teamName) {
 		logger.info("####getBoardCount");
-		return sqlSession.selectOne("team.dao.TeamMapper.getBoardCount",teamName);
+		return sqlSession.selectOne("teamBoard.dao.TeamBoardMapper.getBoardCount",teamName);
 	}
 
 	/**
@@ -37,7 +37,7 @@ public class TeamBoardDaoImpl implements TeamBoardDao{
 	 */
 	@Override
 	public TeamBoardDto getBoardDto(int boardNumber) {
-		return sqlSession.selectOne("team.dao.TeamMapper.getBoardDto", boardNumber);
+		return sqlSession.selectOne("teamBoard.dao.TeamBoardMapper.getBoardDto", boardNumber);
 	}
 
 	/**
@@ -48,7 +48,7 @@ public class TeamBoardDaoImpl implements TeamBoardDao{
 	 */
 	@Override
 	public int writeTeamBoard(TeamBoardDto board) {
-		return sqlSession.insert("team.dao.TeamMapper.writeTeamBoard",board);
+		return sqlSession.insert("teamBoard.dao.TeamBoardMapper.writeTeamBoard",board);
 	}
 
 	/**
@@ -60,7 +60,7 @@ public class TeamBoardDaoImpl implements TeamBoardDao{
 	
 	@Override
 	public int deleteTeamBoard(int boardNumber) {
-		return sqlSession.delete("team.dao.TeamMapper.deleteTeamBoard", boardNumber);
+		return sqlSession.delete("teamBoard.dao.TeamBoardMapper.deleteTeamBoard", boardNumber);
 	}
 
 	/**
@@ -71,7 +71,7 @@ public class TeamBoardDaoImpl implements TeamBoardDao{
 	 */
 	@Override
 	public int updateTeamBoard(TeamBoardDto board) {
-		return sqlSession.update("team.dao.TeamMapper.updateTeamBoard", board);
+		return sqlSession.update("teamBoard.dao.TeamBoardMapper.updateTeamBoard", board);
 	}
 	
 	/**
@@ -88,7 +88,7 @@ public class TeamBoardDaoImpl implements TeamBoardDao{
 		map.put("startRow", startRow);
 		map.put("endRow", endRow);
 		
-		return sqlSession.selectList("team.dao.TeamMapper.viewTeamBoardList" , map);
+		return sqlSession.selectList("teamBoard.dao.TeamBoardMapper.viewTeamBoardList" , map);
 	}
 	
 	/**
@@ -99,6 +99,6 @@ public class TeamBoardDaoImpl implements TeamBoardDao{
 	 */
 	@Override
 	public TeamDto getTeamInfo(String teamName) {
-		return sqlSession.selectOne("team.dao.TeamMapper.getTeamInfo",teamName);
+		return sqlSession.selectOne("teamBoard.dao.TeamBoardMapper.getTeamInfo",teamName);
 	}
 }

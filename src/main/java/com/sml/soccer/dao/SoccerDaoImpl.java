@@ -10,7 +10,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import com.sml.common.dto.CommonBoardDto;
-import com.sml.record.dto.RecordDto;
 import com.sml.team.dto.TeamDto;
 
 @Component

@@ -22,7 +22,7 @@
 		 		var schedule_object =
 		 				{
 		 					title:obj.scheduleDtoList[i].scheduleTitle,
-		 					url:obj.scheduleDtoList[i].scheduleNumber,
+		 					//url:obj.scheduleDtoList[i].scheduleNumber,
 		 					start: obj.scheduleDtoList[i].startDate,
 		 					end: obj.scheduleDtoList[i].endDate,
 		 				};
@@ -43,15 +43,7 @@
 			dayNamesShort: ['일','월','화','수','목','금','토'],
 			editable: false,
 			eventLimit: true,
-			events:events_array,
- 	 		eventClick: function(event) {
- 	 		   if (event.url) {
- 	 			   var scheduleNumber=event.url;
- 	 			   var url="${root}/teamPage/ScheduleContent.do?scheduleNumber="+scheduleNumber;
- 	 	            window.open(url,"","width=400 height=400");
- 	 	            return false;
- 	 	        }
-			}  
+			events:events_array
 		}); 
 });
 </script>
