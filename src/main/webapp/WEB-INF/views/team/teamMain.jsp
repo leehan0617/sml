@@ -21,7 +21,9 @@
 	
 	<!-- 정성남 댓글 스크립트 -->
 	<script src="${root }/js/teamPage/teamLog.js"></script>
-	<script src="${root }/js/teamPage/teamLogDelete.js"></script>	
+	<script src="${root }/js/teamPage/teamLogDelete.js"></script>
+	<script src="${root }/js/teamPage/moreTeamLog.js"></script>
+	
 	
 </head>
 <body>
@@ -143,7 +145,7 @@
 	<div class="row well">
 		<div class="col-md-1"></div>
 		<div class="col-md-10">
-			<div class="row">
+			<div class="row">					
 			<div class="col-md-2">
 				<input type="text" class="form-control" name="nickName" id="replyNickName" placeholder="닉네임">
 			</div>
@@ -159,6 +161,7 @@
 			    </div><!-- /input-group -->
 			</div>
 			</div>
+		
 			<br/>
 			<div class="col-md-10">
 				<hr/>
@@ -168,15 +171,32 @@
 					<div class="col-md-7 alert alert-success" style="padding:10px;"><span>내용</span></div>
 					<div class="col-md-2"></div>
 				</div>
-				<hr/>
-				<c:forEach var="teamLogDtoList" items="${teamLogDtoList}">
+				<hr/>			
+				
+				<div id="container" class="container" style="display:none;">
+					<div class="col-md-2 alert alert-warning" role="alert" style="padding:10px;">
+						<span id="containerNickName"></span>
+					</div>
+					
+					<div class="col-md-7 alert alert-info" role="alert" style="padding:10px;">
+						<span id="containerContent"></span>
+					</div>
+					
+					<div class="col-md-2">
+						<a class="btn btn-danger" role="button">삭제</a>
+					</div>
+				</div>				
+				
+				${startRow}
+				${endRow}				
+				<c:forEach var="teamLogDtoList" items="${teamLogDtoList}" begin="0" end="${endRow}">					
 					<div class="replyList row" id="${teamLogDtoList.replyCode}">
-						<div class="col-md-2 alert alert-warning" role="alert" style="padding:10px;">
+						<div class="col-md-2 alert alert-warning" role="alert" style="padding:10px;">							
 							<span>${teamLogDtoList.replyNickName}</span>				
 						</div>
 						<div class="col-md-1"></div>
-						<div class="col-md-7 alert alert-info" role="alert" style="padding:10px;">
-							${teamLogDtoList.replyContent}
+						<div class="col-md-7 alert alert-info" role="alert" style="padding:10px;">							
+							<span>${teamLogDtoList.replyContent}</span>
 						</div>
 						<div class="col-md-2">
 							<c:if test="${teamGrade !=null }">
@@ -184,13 +204,17 @@
 							<br/>
 							</c:if>
 						</div>			
-					</div>		
-		   		</c:forEach>
+					</div>				
+				</c:forEach>
+								   			
 			</div>
 		</div>
-		<div class="col-md-1"></div>
-	  
+		<div class="col-md-1"></div>	  
 	</div>
+	
+	<%-- <c:if test="${endPage<pageCount }">
+				<a href="javascript:moreTeamLog('${root}','${pageNumber}','${team.teamName}')">댓글 ${count}개 더보기</a>				
+	</c:if> --%>
 		
 	
 	<c:if test="${team==null}">
@@ -201,6 +225,39 @@
 	</div>
 		
 	</c:if>
+	
+	<!-- 페이지 번호 -->
+	
+	<div>
+		<c:if test="${count>0 }">
+			<c:set var="pageBlock" value="${5}"/>
+			<c:set var="pageCount" value="${count/boardSize+(count%boardSize==0 ? 0:1)}"/>
+			<fmt:parseNumber var="rs" value="${(currentPage-1)/pageBlock }" integerOnly="true"/>
+			
+			<c:set var="startPage" value="${rs*pageBlock+1 }"/>
+			<c:set var="endPage" value="${startPage+pageBlock-1 }"/>
+			
+			<c:if test="${endPage>pageCount }">
+				<c:set var="endPage" value="${pageCount }"/>
+			</c:if>
+			
+			<c:if test="${startPage>pageBlock }">
+				<a href="javascript:moreTeamLog('${root}','${startPage-pageBlock}','${team.teamName}')">[이전]</a>
+				<%-- <a href="${root }/team/teamMain.do?pageNumber=${startPage-pageBlock}&teamName=${teamName}">[이전]</a> --%>
+			</c:if>
+			
+			<c:forEach var="i" begin="${startPage}" end="${endPage}">
+				<a href="${root }/team/teamMain.do?pageNumber=${i}&teamName=${teamName}">[${i}]</a>
+			</c:forEach>
+			
+			<c:if test="${endPage<pageCount }">
+				<a href="${root }/team/teamMain.do?pageNumber=${startPage+pageBlock}&teamName=${teamName}">[다음]</a>
+			</c:if>
+		</c:if>
+	</div>
+	
+	
+	<a href="javascript:moreTeamLog('${root}','${endRow}','${team.teamName}')">댓글 ${count}개 더보기</a>
 	
 	 <div class="sign" id="sign"></div>
 	 <div class="modal fade" id="modalBoard" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">

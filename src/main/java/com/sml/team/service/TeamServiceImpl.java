@@ -116,12 +116,33 @@ public class TeamServiceImpl implements TeamService{
 		logger.info("TeamService goTeamPage");
 		Map<String,Object> map=mav.getModelMap();
 		HttpServletRequest request=(HttpServletRequest) map.get("request");
+		
+		String pageNumber=request.getParameter("pageNumber");
+		System.out.println("pageNumber"+pageNumber);
+		if(pageNumber==null) pageNumber="1";
+		
+		int boardSize=5;		
+		int currentPage=Integer.parseInt(pageNumber);
+		int startRow=(currentPage-1)*boardSize+1;
+		int endRow=currentPage*boardSize;
+		
+		int count=dao.getTeamLogCount();
+		logger.info("count:"+count);
+		logger.info("currentPage"+currentPage);
+		logger.info("startRow"+startRow);
+		logger.info("endRow"+endRow);
+		
 		String teamName=request.getParameter("teamName");
-		logger.info(request.getParameter("teamName"));
+		//logger.info(request.getParameter("teamName"));
 		TeamDto team=dao.getTeamInfo(teamName);
 		
-		int teamCode=team.getTeamCode();				
-		List<TeamLogDto> teamLogDtoList=dao.teamLogDtoList(teamCode);
+		int teamCode=team.getTeamCode();
+		System.out.println("teamCode:"+teamCode);
+		
+		List<TeamLogDto> teamLogDtoList=null;
+		if(count>0){
+			teamLogDtoList=dao.teamLogDtoList(teamCode,startRow,endRow);
+		}		
 				
 		String getLeagueCode=(leagueDao.getJoinLeagueCode(teamCode));
 		if(getLeagueCode==null){
@@ -137,8 +158,14 @@ public class TeamServiceImpl implements TeamService{
 		//System.out.println("leagueCode:" + leagueCode);
 		
 		
+		mav.addObject("count",count);		
+		mav.addObject("boardSize",boardSize);
+		mav.addObject("currentPage",currentPage);
 		mav.addObject("teamLogDtoList",teamLogDtoList);	
 		mav.addObject("team",team);
+		mav.addObject("startRow",startRow);
+		mav.addObject("endRow",endRow);
+		mav.addObject("boardSize",boardSize);			
 		mav.addObject("teamName" , teamName);
 		mav.addObject("leagueDto" , leagueDto);		
 		mav.setViewName("team/teamMain");
@@ -440,10 +467,7 @@ public class TeamServiceImpl implements TeamService{
 		String replyPassword=request.getParameter("replyPassword");
 		
 		int check=dao.addTeamLog(teamLogDto);		
-		int replyCode=teamLogDto.getReplyCode();
-		//System.out.println("replyCodeWrite:"+replyCode);		
 		
-		mav.addObject("replyCode",replyCode);
 		mav.addObject("teamName",teamName);
 		mav.addObject("replyNickName",replyNickName);
 		mav.addObject("replyPassword",replyPassword);		
@@ -481,7 +505,6 @@ public class TeamServiceImpl implements TeamService{
 		mav.addObject("replyPassword",replyPassword);
 		mav.setViewName("team/teamMain");
 	}
-
 	/**
 	 * @name : updateTeamInfo
 	 * @date : 2015. 7. 10.

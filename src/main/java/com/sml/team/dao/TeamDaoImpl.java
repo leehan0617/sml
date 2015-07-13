@@ -217,6 +217,17 @@ public class TeamDaoImpl implements TeamDao{
 		
 		return sqlSession.insert("team.dao.TeamMapper.addTeamLog",teamLogDto);
 	}
+	
+	/**
+	 * @함수명: getTeamLogCount
+	 * @작성일: 2015. 7. 9.
+	 * @작성자: 정성남
+	 * @설명 :
+	 */
+	@Override
+	public int getTeamLogCount() {		
+		return sqlSession.selectOne("team.dao.TeamMapper.getTeamLogCount");
+	}
 
 	/**
 	 * @함수명: teamLogList
@@ -225,9 +236,13 @@ public class TeamDaoImpl implements TeamDao{
 	 * @설명 :
 	 */
 	@Override
-	public List<TeamLogDto> teamLogDtoList(int teamCode) {
+	public List<TeamLogDto> teamLogDtoList(int teamCode,int startRow,int endRow) {
+		HashMap<String,Object> hMap=new HashMap<String,Object>();
+		hMap.put("teamCode", teamCode);
+		hMap.put("startRow", startRow);
+		hMap.put("endRow", endRow);
 		
-		return sqlSession.selectList("team.dao.TeamMapper.teamLogDtoList",teamCode);
+		return sqlSession.selectList("team.dao.TeamMapper.teamLogDtoList",hMap);
 	}
 
 	/**
