@@ -509,4 +509,21 @@ public class TeamServiceImpl implements TeamService{
 		//System.out.println(replyList.size());
 		mav.addObject("replyList" ,replyList);
 	}
+
+	@Override
+	public void replyMoreRead(ModelAndView mav) {
+		Map<String , Object> map = mav.getModel();
+		HttpServletRequest request = (HttpServletRequest) map.get("request");
+		int teamCode = Integer.parseInt(request.getParameter("teamCode"));
+		String pageNumber = request.getParameter("replyPageNumber");
+		
+		if(pageNumber.equals("")) pageNumber = "1";
+		
+		int pn = Integer.parseInt(pageNumber);
+		mav.addObject("replyPageNumber" , pn+1);
+		mav.addObject("teamCode" , teamCode);
+		
+		List<TeamLogDto> replyList = dao.getMoreReplyList(teamCode , pn*5);
+		mav.addObject("replyList" , replyList);
+	}
 }

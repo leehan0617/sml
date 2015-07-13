@@ -201,8 +201,7 @@
 			</div><!-- /.row -->
 			
 			
-			<div class="alert alert-warning" role="alert"><p class="text-center">더보기</p></div>
-
+			<div class="alert alert-warning" role="alert" onclick="moreReadReply('${root}','${team.teamCode }' , '${replyPageNumber }')"><p class="text-center">더보기</p></div>
 		</div>
 		<div class="col-md-1"></div>
 	</div>
@@ -236,6 +235,20 @@
 					$("#replyNickName").val("");
 					$("#replyContent").val("");
 					$("#replyPassword").val("");
+				}
+			});
+		}
+		
+		function moreReadReply(root,teamCode,replyPageNumber){
+			alert(root+","+teamCode);
+			var addr = root+"/replyMoreRead?teamCode="+teamCode+"&replyPageNumber="+replyPageNumber;
+			
+			$.ajax({
+				type:"get",
+				url:addr,
+				success:function(data){
+					$(".alert-warning").remove();
+					$(".replyList").append(data);
 				}
 			});
 		}

@@ -309,4 +309,14 @@ public class TeamController {
 		service.replyWrite(mav);
 		return mav;
 	}
+	
+	@RequestMapping(value="/replyMoreRead" , method=RequestMethod.GET)
+	public ModelAndView replyMoreRead(HttpServletRequest request){
+		logger.info("TeamController replyMoreRead");
+		ModelAndView mav = new ModelAndView("teamTemplate/teamReplyReadTemplate");
+		mav.addObject("request" , request);
+		
+		service.replyMoreRead(mav);
+		return mav;
+	}
 }

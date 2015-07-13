@@ -23,5 +23,7 @@ public interface TeamService {
 	public void replyWrite(ModelAndView mav);
 
 	public void getReplyList(ModelAndView mav);
+
+	public void replyMoreRead(ModelAndView mav);
 	
 }

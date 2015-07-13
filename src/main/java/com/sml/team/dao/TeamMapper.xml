@@ -168,4 +168,14 @@
 		select * from teamLog l , team t where t.teamName=#{teamName} and t.teamCode = 
 		(select teamCode from team where teamName = #{teamName}) and t.teamCode = l.teamCode
 	</select>
+	
+	<select id="getMoreReplyList" parameterType="java.util.HashMap" resultType="com.sml.team.dto.TeamLogDto">
+		<![CDATA[
+			select * from 
+				(select rownum rnum,a.* from
+					(select * from teamLog where teamCode=#{teamCode} order by replyCode desc)a)
+				where rnum>=#{startRow} and rnum<=#{endRow}
+
+		]]>
+	</select>
 </mapper>
