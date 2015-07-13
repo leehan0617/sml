@@ -6,6 +6,8 @@
 <html>
 <head>
 	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+	<script src="${root}/js/jquery/jquery.js"></script>
+	<script src="${root}/js/admin/admin.js"></script>
 	<script src="${root}/js/external/jquery-1.11.3.min.js"></script>	
 	<link rel="stylesheet" href="http://code.jquery.com/ui/1.8.18/themes/base/jquery-ui.css" type="text/css" />
 	<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
@@ -22,8 +24,8 @@
 	});
 	</script>	
 </head>
-<body>	
-	<form class="" action="${root}/admin/leagueUpdate.do" method="post">
+<body onload="updateLeague('${leagueDto.leagueTime}','${leagueDto.leaguePlace}')">	
+	<form class="" action="${root}/admin/leagueUpdate.do" method="post" onsubmit="updateOkLeague(this)">
 	<input type="hidden" name="leagueCode" value="${leagueDto.leagueCode}"/>
 	<h2>SML KOREA</h2>
 	<div align="center">
@@ -53,12 +55,31 @@
 	<br/><br/>
 	
 	<span>리그팀수</span>
-	<input type="text" name="leagueTeamNumber" value="${leagueDto.leagueTeamNumber}">	
+	<input type="text" name="leagueTeamNumberValue" value="8" disabled="disabled">
+	<input type="hidden" name="leagueTeamNumber" value="8">
 	<br/><br/>
 	
 	<span>개최지</span>
 	
-	<input type="text" name="leagueRegion" value="${leagueDto.leagueRegion}"></input>	
+	<select id="sido">
+		<option>서울</option>
+		<option>충남</option>
+		<option>부산</option>
+		<option>울산</option>
+		<option>인천</option>
+		<option>광주</option>
+		<option>제주</option>
+		<option>대전</option>
+		<option>대구</option>
+		<option>강원</option>
+		<option>경북</option>
+		<option>전북</option>
+		<option>전남</option>
+		<option>경기</option>
+		<option>경남</option>
+	</select>
+	
+	<input type="hidden" name="leagueRegion"></input>	
 	
 	<br/><br/>
 	
@@ -82,9 +103,28 @@
 	<br/><br/>
 	
 	<span>리그시간</span>
-	<input type="text" name="leagueTime" type="text" value="${leagueDto.leagueTime}"/>
-	
+	<span>10:00</span>
+	<input type="checkbox" name="time" value="10:00">
+	<span>13:00</span>
+	<input type="checkbox" name="time" value="13:00">
+	<span>16:00</span>
+	<input type="checkbox" name="time" value="16:00">
+	<span>20:00</span>
+	<input type="checkbox" name="time" value="20:00">
+	<input type="hidden" name="leagueTime">
 	<br/><br/>
+	
+	<span>리그 경기장</span>
+	<br/>
+	<input type="text" name="place1">
+	<br/>
+	<input type="text" name="place2">
+	<br/>
+	<input type="text" name="place3">
+	<br/>
+	<input name="updatePlace" type="button" value="경기장 찾기">
+	<br/><br/>
+	<input type="hidden" name="leaguePlace">
 	
 	<div>
 			<label>파일명</label> 

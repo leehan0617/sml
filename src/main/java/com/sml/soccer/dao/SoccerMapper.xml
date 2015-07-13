@@ -51,6 +51,6 @@
 	</select>
 	
 	<select id="cards" resultType="java.util.HashMap">
-		select MEMBERREGION from teammember
+		select * from teammember
 	</select>
  </mapper>

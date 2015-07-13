@@ -1,78 +1,106 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-    <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-    <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
-	<c:set var="root" value="${pageContext.request.contextPath }"/>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<c:set var="root" value="${pageContext.request.contextPath }"/>
+ 
 <!DOCTYPE html>
-<html>
-<head>
-<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>Insert title here</title>
-</head>
-<body>
-	<div>
-		<a href="${root}/start.jsp"><img alt="logo" src=""></a>
-		<a href="${root}/start.jsp">SML Korea</a>
-	</div>
+<html lang="ko">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- 위 3개의 메타 태그는 *반드시* head 태그의 처음에 와야합니다; 어떤 다른 콘텐츠들은 반드시 이 태그들 *다음에* 와야 합니다 -->
+    
+    <meta name="description" content="">
+    <meta name="author" content="">   
+    <link rel="icon" href="${root }/resources/images/android@2x.png"/>
+    
+    <title>memberInfo</title>
+    
+   <!-- Bootstrap core CSS -->
+    <link rel="stylesheet" type="text/css" href="${root }/resources/css/bootstrap.css"/>
 
-	<c:if test="${teamGrade != null }">
-		<li>${teamId }님</li>
-		<li><a href="${root }/teamPage/teamPageMain.do?teamName=${teamName}">메인</a></li>
-		<li><a href="${root }/teamPage/viewTeamBoard.do?teamName=${teamName}">팀 공지사항</a></li>
-		<li><a href="${root }/teamPage/teamMemberInfo.do?teamName=${teamName}">팀원소개</a></li>
-		<li><a href="${root }/teamPage/viewTeamRecord.do?teamName=${teamName}">팀 기록</a></li>
-		<li><a href="${root }/viewSchedule.do">팀 스케쥴</a></li>
-		<li>----------</li>
-		<li><a href="${root }/teamPage/manageTeamBoard.do?teamName=${teamName}">공지사항관리</a></li>
-		<li><a href="${root }/teamPage/manageTeamMember.do?teamName=${teamName}">팀원관리</a></li>
-		<li><a href="${root }/manageTeamSchedule.do">스케쥴관리</a></li>
-		<li><a href="${root }/startMatching.do">매칭관리</a></li>
-		<li>-----------</li>
-		<li><a href="${root}/teamPage/logout.do?teamId='${teamId}'">로그아웃</a></li>
-  	</c:if>
-  	
-  	<c:if test="${teamGrade == null }">
-		<li><a href="${root }/teamPage/teamPageMain.do?teamName=${teamName}">메인</a></li>
-		<li><a href="${root }/teamPage/viewTeamBoard.do?teamName=${teamName}">팀 공지사항</a></li>
-		<li><a href="${root }/teamPage/teamMemberInfo.do?teamName=${teamName}">팀원소개</a></li>
-		<li><a href="${root }/teamPage/viewTeamRecord.do?teamName=${teamName}">팀 기록</a></li>
-		<li><a href="${root }/viewSchedule.do">팀 스케쥴</a></li>
-	</c:if>
+    <!-- Custom styles for this template -->     
+  
+  	<script src="${root }/resources/js/jquery.js"></script> 	
+ 	<script src="${root }/resources/js/bootstrap.js"></script>
+  	<script src="${root }/resources/js/jquery-ui.js"></script>  
+    
+    <!-- Placed at the end of the document so the pages load faster -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
+    
+  </head>
+  <body>
+      <nav class="navbar navbar-inverse navbar-fixed-top">
+      <div class="container-fluid">
+        <div class="navbar-header">        
+          <a class="navbar-brand" href="#">SML Korea</a>
+        </div>
+        <div id="navbar" class="navbar-collapse collapse">
+          <ul class="nav navbar-nav navbar-right">
+            <li><a href="#">LogIn</a></li>
+            <li><a href="#">Settings</a></li>
+            <li><a href="#">Profile</a></li>
+            <li><a href="#">Help</a></li>
+          </ul>
+         
+        </div>
+      </div>
+    </nav>
 	
-	<h1>팀원 소개</h1>
-	<br/>
-	<div>
-		<span>번호</span>
-		<span>이름</span>
-		<span>생년월일</span>
-		<span>지역</span>
-		<span>이메일</span>
-		<span>전화번호</span>
-		<span>성별</span>
-	</div>
-	<br/>
-	<c:set var="count" value="${count}"></c:set>
-	<c:set var="boardSize" value="${boardSize}"></c:set>
-	<c:set var="blockSize" value="${blockSize}"></c:set>
-	<c:set var="blockCount" value="${blockCount}"></c:set>
-	<fmt:parseNumber var="rs" value="${(currentPage-1)/blockSize}" integerOnly="true"></fmt:parseNumber>
 	
-	<c:set var="startBlock" value="${rs*blockSize+1 }"></c:set>
-	<c:set var="endBlock" value="${startBlock+blockSize-1}"></c:set>
-	
-	<c:forEach var="member" items="${teamMemberList}">
-		<div>
-			<span>${member.rnum}</span>
-			<span>${member.memberName}</span>
-			<span>${member.memberBirth}</span>
-			<span>${member.memberRegion}</span>
-			<span>${member.memberEmail}</span>
-			<span>${member.memberPhone}</span>
-			<span>${member.memberGender}</span>
-		</div>
-	</c:forEach>
-	
-	<c:if test="${startBlock>blockSize}">
+    <div class="container-fluid">    	
+      <div class="row">
+      	  <br/><br/><br/><br/>
+      	  <div style="background-color: gold; height: 100px; width: 100%;">
+      	  <a href=""><img alt="logo" src="${root }/resources/images/android@2x.png" width="200" height="150"></a>   	  
+       	  <label>${teamName}</label>
+       	  </div>
+       	  <br/><br/>  	
+          <h2 class="sub-header">MEMBER LIST</h2>
+          
+          <div class="table-responsive">
+            <table class="table table-striped">
+              <thead>
+                <tr>
+                  <th>번호</th>
+                  <th>이름</th>
+                  <th>생년월일</th>
+                  <th>지역</th>
+                  <th>이메일</th>
+                  <th>전화번호</th>
+                  <th>성별</th>
+                </tr>               
+              </thead>
+              <tbody>
+              	<c:forEach var="member" items="${teamMemberList}">
+					<tr>
+						<td>${member.rnum}</td>
+						<td>${member.memberName}</td>
+						<td>${member.memberBirth}</td>
+						<td>${member.memberRegion}</td>
+						<td>${member.memberEmail}</td>
+						<td>${member.memberPhone}</td>
+						<td>${member.memberGender}</td>
+				    </tr>
+				</c:forEach>
+             </tbody>
+            </table>               
+          </div>        
+      </div>        
+      </div> 	
+		<div id="navbar" class="navbar-collapse collapse">
+          <form class="navbar-form navbar-right">
+           
+            <div class="form-group">
+              <input type="text" placeholder="검색어를 입력하세요" class="form-control">
+            </div>
+              <button type="submit" class="btn btn-success">Sign in</button>
+          </form>
+        </div>
+    <div align="center">
+    
+    <c:if test="${startBlock>blockSize}">
 		<a href="${root }/teamPage/teamMemberInfo.do?teamName=${teamName}&currentPage=${startBlock-blockSize}">[이전]</a>
 	</c:if>
 	
@@ -88,6 +116,6 @@
 		<a href="${root }/teamPage/teamMemberInfo.do?teamName=${teamName}&currentPage=${startBlock+blockSize}">[다음]</a>
 	</c:if>
 	
-	
-</body>
+	</div>
+  </body>
 </html>

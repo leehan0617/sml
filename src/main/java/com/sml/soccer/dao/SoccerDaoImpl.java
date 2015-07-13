@@ -112,7 +112,7 @@ public class SoccerDaoImpl implements SoccerDao {
 	 * @함수명:map
 	 * @작성일:2015. 7. 10.
 	 * @작성자:조영석
-	 * @설명문:
+	 * @설명문:지역별 통계 데이터베이스 열람
 	 */
 	@Override
 	public  List<MemberDto> cards() {;

@@ -302,10 +302,16 @@ public class SoccerServiceImpl implements SoccerService {
 	 * @함수명:cards
 	 * @작성일:2015. 7. 10.
 	 * @작성자:조영석
-	 * @설명문:
+	 * @설명문:지역별 통계 서비스메소드
 	 */
 	@Override
-	public void cards(ModelAndView mav) {;
+	public void cards(ModelAndView mav) {
+		Map<String,Object> map=mav.getModelMap();
+		HttpServletRequest request=(HttpServletRequest) map.get("request");	
+		
+		String legion=request.getParameter("legion");
+		String age=request.getParameter("age");
+		
 	    List<MemberDto> cardsList=soccerDao.cards();
 		
 	    JSONArray jsonArray=JSONArray.fromObject(cardsList);
@@ -316,8 +322,13 @@ public class SoccerServiceImpl implements SoccerService {
 		
 		JSONObject jsonObject=JSONObject.fromObject(Map);
 //		System.out.println("json-"+jsonObject);
-
+		
 		mav.addObject("jsonObject",jsonObject);
-		mav.setViewName("static/chart");
+		
+		if(legion!=null){
+			mav.setViewName("static/legionChart");
+		}else if(age!=null){
+			mav.setViewName("static/ageChart");
+		}
 	}	
 }
