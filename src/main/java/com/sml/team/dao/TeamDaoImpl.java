@@ -268,5 +268,36 @@ public class TeamDaoImpl implements TeamDao{
 	public TeamDto getTeamInfo(int teamCode) {
 		return sqlSession.selectOne("team.dao.TeamMapper.getTeamCodeInfo",teamCode);
 	}
-	
+
+	/**
+	 * @name : updateHomeGround
+	 * @date : 2015. 7. 10.
+	 * @author : 변형린
+	 * @description : 홈구장 수정
+	 */
+	@Override
+	public int updateHomeGround(String homeGround, int teamCode) {
+		HashMap<String, Object> map=new HashMap<String, Object>();
+		map.put("homeGround", homeGround);
+		map.put("teamCode", teamCode);
+		
+		return sqlSession.update("team.dao.TeamMapper.updateHomeGround", map);
+	}
+
+	/**
+	 * @name : updateTeamInfo
+	 * @date : 2015. 7. 10.
+	 * @author : 변형린
+	 * @description : 팀정보 수정
+	 */
+	@Override
+	public int updateTeamInfo(String teamPassword, String teamName, String sportType, int teamCode) {
+		HashMap<String, Object> map=new HashMap<String, Object>();
+		map.put("teamPassword", teamPassword);
+		map.put("teamName", teamName);
+		map.put("sportType", sportType);
+		map.put("teamCode", teamCode);
+		return sqlSession.update("team.dao.TeamMapper.updateTeamInfo", map);
+	}
+		
 }

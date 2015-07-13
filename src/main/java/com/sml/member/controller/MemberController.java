@@ -51,4 +51,54 @@ public class MemberController {
 		service.teamMemberInfo(mav);
 		return mav;
 	}
+	
+	/**
+	 * 
+	 * @함수명 : myInfoPage
+	 * @작성일 : 2015. 7. 10.
+	 * @작성자 : 변형린
+	 * @설명   : 팀페이지에서 회원수정 페이지로 이동
+	 */										
+	@RequestMapping(value="/member/myInfoPage.do" , method=RequestMethod.GET)			
+	public ModelAndView myInfoPage(HttpServletRequest request){
+		logger.info("MemberController myInfoPage");		
+		ModelAndView mav = new ModelAndView();
+		mav.addObject("request",request);
+		service.myInfoPage(mav);
+		return mav;
+	}
+	
+	/**
+	 * 
+	 * @함수명 : updateMemberInfo
+	 * @작성일 : 2015. 7. 10.
+	 * @작성자 : 변형린
+	 * @설명   : 팀페이지에서 회원수정 페이지로 이동
+	 */										
+	@RequestMapping(value="/member/updateMemberInfo.do" , method=RequestMethod.GET)			
+	public ModelAndView updateMemberInfo(HttpServletRequest request){
+		logger.info("MemberController updateMemberInfo");		
+		ModelAndView mav = new ModelAndView();
+		mav.addObject("request",request);
+		service.updateMemberInfo(mav);
+		return mav;
+	}
+	
+	
+	/**
+	 * 
+	 * @함수명 : updateMemberInfo
+	 * @작성일 : 2015. 7. 10.
+	 * @작성자 : 변형린
+	 * @설명   : 회원정보 수정
+	 */										
+	@RequestMapping(value="/member/updateMemberInfoOk.do" , method=RequestMethod.POST)			
+	public ModelAndView updateMemberInfoOk(HttpServletRequest request, MemberDto memberDto){
+		logger.info("MemberController updateMemberInfoOk");		
+		ModelAndView mav = new ModelAndView();
+		mav.addObject("request",request);
+		mav.addObject("memberDto", memberDto);
+		service.updateMemberInfoOk(mav);
+		return mav;
+	}
 }

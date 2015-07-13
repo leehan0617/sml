@@ -23,4 +23,13 @@
  	<insert id="applicate" parameterType="java.util.HashMap">
  		insert into LEAGUEJOIN values(#{leagueCode},#{teamCode})
  	</insert>
+ 	
+ 	<select id="getJoinLeagueCode" parameterType="int" resultType="String">
+ 		select NVL(LEAGUECODE, 0) from LEAGUEJOIN where  teamCode=#{teamCode}
+ 	</select>
+ 	
+ 	<select id="getLeagueInfo" parameterType="int" resultType="com.sml.league.dto.LeagueDto">
+ 		select * from leagueInfo where leagueCode=#{leagueCode}
+ 	</select>
+ 	
  </mapper>

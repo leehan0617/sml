@@ -18,4 +18,7 @@ public interface TeamService {
 	public void updateTeamEmblemOk(ModelAndView mav);
 	public void addTeamLog(ModelAndView mav);
 	public void teamLogDelete(ModelAndView mav);
+	public void updateTeamInfo(ModelAndView mav);
+	public void updateTeamInfoOk(ModelAndView mav);
+	
 }

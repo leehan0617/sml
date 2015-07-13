@@ -21,7 +21,8 @@
 	
 	<!-- 정성남 댓글 스크립트 -->
 	<script src="${root }/js/teamPage/teamLog.js"></script>
-	<script src="${root }/js/teamPage/teamLogDelete.js"></script>
+	<script src="${root }/js/teamPage/teamLogDelete.js"></script>	
+	
 </head>
 <body>
 	<div class="row">
@@ -35,8 +36,8 @@
 				    빠른이동<span class="caret"></span>
 				  </button>
 				  <ul class="dropdown-menu" role="menu">
-			    	  <c:if test="${teamGrade != null }">
-						<li><a href="#">${teamId }님</a></li>
+			    	  <c:if test="${teamGrade != null }">	    
+						<li><a href="${root }/member/myInfoPage.do?teamName=${teamName }">${teamId }님</a></li>
 						<li><a href="${root }/teamPage/viewTeamBoard.do?teamName=${team.teamName}">팀 공지사항</a></li>
 						<li><a href="${root }/teamPage/teamMemberInfo.do?teamName=${team.teamName}">팀원소개</a></li>
 						<li><a href="${root }/teamPage/teamScheduleEdit.do?teamName=${teamName}">팀 스케쥴</a></li>
@@ -74,7 +75,9 @@
 	  </div>
 	  <div class="col-md-4">
 	  	<br/><br/><br/><br/><br/><br/>
-		<h3>${team.teamName}</h3>
+		<h3>${team.teamName}
+				
+		</h3>
 	  </div>
 	  <div class="col-md-1"></div>
 	  <div class="col-md-3">
@@ -117,6 +120,22 @@
 	  </div>
 	  <div class="col-md-5 well">
 	  	팀 전적정보 
+	  	<br/>
+	  	<img src="${root }/img/teamImg/${team.emblem}/" alt="팀 엠블럼">
+	  	팀명 : ${team.teamName }
+	  	
+	  	<c:if test="${leagueDto==null }">
+	  		<label>참가중 리그 없음</label>
+	  	</c:if>
+	  	<br/>
+	  	
+	  	<c:if test="${leagueDto!=null }">
+	  		<label>진행중인 리그</label>
+	  		<br/>
+	  		<img src="${root }/img/leagueImg/${leagueDto.leagueImage} "/>
+	  		리그명 : ${leagueDto.leagueName }
+	  	</c:if>
+	  	
 	  </div>
 	  <div class="col-md-1"></div>
 	</div>
@@ -182,5 +201,7 @@
 	</div>
 		
 	</c:if>
+	
+	 <div class="sign" id="sign"></div>
 </body>
 </html>

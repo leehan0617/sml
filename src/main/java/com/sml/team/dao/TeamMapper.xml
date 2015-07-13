@@ -144,4 +144,12 @@
 	<select id="getTeamCodeInfo" parameterType="int" resultType="com.sml.team.dto.TeamDto">
 		select * from team where teamCode=#{teamCode}
 	</select> 
+	
+	<update	id="updateHomeGround" parameterType="java.util.HashMap">
+		update homeGround set ground=#{homeGround} where teamcode=#{teamCode}
+	</update>
+	
+	<update	id="updateTeamInfo" parameterType="java.util.HashMap">
+		update team set teamPassword=#{teamPassword}, teamName=#{teamName}, sportType=#{sportType} where teamCode=${teamCode} 
+	</update>	
 </mapper>

@@ -7,4 +7,6 @@ import com.sml.league.dto.LeagueDto;
 public interface LeagueDao {
 	public List<LeagueDto> getLeagueList(String sportType);
 	public int applicate(String teamId,int leagueCode,int leagueTeamNumber);
+	public String getJoinLeagueCode(int teamCode);
+	public LeagueDto getLeagueInfo(int leagueCode);
 }
