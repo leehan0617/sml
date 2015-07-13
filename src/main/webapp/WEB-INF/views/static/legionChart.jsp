@@ -10,17 +10,17 @@
     <script type="text/javascript">
 	var jsonData='${jsonObject}';
    	var obj=JSON.parse(jsonData);
- 		
+    /*지역별 통계*/
     var legion=new Array("서울","강원","경기","대전","대구","부산","충남","울산","인천","제주","광주","경북","전북","전남","경기","경남","세종","충북");
    	var totalCount=0;
     /*지역 카운트변수*/
     var seoulCount=0;var gangWonCount=0;var gyeonggiCount=0;var daejeonCount=0;var daeguCount=0;var busanCount=0;var chungnamCount=0;
     var ulsanCount=0;var enchanCount=0;var jaejuCount=0;var gwangjuCount=0;var kyoungbukCount=0;var jeonbukCount=0;var gyeonggiCount=0;
     var gyeonnamCount=0;var seojongCount=0;var chongbukCount=0;var jeonnamCount=0;
+    
    	 for(var i in obj.cardsList){
 		for(var j=0;j<legion.length;j++){
 			 if(obj.cardsList[i].MEMBERREGION.split(" ")[0]==legion[j]){
-				 obj.cardsList[i].MEMBERREGION;
 				 if(obj.cardsList[i].MEMBERREGION.split(" ")[0]==legion[0])seoulCount++;
 				 if(obj.cardsList[i].MEMBERREGION.split(" ")[0]==legion[1])gangWonCount++;
 				 if(obj.cardsList[i].MEMBERREGION.split(" ")[0]==legion[2])gyeonggiCount++;
@@ -44,11 +44,15 @@
 		}
    	  }
    	 
-   	   google.load("visualization", "1", {packages:["corechart"]});
+	 
+		 
+	/* 차트 구현 */		
+	   google.load("visualization", "1", {packages:["corechart"]});
        google.setOnLoadCallback(drawChart);
        function drawChart() {
          var data = google.visualization.arrayToDataTable([
            ['Task', 'Hours per Day'],
+           /*지역별 차트*/
            ['서울',seoulCount],
            ['강원',gangWonCount],
            ['경기',gyeonggiCount],
@@ -77,9 +81,11 @@
          var chart = new google.visualization.PieChart(document.getElementById('piechart_3d'));
          chart.draw(data, options);
        }
+	
     </script>
   </head>
   <body>
    <div id="piechart_3d" style="width: 900px; height: 500px;"></div>
   </body>
 </html>
+

@@ -168,7 +168,7 @@ public class SoccerController{
 	 * @함수명:cards
 	 * @작성일:2015. 7. 10.
 	 * @작성자:조영석
-	 * @설명문:통계 차트값 열람 컨트롤러
+	 * @설명문:지역별통계 차트값 열람 컨트롤러
 	 */
 	@RequestMapping(value="/static/chart.do",method=RequestMethod.GET)
 	public ModelAndView cards(HttpServletRequest request, HttpServletResponse response){
