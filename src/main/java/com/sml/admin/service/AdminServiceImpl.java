@@ -386,4 +386,15 @@ public class AdminServiceImpl implements AdminService{
 		mav.addObject("pageNumber", pageNumber);
 		mav.setViewName("admin/leagueSwitchOk");
 	}
+	
+	/**
+	 * @name : searchPlace
+	 * @date : 2015. 7. 13.
+	 * @author : 이희재
+	 * @description : 경기장 선택을 위한 페이지 이동
+	 */
+	@Override
+	public void searchPlace(ModelAndView mav) {
+		mav.setViewName("admin/searchLeaguePlace");
+	}
 }

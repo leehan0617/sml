@@ -9,15 +9,13 @@ public interface AdminService {
 	public void refereeDelete(ModelAndView mav);
 	public void refereeAccept(ModelAndView mav);
 	public void refereeSearch(ModelAndView mav);
-	
 	public void createLeague(ModelAndView mav);
-
 	public void manageLeague(ModelAndView mav);
 	public void leagueDelete(ModelAndView mav);
 	public void leagueInfo(ModelAndView mav);
 	public void leagueUpdate(ModelAndView mav);
 	public void leagueUpdateOk(ModelAndView mav);
 	public void leagueSwitch(ModelAndView mav);
-	
+	public void searchPlace(ModelAndView mav);
 
 }

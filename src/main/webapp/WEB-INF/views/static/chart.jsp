@@ -12,7 +12,7 @@
    	var obj=JSON.parse(jsonData);
  		
     var legion=new Array("서울","강원","경기","대전","대구","부산","충남","울산","인천","제주","광주","경북","전북","전남","경기","경남","세종","충북");
-   	
+   	var totalCount=0;
     /*지역 카운트변수*/
     var seoulCount=0;var gangWonCount=0;var gyeonggiCount=0;var daejeonCount=0;var daeguCount=0;var busanCount=0;var chungnamCount=0;
     var ulsanCount=0;var enchanCount=0;var jaejuCount=0;var gwangjuCount=0;var kyoungbukCount=0;var jeonbukCount=0;var gyeonggiCount=0;
@@ -39,6 +39,7 @@
 				 if(obj.cardsList[i].MEMBERREGION.split(" ")[0]==legion[15])gyeonnamCount++;
 				 if(obj.cardsList[i].MEMBERREGION.split(" ")[0]==legion[16])seojongCount++;
 				 if(obj.cardsList[i].MEMBERREGION.split(" ")[0]==legion[17])chongbukCount++; 
+				 totalCount++;
 			 }
 		}
    	  }
@@ -69,7 +70,7 @@
          ]);
 
          var options = {
-           title: 'SML Korea 회원 지역별 통계',
+           title: 'SML Korea 회원 지역별 통계'+"\t"+"("+totalCount+")",
            is3D: true,
          };
 

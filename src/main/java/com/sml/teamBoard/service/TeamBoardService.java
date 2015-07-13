@@ -11,4 +11,5 @@ public interface TeamBoardService {
 	public void deleteTeamBoard(ModelAndView mav);
 	public void updateTeamBoard(ModelAndView mav);
 	public void updateOkTeamBoard(ModelAndView mav);
+	public void teamBoardPaging(ModelAndView mav);
 }

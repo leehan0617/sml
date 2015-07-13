@@ -24,9 +24,10 @@ public interface TeamDao {
 	public String getTeamGround(int teamCode);
 	public int updateTeamEmblem(TeamDto teamDto);
 	public int selectTeamCode(String teamName);
-	public List<TeamLogDto> teamLogDtoList(int teamCode);
+	public List<TeamLogDto> teamLogDtoList(int teamCode,int startRow,int endRow);
 	public int addTeamLog(TeamLogDto teamLogDto);
 	public int teamLogDelete(String replyPassword,int replyCode);
+	public int getTeamLogCount();	
 	public HashMap<String, Object> getNormalMatchInfo(int teamCode);
 	public TeamDto getTeamInfo(int teamCode);	
 	public int updateHomeGround(String homeGround, int teamCode);	

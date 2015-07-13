@@ -111,9 +111,16 @@
 	<insert id="addTeamLog" parameterType="com.sml.team.dto.TeamLogDto" >
 	 insert into TeamLog values(BOARDREPLY_REPLYCODE_SQL.nextval,#{teamCode},#{replyNickName},#{replyPassword},#{replyContent},#{replyDate})
 	 </insert>
+	 
+	 <select id="getTeamLogCount" resultType="int">
+		select count(*) from teamLog
+	</select>
 
-	<select id="teamLogDtoList" resultType="com.sml.team.dto.TeamLogDto" parameterType="int" >
-	 select * from teamLog where teamCode=#{teamCode} order by replyCode desc
+	<select id="teamLogDtoList" resultType="com.sml.team.dto.TeamLogDto" parameterType="java.util.HashMap" >
+	<![CDATA[  select * from 
+				(select rownum rnum,a.* from
+					(select * from teamLog where teamCode=#{teamCode} order by replyCode desc)a)
+				where rnum>=#{startRow} and rnum<=#{endRow} ]]>
     </select>
 
 	<delete id="teamLogDelete" parameterType="java.util.HashMap" >

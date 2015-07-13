@@ -10,7 +10,7 @@
 <script type="text/javascript" src="${root}/js/member/jquery.js"></script>
 </head>
 <body>
-<c:if test="${check==1}">
+<c:if test="${check>0}">
 	<script type="text/javascript">
 		alert("신청이 완료되었습니다")
 		
@@ -28,7 +28,16 @@
 	</script>
 </c:if>
 
-<c:if test="${check==3}">
+<c:if test="${check==-1}">
+	<script type="text/javascript">
+		alert("이미 참가하고 있는 리그가 있습니다.")
+		
+  		var url="${root}/soccer/soccerMain.do";
+ 		$(location).attr("href",url);
+	</script>
+</c:if>
+
+<c:if test="${check==-3}">
 	<script type="text/javascript">
 		alert("죄송합니다! 마감되었습니다.")
 		

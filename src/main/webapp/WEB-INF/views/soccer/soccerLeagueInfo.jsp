@@ -19,14 +19,14 @@
 	<form class=""  action="" method="GET">
 	
 		<h2>개최된 리그정보</h2>
-	<c:if test="${count==0}">	
+	<c:if test="${soccerLeagueList==null}">	
 		<span>
 			<span style="text-align: center">등록된 리그가없습니다.</span>
 		</span>		
 	</c:if>
+	<br/>
 	
-	
-	<c:if test="${count>0}">	
+	<c:if test="${soccerLeagueList!=null}">	
 		<div>
 			<span style="text-align: center">종목</span>
 			<span style="text-align: center">이미지</span>
@@ -38,10 +38,9 @@
 			<span style="text-align: center">시작일</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 			<span style="text-align: center">종료일</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;	
 										
-		</div>		
+		</div>
 	<br/>
-	</c:if>
-		<c:forEach var="soccerLeagueList" items="${soccerLeagueList}">
+	<c:forEach var="soccerLeagueList" items="${soccerLeagueList}">
 		<c:if test="${soccerLeagueList.leagueState==1}">
 				<span>${soccerLeagueList.leagueSport}</span>
 				&nbsp;&nbsp;&nbsp;
@@ -60,6 +59,8 @@
 				<br/>
 		</c:if>
 		</c:forEach>
+	</c:if>
+		
 </form>		
 </body>
 </html>
