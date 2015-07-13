@@ -16,6 +16,8 @@ import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.sml.league.dao.LeagueDao;
+import com.sml.league.dto.LeagueDto;
 import com.sml.member.dto.MemberDto;
 import com.sml.team.dao.TeamDao;
 import com.sml.team.dto.TeamDto;
@@ -27,6 +29,9 @@ public class TeamServiceImpl implements TeamService{
 	private Logger logger = Logger.getLogger(TeamServiceImpl.class.getName());
 	@Autowired
 	private TeamDao dao;
+	
+	@Autowired
+	private LeagueDao leagueDao;
 	
 	/**
 	 * @함수명:idCheck
@@ -117,10 +122,25 @@ public class TeamServiceImpl implements TeamService{
 		
 		int teamCode=team.getTeamCode();				
 		List<TeamLogDto> teamLogDtoList=dao.teamLogDtoList(teamCode);
+				
+		String getLeagueCode=(leagueDao.getJoinLeagueCode(teamCode));
+		if(getLeagueCode==null){
+			getLeagueCode="0";
+		}
+		int leagueCode=Integer.parseInt(getLeagueCode);
+		
+		LeagueDto leagueDto=null;
+		if(leagueCode>0){
+			leagueDto=leagueDao.getLeagueInfo(leagueCode);
+		}
+		//System.out.println("leagueDtoNAme: " + leagueDto.getLeagueName());
+		//System.out.println("leagueCode:" + leagueCode);
+		
 		
 		mav.addObject("teamLogDtoList",teamLogDtoList);	
 		mav.addObject("team",team);
 		mav.addObject("teamName" , teamName);
+		mav.addObject("leagueDto" , leagueDto);		
 		mav.setViewName("team/teamMain");
 	}
 
@@ -460,5 +480,52 @@ public class TeamServiceImpl implements TeamService{
 		mav.addObject("replyCode",replyCode);
 		mav.addObject("replyPassword",replyPassword);
 		mav.setViewName("team/teamMain");
+	}
+
+	/**
+	 * @name : updateTeamInfo
+	 * @date : 2015. 7. 10.
+	 * @author : 변형린
+	 * @description : 팀 정보 수정 페이지로 이동
+	 */
+	@Override
+	public void updateTeamInfo(ModelAndView mav) {
+		HashMap<String,Object> map=mav.getModelMap();
+		HttpServletRequest request=(HttpServletRequest) map.get("request");
+		String teamName=request.getParameter("teamName");
+		TeamDto teamDto=dao.getTeamInfo(teamName);
+		//팀 홈그라운드 가져오기
+		String homeGround=dao.getTeamGround(teamDto.getTeamCode());
+		if(homeGround==null){
+			homeGround="연고지 없음";
+		}
+		
+		mav.addObject("homeGround",homeGround);
+		mav.addObject("teamDto",teamDto);
+		mav.setViewName("member/updateTeam");
+		
+	}
+
+	@Override
+	public void updateTeamInfoOk(ModelAndView mav) {
+		HashMap<String,Object> map=mav.getModelMap();
+		HttpServletRequest request=(HttpServletRequest) map.get("request");
+		
+		String homeGround=request.getParameter("homeGround");
+		String teamPassword=request.getParameter("teamPassword");
+		String teamName=request.getParameter("teamName");
+		String sportType=request.getParameter("sportType");
+				
+		TeamDto teamDto=dao.getTeamInfo(teamName);
+		int checkHome=dao.updateHomeGround(homeGround, teamDto.getTeamCode());		
+		System.out.println(checkHome);		
+			
+		int checkTeam=dao.updateTeamInfo(teamPassword, teamName, sportType, teamDto.getTeamCode());		
+		System.out.println(checkTeam);
+		
+		mav.addObject("check",checkHome*checkTeam);
+		mav.addObject("teamName", teamDto.getTeamName());
+		mav.setViewName("member/updateTeamOk");
+		
 	}
 }

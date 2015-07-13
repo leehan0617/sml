@@ -311,13 +311,13 @@ public class SoccerServiceImpl implements SoccerService {
 	    List<MemberDto> cardsList=soccerDao.cards();
 		
 	    JSONArray jsonArray=JSONArray.fromObject(cardsList);
-	    System.out.println("cardsList:"+jsonArray);
+//	    System.out.println("cardsList:"+jsonArray);
 	    
 	    Map<String,Object> Map=new HashMap<String,Object>();
 		Map.put("cardsList", jsonArray);
 		
 		JSONObject jsonObject=JSONObject.fromObject(Map);
-		System.out.println("json-"+jsonObject);
+//		System.out.println("json-"+jsonObject);
 
 		mav.addObject("jsonObject",jsonObject);
 		mav.setViewName("static/chart");

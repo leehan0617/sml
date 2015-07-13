@@ -72,4 +72,33 @@ public class MemberDaoImpl implements MemberDao{
 		return sqlSession.selectList("teamMemberList");
 	}
 
+	/**
+	 * @name : getMemberInfo
+	 * @date : 2015. 7. 10.
+	 * @author : 변형린
+	 * @description : 멤버 정보 가져오기
+	 */
+	@Override
+	public MemberDto getMemberInfo(int teamCode) {
+		return sqlSession.selectOne("member.dao.MemberMapper.getMemberInfo", teamCode);
+	}
+
+	/**
+	 * @name : updateMemberInfoOk
+	 * @date : 2015. 7. 10.
+	 * @author : 변형린
+	 * @description :멤버 정보 수정
+	 */
+	@Override
+	public int updateMemberInfoOk(MemberDto memberDto, int teamCode) {
+		HashMap<String, Object> map=new HashMap<String, Object>();
+		map.put("memberName", memberDto.getMemberName());
+		map.put("memberBirth", memberDto.getMemberBirth());
+		map.put("memberRegion", memberDto.getMemberRegion());
+		map.put("memberEmail", memberDto.getMemberEmail());
+		map.put("memberPhone", memberDto.getMemberPhone());
+		map.put("memberGender", memberDto.getMemberGender());
+		map.put("teamCode", teamCode);
+		return sqlSession.update("member.dao.MemberMapper.updateMemberInfoOk", map);
+	}
 }
