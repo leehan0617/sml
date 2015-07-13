@@ -8,6 +8,7 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Insert title here</title>
+<script src="${root }/resources/js/jquery.js"></script>
 <link rel="stylesheet" type="text/css" href="${root}/resources/css/bootstrap.css"/>
 </head>
 <body>
@@ -28,12 +29,15 @@
 	<!--  -->
 	<h3 style="text-align:center">공지사항</h3>
 <br/>
-<table class="table table-striped">
+
+<div class="wrap">
+<div class="ajaxPaging">
+	<table class="table table-striped">
 	<thead>
 		<tr> <th>글번호</th> <th>제목</th> <th>작성자</th><th>작성일</th> </tr> 
 	</thead>
 	<tbody>
-		 <c:forEach var="board" items="${teamBoardList}">
+		<c:forEach var="board" items="${teamBoardList}">
 		<tr>
 			<td style="width:15%">${board.rnum}</td>
 			<td style="width:55%">
@@ -44,9 +48,9 @@
 		</tr>
 		</c:forEach>
 	</tbody>
-</table>
-
- <nav>
+	</table>
+	
+	<nav>
   <ul class="pager">
   	<c:if test="${startBlock>blockSize}">
   		<li><a href="${root }/teamPage/viewTeamBoard.do?teamName=${teamName}&currentPage=${startBlock-blockSize}">Previous</a></li>
@@ -54,8 +58,8 @@
   	<c:if test="${endBlock>blockCount}">
 		<c:set var="endBlock" value="${blockCount}"></c:set>
 	</c:if>
-	<c:forEach var="blockNumber" begin="${startBlock}" end="${endBlock}">
-		<li><a href="${root }/teamPage/viewTeamBoard.do?teamName=${teamName}&currentPage=${blockNumber}">${blockNumber}</a></li>
+	<c:forEach var="blockNumber" begin="${startBlock }" end="${endBlock }">
+		<li><a onclick="paging('${root }','${teamName}','${blockNumber }')">${blockNumber }</a>
 	</c:forEach>
     <c:if test="${endBlock<blockCount}">
 		<li><a href="${root }/teamPage/viewTeamBoard.do?teamName=${teamName}&currentPage=${startBlock+blockSize}">Next</a></li>
@@ -63,6 +67,26 @@
   </ul>
 </nav>
 	
+</div>
+</div>
+
+<div>안변하는데</div>
+	
+ <script>
+	function paging(root,teamName,blockNumber){
+		var addr = root+"/paging?teamName="+teamName+"&currentPage="+blockNumber;
+		
+		$.ajax({
+			type:"get",
+			url:addr,
+			success:function(data){
+				$(".ajaxPaging").remove();
+				$(".wrap").append(data);
+			}
+		});
+
+	}
+</script>	
 
 </body>
 </html>
