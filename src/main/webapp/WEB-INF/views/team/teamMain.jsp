@@ -141,7 +141,7 @@
 	<input type="hidden" id="replyTeamCode" value="${team.teamCode }"/>
 	<div class="row well">
 		<div class="col-md-1"></div>
-		<div class="col-md-10">
+		<div class="col-md-10 replyWrap">
 			<div class="row">
   				<div class="col-md-3">
    					 <div class="input-group">
@@ -240,15 +240,15 @@
 		}
 		
 		function moreReadReply(root,teamCode,replyPageNumber){
-			alert(root+","+teamCode);
+			
 			var addr = root+"/replyMoreRead?teamCode="+teamCode+"&replyPageNumber="+replyPageNumber;
 			
 			$.ajax({
 				type:"get",
 				url:addr,
 				success:function(data){
-					$(".alert-warning").remove();
-					$(".replyList").append(data);
+					$(".alert-warning").hide();
+					$(".replyWrap").append(data);
 				}
 			});
 		}
