@@ -296,7 +296,6 @@ public class SoccerServiceImpl implements SoccerService {
 		mav.addObject("soccerLeagueList",soccerLeagueList);		
 		
 		mav.setViewName("soccer/soccerLeagueInfo");		
-		
 	}
 
 	/**

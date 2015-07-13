@@ -297,7 +297,7 @@
             <li><strong>About</strong></li>
             <li><a href="#">워크쇼퍼 만들기</a></li>
             <li><a href="#">워크숍 개최하기</a></li>
-            <li><a href="${root }/admin/main.jsp">관리자 페이지</a></li>
+            <li><a href="${root }/admin/main.do">관리자 페이지</a></li>
           </ul>
         </div>
       </footer>
