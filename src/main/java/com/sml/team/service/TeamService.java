@@ -16,9 +16,12 @@ public interface TeamService {
 	public void searchRegion(ModelAndView mav);
 	public void updateTeamEmblem(ModelAndView mav);
 	public void updateTeamEmblemOk(ModelAndView mav);
-	public void addTeamLog(ModelAndView mav);
-	public void teamLogDelete(ModelAndView mav);
+	
 	public void updateTeamInfo(ModelAndView mav);
 	public void updateTeamInfoOk(ModelAndView mav);
+
+	public void replyWrite(ModelAndView mav);
+
+	public void getReplyList(ModelAndView mav);
 	
 }

@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <!DOCTYPE html>
 <c:set var="root" value="${pageContext.request.contextPath }"/>
 <c:if test="${team!=null}">
@@ -18,12 +19,6 @@
 	<script src="${root }/resources/js/bootstrap.js"></script>
 	
 	<script src="${root }/resources/js/teamMain.js"></script>
-	
-	<!-- 정성남 댓글 스크립트 -->
-	<script src="${root }/js/teamPage/teamLog.js"></script>
-	<script src="${root }/js/teamPage/teamLogDelete.js"></script>
-	<script src="${root }/js/teamPage/moreTeamLog.js"></script>
-	
 	
 </head>
 <body>
@@ -142,80 +137,77 @@
 	  <div class="col-md-1"></div>
 	</div>
 	
+	<!-- 댓글부분 -->
+	<input type="hidden" id="replyTeamCode" value="${team.teamCode }"/>
 	<div class="row well">
 		<div class="col-md-1"></div>
 		<div class="col-md-10">
-			<div class="row">					
-			<div class="col-md-2">
-				<input type="text" class="form-control" name="nickName" id="replyNickName" placeholder="닉네임">
-			</div>
-			<div class="col-md-2">
-				<input type="password" class="form-control" name="password" id="replyPassword" placeholder="암호">
-			</div>
-			<div class="col-md-8">
-				<div class="input-group">
-			      <input type="text" class="form-control" name="content" id="replyContent" placeholder="한줄 답글을써주세요.">
-			      <span class="input-group-btn">
-			        <button class="btn btn-default" type="button" id="addTeamLog" onclick="teamLog('${root}','${team.teamName}')">작성</button>
-			      </span>
-			    </div><!-- /input-group -->
-			</div>
-			</div>
-		
-			<br/>
-			<div class="col-md-10">
-				<hr/>
-				<div class="row">
-					<div class="col-md-2 alert alert-success" style="padding:10px;"><span>작성자</span></div>
-					<div class="col-md-1"></div>
-					<div class="col-md-7 alert alert-success" style="padding:10px;"><span>내용</span></div>
-					<div class="col-md-2"></div>
-				</div>
-				<hr/>			
-				
-				<div id="container" class="container" style="display:none;">
-					<div class="col-md-2 alert alert-warning" role="alert" style="padding:10px;">
-						<span id="containerNickName"></span>
+			<div class="row">
+  				<div class="col-md-3">
+   					 <div class="input-group">
+     					 <span class="input-group-btn">
+        					<button class="btn btn-default" type="button" disabled="disabled">닉네임</button>
+      					</span>
+      					<input type="text" class="form-control" placeholder="닉네임을 적어주세요." id="replyNickName">
+    				 </div><!-- /input-group -->
+  				</div>
+  				<div class="col-md-3">
+  					 <div class="input-group">
+     					 <span class="input-group-btn">
+        					<button class="btn btn-default" type="button" disabled="disabled">비밀번호</button>
+      					</span>
+      					<input type="password" class="form-control" placeholder="비밀번호를 적어주세요." id="replyPassword">
+    				 </div><!-- /input-group -->
+  				</div>
+ 				 <div class="col-md-6">
+   					 <div class="input-group">
+    					  <input type="text" class="form-control" placeholder="내용을 적어주세요." id="replyContent">
+					      <span class="input-group-btn">
+					        <button class="btn btn-default" type="button" onclick="writeReply('${root}','${teamName }')">한마디 남기기</button>
+					      </span>
+    				</div>
+ 				 </div>
+			</div><!-- /.row -->
+			<hr/>
+			
+			<div class="row replyList">	
+  				<c:forEach var="teamLog" items="${replyList}" begin="0" varStatus="status" end="4">
+					<div class="col-md-3">
+						 <div class="input-group">
+							 <span class="input-group-btn">
+								<button class="btn btn-default" type="button" disabled="disabled">닉네임</button>
+							</span>
+							<input type="text" class="form-control" value="${teamLog.replyNickName }" id="replyNickName">
+						 </div><!-- /input-group -->
 					</div>
-					
-					<div class="col-md-7 alert alert-info" role="alert" style="padding:10px;">
-						<span id="containerContent"></span>
+					<div class="col-md-3">
+						 <div class="input-group">
+									 <span class="input-group-btn">
+					  					<button class="btn btn-default" type="button" disabled="disabled">작성일</button>
+										</span>
+										<input type="text" class="form-control" value="<fmt:formatDate value="${teamLog.replyDate }" pattern="yy-MM-dd"/>" id="replyDate">
+							 </div><!-- /input-group -->
 					</div>
-					
-					<div class="col-md-2">
-						<a class="btn btn-danger" role="button">삭제</a>
-					</div>
-				</div>				
-				
-				${startRow}
-				${endRow}				
-				<c:forEach var="teamLogDtoList" items="${teamLogDtoList}" begin="0" end="${endRow}">					
-					<div class="replyList row" id="${teamLogDtoList.replyCode}">
-						<div class="col-md-2 alert alert-warning" role="alert" style="padding:10px;">							
-							<span>${teamLogDtoList.replyNickName}</span>				
+					<div class="col-md-6">
+						<div class="input-group">
+							 <input type="text" class="form-control" value="${teamLog.replyContent }" id="replyContent">
+					     <span class="input-group-btn">
+					       	<button class="btn btn-danger" type="button" onclick="">삭제</button>
+					     </span>
 						</div>
-						<div class="col-md-1"></div>
-						<div class="col-md-7 alert alert-info" role="alert" style="padding:10px;">							
-							<span>${teamLogDtoList.replyContent}</span>
-						</div>
-						<div class="col-md-2">
-							<c:if test="${teamGrade !=null }">
-							<a class="btn btn-danger" href="javascript:teamLogDelete('${root}','${teamLogDtoList.replyCode}','${teamLogDtoList.replyPassword}')" role="button">삭제</a>
-							<br/>
-							</c:if>
-						</div>			
-					</div>				
+					</div>
 				</c:forEach>
-								   			
-			</div>
+
+			</div><!-- /.row -->
+			
+			
+			<div class="alert alert-warning" role="alert"><p class="text-center">더보기</p></div>
+
 		</div>
-		<div class="col-md-1"></div>	  
+		<div class="col-md-1"></div>
 	</div>
 	
-	<%-- <c:if test="${endPage<pageCount }">
-				<a href="javascript:moreTeamLog('${root}','${pageNumber}','${team.teamName}')">댓글 ${count}개 더보기</a>				
-	</c:if> --%>
-		
+	
 	
 	<c:if test="${team==null}">
 	<div style="text-align:center;">
@@ -226,39 +218,31 @@
 		
 	</c:if>
 	
-	<!-- 페이지 번호 -->
-	
-	<div>
-		<c:if test="${count>0 }">
-			<c:set var="pageBlock" value="${5}"/>
-			<c:set var="pageCount" value="${count/boardSize+(count%boardSize==0 ? 0:1)}"/>
-			<fmt:parseNumber var="rs" value="${(currentPage-1)/pageBlock }" integerOnly="true"/>
+	<script>
+		function writeReply(root,teamName){
+			var replyNickName = $("#replyNickName").val();
+			var replyContent = $("#replyContent").val();
+			var teamCode = $("#replyTeamCode").val();
+			var replyPassword = $("#replyPassword").val();
 			
-			<c:set var="startPage" value="${rs*pageBlock+1 }"/>
-			<c:set var="endPage" value="${startPage+pageBlock-1 }"/>
+			var addr = root+"/replyWrite?teamCode="+teamCode+"&replyNickName="+replyNickName+"&replyPassword="+replyPassword+"&replyContent="+replyContent;
+			//alert(addr);
 			
-			<c:if test="${endPage>pageCount }">
-				<c:set var="endPage" value="${pageCount }"/>
-			</c:if>
-			
-			<c:if test="${startPage>pageBlock }">
-				<a href="javascript:moreTeamLog('${root}','${startPage-pageBlock}','${team.teamName}')">[이전]</a>
-				<%-- <a href="${root }/team/teamMain.do?pageNumber=${startPage-pageBlock}&teamName=${teamName}">[이전]</a> --%>
-			</c:if>
-			
-			<c:forEach var="i" begin="${startPage}" end="${endPage}">
-				<a href="${root }/team/teamMain.do?pageNumber=${i}&teamName=${teamName}">[${i}]</a>
-			</c:forEach>
-			
-			<c:if test="${endPage<pageCount }">
-				<a href="${root }/team/teamMain.do?pageNumber=${startPage+pageBlock}&teamName=${teamName}">[다음]</a>
-			</c:if>
-		</c:if>
-	</div>
+			$.ajax({
+				type:"get",
+				url:addr,
+				success:function(data){
+					$(".replyList").prepend(data);
+					$("#replyNickName").val("");
+					$("#replyContent").val("");
+					$("#replyPassword").val("");
+				}
+			});
+		}
+	</script>
 	
 	
-	<a href="javascript:moreTeamLog('${root}','${endRow}','${team.teamName}')">댓글 ${count}개 더보기</a>
-	
+
 	 <div class="sign" id="sign"></div>
 	 <div class="modal fade" id="modalBoard" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
 		  <div class="modal-dialog">

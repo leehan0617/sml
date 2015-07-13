@@ -13,7 +13,6 @@ public interface TeamDao {
 	public TeamDto login(String id, String password);
 	public TeamDto getTeamInfo(String teamName);
 	public List<MemberDto> getTeamMemberList(String teamName,int startRow, int endRow);
-	
 	public int getTeamMemberCount(String name);
 	public int addMember(MemberDto member,int teamCode);
 	public int deleteMember(int memberCode);
@@ -23,13 +22,12 @@ public interface TeamDao {
 	public List<String> getSidoList();
 	public String getTeamGround(int teamCode);
 	public int updateTeamEmblem(TeamDto teamDto);
-	public int selectTeamCode(String teamName);
 	public List<TeamLogDto> teamLogDtoList(int teamCode,int startRow,int endRow);
-	public int addTeamLog(TeamLogDto teamLogDto);
-	public int teamLogDelete(String replyPassword,int replyCode);
 	public int getTeamLogCount();	
 	public HashMap<String, Object> getNormalMatchInfo(int teamCode);
 	public TeamDto getTeamInfo(int teamCode);	
 	public int updateHomeGround(String homeGround, int teamCode);	
 	public int updateTeamInfo(String teamPassword, String teamName, String sportType, int teamCode);
+	public int replyWrite(TeamLogDto teamLog);
+	public List<TeamLogDto> getReplyList(String teamName);
 }

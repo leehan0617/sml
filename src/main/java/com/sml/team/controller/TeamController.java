@@ -109,6 +109,7 @@ public class TeamController {
 		service.goTeamPage(mav);
 		teamBoardService.viewTeamBoard(mav);
 		scheduleService.readteamSchedule(mav);
+		service.getReplyList(mav);
 		
 		mav.setViewName("team/teamMain");
 		
@@ -262,32 +263,6 @@ public class TeamController {
 		return mav;
 	}
 	
-	/**
-	 * @name : TeamLog
-	 * @date : 2015. 7. 3.
-	 * @author : 정성남
-	 * @description : 팀 방명록(LOG)
-	 */	
-	
-	@RequestMapping(value="/teamPage/teamLog.do", method=RequestMethod.GET)
-	 public ModelAndView addTeamLog(HttpServletRequest request,TeamLogDto teamLogDto){
-		ModelAndView mav=new ModelAndView();		
-		mav.addObject("request",request);	
-		mav.addObject("teamLogDto",teamLogDto);		
-		service.addTeamLog(mav);		
-		return mav;
-	}
-	
-	@RequestMapping(value="/teamPage/teamLogDelete.do", method=RequestMethod.GET)
-	 public ModelAndView teamLogDelete(HttpServletRequest request){
-		ModelAndView mav=new ModelAndView();
-		mav.addObject("request",request);	
-		int replyCode=Integer.parseInt(request.getParameter("replyCode"));		
-		System.out.println(replyCode+"replyCode---------");		
-		mav.addObject("replyCode",replyCode);
-		service.teamLogDelete(mav);		
-		return mav;
-	}
 	
 	/**
 	 * @name : updateTeamInfo
@@ -317,6 +292,21 @@ public class TeamController {
 		mav.addObject("request", request);
 		service.updateTeamInfoOk(mav);
 		
+		return mav;
+	}
+	/**
+	 * @함수명:replyWrite
+	 * @작성일:2015. 7. 13.
+	 * @작성자:이한빈 
+	 * @설명문:팀메인페이지 댓글달기
+	 */
+	@RequestMapping(value="/replyWrite" , method=RequestMethod.GET)
+	public ModelAndView replyWrite(HttpServletRequest request , TeamLogDto teamLog){
+		logger.info("TeamController replyWrite");
+		ModelAndView mav = new ModelAndView("teamTemplate/teamReplyTemplate");
+		mav.addObject("teamLog" , teamLog);
+		
+		service.replyWrite(mav);
 		return mav;
 	}
 }
