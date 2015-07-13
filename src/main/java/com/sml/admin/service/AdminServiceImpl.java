@@ -355,7 +355,6 @@ public class AdminServiceImpl implements AdminService{
 		Map<String,Object> map=mav.getModelMap();
 
 		LeagueDto leagueDto=(LeagueDto) map.get("leagueDto");	
-		System.out.println(leagueDto.getLeagueImage()+"|"+leagueDto);
 		int check=adminDao.leagueUpdateOk(leagueDto);
 		
 		mav.addObject("check",check);
