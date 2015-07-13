@@ -170,14 +170,14 @@
 			</div><!-- /.row -->
 			<hr/>
 			
-			<div class="row replyList">	
+			<div class="row replyList replyFirst">	
   				<c:forEach var="teamLog" items="${replyList}" begin="0" varStatus="status" end="4">
 					<div class="col-md-3">
 						 <div class="input-group">
 							 <span class="input-group-btn">
 								<button class="btn btn-default" type="button" disabled="disabled">닉네임</button>
 							</span>
-							<input type="text" class="form-control" value="${teamLog.replyNickName }" id="replyNickName">
+							<input type="text" class="form-control" value="${teamLog.replyNickName }" id="replyNickName" disabled="disabled">
 						 </div><!-- /input-group -->
 					</div>
 					<div class="col-md-3">
@@ -185,12 +185,12 @@
 									 <span class="input-group-btn">
 					  					<button class="btn btn-default" type="button" disabled="disabled">작성일</button>
 										</span>
-										<input type="text" class="form-control" value="<fmt:formatDate value="${teamLog.replyDate }" pattern="yy-MM-dd"/>" id="replyDate">
+										<input type="text" class="form-control" value="<fmt:formatDate value="${teamLog.replyDate }" pattern="yy-MM-dd"/>" id="replyDate" disabled="disabled">
 							 </div><!-- /input-group -->
 					</div>
 					<div class="col-md-6">
 						<div class="input-group">
-							 <input type="text" class="form-control" value="${teamLog.replyContent }" id="replyContent">
+							 <input type="text" class="form-control" value="${teamLog.replyContent }" id="replyContent" disabled="disabled">
 					     <span class="input-group-btn">
 					       	<button class="btn btn-danger" type="button" onclick="">삭제</button>
 					     </span>
@@ -231,7 +231,7 @@
 				type:"get",
 				url:addr,
 				success:function(data){
-					$(".replyList").prepend(data);
+					$(".replyFirst").prepend(data);
 					$("#replyNickName").val("");
 					$("#replyContent").val("");
 					$("#replyPassword").val("");
