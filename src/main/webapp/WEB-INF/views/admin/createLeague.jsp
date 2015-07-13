@@ -10,6 +10,7 @@
 	<link rel="stylesheet" href="http://code.jquery.com/ui/1.8.18/themes/base/jquery-ui.css" type="text/css" />
 	<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
 	<script src="http://code.jquery.com/ui/1.8.18/jquery-ui.min.js"></script>  
+	<script type="text/javascript" src="${root }/js/admin/admin.js"></script>
 	
 	<title>팀목록보기</title>
 	<script type="text/javascript">
@@ -23,7 +24,7 @@
 	</script>	
 </head>
 <body>	
-	<form class="" action="${root}/admin/createLeague.do" enctype="multipart/form-data" method="post" >
+	<form class="" action="${root}/admin/createLeague.do" enctype="multipart/form-data" method="post"  onsubmit="createLeague(this)">
 		
 	<h2>SML KOREA</h2>
 	<div align="center">
@@ -73,7 +74,13 @@
 	<br/><br/>
 	
 	<span>리그시간</span>
-	<input type="text" name="leagueTime" type="text" />
+	<span>Sat</span>
+	<input type="radio" name="time" value="sat">
+	<span>Sat</span>
+	<input type="radio" name="time" value="sat">
+	<span>Sat</span>
+	<input type="radio" name="time" value="sat">
+	<input type="radio" name="leagueTime" value="sat">
 	<br/><br/>
 	
 	
