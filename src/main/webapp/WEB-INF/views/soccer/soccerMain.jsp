@@ -141,10 +141,11 @@
 		
 	<div>
 		<h3>리그</h3>
-		<div>
+			<div>
 			<span><input type="button" value="<"/></span>
 			<img alt="리그 이미지 넣어야함" src=""/>
 			<span><input type="button" value=">"/></span> 
+			</div>
 			
 			<c:forEach var="league" items="${leagueList}">
 				<div>
@@ -161,7 +162,7 @@
 					</div> 
 		
 			</c:forEach>
-		</div>	
+			
 	</div>	
 	
 		

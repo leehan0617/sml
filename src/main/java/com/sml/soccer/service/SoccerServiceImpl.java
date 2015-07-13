@@ -292,7 +292,6 @@ public class SoccerServiceImpl implements SoccerService {
 		List<LeagueDto> soccerLeagueList=null;	
 
 		soccerLeagueList=soccerDao.LeagueList(leagueSport);
-		
 		mav.addObject("count",count);
 		mav.addObject("soccerLeagueList",soccerLeagueList);		
 		

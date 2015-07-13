@@ -30,10 +30,41 @@ public class LeagueServiceImpl implements LeagueService{
 		String teamId=request.getParameter("teamId");
 		int leagueCode=Integer.parseInt(request.getParameter("leagueCode"));
 		int leagueTeamNumber=Integer.parseInt(request.getParameter("leagueTeamNumber"));
-		int check=dao.applicate(teamId,leagueCode,leagueTeamNumber);
+		int leagueCount=dao.getLeagueCount(leagueCode);
 		
-		mav.addObject("check",check);
-		mav.setViewName("soccer/applicateOk");
+		if(leagueCount>=leagueTeamNumber){
+			int check=-3;
+			
+			mav.addObject("check",check);
+			mav.setViewName("soccer/applicateOk");
+			
+		}else{
+			int teamCode=dao.getTeamCode(teamId);
+			int value=dao.getLeagueJoinSelect(teamCode);
+			
+			if(value==0){
+				int check=dao.applicate(teamCode,leagueCode);
+				
+				int scheduleCount=dao.getLeagueCount(leagueCode);
+				
+				if(scheduleCount==leagueTeamNumber){
+					leagueSchedule(leagueCode);
+				}
+				
+				mav.addObject("check",check);
+				mav.setViewName("soccer/applicateOk");
+			}else{
+				int check=-1;
+					
+				mav.addObject("check",check);
+				mav.setViewName("soccer/applicateOk");
+			}
+		}
+		
 	}
 	
+	public void leagueSchedule(int leagueCode){
+		LeagueDto league=dao.getLeagueInfo(leagueCode);
+		
+	}
 }

@@ -91,6 +91,9 @@
 			<br/><br/>
 		</c:if>
 	
+	<h2>날씨 정보 넣어야 함</h2>
+	<br/>
+	
 	<h3>경기장 정보 부분 </h3>
 	
 	<input type="button" value="경기 결과 입력">
