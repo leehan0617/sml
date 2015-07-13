@@ -35,22 +35,4 @@
 	</tbody>
 </table>
 
- <nav>
-  <ul class="pager">
-  	<c:if test="${startBlock>blockSize}">
-  		<li><a href="${root }/teamPage/viewTeamBoard.do?teamName=${teamName}&currentPage=${startBlock-blockSize}">Previous</a></li>
-  	</c:if>
-  	<c:if test="${endBlock>blockCount}">
-		<c:set var="endBlock" value="${blockCount}"></c:set>
-	</c:if>
-	<c:forEach var="blockNumber" begin="${startBlock}" end="${endBlock}">
-		<li class="teamBoardPaging">
-			<a href="${root }/teamBoardPaging?teamName=${teamName}&currentPage=${blockNumber}">${blockNumber}</a>
-		</li>
-	</c:forEach>
-    <c:if test="${endBlock<blockCount}">
-		<li><a href="${root }/teamPage/viewTeamBoard.do?teamName=${teamName}&currentPage=${startBlock+blockSize}">Next</a></li>
-	</c:if>
-  </ul>
-</nav>
 </div>
