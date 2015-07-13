@@ -8,32 +8,39 @@
     <script src="${root}/js/external/jquery-1.11.3.min.js"></script>
     <script type="text/javascript" src="https://www.google.com/jsapi"></script>
     <script type="text/javascript">
-	   var jsonData='${jsonObject}';
-   	   var obj=JSON.parse(jsonData);
+	var jsonData='${jsonObject}';
+   	var obj=JSON.parse(jsonData);
  		
-   	   
-   	var gangWon=null;var seoul=null;var gyeonggi=null;daejeon=null;daegu=null;busan=null;
-    var seoulCount=0;var gangWonCount=0;var gyeonggiCount=0;daejeonCount=0;daeguCount=0;busanCount=0;
+    var legion=new Array("서울","강원","경기","대전","대구","부산","충남","울산","인천","제주","광주","경북","전북","전남","경기","경남","세종","충북");
+   	
+    /*지역 카운트변수*/
+    var seoulCount=0;var gangWonCount=0;var gyeonggiCount=0;var daejeonCount=0;var daeguCount=0;var busanCount=0;var chungnamCount=0;
+    var ulsanCount=0;var enchanCount=0;var jaejuCount=0;var gwangjuCount=0;var kyoungbukCount=0;var jeonbukCount=0;var gyeonggiCount=0;
+    var gyeonnamCount=0;var seojongCount=0;var chongbukCount=0;var jeonnamCount=0;
    	 for(var i in obj.cardsList){
-   		 if(obj.cardsList[i].MEMBERREGION.split(" ")[0]=="서울"){
-   			seoul=obj.cardsList[i].MEMBERREGION;
-   			seoulCount=seoulCount+1;
-   		}else if(obj.cardsList[i].MEMBERREGION.split(" ")[0]=="강원"){
-   			gangWon=obj.cardsList[i].MEMBERREGION;
-   			gangWonCount=gangWonCount+1;
-   		}else if(obj.cardsList[i].MEMBERREGION.split(" ")[0]=="경기"){
-   			gyeonggi=obj.cardsList[i].MEMBERREGION;
-   			gyeonggiCount=gyeonggiCount+1;
-   		}else if(obj.cardsList[i].MEMBERREGION.split(" ")[0]=="대전"){
-   			daejeon=obj.cardsList[i].MEMBERREGION;
-   			daejeonCount=daejeonCount+1;
-   		}else if(obj.cardsList[i].MEMBERREGION.split(" ")[0]=="대구"){
-   			daegu=obj.cardsList[i].MEMBERREGION;
-   			daeguCount=daeguCount+1;
-   		}else if(obj.cardsList[i].MEMBERREGION.split(" ")[0]=="부산"){
-   			busan=obj.cardsList[i].MEMBERREGION;
-   			busanCount=daejeonCount+1;
-   		} 
+		for(var j=0;j<legion.length;j++){
+			 if(obj.cardsList[i].MEMBERREGION.split(" ")[0]==legion[j]){
+				 obj.cardsList[i].MEMBERREGION;
+				 if(obj.cardsList[i].MEMBERREGION.split(" ")[0]==legion[0])seoulCount++;
+				 if(obj.cardsList[i].MEMBERREGION.split(" ")[0]==legion[1])gangWonCount++;
+				 if(obj.cardsList[i].MEMBERREGION.split(" ")[0]==legion[2])gyeonggiCount++;
+				 if(obj.cardsList[i].MEMBERREGION.split(" ")[0]==legion[3])daejeonCount++;
+				 if(obj.cardsList[i].MEMBERREGION.split(" ")[0]==legion[4])daeguCount++;
+				 if(obj.cardsList[i].MEMBERREGION.split(" ")[0]==legion[5])busanCount++;
+				 if(obj.cardsList[i].MEMBERREGION.split(" ")[0]==legion[6])chungnamCount++;
+				 if(obj.cardsList[i].MEMBERREGION.split(" ")[0]==legion[7])ulsanCount++;
+				 if(obj.cardsList[i].MEMBERREGION.split(" ")[0]==legion[8])enchanCount++;
+				 if(obj.cardsList[i].MEMBERREGION.split(" ")[0]==legion[9])jaejuCount++;
+				 if(obj.cardsList[i].MEMBERREGION.split(" ")[0]==legion[10])gwangjuCount++;
+				 if(obj.cardsList[i].MEMBERREGION.split(" ")[0]==legion[11])kyoungbukCount++;
+				 if(obj.cardsList[i].MEMBERREGION.split(" ")[0]==legion[12])jeonbukCount++;
+				 if(obj.cardsList[i].MEMBERREGION.split(" ")[0]==legion[13])jeonnamCount++;
+				 if(obj.cardsList[i].MEMBERREGION.split(" ")[0]==legion[14])gyeonggiCount++;
+				 if(obj.cardsList[i].MEMBERREGION.split(" ")[0]==legion[15])gyeonnamCount++;
+				 if(obj.cardsList[i].MEMBERREGION.split(" ")[0]==legion[16])seojongCount++;
+				 if(obj.cardsList[i].MEMBERREGION.split(" ")[0]==legion[17])chongbukCount++; 
+			 }
+		}
    	  }
    	 
    	   google.load("visualization", "1", {packages:["corechart"]});
@@ -42,15 +49,27 @@
          var data = google.visualization.arrayToDataTable([
            ['Task', 'Hours per Day'],
            ['서울',seoulCount],
-           ['강원', gangWonCount],
+           ['강원',gangWonCount],
            ['경기',gyeonggiCount],
            ['대전',daejeonCount],
-           ['대구',daegu],
+           ['대구',daeguCount],
            ['부산',busanCount],
+           ['충남',chungnamCount],
+           ['울산',ulsanCount],
+           ['인천',enchanCount],
+           ['제주',jaejuCount],
+           ['광주',gwangjuCount],
+           ['경북',kyoungbukCount],
+           ['전북',jeonbukCount],
+           ['전남',jeonnamCount],
+           ['경기',gyeonggiCount],
+           ['경남',gyeonnamCount],
+           ['세종',seojongCount],
+           ['충북',chongbukCount],
          ]);
 
          var options = {
-           title: '지역별 통계',
+           title: 'SML Korea 회원 지역별 통계',
            is3D: true,
          };
 
