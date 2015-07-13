@@ -28,12 +28,12 @@
 </style>
 </head>
 <body>	
-<div style="background-image:url('${root}/resources/images/soccer_background.jpg')" class="background">
+<%-- ${root}/resources/images/soccer_background.jpg --%>
+<div style="background-image:url('')" class="background">
 	<a href="${root}/mainPage.jsp"><img alt="logo" src=""></a>
 	<a href="${root}/mainPage.jsp">SML Korea</a>
-	<br/><br/><br/>
+	<br/><br/><br/>		
 		
-
 	<div class="container" align="right">
 		<div align="center"><h1><strong>SML Korea</strong></h1></div>
 		<div class="row">
@@ -55,7 +55,7 @@
 				</div>		
 			</div>
 		</div>
-	</div>
+	</div>	
 	<br/><br/>
 	<div class="container" align="center">
 		<div class="row">

@@ -49,8 +49,8 @@
 	</select>
 	
 	<insert id="createLeague" parameterType="com.sml.league.dto.LeagueDto">
-		insert into leagueinfo(leagueCode,leagueSport,leagueRegion,leagueTeamNumber,leagueDay,leagueTime,leagueStartDate,leagueImage,leagueName,leagueEndDate, leagueState)
-		values(leagueinfo_leagueCode_sql.nextval,#{leagueSport},#{leagueRegion},#{leagueTeamNumber},#{leagueDay},#{leagueTime},#{leagueStartDate},#{leagueImage},#{leagueName},#{leagueEndDate}, #{leagueState})
+		insert into leagueinfo(leagueCode,leagueSport,leagueRegion,leagueTeamNumber,leagueDay,leagueTime,leagueStartDate,leagueImage,leagueName,leagueEndDate, leagueState,leaguePlace)
+		values(leagueinfo_leagueCode_sql.nextval,#{leagueSport},#{leagueRegion},#{leagueTeamNumber},#{leagueDay},#{leagueTime},#{leagueStartDate},#{leagueImage},#{leagueName},#{leagueEndDate}, #{leagueState},#{leaguePlace})
 	</insert>
 
 	

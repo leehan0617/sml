@@ -1,5 +1,6 @@
 package com.sml.matching.service;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.List;
@@ -19,6 +20,8 @@ import com.sml.matching.dto.MatchingDto;
 import com.sml.member.dto.MemberDto;
 import com.sml.team.dto.TeamDto;
 import com.sml.team.service.TeamServiceImpl;
+import com.sml.weather.WeatherAllDTO;
+import com.sml.weather.WeatherAllParser;
 
 @Service
 public class MatchingServiceImpl implements MatchingService {
@@ -102,6 +105,39 @@ public class MatchingServiceImpl implements MatchingService {
 					otherMatchingDto=dao.getTeamMatchingInfo(tempTeamCode);
 					otherTeamDto=dao.getTeamInfo(String.valueOf(normalMatchInfo.get("TEAM1")));
 				}
+				
+				//일주일 날씨 파싱
+				String temp=matchingDto.getMatchingPlace();
+				//String temp="세종특별자치시 테스트";
+				int index=temp.indexOf(" ");
+				System.out.println(index);
+				String matchingPlace=temp.substring(0, index);
+				if(index>4){
+					matchingPlace=temp.substring(0, 2);
+				}
+				System.out.println(matchingPlace);
+
+				ArrayList<WeatherAllDTO> weatherAllList=new ArrayList<WeatherAllDTO>();
+				ArrayList<WeatherAllDTO> weatherAllList2=new ArrayList<WeatherAllDTO>();
+				try{
+					WeatherAllParser weatherAll=new WeatherAllParser();
+					weatherAllList=weatherAll.xmlRssParser();
+				}catch(Exception e){
+					e.printStackTrace();
+				}				
+				
+				for(WeatherAllDTO weather : weatherAllList){					
+					System.out.println(weather.getRegion());					
+					System.out.println(matchingPlace);
+					if(weather.getRegion().contains(matchingPlace) && weather.getTmEf().contains("00:00")){
+						System.out.println(weather);
+						weatherAllList2.add(weather);
+					}
+				}
+				
+				System.out.println(weatherAllList2);
+				
+				mav.addObject("weatherAllList", weatherAllList2);
 				
 				mav.addObject("normalMatchInfo",normalMatchInfo);
 				mav.addObject("otherMatchingDto",otherMatchingDto);

@@ -116,12 +116,33 @@ public class TeamServiceImpl implements TeamService{
 		logger.info("TeamService goTeamPage");
 		Map<String,Object> map=mav.getModelMap();
 		HttpServletRequest request=(HttpServletRequest) map.get("request");
+		
+		String pageNumber=request.getParameter("pageNumber");
+		System.out.println("pageNumber"+pageNumber);
+		if(pageNumber==null) pageNumber="1";
+		
+		int boardSize=5;		
+		int currentPage=Integer.parseInt(pageNumber);
+		int startRow=(currentPage-1)*boardSize+1;
+		int endRow=currentPage*boardSize;
+		
+		int count=dao.getTeamLogCount();
+		logger.info("count:"+count);
+		logger.info("currentPage"+currentPage);
+		logger.info("startRow"+startRow);
+		logger.info("endRow"+endRow);
+		
 		String teamName=request.getParameter("teamName");
-		logger.info(request.getParameter("teamName"));
+		//logger.info(request.getParameter("teamName"));
 		TeamDto team=dao.getTeamInfo(teamName);
 		
-		int teamCode=team.getTeamCode();				
-		List<TeamLogDto> teamLogDtoList=dao.teamLogDtoList(teamCode);
+		int teamCode=team.getTeamCode();
+		System.out.println("teamCode:"+teamCode);
+		
+		List<TeamLogDto> teamLogDtoList=null;
+		if(count>0){
+			teamLogDtoList=dao.teamLogDtoList(teamCode,startRow,endRow);
+		}		
 				
 		String getLeagueCode=(leagueDao.getJoinLeagueCode(teamCode));
 		if(getLeagueCode==null){
@@ -137,8 +158,14 @@ public class TeamServiceImpl implements TeamService{
 		//System.out.println("leagueCode:" + leagueCode);
 		
 		
+		mav.addObject("count",count);		
+		mav.addObject("boardSize",boardSize);
+		mav.addObject("currentPage",currentPage);
 		mav.addObject("teamLogDtoList",teamLogDtoList);	
 		mav.addObject("team",team);
+		mav.addObject("startRow",startRow);
+		mav.addObject("endRow",endRow);
+		mav.addObject("boardSize",boardSize);			
 		mav.addObject("teamName" , teamName);
 		mav.addObject("leagueDto" , leagueDto);		
 		mav.setViewName("team/teamMain");
@@ -414,74 +441,7 @@ public class TeamServiceImpl implements TeamService{
 		mav.setViewName("teamPage/teamPageMain");
 	}
 	
-	/**
-	 * @함수명: addTeamLog
-	 * @작성일: 2015. 7. 7.
-	 * @작성자: 정성남
-	 * @설명 :
-	 */
-	@Override
-	public void addTeamLog(ModelAndView mav) {
-		logger.info("TeamLog-SErvice");
-		HashMap<String,Object> map=mav.getModelMap();
-		HttpServletRequest request=(HttpServletRequest) map.get("request");
-		
-		TeamLogDto teamLogDto=(TeamLogDto) map.get("teamLogDto");
-		String teamName=request.getParameter("teamName");		
-		//System.out.println("teamName:"+teamName);
-		
-		int teamCode=dao.selectTeamCode(teamName);
-		
-		teamLogDto.setReplyDate(new Date());
-		teamLogDto.setTeamCode(teamCode);
-		
-		String replyNickName=request.getParameter("replyNickName");
-		String replyContent=request.getParameter("replyContent");
-		String replyPassword=request.getParameter("replyPassword");
-		
-		int check=dao.addTeamLog(teamLogDto);		
-		int replyCode=teamLogDto.getReplyCode();
-		//System.out.println("replyCodeWrite:"+replyCode);		
-		
-		mav.addObject("replyCode",replyCode);
-		mav.addObject("teamName",teamName);
-		mav.addObject("replyNickName",replyNickName);
-		mav.addObject("replyPassword",replyPassword);		
-		mav.addObject("replyContent",replyContent);
-		
-		if(check>0){
-			logger.info("작성완료");
-		}		
-		mav.setViewName("team/teamMain");
-	}
-	/**
-	 * @함수명: teamLogDelete
-	 * @작성일: 2015. 7. 7.
-	 * @작성자: 정성남
-	 * @설명 :
-	 */
 	
-	@Override
-	public void teamLogDelete(ModelAndView mav) {
-		logger.info("teamLogDelete-SErvice");
-		HashMap<String,Object> map=mav.getModelMap();
-		HttpServletRequest request=(HttpServletRequest) map.get("request");
-		
-		
-		String replyPassword=request.getParameter("replyPassword");		
-		//System.out.println("replyPassword:"+replyPassword);		
-		int replyCode=Integer.parseInt(request.getParameter("replyCode"));		
-		//System.out.println("replyCodeService:"+replyCode);		
-		int check=dao.teamLogDelete(replyPassword,replyCode);		
-		
-		if(check>0){
-			logger.info("삭제완료");
-		}		
-		mav.addObject("replyCode",replyCode);
-		mav.addObject("replyPassword",replyPassword);
-		mav.setViewName("team/teamMain");
-	}
-
 	/**
 	 * @name : updateTeamInfo
 	 * @date : 2015. 7. 10.
@@ -527,5 +487,26 @@ public class TeamServiceImpl implements TeamService{
 		mav.addObject("teamName", teamDto.getTeamName());
 		mav.setViewName("member/updateTeamOk");
 		
+	}
+
+	@Override
+	public void replyWrite(ModelAndView mav) {
+		Map<String , Object> map = mav.getModelMap();
+		TeamLogDto teamLog = (TeamLogDto) map.get("teamLog");
+		teamLog.setReplyDate(new Date());
+		int check = dao.replyWrite(teamLog);
+		mav.addObject("teamLog" , teamLog);
+		System.out.println("check : " + check);
+	}
+
+	@Override
+	public void getReplyList(ModelAndView mav) {
+		Map<String , Object> map = mav.getModelMap();
+		HttpServletRequest request = (HttpServletRequest) map.get("request");
+		String teamName = request.getParameter("teamName");
+		
+		List<TeamLogDto> replyList = dao.getReplyList(teamName);
+		//System.out.println(replyList.size());
+		mav.addObject("replyList" ,replyList);
 	}
 }

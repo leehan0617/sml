@@ -12,10 +12,6 @@ import org.xmlpull.v1.XmlPullParser;
 import org.xmlpull.v1.XmlPullParserFactory;
 
 public class WeatherParser {
-
-	private URL url1 = new URL(
-			"http://www.kma.go.kr/weather/forecast/mid-term-rss3.jsp?stnId=108");	
-
 	private URL seoul = new URL(
 			"http://www.kma.go.kr/wid/queryDFSRSS.jsp?zone=1168066000");
 	private URL suwon = new URL(
@@ -37,7 +33,7 @@ public class WeatherParser {
 	
 	private ArrayList<WeatherDTO> list = new ArrayList<WeatherDTO>();
 	private ArrayList<URL> urlList = new ArrayList<URL>();	
-	private String[] sido={"seoul", "suwon", "incheon", "sungnam", "anyang", "deagu", "ulsan", "jeju", "busan"};
+	private String[] sido={"서울", "수원", "인천", "성남", "안양", "대구", "울산", "제주", "부산"};
 	private int count=0;
 	
 	public WeatherParser() throws Exception {
@@ -116,11 +112,11 @@ public class WeatherParser {
 		//printResult(list);
 		return list;
 	}
-
+/*
 	private void printResult(ArrayList<WeatherDTO> list) {
 			for (WeatherDTO entity : list) {System.out.println("시:" + entity.getSido() + " 온도:" + entity.getTemp() + " 날씨 : "+ entity.getWfKor());
 		}
-	}
+	}*/
 
 	public static void main(String[] args) {
 		try {

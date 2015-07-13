@@ -194,28 +194,17 @@ public class TeamDaoImpl implements TeamDao{
 		return sqlSession.update("team.dao.TeamMapper.updateTeamEmblem", teamDto);
 	}
 	
+	
+	
 	/**
-	 * @함수명: selectTeamCode
-	 * @작성일: 2015. 7. 3.
+	 * @함수명: getTeamLogCount
+	 * @작성일: 2015. 7. 9.
 	 * @작성자: 정성남
 	 * @설명 :
 	 */
 	@Override
-	public int selectTeamCode(String teamName) {
-		
-		return sqlSession.selectOne("team.dao.TeamMapper.selectTeamCode",teamName);
-	}
-
-	/**
-	 * @함수명: addTeamLog
-	 * @작성일: 2015. 7. 3.
-	 * @작성자: 정성남
-	 * @설명 :
-	 */
-	@Override
-	public int addTeamLog(TeamLogDto teamLogDto) {
-		
-		return sqlSession.insert("team.dao.TeamMapper.addTeamLog",teamLogDto);
+	public int getTeamLogCount() {		
+		return sqlSession.selectOne("team.dao.TeamMapper.getTeamLogCount");
 	}
 
 	/**
@@ -225,26 +214,15 @@ public class TeamDaoImpl implements TeamDao{
 	 * @설명 :
 	 */
 	@Override
-	public List<TeamLogDto> teamLogDtoList(int teamCode) {
+	public List<TeamLogDto> teamLogDtoList(int teamCode,int startRow,int endRow) {
+		HashMap<String,Object> hMap=new HashMap<String,Object>();
+		hMap.put("teamCode", teamCode);
+		hMap.put("startRow", startRow);
+		hMap.put("endRow", endRow);
 		
-		return sqlSession.selectList("team.dao.TeamMapper.teamLogDtoList",teamCode);
+		return sqlSession.selectList("team.dao.TeamMapper.teamLogDtoList",hMap);
 	}
 
-	/**
-	 * @함수명: teamLogDelete
-	 * @작성일: 2015. 7. 7.
-	 * @작성자: 정성남
-	 * @설명 :
-	 */
-	@Override
-	public int teamLogDelete(String replyPassword, int replyCode) {
-		HashMap<String,Object> hMap=new HashMap<String,Object>();
-		hMap.put("replyPassword", replyPassword);
-		hMap.put("replyCode", replyCode);
-		
-		return sqlSession.delete("team.dao.TeamMapper.teamLogDelete",hMap);
-	}
-	
 
 	/**
 	 * @name : TeamDaoImpl
@@ -298,6 +276,17 @@ public class TeamDaoImpl implements TeamDao{
 		map.put("sportType", sportType);
 		map.put("teamCode", teamCode);
 		return sqlSession.update("team.dao.TeamMapper.updateTeamInfo", map);
+	}
+
+	@Override
+	public int replyWrite(TeamLogDto teamLog) {		
+		return sqlSession.insert("team.dao.TeamMapper.replyWrite" , teamLog);
+	}
+
+	@Override
+	public List<TeamLogDto> getReplyList(String teamName) {
+		// TODO Auto-generated method stub
+		return sqlSession.selectList("team.dao.TeamMapper.getReplyList" , teamName);
 	}
 		
 }

@@ -29,10 +29,20 @@ public class TeamBoardController {
 	@RequestMapping(value="/teamPage/viewTeamBoard.do" , method=RequestMethod.GET)
 	public ModelAndView viewTeamBoard(HttpServletRequest request){
 		logger.info("TeamController viewTeamBoard");
-		ModelAndView mav = new ModelAndView();
+		ModelAndView mav = new ModelAndView("teamBoard/teamBoard");
 		mav.addObject("request" , request);
 		service.viewTeamBoard(mav);
 		
+		return mav;
+	}
+	
+	@RequestMapping(value="/teamBoardPaging" , method=RequestMethod.GET)
+	public ModelAndView teamBoardPaging(HttpServletRequest request){
+		logger.info("TeamBoardCtrl teamBoardPaging");
+		ModelAndView mav = new ModelAndView();
+		mav.addObject("request" , request);
+		service.teamBoardPaging(mav);
+		mav.setViewName("team/teamMain");
 		return mav;
 	}
 	/**
@@ -156,6 +166,17 @@ public class TeamBoardController {
 		mav.addObject("board", board);
 		service.updateOkTeamBoard(mav);
 		
+		return mav;
+	}
+	
+	@RequestMapping(value="/paging" , method=RequestMethod.GET)
+	public ModelAndView paging(HttpServletRequest request){
+		logger.info("TeamController paging");
+		
+		ModelAndView mav = new ModelAndView("teamBoard/ajaxTeamBoard");
+		mav.addObject("request" , request);
+		service.viewTeamBoard(mav);
+	
 		return mav;
 	}
 }

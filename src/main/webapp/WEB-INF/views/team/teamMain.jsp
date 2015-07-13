@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <!DOCTYPE html>
 <c:set var="root" value="${pageContext.request.contextPath }"/>
 <c:if test="${team!=null}">
@@ -19,10 +20,6 @@
 	
 	<script src="${root }/resources/js/teamMain.js"></script>
 	
-	<!-- 정성남 댓글 스크립트 -->
-	<script src="${root }/js/teamPage/teamLog.js"></script>
-	<script src="${root }/js/teamPage/teamLogDelete.js"></script>	
-	
 </head>
 <body>
 	<div class="row">
@@ -38,13 +35,13 @@
 				  <ul class="dropdown-menu" role="menu">
 			    	  <c:if test="${teamGrade != null }">	    
 						<li><a href="${root }/member/myInfoPage.do?teamName=${teamName }">${teamId }님</a></li>
-						<li><a href="${root }/teamPage/viewTeamBoard.do?teamName=${team.teamName}">팀 공지사항</a></li>
+						<li><a href="${root }/teamPage/viewTeamBoard.do?teamName=${team.teamName}" data-toggle="modal" data-target="#modalBoard">팀공지사항</a></li>
 						<li><a href="${root }/teamPage/teamMemberInfo.do?teamName=${team.teamName}">팀원소개</a></li>
 						<li><a href="${root }/teamPage/teamScheduleEdit.do?teamName=${teamName}">팀 스케쥴</a></li>
 						<li><a href="${root }/teamPage/viewTeamRecord.do?teamName=${team.teamName}">팀 기록</a></li>
 		
 						<li class="divider"></li>
-						<li><a href="${root }/teamPage/manageTeamBoard.do?teamName=${team.teamName}">공지사항관리</a></li>
+						<li><a href="${root }/teamPage/viewTeamBoard.do?teamName=${team.teamName}" data-toggle="modal" data-target="#modalBoard">공지사항관리</a></li>
 						<li><a href="${root }/teamPage/manageTeamMember.do?teamName=${team.teamName}">팀원관리</a></li>
 						<li><a href="${root }/teamPage/teamScheduleEdit.do?teamName=${teamName}">스케쥴관리</a></li>
 						<li><a href="${root }/teamPage/matching.do?teamName=${team.teamName}">매칭관리</a></li>
@@ -54,7 +51,7 @@
 				  	</c:if>
 				  	
 				  	<c:if test="${teamGrade == null }">
-						<li><a href="${root }/teamPage/viewTeamBoard.do?teamName=${team.teamName}">팀 공지사항</a></li>
+						<li><a href="${root }/teamPage/viewTeamBoard.do?teamName=${team.teamName}" data-toggle="modal" data-target="#modalBoard">팀공지사항</a></li>
 						<li><a href="${root }/teamPage/teamMemberInfo.do?teamName=${team.teamName}">팀원소개</a></li>
 						<li><a href="${root }/teamPage/viewTeamRecord.do?teamName=${team.teamName}">팀 기록</a></li>
 						<li><a href="${root }/teamPage/teamScheduleEdit.do?teamName=${teamName}">팀 스케쥴</a></li>
@@ -140,58 +137,77 @@
 	  <div class="col-md-1"></div>
 	</div>
 	
+	<!-- 댓글부분 -->
+	<input type="hidden" id="replyTeamCode" value="${team.teamCode }"/>
 	<div class="row well">
 		<div class="col-md-1"></div>
 		<div class="col-md-10">
 			<div class="row">
-			<div class="col-md-2">
-				<input type="text" class="form-control" name="nickName" id="replyNickName" placeholder="닉네임">
-			</div>
-			<div class="col-md-2">
-				<input type="password" class="form-control" name="password" id="replyPassword" placeholder="암호">
-			</div>
-			<div class="col-md-8">
-				<div class="input-group">
-			      <input type="text" class="form-control" name="content" id="replyContent" placeholder="한줄 답글을써주세요.">
-			      <span class="input-group-btn">
-			        <button class="btn btn-default" type="button" id="addTeamLog" onclick="teamLog('${root}','${team.teamName}')">작성</button>
-			      </span>
-			    </div><!-- /input-group -->
-			</div>
-			</div>
-			<br/>
-			<div class="col-md-10">
-				<hr/>
-				<div class="row">
-					<div class="col-md-2 alert alert-success" style="padding:10px;"><span>작성자</span></div>
-					<div class="col-md-1"></div>
-					<div class="col-md-7 alert alert-success" style="padding:10px;"><span>내용</span></div>
-					<div class="col-md-2"></div>
-				</div>
-				<hr/>
-				<c:forEach var="teamLogDtoList" items="${teamLogDtoList}">
-					<div class="replyList row" id="${teamLogDtoList.replyCode}">
-						<div class="col-md-2 alert alert-warning" role="alert" style="padding:10px;">
-							<span>${teamLogDtoList.replyNickName}</span>				
+  				<div class="col-md-3">
+   					 <div class="input-group">
+     					 <span class="input-group-btn">
+        					<button class="btn btn-default" type="button" disabled="disabled">닉네임</button>
+      					</span>
+      					<input type="text" class="form-control" placeholder="닉네임을 적어주세요." id="replyNickName">
+    				 </div><!-- /input-group -->
+  				</div>
+  				<div class="col-md-3">
+  					 <div class="input-group">
+     					 <span class="input-group-btn">
+        					<button class="btn btn-default" type="button" disabled="disabled">비밀번호</button>
+      					</span>
+      					<input type="password" class="form-control" placeholder="비밀번호를 적어주세요." id="replyPassword">
+    				 </div><!-- /input-group -->
+  				</div>
+ 				 <div class="col-md-6">
+   					 <div class="input-group">
+    					  <input type="text" class="form-control" placeholder="내용을 적어주세요." id="replyContent">
+					      <span class="input-group-btn">
+					        <button class="btn btn-default" type="button" onclick="writeReply('${root}','${teamName }')">한마디 남기기</button>
+					      </span>
+    				</div>
+ 				 </div>
+			</div><!-- /.row -->
+			<hr/>
+			
+			<div class="row replyList">	
+  				<c:forEach var="teamLog" items="${replyList}" begin="0" varStatus="status" end="4">
+					<div class="col-md-3">
+						 <div class="input-group">
+							 <span class="input-group-btn">
+								<button class="btn btn-default" type="button" disabled="disabled">닉네임</button>
+							</span>
+							<input type="text" class="form-control" value="${teamLog.replyNickName }" id="replyNickName">
+						 </div><!-- /input-group -->
+					</div>
+					<div class="col-md-3">
+						 <div class="input-group">
+									 <span class="input-group-btn">
+					  					<button class="btn btn-default" type="button" disabled="disabled">작성일</button>
+										</span>
+										<input type="text" class="form-control" value="<fmt:formatDate value="${teamLog.replyDate }" pattern="yy-MM-dd"/>" id="replyDate">
+							 </div><!-- /input-group -->
+					</div>
+					<div class="col-md-6">
+						<div class="input-group">
+							 <input type="text" class="form-control" value="${teamLog.replyContent }" id="replyContent">
+					     <span class="input-group-btn">
+					       	<button class="btn btn-danger" type="button" onclick="">삭제</button>
+					     </span>
 						</div>
-						<div class="col-md-1"></div>
-						<div class="col-md-7 alert alert-info" role="alert" style="padding:10px;">
-							${teamLogDtoList.replyContent}
-						</div>
-						<div class="col-md-2">
-							<c:if test="${teamGrade !=null }">
-							<a class="btn btn-danger" href="javascript:teamLogDelete('${root}','${teamLogDtoList.replyCode}','${teamLogDtoList.replyPassword}')" role="button">삭제</a>
-							<br/>
-							</c:if>
-						</div>			
-					</div>		
-		   		</c:forEach>
-			</div>
+					</div>
+				</c:forEach>
+
+			</div><!-- /.row -->
+			
+			
+			<div class="alert alert-warning" role="alert"><p class="text-center">더보기</p></div>
+
 		</div>
 		<div class="col-md-1"></div>
-	  
 	</div>
-		
+	
+	
 	
 	<c:if test="${team==null}">
 	<div style="text-align:center;">
@@ -202,6 +218,37 @@
 		
 	</c:if>
 	
+	<script>
+		function writeReply(root,teamName){
+			var replyNickName = $("#replyNickName").val();
+			var replyContent = $("#replyContent").val();
+			var teamCode = $("#replyTeamCode").val();
+			var replyPassword = $("#replyPassword").val();
+			
+			var addr = root+"/replyWrite?teamCode="+teamCode+"&replyNickName="+replyNickName+"&replyPassword="+replyPassword+"&replyContent="+replyContent;
+			//alert(addr);
+			
+			$.ajax({
+				type:"get",
+				url:addr,
+				success:function(data){
+					$(".replyList").prepend(data);
+					$("#replyNickName").val("");
+					$("#replyContent").val("");
+					$("#replyPassword").val("");
+				}
+			});
+		}
+	</script>
+	
+	
+
 	 <div class="sign" id="sign"></div>
+	 <div class="modal fade" id="modalBoard" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+		  <div class="modal-dialog">
+		    <div class="modal-content">      
+		    </div>
+		  </div>
+	</div>
 </body>
 </html>

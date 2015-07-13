@@ -111,9 +111,16 @@
 	<insert id="addTeamLog" parameterType="com.sml.team.dto.TeamLogDto" >
 	 insert into TeamLog values(BOARDREPLY_REPLYCODE_SQL.nextval,#{teamCode},#{replyNickName},#{replyPassword},#{replyContent},#{replyDate})
 	 </insert>
+	 
+	 <select id="getTeamLogCount" resultType="int">
+		select count(*) from teamLog
+	</select>
 
-	<select id="teamLogDtoList" resultType="com.sml.team.dto.TeamLogDto" parameterType="int" >
-	 select * from teamLog where teamCode=#{teamCode} order by replyCode desc
+	<select id="teamLogDtoList" resultType="com.sml.team.dto.TeamLogDto" parameterType="java.util.HashMap" >
+	<![CDATA[  select * from 
+				(select rownum rnum,a.* from
+					(select * from teamLog where teamCode=#{teamCode} order by replyCode desc)a)
+				where rnum>=#{startRow} and rnum<=#{endRow} ]]>
     </select>
 
 	<delete id="teamLogDelete" parameterType="java.util.HashMap" >
@@ -152,4 +159,13 @@
 	<update	id="updateTeamInfo" parameterType="java.util.HashMap">
 		update team set teamPassword=#{teamPassword}, teamName=#{teamName}, sportType=#{sportType} where teamCode=${teamCode} 
 	</update>	
+	
+	<insert id="replyWrite" parameterType="com.sml.team.dto.TeamLogDto">
+		insert into TEAMLOG values(BOARDREPLY_REPLYCODE_SQL.nextval,#{teamCode},#{replyNickName},#{replyPassword},#{replyContent},#{replyDate})
+	</insert>
+	
+	<select id="getReplyList" parameterType="String" resultType="com.sml.team.dto.TeamLogDto">
+		select * from teamLog l , team t where t.teamName=#{teamName} and t.teamCode = 
+		(select teamCode from team where teamName = #{teamName}) and t.teamCode = l.teamCode
+	</select>
 </mapper>

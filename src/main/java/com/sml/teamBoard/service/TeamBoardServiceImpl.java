@@ -39,7 +39,7 @@ public class TeamBoardServiceImpl implements TeamBoardService{
 		int count=dao.getBoardCount(teamName);
 		// 팀 전체 게시물 수
 		
-		int boardSize=5;
+		int boardSize=8;
 		// 한 블록 당 출력될 게시물 수
 		
 		int blockSize=2;
@@ -65,7 +65,6 @@ public class TeamBoardServiceImpl implements TeamBoardService{
 		mav.addObject("blockSize", blockSize);
 		mav.addObject("currentPage",currentPage);
 		mav.addObject("teamBoardList" , teamBoardList);
-		mav.setViewName("teamBoard/teamBoard");
 	}
 	
 	/**
@@ -250,4 +249,12 @@ public class TeamBoardServiceImpl implements TeamBoardService{
 		mav.addObject("currentPage",currentPage);
 		mav.setViewName("teamBoard/okTeamBoard");
 	}
+
+	@Override
+	public void teamBoardPaging(ModelAndView mav) {
+		HashMap<String , Object> map = mav.getModelMap();
+		HttpServletRequest request = (HttpServletRequest) map.get("request");
+	}
+	
+	
 }

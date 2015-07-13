@@ -27,39 +27,6 @@ public class LeagueDaoImpl implements LeagueDao{
 	}
 
 	/**
-	 * @함수명:applicate
-	 * @작성일:2015. 7. 9.
-	 * @작성자:조영석
-	 * @설명문:리그신청관리 데이트베이스연결
-	 */
-	@Override
-	public int applicate(String teamId, int leagueCode,int leagueTeamNumber) {
-		int check=0;
-		HashMap<String,Object> Hmap=new HashMap<String,Object>();
-		int leagueCount=sqlSession.selectOne("dao.LeagueMapper.count",leagueCode);
-		System.out.println("leagueCount"+leagueCount);
-		if(leagueCount<leagueTeamNumber){
-		int teamCode=sqlSession.selectOne("dao.LeagueMapper.teamSelect", teamId);
-		
-		Hmap.put("teamCode", teamCode);
-		Hmap.put("leagueCode", leagueCode);
-		
-		int value=sqlSession.selectOne("dao.LeagueMapper.leagueJoinSelect",teamCode);
-
-		
-		if(value==0){
-			check=sqlSession.insert("dao.LeagueMapper.applicate",Hmap);
-		}else if(value>0){
-			return 0;
-		}
-	 }else if(leagueCount>=leagueTeamNumber){
-		 return 3;
-	 }
-
-		return check;
-	}
-	
-	/**
 	 * @name : checkLeagueJoin
 	 * @date : 2015. 7. 10.
 	 * @author : 변형린
@@ -73,5 +40,52 @@ public class LeagueDaoImpl implements LeagueDao{
 	@Override
 	public LeagueDto getLeagueInfo(int leagueCode) {
 		return sqlSession.selectOne("dao.LeagueMapper.getLeagueInfo",leagueCode);
+	}
+
+	/**
+	 * @name : getLeagueCount
+	 * @date : 2015. 7. 13.
+	 * @author : 이희재
+	 * @description : 현재 참여하고 있는 league의 팀 수 출력
+	 */
+	@Override
+	public int getLeagueCount(int leagueCode) {
+		return sqlSession.selectOne("dao.LeagueMapper.count",leagueCode);
+	}
+
+	/**
+	 * @name : getTeamCode
+	 * @date : 2015. 7. 13.
+	 * @author : 이희재
+	 * @description : 팀 id에 따른 팀 코드 출력
+	 */
+	@Override
+	public int getTeamCode(String teamId) {
+		return sqlSession.selectOne("dao.LeagueMapper.teamSelect",teamId);
+	}
+
+	/**
+	 * @name : getLeagueJoinSelect
+	 * @date : 2015. 7. 13.
+	 * @author : 이희재
+	 * @description : 참가하고 있는 리그가 있는지 확인
+	 */
+	@Override
+	public int getLeagueJoinSelect(int teamCode) {
+		return sqlSession.selectOne("dao.LeagueMapper.leagueJoinSelect",teamCode);
+	}
+
+	/**
+	 * @name : applicate
+	 * @date : 2015. 7. 13.
+	 * @author : 이희재
+	 * @description : 리그 참가
+	 */
+	@Override
+	public int applicate(int teamCode, int leagueCode) {
+		HashMap<String, Object> hMap=new HashMap<String, Object>();
+		hMap.put("teamCode", teamCode);
+		hMap.put("leagueCode", leagueCode);
+		return sqlSession.insert("dao.LeagueMapper.applicate",hMap);
 	}
 }
