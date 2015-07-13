@@ -25,7 +25,7 @@
 						<div class="input-group">
 							 <input type="text" class="form-control" value="${teamLog.replyContent }" id="replyContent" disabled="disabled">
 					     <span class="input-group-btn">
-					       	<button class="btn btn-danger" type="button" onclick="">삭제</button>
+					       	<button class="btn btn-danger" type="button" onclick="deleteReply('${root}','${teamLog.teamCode }' , '${teamLog.replyCode}')">삭제</button>
 					     </span>
 						</div>
 					</div>
