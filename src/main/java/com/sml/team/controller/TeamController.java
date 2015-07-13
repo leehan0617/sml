@@ -288,5 +288,35 @@ public class TeamController {
 		service.teamLogDelete(mav);		
 		return mav;
 	}
-
+	
+	/**
+	 * @name : updateTeamInfo
+	 * @date : 2015. 7. 10.
+	 * @author : 변형린
+	 * @description : 팀 정보 수정 페이지로 이동
+	 */
+	@RequestMapping(value="/team/updateTeamInfo.do", method=RequestMethod.GET)
+	public ModelAndView updateTeamInfo(HttpServletRequest request){
+		ModelAndView mav=new ModelAndView();
+		mav.addObject("request", request);
+		service.updateTeamInfo(mav);
+		
+		return mav;
+	}	
+	
+	
+	/**
+	 * @name : updateTeamInfoOk
+	 * @date : 2015. 7. 10.
+	 * @author : 변형린
+	 * @description : 팀 정보 수정 
+	 */
+	@RequestMapping(value="/team/updateTeamInfoOk.do", method=RequestMethod.POST)
+	public ModelAndView updateTeamInfoOk(HttpServletRequest request){
+		ModelAndView mav=new ModelAndView();
+		mav.addObject("request", request);
+		service.updateTeamInfoOk(mav);
+		
+		return mav;
+	}
 }

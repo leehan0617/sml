@@ -58,5 +58,20 @@ public class LeagueDaoImpl implements LeagueDao{
 
 		return check;
 	}
+	
+	/**
+	 * @name : checkLeagueJoin
+	 * @date : 2015. 7. 10.
+	 * @author : 변형린
+	 * @description : 리그 참가 여부
+	 */
+	@Override
+	public String getJoinLeagueCode(int teamCode) {
+		return sqlSession.selectOne("dao.LeagueMapper.getJoinLeagueCode",teamCode);
+	}
 
+	@Override
+	public LeagueDto getLeagueInfo(int leagueCode) {
+		return sqlSession.selectOne("dao.LeagueMapper.getLeagueInfo",leagueCode);
+	}
 }

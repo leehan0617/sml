@@ -34,4 +34,13 @@
 	<insert id="insertHomeGround" parameterType="java.util.HashMap">
 		insert into homeGround (teamCode, ground) values (#{team}, #{homeGround})
 	</insert>
+	
+	
+	<select id="getMemberInfo" parameterType="int" resultType="com.sml.member.dto.MemberDto">
+		select * from TeamMember where teamCode = #{teamCode}
+	</select>
+	
+	<update id="updateMemberInfoOk" parameterType="java.util.HashMap">
+		update TeamMember set memberName=#{memberName}, memberBirth=#{memberBirth}, memberRegion=#{memberRegion}, memberEmail=#{memberEmail}, memberPhone=#{memberPhone}, memberGender=#{memberGender} where teamCode=#{teamCode}
+	</update>
 </mapper>  

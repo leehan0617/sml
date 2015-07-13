@@ -28,5 +28,7 @@ public interface TeamDao {
 	public int addTeamLog(TeamLogDto teamLogDto);
 	public int teamLogDelete(String replyPassword,int replyCode);
 	public HashMap<String, Object> getNormalMatchInfo(int teamCode);
-	public TeamDto getTeamInfo(int teamCode);
+	public TeamDto getTeamInfo(int teamCode);	
+	public int updateHomeGround(String homeGround, int teamCode);	
+	public int updateTeamInfo(String teamPassword, String teamName, String sportType, int teamCode);
 }
