@@ -75,7 +75,7 @@
 	</select>
 	
 	<update id="leagueUpdateOk" parameterType="com.sml.league.dto.LeagueDto">
-		update leagueInfo set leagueSport=#{leagueSport},leagueImage=#{leagueImage},leagueRegion=#{leagueRegion},leagueName=#{leagueName},leagueTeamNumber=#{leagueTeamNumber},leagueDay=#{leagueDay},leagueTime=#{leagueTime},leagueStartDate=#{leagueStartDate},leagueEndDate=#{leagueEndDate} where leagueCode=#{leagueCode}
+		update leagueInfo set leagueSport=#{leagueSport},leagueImage=#{leagueImage},leagueRegion=#{leagueRegion},leagueName=#{leagueName},leagueTeamNumber=#{leagueTeamNumber},leagueDay=#{leagueDay},leagueTime=#{leagueTime},leagueStartDate=#{leagueStartDate},leagueEndDate=#{leagueEndDate},leaguePlace=#{leaguePlace} where leagueCode=#{leagueCode}
 	</update>
 	
 	<select id="getLeagueList" parameterType="String" resultType="com.sml.league.dto.LeagueDto">
