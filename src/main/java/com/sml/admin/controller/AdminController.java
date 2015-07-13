@@ -143,7 +143,6 @@ public class AdminController {
 			mav.addObject("request" , request);
 			mav.addObject("leagueDto" , leagueDto);
 			
-			System.out.println("requee:");
 			adminService.createLeague(mav);
 			
 			return mav;
@@ -255,6 +254,23 @@ public class AdminController {
 			mav.addObject("request",request);
 
 			adminService.leagueSwitch(mav);
+			return mav;
+		}	
+		
+		
+		/**
+		 * @name : searchPlace
+		 * @date : 2015. 7. 13.
+		 * @author : 이희재
+		 * @description : 리그 개최를 위한 경기장 선택을 위한 페이지 이동
+		 */
+		@RequestMapping(value="/admin/searchPlace.do",method=RequestMethod.GET)
+		public ModelAndView searchPlace(HttpServletRequest request){
+			logger.info("searchPlace-----------");
+			ModelAndView mav=new ModelAndView();
+			mav.addObject("request",request);
+
+			adminService.searchPlace(mav);
 			return mav;
 		}	
 		

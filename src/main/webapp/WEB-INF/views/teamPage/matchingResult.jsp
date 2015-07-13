@@ -72,6 +72,18 @@
 			<h4>Day : ${otherMatchingDto.matchingDay}</h4>
 			<h4>Time : ${otherMatchingDto.matchingTime}</h4>
 			<br/><br/>
+			
+		
+			<h2>날씨</h2>
+			<c:forEach var="weather" items="${weatherAllList}" begin="1" end="7">
+				<span>${weather.region }</span>
+				<span>${weather.tmEf }</span>
+				<span>${weather.wf }</span>
+				<span>${weather.tmn }</span>
+				<span>${weather.tmx }</span>
+				<br/>
+			</c:forEach>
+			
 		</c:if>
 		<c:if test="${normalMatchInfo.TEAM2==teamName }"><div>team2</div>
 			<h2>나의 팀</h2>
@@ -89,7 +101,20 @@
 			<h4>Day : ${otherMatchingDto.matchingDay}</h4>
 			<h4>Time : ${otherMatchingDto.matchingTime}</h4>
 			<br/><br/>
+			
+			<h2>날씨</h2>
+			<c:forEach var="weather" items="${weatherAllList}" begin="1" end="7">				
+				<span>${weather.region }</span>
+				<span>${weather.tmEf }</span>
+				<span>${weather.wf }</span>
+				<span>최저온도 ${weather.tmn }</span>
+				<span>최고온도 ${weather.tmx }</span>
+				<br/>
+			</c:forEach>
 		</c:if>
+	
+	<h2>날씨 정보 넣어야 함</h2>
+	<br/>
 	
 	<h3>경기장 정보 부분 </h3>
 	

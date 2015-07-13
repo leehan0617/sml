@@ -11,9 +11,17 @@ public class LeagueDto {
 	private String leagueStartDate;
 	private String leagueEndDate;
 	private String leagueImage;
+	private String leaguePlace;
 	private int leagueState;
 	private int legueCount;
 	
+	
+	public String getLeaguePlace() {
+		return leaguePlace;
+	}
+	public void setLeaguePlace(String leaguePlace) {
+		this.leaguePlace = leaguePlace;
+	}
 	public int getLegueCount() {
 		return legueCount;
 	}
