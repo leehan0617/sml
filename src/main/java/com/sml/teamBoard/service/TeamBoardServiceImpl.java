@@ -82,6 +82,8 @@ public class TeamBoardServiceImpl implements TeamBoardService{
 		int currentPage=Integer.parseInt(request.getParameter("currentPage"));
 		int boardNumber=Integer.parseInt(request.getParameter("boardNumber"));
 		
+		System.out.println("currentPage : " + currentPage);
+		
 		TeamBoardDto board=dao.getBoardDto(boardNumber);
 		
 		mav.addObject("board",board);

@@ -36,6 +36,13 @@ public class TeamBoardController {
 		return mav;
 	}
 	
+	/**
+	 * @함수명:teamBoardPaging
+	 * @작성일:2015. 7. 14.
+	 * @작성자:이한빈 
+	 * @설명문:팀페이지 게시판 페이징 기능 
+	 *
+	 */
 	@RequestMapping(value="/teamBoardPaging" , method=RequestMethod.GET)
 	public ModelAndView teamBoardPaging(HttpServletRequest request){
 		logger.info("TeamBoardCtrl teamBoardPaging");

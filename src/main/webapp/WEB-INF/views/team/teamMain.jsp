@@ -102,7 +102,9 @@
 	<div class="row well">
 	  <div class="col-md-1"></div>
 	  <div class="col-md-5 well">
+	  	<a href="${root }/teamPage/viewTeamBoard.do?teamName=${team.teamName}" data-toggle="modal" data-target="#modalBoard">
 	  	<%@include file="../teamTemplate/teamBoardTemplate.jsp" %>
+	  	</a>
 	  </div>
 	  <div class="col-md-5 well">
 	  	<%@include file="../teamTemplate/scheduleTemplate.jsp" %> 
