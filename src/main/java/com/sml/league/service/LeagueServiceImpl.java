@@ -4,7 +4,9 @@ import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
+import java.util.StringTokenizer;
 
 import javax.servlet.http.HttpServletRequest;
 
@@ -70,18 +72,64 @@ public class LeagueServiceImpl implements LeagueService{
 	 * @name : leagueSchedule
 	 * @date : 2015. 7. 13.
 	 * @author : 이희재
-	 * @description : 리그 신청 후 정원이 꽉차면 요일에 따른 날짜 구하기
+	 * @description : 리그 신청 후 정원이 꽉차면 리그 정보에 따른 스케쥴링 함수
 	 */
 	public void leagueSchedule(int leagueCode){
 		LeagueDto league=dao.getLeagueInfo(leagueCode);
 		int teamCount=league.getLeagueTeamNumber();
+		HashMap<Integer, String> scheduleMap=new HashMap<Integer, String>();
+		List<Integer> teamCodeList=dao.getLeagueJoinList(leagueCode);
 		
 		// 총 경기 수
 		int gameCount=(teamCount*(teamCount-1))/2;
+				
+		String leagueTime=league.getLeagueTime();
+		StringTokenizer token=new StringTokenizer(leagueTime,",");
 		
+		int countWeek=(gameCount/(token.countTokens()*3))+1;
+		// 총 경기수 / 시간대 수 * 경기장 수 (3) + 1
+		
+		String leagueDay=league.getLeagueDay();
+		String leaguePlace=league.getLeaguePlace();
+		
+		ArrayList<Date> dateList=getDateList(leagueDay, countWeek);
+		
+		int createCount=0;
+		
+		while(createCount<gameCount){
+			String temp="";
+			for(int i=0;i<dateList.size();i++){
+				token=new StringTokenizer(leagueTime,",");
+				
+				while(token.hasMoreTokens()){
+					String tempToken=token.nextToken();
+					StringTokenizer token2=new StringTokenizer(leaguePlace,",");
+					while(token2.hasMoreTokens()){
+						temp+=dateList.get(i) + "," + tempToken + "," + token2.nextToken();
+						createCount++;
+						scheduleMap.put(createCount, temp);
+//						System.out.println(createCount + "," + temp);
+						temp="";
+					}
+				}
+				if(createCount>=gameCount){
+					break;
+				}
+			}
+		}
+		
+	}
+	
+	/**
+	 * @name : getDateList
+	 * @date : 2015. 7. 14.
+	 * @author : 이희재
+	 * @description : 요일에 따른 달력에 의한 날짜 추출 
+	 */
+	public ArrayList<Date> getDateList(String dayName, int countWeek){
+		// 주말 날짜 구하기
 		ArrayList<Date> dateList=new ArrayList<Date>();
 		
-		// 주말 날짜 구하기
 		Date date=new Date();
 		Date dateSun=new Date();
 		
@@ -100,36 +148,40 @@ public class LeagueServiceImpl implements LeagueService{
 			dateSun=cal.getTime();
 		}
 		
-		// 토요일 날짜
-		cal.setTime(date);
-		dateList.add(date);
-		
-		for(int i=0;i<10;i++){
-			cal.add(Calendar.DATE, 7);
-			Date tempDate=cal.getTime();
-			dateList.add(tempDate);
-			cal.setTime(tempDate);
+		if(dayName.equals("sat")){
+			System.out.println("토요일------------------");
+			// 토요일 날짜
+			cal.setTime(date);
+			dateList.add(date);
+			
+			for(int i=0;i<countWeek;i++){
+				cal.add(Calendar.DATE, 7);
+				Date tempDate=cal.getTime();
+				dateList.add(tempDate);
+				cal.setTime(tempDate);
+			}
+//			
+//			for(int i=0;i<dateList.size();i++){
+//				System.out.println(dateList.get(i));
+//			}
+		}else if(dayName.equals("sun")){
+			System.out.println("일요일------------------");
+			// 일요일 날짜
+			cal.setTime(dateSun);
+			dateList.add(dateSun);
+			
+			for(int i=0;i<countWeek;i++){
+				cal.add(Calendar.DATE, 7);
+				Date tempDate=cal.getTime();
+				dateList.add(tempDate);
+				cal.setTime(tempDate);
+			}
+//			
+//			for(int i=0;i<dateList.size();i++){
+//				System.out.println(dateList.get(i));
+//			}
 		}
 		
-		for(int i=0;i<dateList.size();i++){
-			System.out.println(dateList.get(i));
-		}
-		
-		System.out.println("일요일------------------");
-		// 일요일 날짜
-		dateList=new ArrayList<Date>();
-		cal.setTime(dateSun);
-		dateList.add(dateSun);
-		
-		for(int i=0;i<10;i++){
-			cal.add(Calendar.DATE, 7);
-			Date tempDate=cal.getTime();
-			dateList.add(tempDate);
-			cal.setTime(tempDate);
-		}
-		
-		for(int i=0;i<dateList.size();i++){
-			System.out.println(dateList.get(i));
-		}
+		return dateList;
 	}
 }

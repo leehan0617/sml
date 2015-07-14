@@ -32,4 +32,8 @@
  		select * from leagueInfo where leagueCode=#{leagueCode}
  	</select>
  	
+ 	<select id="getLeagueJoinList" parameterType="int" resultType="int">
+ 		select teamCode from leagueJoin where leagueCode=#{leagueCode}
+ 	</select>
+ 	
  </mapper>

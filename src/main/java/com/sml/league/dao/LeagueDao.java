@@ -12,4 +12,5 @@ public interface LeagueDao {
 	public int getLeagueCount(int leagueCode);
 	public int getTeamCode(String teamId);
 	public int getLeagueJoinSelect(int teamCode);
+	public List<Integer> getLeagueJoinList(int leagueCode);
 }

@@ -88,4 +88,15 @@ public class LeagueDaoImpl implements LeagueDao{
 		hMap.put("leagueCode", leagueCode);
 		return sqlSession.insert("dao.LeagueMapper.applicate",hMap);
 	}
+
+	/**
+	 * @name : getLeagueJoinList
+	 * @date : 2015. 7. 14.
+	 * @author : 이희재
+	 * @description : 현재 리그에 참여하는 팀 코드 리스트를 가져옴
+	 */
+	@Override
+	public List<Integer> getLeagueJoinList(int leagueCode) {
+		return sqlSession.selectList("dao.LeagueMapper.getLeagueJoinList", leagueCode);
+	}
 }
