@@ -32,4 +32,12 @@
  		select * from leagueInfo where leagueCode=#{leagueCode}
  	</select>
  	
+ 	<select id="getLeagueJoinList" parameterType="int" resultType="int">
+ 		select teamCode from leagueJoin where leagueCode=#{leagueCode}
+ 	</select>
+ 	
+ 	<insert id="insertLeagueGame" parameterType="com.sml.record.dto.RecordDto">
+ 		insert into gameRecord values (gameRecord_gameCode_sql.nextVal,#{teamCode}, #{teamCode2}, #{gameType}, #{refereeNumber}, #{gameState}, #{gameDate}, #{gamePlace}, #{gameResult}, #{sportType}, #{gameTime})
+ 	</insert>
+ 	
  </mapper>

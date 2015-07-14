@@ -30,4 +30,6 @@ public interface TeamDao {
 	public int updateTeamInfo(String teamPassword, String teamName, String sportType, int teamCode);
 	public int replyWrite(TeamLogDto teamLog);
 	public List<TeamLogDto> getReplyList(String teamName);
+	public List<TeamLogDto> getMoreReplyList(int teamCode , int pageNumber);
+	public int replyDelete(int teamCode, int replyCode);
 }

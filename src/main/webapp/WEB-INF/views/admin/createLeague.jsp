@@ -53,6 +53,12 @@
 	</select>
 	<br/><br/>
 	
+	<h1>선택한 시간에 따라 최소 기간이 달라짐 (유효성 검사)</h1>
+	<h3>시간대 4개 선택: 3주</h3>
+	<h3>시간대 3개 선택: 4주</h3>
+	<h3>시간대 2개 선택: 5주</h3>
+	<h3>시간대 1개 선택: 10주</h3>
+	
 	<span>리그기간</span>
 	<input type="text" id="leagueStartDate" name="leagueStartDate">
 	<span>~</span>

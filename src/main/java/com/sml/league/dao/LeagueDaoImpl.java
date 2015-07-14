@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import com.sml.league.dto.LeagueDto;
+import com.sml.record.dto.RecordDto;
 
 @Component
 public class LeagueDaoImpl implements LeagueDao{
@@ -87,5 +88,27 @@ public class LeagueDaoImpl implements LeagueDao{
 		hMap.put("teamCode", teamCode);
 		hMap.put("leagueCode", leagueCode);
 		return sqlSession.insert("dao.LeagueMapper.applicate",hMap);
+	}
+
+	/**
+	 * @name : getLeagueJoinList
+	 * @date : 2015. 7. 14.
+	 * @author : 이희재
+	 * @description : 현재 리그에 참여하는 팀 코드 리스트를 가져옴
+	 */
+	@Override
+	public List<Integer> getLeagueJoinList(int leagueCode) {
+		return sqlSession.selectList("dao.LeagueMapper.getLeagueJoinList", leagueCode);
+	}
+
+	/**
+	 * @name : insertLeagueGame
+	 * @date : 2015. 7. 14.
+	 * @author : 이희재
+	 * @description : recordDto를 이용하여 record 정보를 테이블에 삽입
+	 */
+	@Override
+	public void insertLeagueGame(RecordDto record) {
+		sqlSession.insert("dao.LeagueMapper.insertLeagueGame", record);
 	}
 }

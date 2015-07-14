@@ -309,4 +309,32 @@ public class TeamController {
 		service.replyWrite(mav);
 		return mav;
 	}
+	
+	/**
+	 * @함수명:replyMoreRead
+	 * @작성일:2015. 7. 14.
+	 * @작성자:이한빈 
+	 * @설명문:팀메인페이지 댓글 더보기 기능.
+	 *
+	 */
+	@RequestMapping(value="/replyMoreRead" , method=RequestMethod.GET)
+	public ModelAndView replyMoreRead(HttpServletRequest request){
+		logger.info("TeamController replyMoreRead");
+		ModelAndView mav = new ModelAndView("teamTemplate/teamReplyReadTemplate");
+		mav.addObject("request" , request);
+		
+		service.replyMoreRead(mav);
+		return mav;
+	}
+	
+	@RequestMapping(value="/replyDelete" , method=RequestMethod.GET)
+	public ModelAndView replyDelete(HttpServletRequest request){
+		logger.info("TeamController replyDelete");
+		ModelAndView mav = new ModelAndView();
+		mav.addObject("request" , request);
+		
+		service.replyDelete(mav);
+		
+		return null;
+	}
 }

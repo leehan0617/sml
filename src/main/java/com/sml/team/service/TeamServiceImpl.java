@@ -187,30 +187,24 @@ public class TeamServiceImpl implements TeamService{
 		int count=dao.getTeamMemberCount(teamName);
 		// 팀 멤버 전체 수 출력
 		
-		int boardSize=3;
-		// 한 블록 당 출력될 게시물 수
+		String pageNumber=request.getParameter("pageNumber");
+		if(pageNumber==null) pageNumber="1";
 		
-		int blockSize=2;
-		// 한 페이지당 들어갈 블록
-		
-		int currentPage=1;
-		if(request.getParameter("currentPage")!=null){
-			currentPage=Integer.parseInt(request.getParameter("currentPage"));
-		}
-		
-		int blockCount=count/boardSize + (count%boardSize==0? 0:1);
+		int boardSize=10;		
+		int currentPage=Integer.parseInt(pageNumber);
 		int startRow=(currentPage-1)*boardSize+1;
-		int endRow=startRow+boardSize-1;
+		int endRow=currentPage*boardSize;	
 		
-		List<MemberDto> teamMemberList = dao.getTeamMemberList(teamName,startRow,endRow);
+		List<MemberDto> teamMemberList=null;
+		if(count>0){
+			teamMemberList = dao.getTeamMemberList(teamName,startRow,endRow);
+		}		
 		
-		mav.addObject("blockCount", blockCount);
 		mav.addObject("teamName",teamName);
 		mav.addObject("count", count);
-		mav.addObject("boardSize", boardSize);
-		mav.addObject("blockSize", blockSize);
+		mav.addObject("boardSize", boardSize);		
 		mav.addObject("currentPage",currentPage);
-		mav.addObject("teamMemberList" , teamMemberList);
+		mav.addObject("teamMemberList",teamMemberList);
 		mav.setViewName("teamPage/teamMemberInfo");
 	}
 
@@ -508,5 +502,35 @@ public class TeamServiceImpl implements TeamService{
 		List<TeamLogDto> replyList = dao.getReplyList(teamName);
 		//System.out.println(replyList.size());
 		mav.addObject("replyList" ,replyList);
+	}
+
+	@Override
+	public void replyMoreRead(ModelAndView mav) {
+		Map<String , Object> map = mav.getModel();
+		HttpServletRequest request = (HttpServletRequest) map.get("request");
+		int teamCode = Integer.parseInt(request.getParameter("teamCode"));
+		String pageNumber = request.getParameter("replyPageNumber");
+		
+		if(pageNumber.equals("")) pageNumber = "1";
+		
+		int pn = Integer.parseInt(pageNumber);
+		mav.addObject("replyPageNumber" , pn+1);
+		mav.addObject("teamCode" , teamCode);
+		
+		List<TeamLogDto> replyList = dao.getMoreReplyList(teamCode , pn*5);
+		mav.addObject("replyList" , replyList);
+	}
+
+	@Override
+	public void replyDelete(ModelAndView mav) {
+		logger.info("TeamService replyDelete");
+		Map<String ,Object> map = mav.getModelMap();
+		HttpServletRequest request = (HttpServletRequest) map.get("request");
+		
+		int teamCode = Integer.parseInt(request.getParameter("teamCode"));
+		int replyCode = Integer.parseInt(request.getParameter("replyCode"));
+		
+		int check = dao.replyDelete(teamCode,replyCode);
+		mav.addObject("check" , check);
 	}
 }

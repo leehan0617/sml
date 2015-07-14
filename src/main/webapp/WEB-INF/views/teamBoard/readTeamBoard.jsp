@@ -3,13 +3,7 @@
     <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
     <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 	<c:set var="root" value="${pageContext.request.contextPath }"/>
-<!DOCTYPE html>
-<html>
-<head>
-<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>Insert title here</title>
-</head>
-<body>	
+
 	<div class="modal-header">
 		<h3 style="text-align:center;">공지사항</h3>
 	</div>
@@ -31,6 +25,3 @@
 	</c:if>
 	<button type="button" class="btn btn-danger" data-dismiss="modal">목록으로</button>
 	</div>
-	
-</body>
-</html>

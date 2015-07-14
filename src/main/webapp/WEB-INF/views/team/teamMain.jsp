@@ -102,7 +102,9 @@
 	<div class="row well">
 	  <div class="col-md-1"></div>
 	  <div class="col-md-5 well">
+	  	<a href="${root }/teamPage/viewTeamBoard.do?teamName=${team.teamName}" data-toggle="modal" data-target="#modalBoard">
 	  	<%@include file="../teamTemplate/teamBoardTemplate.jsp" %>
+	  	</a>
 	  </div>
 	  <div class="col-md-5 well">
 	  	<%@include file="../teamTemplate/scheduleTemplate.jsp" %> 
@@ -141,7 +143,7 @@
 	<input type="hidden" id="replyTeamCode" value="${team.teamCode }"/>
 	<div class="row well">
 		<div class="col-md-1"></div>
-		<div class="col-md-10">
+		<div class="col-md-10 replyWrap">
 			<div class="row">
   				<div class="col-md-3">
    					 <div class="input-group">
@@ -170,29 +172,29 @@
 			</div><!-- /.row -->
 			<hr/>
 			
-			<div class="row replyList">	
+			<div class="row replyList replyFirst">	
   				<c:forEach var="teamLog" items="${replyList}" begin="0" varStatus="status" end="4">
-					<div class="col-md-3">
+					<div class="col-md-3 ${teamLog.replyCode }">
 						 <div class="input-group">
 							 <span class="input-group-btn">
 								<button class="btn btn-default" type="button" disabled="disabled">닉네임</button>
 							</span>
-							<input type="text" class="form-control" value="${teamLog.replyNickName }" id="replyNickName">
+							<input type="text" class="form-control" value="${teamLog.replyNickName }" id="replyNickName" disabled="disabled">
 						 </div><!-- /input-group -->
 					</div>
-					<div class="col-md-3">
+					<div class="col-md-3 ${teamLog.replyCode }">
 						 <div class="input-group">
 									 <span class="input-group-btn">
 					  					<button class="btn btn-default" type="button" disabled="disabled">작성일</button>
 										</span>
-										<input type="text" class="form-control" value="<fmt:formatDate value="${teamLog.replyDate }" pattern="yy-MM-dd"/>" id="replyDate">
+										<input type="text" class="form-control" value="<fmt:formatDate value="${teamLog.replyDate }" pattern="yy-MM-dd"/>" id="replyDate" disabled="disabled">
 							 </div><!-- /input-group -->
 					</div>
-					<div class="col-md-6">
+					<div class="col-md-6 ${teamLog.replyCode }">
 						<div class="input-group">
-							 <input type="text" class="form-control" value="${teamLog.replyContent }" id="replyContent">
+							 <input type="text" class="form-control" value="${teamLog.replyContent }" id="replyContent" disabled="disabled">
 					     <span class="input-group-btn">
-					       	<button class="btn btn-danger" type="button" onclick="">삭제</button>
+					       	<button class="btn btn-danger" type="button" onclick="deleteReply('${root}','${team.teamCode }' , '${teamLog.replyCode}')">삭제</button>
 					     </span>
 						</div>
 					</div>
@@ -201,8 +203,7 @@
 			</div><!-- /.row -->
 			
 			
-			<div class="alert alert-warning" role="alert"><p class="text-center">더보기</p></div>
-
+			<div class="alert alert-warning" role="alert" onclick="moreReadReply('${root}','${team.teamCode }' , '${replyPageNumber }')"><p class="text-center">더보기</p></div>
 		</div>
 		<div class="col-md-1"></div>
 	</div>
@@ -232,10 +233,36 @@
 				type:"get",
 				url:addr,
 				success:function(data){
-					$(".replyList").prepend(data);
+					$(".replyFirst").prepend(data);
 					$("#replyNickName").val("");
 					$("#replyContent").val("");
 					$("#replyPassword").val("");
+				}
+			});
+		}
+		
+		function moreReadReply(root,teamCode,replyPageNumber){
+			
+			var addr = root+"/replyMoreRead?teamCode="+teamCode+"&replyPageNumber="+replyPageNumber;
+			
+			$.ajax({
+				type:"get",
+				url:addr,
+				success:function(data){
+					$(".alert-warning").hide();
+					$(".replyWrap").append(data);
+				}
+			});
+		}
+		
+		function deleteReply(root , teamCode , replyCode){
+			var addr = root+"/replyDelete?teamCode="+teamCode+"&replyCode="+replyCode;
+			
+			$.ajax({
+				type:"get",
+				url:addr,
+				success:function(data){
+					$("."+replyCode).remove();
 				}
 			});
 		}
