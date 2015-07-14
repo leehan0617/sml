@@ -101,7 +101,7 @@
     <div align="center">
     
     <c:if test="${startBlock>blockSize}">
-		<a href="${root }/teamPage/teamMemberInfo.do?teamName=${teamName}&currentPage=${startBlock-blockSize}">[이전]</a>
+		<a href="${root }/teamPage/teamMemberInfo.do?teamName=${teamName}&currentPage=${startBlock-blockSize}" data-toggle="modal">[이전]</a>
 	</c:if>
 	
 	<c:if test="${endBlock>blockCount}">
@@ -109,11 +109,11 @@
 	</c:if>
 	
 	<c:forEach var="blockNumber" begin="${startBlock}" end="${endBlock}">
-		<a href="${root }/teamPage/teamMemberInfo.do?teamName=${teamName}&currentPage=${blockNumber}">[${blockNumber}]</a>
+		<a href="${root }/teamPage/teamMemberInfo.do?teamName=${teamName}&currentPage=${blockNumber}" data-toggle="modal">[${blockNumber}]</a>
 	</c:forEach>
 	
 	<c:if test="${endBlock<blockCount}">
-		<a href="${root }/teamPage/teamMemberInfo.do?teamName=${teamName}&currentPage=${startBlock+blockSize}">[다음]</a>
+		<a href="${root }/teamPage/teamMemberInfo.do?teamName=${teamName}&currentPage=${startBlock+blockSize}" data-toggle="modal">[다음]</a>
 	</c:if>
 	
 	</div>

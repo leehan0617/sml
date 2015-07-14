@@ -256,9 +256,7 @@
 		function deleteReply(root , teamCode , replyCode){
 			alert(root + "," + teamCode + "," + replyCode);
 		}
-	</script>
-	
-	
+	</script>	
 
 	 <div class="sign" id="sign"></div>
 	 <div class="modal fade" id="modalBoard" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
