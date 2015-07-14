@@ -29,9 +29,8 @@
 		<tr>				
 			<td><a href="${root }/soccer/readCommonBoard.do?boardNumber=${commonBoard.boardNumber}&pageNumber=${currentPage}">${commonBoard.boardTitle}</a></td>					
 			<td><fmt:formatDate value="${commonBoard.boardDate}" type="date"/></td>
-			<br/>
 		</tr>			
-	</c:forEach>
+	</c:forEach><br/>
 	
 	<!-- 페이지 번호 -->
 	<center>

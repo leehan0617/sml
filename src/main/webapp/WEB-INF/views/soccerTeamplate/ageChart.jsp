@@ -2,12 +2,9 @@
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <c:set var="root" value="${pageContext.request.contextPath}"/>
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
-<html>
-  <head>
-    <script src="${root}/js/external/jquery-1.11.3.min.js"></script>
-    <script type="text/javascript" src="https://www.google.com/jsapi"></script>
-    <script type="text/javascript">
+<script src="${root}/resources/js/jquery.js"></script>
+<script type="text/javascript" src="https://www.google.com/jsapi"></script>
+<script type="text/javascript">
 	var jsonData='${jsonObject}';
    	var obj=JSON.parse(jsonData);
    	var totalCount=0;
@@ -61,8 +58,5 @@
       chart.draw(data, options);
     }
 </script>
-</head>
-<body>
+
 	<div id="piechart_3d" style="width: 900px; height: 500px;"></div>
-</body>
-</html>

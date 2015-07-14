@@ -9,18 +9,13 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Insert title here</title>
-<script src="${root }/js/startPage.js"></script>
-<script src="${root }/js/external/jquery-1.11.3.min.js"></script>	
-<style type="text/css">
-	
-</style>
+<script src="${root}/resources/js/jquery.js"></script>
+<script type="text/javascript" src="${root}/js/scrollnews.js"></script>
+<script type="text/javascript" src="${root}/js/soccer/soccer.js"></script>
+<script type="text/javascript" src="${root}/resources/js/bootstrap.js"></script>
+<script src="${root}/js/startPage.js"></script>
+<link rel="stylesheet" type="text/css" href="${root}/resources/css/bootstrap.css"/>
 <!--ajax crossdomain 우회-->
-<script type="text/javascript" src="${root }/resources/js/jquery.js"></script>
-<script type="text/javascript" src="${root }/js/scrollnews.js"></script>
-<script type="text/javascript" src="${root }/js/soccer/soccer.js"></script>
-<script type="text/javascript" src="${root }/js/bootstrap.js"></script>
-<script type="text/javascript" src="${root }/js/jquery.xdomainajax.js"></script>
-<link rel="stylesheet" type="text/css" href="${root }/resources/css/bootstrap.css" class="background"/>
 </head>
 <body>	
 <%-- ${root}/resources/images/soccer_background.jpg --%>
@@ -40,7 +35,7 @@
 					</ul>
 				</div>
 			</div>
-		</nav>
+		</nav>	
 		<div class="jumbotron" align="right">
 			<div align="center">
 				<img alt="soccer_icon" src="${root}/resources/images/soccer_icon.jpg">
@@ -136,7 +131,8 @@
 						</div>
 					</div>
 				</div>	
-		<div class="jumbotron" align="center">
+				
+		<div class="jumbotron">
 			<div class="row">
 				<div class="col-sm-6">
 					<h3>리그</h3>
@@ -162,35 +158,29 @@
 						</c:forEach>
 					</div>	
 				</div>
-				<!--통계-->
-				<%-- ${root}/static/chart.do?legion=legion
-				${root}/static/chart.do?age=age --%>
-				<ul class="nav nav-tabs" >
-					<li><a data-toggle="tab" href="${root}/static/chart.do?legion=legion"><Strong>지역별 통계</Strong></a></li>
-					<li><a data-toggle="tab" href="${root}/static/chart.do?age=age"><Strong>연령별 통계</Strong></a></li>
-				</ul>
-				
-				<div class="tab-content">
-				    <div id="home" class="tab-pane fade in active">
-				      <script type="text/javascript">
-	
-				      </script>
-				    </div>
-				    <div id="menu1" class="tab-pane fade">
-				     
-				     </div>
-			   </div>
-</div>
-			</div>				
-		</div>
-		
+				<div class="col-sm-6">
+					<ul class="nav nav-tabs" ><!--${root}/soccer/soccerMain.do?legion=legion  -->
+									  <!--${root}/soccer/soccerMain.do?age=age  -->
+						<li><a href="${root}/soccer/soccerMain.do?legion=legion">지역별 통계</a></li>
+						<li><a href="${root}/soccer/soccerMain.do?age=age">연령별 통계</a></li>
+					</ul>
+				<div>
+					<c:if test="${legion!=null}">
+						<%@include file="../soccerTeamplate/legionChart.jsp" %> 
+					</c:if>
+					<c:if test="${age!=null}">
+						<%@include file="../soccerTeamplate/ageChart.jsp" %> 
+					</c:if>
+				</div>
+				</div>
+			</div>					   	
+		</div>							
 		<div class="jumbotron" align="center">
 			<div class="row">
 				<h3>전화번호 : 02 - 123 - 4567</h3>
 				<h3>이메일 : smlKorea@sml.com</h3>
 			</div>
 		</div>
-</div>
 </body>
 </html>
 
