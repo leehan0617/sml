@@ -178,4 +178,8 @@
 
 		]]>
 	</select>
+	
+	<delete id="replyDelete" parameterType="java.util.HashMap">
+		delete from teamLog where teamCode = #{teamCode} and replyCode = #{replyCode}
+	</delete>
 </mapper>

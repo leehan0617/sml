@@ -299,5 +299,13 @@ public class TeamDaoImpl implements TeamDao{
 		
 		return sqlSession.selectList("team.dao.TeamMapper.getMoreReplyList" , hMap);
 	}
+
+	@Override
+	public int replyDelete(int teamCode, int replyCode) {
+		HashMap<String, Integer> hMap = new HashMap<String , Integer>();
+		hMap.put("teamCode" , teamCode);
+		hMap.put("replyCode" , replyCode);
+		return sqlSession.delete("team.dao.TeamMapper.replyDelete" , hMap);
+	}
 		
 }

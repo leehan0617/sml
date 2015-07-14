@@ -4,7 +4,7 @@
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <c:set var="root" value="${pageContext.request.contextPath }"/>
 
-<div class="col-md-3">
+<div class="col-md-3 ${teamLog.replyCode }">
 	 <div class="input-group">
 		 <span class="input-group-btn">
 			<button class="btn btn-default" type="button" disabled="disabled">닉네임</button>
@@ -12,7 +12,7 @@
 		<input type="text" class="form-control" value="${teamLog.replyNickName }" id="replyNickName" disabled="disabled">
 	 </div><!-- /input-group -->
 </div>
-<div class="col-md-3">
+<div class="col-md-3 ${teamLog.replyCode }">
 	 <div class="input-group">
 				 <span class="input-group-btn">
   					<button class="btn btn-default" type="button" disabled="disabled">작성일</button>
@@ -20,7 +20,7 @@
 					<input type="text" class="form-control" value="<fmt:formatDate value="${teamLog.replyDate }" pattern="yy-MM-dd"/>" id="replyDate" disabled="disabled">
 		 </div><!-- /input-group -->
 </div>
-<div class="col-md-6">
+<div class="col-md-6 ${teamLog.replyCode }">
 	<div class="input-group">
 		 <input type="text" class="form-control" value="${teamLog.replyContent }" id="replyContent" disabled="disabled">
      <span class="input-group-btn">

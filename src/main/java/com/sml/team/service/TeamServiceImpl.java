@@ -526,4 +526,17 @@ public class TeamServiceImpl implements TeamService{
 		List<TeamLogDto> replyList = dao.getMoreReplyList(teamCode , pn*5);
 		mav.addObject("replyList" , replyList);
 	}
+
+	@Override
+	public void replyDelete(ModelAndView mav) {
+		logger.info("TeamService replyDelete");
+		Map<String ,Object> map = mav.getModelMap();
+		HttpServletRequest request = (HttpServletRequest) map.get("request");
+		
+		int teamCode = Integer.parseInt(request.getParameter("teamCode"));
+		int replyCode = Integer.parseInt(request.getParameter("replyCode"));
+		
+		int check = dao.replyDelete(teamCode,replyCode);
+		mav.addObject("check" , check);
+	}
 }
