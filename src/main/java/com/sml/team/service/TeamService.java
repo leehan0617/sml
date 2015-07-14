@@ -8,10 +8,7 @@ public interface TeamService {
 	public void idCheck(ModelAndView mav);
 	public void teamIdCheck(ModelAndView mav);
 	public void goTeamPage(ModelAndView mav);
-	public void viewTeamMemberInfo(ModelAndView mav);
-	public void manageTeamMember(ModelAndView mav);
-	public void addMember(ModelAndView mav);
-	public void deleteMember(ModelAndView mav);
+	
 	public void viewTeamRecord(ModelAndView mav);
 	public void searchRegion(ModelAndView mav);
 	public void updateTeamEmblem(ModelAndView mav);

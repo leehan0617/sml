@@ -9,6 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import com.sml.member.dto.MemberDto;
+import com.sml.team.dto.TeamDto;
 
 @Component
 public class MemberDaoImpl implements MemberDao{
@@ -100,5 +101,67 @@ public class MemberDaoImpl implements MemberDao{
 		map.put("memberGender", memberDto.getMemberGender());
 		map.put("teamCode", teamCode);
 		return sqlSession.update("member.dao.MemberMapper.updateMemberInfoOk", map);
+	}
+	
+	/**
+	 * @name : TeamDaoImpl
+	 * @date : 2015. 6. 25.
+	 * @author : 이희재
+	 * @description : 팀 정보를 갖고 오기 위한 함수
+	 */
+	@Override
+	public TeamDto getTeamInfo(String teamName) {
+		return sqlSession.selectOne("member.dao.MemberMapper.getTeamInfo",teamName);
+	}
+
+	/**
+	 * @name : TeamDaoImpl
+	 * @date : 2015. 6. 25.
+	 * @author : 이희재
+	 * @description : 팀 멤버 리스트를 갖고 오기 위한 함수
+	 */
+	@Override
+	public List<MemberDto> getTeamMemberList(String teamName, int startRow, int endRow) {
+		HashMap<String, Object> map=new HashMap<String, Object>();
+		map.put("teamName", teamName);
+		map.put("startRow", startRow);
+		map.put("endRow", endRow);
+		
+		return sqlSession.selectList("member.dao.MemberMapper.getTeamMemberList",map);
+	}
+
+	/**
+	 * @name : TeamDaoImpl
+	 * @date : 2015. 6. 26.
+	 * @author : 이희재
+	 * @description : 팀 멤버 전체 수 출력
+	 */
+	
+	@Override
+	public int getTeamMemberCount(int teamCode) {
+		return sqlSession.selectOne("member.dao.MemberMapper.getTeamMemberCount", teamCode);
+	}
+
+	/**
+	 * @name : TeamDaoImpl
+	 * @date : 2015. 7. 2.
+	 * @author : 이희재
+	 * @description : 팀 멤버 추가
+	 */
+	@Override
+	public int addMember(MemberDto member) {		
+		
+		return sqlSession.insert("member.dao.MemberMapper.addMember",member);
+	}
+
+	/**
+	 * @name : TeamDaoImpl
+	 * @date : 2015. 7. 2.
+	 * @author : 이희재
+	 * @description : 팀 멤버 삭제
+	 */
+	@Override
+	public int deleteMember(int memberCode) {
+		return sqlSession.insert("member.dao.MemberMapper.deleteMember", memberCode);
 	}
 }

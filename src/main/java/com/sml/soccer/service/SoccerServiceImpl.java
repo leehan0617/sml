@@ -311,7 +311,6 @@ public class SoccerServiceImpl implements SoccerService {
 		
 		String legion=request.getParameter("legion");
 		String age=request.getParameter("age");
-		
 	    List<MemberDto> cardsList=soccerDao.cards();
 		
 	    JSONArray jsonArray=JSONArray.fromObject(cardsList);
@@ -324,7 +323,8 @@ public class SoccerServiceImpl implements SoccerService {
 //		System.out.println("json-"+jsonObject);
 		
 		mav.addObject("jsonObject",jsonObject);
-		
+		mav.addObject("legion",legion);
+		mav.addObject("age",age);
 		if(legion!=null){
 			mav.setViewName("static/legionChart");
 		}else if(age!=null){

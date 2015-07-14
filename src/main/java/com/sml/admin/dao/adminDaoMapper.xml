@@ -15,9 +15,9 @@
 		<![CDATA[
 		select * from
 		(select rownum as rnum, c.* from
-			(select a.sporttype, a.emblem,a.teamname,a.teamleadername, b.* from team a, teamMember b 
-				where a.teamcode=b.teamcode) c)
-					where rnum>=#{startRow} and rnum<=#{endRow}
+			(select a.* from teammember a, team b 
+				where a.teamcode=b.teamcode order by memberCode desc) c)
+					where rnum>=${startRow} and rnum<=${endRow};
 		]]>
 
 	</select>

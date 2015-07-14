@@ -1,5 +1,6 @@
 package com.sml.member.service;
 
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -10,6 +11,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.sml.common.dto.CommonBoardDto;
 import com.sml.member.dao.MemberDao;
 import com.sml.member.dto.MemberDto;
 import com.sml.team.dao.TeamDao;
@@ -105,7 +107,7 @@ public class MemberServiceImpl implements MemberService{
 		
 		//팀 정보 가져오기
 		String teamName=request.getParameter("teamName");
-		TeamDto teamDto=teamDao.getTeamInfo(teamName);
+		TeamDto teamDto=dao.getTeamInfo(teamName);
 		
 		//팀 홈그라운드 가져오기
 		String homeGround=teamDao.getTeamGround(teamDto.getTeamCode());
@@ -135,7 +137,7 @@ public class MemberServiceImpl implements MemberService{
 		HttpServletRequest request=(HttpServletRequest)map.get("request");
 		
 		String teamName=request.getParameter("teamName");
-		TeamDto teamDto=teamDao.getTeamInfo(teamName);
+		TeamDto teamDto=dao.getTeamInfo(teamName);
 		
 		int teamCode=teamDto.getTeamCode();
 		MemberDto memberDto=dao.getMemberInfo(teamCode);
@@ -167,4 +169,157 @@ public class MemberServiceImpl implements MemberService{
 		mav.addObject("check", check);
 		mav.setViewName("member/updateMemberOk");
 	}	
+	
+	/**
+	 * 
+	 * @함수명: viewTeamMemberInfo
+	 * @작성일: 2015. 7. 14.
+	 * @작성자: 정성남
+	 * @설명 :
+	 */
+	@Override
+	public void viewTeamMemberInfo(ModelAndView mav) {
+		logger.info("Service manageTeamMember");
+		HashMap<String,Object> map=mav.getModelMap();
+		HttpServletRequest request=(HttpServletRequest) map.get("request");
+		String teamName=request.getParameter("teamName");
+		//System.out.println("teamName:"+teamName);
+		String teamGrade=request.getParameter("teamGrade");
+		System.out.println("teamGrade:"+teamGrade);
+		
+		int teamCode=Integer.parseInt(request.getParameter("teamCode"));
+		//System.out.println("teamCode-------:"+teamCode);
+		
+		String pageNumber=request.getParameter("pageNumber");
+		System.out.println("pageNumber"+pageNumber);
+		if(pageNumber==null) pageNumber="1";
+		
+		int boardSize=5;		
+		int currentPage=Integer.parseInt(pageNumber);
+		int startRow=(currentPage-1)*boardSize+1;
+		int endRow=currentPage*boardSize;
+		
+		int count=dao.getTeamMemberCount(teamCode);
+		logger.info("count:"+count);
+		logger.info("currentPage"+currentPage);
+		logger.info("startRow"+startRow);
+		logger.info("endRow"+endRow);		
+		
+		List<MemberDto> teamMemberList=null;
+		if(count>0){
+			teamMemberList = dao.getTeamMemberList(teamName,startRow,endRow);
+		}			
+		logger.info("boardListSize:"+teamMemberList.size());
+		
+		mav.addObject("teamMemberList",teamMemberList);
+		mav.addObject("count",count);		
+		mav.addObject("boardSize",boardSize);
+		mav.addObject("teamCode",teamCode);
+		mav.addObject("currentPage",currentPage);
+		mav.setViewName("board/adminBoard");		
+		mav.addObject("teamName",teamName);	
+		mav.addObject("teamGrade",teamGrade);
+		mav.setViewName("teamPage/teamMemberInfo");
+		
+	}
+
+	/**
+	 * @name : TeamServiceImpl
+	 * @date : 2015. 6. 26.
+	 * @author : 이희재
+	 * @description : 팀 멤버 페이지로 이동
+	 */
+	
+	@Override
+	public void manageTeamMember(ModelAndView mav) {
+		logger.info("Service manageTeamMember");
+		HashMap<String,Object> map=mav.getModelMap();
+		HttpServletRequest request=(HttpServletRequest) map.get("request");
+		String teamName=request.getParameter("teamName");
+		int teamCode=Integer.parseInt(request.getParameter("teamCode"));
+		
+		int count=dao.getTeamMemberCount(teamCode);
+		// 팀 멤버 전체 수 출력
+		
+		int boardSize=3;
+		// 한 블록 당 출력될 멤버 수
+		
+		int blockSize=2;
+		// 한 페이지당 들어갈 블록
+		
+		int currentPage=1;
+		if(request.getParameter("currentPage")!=null){
+			currentPage=Integer.parseInt(request.getParameter("currentPage"));
+		}
+		
+		int blockCount=count/boardSize + (count%boardSize==0? 0:1);
+		int startRow=(currentPage-1)*boardSize+1;
+		int endRow=startRow+boardSize-1;
+		
+		List<MemberDto> teamMemberList = dao.getTeamMemberList(teamName,startRow,endRow);
+		// 팀 멤버 해당 순으로 가져오기
+		
+		mav.addObject("blockCount", blockCount);
+		mav.addObject("teamName",teamName);
+		mav.addObject("count", count);
+		mav.addObject("boardSize", boardSize);
+		mav.addObject("blockSize", blockSize);
+		mav.addObject("currentPage",currentPage);
+		mav.addObject("teamMemberList" , teamMemberList);
+		mav.setViewName("teamPage/manageTeamMember");
+	}
+
+	
+	/**
+	 * @name : TeamServiceImpl
+	 * @date : 2015. 7. 2.
+	 * @author : 이희재
+	 * @description : 팀 멤버 페이지로 이동
+	 */
+	
+	@Override
+	public void addMember(ModelAndView mav) {
+		HashMap<String, Object> hMap=mav.getModelMap();
+		MemberDto member=(MemberDto) hMap.get("member");
+		
+		HttpServletRequest request=(HttpServletRequest) hMap.get("request");
+		int currentPage=Integer.parseInt(request.getParameter("currentPage"));
+		
+		String teamName=request.getParameter("teamName");		
+		String teamGrade=request.getParameter("teamGrade");
+		String pageNumber=request.getParameter("pageNumber");
+		
+		int teamCode=dao.getTeamInfo(teamName).getTeamCode();		
+		member.setTeamCode(teamCode);
+		
+		int check=dao.addMember(member);		
+		
+		mav.addObject("pageNumber",pageNumber);
+		mav.addObject("teamGrade",teamGrade);
+		mav.addObject("teamCode",teamCode);
+		mav.addObject("teamName",teamName);
+		mav.addObject("currentPage",currentPage);
+		mav.addObject("check",check);
+		mav.setViewName("teamPage/addMemberOk");
+	}
+
+	/**
+	 * @name : TeamServiceImpl
+	 * @date : 2015. 7. 2.
+	 * @author : 이희재
+	 * @description : 팀 멤버 삭제 서비스
+	 */
+	@Override
+	public void deleteMember(ModelAndView mav) {
+		HashMap<String, Object> hMap=mav.getModelMap();
+		HttpServletRequest request=(HttpServletRequest) hMap.get("request");
+		int currentPage=Integer.parseInt(request.getParameter("currentPage"));
+		int memberCode=Integer.parseInt(request.getParameter("memberCode"));
+		
+		int deleteValue=dao.deleteMember(memberCode);
+		
+		mav.addObject("currentPage",currentPage);
+		mav.addObject("deleteMemberValue",deleteValue);
+		mav.setViewName("teamPage/okTeamBoard");
+	}
 }
