@@ -36,4 +36,21 @@
  		select teamCode from leagueJoin where leagueCode=#{leagueCode}
  	</select>
  	
+ 	<insert id="insertLeagueGame" parameterType="com.sml.record.dto.RecordDto">
+ 		insert into gameRecord values (gameRecord_gameCode_sql.nextVal,#{teamCode}, #{teamCode2}, #{gameType}, #{refereeNumber}, #{gameState}, #{gameDate}, #{gamePlace}, #{gameResult}, #{sportType}, #{gameTime})
+ 	</insert>
+ 	
+ 	<select id="getTeamInfo" parameterType="int" resultType="com.sml.team.dto.TeamDto">
+ 		select * from team where teamCode=#{teamCode}
+ 	</select>
+ 	
+ 	<insert id="insertLeagueSchedule" parameterType="com.sml.schedule.dto.ScheduleDto">
+		insert into TEAMSCHEDULE values(teamschedule_num_sql.nextval,#{teamCode},#{scheduleType},#{endDate},#{scheduleTitle},#{scheduleContent},#{startDate})
+	</insert>
+	
+	<select id="invalidSchedule" parameterType="com.sml.schedule.dto.ScheduleDto" resultType="int">
+		<![CDATA[
+			select count(*) from gameRecord where to_char(gameDate,'yyyy-mm-dd')=#{gameDate} and (teamcode2=#{teamCode} or teamcode=#{teamCode}) and gameTime=#{gameTime}
+		]]>
+	</select>
  </mapper>

@@ -121,7 +121,7 @@ public class TeamController {
 		teamBoardService.viewTeamBoard(mav);
 		scheduleService.readteamSchedule(mav);
 		service.getReplyList(mav);
-		
+			
 		mav.setViewName("team/teamMain");
 		
 		return mav;

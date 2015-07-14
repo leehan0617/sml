@@ -13,6 +13,14 @@ public class RecordDto {
 	private String gamePlace;
 	private String gameResult;
 	private String sportType;
+	private String gameTime;
+	
+	public String getGameTime() {
+		return gameTime;
+	}
+	public void setGameTime(String gameTime) {
+		this.gameTime = gameTime;
+	}
 	public String getSportType() {
 		return sportType;
 	}
