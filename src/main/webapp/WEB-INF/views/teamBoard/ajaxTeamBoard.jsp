@@ -22,7 +22,7 @@
 		<tr>
 			<td style="width:15%">${board.rnum}</td>
 			<td style="width:55%">
-				<a href="${root }/teamPage/readTeamBoard.do?teamName=${teamName}&currentPage=${currentPage}&boardNumber=${board.boardNumber}">${board.boardTitle}</a>
+				<a href="${root }/teamPage/readTeamBoard.do?teamName=${teamName}&currentPage=${currentPage}&boardNumber=${board.boardNumber}" data-toggle="modal" data-target="#modalBoardRead">${board.boardTitle}</a>
 			</td>
 			<td style="width:15%">${board.boardWriter }</td>
 			<td style="width:15%"><fmt:formatDate value="${board.boardDate }" pattern="yy-MM-dd"/></td>
@@ -46,7 +46,18 @@
     <c:if test="${endBlock<blockCount}">
 		<li><a href="${root }/teamPage/viewTeamBoard.do?teamName=${teamName}&currentPage=${startBlock+blockSize}">Next</a></li>
 	</c:if>
+	<li style="float:right;"><button class="btn btn-danger" data-dismiss="modal">닫기</button></li>
+	<c:if test="${teamGrade !=null }">
+		<li style="float:right;"><button class="btn btn-primary">글쓰기</button></li>
+	</c:if>
   </ul>
 </nav>
 	
+</div>
+
+<div class="modal fade" id="modalBoardRead" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+		  <div class="modal-dialog">
+		    <div class="modal-content">      
+		    </div>
+		  </div>
 </div>

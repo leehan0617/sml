@@ -19,6 +19,9 @@
 	<h3 style="text-align:center">공지사항</h3>
 </div>
 
+<!-- 
+	<a href="${root }/teamPage/readTeamBoard.do?teamName=${teamName}&currentPage=${currentPage}&boardNumber=${board.boardNumber}"data-toggle="modal" data-target="#modalBoardRead">${board.boardTitle}</a>
+ -->
 <div class="wrap modal-body">
 <div class="ajaxPaging">
 	<table class="table table-striped">
@@ -29,8 +32,8 @@
 			<c:forEach var="board" items="${teamBoardList}">
 			<tr>
 				<td style="width:15%">${board.rnum}</td>
-				<td style="width:55%">
-					<a href="${root }/teamPage/readTeamBoard.do?teamName=${teamName}&currentPage=${currentPage}&boardNumber=${board.boardNumber}"data-toggle="modal" data-target="#modalBoardRead">${board.boardTitle}</a>
+				<td style="width:55%" data-toggle="modal" data-target="#modalBoardRead" onclick="readTeamBoard('${root}','${teamName }','${currentPage }','${board.boardNumber }')">
+					${board.boardTitle}
 				</td>
 				<td style="width:15%">${board.boardWriter }</td>
 				<td style="width:15%"><fmt:formatDate value="${board.boardDate }" pattern="yy-MM-dd"/></td>
@@ -53,7 +56,7 @@
     <c:if test="${endBlock<blockCount}">
 		<li><a href="${root }/teamPage/viewTeamBoard.do?teamName=${teamName}&currentPage=${startBlock+blockSize}">Next</a></li>
 	</c:if>
-		<li style="float:right;"><button class="btn btn-danger" data-dismiss="modal">닫기</button></li>
+	<li style="float:right;"><button class="btn btn-danger" data-dismiss="modal">닫기</button></li>
 	<c:if test="${teamGrade !=null }">
 		<li style="float:right;"><button class="btn btn-primary">글쓰기</button></li>
 	</c:if>
@@ -65,10 +68,28 @@
 </div>
 
 <div class="modal fade" id="modalBoardRead" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-		  <div class="modal-dialog">
-		    <div class="modal-content">      
-		    </div>
-		  </div>
+	<div class="modal-dialog">
+		<div class="modal-content">  
+			<div class="modal-header">
+				<h3 style="text-align:center;">공지사항</h3>
+			</div>
+			<div class="wrap modal-body">
+				<div class="panel panel-default">
+					<div class="panel-heading">
+						<h3 class="panel-title">${board.boardTitle }</h3>
+					</div>
+					<div class="panel-body">
+						${board.boardContent }
+					</div>
+				</div>
+				<input type="button" value="글 목록" onclick="location.href='${root }/teamPage/viewTeamBoard.do?teamName=${teamName}&currentPage=${currentPage}'"/>
+				<c:if test="${teamGrade != null }">
+					<input type="button" value="수정" onclick="location.href='${root }/teamPage/updateTeamBoard.do?teamName=${teamName}&currentPage=${currentPage}&boardNumber=${board.boardNumber}'"/>
+				</c:if>
+				<button type="button" class="btn btn-danger" data-dismiss="modal">목록으로</button>
+			</div>
+		</div>
+	</div>
 </div>
 
  <script>
@@ -84,6 +105,18 @@
 			}
 		});
 
+	}
+	
+	function readTeamBoard(root,teamName,currentPage,boardNumber){
+		var addr = root+"/teamPage/readTeamBoard.do?teamName="+teamName+"&currentPage="+currentPage+"&boardNumber="+boardNumber;
+		//alert(addr);
+		$.ajax({
+			type:"get",
+			url:addr,
+			success:function(data){
+				alert("success");
+			}
+		});
 	}
 </script>	
 

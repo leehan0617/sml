@@ -31,4 +31,5 @@ public interface TeamDao {
 	public int replyWrite(TeamLogDto teamLog);
 	public List<TeamLogDto> getReplyList(String teamName);
 	public List<TeamLogDto> getMoreReplyList(int teamCode , int pageNumber);
+	public int replyDelete(int teamCode, int replyCode);
 }

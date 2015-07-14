@@ -26,7 +26,7 @@
 		<tr>
 			<td style="width:10%">${board.rnum}</td>
 			<td style="width:50%">
-				<a href="${root }/teamPage/readTeamBoard.do?teamName=${teamName}&currentPage=${currentPage}&boardNumber=${board.boardNumber}">${board.boardTitle}</a>
+				<a href="${root }/teamPage/readTeamBoard.do?teamName=${teamName}&currentPage=${currentPage}&boardNumber=${board.boardNumber}" data-toggle="modal" data-target="#modalBoardRead">${board.boardTitle}</a>
 			</td>
 			<td style="width:10%">${board.boardWriter }</td>
 			<td style="width:30%"><fmt:formatDate value="${board.boardDate }" pattern="yy-MM-dd"/></td>

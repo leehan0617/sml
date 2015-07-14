@@ -306,8 +306,6 @@
   
   <div class="sign" id="sign"></div>
   <div class="login" id="login"></div>
-  
-  <!-- 작업중 -->
-  <div><a href="WEB-INF/views/team/teamMain.jsp">작업중</a></div>  
+ 
 </body>
 </html>

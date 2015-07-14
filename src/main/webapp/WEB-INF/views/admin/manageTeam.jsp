@@ -1,28 +1,25 @@
-<?xml version="1.0" encoding="UTF-8" ?>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+  pageEncoding="UTF-8"%>
+  <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+  <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+  <c:set var="root" value="${pageContext.request.contextPath }"></c:set>
 <!DOCTYPE html>
-<c:set var="root" value="${pageContext.request.contextPath }"/>
 <html>
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-<title>Insert title here</title>
-
-	<!-- start: Mobile Specific -->
-	<meta name="viewport" content="width=device-width, initial-scale=1">
-	<!-- end: Mobile Specific -->
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
 	
-	<!-- start: CSS -->
-	<link id="bootstrap-style" href="${root}/css/admin/bootstrap.min.css" rel="stylesheet">
-	<link href="${root}/css/admin/bootstrap-responsive.min.css" rel="stylesheet">
-	<link id="base-style" href="${root}/css/admin/style.css" rel="stylesheet">
-	<link id="base-style-responsive" href="${root}/css/admin/style-responsive.css" rel="stylesheet">
-	<link href='http://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800&subset=latin,cyrillic-ext,latin-ext' rel='stylesheet' type='text/css'>
-	<!-- end: CSS -->
+<!-- start: CSS -->
+<link id="bootstrap-style" href="${root}/resources/admin/css/bootstrap.min.css" rel="stylesheet">
+<link href="${root}/resources/admin/css/bootstrap-responsive.min.css" rel="stylesheet">
+<link id="base-style" href="${root}/resources/admin/css/style.css" rel="stylesheet">
+<link id="base-style-responsive" href="${root}/resources/admin/css/style-responsive.css" rel="stylesheet">
+<link href='http://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800&subset=latin,cyrillic-ext,latin-ext' rel='stylesheet' type='text/css'>
+<!-- end: CSS -->
+
+<title>Insert title here</title>
 </head>
 <body>
-	<!-- start: Header -->
 	<div class="navbar">
 		<div class="navbar-inner">
 			<div class="container-fluid">
@@ -31,14 +28,13 @@
 					<span class="icon-bar"></span>
 					<span class="icon-bar"></span>
 				</a>
-				<a class="brand" href="${root }/start.jsp"><span>SML KOREA</span></a>					
+				<a class="brand" href="${root }/start.jsp"><span>SML KOREA</span></a>				
+				
 			</div>
 		</div>
 	</div>
 	
-	<!-- start: Header -->
-	
-		<div class="container-fluid-full">
+	<div class="container-fluid-full">
 		<div class="row-fluid">
 				
 			<!-- start: Main Menu -->
@@ -65,28 +61,37 @@
 			<!-- start: Content -->
 			<div id="content" class="span10">
 			
+			
 			<ul class="breadcrumb">
 				<li>
 					<i class="icon-home"></i>
-					<a href="${root }/admin/main.do">Home</a> 
+					<a href="${root }/start.jsp">Home</a> 
 					<i class="icon-angle-right"></i>
 				</li>
-				<li><a href="#">회원관리페이지</a></li>
-			</ul> 
-			
-			<h3 style="text-align:center">회원관리(팀 관리)</h3>
-						
-	<div class="container">
-		<div class="row">
-			<div class="col-sm-12 col-md-12">
-				<c:if test="${count==0}">			
-					<p style="text-align: center">등록된 팀이없습니다.</p>		
-				</c:if>
-				
-				<c:if test="${count>0}">	
-					<div class="table-responsive">
-						<table class="table table-striped">
-							<thead>
+				<li><a href="#">팀 관리</a></li>
+			</ul>
+
+			<div class="row-fluid sortable">		
+				<div class="box span12">
+					<div class="box-header" data-original-title>
+						<h2><i class="halflings-icon user"></i><span class="break"></span>팀 리스트</h2>
+						<div class="box-icon">
+							<a href="#" class="btn-setting"><i class="halflings-icon wrench"></i></a>
+							<a href="#" class="btn-minimize"><i class="halflings-icon chevron-up"></i></a>
+							<a href="#" class="btn-close"><i class="halflings-icon remove"></i></a>
+						</div>
+					</div>
+					
+					<c:if test="${containerList==null }">
+						<div>	
+							<span>검색결과가 없습니다.</span>												
+						</div>
+					</c:if>
+					
+					<c:if test="${containerList!=null}">
+						<div class="box-content">
+							<table class="table table-striped table-bordered bootstrap-datatable datatable">							
+							  <thead>
 								<tr>
 									<th>종목</th>
 									<th>엠블럼</th>
@@ -112,52 +117,69 @@
 										<td>${containerList.MEMBEREMAIL}</td>
 										<td>${containerList.MEMBERPHONE}</td>
 										<td>${containerList.MEMBERGENDER}</td>	
-										<td><a href="${root }/admin/manageTeamDelete.do?teamCode=${containerList.TEAMCODE}">[삭제]</a></td>	
+										<td>
+											<a href="${root }/admin/manageTeamDelete.do?teamCode=${containerList.TEAMCODE}">
+												<span class="label label-important">삭제</span>
+											</a>	
+										</td>
 									</tr>
 								</c:forEach>
-							</tbody>
-						</table>
-					</div>
-				</c:if>
-			</div>
-		</div>
-	</div>
-		
-	<div class="container">			
-		<!-- 페이지 번호 -->
-		<center>
-			<c:if test="${count>0 }">
-				<c:set var="pageBlock" value="${5}"/>
-				<c:set var="pageCount" value="${count/boardSize+(count%boardSize==0 ? 0:1)}"/>
-				<fmt:parseNumber var="rs" value="${(currentPage-1)/pageBlock }" integerOnly="true"/>
-				
-				<c:set var="startPage" value="${rs*pageBlock+1 }"/>
-				<c:set var="endPage" value="${startPage+pageBlock-1 }"/>
-				
-				<c:if test="${endPage>pageCount }">
-					<c:set var="endPage" value="${pageCount }"/>
-				</c:if>
-				
-				<c:if test="${startPage>pageBlock }">
-					<a href="${root }/admin/manageTeam.do?pageNumber=${startPage-pageBlock}">[이전]</a>
-				</c:if>
-				
-				<c:forEach var="i" begin="${startPage}" end="${endPage}">
-					<a href="${root }/admin/manageTeam.do?pageNumber=${i}">[${i }]</a> 
-				</c:forEach>
-				
-				<c:if test="${endPage<pageCount }">
-					<a href="${root }/admin/manageTeam.do?pageNumber=${startPage+pageBlock}">[다음]</a>
-				</c:if>
-			</c:if>
-		</center>	
-	</div>	
-</div>
+							</tbody>							  
+						  </table> 
+						 
+							
+							<!-- 페이지 번호 -->							
+							<div class="pagination pagination-centered">
+								<c:if test="${count>0 }">
+									<c:set var="pageBlock" value="${5}"/>									
+									<fmt:parseNumber var="pageCount" value="${count/boardSize+ (count/boardSize==0 ? 0:1) }" integerOnly="true"/>									
+									<fmt:parseNumber var="rs" value="${(currentPage-1)/pageBlock }" integerOnly="true"/>
+									<c:set var="startPage" value="${rs*pageBlock+1 }"/>
+									<c:set var="endPage" value="${startPage+pageBlock-1 }"/>			
+									<c:if test="${endPage>pageCount }">
+										<c:set var="endPage" value="${pageCount }"/>
+									</c:if>
+									<ul>
+										<c:if test="${startPage>pageBlock }">
+											<li><a href="${root }/admin/manageTeam.do?pageNumber=${startPage-pageBlock }">Prev</a></li>
+										</c:if>
+										
+										<c:forEach var="i" begin="${startPage }" end="${endPage}">
+											<li><a href="${root }/admin/manageTeam.do?pageNumber=${i}">${i }</a></li>
+										</c:forEach>
+										
+										<c:if test="${endPage<pageCount }">
+											<li><a href="${root }/admin/manageTeam.do?pageNumber=${startPage+pageBlock }">Next</a></li>
+										</c:if>
+									</ul>
+								</c:if>
+							</div> 							  
+						             
+						</div>
+					</c:if>
+				</div><!--/span-->
+			
+			</div><!--/row-->   
+
 	</div><!--/.fluid-container-->
 	
 			<!-- end: Content -->
 		</div><!--/#content.span10-->
-		</div><!--/fluid-row-->	
+		</div><!--/fluid-row-->
+	<div class="modal hide fade" id="myModal">
+		<div class="modal-header">
+			<button type="button" class="close" data-dismiss="modal">×</button>
+			<h3>Settings</h3>
+		</div>
+		<div class="modal-body">
+			<p>Here settings can be configured...</p>
+		</div>
+		<div class="modal-footer">
+			<a href="#" class="btn" data-dismiss="modal">Close</a>
+			<a href="#" class="btn btn-primary">Save changes</a>
+		</div>
+	</div>
+	
 	<div class="clearfix"></div>
 	
 	<footer>
@@ -167,59 +189,133 @@
 			
 		</p>
 
-	</footer>
-	
+	</footer>		
 	<!-- start: JavaScript-->
 
-		<script src="${root}/js/admin/resource/jquery-1.9.1.min.js"></script>
-		<script src="${root}/js/admin/resource/jquery-migrate-1.0.0.min.js"></script>	
-		<script src="${root}/js/admin/resource/jquery-ui-1.10.0.custom.min.js"></script>	
-		<script src="${root}/js/admin/resource/jquery.ui.touch-punch.js"></script>	
-		<script src="${root}/js/admin/resource/modernizr.js"></script>	
-		<script src="${root}/js/admin/resource/bootstrap.min.js"></script>	
-		<script src="${root}/js/admin/resource/jquery.cookie.js"></script>	
+		<script src="${root}/resources/admin/js/jquery-1.9.1.min.js"></script>
+		<script src="${root}/resources/admin/js/jquery-migrate-1.0.0.min.js"></script>	
+		<script src="${root}/resources/admin/js/jquery-ui-1.10.0.custom.min.js"></script>	
+		<script src="${root}/resources/admin/js/jquery.ui.touch-punch.js"></script>	
+		<script src="${root}/resources/admin/js/modernizr.js"></script>	
+		<script src="${root}/resources/admin/js/bootstrap.min.js"></script>	
+		<script src="${root}/resources/admin/js/jquery.cookie.js"></script>	
 		<script src='js/fullcalendar.min.js'></script>
 	
 		<script src='js/jquery.dataTables.min.js'></script>
 
-		<script src="${root}/js/admin/resource/excanvas.js"></script>
-		<script src="${root}/js/admin/resource/jquery.flot.js"></script>
-		<script src="${root}/js/admin/resource/jquery.flot.pie.js"></script>
-		<script src="${root}/js/admin/resource/jquery.flot.stack.js"></script>
-		<script src="${root}/js/admin/resource/jquery.flot.resize.min.js"></script>
+		<script src="${root}/resources/admin/js/excanvas.js"></script>
+		<script src="${root}/resources/admin/js/jquery.flot.js"></script>
+		<script src="${root}/resources/admin/js/jquery.flot.pie.js"></script>
+		<script src="${root}/resources/admin/js/jquery.flot.stack.js"></script>
+		<script src="${root}/resources/admin/js/jquery.flot.resize.min.js"></script>
 	
-		<script src="${root}/js/admin/resource/jquery.chosen.min.js"></script>
+		<script src="${root}/resources/admin/js/jquery.chosen.min.js"></script>
 	
-		<script src="${root}/js/admin/resource/jquery.uniform.min.js"></script>
+		<script src="${root}/resources/admin/js/jquery.uniform.min.js"></script>
 		
-		<script src="${root}/js/admin/resource/jquery.cleditor.min.js"></script>
+		<script src="${root}/resources/admin/js/jquery.cleditor.min.js"></script>
 	
-		<script src="${root}/js/admin/resource/jquery.noty.js"></script>
+		<script src="${root}/resources/admin/js/jquery.noty.js"></script>
 	
-		<script src="${root}/js/admin/resource/jquery.elfinder.min.js"></script>
+		<script src="${root}/resources/admin/js/jquery.elfinder.min.js"></script>
 	
-		<script src="${root}/js/admin/resource/jquery.raty.min.js"></script>
+		<script src="${root}/resources/admin/js/jquery.raty.min.js"></script>
 	
-		<script src="${root}/js/admin/resource/jquery.iphone.toggle.js"></script>
+		<script src="${root}/resources/admin/js/jquery.iphone.toggle.js"></script>
 	
-		<script src="${root}/js/admin/resource/jquery.uploadify-3.1.min.js"></script>
+		<script src="${root}/resources/admin/js/jquery.uploadify-3.1.min.js"></script>
 	
-		<script src="${root}/js/admin/resource/jquery.gritter.min.js"></script>
+		<script src="${root}/resources/admin/js/jquery.gritter.min.js"></script>
 	
-		<script src="${root}/js/admin/resource/jquery.imagesloaded.js"></script>
+		<script src="${root}/resources/admin/js/jquery.imagesloaded.js"></script>
 	
-		<script src="${root}/js/admin/resource/jquery.masonry.min.js"></script>
+		<script src="${root}/resources/admin/js/jquery.masonry.min.js"></script>
 	
-		<script src="${root}/js/admin/resource/jquery.knob.modified.js"></script>
+		<script src="${root}/resources/admin/js/jquery.knob.modified.js"></script>
 	
-		<script src="${root}/js/admin/resource/jquery.sparkline.min.js"></script>
+		<script src="${root}/resources/admin/js/jquery.sparkline.min.js"></script>
 	
-		<script src="${root}/js/admin/resource/counter.js"></script>
+		<script src="${root}/resources/admin/js/counter.js"></script>
 	
-		<script src="${root}/js/admin/resource/retina.js"></script>
+		<script src="${root}/resources/admin/js/retina.js"></script>
 
-		<script src="${root}/js/admin/resource/custom.js"></script>
+		<script src="${root}/resources/admin/js/custom.js"></script>
 	<!-- end: JavaScript-->
+	<%-- 
 	
+	
+	<div>	
+		<span>종목</span>
+		<span>이름</span>
+		<span>성별</span>
+		<span>생년월일</span>
+		<span>주소</span>
+		<span>연락처</span>			
+	</div>
+	
+	<c:if test="${refereeList==null }">
+		<div>	
+			<span>검색결과가 없습니다.</span>												
+		</div>
+	</c:if>
+	
+	<c:if test="${refereeList!=null}">
+		<div>	
+			<c:forEach var="referee" items="${refereeList}">				
+				<div>	
+					<span>${referee.refereeSport }</span>
+					<span>${referee.refereeName}</span>
+					<span>${referee.refereeGender }</span>
+					<span>${referee.refereeBirth}</span>
+					<span>${referee.sido} ${referee.gugun}</span>
+					<span>${referee.refereePhoneNumber}</span>
+					<c:if test="${referee.refereeYes==0 }">
+						<input type="button" value="거절" onclick="location.href='${root}/admin/refereeDelete.do?pageNumber=${currentPage}&refereeNumber=${referee.refereeNumber }'"/>
+						<input type="button" value="수락" onclick="location.href='${root}/admin/refereeAccept.do?pageNumber=${currentPage}&refereeNumber=${referee.refereeNumber }'"/>
+						<span></span>	
+					</c:if>
+					<c:if test="${referee.refereeYes==1 }">
+						<input type="button" value="삭제" onclick="location.href='${root}/admin/refereeDelete.do?pageNumber=${currentPage}&refereeNumber=${referee.refereeNumber }'"/>
+					</c:if>												
+				</div>
+			</c:forEach>															
+		</div>
+		
+						
+						
+	</c:if>
+	
+	
+	
+	<!-- 페이지 번호 -->
+	<center>
+		<c:if test="${count>0 }">
+			<c:set var="pageBlock" value="${5}"/>
+			
+			<fmt:parseNumber var="pageCount" value="${count/boardSize+ (count/boardSize==0 ? 0:1) }" integerOnly="true"/>
+			
+			<fmt:parseNumber var="rs" value="${(currentPage-1)/pageBlock }" integerOnly="true"/>
+			<c:set var="startPage" value="${rs*pageBlock+1 }"/>
+			<c:set var="endPage" value="${startPage+pageBlock-1 }"/>			
+			<c:if test="${endPage>pageCount }">
+				<c:set var="endPage" value="${pageCount }"/>
+			</c:if>
+			
+			<c:if test="${startPage>pageBlock }">
+				<a href="${root }/referee/refereeList.do?pageNumber=${startPage-pageBlock }">[이전]</a>
+			</c:if>
+			
+			<c:forEach var="i" begin="${startPage }" end="${endPage}">
+				<a href="${root }/referee/refereeList.do?pageNumber=${i}">[${i }]</a>
+			</c:forEach>
+			
+			<c:if test="${endPage<pageCount }">
+				<a href="${root }/referee/refereeList.do?pageNumber=${startPage+pageBlock }">[다음]</a>
+			</c:if>
+		</c:if>
+	</center> --%>
 </body>
 </html>
+
+
+
