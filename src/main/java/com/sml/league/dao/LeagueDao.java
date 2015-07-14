@@ -4,6 +4,8 @@ import java.util.List;
 
 import com.sml.league.dto.LeagueDto;
 import com.sml.record.dto.RecordDto;
+import com.sml.schedule.dto.ScheduleDto;
+import com.sml.team.dto.TeamDto;
 
 public interface LeagueDao {
 	public List<LeagueDto> getLeagueList(String sportType);
@@ -15,4 +17,7 @@ public interface LeagueDao {
 	public int getLeagueJoinSelect(int teamCode);
 	public List<Integer> getLeagueJoinList(int leagueCode);
 	public void insertLeagueGame(RecordDto record);
+	public TeamDto getTeamInfo(int teamCode);
+	public void insertLeagueSchedule(ScheduleDto scheduleDto);
+	public int invalidSchedule(RecordDto record, int teamCode);
 }
