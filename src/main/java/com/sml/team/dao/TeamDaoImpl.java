@@ -58,69 +58,7 @@ public class TeamDaoImpl implements TeamDao{
 		return srt;
 	}
 
-	/**
-	 * @name : TeamDaoImpl
-	 * @date : 2015. 6. 25.
-	 * @author : 이희재
-	 * @description : 팀 정보를 갖고 오기 위한 함수
-	 */
-	@Override
-	public TeamDto getTeamInfo(String teamName) {
-		return sqlSession.selectOne("team.dao.TeamMapper.getTeamInfo",teamName);
-	}
-
-	/**
-	 * @name : TeamDaoImpl
-	 * @date : 2015. 6. 25.
-	 * @author : 이희재
-	 * @description : 팀 멤버 리스트를 갖고 오기 위한 함수
-	 */
-	@Override
-	public List<MemberDto> getTeamMemberList(String teamName, int startRow, int endRow) {
-		HashMap<String, Object> map=new HashMap<String, Object>();
-		map.put("teamName", teamName);
-		map.put("startRow", startRow);
-		map.put("endRow", endRow);
-		
-		return sqlSession.selectList("team.dao.TeamMapper.getTeamMemberList",map);
-	}
-
-	/**
-	 * @name : TeamDaoImpl
-	 * @date : 2015. 6. 26.
-	 * @author : 이희재
-	 * @description : 팀 멤버 전체 수 출력
-	 */
 	
-	@Override
-	public int getTeamMemberCount(String name) {
-		return sqlSession.selectOne("team.dao.TeamMapper.getTeamMemberCount", name);
-	}
-
-	/**
-	 * @name : TeamDaoImpl
-	 * @date : 2015. 7. 2.
-	 * @author : 이희재
-	 * @description : 팀 멤버 추가
-	 */
-	@Override
-	public int addMember(MemberDto member, int teamCode) {
-		HashMap<String, Object> map=new HashMap<String, Object>();
-		map.put("member", member);
-		map.put("teamCode", teamCode);
-		return sqlSession.insert("team.dao.TeamMapper.addMember",map);
-	}
-
-	/**
-	 * @name : TeamDaoImpl
-	 * @date : 2015. 7. 2.
-	 * @author : 이희재
-	 * @description : 팀 멤버 삭제
-	 */
-	@Override
-	public int deleteMember(int memberCode) {
-		return sqlSession.insert("team.dao.TeamMapper.deleteMember", memberCode);
-	}
 
 	/**
 	 * @name : TeamDaoImpl
@@ -306,6 +244,17 @@ public class TeamDaoImpl implements TeamDao{
 		hMap.put("teamCode" , teamCode);
 		hMap.put("replyCode" , replyCode);
 		return sqlSession.delete("team.dao.TeamMapper.replyDelete" , hMap);
+	}
+	
+	/**
+	 * @name : TeamDaoImpl
+	 * @date : 2015. 6. 25.
+	 * @author : 이희재
+	 * @description : 팀 정보를 갖고 오기 위한 함수
+	 */
+	@Override
+	public TeamDto getTeamInfo(String teamName) {
+		return sqlSession.selectOne("team.dao.TeamMapper.getTeamInfo",teamName);
 	}
 		
 }
