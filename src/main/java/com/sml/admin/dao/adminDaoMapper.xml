@@ -21,7 +21,7 @@
 						  		order by a.teamname asc) c) 
 				  where rnum>=#{startRow} and rnum<=#{endRow} 
 
-
+		]]>
 	</select>
 
 	<delete id="manageTeamDelete" parameterType="int">

@@ -126,7 +126,7 @@
 											</td>											
 										</c:if>
 										
-										<c:if test="${manageLeagueList.leagueState== 1 }">
+										<c:if test="${manageLeagueList.leagueState!= -1 }">
 											<td>
 												<a href="${root}/admin/leagueSwitch.do?pageNumber=${currentPage }&leagueCode=${manageLeagueList.leagueCode }&leagueState=${manageLeagueList.leagueState}">
 													<span class="label label-warning">게시하기 않기</span>
