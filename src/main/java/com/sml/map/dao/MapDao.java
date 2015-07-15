@@ -5,4 +5,5 @@ import java.util.List;
 
 public interface MapDao {
 	public List<HashMap<String, Object>> getTeamMapList(); 
+	public List<HashMap<String, Object>> getRecordList(); 
 }

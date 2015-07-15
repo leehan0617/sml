@@ -29,4 +29,19 @@ public class MapController {
 		
 		return mav;
 	}
+	
+	/**
+	 * @name : gameRecordMap
+	 * @date : 2015. 7. 15.
+	 * @author : 이희재
+	 * @description : 시작과 동시에 지도에 진행중인 경기에 대해서 정보를 나타 냄
+	 */
+	@RequestMapping(value="/map/gameRecordMap.do",method=RequestMethod.GET)
+	public ModelAndView gameRecordMap(HttpServletRequest req, HttpServletResponse res){
+		ModelAndView mav=new ModelAndView();
+		res.setCharacterEncoding("utf-8");
+		mapService.gameRecordMap(mav);
+		
+		return mav;
+	}
 }
