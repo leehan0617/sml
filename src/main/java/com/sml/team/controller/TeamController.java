@@ -12,7 +12,6 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
 import org.springframework.web.servlet.ModelAndView;
 
-import com.sml.member.dto.MemberDto;
 import com.sml.schedule.service.ScheduleService;
 import com.sml.team.dto.TeamDto;
 import com.sml.team.dto.TeamLogDto;

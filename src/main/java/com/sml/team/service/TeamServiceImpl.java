@@ -18,7 +18,6 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.sml.league.dao.LeagueDao;
 import com.sml.league.dto.LeagueDto;
-import com.sml.member.dto.MemberDto;
 import com.sml.team.dao.TeamDao;
 import com.sml.team.dto.TeamDto;
 import com.sml.team.dto.TeamLogDto;

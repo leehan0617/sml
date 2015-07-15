@@ -7,7 +7,6 @@ import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
-import com.sml.member.dto.MemberDto;
 import com.sml.team.dto.TeamDto;
 import com.sml.team.dto.TeamLogDto;
 

@@ -8,7 +8,6 @@
 	<c:set var="teamId" value="${teamId}" scope="session"/>
 	<c:set var="teamGrade" value="${teamGrade }" scope="session"/>
 	<c:set var="teamName" value="${teamName }" scope="session"/>
-	<c:set var="teamDto" value="${teamDto }"/>
 </c:if>
 <html>
 <head>
@@ -36,13 +35,13 @@
 				  <ul class="dropdown-menu" role="menu">
 			    	  <c:if test="${teamGrade != null }">	    
 						<li><a href="${root }/member/myInfoPage.do?teamName=${teamName }">${teamId }님</a></li>
-						<li><a href="${root }/teamPage/viewTeamBoard.do?teamName=${team.teamName}" data-toggle="modal" data-target="#modalBoard">팀공지사항</a></li>
+						<li><a data-toggle="modal" data-target="#modalTeamBoard" onclick="getTeamBoardData('${root}','${teamName}')">팀공지사항</a></li>
 						<li><a href="${root }/teamPage/teamMemberInfo.do?teamName=${team.teamName}&teamCode=${team.teamCode}&teamGrade=${teamGrade}">팀원소개</a></li>
 						<li><a href="${root }/teamPage/teamScheduleEdit.do?teamName=${teamName}">팀 스케쥴</a></li>
 						<li><a href="${root }/teamPage/viewTeamRecord.do?teamName=${team.teamName}">팀 기록</a></li>
 		
 						<li class="divider"></li>
-						<li><a href="${root }/teamPage/viewTeamBoard.do?teamName=${team.teamName}" data-toggle="modal" data-target="#modalBoard">공지사항관리</a></li>
+						<li><a data-toggle="modal" data-target="#modalTeamBoard" onclick="getTeamBoardData('${root}','${teamName}')">팀공지사항</a></li>
 						<li><a href="${root }/teamPage/manageTeamMember.do?teamName=${team.teamName}&teamCode=${team.teamCode}&teamGrade=${teamGrade}">팀원관리</a></li>
 						<li><a href="${root }/teamPage/teamScheduleEdit.do?teamName=${teamName}">스케쥴관리</a></li>
 						<li><a href="${root }/teamPage/matching.do?teamName=${team.teamName}">매칭관리</a></li>
@@ -52,14 +51,13 @@
 				  	</c:if>
 				  	
 				  	<c:if test="${teamGrade == null }">
-						<li><a href="${root }/teamPage/viewTeamBoard.do?teamName=${team.teamName}" data-toggle="modal" data-target="#modalBoard">팀공지사항</a></li>
+						<li><a data-toggle="modal" data-target="#modalTeamBoard" onclick="getTeamBoardData('${root}','${teamName}')">팀공지사항</a></li>
 						<li><a href="${root }/teamPage/teamMemberInfo.do?teamName=${team.teamName}&teamCode=${team.teamCode}">팀원소개</a></li>
 						<li><a href="${root }/teamPage/viewTeamRecord.do?teamName=${team.teamName}">팀 기록</a></li>
 						<li><a href="${root }/teamPage/teamScheduleEdit.do?teamName=${teamName}">팀 스케쥴</a></li>
 					</c:if>
 					
-					<li><a data-toggle="modal" data-target="#modalTeamBoard" onclick="getTeamBoardData('${root}','${teamName}')">팀공지사항 JSON</a></li>
-					<li>${teamDto.teamLeaderName }</li>
+					
 				  </ul>
 				  
 				</div>
@@ -303,7 +301,7 @@
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-default" data-dismiss="modal" onclick="teamBoardToggle()">Close</button>
-        <button type="button" class="btn btn-primary" onclick="modalWriteTeamBoard('${root}','${teamName}','${teamCode }')">글쓰기</button>
+        <button type="button" class="btn btn-primary" data-dismiss="modal"onclick="modalWriteTeamBoard('${root}','${teamName}','${team.teamCode }')">글쓰기</button>
       </div>
     </div>
   </div>
@@ -314,7 +312,19 @@
 		teamBoardToggle();
 		var title = $("#teamBoardTitle").val();
 		var content = $("#teamBoardContent").val();
-		var addr = root+"/writeTeamBoard?teamName="+teamName+"&teamCode="+teamCode;
+		var addr = root+"/writeTeamBoard?teamName="+teamName+"&teamCode="+teamCode+"&title="+title+"&content="+content;
+		
+		$.ajax({
+			url:addr,
+			type:"get",
+			success:function(data){
+				$("#teamBoardTitle").val("");
+				$("#teamBoardContent").val("");
+				
+				emptyContent();
+				getTeamBoardData(root,teamName);
+			}
+		});
 	}
 </script>
 

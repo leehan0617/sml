@@ -3,7 +3,6 @@ package com.sml.team.dao;
 import java.util.HashMap;
 import java.util.List;
 
-import com.sml.member.dto.MemberDto;
 import com.sml.team.dto.TeamDto;
 import com.sml.team.dto.TeamLogDto;
 

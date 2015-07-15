@@ -35,4 +35,12 @@
 	<select id="getTeamInfo" parameterType="String" resultType="com.sml.team.dto.TeamDto">
  		select * from team where teamName=#{teamName}
  	</select>
+ 	
+ 	<insert id="insertTeamBoard" parameterType="com.sml.teamBoard.dto.TeamBoardDto">
+ 		insert into teamBoard values(teamBoard_boardNumber_sql.nextval,#{teamCode},#{boardWriter},#{boardDate},#{boardTitle},#{boardContent})
+ 	</insert>
+ 	
+ 	<select id="getLeaderName" parameterType="int" resultType="String">
+ 		select teamLeaderName from team where teamCode = #{teamCode}
+ 	</select>
 </mapper>

@@ -198,4 +198,25 @@ public class TeamBoardServiceImpl implements TeamBoardService{
 		mav.addObject("currentPage",currentPage);
 		mav.setViewName("teamBoard/okTeamBoard");
 	}
+
+	@Override
+	public ModelAndView writeTeamBoard(HttpServletRequest request) {
+		//String teamName = request.getParameter("teamName");
+		int teamCode =Integer.parseInt(request.getParameter("teamCode"));
+		String title = request.getParameter("title");
+		String content = request.getParameter("content");
+		String writer = dao.getLeaderName(teamCode);
+		
+		TeamBoardDto teamBoard = new TeamBoardDto();
+		teamBoard.setBoardWriter(writer);
+		teamBoard.setBoardContent(content);
+		teamBoard.setBoardTitle(title);
+		teamBoard.setTeamCode(teamCode);
+		teamBoard.setBoardDate(new Date());
+		
+		dao.insertTeamBoard(teamBoard);
+		ModelAndView mav = new ModelAndView();
+		mav.setViewName("jsonView");
+		return mav;
+	}
 }
