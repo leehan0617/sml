@@ -230,7 +230,7 @@
 					<span class='col12 small quiet space-bottom1'>Football</span>
 				</a>
 
-				<a href='/developers/api/maps/' class='block center col3 pad2 pad4y keyline-bottom'>
+				<a href='${root }/scMain' class='block center col3 pad2 pad4y keyline-bottom'>
 					<div class='developer-tools-graphic noevents maps-api pad8 inline space-bottom2'></div>
 					<span class='col12'>족구</span>
 					<span class='col12 small quiet space-bottom1'>Legball</span>
