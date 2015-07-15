@@ -12,5 +12,5 @@ public interface MemberService {
 	public void manageTeamMember(ModelAndView mav);
 	public void addMember(ModelAndView mav);	
 	public void deleteMember(ModelAndView mav);
-	
+	public void searchMember(ModelAndView mav);
 }
