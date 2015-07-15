@@ -6,13 +6,15 @@
 <c:set var="root" value="${pageContext.request.contextPath }"/>
 <c:if test="${team!=null}">
 	<c:set var="teamId" value="${teamId}" scope="session"/>
-	<c:set var="teamGrade" value="${teamGrade }" scope="session"/>
+	<c:set var="teamGrade" value="${teamGrade}" scope="session"/>
 	<c:set var="teamName" value="${teamName }" scope="session"/>
 </c:if>
 <html>
 <head>
 	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+	
 	<title><c:out value="${teamName }"/> 페이지</title>
+	
 	<link rel="stylesheet" type="text/css" href="${root }/resources/css/bootstrap.css"/>
 	
 	<script src="${root }/resources/js/jquery.js"></script>
@@ -38,11 +40,10 @@
 						<li><a data-toggle="modal" data-target="#modalTeamBoard" onclick="getTeamBoardData('${root}','${teamName}')">팀공지사항</a></li>
 						<li><a href="${root }/teamPage/teamMemberInfo.do?teamName=${team.teamName}&teamCode=${team.teamCode}&teamGrade=${teamGrade}">팀원소개</a></li>
 						<li><a href="${root }/teamPage/teamScheduleEdit.do?teamName=${teamName}">팀 스케쥴</a></li>
-						<li><a href="${root }/teamPage/viewTeamRecord.do?teamName=${team.teamName}">팀 기록</a></li>
+						<li><a href="${root }/teamPage/viewTeamRecord.do?teamName=${team.teamName}&teamGrade=${teamGrade}">팀 기록</a></li>
 		
 						<li class="divider"></li>
-						<li><a data-toggle="modal" data-target="#modalTeamBoard" onclick="getTeamBoardData('${root}','${teamName}')">팀공지사항</a></li>
-						<li><a href="${root }/teamPage/manageTeamMember.do?teamName=${team.teamName}&teamCode=${team.teamCode}&teamGrade=${teamGrade}">팀원관리</a></li>
+						<li><a data-toggle="modal" data-target="#modalTeamBoard" onclick="getTeamBoardData('${root}','${teamName}')">팀공지사항</a></li>						
 						<li><a href="${root }/teamPage/teamScheduleEdit.do?teamName=${teamName}">스케쥴관리</a></li>
 						<li><a href="${root }/teamPage/matching.do?teamName=${team.teamName}">매칭관리</a></li>
 						<li><a href="${root }/teamPage/manageTeamEmblem.do?teamName=${team.teamName}">팀 로고 관리</a></li>

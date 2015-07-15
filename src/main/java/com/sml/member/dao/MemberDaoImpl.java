@@ -2,7 +2,6 @@ package com.sml.member.dao;
 
 import java.util.HashMap;
 import java.util.List;
-import java.util.StringTokenizer;
 
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -104,10 +103,11 @@ public class MemberDaoImpl implements MemberDao{
 	}
 	
 	/**
-	 * @name : TeamDaoImpl
-	 * @date : 2015. 6. 25.
-	 * @author : 이희재
-	 * @description : 팀 정보를 갖고 오기 위한 함수
+	 * 
+	 * @함수명: getTeamInfo
+	 * @작성일: 2015. 7. 15.
+	 * @작성자: 정성남
+	 * @설명 :
 	 */
 	@Override
 	public TeamDto getTeamInfo(String teamName) {
@@ -115,10 +115,11 @@ public class MemberDaoImpl implements MemberDao{
 	}
 
 	/**
-	 * @name : TeamDaoImpl
-	 * @date : 2015. 6. 25.
-	 * @author : 이희재
-	 * @description : 팀 멤버 리스트를 갖고 오기 위한 함수
+	 * 
+	 * @함수명: getTeamMemberList
+	 * @작성일: 2015. 7. 15.
+	 * @작성자: 정성남
+	 * @설명 :
 	 */
 	@Override
 	public List<MemberDto> getTeamMemberList(String teamName, int startRow, int endRow) {
@@ -131,10 +132,11 @@ public class MemberDaoImpl implements MemberDao{
 	}
 
 	/**
-	 * @name : TeamDaoImpl
-	 * @date : 2015. 6. 26.
-	 * @author : 이희재
-	 * @description : 팀 멤버 전체 수 출력
+	 * 
+	 * @함수명: getTeamMemberCount
+	 * @작성일: 2015. 7. 15.
+	 * @작성자: 정성남
+	 * @설명 :
 	 */
 	
 	@Override
@@ -143,10 +145,11 @@ public class MemberDaoImpl implements MemberDao{
 	}
 
 	/**
-	 * @name : TeamDaoImpl
-	 * @date : 2015. 7. 2.
-	 * @author : 이희재
-	 * @description : 팀 멤버 추가
+	 * 
+	 * @함수명: addMember
+	 * @작성일: 2015. 7. 15.
+	 * @작성자: 정성남
+	 * @설명 :
 	 */
 	@Override
 	public int addMember(MemberDto member) {		
@@ -155,10 +158,11 @@ public class MemberDaoImpl implements MemberDao{
 	}
 
 	/**
-	 * @name : TeamDaoImpl
-	 * @date : 2015. 7. 2.
-	 * @author : 이희재
-	 * @description : 팀 멤버 삭제
+	 * 
+	 * @함수명: deleteMember
+	 * @작성일: 2015. 7. 15.
+	 * @작성자: 정성남
+	 * @설명 :
 	 */
 	@Override
 	public int deleteMember(int memberCode) {

@@ -186,17 +186,21 @@ public class TeamServiceImpl implements TeamService{
 	public void viewTeamRecord(ModelAndView mav) {
 		HashMap<String,Object> map=mav.getModelMap();
 		HttpServletRequest request=(HttpServletRequest) map.get("request");
-		String teamName=request.getParameter("teamName");
+		String teamName=request.getParameter("teamName");		
+		String teamGrade=request.getParameter("teamGrade");
+		System.out.println("1:"+teamName);
+		System.out.println("2:"+teamGrade);
 		
 		int count=dao.getRecordCount(teamName);
 		// 팀 멤버 전체 수 출력
+		System.out.println("count:"+count);
 		
 		int boardSize=5;
 		// 한 블록 당 출력될 게시물 수
-		
+		System.out.println("boardSize:"+boardSize);
 		int blockSize=2;
 		// 한 페이지당 들어갈 블록
-		
+		System.out.println("blockSize:"+blockSize);
 		int currentPage=1;
 		if(request.getParameter("currentPage")!=null){
 			currentPage=Integer.parseInt(request.getParameter("currentPage"));
@@ -208,6 +212,10 @@ public class TeamServiceImpl implements TeamService{
 		
 		List<HashMap<String, Object>> recordList = dao.recordList(teamName,startRow,endRow);
 		
+		System.out.println("recordList:"+recordList);
+		
+		
+		mav.addObject("teamGrade",teamGrade);
 		mav.addObject("blockCount", blockCount);
 		mav.addObject("teamName",teamName);
 		mav.addObject("count", count);
