@@ -29,12 +29,11 @@
 		 					title:obj.scheduleDtoList[i].scheduleTitle,
 		 					url:obj.scheduleDtoList[i].scheduleNumber,
 		 					start: obj.scheduleDtoList[i].startDate,
-		 					end: obj.scheduleDtoList[i].endDate,
+		 					end: obj.scheduleDtoList[i].endDate,	
 		 				};
 		 				events_array.push(schedule_object);
 		 		}
 	 	}
-	 	
 		$('#calendar').fullCalendar({
 			header: {
 				left: 'prev,next today',
