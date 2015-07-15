@@ -10,7 +10,7 @@
 		]]>
 	</select>
 
-<<<<<<< HEAD
+
 	<select resultType="java.util.HashMap" id="getManageTeam" parameterType="java.util.HashMap">
 
 		<![CDATA[ select * 
@@ -20,17 +20,7 @@
 						  		where a.teamcode=b.teamcode
 						  		order by a.teamname asc) c) 
 				  where rnum>=#{startRow} and rnum<=#{endRow} 
-=======
-	<select id="getManageTeam" parameterType="java.util.HashMap"
-		resultType="java.util.HashMap">
-		<![CDATA[
-		select * from
-		(select rownum as rnum, c.* from
-			(select a.* from teammember a, team b 
-				where a.teamcode=b.teamcode order by memberCode desc) c)
-					where rnum>=${startRow} and rnum<=${endRow}
->>>>>>> branch 'master' of https://github.com/leehan0617/sml.git
-		]]>
+
 
 	</select>
 
