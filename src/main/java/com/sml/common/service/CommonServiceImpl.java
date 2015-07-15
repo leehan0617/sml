@@ -62,7 +62,7 @@ public class CommonServiceImpl implements CommonService {
 		String pageNumber=request.getParameter("pageNumber");
 		if(pageNumber==null) pageNumber="1";
 		
-		int boardSize=5;		
+		int boardSize=10;		
 		int currentPage=Integer.parseInt(pageNumber);
 		int startRow=(currentPage-1)*boardSize+1;
 		int endRow=currentPage*boardSize;

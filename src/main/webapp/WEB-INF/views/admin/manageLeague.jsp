@@ -1,95 +1,338 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
-<c:set var="root" value="${pageContext.request.contextPath }"/>
-
+  pageEncoding="UTF-8"%>
+  <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+  <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+  <c:set var="root" value="${pageContext.request.contextPath }"></c:set>
+<!DOCTYPE html>
 <html>
 <head>
-	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-	<title>팀목록보기</title>
-<script src="${root }/js/external/jquery-1.11.3.min.js"></script>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+	
+<!-- start: CSS -->
+<link id="bootstrap-style" href="${root}/resources/admin/css/bootstrap.min.css" rel="stylesheet">
+<link href="${root}/resources/admin/css/bootstrap-responsive.min.css" rel="stylesheet">
+<link id="base-style" href="${root}/resources/admin/css/style.css" rel="stylesheet">
+<link id="base-style-responsive" href="${root}/resources/admin/css/style-responsive.css" rel="stylesheet">
+<link href='http://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800&subset=latin,cyrillic-ext,latin-ext' rel='stylesheet' type='text/css'>
+<!-- end: CSS -->
+
+<title>Insert title here</title>
 </head>
 <body>
-	<form class=""  action="${root }/admin/leagueDelete.do" method="GET">
+	<div class="navbar">
+		<div class="navbar-inner">
+			<div class="container-fluid">
+				<a class="btn btn-navbar" data-toggle="collapse" data-target=".top-nav.nav-collapse,.sidebar-nav.nav-collapse">
+					<span class="icon-bar"></span>
+					<span class="icon-bar"></span>
+					<span class="icon-bar"></span>
+				</a>
+				<a class="brand" href="${root }/start.jsp"><span>SML KOREA</span></a>				
+				
+			</div>
+		</div>
+	</div>
 	
-		<h2>리그관리 by Manager</h2>
+	<div class="container-fluid-full">
+		<div class="row-fluid">
+				
+			<!-- start: Main Menu -->
+			<div id="sidebar-left" class="span2">
+				<div class="nav-collapse sidebar-nav">
+					<ul class="nav nav-tabs nav-stacked main-menu">
+						<li><a href="${root}/admin/manageTeam.do"><i class="icon-bar-chart"></i><span class="hidden-tablet"> 회원관리페이지</span></a></li>	
+						<li><a href="${root}/admin/createLeague.do"><i class="icon-bar-chart"></i><span class="hidden-tablet"> 리그개설</span></a></li>	
+						<li><a href="${root}/admin/manageLeague.do"><i class="icon-bar-chart"></i><span class="hidden-tablet"> 리그관리</span></a></li>	
+						<li><a href="${root}/admin/manageReferee.do"><i class="icon-bar-chart"></i><span class="hidden-tablet"> 심판관리</span></a></li>	
+						<li><a href="${root}/board/adminBoard.do"><i class="icon-bar-chart"></i><span class="hidden-tablet"> 공지사항관리</span></a></li>	
+					</ul>
+				</div>
+			</div>
+			<!-- end: Main Menu -->
+			
+			<noscript>
+				<div class="alert alert-block span10">
+					<h4 class="alert-heading">Warning!</h4>
+					<p>You need to have <a href="http://en.wikipedia.org/wiki/JavaScript" target="_blank">JavaScript</a> enabled to use this site.</p>
+				</div>
+			</noscript>
+			
+			<!-- start: Content -->
+			<div id="content" class="span10">
+			
+			
+			<ul class="breadcrumb">
+				<li>
+					<i class="icon-home"></i>
+					<a href="${root }/start.jsp">Home</a> 
+					<i class="icon-angle-right"></i>
+				</li>
+				<li><a href="#">리그 관리</a></li>
+			</ul>
+
+			<div class="row-fluid">		
+				<div class="box span12">
+					<div class="box-header" data-original-title>
+						<h2><i class="halflings-icon user"></i><span class="break"></span>리그 리스트</h2>
+						<div class="box-icon">
+							<a href="#" class="btn-setting"><i class="halflings-icon wrench"></i></a>
+							<a href="#" class="btn-minimize"><i class="halflings-icon chevron-up"></i></a>
+							<a href="#" class="btn-close"><i class="halflings-icon remove"></i></a>
+						</div>
+					</div>
+					
+					<c:if test="${manageLeagueList==null }">
+						<div>	
+							<span>검색결과가 없습니다.</span>												
+						</div>
+					</c:if>
+					
+					<c:if test="${manageLeagueList!=null}">
+						<div class="box-content">
+							<table class="table table-striped table-bordered bootstrap-datatable datatable">
+							  <thead>
+								<tr>				
+									<th style="width: 5%">종목</th>
+									<th style="width: 20%">리그사진</th>
+									<th style="width: 10%">개최지</th>
+									<th style="width: 10%">리그명</th>	
+									<th style="width: 5%">인원</th>
+									<th style="width: 5%">요일</th>
+									<th style="width: 15%">경기시간</th>	
+									<th style="width: 10%">시작</th>
+									<th style="width: 10%">종료</th>	
+									<th style="width: 5%">게시 여부</th>
+									<th style="width: 5%">삭제</th>
+								</tr>
+							</thead>																		
+							<tbody>	
+								<c:forEach var="manageLeagueList" items="${manageLeagueList}">
+									<tr>
+										<td>${manageLeagueList.leagueSport}</td>
+										<td><img src="${root }/img/leagueImg/${manageLeagueList.leagueImage}" alt="${manageLeagueList.leagueImage}"></td>	
+										<td>${manageLeagueList.leagueRegion}</td>		
+										<td><a href="${root }/admin/leagueInfo.do?leagueCode=${manageLeagueList.leagueCode}&pageNumber=${currentPage}">${manageLeagueList.leagueName}</a></td>	
+										<td>${manageLeagueList.leagueTeamNumber}</td>	
+										<td>${manageLeagueList.leagueDay}</td>	
+										<td>${manageLeagueList.leagueTime}</td>	
+										<td>${manageLeagueList.leagueStartDate}</td>	
+										<td>${manageLeagueList.leagueEndDate}</td>	
+										<c:if test="${manageLeagueList.leagueState==-1 }">
+											<td>
+												<a href="${root}/admin/leagueSwitch.do?pageNumber=${currentPage }&leagueCode=${manageLeagueList.leagueCode }&leagueState=${manageLeagueList.leagueState}">
+													<span class="label label-success">게시하기</span>
+												</a>	
+											</td>											
+										</c:if>
+										
+										<c:if test="${manageLeagueList.leagueState== 1 }">
+											<td>
+												<a href="${root}/admin/leagueSwitch.do?pageNumber=${currentPage }&leagueCode=${manageLeagueList.leagueCode }&leagueState=${manageLeagueList.leagueState}">
+													<span class="label label-warning">게시하기 않기</span>
+												</a>	
+											</td>												
+										</c:if>
+										<td>
+											<a href="${root }/admin/leagueDelete.do?leagueCode=${manageLeagueList.leagueCode}">
+												<span class="label label-important">삭제</span>
+											</a>	
+										</td>
+											
+									</tr>
+								</c:forEach>
+							</tbody>							  
+						  </table> 
+						 
+							
+							<!-- 페이지 번호 -->							
+							<div class="pagination pagination-centered">
+								<c:if test="${count>0 }">
+									<c:set var="pageBlock" value="${5}"/>									
+									<fmt:parseNumber var="pageCount" value="${count/boardSize+ (count/boardSize==0 ? 0:1) }" integerOnly="true"/>									
+									<fmt:parseNumber var="rs" value="${(currentPage-1)/pageBlock }" integerOnly="true"/>
+									<c:set var="startPage" value="${rs*pageBlock+1 }"/>
+									<c:set var="endPage" value="${startPage+pageBlock-1 }"/>			
+									<c:if test="${endPage>pageCount }">
+										<c:set var="endPage" value="${pageCount }"/>
+									</c:if>
+									<ul>
+										<c:if test="${startPage>pageBlock }">
+											<li><a href="${root }/admin/manageLeague.do?pageNumber=${startPage-pageBlock }">Prev</a></li>
+										</c:if>
+										
+										<c:forEach var="i" begin="${startPage }" end="${endPage}">
+											<li><a href="${root }/admin/manageLeague.do?pageNumber=${i}">${i }</a></li>
+										</c:forEach>
+										
+										<c:if test="${endPage<pageCount }">
+											<li><a href="${root }/admin/manageLeague.do?pageNumber=${startPage+pageBlock }">Next</a></li>
+										</c:if>
+									</ul>
+								</c:if>
+							</div> 							  
+						             
+						</div>
+					</c:if>
+				</div><!--/span-->
+			
+			</div><!--/row-->   
+
+	</div><!--/.fluid-container-->
+	
+			<!-- end: Content -->
+		</div><!--/#content.span10-->
+		</div><!--/fluid-row-->
+	<div class="modal hide fade" id="myModal">
+		<div class="modal-header">
+			<button type="button" class="close" data-dismiss="modal">×</button>
+			<h3>Settings</h3>
+		</div>
+		<div class="modal-body">
+			<p>Here settings can be configured...</p>
+		</div>
+		<div class="modal-footer">
+			<a href="#" class="btn" data-dismiss="modal">Close</a>
+			<a href="#" class="btn btn-primary">Save changes</a>
+		</div>
+	</div>
+	
+	<div class="clearfix"></div>
+	
+	<footer>
+
+		<p>
+			<span style="text-align:left;float:left">&copy; 2013 <a href="http://jiji262.github.io/Bootstrap_Metro_Dashboard/" alt="Bootstrap_Metro_Dashboard">Bootstrap Metro Dashboard</a></span>
+			
+		</p>
+
+	</footer>		
+	<!-- start: JavaScript-->
+
+		<script src="${root}/resources/admin/js/jquery-1.9.1.min.js"></script>
+		<script src="${root}/resources/admin/js/jquery-migrate-1.0.0.min.js"></script>	
+		<script src="${root}/resources/admin/js/jquery-ui-1.10.0.custom.min.js"></script>	
+		<script src="${root}/resources/admin/js/jquery.ui.touch-punch.js"></script>	
+		<script src="${root}/resources/admin/js/modernizr.js"></script>	
+		<script src="${root}/resources/admin/js/bootstrap.min.js"></script>	
+		<script src="${root}/resources/admin/js/jquery.cookie.js"></script>	
+		<script src='js/fullcalendar.min.js'></script>
+	
+		<script src='js/jquery.dataTables.min.js'></script>
+
+		<script src="${root}/resources/admin/js/excanvas.js"></script>
+		<script src="${root}/resources/admin/js/jquery.flot.js"></script>
+		<script src="${root}/resources/admin/js/jquery.flot.pie.js"></script>
+		<script src="${root}/resources/admin/js/jquery.flot.stack.js"></script>
+		<script src="${root}/resources/admin/js/jquery.flot.resize.min.js"></script>
+	
+		<script src="${root}/resources/admin/js/jquery.chosen.min.js"></script>
+	
+		<script src="${root}/resources/admin/js/jquery.uniform.min.js"></script>
 		
+		<script src="${root}/resources/admin/js/jquery.cleditor.min.js"></script>
 	
-	<c:if test="${count==0}">	
-		<span>
-			<span style="text-align: center">등록된 리그가없습니다.</span>
-		</span>		
+		<script src="${root}/resources/admin/js/jquery.noty.js"></script>
+	
+		<script src="${root}/resources/admin/js/jquery.elfinder.min.js"></script>
+	
+		<script src="${root}/resources/admin/js/jquery.raty.min.js"></script>
+	
+		<script src="${root}/resources/admin/js/jquery.iphone.toggle.js"></script>
+	
+		<script src="${root}/resources/admin/js/jquery.uploadify-3.1.min.js"></script>
+	
+		<script src="${root}/resources/admin/js/jquery.gritter.min.js"></script>
+	
+		<script src="${root}/resources/admin/js/jquery.imagesloaded.js"></script>
+	
+		<script src="${root}/resources/admin/js/jquery.masonry.min.js"></script>
+	
+		<script src="${root}/resources/admin/js/jquery.knob.modified.js"></script>
+	
+		<script src="${root}/resources/admin/js/jquery.sparkline.min.js"></script>
+	
+		<script src="${root}/resources/admin/js/counter.js"></script>
+	
+		<script src="${root}/resources/admin/js/retina.js"></script>
+
+		<script src="${root}/resources/admin/js/custom.js"></script>
+	<!-- end: JavaScript-->
+	<%-- 
+	
+	
+	<div>	
+		<span>종목</span>
+		<span>이름</span>
+		<span>성별</span>
+		<span>생년월일</span>
+		<span>주소</span>
+		<span>연락처</span>			
+	</div>
+	
+	<c:if test="${refereeList==null }">
+		<div>	
+			<span>검색결과가 없습니다.</span>												
+		</div>
 	</c:if>
 	
-	<c:if test="${count>0}">	
-		<div>
-			<span style="text-align: center">종목</span>
-			<span style="text-align: center">*</span>
-			<span style="text-align: center">개최지</span>
-			<span style="text-align: center">리그명</span>	
-			<span style="text-align: center">참가인원</span>
-			<span style="text-align: center">요일</span>
-			<span style="text-align: center">경기시간</span>	
-			<span style="text-align: center">시작</span>
-			<span style="text-align: center">종료</span>
-										
-		</div>		
-	<br/>
+	<c:if test="${refereeList!=null}">
+		<div>	
+			<c:forEach var="referee" items="${refereeList}">				
+				<div>	
+					<span>${referee.refereeSport }</span>
+					<span>${referee.refereeName}</span>
+					<span>${referee.refereeGender }</span>
+					<span>${referee.refereeBirth}</span>
+					<span>${referee.sido} ${referee.gugun}</span>
+					<span>${referee.refereePhoneNumber}</span>
+					<c:if test="${referee.refereeYes==0 }">
+						<input type="button" value="거절" onclick="location.href='${root}/admin/refereeDelete.do?pageNumber=${currentPage}&refereeNumber=${referee.refereeNumber }'"/>
+						<input type="button" value="수락" onclick="location.href='${root}/admin/refereeAccept.do?pageNumber=${currentPage}&refereeNumber=${referee.refereeNumber }'"/>
+						<span></span>	
+					</c:if>
+					<c:if test="${referee.refereeYes==1 }">
+						<input type="button" value="삭제" onclick="location.href='${root}/admin/refereeDelete.do?pageNumber=${currentPage}&refereeNumber=${referee.refereeNumber }'"/>
+					</c:if>												
+				</div>
+			</c:forEach>															
+		</div>
+		
+						
+						
+	</c:if>
 	
-	</c:if>	
 	
-	<c:forEach var="manageLeagueList" items="${manageLeagueList}">
-			<span>${manageLeagueList.leagueSport}</span>
-			&nbsp;&nbsp;&nbsp;
-			<span><img src="${root }/img/leagueImg/${manageLeagueList.leagueImage}"></span>&nbsp;&nbsp;&nbsp;	
-			<span>${manageLeagueList.leagueRegion}</span>&nbsp;&nbsp;&nbsp;		
-			<span><a href="${root }/admin/leagueInfo.do?leagueCode=${manageLeagueList.leagueCode}&pageNumber=${currentPage}">${manageLeagueList.leagueName}</a></span>&nbsp;&nbsp;&nbsp;	
-			<span>${manageLeagueList.leagueTeamNumber}</span>&nbsp;&nbsp;&nbsp;	
-			<span>${manageLeagueList.leagueDay}</span>&nbsp;&nbsp;&nbsp;	
-			<span>${manageLeagueList.leagueTime}</span>&nbsp;&nbsp;&nbsp;	
-			<span>${manageLeagueList.leagueStartDate}</span>&nbsp;&nbsp;&nbsp;	
-			<span>${manageLeagueList.leagueEndDate}</span>&nbsp;&nbsp;&nbsp;	
-			<c:if test="${manageLeagueList.leagueState==-1 }">
-				<input type="button" value="게시하기" onclick="location.href='${root}/admin/leagueSwitch.do?pageNumber=${currentPage }&leagueCode=${manageLeagueList.leagueCode }&leagueState=${manageLeagueList.leagueState}'"/>
-			</c:if>
-			
-			<c:if test="${manageLeagueList.leagueState== 1 }">
-				<input type="button" value="게시하지 않기" onclick="location.href='${root}/admin/leagueSwitch.do?pageNumber=${currentPage }&leagueCode=${manageLeagueList.leagueCode }&leagueState=${manageLeagueList.leagueState}'"/>
-			</c:if>
-			<a href="${root }/admin/leagueDelete.do?leagueCode=${manageLeagueList.leagueCode}">[삭제]</a>	
-			<br/>
-			<br/>
-	</c:forEach>
 	
 	<!-- 페이지 번호 -->
 	<center>
 		<c:if test="${count>0 }">
 			<c:set var="pageBlock" value="${5}"/>
-			<c:set var="pageCount" value="${count/boardSize+(count%boardSize==0 ? 0:1)}"/>
+			
+			<fmt:parseNumber var="pageCount" value="${count/boardSize+ (count/boardSize==0 ? 0:1) }" integerOnly="true"/>
+			
 			<fmt:parseNumber var="rs" value="${(currentPage-1)/pageBlock }" integerOnly="true"/>
-			
 			<c:set var="startPage" value="${rs*pageBlock+1 }"/>
-			<c:set var="endPage" value="${startPage+pageBlock-1 }"/>
-			
+			<c:set var="endPage" value="${startPage+pageBlock-1 }"/>			
 			<c:if test="${endPage>pageCount }">
 				<c:set var="endPage" value="${pageCount }"/>
 			</c:if>
 			
 			<c:if test="${startPage>pageBlock }">
-				<a href="${root }/admin/manageLeague.do?pageNumber=${startPage-pageBlock}">[이전]</a>
+				<a href="${root }/referee/refereeList.do?pageNumber=${startPage-pageBlock }">[이전]</a>
 			</c:if>
 			
-			<c:forEach var="i" begin="${startPage}" end="${endPage}">
-				<a href="${root }/admin/manageLeague.do?pageNumber=${i}">[${i }]</a>
+			<c:forEach var="i" begin="${startPage }" end="${endPage}">
+				<a href="${root }/referee/refereeList.do?pageNumber=${i}">[${i }]</a>
 			</c:forEach>
 			
 			<c:if test="${endPage<pageCount }">
-				<a href="${root }/admin/manageLeague.do?pageNumber=${startPage+pageBlock}">[다음]</a>
+				<a href="${root }/referee/refereeList.do?pageNumber=${startPage+pageBlock }">[다음]</a>
 			</c:if>
 		</c:if>
-	</center>
-</form>		
+	</center> --%>
 </body>
 </html>
+
+	
+	
