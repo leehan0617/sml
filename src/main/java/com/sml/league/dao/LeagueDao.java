@@ -20,4 +20,5 @@ public interface LeagueDao {
 	public TeamDto getTeamInfo(int teamCode);
 	public void insertLeagueSchedule(ScheduleDto scheduleDto);
 	public int invalidSchedule(RecordDto record, int teamCode);
+	public void changeLeagueState(LeagueDto league);
 }

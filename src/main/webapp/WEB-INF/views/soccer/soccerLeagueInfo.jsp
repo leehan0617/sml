@@ -58,6 +58,23 @@
 				<br/>
 				<br/>
 		</c:if>
+		<c:if test="${soccerLeagueList.leagueState==0}">
+				<span>${soccerLeagueList.leagueSport}</span>
+				&nbsp;&nbsp;&nbsp;
+				<span><img src="${root}/img/leagueImg/${soccerLeagueList.leagueImage}"></span>&nbsp;&nbsp;&nbsp;	
+				<span>${soccerLeagueList.leagueRegion}</span>&nbsp;&nbsp;&nbsp;		
+				<span>${soccerLeagueList.leagueName}</span>&nbsp;&nbsp;&nbsp;	
+				<span>${soccerLeagueList.leagueTeamNumber}</span>&nbsp;&nbsp;&nbsp;	
+				<span>${soccerLeagueList.leagueDay}</span>&nbsp;&nbsp;&nbsp;	
+				<span>${soccerLeagueList.leagueTime}</span>&nbsp;&nbsp;&nbsp;	
+				<span>${soccerLeagueList.leagueStartDate}</span>&nbsp;&nbsp;&nbsp;	
+				<span>${soccerLeagueList.leagueEndDate}</span>&nbsp;&nbsp;&nbsp;
+						
+				<input type="button" value="진행 중 " disabled="disabled"/>
+
+				<br/>
+				<br/>
+		</c:if>
 		</c:forEach>
 	</c:if>
 		
