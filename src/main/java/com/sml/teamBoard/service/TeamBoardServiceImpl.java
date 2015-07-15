@@ -3,6 +3,7 @@ package com.sml.teamBoard.service;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.logging.Logger;
 
 import javax.servlet.http.HttpServletRequest;
@@ -68,6 +69,50 @@ public class TeamBoardServiceImpl implements TeamBoardService{
 		
 		return mav;
 	}
+	
+	public void viewTeamBoardTemplate(ModelAndView mav) {
+		logger.info("Service viewTeamBoard");
+		Map <String , Object> map = mav.getModelMap();
+		HttpServletRequest request = (HttpServletRequest) map.get("request");
+		
+		String teamName=request.getParameter("teamName");
+		
+		// 팀 전체 게시물 수
+		int count=dao.getBoardCount(teamName);
+		// 한 블록 당 출력될 게시물 수
+		int boardSize=8;
+		// 한 페이지당 들어갈 블록
+		int blockSize=2;
+		
+		int currentPage;
+		if(request.getParameter("currentPage")==null){
+			currentPage=1;
+		}else{
+			currentPage=Integer.parseInt(request.getParameter("currentPage"));
+		}
+		
+		int blockCount=count/boardSize + (count%boardSize==0? 0:1);
+		int startRow=(currentPage-1)*boardSize+1;
+		int endRow=startRow+boardSize-1;
+		
+		System.out.println("teamName"+teamName+",count:"+count+",currentPage:"+currentPage+",blockCount:"+blockCount+",startRow:"+startRow);
+		
+		List<TeamBoardDto> teamBoardList = dao.viewTeamBoard(teamName,startRow,endRow);
+		// 팀 게시물 전체 가져오기
+
+		mav.addObject("blockCount", blockCount);
+		mav.addObject("teamName",teamName);
+		mav.addObject("count", count);
+		mav.addObject("boardSize", boardSize);
+		mav.addObject("blockSize", blockSize);
+		mav.addObject("currentPage",currentPage);
+		mav.addObject("teamBoardList" , teamBoardList);
+		mav.setViewName("teamTemplate/teamBoardTemplate");
+		
+	}
+
+	
+	
 	
 	/**
 	 * @name : teamPage
@@ -197,5 +242,26 @@ public class TeamBoardServiceImpl implements TeamBoardService{
 		mav.addObject("updateValue", updateValue);
 		mav.addObject("currentPage",currentPage);
 		mav.setViewName("teamBoard/okTeamBoard");
+	}
+
+	@Override
+	public ModelAndView writeTeamBoard(HttpServletRequest request) {
+		//String teamName = request.getParameter("teamName");
+		int teamCode =Integer.parseInt(request.getParameter("teamCode"));
+		String title = request.getParameter("title");
+		String content = request.getParameter("content");
+		String writer = dao.getLeaderName(teamCode);
+		
+		TeamBoardDto teamBoard = new TeamBoardDto();
+		teamBoard.setBoardWriter(writer);
+		teamBoard.setBoardContent(content);
+		teamBoard.setBoardTitle(title);
+		teamBoard.setTeamCode(teamCode);
+		teamBoard.setBoardDate(new Date());
+		
+		dao.insertTeamBoard(teamBoard);
+		ModelAndView mav = new ModelAndView();
+		mav.setViewName("jsonView");
+		return mav;
 	}
 }

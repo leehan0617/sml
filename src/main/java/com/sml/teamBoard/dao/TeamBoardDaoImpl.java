@@ -91,4 +91,15 @@ public class TeamBoardDaoImpl implements TeamBoardDao{
 	public TeamDto getTeamInfo(String teamName) {
 		return sqlSession.selectOne("teamBoard.dao.TeamBoardMapper.getTeamInfo",teamName);
 	}
+
+	@Override
+	public int insertTeamBoard(TeamBoardDto teamBoard) {
+		return sqlSession.insert("teamBoard.dao.TeamBoardMapper.insertTeamBoard",teamBoard);
+		
+	}
+
+	@Override
+	public String getLeaderName(int teamCode) {
+		return sqlSession.selectOne("teamBoard.dao.TeamBoardMapper.getLeaderName",teamCode);
+	}
 }

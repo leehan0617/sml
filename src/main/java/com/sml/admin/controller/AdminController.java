@@ -273,5 +273,4 @@ public class AdminController {
 			adminService.searchPlace(mav);
 			return mav;
 		}	
-		
 }

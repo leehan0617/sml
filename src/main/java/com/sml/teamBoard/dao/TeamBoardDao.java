@@ -12,4 +12,6 @@ public interface TeamBoardDao {
 	public int deleteTeamBoard(int boardNumber);
 	public int updateTeamBoard(TeamBoardDto board);
 	public TeamDto getTeamInfo(String teamName);
+	public int insertTeamBoard(TeamBoardDto teamBoard);
+	public String getLeaderName(int teamCode);
 }

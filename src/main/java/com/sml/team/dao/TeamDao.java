@@ -3,7 +3,6 @@ package com.sml.team.dao;
 import java.util.HashMap;
 import java.util.List;
 
-import com.sml.member.dto.MemberDto;
 import com.sml.team.dto.TeamDto;
 import com.sml.team.dto.TeamLogDto;
 
@@ -28,5 +27,6 @@ public interface TeamDao {
 	public List<TeamLogDto> getMoreReplyList(int teamCode , int pageNumber);
 	public int replyDelete(int teamCode, int replyCode);
 	public TeamDto getTeamInfo(String teamName);
+	public int editTeamIntro(int teamCode, String teamIntro);
 	
 }

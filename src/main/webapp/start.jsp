@@ -25,6 +25,7 @@
 <script src="${root }/resources/js/jquery-ui.js"></script>
 <script src="${root }/resources/js/smlAngular.js"></script>
 <script src="${root }/resources/js/smlStart.js"></script>
+<script src="${root }/js/xhr/xhr.js"></script>
 
 <title>SML Korea</title>
 </head>
@@ -196,6 +197,7 @@
 		      <div id="map" style="height:500px;"> 
 		      </div>
 		    </div>
+		    <div id="mapList" style="display:none;">dskjfhdskjfk</div>
 	  </section>
 	  
 	<section id='developers' class='developers fill-light'>

@@ -12,7 +12,6 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
 import org.springframework.web.servlet.ModelAndView;
 
-import com.sml.member.dto.MemberDto;
 import com.sml.schedule.service.ScheduleService;
 import com.sml.team.dto.TeamDto;
 import com.sml.team.dto.TeamLogDto;
@@ -118,7 +117,7 @@ public class TeamController {
 		
 		mav.addObject("request",request);
 		service.goTeamPage(mav);
-		//teamBoardService.viewTeamBoard(mav);
+		teamBoardService.viewTeamBoardTemplate(mav);
 		scheduleService.readteamSchedule(mav);
 		service.getReplyList(mav);
 			
@@ -280,5 +279,13 @@ public class TeamController {
 		service.replyDelete(mav);
 		
 		return null;
+	}
+	
+	@RequestMapping(value="/editTeamIntro" , method=RequestMethod.GET)
+	public ModelAndView editTeamIntro(HttpServletRequest request){
+		logger.info("TeamController editTeamIntro");
+		ModelAndView mav = service.editTeamIntro(request);
+		
+		return mav;
 	}
 }

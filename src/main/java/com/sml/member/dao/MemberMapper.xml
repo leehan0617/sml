@@ -9,7 +9,7 @@
 	</select>
 	
 	<insert id="TeamInsert" parameterType="java.util.HashMap">
-		insert into Team values(TEAM_TEAMCODE_SQL.nextval,#{teamName},#{teamReaderName},#{teamId},#{teamPassword},#{sportType},#{emblem},#{teamGrade}, #{path})
+		insert into Team values(TEAM_TEAMCODE_SQL.nextval,#{teamName},#{teamReaderName},#{teamId},#{teamPassword},#{sportType},#{emblem},#{teamGrade}, #{path},'팀소개가 없습니다.')
 	</insert> 
 		
 	<delete id="Teamdelete" parameterType="int">

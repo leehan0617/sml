@@ -71,7 +71,7 @@ function getTeamBoardData(root , teamName){
 			});
 			
 			if(startBlock > blockSize){
-				$('.pager').append("<li><a onclick=()>"        +"Previous</a></li>");
+				$('.pager').append("<li><a onclick=paging(\'"+root+"\','"+teamName+"','"+(startBlock-blockSize)+"')>"+'Previous'+"</a></li>");
 			}
 			
 			for(var i=startBlock ; i<=endBlock ; i++){
@@ -79,7 +79,7 @@ function getTeamBoardData(root , teamName){
 			}
 			
 			if(endBlock < blockCount){
-				$('.pager').append('<li><a href="#">Next</a></li>');
+				$('.pager').append("<li><a onclick=paging(\'"+root+"\','"+teamName+"','"+(startBlock+blockSize)+"')>"+'Next'+"</a></li>");
 			}
 		}
 	});
@@ -111,7 +111,7 @@ function paging(root,teamName,blockNumber){
 			});
 
 			if(startBlock > blockSize){
-				$('.pager').append("<li><a onclick=()>"        +"Previous</a></li>");
+				$('.pager').append("<li><a onclick=paging(\'"+root+"\','"+teamName+"','"+(startBlock-blockSize)+"')>"+'Previous'+"</a></li>");
 			}
 			
 			for(var i=startBlock ; i<=endBlock ; i++){
@@ -119,7 +119,7 @@ function paging(root,teamName,blockNumber){
 			}
 			
 			if(endBlock < blockCount){
-				$('.pager').append('<li><a href="#">Next</a></li>');
+				$('.pager').append("<li><a onclick=paging(\'"+root+"\','"+teamName+"','"+(startBlock+blockSize)+"')>"+'Next'+"</a></li>");
 			}
 		}
 	});
@@ -150,6 +150,25 @@ function readTeamBoard(root , teamName , currentPage , boardNumber){
 
 function teamBoardToggle(){
 	   $("#modalTeamBoard").toggle();
+}
+
+function modalWriteTeamBoard(root,teamName,teamCode){
+	teamBoardToggle();
+	var title = $("#teamBoardTitle").val();
+	var content = $("#teamBoardContent").val();
+	var addr = root+"/writeTeamBoard?teamName="+teamName+"&teamCode="+teamCode+"&title="+title+"&content="+content;
+	
+	$.ajax({
+		url:addr,
+		type:"get",
+		success:function(data){
+			$("#teamBoardTitle").val("");
+			$("#teamBoardContent").val("");
+			
+			emptyContent();
+			getTeamBoardData(root,teamName);
+		}
+	});
 }
 
 

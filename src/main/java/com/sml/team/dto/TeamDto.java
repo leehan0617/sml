@@ -10,7 +10,14 @@ public class TeamDto {
 	private String emblem;
 	private String teamGrade;
 	private String path;
+	private String teamIntro;
 	
+	public String getTeamIntro() {
+		return teamIntro;
+	}
+	public void setTeamIntro(String teamIntro) {
+		this.teamIntro = teamIntro;
+	}
 	public String getPath() {
 		return path;
 	}
