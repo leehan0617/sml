@@ -32,6 +32,8 @@ import com.sml.weather.WeatherParser;
 
 @Component
 public class SoccerServiceImpl implements SoccerService {
+	private static final ModelAndView mav = null;
+
 	private final Logger logger=Logger.getLogger(this.getClass().getName());
 	
 	@Autowired
@@ -253,9 +255,7 @@ public class SoccerServiceImpl implements SoccerService {
 	 * @description : 공지사항 읽기
 	 */
 	@Override
-	public void readCommonBoard(ModelAndView mav) {
-		Map<String,Object> map=mav.getModelMap();
-		HttpServletRequest request=(HttpServletRequest) map.get("request");
+	public ModelAndView readCommonBoard(HttpServletRequest request) {
 		
 		int boardNumber=Integer.parseInt(request.getParameter("boardNumber"));
 		String pageNumber=request.getParameter("pageNumber");
@@ -265,10 +265,13 @@ public class SoccerServiceImpl implements SoccerService {
 		}
 		
 		CommonBoardDto commonBoard=commonDao.readCommonBoard(boardNumber);
+		ModelAndView mav = new ModelAndView();
 		mav.addObject("commonBoard",commonBoard);
 		mav.addObject("pageNumber",Integer.parseInt(pageNumber));
 		mav.addObject("boardNumber",boardNumber);
-		mav.setViewName("soccer/soccerCommonBoardRead");
+		mav.setViewName("jsonView");
+		
+		return mav;
 	}
 
 	/**

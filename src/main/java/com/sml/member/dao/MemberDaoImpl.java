@@ -164,4 +164,21 @@ public class MemberDaoImpl implements MemberDao{
 	public int deleteMember(int memberCode) {
 		return sqlSession.insert("member.dao.MemberMapper.deleteMember", memberCode);
 	}
+
+	/**
+	 * @함수명: getMemberSearchList
+	 * @작성일: 2015. 7. 15.
+	 * @작성자: 정성남
+	 * @설명 :
+	 */
+	@Override
+	public List<MemberDto> getMemberSearchList(String teamName,String searchBoxValue,int startRow,int endRow) {
+		HashMap<String,Object> hMap=new HashMap<String,Object>();
+		hMap.put("teamName", teamName);
+		hMap.put("searchBoxValue", searchBoxValue);
+		hMap.put("startRow", startRow);
+		hMap.put("endRow", endRow);
+		
+		return sqlSession.selectList("member.dao.MemberMapper.getMemberSearchList", hMap);
+	}
 }

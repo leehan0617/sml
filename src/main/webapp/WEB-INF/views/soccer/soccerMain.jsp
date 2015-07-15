@@ -126,14 +126,14 @@
 												<tr>	
 													<td style="width:15%">${commonBoard.boardNumber}</td>			
 													<td style="width:20%"><fmt:formatDate value="${commonBoard.boardDate }" type="date" pattern="MM-dd"/></td>
-													<td style="width:30%">${commonBoard.boardWriter}</td>
-													<td style="width:30%"><a href="#" onclick="window.open('${root }/soccer/readCommonBoard.do?boardNumber=${commonBoard.boardNumber}', '공지사항', 'width=400, height=200');return false;" target="_blank">	${commonBoard.boardTitle }</a></td>	
-												</tr>									
+													<td style="width:30%">${commonBoard.boardWriter}</td><!-- window.open('${root }/soccer/readCommonBoard.do?boardNumber=${commonBoard.boardNumber} -->
+													<td style="width:30%"><a data-toggle="modal" data-target="#soccerModal" onclick="sModal('${root}','${commonBoard.boardNumber}')"  target="_blank"> ${commonBoard.boardTitle }</a></td>	
+												</tr>			
 										</c:forEach>
 									</table>
 								</div>		
 								<div align="right">
-									<a href="${root}/soccer/commonBoard.do">more</a>
+									<a href="${root }/soccer/commonBoard.do"><strong>더보기</strong></a>
 								</div>
 							</c:if>
 						</div>
@@ -144,7 +144,6 @@
 		<div class="jumbotron">
 			<div class="row">
 				<div class="col-sm-6">
-					<h3>리그정보</h3>
 					<div id="myCarousel" class="carousel slide" data-ride="carousel">
 					    <ol class="carousel-indicators">
 					      <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
@@ -162,30 +161,15 @@
 							        </div>
 							      </div>
 							      
-				 			      <div class="item">
+	<%-- 			 			      <div class="item">
 							        <img src="${root}/img/leagueImg/${league.leagueImage}" alt="league" width="460" height="345">
 							        <div class="carousel-caption">
 							          <h3>${league.leagueName}</h3>
 							          <p>${league.leagueStartDate}</p>~<p>${league.leagueEndDate}</p>
 							        </div>
-							      </div>
+							      </div>--%>
 							      
-							      <div class="item">
-							        <img src="${root}/img/leagueImg/${league.leagueImage}" alt="league" width="460" height="345">
-							        <div class="carousel-caption">
-							          <h3> ${league.leagueName}</h3>
-							          <p>${league.leagueStartDate}</p>~<p>${league.leagueEndDate}</p>
-							        </div>
-							      </div>
-							      
-							       <div class="item">
-							        <img src="${root}/img/leagueImg/${league.leagueImage}" alt="league" width="460" height="345">
-							        <div class="carousel-caption">
-							          <h3> ${league.leagueName}</h3>
-							          <p>${league.leagueStartDate}</p>~<p>${league.leagueEndDate}</p>
-							        </div>
-							      </div>  
-							 </div> 
+							 </div>		 
 	 					</c:forEach> 
 						
 						 <!-- Left and right controls -->
@@ -225,31 +209,36 @@
 			</div>
 		</div>
 	</div>
+	
+	 <!-- Modal -->
+	  <div class="modal fade" id="soccerModal" role="dialog">
+	    <div class="modal-dialog">
+		      <!-- Modal content-->
+		      <div class="modal-content">
+		        <div class="modal-header">
+		          <h4 class="modal-title"><strong>공지사항</strong></h4>
+		        </div>
+		        <div class="modal-body">
+			        <table class="table table-striped">
+				        <thead>
+							<tr> 
+								<th style="width:15%">글번호</th><th style="width:45%">제목</th><th style="width:15%">작성자</th><th style="width:25%">작성일</th> 
+							</tr> 
+						</thead>
+						<tbody class="soccerBoardTbody">	
+						</tbody>
+			        </table>
+		        </div>
+		        <div class="modal-footer">
+		          <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+		        </div>
+		      </div> 
+	   	 </div>	
+	    </div>				
 </body>
 </html>
 
-<%--					 	<h3>리그</h3>
-						<div>
-							<span><input type="button" value="<"/></span>
-							<img alt="리그 이미지 넣어야함" src=""/>
-							<span><input type="button" value=">"/></span> 
-							
-							<c:forEach var="league" items="${leagueList}">
-								<div>
-									<span><img src="${root}/img/leagueImg/${league.leagueImage}"/></span>
-									<span>리그이름 : ${league.leagueName}</span>
-									<span>리그지역 : ${league.leagueRegion}</span>
-									<span>리그시간 : ${league.leagueTime}</span>
-									<span>리그시작일 : ${league.leagueStartDate}</span>
-									<span>리그종료일 : ${league.leagueEndDate}</span>										
-								</div>
-				
-							 		<div>
-							 			<a href="${root}/soccer/soccerLeague.do?leagueSport=${league.leagueSport}&leagueCode=${league.leagueCode}&leagueTeamNumber=${league.leagueTeamNumber}">신청하기</a>
-									</div> 
-						
-						</c:forEach>
-						</div> --%>
+
 
 
 <%-- 							<c:if test="${count>0 }">
@@ -272,3 +261,27 @@
 									<a href="${root}/soccer/soccerMain.do?pageNumber=${startPage+pageBlock }"> > </a>
 								</c:if>
 							</c:if> --%>
+							
+							
+<%--					 	<h3>리그</h3>
+						<div>
+							<span><input type="button" value="<"/></span>
+							<img alt="리그 이미지 넣어야함" src=""/>
+							<span><input type="button" value=">"/></span> 
+							
+							<c:forEach var="league" items="${leagueList}">
+								<div>
+									<span><img src="${root}/img/leagueImg/${league.leagueImage}"/></span>
+									<span>리그이름 : ${league.leagueName}</span>
+									<span>리그지역 : ${league.leagueRegion}</span>
+									<span>리그시간 : ${league.leagueTime}</span>
+									<span>리그시작일 : ${league.leagueStartDate}</span>
+									<span>리그종료일 : ${league.leagueEndDate}</span>										
+								</div>
+				
+							 		<div>
+							 			<a href="${root}/soccer/soccerLeague.do?leagueSport=${league.leagueSport}&leagueCode=${league.leagueCode}&leagueTeamNumber=${league.leagueTeamNumber}">신청하기</a>
+									</div> 
+						
+						</c:forEach>
+						</div> --%>

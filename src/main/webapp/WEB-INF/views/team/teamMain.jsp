@@ -270,7 +270,7 @@
 							<th style="width:15%">글번호</th><th style="width:45%">제목</th><th style="width:15%">작성자</th><th style="width:25%">작성일</th> 
 						</tr> 
 					</thead>
-					<tbody class="teamBoardTbody">
+					<tbody class="teamBoardTbody">	
 					</tbody>
 				</table>
 				<nav>

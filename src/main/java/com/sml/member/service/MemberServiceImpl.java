@@ -185,13 +185,13 @@ public class MemberServiceImpl implements MemberService{
 		String teamName=request.getParameter("teamName");
 		//System.out.println("teamName:"+teamName);
 		String teamGrade=request.getParameter("teamGrade");
-		System.out.println("teamGrade:"+teamGrade);
+		//System.out.println("teamGrade:"+teamGrade);
 		
 		int teamCode=Integer.parseInt(request.getParameter("teamCode"));
-		//System.out.println("teamCode-------:"+teamCode);
+		System.out.println("teamCode-------:"+teamCode);
 		
 		String pageNumber=request.getParameter("pageNumber");
-		System.out.println("pageNumber"+pageNumber);
+		//System.out.println("pageNumber"+pageNumber);
 		if(pageNumber==null) pageNumber="1";
 		
 		int boardSize=5;		
@@ -200,23 +200,19 @@ public class MemberServiceImpl implements MemberService{
 		int endRow=currentPage*boardSize;
 		
 		int count=dao.getTeamMemberCount(teamCode);
-		logger.info("count:"+count);
-		logger.info("currentPage"+currentPage);
-		logger.info("startRow"+startRow);
-		logger.info("endRow"+endRow);		
+				
 		
 		List<MemberDto> teamMemberList=null;
 		if(count>0){
 			teamMemberList = dao.getTeamMemberList(teamName,startRow,endRow);
 		}			
-		logger.info("boardListSize:"+teamMemberList.size());
+		
 		
 		mav.addObject("teamMemberList",teamMemberList);
 		mav.addObject("count",count);		
 		mav.addObject("boardSize",boardSize);
 		mav.addObject("teamCode",teamCode);
-		mav.addObject("currentPage",currentPage);
-		mav.setViewName("board/adminBoard");		
+		mav.addObject("currentPage",currentPage);			
 		mav.addObject("teamName",teamName);	
 		mav.addObject("teamGrade",teamGrade);
 		mav.setViewName("teamPage/teamMemberInfo");
@@ -313,13 +309,72 @@ public class MemberServiceImpl implements MemberService{
 	public void deleteMember(ModelAndView mav) {
 		HashMap<String, Object> hMap=mav.getModelMap();
 		HttpServletRequest request=(HttpServletRequest) hMap.get("request");
-		int currentPage=Integer.parseInt(request.getParameter("currentPage"));
-		int memberCode=Integer.parseInt(request.getParameter("memberCode"));
+		MemberDto member=(MemberDto) hMap.get("member");
 		
-		int deleteValue=dao.deleteMember(memberCode);
+		int memberCode=Integer.parseInt(request.getParameter("memberCode"));		
+		String teamName=request.getParameter("teamName");		
+		String teamGrade=request.getParameter("teamGrade");		
+		String pageNumber=request.getParameter("pageNumber");
+		int teamCode=dao.getTeamInfo(teamName).getTeamCode();		
+		member.setTeamCode(teamCode);		
 		
-		mav.addObject("currentPage",currentPage);
-		mav.addObject("deleteMemberValue",deleteValue);
-		mav.setViewName("teamPage/okTeamBoard");
+		int check=dao.deleteMember(memberCode);	
+		
+		mav.addObject("pageNumber",pageNumber);
+		mav.addObject("teamGrade",teamGrade);
+		mav.addObject("teamCode",teamCode);
+		mav.addObject("teamName",teamName);
+		mav.addObject("check",check);
+		mav.setViewName("teamPage/memberDeleteOk");
 	}
+
+	/**
+	 * @함수명: searchMember
+	 * @작성일: 2015. 7. 15.
+	 * @작성자: 정성남
+	 * @설명 :
+	 */
+	@Override
+	public void searchMember(ModelAndView mav) {
+		logger.info("searchMemberSERVICE");
+		HashMap<String, Object> hMap=mav.getModelMap();
+		HttpServletRequest request=(HttpServletRequest) hMap.get("request");
+		MemberDto member=(MemberDto) hMap.get("member");				
+		String searchBoxName=request.getParameter("searchBoxName");
+		System.out.println("22:"+searchBoxName);
+		String teamName=request.getParameter("teamName");	
+		System.out.println("33:"+teamName);
+		String teamGrade=request.getParameter("teamGrade");	
+		System.out.println("44:"+teamGrade);
+		int teamCode=dao.getTeamInfo(teamName).getTeamCode();		
+		member.setTeamCode(teamCode);
+		System.out.println("55:"+teamCode);
+		
+		int boardSize=5;
+		int currentPage=Integer.parseInt(request.getParameter("currentPage"));
+		int startRow=(currentPage-1)*boardSize+1;
+		int endRow=currentPage*boardSize;
+		
+		int count=dao.getTeamMemberCount(teamCode);
+		logger.info("count:"+count);
+		logger.info("currentPage"+currentPage);
+		logger.info("startRow"+startRow);
+		logger.info("endRow"+endRow);
+		
+		List<MemberDto> teamMemberList=null;
+		if(count>0){		
+		 teamMemberList = dao.getMemberSearchList(teamName,searchBoxName,startRow,endRow);
+		}
+		
+		mav.addObject("teamMemberList",teamMemberList);
+			
+		mav.addObject("teamName",teamName);
+		mav.addObject("teamGrade",teamGrade);
+		mav.addObject("teamCode",teamCode);	
+		mav.addObject("count",count);		
+		mav.addObject("boardSize",boardSize);		
+		mav.addObject("currentPage",currentPage);	
+		mav.setViewName("teamPage/teamMemberInfo");
+		}	
+	
 }
