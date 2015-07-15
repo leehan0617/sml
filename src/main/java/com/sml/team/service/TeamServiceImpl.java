@@ -100,6 +100,7 @@ public class TeamServiceImpl implements TeamService{
 			mav.addObject("teamId" , teamId);
 			mav.addObject("teamName" , teamName);
 			mav.addObject("teamLeaderName" , teamLeaderName);
+			mav.addObject("team",team);
 		}
 		
 		mav.setViewName("teamPage/loginOk");
@@ -409,5 +410,18 @@ public class TeamServiceImpl implements TeamService{
 		
 		int check = dao.replyDelete(teamCode,replyCode);
 		mav.addObject("check" , check);
+	}
+
+	@Override
+	public ModelAndView editTeamIntro(HttpServletRequest request) {
+		logger.info("TeamService editTeamIntro");
+		int teamCode = Integer.parseInt(request.getParameter("teamCode"));
+		String teamIntro = request.getParameter("teamIntro");
+		ModelAndView mav = new ModelAndView();
+		
+		dao.editTeamIntro(teamCode,teamIntro);
+		mav.addObject("teamIntro" , teamIntro);
+		mav.setViewName("jsonView");
+		return mav;
 	}
 }

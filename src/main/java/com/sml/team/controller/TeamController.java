@@ -280,4 +280,12 @@ public class TeamController {
 		
 		return null;
 	}
+	
+	@RequestMapping(value="/editTeamIntro" , method=RequestMethod.GET)
+	public ModelAndView editTeamIntro(HttpServletRequest request){
+		logger.info("TeamController editTeamIntro");
+		ModelAndView mav = service.editTeamIntro(request);
+		
+		return mav;
+	}
 }

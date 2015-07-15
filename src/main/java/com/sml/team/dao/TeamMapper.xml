@@ -158,4 +158,8 @@
 	<select id="getTeamInfo" parameterType="String" resultType="com.sml.team.dto.TeamDto">
  		select * from team where teamName=#{teamName}
  	</select>
+ 	
+ 	<update id="editTeamIntro" parameterType="java.util.HashMap">
+ 		update team set teamIntro = #{teamIntro} where teamCode = #{teamCode}
+ 	</update>
 </mapper>
