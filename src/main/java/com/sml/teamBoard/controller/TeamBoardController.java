@@ -29,29 +29,11 @@ public class TeamBoardController {
 	@RequestMapping(value="/teamPage/viewTeamBoard.do" , method=RequestMethod.GET)
 	public ModelAndView viewTeamBoard(HttpServletRequest request){
 		logger.info("TeamController viewTeamBoard");
-		ModelAndView mav = new ModelAndView("teamBoard/teamBoard");
-		mav.addObject("request" , request);
-		service.viewTeamBoard(mav);
+		ModelAndView mav = service.viewTeamBoard(request);
 		
 		return mav;
 	}
 	
-	/**
-	 * @함수명:teamBoardPaging
-	 * @작성일:2015. 7. 14.
-	 * @작성자:이한빈 
-	 * @설명문:팀페이지 게시판 페이징 기능 
-	 *
-	 */
-	@RequestMapping(value="/teamBoardPaging" , method=RequestMethod.GET)
-	public ModelAndView teamBoardPaging(HttpServletRequest request){
-		logger.info("TeamBoardCtrl teamBoardPaging");
-		ModelAndView mav = new ModelAndView();
-		mav.addObject("request" , request);
-		service.teamBoardPaging(mav);
-		mav.setViewName("team/teamMain");
-		return mav;
-	}
 	/**
 	 * @name : TeamController
 	 * @date : 2015. 6. 26.
@@ -60,11 +42,9 @@ public class TeamBoardController {
 	 */
 	@RequestMapping(value="/teamPage/readTeamBoard.do",method=RequestMethod.GET)
 	 public ModelAndView readTeamBoard(HttpServletRequest request){
+		logger.info("TeamBoardController readTeamBoard");
 		ModelAndView mav=new ModelAndView();
-		
-		mav.addObject("request",request);
-		service.readTeamBoard(mav);
-		
+		mav=service.readTeamBoard(request);
 		return mav;
 	}
 	
@@ -85,44 +65,7 @@ public class TeamBoardController {
 		
 		return mav;
 	}
-	
-	/**
-	 * @name : TeamController
-	 * @date : 2015. 6. 26.
-	 * @author : 이희재
-	 * @description : 팀 게시판 공지 쓰기 페이지
-	 */
-	
-	@RequestMapping(value="/teamPage/writeTeamBoard.do",method=RequestMethod.GET)
-	 public ModelAndView writeTeamBoard(HttpServletRequest request){
-		logger.info("TeamController writeTeamBoard");
 		
-		ModelAndView mav=new ModelAndView();
-		mav.addObject("request",request);
-		service.writeTeamBoard(mav);
-		
-		return mav;
-	}
-	
-	/**
-	 * @name : TeamController
-	 * @date : 2015. 6. 26.
-	 * @author : 이희재
-	 * @description : 팀 게시판 공지 쓰기 완료 페이지
-	 */
-	
-	@RequestMapping(value="/teamPage/writeTeamBoard.do",method=RequestMethod.POST)
-	 public ModelAndView writeTeamBoard(HttpServletRequest request, TeamBoardDto teamBoardDto){
-		logger.info("TeamController writeTeamBoard");
-		
-		ModelAndView mav=new ModelAndView();
-		mav.addObject("request",request);
-		mav.addObject("teamBoardDto", teamBoardDto);
-		service.writeOkTeamBoard(mav);
-		
-		return mav;
-	}
-	
 	/**
 	 * @name : TeamController
 	 * @date : 2015. 6. 26.
@@ -176,14 +119,25 @@ public class TeamBoardController {
 		return mav;
 	}
 	
+	/**
+	 * @함수명:paging
+	 * @작성일:2015. 7. 15.
+	 * @작성자:이한빈 
+	 *@설명문: 팀공지사항 게시판 페이징.
+	 *
+	 */
 	@RequestMapping(value="/paging" , method=RequestMethod.GET)
 	public ModelAndView paging(HttpServletRequest request){
-		logger.info("TeamController paging");
-		
-		ModelAndView mav = new ModelAndView("teamBoard/ajaxTeamBoard");
-		mav.addObject("request" , request);
-		service.viewTeamBoard(mav);
-	
+		logger.info("TeamController updateTeamBoard");
+		ModelAndView mav = service.viewTeamBoard(request);
 		return mav;
+	}
+	
+	@RequestMapping(value="/writeTeamBoard" , method=RequestMethod.GET)
+	public ModelAndView writeTeamBoard(HttpServletRequest request){
+		logger.info("TeamController writeTeamBoard");
+		//ModelAndView mav = service.writeTeamBoard(request);
+		
+		return null;
 	}
 }

@@ -118,7 +118,7 @@ public class TeamController {
 		
 		mav.addObject("request",request);
 		service.goTeamPage(mav);
-		teamBoardService.viewTeamBoard(mav);
+		//teamBoardService.viewTeamBoard(mav);
 		scheduleService.readteamSchedule(mav);
 		service.getReplyList(mav);
 			

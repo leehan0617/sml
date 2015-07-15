@@ -5,7 +5,7 @@
 	<c:set var="root" value="${pageContext.request.contextPath }"/>
 
 	<div class="modal-header">
-		<h3 style="text-align:center;">공지사항</h3>
+		<h3 style="text-align:center;">공지사항 </h3>
 	</div>
 	
 	<div class="wrap modal-body">

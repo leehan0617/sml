@@ -3,7 +3,6 @@ package com.sml.teamBoard.service;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 import java.util.logging.Logger;
 
 import javax.servlet.http.HttpServletRequest;
@@ -12,7 +11,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.web.servlet.ModelAndView;
 
-import com.sml.team.dto.TeamDto;
 import com.sml.teamBoard.dao.TeamBoardDao;
 import com.sml.teamBoard.dto.TeamBoardDto;
 
@@ -30,23 +28,22 @@ public class TeamBoardServiceImpl implements TeamBoardService{
 	 * @작성자 : 이희재
 	 * @설명   : 팀 게시판에서 팀 공지사항 보기
 	 */
-	public void viewTeamBoard(ModelAndView mav) {
+	public ModelAndView viewTeamBoard(HttpServletRequest request) {
 		logger.info("Service viewTeamBoard");
-		HashMap<String,Object> map=mav.getModelMap();
-		HttpServletRequest request=(HttpServletRequest) map.get("request");
+		
 		String teamName=request.getParameter("teamName");
 		
-		int count=dao.getBoardCount(teamName);
 		// 팀 전체 게시물 수
-		
-		int boardSize=8;
+		int count=dao.getBoardCount(teamName);
 		// 한 블록 당 출력될 게시물 수
-		
-		int blockSize=2;
+		int boardSize=8;
 		// 한 페이지당 들어갈 블록
+		int blockSize=2;
 		
-		int currentPage=1;
-		if(request.getParameter("currentPage")!=null){
+		int currentPage;
+		if(request.getParameter("currentPage")==null){
+			currentPage=1;
+		}else{
 			currentPage=Integer.parseInt(request.getParameter("currentPage"));
 		}
 		
@@ -54,10 +51,12 @@ public class TeamBoardServiceImpl implements TeamBoardService{
 		int startRow=(currentPage-1)*boardSize+1;
 		int endRow=startRow+boardSize-1;
 		
+		System.out.println("teamName"+teamName+",count:"+count+",currentPage:"+currentPage+",blockCount:"+blockCount+",startRow:"+startRow);
+		
 		List<TeamBoardDto> teamBoardList = dao.viewTeamBoard(teamName,startRow,endRow);
 		// 팀 게시물 전체 가져오기
-//		System.out.println(teamBoardList.size());
-		
+
+		ModelAndView mav = new ModelAndView();
 		mav.addObject("blockCount", blockCount);
 		mav.addObject("teamName",teamName);
 		mav.addObject("count", count);
@@ -65,6 +64,9 @@ public class TeamBoardServiceImpl implements TeamBoardService{
 		mav.addObject("blockSize", blockSize);
 		mav.addObject("currentPage",currentPage);
 		mav.addObject("teamBoardList" , teamBoardList);
+		mav.setViewName("jsonView");
+		
+		return mav;
 	}
 	
 	/**
@@ -74,22 +76,16 @@ public class TeamBoardServiceImpl implements TeamBoardService{
 	 * @description : 게시판 읽기 함수
 	 */
 	@Override
-	public void readTeamBoard(ModelAndView mav) {
-		Map<String,Object> map=mav.getModelMap();
-		HttpServletRequest request=(HttpServletRequest) map.get("request");
-		
-		String teamName=request.getParameter("teamName");
-		int currentPage=Integer.parseInt(request.getParameter("currentPage"));
+	public ModelAndView readTeamBoard(HttpServletRequest request) {
 		int boardNumber=Integer.parseInt(request.getParameter("boardNumber"));
-		
-		System.out.println("currentPage : " + currentPage);
 		
 		TeamBoardDto board=dao.getBoardDto(boardNumber);
 		
-		mav.addObject("board",board);
-		mav.addObject("teamName", teamName);
-		mav.addObject("currentPage", currentPage);
-		mav.setViewName("teamBoard/readTeamBoard");
+		ModelAndView mav = new ModelAndView();
+		mav.addObject("board" , board);
+		mav.setViewName("jsonView");
+		
+		return mav;
 	}
 	
 	/**
@@ -133,55 +129,6 @@ public class TeamBoardServiceImpl implements TeamBoardService{
 		mav.addObject("currentPage",currentPage);
 		mav.addObject("teamBoardList" , teamBoardList);
 		mav.setViewName("teamBoard/manageTeamBoard");
-	}
-
-	/**
-	 * @name : TeamServiceImpl
-	 * @date : 2015. 6. 26.
-	 * @author : 이희재
-	 * @description : 팀 게시판에서 공지 쓰기
-	 */
-	@Override
-	public void writeTeamBoard(ModelAndView mav) {
-		logger.info("Service viewTeamBoard");
-		HashMap<String,Object> map=mav.getModelMap();
-		HttpServletRequest request=(HttpServletRequest) map.get("request");
-		String teamName=request.getParameter("teamName");
-		int currentPage=Integer.parseInt(request.getParameter("currentPage"));
-		TeamDto dto=dao.getTeamInfo(teamName);
-		
-		mav.addObject("writer",dto.getTeamLeaderName());
-		mav.addObject("teamName",teamName);
-		mav.addObject("currentPage", currentPage);
-		mav.setViewName("teamBoard/writeTeamBoard");
-	}
-	
-	/**
-	 * @name : TeamServiceImpl
-	 * @date : 2015. 6. 26.
-	 * @author : 이희재
-	 * @description : 팀 게시판에서 공지 쓰기 완료
-	 */
-	@Override
-	public void writeOkTeamBoard(ModelAndView mav) {
-		logger.info("Service writeOkTeamBoard");
-		HashMap<String,Object> map=mav.getModelMap();
-		HttpServletRequest request=(HttpServletRequest) map.get("request");
-		String teamName=request.getParameter("teamName");
-		int currentPage=Integer.parseInt(request.getParameter("currentPage"));
-		
-		int teamCode=dao.getTeamInfo(teamName).getTeamCode();
-		
-		TeamBoardDto board=(TeamBoardDto) map.get("teamBoardDto");
-		board.setTeamCode(teamCode);
-		board.setBoardDate(new Date());
-		int value=dao.writeTeamBoard(board);
-//		System.out.println(value);
-		
-		mav.addObject("writeValue",value);
-		mav.addObject("teamName",teamName);
-		mav.addObject("currentPage", currentPage);
-		mav.setViewName("teamBoard/okTeamBoard");
 	}
 
 	/**
@@ -251,12 +198,4 @@ public class TeamBoardServiceImpl implements TeamBoardService{
 		mav.addObject("currentPage",currentPage);
 		mav.setViewName("teamBoard/okTeamBoard");
 	}
-
-	@Override
-	public void teamBoardPaging(ModelAndView mav) {
-		HashMap<String , Object> map = mav.getModelMap();
-		HttpServletRequest request = (HttpServletRequest) map.get("request");
-	}
-	
-	
 }
