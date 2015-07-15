@@ -19,6 +19,7 @@
 <!-- SCRIPT -->
 <script src="${root }/resources/js/jquery.js"></script>
 <script src="//apis.daum.net/maps/maps3.js?apikey=1442260e0c6af86974001269a7312e42&libraries=services"></script>
+<script src="${root }/resources/js/startDaumMap2.js"></script>
 <script src="${root }/resources/js/startDaumMap.js"></script>
 <script src="${root }/resources/js/bootstrap.js"></script>
 <script src="${root }/resources/js/angular.js"></script>
@@ -98,21 +99,12 @@
 		    </div>
 		    <div class="container workshops" style="background-color: #fff; padding-top:0px;">
 		      <div class="third" aria-hidden="true">
-		        <div id="map2"></div>
+		        <div id="map2">gggg</div>
 		      </div>
 		
 		      <div class="third upcoming-workshoppers">
 		        <h4>경기 일정</h4>
-		        <div id="upcoming-workshops">
-		          <div class="loading">불러오는 중...</div>
-		          <div class="empty">
-		            <span>예정된 이벤트가 없습니다.</span> <a href="#">지난 이벤트</a><span>!</span>
-		          </div>
-		          <div class="success">
-		            <ul></ul>
-		            <p><a href="#" class="all-events">모든 이벤트 보기</a>.</p>
-		          </div>
-		          <div class="error">죄송합니다. 이벤트를 불러올 수 없습니다</div>
+		        <div id="recordList">
 		        </div>
 		      </div>
 		

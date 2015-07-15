@@ -15,6 +15,12 @@ public class MapServiceImpl implements MapService {
 	@Autowired
 	private MapDao mapDao;
 	
+	/**
+	 * @name : startMap
+	 * @date : 2015. 7. 15.
+	 * @author : 이희재
+	 * @description : 경기장 리스트를 가져옴
+	 */
 	@Override
 	public void startMap(ModelAndView mav) {
 		List<HashMap<String, Object>> mapList=mapDao.getTeamMapList();
@@ -23,6 +29,20 @@ public class MapServiceImpl implements MapService {
 //		}
 
 		mav.addObject("mapList",mapList);
+		mav.setViewName("jsonView");
+	}
+
+	/**
+	 * @name : gameRecordMap
+	 * @date : 2015. 7. 15.
+	 * @author : 이희재
+	 * @description : 진행중인 경기를 가져 옴
+	 */
+	@Override
+	public void gameRecordMap(ModelAndView mav) {
+		List<HashMap<String, Object>> recordList=mapDao.getRecordList();
+		
+		mav.addObject("recordList",recordList);
 		mav.setViewName("jsonView");
 	}
 
