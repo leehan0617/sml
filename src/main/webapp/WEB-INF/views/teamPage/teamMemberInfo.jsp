@@ -108,7 +108,7 @@
 				<td>${member.memberEmail}</td>
 				<td>${member.memberPhone}</td>
 				<td>${member.memberGender}</td>
-				<td><button type="submit" class="btn btn-success"><span class="glyphicon glyphicon-trash">삭제</span></button></td>			
+				<td><button type="submit" class="btn btn-success" onclick=""><span class="glyphicon glyphicon-trash">삭제</span></button></td>			
 				
 			  </tr>
 			</c:forEach>
