@@ -17,6 +17,7 @@
     
     <title>memberInfo</title>
     
+    
    <!-- Bootstrap core CSS -->
     <link rel="stylesheet" type="text/css" href="${root }/resources/css/bootstrap.css"/>
 
@@ -25,11 +26,10 @@
   	<script src="${root }/resources/js/jquery.js"></script> 	
  	<script src="${root }/resources/js/bootstrap.js"></script>
   	<script src="${root }/resources/js/jquery-ui.js"></script>  
+  	<script src="${root }/js/member/member.js"></script>  	
     
     <!-- Placed at the end of the document so the pages load faster -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
-    
- 
   </head>
   <body>
       <nav class="navbar navbar-inverse navbar-fixed-top">
@@ -54,12 +54,8 @@
 			  <li><a href="${root }/teamPage/viewTeamBoard.do?teamName=${teamName}">팀 공지사항</a></li>		      
 		      <li><a href="${root }/teamPage/viewTeamRecord.do?teamName=${teamName}">팀 기록</a></li>
 		      <li><a href="${root }/teamPage/teamScheduleEdit.do?teamName=${teamName}">팀 스케쥴</a></li>
-			</c:if>
-           
-            
-            
-          </ul>
-         
+			</c:if>            
+          </ul>         
         </div>
       </div>
     </nav>
@@ -108,7 +104,7 @@
 				<td>${member.memberEmail}</td>
 				<td>${member.memberPhone}</td>
 				<td>${member.memberGender}</td>
-				<td><button type="submit" class="btn btn-success" onclick=""><span class="glyphicon glyphicon-trash">삭제</span></button></td>			
+				<td><button class="btn btn-success" onclick="return deleteMember('${root}','${pageNumber}','${member.memberCode}','${teamName}','${teamCode}','${teamGrade}');"><span class="glyphicon glyphicon-trash">삭제</span></button></td>			
 				
 			  </tr>
 			</c:forEach>
@@ -133,19 +129,21 @@
                  
       </div>        
       </div> 	
-		<div id="navbar" class="navbar-collapse collapse">
-          <form class="navbar-form navbar-right">
+		<div id="navbar" class="navbar-collapse collapse">			 
+          <form class="navbar-form navbar-right" action="${root}/teamPage/searchMember.do" method="GET">
            
             <div class="form-group">
-              <input type="text" placeholder="검색어를 입력하세요" class="form-control">
-            </div>
-            
-              <button type="submit" class="btn btn-success"><span class="glyphicon glyphicon-search"></span></button>
-             
+              <input type="text" placeholder="검색어를 입력하세요" class="form-control" name="searchBoxName">
+              <input type="hidden" name="currentPage" value="${currentPage}">
+              <input type="hidden" name="teamName" value="${teamName}">
+			  <input type="hidden" name="pageNumber" value="${pageNumber}">
+			  <input type="hidden" name="teamGrade" value="${teamGrade}">
+            </div>             
+             <button class="btn btn-success" type="submit"><span class="glyphicon glyphicon-search"></span></button>           	
           </form>
         </div>
     <div align="center">    
- 
+ 			
 		<c:if test="${count>0 }">
 			<c:set var="pageBlock" value="${5}"/>
 			<c:set var="pageCount" value="${count/boardSize+(count%boardSize==0 ? 0:1)}"/>
@@ -203,12 +201,22 @@
     	</div>
 	    <div class="form-group">
       		<label for="usr">BIRTH</label>
-       		<input placeholder="생년월일" type="text" class="form-control" name="memberBirth">
+       		<input type="date" class="form-control" placeholder="생일을 선택해주세요" name="memberBirth" />
     	</div>
+    	
     	<div class="form-group">
-      		<label for="usr">REGION</label>
-       		<input placeholder="지역" type="text" class="form-control" name="memberRegion">
-    	</div>
+		  <label for="sel1">REGION</label>
+		  <select class="form-control" id="sel1" name="memberRegion">		  	
+		    <option>지역을선택하세요</option>
+		    <option value="서울">서울</option>
+		    <option value="경기/인천">경기/인천</option>
+		    <option value="경상도">경상도</option>	
+		    <option value="전라도">전라도</option>	
+		    <option value="충청도">충청도</option>	
+		    <option value="강원도">강원도</option>		    
+		    <option value="제주">부산</option>	    
+		  </select>
+		</div>    	
     		<div class="form-group">
       		<label for="usr">PHONE</label>
        		<input placeholder="번호" type="text" class="form-control" name="memberPhone">
@@ -224,8 +232,7 @@
 		    <option value="남">남</option>
 		    <option value="여">여</option>		    
 		  </select>
-		</div>
-		
+		</div>		
 			<input type="hidden" name="teamName" value="${teamName}">
 			<input type="hidden" name="currentPage" value="${currentPage}">
 			<input type="hidden" name="teamGrade" value="${teamGrade}">
@@ -234,9 +241,12 @@
   		</c:if>
   	</form> 
   		<br/><br/>
-  		<br/><br/>
-  		 	
+  		<br/><br/>  		 	
   	</div>
 		
+		
+	
+
+   
   </body>
 </html>
