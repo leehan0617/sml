@@ -99,7 +99,7 @@
 				</li>
 			</ul>    
 			
-			<div class="row-fluid sortable">
+			<div class="row-fluid">
 				<div class="box span12">
 					<div class="box-header" data-original-title>
 						<h2><i class="halflings-icon edit"></i><span class="break"></span>리그 개설</h2>

@@ -17,6 +17,12 @@
 <link href='http://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800&subset=latin,cyrillic-ext,latin-ext' rel='stylesheet' type='text/css'>
 <!-- end: CSS -->
 
+<style>
+.custom-search-form{
+    margin-top:5px;
+}
+</style>
+
 <title>Insert title here</title>
 </head>
 <body>
@@ -71,17 +77,12 @@
 				<li><a href="#">팀 관리</a></li>
 			</ul>
 
-			<div class="row-fluid sortable">		
+			<div class="row-fluid">		
 				<div class="box span12">
 					<div class="box-header" data-original-title>
-						<h2><i class="halflings-icon user"></i><span class="break"></span>팀 리스트</h2>
-						<div class="box-icon">
-							<a href="#" class="btn-setting"><i class="halflings-icon wrench"></i></a>
-							<a href="#" class="btn-minimize"><i class="halflings-icon chevron-up"></i></a>
-							<a href="#" class="btn-close"><i class="halflings-icon remove"></i></a>
-						</div>
+						<h2><i class="halflings-icon user"></i><span class="break"></span>팀 리스트</h2>						
 					</div>
-					
+													
 					<c:if test="${containerList==null }">
 						<div>	
 							<span>검색결과가 없습니다.</span>												
@@ -92,24 +93,24 @@
 						<div class="box-content">
 							<table class="table table-striped table-bordered bootstrap-datatable datatable">							
 							  <thead>
-								<tr>
-									<th>종목</th>
-									<th>엠블럼</th>
-									<th>팀명</th>	
-									<th>팀장이름</th>
-									<th>생년월일</th>
-									<th>지역</th>	
-									<th>이메일</th>
-									<th>연락처</th>
-									<th>성별</th>
-									<th></th>					
+								<tr>									
+									<th style="width: 5%">종목</th>
+									<th style="width: 20%">엠블럼</th>
+									<th style="width: 10%">팀명</th>
+									<th style="width: 10%">팀장이름</th>
+									<th style="width: 10%">생년월일</th>	
+									<th style="width: 15%">지역</th>
+									<th style="width: 10%">이메일</th>	
+									<th style="width: 10%">연락처</th>
+									<th style="width: 5%">성별</th>	
+									<th style="width: 5%"></th>			
 								</tr>	
 							</thead>
 							<tbody>
 								<c:forEach var="containerList" items="${containerList}">		
 									<tr>						
 										<td>${containerList.SPORTTYPE}</td>
-										<td>${containerList.EMBLEM}</td>		
+										<td><img src="${root}/img/teamImg/${containerList.EMBLEM}" alt="${containerList.EMBLEM}"/></td>		
 										<td><a href="${root }/teamPage/teamPageMain.do?teamCode=${containerList.TEAMCODE}">${containerList.TEAMNAME}</a></td>
 										<td>${containerList.TEAMLEADERNAME}</td>
 										<td>${containerList.MEMBERBIRTH}</td>

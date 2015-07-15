@@ -71,7 +71,7 @@
 				<li><a href="#">심판 관리</a></li>
 			</ul>
 
-			<div class="row-fluid sortable">		
+			<div class="row-fluid">		
 				<div class="box span12">
 					<div class="box-header" data-original-title>
 						<h2><i class="halflings-icon user"></i><span class="break"></span>심판 리스트</h2>
@@ -80,8 +80,15 @@
 							<a href="#" class="btn-minimize"><i class="halflings-icon chevron-up"></i></a>
 							<a href="#" class="btn-close"><i class="halflings-icon remove"></i></a>
 						</div>
+					</div>	
+									
+					<div class="text-right">
+						<form action="${root }/admin/refereeSearch.do" method="get" id="search-box" onsubmit="if(this.q.value ==' 심판 이름 검색'){this.q.focus();return false;}">
+							<input type="text" name="refereeName" style="height:33px; color: #D2D2D2;" value="심판 검색" onfocus="this.value='' "/>
+							<input type="submit" class="btn btn-defaulty btn-sm" value="검색"/>							
+						</form>						
 					</div>
-					
+							
 					<c:if test="${refereeList==null }">
 						<div>	
 							<span>검색결과가 없습니다.</span>												
@@ -93,13 +100,13 @@
 							<table class="table table-striped table-bordered bootstrap-datatable datatable">
 							  <thead>
 								  <tr>
-									  <th>종목</th>
-									  <th>이름</th>
-									  <th>성별</th>
-									  <th>생년월일</th>
-									  <th>주소</th>
-									  <th>연락처</th>
-									  <th>Action</th>
+									  <th style="width: 5%">종목</th>
+									  <th style="width: 10%">이름</th>
+									  <th style="width: 5%">성별</th>
+									  <th style="width: 20%">생년월일</th>
+									  <th style="width: 40%">주소</th>
+									  <th style="width: 15%">연락처</th>
+									  <th style="width: 5%">Action</th>
 								  </tr>
 							  </thead>   
 							  <tbody>
@@ -291,7 +298,13 @@
 						
 	</c:if>
 	
-	
+	<!-- 심판 검색 -->
+	<div>
+		<form action="${root }/admin/refereeSearch.do" method="get" id="search-box" onsubmit="if(this.q.value ==' 심판 검색'){this.q.focus();return false;}">
+			<input type="text" name="refereeName" style="color: #D2D2D2;" value="심판 검색" onfocus="this.value='' "/>
+			<input type="submit" value="검색"/>
+		</form>
+	</div>
 	
 	<!-- 페이지 번호 -->
 	<center>

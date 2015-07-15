@@ -69,7 +69,7 @@
 				</li>
 				<li><a href="#">공지 게시판 관리</a></li>
 			</ul>
-			<div class="row-fluid sortable">		
+			<div class="row-fluid">		
 				<div class="box span12">
 					<div class="box-header" data-original-title>
 						<h2><i class="halflings-icon user"></i><span class="break"></span>공지 게시판</h2>

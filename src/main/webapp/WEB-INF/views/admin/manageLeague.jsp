@@ -68,13 +68,13 @@
 					<a href="${root }/start.jsp">Home</a> 
 					<i class="icon-angle-right"></i>
 				</li>
-				<li><a href="#">심판 관리</a></li>
+				<li><a href="#">리그 관리</a></li>
 			</ul>
 
-			<div class="row-fluid sortable">		
+			<div class="row-fluid">		
 				<div class="box span12">
 					<div class="box-header" data-original-title>
-						<h2><i class="halflings-icon user"></i><span class="break"></span>심판 리스트</h2>
+						<h2><i class="halflings-icon user"></i><span class="break"></span>리그 리스트</h2>
 						<div class="box-icon">
 							<a href="#" class="btn-setting"><i class="halflings-icon wrench"></i></a>
 							<a href="#" class="btn-minimize"><i class="halflings-icon chevron-up"></i></a>
@@ -93,17 +93,17 @@
 							<table class="table table-striped table-bordered bootstrap-datatable datatable">
 							  <thead>
 								<tr>				
-									<th>종목</th>
-									<th>*</th>
-									<th>개최지</th>
-									<th>리그명</th>	
-									<th>참가인원</th>
-									<th>요일</th>
-									<th>경기시간</th>	
-									<th>시작</th>
-									<th>종료</th>	
-									<th>게시 여부</th>
-									<th>삭제 여부</th>
+									<th style="width: 5%">종목</th>
+									<th style="width: 20%">리그사진</th>
+									<th style="width: 10%">개최지</th>
+									<th style="width: 10%">리그명</th>	
+									<th style="width: 5%">인원</th>
+									<th style="width: 5%">요일</th>
+									<th style="width: 15%">경기시간</th>	
+									<th style="width: 10%">시작</th>
+									<th style="width: 10%">종료</th>	
+									<th style="width: 5%">게시 여부</th>
+									<th style="width: 5%">삭제</th>
 								</tr>
 							</thead>																		
 							<tbody>	
