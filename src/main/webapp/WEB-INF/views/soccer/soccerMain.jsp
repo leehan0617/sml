@@ -1,21 +1,29 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<!DOCTYPE html>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <c:set var="root" value="${pageContext.request.contextPath }"></c:set>
+<!DOCTYPE html>
 <html>
 <head>
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Insert title here</title>
-<script src="${root}/resources/js/jquery.js"></script>
+<script type="text/javascript" src="${root}/js/jquery/jquery.js"></script>
 <script type="text/javascript" src="${root}/js/scrollnews.js"></script>
 <script type="text/javascript" src="${root}/js/soccer/soccer.js"></script>
 <script type="text/javascript" src="${root}/resources/js/bootstrap.js"></script>
 <script src="${root}/js/startPage.js"></script>
+
 <link rel="stylesheet" type="text/css" href="${root}/resources/css/bootstrap.css"/>
+<style>
+  .carousel-inner > .item > img,
+  .carousel-inner > .item > a > img {
+      width: 70%;
+      margin: auto;
+  }
+</style>
 <!--ajax crossdomain 우회-->
+<title>Insert title here</title>
 </head>
 <body>	
 <%-- ${root}/resources/images/soccer_background.jpg --%>
@@ -77,14 +85,14 @@
 							<c:forEach var="todayMatch" items="${todayMatchList }">
 								<div>	
 									<span id="teamCode">
-										<a href="${root }/teamPage/teamPageMain.do?teamName=${todayMatch.TEAMNAME1 }" target="_blank"><img alt="팀엠블럼1:${todayMatch.EMBLEM1 }" src="${root }/img/teamImg/${todayMatch.EMBLEM1 }"/></a>
+										<a href="${root }/teamPage/teamPageMain.do?teamName=${todayMatch.TEAMNAME1 }" target="_blank"><img alt="팀엠블럼1:${todayMatch.EMBLEM1 }" src="${root}/img/teamImg/${todayMatch.EMBLEM1}"/></a>
 									</span>${todayMatch.EMBLEM1 }
 									<span>${todayMatch.TEAMNAME1 }</span>
 									
 									<span>vs</span>
 									
 									<span id="teamcode2">
-										<a href="${root }/teamPage/teamPageMain.do?teamName=${todayMatch.TEAMNAME2 }" target="_blank"><img alt="팀엠블럼2:${todayMatch.EMBLEM2 }" src="${root }/img/teamImg/${todayMatch.EMBLEM2 }"/></a>
+										<a href="${root }/teamPage/teamPageMain.do?teamName=${todayMatch.TEAMNAME2 }" target="_blank"><img alt="팀엠블럼2:${todayMatch.EMBLEM2}" src="${root}/img/teamImg/${todayMatch.EMBLEM2}"/></a>
 									</span>
 									<span>${todayMatch.TEAMNAME2 }</span>
 									
@@ -125,39 +133,74 @@
 									</table>
 								</div>		
 								<div align="right">
-									<a href="${root }/soccer/commonBoard.do">more</a>
+									<a href="${root}/soccer/commonBoard.do">more</a>
 								</div>
 							</c:if>
 						</div>
 					</div>
 				</div>	
-				
+		
+		<!-- 리그상황 -->		
 		<div class="jumbotron">
 			<div class="row">
 				<div class="col-sm-6">
-					<h3>리그</h3>
-					<div>
-						<span><input type="button" value="<"/></span>
-						<img alt="리그 이미지 넣어야함" src=""/>
-						<span><input type="button" value=">"/></span> 
-						
+					<h3>리그정보</h3>
+					<div id="myCarousel" class="carousel slide" data-ride="carousel">
+					    <ol class="carousel-indicators">
+					      <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
+					      <li data-target="#myCarousel" data-slide-to="1"></li>
+					      <li data-target="#myCarousel" data-slide-to="2"></li>
+					      <li data-target="#myCarousel" data-slide-to="3"></li>
+					    </ol>
 						<c:forEach var="league" items="${leagueList}">
-							<div>
-								<span><img src="${root}/img/leagueImg/${league.leagueImage}"/></span>
-								<span>리그이름 : ${league.leagueName}</span>
-								<span>리그지역 : ${league.leagueRegion}</span>
-								<span>리그시간 : ${league.leagueTime}</span>
-								<span>리그시작일 : ${league.leagueStartDate}</span>
-								<span>리그종료일 : ${league.leagueEndDate}</span>										
-							</div>
-			
-						 		<div>
-						 			<a href="${root}/soccer/soccerLeague.do?leagueSport=${league.leagueSport}&leagueCode=${league.leagueCode}&leagueTeamNumber=${league.leagueTeamNumber}">신청하기</a>
-								</div> 
-					
-						</c:forEach>
-					</div>	
+							 <div class="carousel-inner" role="listbox">
+							      <div class="item active">
+							        <img src="${root}/img/leagueImg/${league.leagueImage}" alt="league" width="460" height="345">
+							        <div class="carousel-caption">
+							          <h3>${league.leagueName}</h3>
+							          <p>${league.leagueStartDate}</p>~<p>${league.leagueEndDate}</p>
+							        </div>
+							      </div>
+							      
+				 			      <div class="item">
+							        <img src="${root}/img/leagueImg/${league.leagueImage}" alt="league" width="460" height="345">
+							        <div class="carousel-caption">
+							          <h3>${league.leagueName}</h3>
+							          <p>${league.leagueStartDate}</p>~<p>${league.leagueEndDate}</p>
+							        </div>
+							      </div>
+							      
+							      <div class="item">
+							        <img src="${root}/img/leagueImg/${league.leagueImage}" alt="league" width="460" height="345">
+							        <div class="carousel-caption">
+							          <h3> ${league.leagueName}</h3>
+							          <p>${league.leagueStartDate}</p>~<p>${league.leagueEndDate}</p>
+							        </div>
+							      </div>
+							      
+							       <div class="item">
+							        <img src="${root}/img/leagueImg/${league.leagueImage}" alt="league" width="460" height="345">
+							        <div class="carousel-caption">
+							          <h3> ${league.leagueName}</h3>
+							          <p>${league.leagueStartDate}</p>~<p>${league.leagueEndDate}</p>
+							        </div>
+							      </div>  
+							 </div> 
+	 					</c:forEach> 
+						
+						 <!-- Left and right controls -->
+					    <a class="left carousel-control" href="#myCarousel" role="button" data-slide="prev">
+					      <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
+					      <span class="sr-only">Previous</span>
+					    </a>
+					    <a class="right carousel-control" href="#myCarousel" role="button" data-slide="next">
+					      <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
+					      <span class="sr-only">Next</span>
+					    </a>
+					    </div>	
 				</div>
+				
+				<!-- 통계차트 -->
 				<div class="col-sm-6">
 					<ul class="nav nav-tabs" ><!--${root}/soccer/soccerMain.do?legion=legion  -->
 									  <!--${root}/soccer/soccerMain.do?age=age  -->
@@ -181,10 +224,32 @@
 				<h3>이메일 : smlKorea@sml.com</h3>
 			</div>
 		</div>
+	</div>
 </body>
 </html>
 
-
+<%--					 	<h3>리그</h3>
+						<div>
+							<span><input type="button" value="<"/></span>
+							<img alt="리그 이미지 넣어야함" src=""/>
+							<span><input type="button" value=">"/></span> 
+							
+							<c:forEach var="league" items="${leagueList}">
+								<div>
+									<span><img src="${root}/img/leagueImg/${league.leagueImage}"/></span>
+									<span>리그이름 : ${league.leagueName}</span>
+									<span>리그지역 : ${league.leagueRegion}</span>
+									<span>리그시간 : ${league.leagueTime}</span>
+									<span>리그시작일 : ${league.leagueStartDate}</span>
+									<span>리그종료일 : ${league.leagueEndDate}</span>										
+								</div>
+				
+							 		<div>
+							 			<a href="${root}/soccer/soccerLeague.do?leagueSport=${league.leagueSport}&leagueCode=${league.leagueCode}&leagueTeamNumber=${league.leagueTeamNumber}">신청하기</a>
+									</div> 
+						
+						</c:forEach>
+						</div> --%>
 
 
 <%-- 							<c:if test="${count>0 }">

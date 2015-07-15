@@ -53,4 +53,8 @@
 			select count(*) from gameRecord where to_char(gameDate,'yyyy-mm-dd')=#{gameDate} and (teamcode2=#{teamCode} or teamcode=#{teamCode}) and gameTime=#{gameTime}
 		]]>
 	</select>
+	
+	<update id="changeLeagueState" parameterType="int">
+		update leagueInfo set leagueState=0 where leagueCode=#{leagueCode}
+	</update>
  </mapper>

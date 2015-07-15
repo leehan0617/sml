@@ -24,10 +24,6 @@
 		select * from teamBoard where boardNumber=#{boardNumber}
 	</select>
 	
-	<insert id="writeTeamBoard" parameterType="com.sml.teamBoard.dto.TeamBoardDto">
-		insert into teamBoard values (teamboard_boardNumber_sql.nextval, #{teamCode}, #{boardWriter}, #{boardDate}, #{boardTitle}, #{boardContent})
-	</insert>
-	
 	<delete id="deleteTeamBoard" parameterType="int">
 		delete teamBoard where boardNumber=#{boardNumber}
 	</delete>

@@ -131,7 +131,7 @@ public class LeagueServiceImpl implements LeagueService{
 		}
 		
 		makeLeagueSchedule(scheduleList, league);
-		
+		dao.changeLeagueState(league);
 	}
 	
 	/**
@@ -255,6 +255,7 @@ public class LeagueServiceImpl implements LeagueService{
 				gameRecord.setSportType(league.getLeagueSport());
 				gameRecord.setGameResult("전");
 				
+				// 유효성 검사
 				int invalidTeam1=dao.invalidSchedule(gameRecord,team1);
 				int invalidTeam2=dao.invalidSchedule(gameRecord,team2);
 				

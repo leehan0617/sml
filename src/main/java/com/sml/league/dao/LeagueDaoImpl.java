@@ -153,4 +153,17 @@ public class LeagueDaoImpl implements LeagueDao{
 		
 		return sqlSession.selectOne("dao.LeagueMapper.invalidSchedule", hMap);
 	}
+
+	/**
+	 * @name : changeLeagueState
+	 * @date : 2015. 7. 15.
+	 * @author : 이희재
+	 * @description : 리그의 상태를 진행 중으로 변경
+	 */
+	@Override
+	public void changeLeagueState(LeagueDto league) {
+		int leagueCode=league.getLeagueCode();
+		
+		sqlSession.update("dao.LeagueMapper.changeLeagueState", leagueCode);
+	}
 }
