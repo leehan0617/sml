@@ -119,8 +119,9 @@
 	<div class="row well">
 	  <div class="col-md-1"></div>
 	  <div class="col-md-5 well">
-	  	<a href="${root }/teamPage/viewTeamBoard.do?teamName=${team.teamName}" data-toggle="modal" data-target="#modalBoard">
-	  		
+	  	<h3>팀 공지사항</h3><hr/>
+	  	<a data-toggle="modal" data-target="#modalTeamBoard" onclick="getTeamBoardData('${root}','${teamName}')" style="color:black;">
+	  		<%@include file="../teamTemplate/teamBoardTemplate.jsp" %>
 	  	</a>
 	  </div>
 	  <div class="col-md-5 well">
