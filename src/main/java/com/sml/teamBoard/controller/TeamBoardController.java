@@ -136,8 +136,8 @@ public class TeamBoardController {
 	@RequestMapping(value="/writeTeamBoard" , method=RequestMethod.GET)
 	public ModelAndView writeTeamBoard(HttpServletRequest request){
 		logger.info("TeamController writeTeamBoard");
-		//ModelAndView mav = service.writeTeamBoard(request);
+		ModelAndView mav = service.writeTeamBoard(request);
 		
-		return null;
+		return mav;
 	}
 }

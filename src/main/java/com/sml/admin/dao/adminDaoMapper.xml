@@ -20,7 +20,6 @@
 						  		where a.teamcode=b.teamcode
 						  		order by a.teamname asc) c) 
 				  where rnum>=#{startRow} and rnum<=#{endRow} 
-
 		]]>
 	</select>
 

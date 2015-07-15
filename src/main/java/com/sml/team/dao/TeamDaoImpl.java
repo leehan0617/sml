@@ -7,7 +7,6 @@ import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
-import com.sml.member.dto.MemberDto;
 import com.sml.team.dto.TeamDto;
 import com.sml.team.dto.TeamLogDto;
 
@@ -255,6 +254,14 @@ public class TeamDaoImpl implements TeamDao{
 	@Override
 	public TeamDto getTeamInfo(String teamName) {
 		return sqlSession.selectOne("team.dao.TeamMapper.getTeamInfo",teamName);
+	}
+
+	@Override
+	public int editTeamIntro(int teamCode, String teamIntro) {
+		HashMap<String , Object>hMap = new HashMap<String , Object>();
+		hMap.put("teamCode", teamCode);
+		hMap.put("teamIntro", teamIntro);
+		return sqlSession.update("team.dao.TeamMapper.editTeamIntro" , hMap);
 	}
 		
 }

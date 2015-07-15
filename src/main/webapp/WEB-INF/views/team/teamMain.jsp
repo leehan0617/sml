@@ -8,7 +8,6 @@
 	<c:set var="teamId" value="${teamId}" scope="session"/>
 	<c:set var="teamGrade" value="${teamGrade }" scope="session"/>
 	<c:set var="teamName" value="${teamName }" scope="session"/>
-	<c:set var="teamDto" value="${teamDto }"/>
 </c:if>
 <html>
 <head>
@@ -36,13 +35,13 @@
 				  <ul class="dropdown-menu" role="menu">
 			    	  <c:if test="${teamGrade != null }">	    
 						<li><a href="${root }/member/myInfoPage.do?teamName=${teamName }">${teamId }님</a></li>
-						<li><a href="${root }/teamPage/viewTeamBoard.do?teamName=${team.teamName}" data-toggle="modal" data-target="#modalBoard">팀공지사항</a></li>
+						<li><a data-toggle="modal" data-target="#modalTeamBoard" onclick="getTeamBoardData('${root}','${teamName}')">팀공지사항</a></li>
 						<li><a href="${root }/teamPage/teamMemberInfo.do?teamName=${team.teamName}&teamCode=${team.teamCode}&teamGrade=${teamGrade}">팀원소개</a></li>
 						<li><a href="${root }/teamPage/teamScheduleEdit.do?teamName=${teamName}">팀 스케쥴</a></li>
 						<li><a href="${root }/teamPage/viewTeamRecord.do?teamName=${team.teamName}">팀 기록</a></li>
 		
 						<li class="divider"></li>
-						<li><a href="${root }/teamPage/viewTeamBoard.do?teamName=${team.teamName}" data-toggle="modal" data-target="#modalBoard">공지사항관리</a></li>
+						<li><a data-toggle="modal" data-target="#modalTeamBoard" onclick="getTeamBoardData('${root}','${teamName}')">팀공지사항</a></li>
 						<li><a href="${root }/teamPage/manageTeamMember.do?teamName=${team.teamName}&teamCode=${team.teamCode}&teamGrade=${teamGrade}">팀원관리</a></li>
 						<li><a href="${root }/teamPage/teamScheduleEdit.do?teamName=${teamName}">스케쥴관리</a></li>
 						<li><a href="${root }/teamPage/matching.do?teamName=${team.teamName}">매칭관리</a></li>
@@ -52,14 +51,13 @@
 				  	</c:if>
 				  	
 				  	<c:if test="${teamGrade == null }">
-						<li><a href="${root }/teamPage/viewTeamBoard.do?teamName=${team.teamName}" data-toggle="modal" data-target="#modalBoard">팀공지사항</a></li>
+						<li><a data-toggle="modal" data-target="#modalTeamBoard" onclick="getTeamBoardData('${root}','${teamName}')">팀공지사항</a></li>
 						<li><a href="${root }/teamPage/teamMemberInfo.do?teamName=${team.teamName}&teamCode=${team.teamCode}">팀원소개</a></li>
 						<li><a href="${root }/teamPage/viewTeamRecord.do?teamName=${team.teamName}">팀 기록</a></li>
 						<li><a href="${root }/teamPage/teamScheduleEdit.do?teamName=${teamName}">팀 스케쥴</a></li>
 					</c:if>
 					
-					<li><a data-toggle="modal" data-target="#modalTeamBoard" onclick="getTeamBoardData('${root}','${teamName}')">팀공지사항 JSON</a></li>
-					<li>${teamDto.teamLeaderName }</li>
+					
 				  </ul>
 				  
 				</div>
@@ -91,7 +89,22 @@
 	
 	<div class="row well">
 	  <div class="col-md-1"></div>
-	  <div class="col-md-10 well">안녕하세요 SML UNITED는 테스트 페이지 팀소개 입니다.</div>
+	  <div class="col-md-10 well">
+	  	<div class="jumbotron">
+  			<h2>vs112</h2>
+  			<c:choose>
+  				<c:when test="${team.teamIntro !=null }">
+  					<p id="teamIntro">${team.teamIntro }</p>
+  				</c:when>
+  				<c:otherwise>
+  					<p id="teamIntro">작성된 팀소개가 없습니다.</p>
+  				</c:otherwise>
+  			</c:choose>
+  			<c:if test="${teamGrade !=null }">
+  			<p><a class="btn btn-primary btn-lg" role="button" data-toggle="modal" data-target="#modalEditTeamIntro">팀소개 편집하기</a></p>
+  			</c:if>
+		</div>
+	  </div>
 	  <div class="col-md-1"></div>
 	</div>
 	
@@ -106,9 +119,9 @@
 	<div class="row well">
 	  <div class="col-md-1"></div>
 	  <div class="col-md-5 well">
-	  	<a href="${root }/teamPage/viewTeamBoard.do?teamName=${team.teamName}" data-toggle="modal" data-target="#modalBoard">
-	  	
-	  	<%-- <%@include file="../teamTemplate/teamBoardTemplate.jsp" %>--%>
+	  	<h3>팀 공지사항</h3><hr/>
+	  	<a data-toggle="modal" data-target="#modalTeamBoard" onclick="getTeamBoardData('${root}','${teamName}')" style="color:black;">
+	  		<%@include file="../teamTemplate/teamBoardTemplate.jsp" %>
 	  	</a>
 	  </div>
 	  <div class="col-md-5 well">
@@ -305,18 +318,49 @@
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-default" data-dismiss="modal" onclick="teamBoardToggle()">Close</button>
-        <button type="button" class="btn btn-primary" onclick="modalWriteTeamBoard('${root}','${teamName}','${teamCode }')">글쓰기</button>
+        <button type="button" class="btn btn-primary" data-dismiss="modal"onclick="modalWriteTeamBoard('${root}','${teamName}','${team.teamCode }')">글쓰기</button>
       </div>
     </div>
   </div>
 </div>
 
+<div class="modal fade" id="modalEditTeamIntro" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title">팀소개 편집하기.</h4>
+      </div>
+      <div class="modal-body">
+        <form>
+          <div class="form-group">
+            <label for="message-text" class="control-label" id="boardContent">팀소개를 적어주세요.</label>
+            <textarea class="form-control" id="teamIntroContent"></textarea>
+          </div>
+        </form>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">취소</button>
+        <button type="button" class="btn btn-primary" data-dismiss="modal" onclick="editTeamIntro('${root}','${teamName}','${team.teamCode }')">편집완료</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+
 <script>
-	function modalWriteTeamBoard(root,teamName,teamCode){
-		teamBoardToggle();
-		var title = $("#teamBoardTitle").val();
-		var content = $("#teamBoardContent").val();
-		var addr = root+"/writeTeamBoard?teamName="+teamName+"&teamCode="+teamCode;
+	function editTeamIntro(root , teamName , teamCode){
+		var teamIntro = $("#teamIntroContent").val();
+		var addr = root+"/editTeamIntro?teamName="+teamName+"&teamCode="+teamCode+"&teamIntro="+teamIntro;
+		
+		$.ajax({
+			type:"get",
+			url:addr,
+			success:function(data){
+				$("#teamIntro").text(data.teamIntro);
+				$("#teamIntroContent").val("");
+			}
+		});
 	}
 </script>
 

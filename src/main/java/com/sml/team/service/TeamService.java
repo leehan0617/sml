@@ -1,5 +1,7 @@
 package com.sml.team.service;
 
+import javax.servlet.http.HttpServletRequest;
+
 import org.springframework.web.servlet.ModelAndView;
 
 public interface TeamService {
@@ -24,5 +26,7 @@ public interface TeamService {
 	public void replyMoreRead(ModelAndView mav);
 
 	public void replyDelete(ModelAndView mav);
+
+	public ModelAndView editTeamIntro(HttpServletRequest request);
 	
 }
