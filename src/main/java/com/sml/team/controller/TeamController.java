@@ -124,16 +124,14 @@ public class TeamController {
 		mav.setViewName("team/teamMain");
 		
 		return mav;
-	}
-	
-	
-	
+	}	
 	
 	/**
-	 * @name : TeamController
-	 * @date : 2015. 7. 2.
-	 * @author : 이희재
-	 * @description : 팀원 삭제 페이지
+	 * 
+	 * @함수명: viewTeamRecord
+	 * @작성일: 2015. 7. 15.
+	 * @작성자: 정성남
+	 * @설명 :
 	 */
 	@RequestMapping(value="/teamPage/viewTeamRecord.do", method=RequestMethod.GET)
 	 public ModelAndView viewTeamRecord(HttpServletRequest request){
