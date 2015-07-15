@@ -10,13 +10,20 @@
 <title>Insert title here</title>
 </head>
 <body>
-	<div>
-		<span><fmt:formatDate value="${commonBoard.boardDate }" type="date" pattern="MM/dd"/></span>
-		<span>${commonBoard.boardTitle }</span>
-	</div>	
-	<div>		
-		<div>${commonBoard.boardContent }</div>
-	</div>	
+	<table class="table table-striped table-bordered bootstrap-datatable datatable">
+	  <thead>
+		  <tr>
+			  <th>작성자</th>	
+			  <th>제목</th>
+			  <th>날짜</th>	
+		  </tr>
+	  </thead>
+	  <tr>
+		 <td><fmt:formatDate value="${commonBoard.boardDate }" type="date" pattern="MM/dd"/></td>
+		 <td>${commonBoard.boardTitle }</td>
+		 <td>${commonBoard.boardContent }</td> 
+	  </tr> 
+	</table>
 </body>
 </html>
 
