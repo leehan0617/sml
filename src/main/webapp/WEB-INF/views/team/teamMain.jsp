@@ -8,6 +8,7 @@
 	<c:set var="teamId" value="${teamId}" scope="session"/>
 	<c:set var="teamGrade" value="${teamGrade }" scope="session"/>
 	<c:set var="teamName" value="${teamName }" scope="session"/>
+	<c:set var="teamDto" value="${teamDto }"/>
 </c:if>
 <html>
 <head>
@@ -56,6 +57,9 @@
 						<li><a href="${root }/teamPage/viewTeamRecord.do?teamName=${team.teamName}">팀 기록</a></li>
 						<li><a href="${root }/teamPage/teamScheduleEdit.do?teamName=${teamName}">팀 스케쥴</a></li>
 					</c:if>
+					
+					<li><a data-toggle="modal" data-target="#modalTeamBoard" onclick="getTeamBoardData('${root}','${teamName}')">팀공지사항 JSON</a></li>
+					<li>${teamDto.teamLeaderName }</li>
 				  </ul>
 				  
 				</div>
@@ -103,7 +107,8 @@
 	  <div class="col-md-1"></div>
 	  <div class="col-md-5 well">
 	  	<a href="${root }/teamPage/viewTeamBoard.do?teamName=${team.teamName}" data-toggle="modal" data-target="#modalBoard">
-	  	<%@include file="../teamTemplate/teamBoardTemplate.jsp" %>
+	  	
+	  	<%-- <%@include file="../teamTemplate/teamBoardTemplate.jsp" %>--%>
 	  	</a>
 	  </div>
 	  <div class="col-md-5 well">
@@ -219,61 +224,103 @@
 		
 	</c:if>
 	
-	<script>
-		function writeReply(root,teamName){
-			var replyNickName = $("#replyNickName").val();
-			var replyContent = $("#replyContent").val();
-			var teamCode = $("#replyTeamCode").val();
-			var replyPassword = $("#replyPassword").val();
-			
-			var addr = root+"/replyWrite?teamCode="+teamCode+"&replyNickName="+replyNickName+"&replyPassword="+replyPassword+"&replyContent="+replyContent;
-			//alert(addr);
-			
-			$.ajax({
-				type:"get",
-				url:addr,
-				success:function(data){
-					$(".replyFirst").prepend(data);
-					$("#replyNickName").val("");
-					$("#replyContent").val("");
-					$("#replyPassword").val("");
-				}
-			});
-		}
-		
-		function moreReadReply(root,teamCode,replyPageNumber){
-			
-			var addr = root+"/replyMoreRead?teamCode="+teamCode+"&replyPageNumber="+replyPageNumber;
-			
-			$.ajax({
-				type:"get",
-				url:addr,
-				success:function(data){
-					$(".alert-warning").hide();
-					$(".replyWrap").append(data);
-				}
-			});
-		}
-		
-		function deleteReply(root , teamCode , replyCode){
-			var addr = root+"/replyDelete?teamCode="+teamCode+"&replyCode="+replyCode;
-			
-			$.ajax({
-				type:"get",
-				url:addr,
-				success:function(data){
-					$("."+replyCode).remove();
-				}
-			});
-		}
-	</script>	
 
-	 <div class="sign" id="sign"></div>
-	 <div class="modal fade" id="modalBoard" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-		  <div class="modal-dialog">
-		    <div class="modal-content">      
-		    </div>
-		  </div>
-	</div>
+	<div class="modal fade" id="modalTeamBoard" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
+ 	 <div class="modal-dialog">
+    	<div class="modal-content">
+    		<div class="modal-header">
+    			공지사항
+    		</div>
+    		<div class="modal-body">
+    			<table class="table table-striped">
+					<thead>
+						<tr> 
+							<th style="width:15%">글번호</th><th style="width:45%">제목</th><th style="width:15%">작성자</th><th style="width:25%">작성일</th> 
+						</tr> 
+					</thead>
+					<tbody class="teamBoardTbody">
+					</tbody>
+				</table>
+				<nav>
+  					<ul class="pager">
+  					</ul>
+  				</nav>
+    		</div>
+      		<div class="modal-footer">
+            	<button type="button" class="btn btn-default modalTeamBoardClose" data-dismiss="modal" onclick="emptyContent()">Close</button>
+            	<c:if test="${teamGrade !=null }">
+       			<button type="button" data-toggle='modal' data-target='#modalTeamBoardWrite' class="btn btn-primary" onclick="teamBoardToggle()">글쓰기</button>
+       			</c:if>
+      		</div>
+  		</div>
+     </div>
+   </div>
+   
+   <div class="modal fade" id="modalTeamBoardRead" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title">공지사항.</h4>
+      </div>
+      <div class="modal-body">
+        <form>
+          <div class="form-group">
+            <label for="recipient-name" class="control-label" id="boardTitle">Title</label>
+            <input type="text" class="form-control" id="recipient-name" value="" disabled="disabled"/>
+          </div>
+          <div class="form-group">
+            <label for="message-text" class="control-label" id="boardContent">Content</label>
+            <textarea class="form-control" id="message-text" disabled="disabled"></textarea>
+          </div>
+        </form>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal" onclick="teamBoardToggle()">Close</button>
+        <button type="button" class="btn btn-primary">수정하기</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<div class="modal fade" id="modalTeamBoardWrite" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title">공지사항 >> 글쓰기</h4>
+      </div>
+      <div class="modal-body">
+        <form>
+          <div class="form-group">
+            <label for="recipient-name" class="control-label" id="boardTitle">Title</label>
+            <input type="text" class="form-control" id="teamBoardTitle"/>
+          </div>
+          <div class="form-group">
+            <label for="message-text" class="control-label" id="boardContent">Content</label>
+            <textarea class="form-control" id="teamBoardContent"></textarea>
+          </div>
+        </form>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal" onclick="teamBoardToggle()">Close</button>
+        <button type="button" class="btn btn-primary" onclick="modalWriteTeamBoard('${root}','${teamName}','${teamCode }')">글쓰기</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+	function modalWriteTeamBoard(root,teamName,teamCode){
+		teamBoardToggle();
+		var title = $("#teamBoardTitle").val();
+		var content = $("#teamBoardContent").val();
+		var addr = root+"/writeTeamBoard?teamName="+teamName+"&teamCode="+teamCode;
+	}
+</script>
+
 </body>
 </html>
+
+

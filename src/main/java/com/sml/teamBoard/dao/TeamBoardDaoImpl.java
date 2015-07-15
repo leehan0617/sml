@@ -40,16 +40,6 @@ public class TeamBoardDaoImpl implements TeamBoardDao{
 		return sqlSession.selectOne("teamBoard.dao.TeamBoardMapper.getBoardDto", boardNumber);
 	}
 
-	/**
-	 * @name : TeamDaoImpl
-	 * @date : 2015. 6. 26.
-	 * @author : 이희재
-	 * @description : teamName과 TeamBoardDto를 이용한 공지 작성
-	 */
-	@Override
-	public int writeTeamBoard(TeamBoardDto board) {
-		return sqlSession.insert("teamBoard.dao.TeamBoardMapper.writeTeamBoard",board);
-	}
 
 	/**
 	 * @name : TeamDaoImpl

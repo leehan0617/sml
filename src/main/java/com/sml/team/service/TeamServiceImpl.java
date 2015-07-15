@@ -95,10 +95,12 @@ public class TeamServiceImpl implements TeamService{
 			String teamGrade = team.getTeamGrade();
 			String teamId = team.getTeamId();
 			String teamName= team.getTeamName();
+			String teamLeaderName = team.getTeamLeaderName();
 			
 			mav.addObject("teamGrade" , teamGrade);
 			mav.addObject("teamId" , teamId);
 			mav.addObject("teamName" , teamName);
+			mav.addObject("teamLeaderName" , teamLeaderName);
 		}
 		
 		mav.setViewName("teamPage/loginOk");

@@ -1,3 +1,7 @@
+$(document).ready(function(){
+	$("#roll").Scroll({line:1,speed:1500,timer:3000,up:"#topbtnid",down:"#btmbtnid",autoplay:'#bannerplay',autostop:'#bannerstop'});
+});
+
 function moveMatchDay(root, num, matchDay){	
 		location.href=root + '/soccer/soccerMain.do?matchDay='+matchDay+'&moveMatchDay=' + num;
 }
@@ -18,8 +22,5 @@ function applicate(root,teamId,leagueCode,leagueTeamNumber){
 	$(location).attr("href",url);
 }
 
-$(document).ready(function(){
-	$("#roll").Scroll({line:1,speed:1500,timer:3000,up:"#topbtnid",down:"#btmbtnid",autoplay:'#bannerplay',autostop:'#bannerstop'});
-});
 
 
