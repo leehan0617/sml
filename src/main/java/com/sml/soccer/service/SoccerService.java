@@ -1,5 +1,7 @@
 package com.sml.soccer.service;
 
+import javax.servlet.http.HttpServletRequest;
+
 import org.springframework.web.servlet.ModelAndView;
 
 public interface SoccerService {
@@ -10,7 +12,7 @@ public interface SoccerService {
 	public void soccerGameScore(ModelAndView mav);
 	public void soccerRefereeList(ModelAndView mav);
 	public void commonBoard(ModelAndView mav);
-	public void readCommonBoard(ModelAndView mav);
+	public ModelAndView readCommonBoard(HttpServletRequest request);
 	public void soccerLeague(ModelAndView mav);
 	public void cards(ModelAndView mav);
 }

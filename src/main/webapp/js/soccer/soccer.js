@@ -23,4 +23,21 @@ function applicate(root,teamId,leagueCode,leagueTeamNumber){
 }
 
 
+function sModal(root,boardNumber){
+	var addr=root+"/soccer/readCommonBoard.do?boardNumber="+boardNumber;
+	$.ajax({
+		type:"get",
+		url:addr,
+		success:function(data){
+			console.log(data);
+			var boardNum=data.commonBoard.boardNumber;
+			var boardTitle=data.commonBoard.boardTitle;
+			var boardContent=data.commonBoard.boardContent;
+			var date=data.commonBoard.boardDate.year+1900+'-'+(data.commonBoard.boardDate.month+1)+'-'+data.commonBoard.boardDate.date
+			
+			$('.soccerBoardTbody').append('<tr><td>'+boardNum+'</td>'+'<td>'+boardTitle+'</td>'+'<td>'+boardContent+'</td>'+'<td>'+date+'</td></tr>');
+		}
+	});
+}
+
 

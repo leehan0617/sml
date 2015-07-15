@@ -115,16 +115,14 @@
 	  
 	  <div class="col-md-4 well">
 	  	<div class="row">
-  			<div class="col-xs-6 col-md-3">
+	  		<div class="col-xs-6 col-md-3">
     			<a href="#" class="thumbnail">
       				<img src="${root }/resources/images/android@2x.png" alt="...">
     			</a>
   			</div>
 		</div>
-		
 	  </div>
-	  <div class="col-md-1"></div>
-	  <div class="col-md-1"></div>s
+	  <div class="col-md-2 well"><h3>vs</h3></div>
 	  <div class="col-md-4 well">
 	  	<div class="row">
 	  		<div class="col-xs-6 col-md-3">
@@ -272,7 +270,7 @@
 							<th style="width:15%">글번호</th><th style="width:45%">제목</th><th style="width:15%">작성자</th><th style="width:25%">작성일</th> 
 						</tr> 
 					</thead>
-					<tbody class="teamBoardTbody">
+					<tbody class="teamBoardTbody">	
 					</tbody>
 				</table>
 				<nav>

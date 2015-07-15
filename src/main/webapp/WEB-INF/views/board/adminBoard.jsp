@@ -2,7 +2,7 @@
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<!DOCTYPE html>
 <c:set var="root" value="${pageContext.request.contextPath }"/>
 <html>
 <head>
@@ -200,7 +200,7 @@
 
 	</footer>		
 	<!-- start: JavaScript-->
-
+		<script type="text/javascript" src="${root}/js/jquery/jquery.js"></script>
 		<script src="${root}/resources/admin/js/jquery-1.9.1.min.js"></script>
 		<script src="${root}/resources/admin/js/jquery-migrate-1.0.0.min.js"></script>	
 		<script src="${root}/resources/admin/js/jquery-ui-1.10.0.custom.min.js"></script>	
@@ -209,51 +209,33 @@
 		<script src="${root}/resources/admin/js/bootstrap.min.js"></script>	
 		<script src="${root}/resources/admin/js/jquery.cookie.js"></script>	
 		<script src='js/fullcalendar.min.js'></script>
-	
 		<script src='js/jquery.dataTables.min.js'></script>
-
 		<script src="${root}/resources/admin/js/excanvas.js"></script>
 		<script src="${root}/resources/admin/js/jquery.flot.js"></script>
 		<script src="${root}/resources/admin/js/jquery.flot.pie.js"></script>
 		<script src="${root}/resources/admin/js/jquery.flot.stack.js"></script>
 		<script src="${root}/resources/admin/js/jquery.flot.resize.min.js"></script>
-	
 		<script src="${root}/resources/admin/js/jquery.chosen.min.js"></script>
-	
 		<script src="${root}/resources/admin/js/jquery.uniform.min.js"></script>
-		
 		<script src="${root}/resources/admin/js/jquery.cleditor.min.js"></script>
-	
 		<script src="${root}/resources/admin/js/jquery.noty.js"></script>
-	
 		<script src="${root}/resources/admin/js/jquery.elfinder.min.js"></script>
-	
 		<script src="${root}/resources/admin/js/jquery.raty.min.js"></script>
-	
 		<script src="${root}/resources/admin/js/jquery.iphone.toggle.js"></script>
-	
 		<script src="${root}/resources/admin/js/jquery.uploadify-3.1.min.js"></script>
-	
 		<script src="${root}/resources/admin/js/jquery.gritter.min.js"></script>
-	
 		<script src="${root}/resources/admin/js/jquery.imagesloaded.js"></script>
-	
 		<script src="${root}/resources/admin/js/jquery.masonry.min.js"></script>
-	
 		<script src="${root}/resources/admin/js/jquery.knob.modified.js"></script>
-	
 		<script src="${root}/resources/admin/js/jquery.sparkline.min.js"></script>
-	
 		<script src="${root}/resources/admin/js/counter.js"></script>
-	
 		<script src="${root}/resources/admin/js/retina.js"></script>
-
 		<script src="${root}/resources/admin/js/custom.js"></script>
 	<!-- end: JavaScript-->
 	
 </body>
 </html>
-<table width="530" align="center">
+<%--<table width="530" align="center">
 		<tr>
 			<td align="right" bgcolor="D1DBDB"><a href="${root }/board/addCommonBoard.do">글쓰기</a></td>
 		</tr>
@@ -308,7 +290,7 @@
 			<br/>
 	</c:forEach>
 	
-	<!-- 페이지 번호 -->
+	 <!-- 페이지 번호 -->
 	<center>
 		<c:if test="${count>0 }">
 			<c:set var="pageBlock" value="${5}"/>
@@ -334,4 +316,4 @@
 				<a href="${root }/board/adminBoard.do?pageNumber=${startPage+pageBlock}">[다음]</a>
 			</c:if>
 		</c:if>
-	</center>
+	</center> --%>

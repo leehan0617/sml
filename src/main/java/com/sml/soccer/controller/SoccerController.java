@@ -141,11 +141,8 @@ public class SoccerController{
 	@RequestMapping(value="/soccer/readCommonBoard.do", method=RequestMethod.GET)
 	public ModelAndView readCommonBoard(HttpServletRequest request, HttpServletResponse response){
 		logger.info("Controller/readCommonBoard---------");
-		
-		ModelAndView mav=new ModelAndView();
-		mav.addObject("request", request);
-		
-		soccerService.readCommonBoard(mav);
+		response.setCharacterEncoding("utf-8");
+		ModelAndView mav=soccerService.readCommonBoard(request);
 		
 		return mav;
 	}
