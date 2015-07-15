@@ -1,5 +1,6 @@
 package com.sml.league.dao;
 
+import java.text.SimpleDateFormat;
 import java.util.HashMap;
 import java.util.List;
 
@@ -8,6 +9,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import com.sml.league.dto.LeagueDto;
+import com.sml.record.dto.RecordDto;
+import com.sml.schedule.dto.ScheduleDto;
+import com.sml.team.dto.TeamDto;
 
 @Component
 public class LeagueDaoImpl implements LeagueDao{
@@ -98,5 +102,55 @@ public class LeagueDaoImpl implements LeagueDao{
 	@Override
 	public List<Integer> getLeagueJoinList(int leagueCode) {
 		return sqlSession.selectList("dao.LeagueMapper.getLeagueJoinList", leagueCode);
+	}
+
+	/**
+	 * @name : insertLeagueGame
+	 * @date : 2015. 7. 14.
+	 * @author : 이희재
+	 * @description : recordDto를 이용하여 record 정보를 테이블에 삽입
+	 */
+	@Override
+	public void insertLeagueGame(RecordDto record) {
+		sqlSession.insert("dao.LeagueMapper.insertLeagueGame", record);
+	}
+
+	/**
+	 * @name : getTeamInfo
+	 * @date : 2015. 7. 14.
+	 * @author : 이희재
+	 * @description : 팀 코드로 팀에 대한 정보를 가져옴
+	 */
+	@Override
+	public TeamDto getTeamInfo(int teamCode) {
+		return sqlSession.selectOne("dao.LeagueMapper.getTeamInfo", teamCode);
+	}
+
+	/**
+	 * @name : insertLeagueSchedule
+	 * @date : 2015. 7. 14.
+	 * @author : 이희재
+	 * @description : 스케쥴 dto를 이용하여 leagueSchedule을 테이블에 삽입
+	 */
+	@Override
+	public void insertLeagueSchedule(ScheduleDto scheduleDto) {
+		sqlSession.insert("dao.LeagueMapper.insertLeagueSchedule", scheduleDto);
+	}
+
+	/**
+	 * @name : invalidSchedule
+	 * @date : 2015. 7. 14.
+	 * @author : 이희재
+	 * @description : record의 유효성을 검사하는 dao (존재시 삽입 x)
+	 */
+	@Override
+	public int invalidSchedule(RecordDto record,int teamCode) {
+		HashMap<String, Object> hMap=new HashMap<String, Object>();
+		SimpleDateFormat sdf=new SimpleDateFormat("yyyy-MM-dd");
+		hMap.put("teamCode", teamCode);
+		hMap.put("gameDate", sdf.format(record.getGameDate()));
+		hMap.put("gameTime", record.getGameTime());
+		
+		return sqlSession.selectOne("dao.LeagueMapper.invalidSchedule", hMap);
 	}
 }

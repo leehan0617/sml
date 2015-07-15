@@ -33,8 +33,10 @@ public class SoccerController{
 		
 		ModelAndView mav=new ModelAndView();
 		mav.addObject("request", request);
-		
 		soccerService.soccerMain(mav);
+		soccerService.cards(mav);
+		
+		mav.setViewName("soccer/soccerMain");
 		
 		return mav;
 	}

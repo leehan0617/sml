@@ -80,6 +80,17 @@ public class TeamController {
 		return mav;
 	}
 	
+	@RequestMapping(value="/teamPage/login.do" , method=RequestMethod.GET)
+	public ModelAndView login(HttpServletRequest request,TeamDto teamDto,TeamLogDto teamLogDto){
+		ModelAndView mav=new ModelAndView();
+		
+		mav.addObject("request",request);
+		mav.addObject("teamLogDto",teamLogDto);
+		mav.addObject("teamDto",teamDto);
+		service.login(mav);
+		return mav;
+	}
+	
 	
 	/**
 	 * @함수명:logout
@@ -110,80 +121,14 @@ public class TeamController {
 		//teamBoardService.viewTeamBoard(mav);
 		scheduleService.readteamSchedule(mav);
 		service.getReplyList(mav);
-		
+			
 		mav.setViewName("team/teamMain");
 		
 		return mav;
 	}
 	
-	/**
-	 * @name : teamPage
-	 * @date : 2015. 6. 25.
-	 * @author : 이희재
-	 * @description : 팀 멤버를 볼 수 있는 페이지로 이동
-	 */
-	@RequestMapping(value="/teamPage/teamMemberInfo.do",method=RequestMethod.GET)
-	 public ModelAndView teamMemberInfo(HttpServletRequest request){
-		ModelAndView mav=new ModelAndView();
-		
-		mav.addObject("request",request);
-		service.viewTeamMemberInfo(mav);
-		
-		return mav;
-	}
 	
-	/**
-	 * @name : TeamController
-	 * @date : 2015. 6. 26.
-	 * @author : 이희재
-	 * @description : 팀 멤버 관리 페이지
-	 */
-	@RequestMapping(value="/teamPage/manageTeamMember.do",method=RequestMethod.GET)
-	 public ModelAndView manageTeamMember(HttpServletRequest request){
-		logger.info("TeamController manageTeamMember");
-		
-		ModelAndView mav=new ModelAndView();
-		mav.addObject("request",request);
-		service.manageTeamMember(mav);
-		
-		return mav;
-	}
 	
-
-	/**
-	 * @name : TeamController
-	 * @date : 2015. 7. 2.
-	 * @author : 이희재
-	 * @description : 팀원 추가 페이지
-	 */
-	@RequestMapping(value="/teamPage/addMember.do",method=RequestMethod.POST)
-	 public ModelAndView addMember(HttpServletRequest request, MemberDto member){
-		logger.info("TeamController addMember");
-		
-		ModelAndView mav=new ModelAndView();
-		mav.addObject("member",member);
-		mav.addObject("request",request);
-		service.addMember(mav);
-		
-		return mav;
-	}
-	
-	/**
-	 * @name : TeamController
-	 * @date : 2015. 7. 2.
-	 * @author : 이희재
-	 * @description : 팀원 삭제 페이지
-	 */
-	@RequestMapping(value="/teamPage/deleteMember.do",method=RequestMethod.GET)
-	 public ModelAndView deleteMember(HttpServletRequest request){
-		logger.info("TeamController addMember");
-		
-		ModelAndView mav=new ModelAndView();
-		mav.addObject("request",request);
-		service.deleteMember(mav);
-		
-		return mav;
-	}
 	
 	/**
 	 * @name : TeamController
@@ -230,8 +175,7 @@ public class TeamController {
 		service.searchRegion(mav);
 		
 		return mav;
-	}
-	
+	}	
 	
 	/**
 	 * @name : manageTeamEmblem

@@ -210,7 +210,7 @@
  
 		<div class="clearfix">
 			<div class='section clearfix col12 keyline-top  dev-tools space-bottom2 clip'>
-				<a href="${root}/soccer/soccerMain.do"  class='block center col3 pad2 pad4y keyline-right keyline-bottom'>
+				<a href="${root}/soccer/soccerMain.do?legion=legion"  class='block center col3 pad2 pad4y keyline-right keyline-bottom'>
 					<div class='developer-tools-graphic noevents mapbox-js pad8 inline space-bottom2'></div>
 					<span class='col12'>축구</span>
 					<span class='col12 small quiet space-bottom1'>Soccer</span>

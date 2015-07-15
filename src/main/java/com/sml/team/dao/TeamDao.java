@@ -10,12 +10,7 @@ import com.sml.team.dto.TeamLogDto;
 public interface TeamDao {
 	public String idCheck(String teamId);
 	public String teamIdCheck(String teamName);
-	public TeamDto login(String id, String password);
-	public TeamDto getTeamInfo(String teamName);
-	public List<MemberDto> getTeamMemberList(String teamName,int startRow, int endRow);
-	public int getTeamMemberCount(String name);
-	public int addMember(MemberDto member,int teamCode);
-	public int deleteMember(int memberCode);
+	public TeamDto login(String id, String password);	
 	public List<HashMap<String, Object>> recordList(String teamName, int startRow, int endRow);
 	public int getRecordCount(String teamName);
 	public List<String> getGugunList(String sido);
@@ -32,4 +27,6 @@ public interface TeamDao {
 	public List<TeamLogDto> getReplyList(String teamName);
 	public List<TeamLogDto> getMoreReplyList(int teamCode , int pageNumber);
 	public int replyDelete(int teamCode, int replyCode);
+	public TeamDto getTeamInfo(String teamName);
+	
 }

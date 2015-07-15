@@ -1,8 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<c:set var="root" value="${pageContext.request.contextPath }"/>
- 
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+<c:set var="root" value="${pageContext.request.contextPath }"/> 
 <!DOCTYPE html>
 <html lang="ko">
   <head>
@@ -29,38 +29,55 @@
     <!-- Placed at the end of the document so the pages load faster -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
     
+ 
   </head>
   <body>
       <nav class="navbar navbar-inverse navbar-fixed-top">
       <div class="container-fluid">
         <div class="navbar-header">        
-          <a class="navbar-brand" href="#">SML Korea</a>
+          <a class="navbar-brand" href="${root}/team/teamMain.do?teamName=${teamName}">SML Korea</a>
         </div>
         <div id="navbar" class="navbar-collapse collapse">
           <ul class="nav navbar-nav navbar-right">
-            <li><a href="#">LogIn</a></li>
-            <li><a href="#">Settings</a></li>
-            <li><a href="#">Profile</a></li>
-            <li><a href="#">Help</a></li>
+          	<c:choose>
+          	<c:when test="${teamGrade == null }">
+          		
+            	<li><a href="${root }/teamPage/login.do">로그인</a></li>
+            	
+            </c:when>
+            <c:otherwise>
+	        	<li><a href="${root }/teamPage/logout.do">로그아웃</a></li>
+	        </c:otherwise>
+	        </c:choose>
+	        <c:if test="${teamGrade != null }">
+			  <li><a href="${root }/team/teamMain.do?teamName=${teamName}">메인</a></li>
+			  <li><a href="${root }/teamPage/viewTeamBoard.do?teamName=${teamName}">팀 공지사항</a></li>		      
+		      <li><a href="${root }/teamPage/viewTeamRecord.do?teamName=${teamName}">팀 기록</a></li>
+		      <li><a href="${root }/teamPage/teamScheduleEdit.do?teamName=${teamName}">팀 스케쥴</a></li>
+			</c:if>
+           
+            
+            
           </ul>
          
         </div>
       </div>
     </nav>
 	
+	 <br/><br/><br/><br/>
+     <div class="container-fluid" style="background-color: gold; height: 100px; width: 100%;">
+       <span class="col-xs-2"><a href=""><img alt="logo" src="${root }/resources/images/android@2x.png" width="200" height="150"></a></span>   	  
+       <span class="col-xs-9" style="font-size:50pt;">${teamName}</span>
+       <span class="col-xs-1" style="font-size:20pt"> 총원:${count}</span>
+       </div>
+       <br/><br/>
 	
-    <div class="container-fluid">    	
-      <div class="row">
-      	  <br/><br/><br/><br/>
-      	  <div style="background-color: gold; height: 100px; width: 100%;">
-      	  <a href=""><img alt="logo" src="${root }/resources/images/android@2x.png" width="200" height="150"></a>   	  
-       	  <label>${teamName}</label>
-       	  </div>
-       	  <br/><br/>  	
-          <h2 class="sub-header">MEMBER LIST</h2>
-          
+    <div class="container">    	
+      <div class="row">      	   	
+          <h2 class="sub-header">MEMBER LIST</h2>          
           <div class="table-responsive">
             <table class="table table-striped">
+              <c:if test="${count>0}">	
               <thead>
                 <tr>
                   <th>번호</th>
@@ -72,21 +89,48 @@
                   <th>성별</th>
                 </tr>               
               </thead>
+              </c:if>
               <tbody>
-              	<c:forEach var="member" items="${teamMemberList}">
-					<tr>
-						<td>${member.rnum}</td>
-						<td>${member.memberName}</td>
-						<td>${member.memberBirth}</td>
-						<td>${member.memberRegion}</td>
-						<td>${member.memberEmail}</td>
-						<td>${member.memberPhone}</td>
-						<td>${member.memberGender}</td>
-				    </tr>
-				</c:forEach>
+              
+            <c:if test="${count==0}">	
+			  <tr>
+			   <td align="center">멤버가 존재하지 않습니다.</td>
+			  </tr>		
+			</c:if>
+			<c:choose>
+			<c:when test="${teamGrade!=null}">
+            <c:forEach var="member" items="${teamMemberList}">
+			  <tr>
+				<td>${member.rnum}</td>
+				<td>${member.memberName}</td>
+				<td>${member.memberBirth}</td>
+				<td>${member.memberRegion}</td>
+				<td>${member.memberEmail}</td>
+				<td>${member.memberPhone}</td>
+				<td>${member.memberGender}</td>
+				<td><button type="submit" class="btn btn-success"><span class="glyphicon glyphicon-trash">삭제</span></button></td>			
+				
+			  </tr>
+			</c:forEach>
+			</c:when>
+			<c:otherwise>
+			<c:forEach var="member" items="${teamMemberList}">
+			  <tr>
+				<td>${member.rnum}</td>
+				<td>${member.memberName}</td>
+				<td>${member.memberBirth}</td>
+				<td>${member.memberRegion}</td>
+				<td>${member.memberEmail}</td>
+				<td>${member.memberPhone}</td>
+				<td>${member.memberGender}</td>				
+			  </tr>			 
+			</c:forEach>
+			</c:otherwise>
+			</c:choose>
              </tbody>
             </table>               
-          </div>        
+          </div> 
+                 
       </div>        
       </div> 	
 		<div id="navbar" class="navbar-collapse collapse">
@@ -95,27 +139,104 @@
             <div class="form-group">
               <input type="text" placeholder="검색어를 입력하세요" class="form-control">
             </div>
-              <button type="submit" class="btn btn-success">Sign in</button>
+            
+              <button type="submit" class="btn btn-success"><span class="glyphicon glyphicon-search"></span></button>
+             
           </form>
         </div>
-    <div align="center">
-    
-    <c:if test="${startBlock>blockSize}">
-		<a href="${root }/teamPage/teamMemberInfo.do?teamName=${teamName}&currentPage=${startBlock-blockSize}">[이전]</a>
-	</c:if>
-	
-	<c:if test="${endBlock>blockCount}">
-		<c:set var="endBlock" value="${blockCount}"></c:set>
-	</c:if>
-	
-	<c:forEach var="blockNumber" begin="${startBlock}" end="${endBlock}">
-		<a href="${root }/teamPage/teamMemberInfo.do?teamName=${teamName}&currentPage=${blockNumber}">[${blockNumber}]</a>
-	</c:forEach>
-	
-	<c:if test="${endBlock<blockCount}">
-		<a href="${root }/teamPage/teamMemberInfo.do?teamName=${teamName}&currentPage=${startBlock+blockSize}">[다음]</a>
-	</c:if>
-	
+    <div align="center">    
+ 
+		<c:if test="${count>0 }">
+			<c:set var="pageBlock" value="${5}"/>
+			<c:set var="pageCount" value="${count/boardSize+(count%boardSize==0 ? 0:1)}"/>
+			<fmt:parseNumber var="rs" value="${(currentPage-1)/pageBlock }" integerOnly="true"/>
+			
+			<c:set var="startPage" value="${rs*pageBlock+1 }"/>
+			<c:set var="endPage" value="${startPage+pageBlock-1 }"/>
+			
+			<c:if test="${endPage>pageCount }">
+				<c:set var="endPage" value="${pageCount }"/>
+			</c:if>
+			
+			<c:if test="${teamGrade!=null}">
+			<ul class="pager">
+			<c:if test="${startPage>pageBlock }">
+				<li><a href="${root }/teamPage/teamMemberInfo.do?pageNumber=${startPage-pageBlock}&teamName=${teamName}&teamCode=${teamCode}&teamGrade=${teamGrade}">BACK</a></li>
+			</c:if>
+			
+			<c:forEach var="i" begin="${startPage}" end="${endPage}">
+				<li><a href="${root }/teamPage/teamMemberInfo.do?pageNumber=${i}&teamName=${teamName}&teamCode=${teamCode}&teamGrade=${teamGrade}">${i }</a></li>
+			</c:forEach>
+			
+			<c:if test="${endPage<pageCount }">
+				<li><a href="${root }/teamPage/teamMemberInfo.do?pageNumber=${startPage+pageBlock}&teamName=${teamName}&teamCode=${teamCode}&teamGrade=${teamGrade}">NEXT</a></li>
+			</c:if>
+			</ul>
+			</c:if>
+			
+			<c:if test="${teamGrade==null}">
+			<c:if test="${startPage>pageBlock }">
+				<a href="${root }/teamPage/teamMemberInfo.do?pageNumber=${startPage-pageBlock}&teamName=${teamName}&teamCode=${teamCode}">[이전]</a>
+			</c:if>
+			
+			<c:forEach var="i" begin="${startPage}" end="${endPage}">
+				<a href="${root }/teamPage/teamMemberInfo.do?pageNumber=${i}&teamName=${teamName}&teamCode=${teamCode}">[${i }]</a>
+			</c:forEach>
+			
+			<c:if test="${endPage<pageCount }">
+				<a href="${root }/teamPage/teamMemberInfo.do?pageNumber=${startPage+pageBlock}&teamName=${teamName}&teamCode=${teamCode}">[다음]</a>
+			</c:if>
+			</c:if>
+		</c:if>
+	<br/><br/><br/>	
 	</div>
+	
+	<div class="container">  		
+  	<form role="form" action="${root}/teamPage/addMember.do" method="post">  		
+  		<c:if test="${teamGrade!=null}">
+  		<h2>멤버 등록</h2>
+  		<p>등록하실 멤의 정보를 입력해주세요.</p>	
+			
+   		<div class="form-group">
+      		<label for="usr">NAME</label>
+       		<input placeholder="이름" type="text" class="form-control" name="memberName">
+    	</div>
+	    <div class="form-group">
+      		<label for="usr">BIRTH</label>
+       		<input placeholder="생년월일" type="text" class="form-control" name="memberBirth">
+    	</div>
+    	<div class="form-group">
+      		<label for="usr">REGION</label>
+       		<input placeholder="지역" type="text" class="form-control" name="memberRegion">
+    	</div>
+    		<div class="form-group">
+      		<label for="usr">PHONE</label>
+       		<input placeholder="번호" type="text" class="form-control" name="memberPhone">
+    	</div>
+    		<div class="form-group">
+      		<label for="usr">E-MAIL</label>
+       		<input placeholder="이메일" type="text" class="form-control" name="memberEmail">
+    	</div>
+    	
+    	<div class="form-group">
+		  <label for="sel1">성별:</label>
+		  <select class="form-control" id="sel1" name="memberGender">		  	
+		    <option value="남">남</option>
+		    <option value="여">여</option>		    
+		  </select>
+		</div>
+		
+			<input type="hidden" name="teamName" value="${teamName}">
+			<input type="hidden" name="currentPage" value="${currentPage}">
+			<input type="hidden" name="teamGrade" value="${teamGrade}">
+		
+			<input type="submit" class="btn btn-info" value="Submit">			
+  		</c:if>
+  	</form> 
+  		<br/><br/>
+  		<br/><br/>
+  		 	
+  	</div>
+		
   </body>
 </html>

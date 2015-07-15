@@ -43,4 +43,33 @@
 	<update id="updateMemberInfoOk" parameterType="java.util.HashMap">
 		update TeamMember set memberName=#{memberName}, memberBirth=#{memberBirth}, memberRegion=#{memberRegion}, memberEmail=#{memberEmail}, memberPhone=#{memberPhone}, memberGender=#{memberGender} where teamCode=#{teamCode}
 	</update>
+	
+	<select id="getTeamInfo" parameterType="String" resultType="com.sml.team.dto.TeamDto">
+ 		select * from team where teamName=#{teamName}
+ 	</select>
+ 	
+ 	<select id="getTeamMemberList" parameterType="java.util.HashMap" resultType="com.sml.member.dto.MemberDto">
+ 		<![CDATA[
+			select * from 
+				(select rownum as rrownum, d.*  from 
+					((select rownum as rnum, c.* from 
+						(select a.* from teamMember a, team b where b.teamName=#{teamName} and a.teamcode=b.teamcode order by memberCode asc) c order by rnum desc) d) )e 
+							where rrownum>=#{startRow} and rrownum <=#{endRow}
+		]]>
+ 	</select>
+	
+	<select id="getTeamMemberCount" parameterType="int" resultType="int">
+		select count(*) from teamMember where teamCode=#{teamCode}
+	</select>
+	
+	<insert id="addMember" parameterType="com.sml.member.dto.MemberDto">
+		<![CDATA[
+			insert into teamMember(memberCode,teamCode,memberName,memberBirth,memberRegion,memberEmail,memberPhone,memberGender)
+			values(teammember_membercode_sql.nextval,#{teamCode},#{memberName},#{memberBirth},#{memberRegion},#{memberPhone},#{memberEmail},#{memberGender})
+		]]>	
+	</insert>
+	
+	<delete id="deleteMember" parameterType="int">
+		delete teamMember where memberCode=#{memberCode}
+	</delete>
 </mapper>  
