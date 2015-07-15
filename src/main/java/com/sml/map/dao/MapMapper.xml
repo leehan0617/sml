@@ -6,4 +6,13 @@
 	<select id="getTeamMapList" resultType="java.util.HashMap">
 		select b.teamName, a.ground from homeGround a, team b where b.teamCode=a.teamCode
 	</select>
+	
+	<select id="getRecordList" resultType="java.util.HashMap">
+	<![CDATA[
+		select to_char(sysdate,'yyyy-mm-dd') as today, a.*, b.teamName as team1, c.teamName as team2 
+			from gameRecord a, team b, team c 
+				where to_char(gameDate,'yyyy-mm-dd')=to_char(sysdate,'yyyy-mm-dd') 
+					and a.teamCode=b.teamCode 
+						and a.teamCode2=c.teamCode	]]>
+	</select>
 </mapper>
