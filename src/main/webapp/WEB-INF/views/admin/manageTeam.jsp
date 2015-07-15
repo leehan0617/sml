@@ -81,8 +81,8 @@
 				<div class="box span12">
 					<div class="box-header" data-original-title>
 						<h2><i class="halflings-icon user"></i><span class="break"></span>팀 리스트</h2>						
-					</div>
-													
+					</div>					
+			        						
 					<c:if test="${containerList==null }">
 						<div>	
 							<span>검색결과가 없습니다.</span>												
