@@ -115,16 +115,14 @@
 	  
 	  <div class="col-md-4 well">
 	  	<div class="row">
-  			<div class="col-xs-6 col-md-3">
+	  		<div class="col-xs-6 col-md-3">
     			<a href="#" class="thumbnail">
       				<img src="${root }/resources/images/android@2x.png" alt="...">
     			</a>
   			</div>
 		</div>
-		
 	  </div>
-	  <div class="col-md-1"></div>
-	  <div class="col-md-1"></div>s
+	  <div class="col-md-2 well"><h3>vs</h3></div>
 	  <div class="col-md-4 well">
 	  	<div class="row">
 	  		<div class="col-xs-6 col-md-3">
