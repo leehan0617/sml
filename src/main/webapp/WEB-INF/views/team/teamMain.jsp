@@ -112,7 +112,28 @@
 	
 	<div class="row well">
 	  <div class="col-md-1"></div>
-	  <div class="col-md-10 well">진행중인 경기 넣어야</div>
+	  
+	  <div class="col-md-4 well">
+	  	<div class="row">
+  			<div class="col-xs-6 col-md-3">
+    			<a href="#" class="thumbnail">
+      				<img src="${root }/resources/images/android@2x.png" alt="...">
+    			</a>
+  			</div>
+		</div>
+		
+	  </div>
+	  <div class="col-md-1"></div>
+	  <div class="col-md-1"></div>s
+	  <div class="col-md-4 well">
+	  	<div class="row">
+	  		<div class="col-xs-6 col-md-3">
+    			<a href="#" class="thumbnail">
+      				<img src="${root }/resources/images/mapboxjs@2x.png" alt="...">
+    			</a>
+  			</div>
+	  	</div>
+	  </div>
 	  <div class="col-md-1"></div>
 	</div>
 	

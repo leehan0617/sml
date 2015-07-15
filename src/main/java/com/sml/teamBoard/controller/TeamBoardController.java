@@ -3,6 +3,7 @@ package com.sml.teamBoard.controller;
 import java.util.logging.Logger;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -27,8 +28,9 @@ public class TeamBoardController {
 	 * @설명문:팀공지사항 이동함수 
 	 */
 	@RequestMapping(value="/teamPage/viewTeamBoard.do" , method=RequestMethod.GET)
-	public ModelAndView viewTeamBoard(HttpServletRequest request){
+	public ModelAndView viewTeamBoard(HttpServletRequest request , HttpServletResponse response){
 		logger.info("TeamController viewTeamBoard");
+		response.setCharacterEncoding("UTF-8");
 		ModelAndView mav = service.viewTeamBoard(request);
 		
 		return mav;
@@ -41,10 +43,12 @@ public class TeamBoardController {
 	 * @description : 게시판 읽기 페이지
 	 */
 	@RequestMapping(value="/teamPage/readTeamBoard.do",method=RequestMethod.GET)
-	 public ModelAndView readTeamBoard(HttpServletRequest request){
+	 public ModelAndView readTeamBoard(HttpServletRequest request,HttpServletResponse response){
 		logger.info("TeamBoardController readTeamBoard");
 		ModelAndView mav=new ModelAndView();
+		response.setCharacterEncoding("UTF-8");
 		mav=service.readTeamBoard(request);
+		
 		return mav;
 	}
 	
@@ -127,15 +131,19 @@ public class TeamBoardController {
 	 *
 	 */
 	@RequestMapping(value="/paging" , method=RequestMethod.GET)
-	public ModelAndView paging(HttpServletRequest request){
+	public ModelAndView paging(HttpServletRequest request,HttpServletResponse response){
 		logger.info("TeamController updateTeamBoard");
+		response.setCharacterEncoding("UTF-8");
 		ModelAndView mav = service.viewTeamBoard(request);
+		
 		return mav;
 	}
 	
 	@RequestMapping(value="/writeTeamBoard" , method=RequestMethod.GET)
-	public ModelAndView writeTeamBoard(HttpServletRequest request){
+	public ModelAndView writeTeamBoard(HttpServletRequest request,HttpServletResponse response){
 		logger.info("TeamController writeTeamBoard");
+		response.setCharacterEncoding("UTF-8");
+		
 		ModelAndView mav = service.writeTeamBoard(request);
 		
 		return mav;
