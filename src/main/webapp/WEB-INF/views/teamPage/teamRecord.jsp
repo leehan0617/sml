@@ -1,45 +1,178 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-    <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-    <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
-	<c:set var="root" value="${pageContext.request.contextPath }"/>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+<c:set var="root" value="${pageContext.request.contextPath }"/> 
 <!DOCTYPE html>
-<html>
-<head>
-<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>Insert title here</title>
-</head>
-<body>
-	<div>
-		<a href="${root}/start.jsp"><img alt="logo" src=""></a>
-		<a href="${root}/start.jsp">SML Korea</a>
-	</div>
+<html lang="ko">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- 위 3개의 메타 태그는 *반드시* head 태그의 처음에 와야합니다; 어떤 다른 콘텐츠들은 반드시 이 태그들 *다음에* 와야 합니다 -->
+    
+    <meta name="description" content="">
+    <meta name="author" content="">   
+    <link rel="icon" href="${root }/resources/images/android@2x.png"/>
+    
+    <title>teamRecord</title>
+    
+    
+   <!-- Bootstrap core CSS -->
+    <link rel="stylesheet" type="text/css" href="${root }/resources/css/bootstrap.css"/>
 
-	<c:if test="${teamGrade != null }">
-		<li>${teamId }님</li>
-		<li><a href="${root }/teamPage/teamPageMain.do?teamName=${teamName}">메인</a></li>
-		<li><a href="${root }/teamPage/viewTeamBoard.do?teamName=${teamName}">팀 공지사항</a></li>
-		<li><a href="${root }/teamPage/teamMemberInfo.do?teamName=${teamName}">팀원소개</a></li>
-		<li><a href="${root }/teamPage/viewTeamRecord.do?teamName=${teamName}">팀 기록</a></li>
-		<li><a href="${root }/viewSchedule.do">팀 스케쥴</a></li>
-		<li>----------</li>
-		<li><a href="${root }/teamPage/manageTeamBoard.do?teamName=${teamName}">공지사항관리</a></li>
-		<li><a href="${root }/teamPage/manageTeamMember.do?teamName=${teamName}">팀원관리</a></li>
-		<li><a href="${root }/manageTeamSchedule.do">스케쥴관리</a></li>
-		<li><a href="${root }/startMatching.do">매칭관리</a></li>
-		<li>-----------</li>
-		<li><a href="${root}/teamPage/logout.do?teamId='${teamId}'">로그아웃</a></li>
-  	</c:if>
-  	
-  	<c:if test="${teamGrade == null }">
-		<li><a href="${root }/teamPage/teamPageMain.do?teamName=${teamName}">메인</a></li>
-		<li><a href="${root }/teamPage/viewTeamBoard.do?teamName=${teamName}">팀 공지사항</a></li>
-		<li><a href="${root }/teamPage/teamMemberInfo.do?teamName=${teamName}">팀원소개</a></li>
-		<li><a href="${root }/teamPage/viewTeamRecord.do?teamName=${teamName}">팀 기록</a></li>
-		<li><a href="${root }/viewSchedule.do">팀 스케쥴</a></li>
-	</c:if>
+    <!-- Custom styles for this template -->     
+  
+  	<script src="${root }/resources/js/jquery.js"></script> 	
+ 	<script src="${root }/resources/js/bootstrap.js"></script>
+  	<script src="${root }/resources/js/jquery-ui.js"></script>  
+  	<script src="${root }/js/member/member.js"></script>  	
+    
+    <!-- Placed at the end of the document so the pages load faster -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
+  </head>
+  <body>
+      <nav class="navbar navbar-inverse navbar-fixed-top">
+      <div class="container-fluid">
+        <div class="navbar-header">        
+          <a class="navbar-brand" href="${root}/team/teamMain.do?teamName=${teamName}">SML Korea</a>
+        </div>
+        <div id="navbar" class="navbar-collapse collapse">
+          <ul class="nav navbar-nav navbar-right">
+          	<c:choose>
+          	<c:when test="${teamGrade == null }">
+          		
+            	<li><a href="${root }/teamPage/login.do">로그인</a></li>
+            	
+            </c:when>
+            <c:otherwise>
+	        	<li><a href="${root }/teamPage/logout.do">로그아웃</a></li>
+	        </c:otherwise>
+	        </c:choose>
+	        <c:if test="${teamGrade != null }">
+			  <li><a href="${root }/team/teamMain.do?teamName=${teamName}">메인</a></li>
+			  <li><a href="${root }/teamPage/viewTeamBoard.do?teamName=${teamName}">팀 공지사항</a></li>		      
+		      <li><a href="${root }/teamPage/teamMemberInfo.do?teamName=${team.teamName}&teamCode=${team.teamCode}&teamGrade=${teamGrade}">멤버소개</a></li>
+		      <li><a href="${root }/teamPage/teamScheduleEdit.do?teamName=${teamName}">팀 스케쥴</a></li>
+			</c:if>            
+          </ul>         
+        </div>
+      </div>
+    </nav>
 	
-	<h1>팀 기록실 </h1>
+	 <br/><br/><br/><br/>
+     <div class="container-fluid" style="background-color: gold; height: 100px; width: 100%;">
+       <span class="col-xs-2"><a href=""><img alt="logo" src="${root }/resources/images/android@2x.png" width="200" height="150"></a></span>   	  
+       <span class="col-xs-9" style="font-size:50pt;">${teamName}</span>
+       <span class="col-xs-1" style="font-size:20pt"> ${allCount} 전  ${winCount} 승  ${lostCount} 패</span>
+       </div>
+       <br/><br/>
+	
+    <div class="container">    	
+      <div class="row">      	   	
+          <h2 class="sub-header">경기 기록</h2>          
+          <div class="table-responsive">
+            <table class="table table-striped">
+              <c:if test="${count>0}">	
+              <thead>
+                <tr>
+                  <th>경기번호</th>
+                  <th>종목</th>
+                  <th>게임종류</th>
+                  <th>Home</th>
+                  <th>VS</th>
+                  <th>AWAY</th>
+                  <th>결과</th>
+                  <th>진행상황</th>
+                </tr>               
+              </thead>
+              </c:if>
+              <tbody>
+              
+           <c:if test="${count==0}">	
+			  <tr>
+			   <td align="center">멤버가 존재하지 않습니다.</td>
+			  </tr>		
+			</c:if>			
+            <c:forEach var="record" items="${recordList}">
+			  <tr>
+				<td>${record.GAMECODE}</td>
+				<td>${record.SPORTTYPE}</td>
+				<td>${record.TEAMCODE1}</td>
+				<td>VS</td>
+				<td>${record.TEAMCODE2}<br/>${record.GAMEPLACE}<br/><fmt:formatDate value="${record.GAMEDATE}" pattern="MM-dd"/>&nbsp;&nbsp;${record.GAMETIME}</td>
+				<td>${record.GAMERESULT}</td>
+				<td>${record.GAMESTATE}</td>								
+			  </tr>
+			</c:forEach>			
+             </tbody>
+            </table>               
+          </div> 
+                 
+      </div>        
+      </div> 	
+		<div id="navbar" class="navbar-collapse collapse">			 
+          <form class="navbar-form navbar-right" action="${root}/teamPage/searchMember.do" method="GET">
+           
+            <div class="form-group">
+              <input type="text" placeholder="검색어를 입력하세요" class="form-control" name="searchBoxName">
+              <input type="hidden" name="currentPage" value="${currentPage}">
+              <input type="hidden" name="teamName" value="${teamName}">
+			  <input type="hidden" name="pageNumber" value="${pageNumber}">
+			  <input type="hidden" name="teamGrade" value="${teamGrade}">
+            </div>             
+             <button class="btn btn-success" type="submit"><span class="glyphicon glyphicon-search"></span></button>           	
+          </form>
+        </div>
+    <div align="center">    
+ 			
+		<c:if test="${count>0 }">
+			<c:set var="pageBlock" value="${5}"/>
+			<c:set var="pageCount" value="${count/boardSize+(count%boardSize==0 ? 0:1)}"/>
+			<fmt:parseNumber var="rs" value="${(currentPage-1)/pageBlock }" integerOnly="true"/>
+			
+			<c:set var="startPage" value="${rs*pageBlock+1 }"/>
+			<c:set var="endPage" value="${startPage+pageBlock-1 }"/>
+			
+			<c:if test="${endPage>pageCount }">
+				<c:set var="endPage" value="${pageCount }"/>
+			</c:if>
+			
+			<c:if test="${teamGrade!=null}">
+			<ul class="pager">
+			<c:if test="${startPage>pageBlock }">
+				<li><a href="${root }/teamPage/teamMemberInfo.do?pageNumber=${startPage-pageBlock}&teamName=${teamName}&teamCode=${teamCode}&teamGrade=${teamGrade}">BACK</a></li>
+			</c:if>
+			
+			<c:forEach var="i" begin="${startPage}" end="${endPage}">
+				<li><a href="${root }/teamPage/teamMemberInfo.do?pageNumber=${i}&teamName=${teamName}&teamCode=${teamCode}&teamGrade=${teamGrade}">${i }</a></li>
+			</c:forEach>
+			
+			<c:if test="${endPage<pageCount }">
+				<li><a href="${root }/teamPage/teamMemberInfo.do?pageNumber=${startPage+pageBlock}&teamName=${teamName}&teamCode=${teamCode}&teamGrade=${teamGrade}">NEXT</a></li>
+			</c:if>
+			</ul>
+			</c:if>
+			
+			<c:if test="${teamGrade==null}">
+			<c:if test="${startPage>pageBlock }">
+				<a href="${root }/teamPage/teamMemberInfo.do?pageNumber=${startPage-pageBlock}&teamName=${teamName}&teamCode=${teamCode}">[이전]</a>
+			</c:if>
+			
+			<c:forEach var="i" begin="${startPage}" end="${endPage}">
+				<a href="${root }/teamPage/teamMemberInfo.do?pageNumber=${i}&teamName=${teamName}&teamCode=${teamCode}">[${i }]</a>
+			</c:forEach>
+			
+			<c:if test="${endPage<pageCount }">
+				<a href="${root }/teamPage/teamMemberInfo.do?pageNumber=${startPage+pageBlock}&teamName=${teamName}&teamCode=${teamCode}">[다음]</a>
+			</c:if>
+			</c:if>
+		</c:if>
+	<br/><br/><br/>	
+	</div>
+		
+		
+	<%-- <h1>팀 기록실 </h1>
 	<br/>
 	<div>
 		<span>게임</span>
@@ -100,8 +233,8 @@
 	
 	<c:if test="${endBlock<blockCount}">
 		<a href="${root }/teamPage/viewTeamRecord.do?teamName=${teamName}&currentPage=${startBlock+blockSize}">[다음]</a>
-	</c:if>
-	
-	
-</body>
+	</c:if> --%>
+
+   
+  </body>
 </html>
