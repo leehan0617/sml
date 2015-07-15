@@ -255,5 +255,13 @@ public class TeamDaoImpl implements TeamDao{
 	public TeamDto getTeamInfo(String teamName) {
 		return sqlSession.selectOne("team.dao.TeamMapper.getTeamInfo",teamName);
 	}
+
+	@Override
+	public int editTeamIntro(int teamCode, String teamIntro) {
+		HashMap<String , Object>hMap = new HashMap<String , Object>();
+		hMap.put("teamCode", teamCode);
+		hMap.put("teamIntro", teamIntro);
+		return sqlSession.update("team.dao.TeamMapper.editTeamIntro" , hMap);
+	}
 		
 }

@@ -12,4 +12,5 @@ public interface TeamBoardService {
 	public void updateTeamBoard(ModelAndView mav);
 	public void updateOkTeamBoard(ModelAndView mav);
 	public ModelAndView writeTeamBoard(HttpServletRequest request);
+	public void viewTeamBoardTemplate(ModelAndView mav);
 }

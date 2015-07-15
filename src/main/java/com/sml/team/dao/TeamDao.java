@@ -27,5 +27,6 @@ public interface TeamDao {
 	public List<TeamLogDto> getMoreReplyList(int teamCode , int pageNumber);
 	public int replyDelete(int teamCode, int replyCode);
 	public TeamDto getTeamInfo(String teamName);
+	public int editTeamIntro(int teamCode, String teamIntro);
 	
 }

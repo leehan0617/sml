@@ -9,7 +9,7 @@
 	</select>
 	
 	<insert id="TeamInsert" parameterType="java.util.HashMap">
-		insert into Team values(TEAM_TEAMCODE_SQL.nextval,#{teamName},#{teamReaderName},#{teamId},#{teamPassword},#{sportType},#{emblem},#{teamGrade}, #{path})
+		insert into Team values(TEAM_TEAMCODE_SQL.nextval,#{teamName},#{teamReaderName},#{teamId},#{teamPassword},#{sportType},#{emblem},#{teamGrade}, #{path},'팀소개가 없습니다.')
 	</insert> 
 		
 	<delete id="Teamdelete" parameterType="int">
@@ -72,4 +72,14 @@
 	<delete id="deleteMember" parameterType="int">
 		delete teamMember where memberCode=#{memberCode}
 	</delete>
+	
+	<select id="getMemberSearchList" parameterType="java.util.HashMap" resultType="com.sml.member.dto.MemberDto">
+		<![CDATA[
+			select * from 
+				(select rownum as rrownum, d.*  from 
+					((select rownum as rnum, c.* from 
+						(select a.* from teamMember a, team b where b.teamName=#{teamName} and a.teamcode=b.teamcode and a.memberName=#{searchBoxValue} order by memberCode asc) c order by rnum desc) d) )e 
+							where rrownum>=#{startRow} and rrownum <=#{endRow}
+		]]>
+	</select>
 </mapper>  
