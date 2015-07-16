@@ -78,8 +78,12 @@
 			select * from 
 				(select rownum as rrownum, d.*  from 
 					((select rownum as rnum, c.* from 
-						(select a.* from teamMember a, team b where b.teamName=#{teamName} and a.teamcode=b.teamcode and a.memberName=#{searchBoxValue} order by memberCode asc) c order by rnum desc) d) )e 
+						(select a.* from teamMember a, team b where b.teamName=#{teamName} and a.teamcode=b.teamcode and a.memberName=#{searchBoxName} order by memberCode asc) c order by rnum desc) d) )e 
 							where rrownum>=#{startRow} and rrownum <=#{endRow}
 		]]>
+	</select>
+	
+	<select id="getSearchTeamMemberCount" parameterType="java.util.HashMap" resultType="int">
+		select count(*) from teammember where teamCode=#{teamCode} and memberName=#{searchBoxName}
 	</select>
 </mapper>  

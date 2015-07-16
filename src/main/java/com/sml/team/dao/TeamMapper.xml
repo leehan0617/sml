@@ -31,6 +31,18 @@
 		]]>	
 	</select>
 	
+	<select id="searchRecordList" parameterType="java.util.HashMap" resultType="java.util.HashMap">
+		<![CDATA[
+			select * from (
+				select rownum as rnum, d.* from
+				(select a.*, b.teamName as team1, c.teamName as team2 
+					from gameRecord a, team b, team c 
+						where a.teamcode=b.teamcode and a.teamcode2=c.teamcode and (b.teamName=#{searchBoxName} or c.teamName=#{searchBoxName}) 
+							order by gameCode desc) d ) where rnum >= #{startRow} and rnum <= #{endRow}
+		]]>	
+	</select>
+	
+	
 	<select id="getRecordCount" parameterType="String" resultType="int">
 		<![CDATA[
 			select count(*) from (

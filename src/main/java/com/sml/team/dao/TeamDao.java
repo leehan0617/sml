@@ -11,6 +11,7 @@ public interface TeamDao {
 	public String teamIdCheck(String teamName);
 	public TeamDto login(String id, String password);	
 	public List<HashMap<String, Object>> recordList(String teamName, int startRow, int endRow);
+	public List<HashMap<String, Object>> searchRecordList(String searchBoxName,int startRow,int endRow);
 	public int getRecordCount(String teamName);
 	public List<String> getGugunList(String sido);
 	public List<String> getSidoList();
