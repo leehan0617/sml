@@ -20,7 +20,6 @@ public class SoccerController{
 	@Autowired
 	private SoccerService soccerService;	
 	
-	
 	/**
 	 * @name : soccerMain
 	 * @date : 2015. 6. 23.
@@ -177,4 +176,5 @@ public class SoccerController{
 		soccerService.cards(mav);
 		return mav;
 	}
+	
 }

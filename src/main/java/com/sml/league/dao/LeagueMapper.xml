@@ -37,7 +37,8 @@
  	</select>
  	
  	<insert id="insertLeagueGame" parameterType="com.sml.record.dto.RecordDto">
- 		insert into gameRecord values (gameRecord_gameCode_sql.nextVal,#{teamCode}, #{teamCode2}, #{gameType}, #{refereeNumber}, #{gameState}, #{gameDate}, #{gamePlace}, #{gameResult}, #{sportType}, #{gameTime})
+ 		insert into gameRecord (gameCode, teamCode, teamCode2, gameType, refereeNumber, gameState, gameDate, gamePlace, gameResult, sportType, gameTime) values 
+ 		(gameRecord_gameCode_sql.nextVal,#{teamCode}, #{teamCode2}, #{gameType}, #{refereeNumber}, #{gameState}, #{gameDate}, #{gamePlace}, #{gameResult}, #{sportType}, #{gameTime})
  	</insert>
  	
  	<select id="getTeamInfo" parameterType="int" resultType="com.sml.team.dto.TeamDto">
@@ -71,6 +72,22 @@
  	</select>
  	
  	<select id="getRecordList" parameterType="int" resultType="com.sml.record.dto.RecordDto">
- 		select * from gameRecord where gameType=#{leagueCode}
+ 		select * from gameRecord where gameType=#{leagueCode} 
+ 	</select>
+ 	
+ 	<select id="getCountWin" parameterType="java.util.HashMap" resultType="int">
+ 		select count(*) from gameRecord where ((teamCode=#{teamCode} and teamResult='승') or (teamCode2=#{teamCode} and team2Result='승')) and gameType=#{leagueCode} and gameState='경기 종료'
+ 	</select>
+ 	
+ 	<select id="getCountLose" parameterType="java.util.HashMap" resultType="int">
+ 		select count(*) from gameRecord where ((teamCode=#{teamCode} and teamResult='패') or (teamCode2=#{teamCode} and team2Result='패')) and gameType=#{leagueCode} and gameState='경기 종료'
+ 	</select>
+ 	
+ 	<select id="getCountDraw" parameterType="java.util.HashMap" resultType="int">
+ 		select count(*) from gameRecord where ((teamCode=#{teamCode} and teamResult='무') or (teamCode2=#{teamCode} and team2Result='무')) and gameType=#{leagueCode} and gameState='경기 종료'
+ 	</select>
+ 	
+ 	<select id="getCountGame" parameterType="java.util.HashMap" resultType="int">
+ 		select count(*) from gameRecord where (teamCode=#{teamCode} or teamCode2=#{teamCode}) and gameType=#{leagueCode} and gameState='경기 종료'
  	</select>
  </mapper>
