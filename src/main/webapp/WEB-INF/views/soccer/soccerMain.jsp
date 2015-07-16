@@ -9,7 +9,6 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <script type="text/javascript" src="${root}/js/jquery/jquery.js"></script>
-<script type="text/javascript" src="${root}/js/scrollnews.js"></script>
 <script type="text/javascript" src="${root}/js/soccer/soccer.js"></script>
 <script type="text/javascript" src="${root}/resources/js/bootstrap.js"></script>
 <script src="${root}/js/startPage.js"></script>
@@ -22,7 +21,7 @@
       margin: auto;
   }
 </style>
-<!--ajax crossdomain 우회-->
+
 <title>Insert title here</title>
 </head>
 <body>	
@@ -54,17 +53,17 @@
 					<input class="btn btn-default" type="button" value="검색" onclick="teamSearch(form,'${root}')"/>
 				</form>		
 				
-				<div class="noti" id="roll" style="height:22px; overflow:hidden;width:300px;">
-					<ul>
+				<div class="noti" id="roll" style="height:22px; overflow:hidden;width:300px;">			
+					<ul >
 						<c:forEach var="weather" items="${weatherList }">		
-								<li>	
+							<li>	
 								<span>${weather.sido}</span>
-								<span>${weather.temp} ºC</span>
-								<span> ${weather.wfKor}</span>
+								<span>${weather.temp} C</span>
+								<img src="${root}/img/weatherImg/${weather.wfKor}" style="vertical-align:middle; width="27px" height="27px"/>
 							</li>	
 						</c:forEach>		
 					</ul>
-				</div>		
+				</div>					
 		</div>	
 		<div id="matchingList" class="jumbotron" align="center">
 				<div class="row">

@@ -121,6 +121,30 @@ public class SoccerServiceImpl implements SoccerService {
 		} catch (Exception e1) {
 			e1.printStackTrace();
 		}
+		for(WeatherDTO weather:weatherList){
+			/*01 맑음
+			02 구름 조금
+			03 구름 많음
+			04 흐림
+			05 비
+			06 눈/비
+			07 눈*/			
+			if(weather.getWfKor().equals("맑음")){
+				weather.setWfKor("01.png");
+			}else if(weather.getWfKor().equals("구름 조금")){
+				weather.setWfKor("02.png");
+			}else if(weather.getWfKor().equals("구름 많음")){
+				weather.setWfKor("03.png");
+			}else if(weather.getWfKor().equals("흐림")){
+				weather.setWfKor("04.png");
+			}else if(weather.getWfKor().equals("비")){
+				weather.setWfKor("05.png");
+			}else if(weather.getWfKor().equals("눈/비")){
+				weather.setWfKor("06.png");
+			}else if(weather.getWfKor().equals("눈")){
+				weather.setWfKor("07.png");
+			}
+		}
 		
 		//리그 정보 가져오기
 		List<LeagueDto> leagueList=leagueDao.getLeagueList(sportType);
