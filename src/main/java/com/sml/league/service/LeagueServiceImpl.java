@@ -369,14 +369,13 @@ public class LeagueServiceImpl implements LeagueService{
 		String teamName=request.getParameter("teamName");
 		LeagueDto league=dao.getTeamLeagueInfo(teamName);
 		
-		
 		if(league!=null){
 			List<TeamDto> joinTeamList=dao.getLeagueTeamList(league.getLeagueCode());
 			mav.addObject("joinTeamList",joinTeamList);
 			
 			if(league.getLeagueState()==0){
-				List<RecordDto> recordList=dao.getRecordList(league.getLeagueCode());
-				calcRecordResult(joinTeamList, recordList);
+				ArrayList<HashMap<Object, Object>> leagueRecordList= calcRecordResult(joinTeamList, league.getLeagueCode());
+				mav.addObject("leagueRecordList", leagueRecordList);
 			}
 		}
 		
@@ -390,8 +389,61 @@ public class LeagueServiceImpl implements LeagueService{
 	 * @author : 이희재
 	 * @description : 팀 리스트와 결과를 이용하여 리그의 결과를 출력
 	 */
-	public void calcRecordResult(List<TeamDto> joinTeamList, List<RecordDto> recordList){
-		ArrayList<HashMap<String, Object>> leagueRecordList=new ArrayList<HashMap<String,Object>>();
+	public ArrayList<HashMap<Object, Object>> calcRecordResult(List<TeamDto> joinTeamList, int leagueCode){
+		ArrayList<HashMap<Object, Object>> leagueRecordList=new ArrayList<HashMap<Object,Object>>();
 		
+		for(int i=0;i<joinTeamList.size();i++){
+			HashMap<Object, Object> hMap=new HashMap<Object, Object>();
+			hMap.put("teamCode", joinTeamList.get(i).getTeamCode());
+			hMap.put("teamName", joinTeamList.get(i).getTeamName());
+			hMap.put("emblem", joinTeamList.get(i).getEmblem());
+			
+			int countWin=dao.getCountWin(joinTeamList.get(i).getTeamCode(), leagueCode);
+			int countLose=dao.getCountLose(joinTeamList.get(i).getTeamCode(), leagueCode);
+			int countDraw=dao.getCountDraw(joinTeamList.get(i).getTeamCode(), leagueCode);
+			int countGame=dao.getCountGame(joinTeamList.get(i).getTeamCode(), leagueCode);
+			int gameScore=countWin*3 + countDraw;
+			
+			hMap.put("countGame",countGame);
+			hMap.put("countWin",countWin);
+			hMap.put("countLose",countLose);
+			hMap.put("countDraw",countDraw);
+			hMap.put("gameScore", gameScore);
+			
+			leagueRecordList.add(hMap);
+		}
+		
+		sortForGameScore(leagueRecordList);
+		return leagueRecordList;
+	}
+	
+	/**
+	 * @name : sortForGameScore
+	 * @date : 2015. 7. 16.
+	 * @author : 이희재
+	 * @description : 승점에 따른 sort 함수
+	 */
+	public void sortForGameScore(ArrayList<HashMap<Object, Object>> leagueRecordList){
+		
+		for(int j=0;j<leagueRecordList.size()-1;j++){
+			for(int i=0;i<leagueRecordList.size()-1;i++){
+				int temp=(Integer) leagueRecordList.get(i).get("gameScore");
+				int temp2=(Integer) leagueRecordList.get(i+1).get("gameScore");
+				
+				if(temp<temp2){
+					HashMap<Object, Object> tempMap=leagueRecordList.get(i+1);
+					leagueRecordList.remove(i+1);
+					
+					leagueRecordList.add(i+1, leagueRecordList.get(i));
+					leagueRecordList.remove(i);
+					
+					leagueRecordList.add(i, tempMap);
+				}
+			}
+		}
+		
+		for(int j=0;j<leagueRecordList.size();j++){
+			leagueRecordList.get(j).put("teamRank", j+1);
+		}
 	}
 }

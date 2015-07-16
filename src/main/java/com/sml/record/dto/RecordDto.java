@@ -14,7 +14,21 @@ public class RecordDto {
 	private String gameResult;
 	private String sportType;
 	private String gameTime;
+	private String teamResult;
+	private String team2Result;
 	
+	public String getTeamResult() {
+		return teamResult;
+	}
+	public void setTeamResult(String teamResult) {
+		this.teamResult = teamResult;
+	}
+	public String getTeam2Result() {
+		return team2Result;
+	}
+	public void setTeam2Result(String team2Result) {
+		this.team2Result = team2Result;
+	}
 	public String getGameTime() {
 		return gameTime;
 	}
