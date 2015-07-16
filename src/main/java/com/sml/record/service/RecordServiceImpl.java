@@ -3,6 +3,8 @@ package com.sml.record.service;
 import java.util.HashMap;
 import java.util.List;
 
+import javax.servlet.http.HttpServletRequest;
+
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -34,5 +36,21 @@ public class RecordServiceImpl implements RecordService {
 		logger.info("RecordList : " + recordList.size());
 		mav.addObject("recordList",recordList);
 		mav.setViewName("soccer/soccerGameScore");
+	}
+
+	/**
+	 * @name : getRecordList
+	 * @date : 2015. 7. 16.
+	 * @author : 이희재
+	 * @description : 팀 명에 따른 경기 기록을 가져옴 
+	 */
+	@Override
+	public void getRecordList(ModelAndView mav) {
+		HashMap<String, Object> hMap=mav.getModelMap();
+		HttpServletRequest request=(HttpServletRequest) hMap.get("request");
+		String teamName=request.getParameter("teamName");
+//		System.out.println(teamName);
+		List<HashMap<String, Object>> recordList=recordDao.getRecordList(teamName);
+		mav.addObject("recordList", recordList);
 	}
 }

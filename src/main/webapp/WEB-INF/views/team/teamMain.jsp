@@ -16,10 +16,8 @@
 	<title><c:out value="${teamName }"/> 페이지</title>
 	
 	<link rel="stylesheet" type="text/css" href="${root }/resources/css/bootstrap.css"/>
-	
 	<script src="${root }/resources/js/jquery.js"></script>
 	<script src="${root }/resources/js/bootstrap.js"></script>
-	
 	<script src="${root }/resources/js/teamMain.js"></script>
 	
 </head>
@@ -154,6 +152,19 @@
 	  <div class="col-md-1"></div>
 	  <div class="col-md-5 well">
 	  	기록실
+	  	<br/><br/>
+	  	<div><span>팀 A</span><span> VS </span><span>팀 B</span><span> 결과 </span></div>
+	  	<br/>
+	  	<c:forEach var="record" items="${recordList }" begin="1" end="5">
+	  		<div>
+	  			<span>${record.EMBLEM1 }</span>
+	  			<span style="font-weight: bold;">${record.TEAMNAME1 }</span>
+	  			<span style="color:red;">VS</span>
+	  			<span>${record.EMBLEM2 }</span>
+	  			<span style="font-weight: bold;">${record.TEAMNAME2 }</span>
+	  			<span>${record.GAMERESULT }</span>
+	  		</div>
+	  	</c:forEach>
 	  </div>
 	  <div class="col-md-5 well">
 	  	팀 전적정보 
@@ -169,7 +180,8 @@
 	  	<c:if test="${leagueDto!=null }">
 	  		<label>진행중인 리그</label>
 	  		<br/>
-	  		<img src="${root }/img/leagueImg/${leagueDto.leagueImage} "/>
+	  		<img style="width:500px; height:400px;" src="${root }/img/leagueImg/${leagueDto.leagueImage} "/>
+	  		<br/>
 	  		리그명 : ${leagueDto.leagueName }
 	  	</c:if>
 	  	

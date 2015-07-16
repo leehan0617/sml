@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.sml.record.service.RecordService;
 import com.sml.schedule.service.ScheduleService;
 import com.sml.team.dto.TeamDto;
 import com.sml.team.dto.TeamLogDto;
@@ -28,6 +29,8 @@ public class TeamController {
 	private ScheduleService scheduleService;
 	@Autowired
 	private TeamBoardService teamBoardService;
+	@Autowired
+	private RecordService recordService;
 	
 	/**
 	 * @함수명:idCheck
@@ -119,6 +122,7 @@ public class TeamController {
 		service.goTeamPage(mav);
 		teamBoardService.viewTeamBoardTemplate(mav);
 		scheduleService.readteamSchedule(mav);
+		recordService.getRecordList(mav);
 		service.getReplyList(mav);
 			
 		mav.setViewName("team/teamMain");
