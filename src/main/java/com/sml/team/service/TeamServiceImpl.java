@@ -202,7 +202,7 @@ public class TeamServiceImpl implements TeamService{
 		int startRow=(currentPage-1)*boardSize+1;
 		int endRow=currentPage*boardSize;
 		
-		List<HashMap<String, Object>> recordList = dao.recordList(teamName,startRow,endRow);		
+		List<HashMap<String, Object>> recordList = dao.recordList(teamName,startRow,endRow);
 		
 		mav.addObject("teamGrade",teamGrade);		
 		mav.addObject("teamName",teamName);

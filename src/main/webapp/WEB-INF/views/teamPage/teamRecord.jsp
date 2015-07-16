@@ -15,11 +15,12 @@
     <meta name="author" content="">   
     <link rel="icon" href="${root }/resources/images/android@2x.png"/>
     
-    <title>teamRecord</title>
+    <title>teamRecord</title>    
     
-    
+
    <!-- Bootstrap core CSS -->
     <link rel="stylesheet" type="text/css" href="${root }/resources/css/bootstrap.css"/>
+    
 
     <!-- Custom styles for this template -->     
   
@@ -64,45 +65,64 @@
      <div class="container-fluid" style="background-color: gold; height: 100px; width: 100%;">
        <span class="col-xs-2"><a href=""><img alt="logo" src="${root }/resources/images/android@2x.png" width="200" height="150"></a></span>   	  
        <span class="col-xs-9" style="font-size:50pt;">${teamName}</span>
-       <span class="col-xs-1" style="font-size:20pt"> ${allCount} 전  ${winCount} 승  ${lostCount} 패</span>
+       <span class="col-xs-1" style="font-size:20pt;"> ${count} 전  ${winCount} 승  ${lostCount} 패</span>
        </div>
        <br/><br/>
 	
     <div class="container">    	
       <div class="row">      	   	
-          <h2 class="sub-header">경기 기록</h2>          
+          <h2 class="sub-header">경기 기록</h2>
+          <br/>         
           <div class="table-responsive">
             <table class="table table-striped">
               <c:if test="${count>0}">	
               <thead>
-                <tr>
-                  <th>경기번호</th>
-                  <th>종목</th>
-                  <th>게임종류</th>
-                  <th>Home</th>
-                  <th>VS</th>
-                  <th>AWAY</th>
-                  <th>결과</th>
-                  <th>진행상황</th>
-                </tr>               
+               <%--  <tr align="center" style="background:url(${root}/resources/images/soccer_icon.jpg)"> --%>
+               <tr align="center" style="background-color:#E2D6D6;">
+                  <td>경기번호</td>
+                  <td>종목</td>
+                  <td>게임종류</td>
+                  <td>경기</td>                 
+                  <td>결과</td>
+                  <td>진행상황</td>                             
+               </tr>               
               </thead>
               </c:if>
+              
               <tbody>
               
            <c:if test="${count==0}">	
 			  <tr>
 			   <td align="center">멤버가 존재하지 않습니다.</td>
 			  </tr>		
-			</c:if>	
-					
-            <c:forEach var="record" items="${recordList}">
-			  <tr>
-				<td>${record.GAMECODE}</td>
-				<td>${record.SPORTTYPE}</td>
-				<td>${record.GAMETYPE}</td>
-				<td>${record.EMBLEM1} ${record.TEAM1}</td>
-				<td>VS<br/>${record.GAMEPLACE}<br/><fmt:formatDate value="${record.GAMEDATE}" pattern="MM-dd"/>&nbsp;&nbsp;${record.GAMETIME}</td>
-				<td>${record.EMBLEM2} ${record.TEAM2}</td>
+			</c:if>						
+           <c:forEach var="record" items="${recordList}">
+			  <tr align="center">			
+				<td>${record.GAMECODE}</td>	
+				<c:if test="${record.SPORTTYPE=='축구'}">		
+				<td><img src="${root}/resources/images/soccerBallImg.jpg" width="50" height="50"></img><br/></td>
+				</c:if>	
+				
+				<c:if test="${record.GAMETYPE==0}">
+				<td><span class="label label-primary" style="width:200px;">친선경기</span></td>
+				</c:if>
+				<c:if test="${record.GAMETYPE!=0}">
+				<td><span class="label label-success">리그경기</span></td>
+				</c:if>
+				<td>
+					<img src="${root}/resources/images/${record.EMBLEM1}.jpg" width="100" height="100">&nbsp;				
+					<img src="${root}/resources/images/versusIcon.png" width="30" height="30"></img>&nbsp;				
+					<img src="${root}/resources/images/${record.EMBLEM2}.jpg" width="100" height="100">&nbsp;
+					<br/>
+					${record.TEAM1}&nbsp;&nbsp;
+					${record.TEAM2}&nbsp;&nbsp;
+					<br/>
+					${record.GAMEPLACE}
+					<br/>
+					<fmt:formatDate value="${record.GAMEDATE}" pattern="MM-dd"/>&nbsp;&nbsp;
+					${record.GAMETIME}
+				
+				</td>				
 				<td>${record.GAMERESULT}</td>
 				<td>${record.GAMESTATE}</td>								
 			  </tr>
