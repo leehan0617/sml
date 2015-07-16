@@ -203,6 +203,11 @@ public class AdminDaoImpl implements AdminDao {
 		
 	}
 
+	@Override
+	public List<HashMap<String, Object>> searchTeamMember(String teamName) {
+		return sqlSession.selectList("dao.adminDaoMapper.searchTeamMember",teamName);
+	}
+
 	
 
 }

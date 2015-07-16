@@ -60,6 +60,11 @@ public class CommonDaoImpl implements CommonDao {
 		// TODO Auto-generated method stub
 		return sqlSession.selectList("dao.BoardMapper.autoSearch",result);
 	}
+
+	@Override
+	public List<CommonBoardDto> searchBoard(String boardName) {
+		return sqlSession.selectList("dao.BoardMapper.searchBoard", boardName);
+	}
 	
 	
 }

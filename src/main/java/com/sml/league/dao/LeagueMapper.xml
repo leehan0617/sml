@@ -57,4 +57,8 @@
 	<update id="changeLeagueState" parameterType="int">
 		update leagueInfo set leagueState=0 where leagueCode=#{leagueCode}
 	</update>
+	
+	<select id="searchLeague" parameterType="String" resultType="com.sml.league.dto.LeagueDto">
+		select * from leagueinfo where leagueName like concat(#{leagueName}, '%')
+	</select>
  </mapper>

@@ -263,5 +263,7 @@ public class TeamDaoImpl implements TeamDao{
 		hMap.put("teamIntro", teamIntro);
 		return sqlSession.update("team.dao.TeamMapper.editTeamIntro" , hMap);
 	}
+
+	
 		
 }

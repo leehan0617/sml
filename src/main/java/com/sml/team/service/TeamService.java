@@ -28,5 +28,4 @@ public interface TeamService {
 	public void replyDelete(ModelAndView mav);
 
 	public ModelAndView editTeamIntro(HttpServletRequest request);
-	
 }

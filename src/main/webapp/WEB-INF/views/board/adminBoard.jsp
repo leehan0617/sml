@@ -81,14 +81,22 @@
 					</div>	
 					
 					<a href="${root }/board/addCommonBoard.do">글쓰기</a>
-		
-					<c:if test="${count==null }">
+					
+					<!-- search -->
+					<div class="text-right">
+						<form action="${root }/board/searchBoard.do" method="get" id="search-box" onsubmit="if(this.q.value ==' 공지사항 검색'){this.q.focus();return false;}">
+							<input type="text" name="boardName"  style="color: #D2D2D2;" value="공지사항 검색" onfocus="this.value='' "/>
+							<input type="submit" class="btn btn-defaulty btn-sm"  value="검색"/>							
+						</form>						
+					</div>
+					
+					<c:if test="${commonBoardList==null }"><!-- commonBoardList -> count -->
 						<div>	
 							<span>검색결과가 없습니다.</span>												
 						</div>
 					</c:if>
 					
-					<c:if test="${count!=null}">
+					<c:if test="${commonBoardList!=null}">
 						<div class="box-content">
 							<table class="table table-striped table-bordered bootstrap-datatable datatable">
 							  <thead>

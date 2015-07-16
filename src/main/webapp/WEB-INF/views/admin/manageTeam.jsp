@@ -82,6 +82,14 @@
 					<div class="box-header" data-original-title>
 						<h2><i class="halflings-icon user"></i><span class="break"></span>팀 리스트</h2>						
 					</div>					
+			        	
+			        <!-- search -->
+					<div class="text-right">
+						<form action="${root }/admin/searchTeamMember.do" method="get" id="search-box" onsubmit="if(this.q.value ==' 팀이름 검색'){this.q.focus();return false;}">
+							<input type="text" name="teamName"  style="color: #D2D2D2;" value="팀이름 검색" onfocus="this.value='' "/>
+							<input type="submit" class="btn btn-defaulty btn-sm"  value="검색"/>							
+						</form>						
+					</div>	
 			        						
 					<c:if test="${containerList==null }">
 						<div>	

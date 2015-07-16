@@ -166,4 +166,10 @@ public class LeagueDaoImpl implements LeagueDao{
 		
 		sqlSession.update("dao.LeagueMapper.changeLeagueState", leagueCode);
 	}
+
+	@Override
+	public List<LeagueDto> searchLeague(String leagueName) {
+		return sqlSession.selectList("dao.LeagueMapper.searchLeague", leagueName);
+
+	}
 }

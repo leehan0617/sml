@@ -169,6 +169,27 @@ public class CommonServiceImpl implements CommonService {
 		
 		mav.addObject("check",check);
 		mav.setViewName("board/updateCommonBoardOk");
+	}
+
+	/**
+	 * @name : searchBoard
+	 * @date : 2015. 6. 23.
+	 * @author : 변형린
+	 * @description : 관리자 공지사항게시판에서 공지사항 검색
+	 */
+	@Override
+	public void searchBoard(ModelAndView mav) {
+		logger.info("searchBoardOKOKOKOKOK---------");
+		Map<String,Object> map=mav.getModelMap();
+		HttpServletRequest request=(HttpServletRequest) map.get("request");
+		
+		String boardName=request.getParameter("boardName");
+		
+		System.out.println(boardName);
+		List<CommonBoardDto> commonBoardList=commonDao.searchBoard(boardName);
+		System.out.println(commonBoardList);
+		mav.addObject("commonBoardList",commonBoardList);
+		mav.setViewName("board/adminBoard");
 	}	
 }
 

@@ -10,4 +10,5 @@ public interface CommonService {
 	public void readCommonBoard(ModelAndView mav);
 	public void updateCommonBoardSelect(ModelAndView mav);
 	public void updateCommonBoardOk(ModelAndView mav);
+	public void searchBoard(ModelAndView mav);
 }

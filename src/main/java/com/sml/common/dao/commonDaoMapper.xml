@@ -41,4 +41,8 @@
 		select teamname from team where teamname like concat('%',concat(UPPER(#{result}),'%')) or 
 								teamname like concat('%',concat(LOWER(#{result}),'%'))
 	</select>
+	
+	<select id="searchBoard" parameterType="String" resultType="com.sml.common.dto.CommonBoardDto">
+		select * from board where boardTitle like concat(#{boardName}, '%')
+	</select>
 </mapper>

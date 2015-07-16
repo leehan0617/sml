@@ -397,5 +397,26 @@ public class AdminServiceImpl implements AdminService{
 		mav.setViewName("admin/searchLeaguePlace");
 	}
 
+	/**
+	 * @name : searchTeamMember
+	 * @date : 2015. 7. 16.
+	 * @author : 변형린
+	 * @description : 공지사항회원관리게시판에서 팀이름으로검색
+	 */
+	@Override
+	public void searchTeamMember(ModelAndView mav) {
+		Map<String,Object> map=mav.getModelMap();
+		HttpServletRequest request=(HttpServletRequest) map.get("request");
+		
+		String teamName=request.getParameter("teamName");
+		
+		List<HashMap<String,Object>> containerList=new ArrayList<HashMap<String,Object>>();
+		
+		containerList=adminDao.searchTeamMember(teamName);
+		
+		mav.addObject("containerList", containerList);
+		mav.setViewName("admin/manageTeam");
+	}
+
 	
 }
