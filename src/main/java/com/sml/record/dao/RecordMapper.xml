@@ -13,4 +13,10 @@
 			and a.sportType=#{sport}
  		]]>
  	</select>
+ 	
+ 	<select id="getRecordList" parameterType="String" resultType="java.util.HashMap">
+ 		select a.*, b.teamName as teamName1, b.emblem as emblem1, c.teamName as teamName2, c.emblem as emblem2 
+			from gameRecord a, team b, team c 
+				where a.teamCode=b.teamCode and a.teamCode2=c.teamCode and (b.teamName=#{teamName} or c.teamName=#{teamName}) and a.gameState='경기 종료'
+ 	</select>
  </mapper>

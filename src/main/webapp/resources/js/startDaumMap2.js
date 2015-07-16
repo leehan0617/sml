@@ -111,8 +111,10 @@ $(document).ready(function(){
 	}
 	
 	function displayRecord(mapList){
-		$("#recordList").append("<div style='text-align:center;'><h6>"+mapList.TODAY+"</h6></div>");
+		$("#recordList").append("<div style='text-align:center;'><h5>"+mapList.TODAY+"</h5></div>");
+		$("#recordList").append("<div style='text-align:center;'><h6>"+mapList.GAMEPLACE+"</h6></div>");
 		$("#recordList").append("<div style='text-align:center;'><span style='text-weight:bold;'>"+mapList.TEAM1+"</span><span style='color:red; margin-left:20px; margin-right:20px;'>VS</span><span style='text-weight:bold;'>"+mapList.TEAM2+"</span></div>");
+		$("#recordList").append("<br/>");
 	}
 
 	

@@ -18,4 +18,15 @@ public class RecordDaoImpl implements RecordDao {
 	public List<HashMap<String, Object>> getAllRecordList(String sport) {
 		return sqlSession.selectList("dao.RecordMapper.getAllRecordList", sport);
 	}
+
+	/**
+	 * @name : getRecordList
+	 * @date : 2015. 7. 16.
+	 * @author : 이희재
+	 * @description : 해당 팀에 관한 경기 기록 가져오기
+	 */
+	@Override
+	public List<HashMap<String, Object>> getRecordList(String teamName) {
+		return sqlSession.selectList("dao.RecordMapper.getRecordList",teamName);
+	}
 }
