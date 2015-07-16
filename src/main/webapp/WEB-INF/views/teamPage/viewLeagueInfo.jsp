@@ -124,7 +124,16 @@
   					</tr>
 				</table>
 			  
-			</div>      
+			</div>
+			<div style="text-align: right; margin-right: 120px;">
+			<c:if test="${league.leagueState==0 }">
+				<input id="teamState" type="button" class="btn btn-warning" value="리그 진행 중">
+			</c:if>
+			
+			<c:if test="${league.leagueState!=0 }">
+				<input id="teamState" type="button" class="btn btn-info" value="참가 대기 중 ">
+			</c:if>
+			</div>     
       	</div>        
       </div>
       </div> 
@@ -146,12 +155,11 @@
                 </tr>               
               </thead>
            <tbody>
-              
-            <c:forEach var="team" items="${joinTeamList}">
+           <c:if test="${league.leagueState!=0}">
+           	<c:forEach var="team" items="${joinTeamList}">
 			  <tr>
 				<td></td>
-				<td>${team.emblem}${team.teamName }</td>
-				<td></td>
+				<td>${team.emblem} ${team.teamName }</td>
 				<td></td>
 				<td></td>
 				<td></td>
@@ -159,6 +167,20 @@
 				<td></td>
 			  </tr>
 			</c:forEach>
+           </c:if>
+            <c:if test="${league.leagueState==0}">
+            <c:forEach var="team" items="${leagueRecordList}">
+			  <tr>
+				<td>${team.teamRank }</td>
+				<td>${team.emblem} ${team.teamName }</td>
+				<td>${team.countGame}</td>
+				<td>${team.countWin}</td>
+				<td>${team.countDraw}</td>
+				<td>${team.countLose}</td>
+				<td>${team.gameScore}</td>
+			  </tr>
+			</c:forEach>
+			</c:if>
             </tbody>
             </table>               
           </div>      

@@ -25,4 +25,8 @@ public interface LeagueDao {
 	public LeagueDto getTeamLeagueInfo(String teamName);
 	public List<TeamDto> getLeagueTeamList(int leagueCode);
 	public List<RecordDto> getRecordList(int leagueCode);
+	public int getCountWin(int teamCode, int leagueCode);
+	public int getCountLose(int teamCode, int leagueCode);
+	public int getCountDraw(int teamCode, int leagueCode);
+	public int getCountGame(int teamCode, int leagueCode);
 }
