@@ -83,6 +83,5 @@
 		</div>
 	</c:if>
 	<div id='calendar'></div>
-
 </body>
 </html>
