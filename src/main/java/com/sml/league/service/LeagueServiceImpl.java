@@ -353,4 +353,45 @@ public class LeagueServiceImpl implements LeagueService{
 		mav.addObject("manageLeagueList", leagueList);
 		mav.setViewName("admin/manageLeague");	
 	}
+
+	
+	/**
+	 * @name : viewLeagueInfo
+	 * @date : 2015. 7. 16.
+	 * @author : 이희재
+	 * @description : 참가중인 리그 정보 출력 
+	 */
+	@Override
+	public void viewLeagueInfo(ModelAndView mav) {
+		Map<String,Object> map=mav.getModel();
+		HttpServletRequest request=(HttpServletRequest) map.get("request");
+		
+		String teamName=request.getParameter("teamName");
+		LeagueDto league=dao.getTeamLeagueInfo(teamName);
+		
+		
+		if(league!=null){
+			List<TeamDto> joinTeamList=dao.getLeagueTeamList(league.getLeagueCode());
+			mav.addObject("joinTeamList",joinTeamList);
+			
+			if(league.getLeagueState()==0){
+				List<RecordDto> recordList=dao.getRecordList(league.getLeagueCode());
+				calcRecordResult(joinTeamList, recordList);
+			}
+		}
+		
+		mav.addObject("league",league);
+		mav.setViewName("teamPage/viewLeagueInfo");
+	}
+	
+	/**
+	 * @name : calcRecordResult
+	 * @date : 2015. 7. 16.
+	 * @author : 이희재
+	 * @description : 팀 리스트와 결과를 이용하여 리그의 결과를 출력
+	 */
+	public void calcRecordResult(List<TeamDto> joinTeamList, List<RecordDto> recordList){
+		ArrayList<HashMap<String, Object>> leagueRecordList=new ArrayList<HashMap<String,Object>>();
+		
+	}
 }

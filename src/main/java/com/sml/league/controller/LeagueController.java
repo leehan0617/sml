@@ -48,4 +48,17 @@ public class LeagueController {
 		return mav;
 	}
 	
+	/**
+	 * @함수명:searchLeague
+	 * @작성일:2015. 7. 16.
+	 * @작성자:변형린
+	 * @설명문:리그검색 메소드
+	 */
+	@RequestMapping(value="/teamPage/viewLeagueInfo.do",method=RequestMethod.GET)
+	public ModelAndView viewLeagueInfo(HttpServletRequest request){
+		ModelAndView mav=new ModelAndView();
+		mav.addObject("request",request);
+		service.viewLeagueInfo(mav);
+		return mav;
+	}
 }

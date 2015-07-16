@@ -61,4 +61,16 @@
 	<select id="searchLeague" parameterType="String" resultType="com.sml.league.dto.LeagueDto">
 		select * from leagueinfo where leagueName like concat(#{leagueName}, '%')
 	</select>
+	
+	<select id="getTeamLeagueInfo" parameterType="String" resultType="com.sml.league.dto.LeagueDto">
+		select a.* from leagueInfo a, leagueJoin b, team c where c.teamName=#{teamName} and c.teamCode=b.teamCode and b.leagueCode=a.leagueCode
+ 	</select>
+ 	
+ 	<select id="getLeagueTeamList" parameterType="int" resultType="com.sml.team.dto.TeamDto">
+ 		select a.* from team a, leagueJoin b where b.leagueCode=#{leagueCode} and b.teamCode=a.teamCode
+ 	</select>
+ 	
+ 	<select id="getRecordList" parameterType="int" resultType="com.sml.record.dto.RecordDto">
+ 		select * from gameRecord where gameType=#{leagueCode}
+ 	</select>
  </mapper>

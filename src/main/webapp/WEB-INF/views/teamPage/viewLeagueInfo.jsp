@@ -15,7 +15,7 @@
     <meta name="author" content="">   
     <link rel="icon" href="${root }/resources/images/android@2x.png"/>
     
-    <title>memberInfo</title>
+    <title>leagueInfo</title>
     
     
    <!-- Bootstrap core CSS -->
@@ -25,8 +25,7 @@
   
   	<script src="${root }/resources/js/jquery.js"></script> 	
  	<script src="${root }/resources/js/bootstrap.js"></script>
-  	<script src="${root }/resources/js/jquery-ui.js"></script>  
-  	<script src="${root }/js/member/member.js"></script>  	
+  	<script src="${root }/resources/js/jquery-ui.js"></script>  	
     
     <!-- Placed at the end of the document so the pages load faster -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
@@ -67,185 +66,105 @@
        </div>
        <br/><br/>
 	
-    <div class="container">    	
+	<c:if test="${league==null}">	
+	<div class="container">    	
       <div class="row">      	   	
+          <h2 class="sub-header">LEAGUE INFO</h2>          
+          <div class="table-responsive">
+            <table class="table table-striped">
+				<tr>
+			   		<td align="center">참가 중인 리그가 없습니다.</td>
+				</tr>	
+	  		</table>            
+          </div>      
+      	</div>        
+      </div>
+     
+	</c:if>
+			
+	<c:if test="${league!=null}">
+	<div class="container">    	
+      <div class="row">      	   	
+          <h2 class="sub-header">LEAGUE INFO</h2>          
+          <div class="row well">
+			  <div class="col-md-1">
+			  </div>
+			  <div class="col-md-3">
+			  	<img src="${root }/img/leagueImg/${league.leagueImage}" alt="로고이미지" class="img-rounded img-responsive">
+			  </div>
+			  <div class="col-md-2">
+			  </div>
+			  <div class="col-md-5">
+			  <br/>
+				 <table class="table table-condensed">
+				 	<tr></tr>
+  					<tr>
+  						<td class="info" style="width: 100px; font-weight: bold;">리그 이름</td>
+  						<td style="background-color: white;">${league.leagueName }</td>
+  					</tr>
+  					<tr>
+  						<td class="info" style="width: 100px; font-weight: bold;">리그 지역</td>
+  						<td style="background-color: white;">${league.leagueRegion }</td>
+  					</tr>
+  					<tr>
+  						<td class="info" style="width: 100px; font-weight: bold;">리그 기간</td>
+  						<td style="background-color: white;">${league.leagueStartDate } ~ ${league.leagueEndDate }</td>
+  					</tr>
+  					<tr>
+  						<td class="info" style="width: 100px; font-weight: bold;">리그 경기장</td>
+  						<td style="background-color: white;">
+  							<c:forTokens var="place" items="${league.leaguePlace }" delims=",">
+  								${place}<br/>
+  							</c:forTokens>
+  						</td>
+  					</tr>
+  					<tr>
+  						<td class="info" style="width: 100px; font-weight: bold;">리그 요일 </td>
+  						<td style="background-color: white;">${league.leagueDay }</td>
+  					</tr>
+				</table>
+			  
+			</div>      
+      	</div>        
+      </div>
+      </div> 
+      	
+    <div class="container">    	
+      <div class="row">
           <h2 class="sub-header">LEAGUE TEAM LIST</h2>          
           <div class="table-responsive">
             <table class="table table-striped">
-              <c:if test="${count>0}">	
               <thead>
                 <tr>
-                  <th>번호</th>
-                  <th>이름</th>
-                  <th>생년월일</th>
-                  <th>지역</th>
-                  <th>이메일</th>
-                  <th>전화번호</th>
-                  <th>성별</th>
+                  <th>순위</th>
+                  <th>팀</th>
+                  <th>경기</th>
+                  <th>승</th>
+                  <th>무</th>
+                  <th>패</th>
+                  <th>승점</th>
                 </tr>               
               </thead>
-              </c:if>
            <tbody>
               
-            <c:if test="${count==0}">	
+            <c:forEach var="team" items="${joinTeamList}">
 			  <tr>
-			   <td align="center">멤버가 존재하지 않습니다.</td>
-			  </tr>		
-			</c:if>
-			<c:choose>
-			<c:when test="${teamGrade!=null}">
-            <c:forEach var="member" items="${teamMemberList}">
-			  <tr>
-				<td>${member.rnum}</td>
-				<td>${member.memberName}</td>
-				<td>${member.memberBirth}</td>
-				<td>${member.memberRegion}</td>
-				<td>${member.memberEmail}</td>
-				<td>${member.memberPhone}</td>
-				<td>${member.memberGender}</td>
-				<td><button class="btn btn-success" onclick="return deleteMember('${root}','${pageNumber}','${member.memberCode}','${teamName}','${teamCode}','${teamGrade}');"><span class="glyphicon glyphicon-trash">삭제</span></button></td>			
-				
+				<td></td>
+				<td>${team.emblem}${team.teamName }</td>
+				<td></td>
+				<td></td>
+				<td></td>
+				<td></td>
+				<td></td>
+				<td></td>
 			  </tr>
 			</c:forEach>
-			</c:when>
-			<c:otherwise>
-			<c:forEach var="member" items="${teamMemberList}">
-			  <tr>
-				<td>${member.rnum}</td>
-				<td>${member.memberName}</td>
-				<td>${member.memberBirth}</td>
-				<td>${member.memberRegion}</td>
-				<td>${member.memberEmail}</td>
-				<td>${member.memberPhone}</td>
-				<td>${member.memberGender}</td>				
-			  </tr>			 
-			</c:forEach>
-			</c:otherwise>
-			</c:choose>
-             </tbody>
+            </tbody>
             </table>               
-          </div> 
-                 
-      </div>        
-      </div> 	
-		<div id="navbar" class="navbar-collapse collapse">			 
-          <form class="navbar-form navbar-right" action="${root}/teamPage/searchMember.do" method="GET">
-           
-            <div class="form-group">
-              <input type="text" placeholder="검색어를 입력하세요" class="form-control" name="searchBoxName">
-              <input type="hidden" name="currentPage" value="${currentPage}">
-              <input type="hidden" name="teamName" value="${teamName}">
-			  <input type="hidden" name="pageNumber" value="${pageNumber}">
-			  <input type="hidden" name="teamGrade" value="${teamGrade}">
-            </div>             
-             <button class="btn btn-success" type="submit"><span class="glyphicon glyphicon-search"></span></button>           	
-          </form>
-        </div>
-    <div align="center">    
- 			
-		<c:if test="${count>0 }">
-			<c:set var="pageBlock" value="${5}"/>
-			<c:set var="pageCount" value="${count/boardSize+(count%boardSize==0 ? 0:1)}"/>
-			<fmt:parseNumber var="rs" value="${(currentPage-1)/pageBlock }" integerOnly="true"/>
-			
-			<c:set var="startPage" value="${rs*pageBlock+1 }"/>
-			<c:set var="endPage" value="${startPage+pageBlock-1 }"/>
-			
-			<c:if test="${endPage>pageCount }">
-				<c:set var="endPage" value="${pageCount }"/>
-			</c:if>
-			
-			<c:if test="${teamGrade!=null}">
-			<ul class="pager">
-			<c:if test="${startPage>pageBlock }">
-				<li><a href="${root }/teamPage/teamMemberInfo.do?pageNumber=${startPage-pageBlock}&teamName=${teamName}&teamCode=${teamCode}&teamGrade=${teamGrade}">BACK</a></li>
-			</c:if>
-			
-			<c:forEach var="i" begin="${startPage}" end="${endPage}">
-				<li><a href="${root }/teamPage/teamMemberInfo.do?pageNumber=${i}&teamName=${teamName}&teamCode=${teamCode}&teamGrade=${teamGrade}">${i }</a></li>
-			</c:forEach>
-			
-			<c:if test="${endPage<pageCount }">
-				<li><a href="${root }/teamPage/teamMemberInfo.do?pageNumber=${startPage+pageBlock}&teamName=${teamName}&teamCode=${teamCode}&teamGrade=${teamGrade}">NEXT</a></li>
-			</c:if>
-			</ul>
-			</c:if>
-			
-			<c:if test="${teamGrade==null}">
-			<c:if test="${startPage>pageBlock }">
-				<a href="${root }/teamPage/teamMemberInfo.do?pageNumber=${startPage-pageBlock}&teamName=${teamName}&teamCode=${teamCode}">[이전]</a>
-			</c:if>
-			
-			<c:forEach var="i" begin="${startPage}" end="${endPage}">
-				<a href="${root }/teamPage/teamMemberInfo.do?pageNumber=${i}&teamName=${teamName}&teamCode=${teamCode}">[${i }]</a>
-			</c:forEach>
-			
-			<c:if test="${endPage<pageCount }">
-				<a href="${root }/teamPage/teamMemberInfo.do?pageNumber=${startPage+pageBlock}&teamName=${teamName}&teamCode=${teamCode}">[다음]</a>
-			</c:if>
-			</c:if>
-		</c:if>
-	<br/><br/><br/>	
-	</div>
-	
-	<div class="container">  		
-  	<form role="form" action="${root}/teamPage/addMember.do" method="post">  		
-  		<c:if test="${teamGrade!=null}">
-  		<h2>멤버 등록</h2>
-  		<p>등록하실 멤의 정보를 입력해주세요.</p>	
-			
-   		<div class="form-group">
-      		<label for="usr">NAME</label>
-       		<input placeholder="이름" type="text" class="form-control" name="memberName">
-    	</div>
-	    <div class="form-group">
-      		<label for="usr">BIRTH</label>
-       		<input type="date" class="form-control" placeholder="생일을 선택해주세요" name="memberBirth" />
-    	</div>
-    	
-    	<div class="form-group">
-		  <label for="sel1">REGION</label>
-		  <select class="form-control" id="sel1" name="memberRegion">		  	
-		    <option>지역을선택하세요</option>
-		    <option value="서울">서울</option>
-		    <option value="경기/인천">경기/인천</option>
-		    <option value="경상도">경상도</option>	
-		    <option value="전라도">전라도</option>	
-		    <option value="충청도">충청도</option>	
-		    <option value="강원도">강원도</option>		    
-		    <option value="제주">부산</option>	    
-		  </select>
-		</div>    	
-    		<div class="form-group">
-      		<label for="usr">PHONE</label>
-       		<input placeholder="번호" type="text" class="form-control" name="memberPhone">
-    	</div>
-    		<div class="form-group">
-      		<label for="usr">E-MAIL</label>
-       		<input placeholder="이메일" type="text" class="form-control" name="memberEmail">
-    	</div>
-    	
-    	<div class="form-group">
-		  <label for="sel1">성별:</label>
-		  <select class="form-control" id="sel1" name="memberGender">		  	
-		    <option value="남">남</option>
-		    <option value="여">여</option>		    
-		  </select>
-		</div>		
-			<input type="hidden" name="teamName" value="${teamName}">
-			<input type="hidden" name="currentPage" value="${currentPage}">
-			<input type="hidden" name="teamGrade" value="${teamGrade}">
+          </div>      
+      	</div>        
+      </div> 
+    </c:if>	
 		
-			<input type="submit" class="btn btn-info" value="Submit">			
-  		</c:if>
-  	</form> 
-  		<br/><br/>
-  		<br/><br/>  		 	
-  	</div>
-		
-		
-	
-
-   
   </body>
 </html>

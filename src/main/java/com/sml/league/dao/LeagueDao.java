@@ -22,4 +22,7 @@ public interface LeagueDao {
 	public int invalidSchedule(RecordDto record, int teamCode);
 	public void changeLeagueState(LeagueDto league);
 	public List<LeagueDto> searchLeague(String leagueName);
+	public LeagueDto getTeamLeagueInfo(String teamName);
+	public List<TeamDto> getLeagueTeamList(int leagueCode);
+	public List<RecordDto> getRecordList(int leagueCode);
 }

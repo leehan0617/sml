@@ -172,4 +172,37 @@ public class LeagueDaoImpl implements LeagueDao{
 		return sqlSession.selectList("dao.LeagueMapper.searchLeague", leagueName);
 
 	}
+
+	/**
+	 * @name : getTeamLeagueInfo
+	 * @date : 2015. 7. 16.
+	 * @author : 이희재
+	 * @description : teamName을 이용하여 참가 중인 리그의 정보를 가져옴
+	 */
+	@Override
+	public LeagueDto getTeamLeagueInfo(String teamName) {
+		return sqlSession.selectOne("dao.LeagueMapper.getTeamLeagueInfo", teamName);
+	}
+
+	/**
+	 * @name : getLeagueTeamList
+	 * @date : 2015. 7. 16.
+	 * @author : 이희재
+	 * @description : 해당 리그에 참가하고 있는 모든 팀의 정보
+	 */
+	@Override
+	public List<TeamDto> getLeagueTeamList(int leagueCode) {
+		return sqlSession.selectList("dao.LeagueMapper.getLeagueTeamList", leagueCode);
+	}
+
+	/**
+	 * @name : getRecordList
+	 * @date : 2015. 7. 16.
+	 * @author : 이희재
+	 * @description : 해당 리그에 관한 경기 기록을 모두 가져옴
+	 */
+	@Override
+	public List<RecordDto> getRecordList(int leagueCode) {
+		return sqlSession.selectList("dao.LeagueMapper.getRecordList", leagueCode);
+	}
 }
