@@ -88,7 +88,7 @@ $(document).ready(function(){
 		        });
 		        
 		     // 마커에 커서가 오버됐을 때 마커 위에 표시할 인포윈도우를 생성합니다
-		        var iwContent = '<div style="padding:5px;">match'+currentIdx+'</div>'; // 인포윈도우에 표출될 내용으로 HTML 문자열이나 document element가 가능합니다
+		        var iwContent = '<div style="padding:5px;">'+mapList.TEAM1+' <span style="color: red;">VS</span> ' + mapList.TEAM2+'</div>'; // 인포윈도우에 표출될 내용으로 HTML 문자열이나 document element가 가능합니다
 
 		        // 인포윈도우를 생성합니다
 		        var infowindow = new daum.maps.InfoWindow({
@@ -113,7 +113,7 @@ $(document).ready(function(){
 	function displayRecord(mapList){
 		$("#recordList").append("<div style='text-align:center;'><h5>"+mapList.TODAY+"</h5></div>");
 		$("#recordList").append("<div style='text-align:center;'><h6>"+mapList.GAMEPLACE+"</h6></div>");
-		$("#recordList").append("<div style='text-align:center;'><span style='text-weight:bold;'>"+mapList.TEAM1+"</span><span style='color:red; margin-left:20px; margin-right:20px;'>VS</span><span style='text-weight:bold;'>"+mapList.TEAM2+"</span></div>");
+		$("#recordList").append("<div style='text-align:center;'><span>"+mapList.EMBLEM1+"</span><span style='font-weight:bold;'>"+mapList.TEAM1+"</span><span style='color:red; margin-left:20px; margin-right:20px;'>VS</span><span>"+mapList.EMBLEM2+"</span><span style='font-weight:bold;'>"+mapList.TEAM2+"</span></div>");
 		$("#recordList").append("<br/>");
 	}
 
