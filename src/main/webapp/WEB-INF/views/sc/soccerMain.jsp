@@ -4,7 +4,8 @@
 <c:set var="root" value="${pageContext.request.contextPath }"/>
 <c:set var="sportCode" value="0"/>
 <!DOCTYPE html>
-<html lang="ko"><head>
+<html lang="ko">
+	<head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -18,7 +19,10 @@
     <!-- Bootstrap core CSS -->
     <link href="${root}/resources/css/bootstrap.css" rel="stylesheet" type="text/css">
 	<script src="${root }/resources/js/jquery.js"></script>
+	<script type="text/javascript" src="https://www.google.com/jsapi"></script>
 	<script src="${root }/resources/js/bootstrap.js"></script>
+	<script src="${root }/resources/js/soccerPage.js"></script>
+	
     <!-- Custom styles for this template -->
     <link href="${root}/resources/css/soccerPage.css" rel="stylesheet" type="text/css">
   </head>
@@ -156,7 +160,7 @@
           <img class="img-circle" src="${root}/resources/images/surface.png" alt="Generic placeholder image" width="140" height="140">
           <h2>통계 자료</h2>
           <p>SML 축구회원 및 팀들간 통계에 관심이 있으시면 아래 버튼을 눌러주세요</p>
-          <p><a class="btn btn-default" href="#" role="button">통계자료 보기</a></p>
+          <p><a class="btn btn-default" role="button"  onclick="getChartData('${root}','${sportCode}')">통계자료 보기</a></p>
         </div><!-- /.col-lg-4 -->
       </div><!-- /.row -->
 
@@ -201,9 +205,6 @@
 
       <hr class="featurette-divider">
 
-      <!-- /END THE FEATURETTES -->
-
-
       <!-- FOOTER -->
       <footer>
         <p class="pull-right"><a href="#">Back to top</a></p>
@@ -240,50 +241,124 @@
      </div>
    </div>
    
-<script>
-	function viewSoccerBoard(root,sportCode,currentPage){
-		var addr = root+"/viewSoccerBoard?sportCode="+sportCode+"&currentPage="+currentPage;
-		
-		$.ajax({
-			type:"get",
-			url:addr,
-			success:function(data){
-				console.log(data);
-				var boardSize = data.boardSize;
-				var blockCount = data.blockCount;
-				var blockSize = data.blockSize;
-				var currentPage = data.currentPage;
-				var count = data.count;
-				var list = data.soccerBoardList;
-				var rs = Math.floor((currentPage-1)/blockSize);
-				var startBlock = rs*blockSize+1;
-				var endBlock = startBlock+blockSize-1;
-				
-				$(".soccerBody").empty();
-				$(".pager").empty();
-				
-				$.each(list,function(i,val){
-					$('.soccerBody').append('<tr><td>'+list[i].boardNumber+"</td><td><a data-toggle='modal' data-target='#modalSoccerBoardRead' onclick=readSoccerBoard(\'"+root+"\','"+sportCode+"','"+currentPage+"','"+list[i].boardNumber+"')>"
-										+list[i].boardTitle+'</td><td>'+list[i].boardWriter+'</td><td>'+
-										(list[i].boardDate.year+1900)+'-'+(list[i].boardDate.month+1)+'-'+list[i].boardDate.date+'</td></tr>');
-				});
-				
-				if(startBlock > blockSize){
-					$('.pager').append("<li><a onclick=viewSoccerBoard(\'"+root+"\','"+sportCode+"','"+(startBlock-blockSize)+"')>"+'Previous'+"</a></li>");
-				}
-				
-				for(var i=startBlock ; i<=endBlock ; i++){
-					$('.pager').append("<li><a onclick=viewSoccerBoard(\'"+root+"\','"+sportCode+"','"+i+"')>"+i+"</a></li>");	
-				}
-				
-				if(endBlock < blockCount){
-					$('.pager').append("<li><a onclick=viewSoccerBoard(\'"+root+"\','"+sportCode+"','"+(startBlock+blockSize)+"')>"+'Next'+"</a></li>");
-				}
+   <div class="modal fade" id="modalSoccerBoardRead" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
+ 	 <div class="modal-dialog">
+    	<div class="modal-content">
+    		<div class="modal-header">
+    			<h3>공지사항</h3>
+    		</div>
+    		<div class="modal-body">
+    			 <div class="form-group">
+           			 <label for="recipient-name" class="control-label" id="boardTitle">Title</label>
+           			 <input type="text" class="form-control" id="soccerBoardTitle" value="" disabled="disabled"/>
+        		  </div>
+         		 <div class="form-group">
+           			 <label for="message-text" class="control-label" id="boardContent">Content</label>
+           			 <textarea class="form-control" id="soccerBoardContent" disabled="disabled"></textarea>
+        		  </div>
+    		</div>
+      		<div class="modal-footer">
+            	<button type="button" class="btn btn-default" data-dismiss="modal" onclick="javascript:modalToggle()">Close</button>
+      		</div>
+  		</div>
+     </div>
+   </div>
+   
+   <div class="modal fade" id="modalSoccerChart" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
+   	<div class="modal-dialog">
+    	<div class="modal-content">
+    		<div class="modal-header">
+    			<h3></h3>
+    			
+    		</div>
+    		<div class="modal-body">
+    	
+       		</div>
+      		<div class="modal-footer">
+            	<button type="button" class="btn btn-default" data-dismiss="modal" onclick="javascript:modalToggle()">Close</button>
+      		</div>
+  		</div>
+     </div>
+   </div>
+   
+   <div id="piechart_3d" style="width: 900px; height: 500px;">
+ 	</div>
+     
+   <script>
+   		function getChartData(root , sportCode){
+   			var addr = root+"/static/chart.do?sportCode="+sportCode+"&age=age";
+   			alert(addr);
+   			$.ajax({
+   				url:addr,
+   				type:"get",
+   				success:function(obj){
+   					alert("success");
+   					console.log(obj);
+   					$("#piechart_3d").hide();	
+   				   	var totalCount=0;
+   					/*연령별 통계*/
+   					var year=0;
+   					var age=0;
+   					/*연령 카운트*/
+   				 	var oneCount=0;
+   					var twoCount=0;
+   					var threeCount=0;
+   					var fourCount=0;
+   					var fiveCount=0;
+   					var otherCount=0;
+   					for(var i in obj.cardsList){
+   						year=Number(obj.cardsList[i].MEMBERBIRTH.substring(0,4));
+   						age=2015-year;
+   						if(i < 5){
+   							alert(year);
+   						}
+   				/* 		if(obj.cardsList[i].MEMBERREGION.split(" ")[0]==legion[j]){ */
+   						if(age<20){
+   							oneCount++;
+   						}else if(age<30){
+   							twoCount++;
+   						}else if(age<40){
+   							threeCount++;
+   						}else if(age<50){
+   							fourCount++;
+   						}else if(age<60){
+   							fiveCount++;
+   						}else{
+   							otherCount++;
+   						}
+   						totalCount++;
+   					} 
+   					
+   					/* 차트 구현 */		
+   					google.load("visualization", "1", {packages:["corechart"]});
+   				    google.setOnLoadCallback(drawChart);
+   				    function drawChart() {
+   				      var data = google.visualization.arrayToDataTable([
+   				        ['Task', 'Hours per Day'],
+   				        /*지역별 차트*/
+   				        ['10대',oneCount],
+   				        ['20대',twoCount],
+   				        ['30대',threeCount],
+   				        ['40대',fourCount],
+   				        ['50대',fiveCount],
+   				        ['기타',otherCount],
 
-			}
-		});
-	}
-</script>
-    
+   				      ]);
+
+   				      var options = {
+   				        title: 'SML Korea 회원 지역별 통계'+"\t"+"가입회원수"+totalCount,
+   				        is3D: true,
+   				      };
+
+   				      
+   				      var chart = new google.visualization.PieChart(document.getElementById('piechart_3d'));
+   				      chart.draw(data, options);
+   				      $("#piechart_3d").show();
+   				    }
+
+   				}
+   			});
+   		}
+   </script>
  </body>
  </html>

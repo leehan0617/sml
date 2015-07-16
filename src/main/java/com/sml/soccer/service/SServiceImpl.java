@@ -69,4 +69,24 @@ public class SServiceImpl implements SService{
 		return mav;
 	}
 	
+	/**
+	 * 
+	 * @함수명:readSoccerBoard
+	 * @작성일:2015. 7. 16.
+	 * @작성자:이한빈 
+	 * @설명문:축구페이지 공지사항 읽는 함수 
+	 */
+	@Override
+	public ModelAndView readSoccerBoard(HttpServletRequest request) {
+		int boardNumber=Integer.parseInt(request.getParameter("boardNumber"));
+		
+		CommonBoardDto board = dao.getBoardContent(boardNumber);
+		
+		ModelAndView mav = new ModelAndView();
+		mav.addObject("board" , board);
+		mav.setViewName("jsonView");
+		
+		return mav;
+	}
+	
 }
