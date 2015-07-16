@@ -24,7 +24,7 @@
 		<![CDATA[
 			select * from (
 				select rownum as rnum, d.* from
-				(select a.*, b.teamName as team1, c.teamName as team2 
+				(select a.*, b.teamName as team1, c.teamName as team2, b.emblem as emblem1, c.emblem as emblem2
 					from gameRecord a, team b, team c 
 						where a.teamcode=b.teamcode and a.teamcode2=c.teamcode and (b.teamName=#{teamName} or c.teamName=#{teamName}) 
 							order by gameCode desc) d ) where rnum >= #{startRow} and rnum <= #{endRow}

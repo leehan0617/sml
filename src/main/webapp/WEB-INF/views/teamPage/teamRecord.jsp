@@ -100,9 +100,9 @@
 				<td>${record.GAMECODE}</td>
 				<td>${record.SPORTTYPE}</td>
 				<td>${record.GAMETYPE}</td>
-				<td>${record.TEAM1}</td>
+				<td>${record.EMBLEM1} ${record.TEAM1}</td>
 				<td>VS<br/>${record.GAMEPLACE}<br/><fmt:formatDate value="${record.GAMEDATE}" pattern="MM-dd"/>&nbsp;&nbsp;${record.GAMETIME}</td>
-				<td>${record.TEAM2}</td>
+				<td>${record.EMBLEM2} ${record.TEAM2}</td>
 				<td>${record.GAMERESULT}</td>
 				<td>${record.GAMESTATE}</td>								
 			  </tr>
