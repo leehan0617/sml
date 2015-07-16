@@ -176,13 +176,27 @@ public class MemberDaoImpl implements MemberDao{
 	 * @설명 :
 	 */
 	@Override
-	public List<MemberDto> getMemberSearchList(String teamName,String searchBoxValue,int startRow,int endRow) {
+	public List<MemberDto> getMemberSearchList(String teamName,String searchBoxName,int startRow,int endRow) {
 		HashMap<String,Object> hMap=new HashMap<String,Object>();
 		hMap.put("teamName", teamName);
-		hMap.put("searchBoxValue", searchBoxValue);
+		hMap.put("searchBoxName", searchBoxName);
 		hMap.put("startRow", startRow);
 		hMap.put("endRow", endRow);
 		
 		return sqlSession.selectList("member.dao.MemberMapper.getMemberSearchList", hMap);
+	}
+
+	/**
+	 * @함수명: getSearchTeamMemberCount
+	 * @작성일: 2015. 7. 16.
+	 * @작성자: 정성남
+	 * @설명 :
+	 */
+	@Override
+	public int getSearchTeamMemberCount(int teamCode,String searchBoxName) {
+		HashMap<String,Object> hMap=new HashMap<String,Object>();
+		hMap.put("teamCode", teamCode);
+		hMap.put("searchBoxName", searchBoxName);				
+		return sqlSession.selectOne("member.dao.MemberMapper.getSearchTeamMemberCount", hMap);
 	}
 }

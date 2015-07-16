@@ -20,6 +20,7 @@ import org.springframework.web.servlet.ModelAndView;
 import com.sml.league.dao.LeagueDao;
 import com.sml.league.dto.LeagueDto;
 import com.sml.record.dto.RecordDto;
+import com.sml.referee.dto.RefereeDto;
 import com.sml.schedule.dto.ScheduleDto;
 import com.sml.team.dto.TeamDto;
 
@@ -331,6 +332,118 @@ public class LeagueServiceImpl implements LeagueService{
 			scheduleDto.setscheduleContent("상대 팀 : " + otherTeam.getTeamName() + ", 경기장 : " + scheduleList.get(i).getGamePlace() + ", 시간 : "+ scheduleList.get(i).getGameTime());
 			
 			dao.insertLeagueSchedule(scheduleDto);
+		}
+	}
+
+	/**
+	 * @name : searchLeague
+	 * @date : 2015. 7. 16.
+	 * @author : 변형린
+	 * @description : 리그검색
+	 */
+	@Override
+	public void searchLeague(ModelAndView mav) {
+		Map<String,Object> map=mav.getModel();
+		HttpServletRequest request=(HttpServletRequest) map.get("request");
+		
+		String leagueName=request.getParameter("leagueName");
+		//System.out.println(leagueName);
+		List<LeagueDto> leagueList=dao.searchLeague(leagueName);
+		//System.out.println(leagueList);
+		mav.addObject("manageLeagueList", leagueList);
+		mav.setViewName("admin/manageLeague");	
+	}
+
+	
+	/**
+	 * @name : viewLeagueInfo
+	 * @date : 2015. 7. 16.
+	 * @author : 이희재
+	 * @description : 참가중인 리그 정보 출력 
+	 */
+	@Override
+	public void viewLeagueInfo(ModelAndView mav) {
+		Map<String,Object> map=mav.getModel();
+		HttpServletRequest request=(HttpServletRequest) map.get("request");
+		
+		String teamName=request.getParameter("teamName");
+		LeagueDto league=dao.getTeamLeagueInfo(teamName);
+		
+		if(league!=null){
+			List<TeamDto> joinTeamList=dao.getLeagueTeamList(league.getLeagueCode());
+			mav.addObject("joinTeamList",joinTeamList);
+			
+			if(league.getLeagueState()==0){
+				ArrayList<HashMap<Object, Object>> leagueRecordList= calcRecordResult(joinTeamList, league.getLeagueCode());
+				mav.addObject("leagueRecordList", leagueRecordList);
+			}
+		}
+		
+		mav.addObject("league",league);
+		mav.setViewName("teamPage/viewLeagueInfo");
+	}
+	
+	/**
+	 * @name : calcRecordResult
+	 * @date : 2015. 7. 16.
+	 * @author : 이희재
+	 * @description : 팀 리스트와 결과를 이용하여 리그의 결과를 출력
+	 */
+	public ArrayList<HashMap<Object, Object>> calcRecordResult(List<TeamDto> joinTeamList, int leagueCode){
+		ArrayList<HashMap<Object, Object>> leagueRecordList=new ArrayList<HashMap<Object,Object>>();
+		
+		for(int i=0;i<joinTeamList.size();i++){
+			HashMap<Object, Object> hMap=new HashMap<Object, Object>();
+			hMap.put("teamCode", joinTeamList.get(i).getTeamCode());
+			hMap.put("teamName", joinTeamList.get(i).getTeamName());
+			hMap.put("emblem", joinTeamList.get(i).getEmblem());
+			
+			int countWin=dao.getCountWin(joinTeamList.get(i).getTeamCode(), leagueCode);
+			int countLose=dao.getCountLose(joinTeamList.get(i).getTeamCode(), leagueCode);
+			int countDraw=dao.getCountDraw(joinTeamList.get(i).getTeamCode(), leagueCode);
+			int countGame=dao.getCountGame(joinTeamList.get(i).getTeamCode(), leagueCode);
+			int gameScore=countWin*3 + countDraw;
+			
+			hMap.put("countGame",countGame);
+			hMap.put("countWin",countWin);
+			hMap.put("countLose",countLose);
+			hMap.put("countDraw",countDraw);
+			hMap.put("gameScore", gameScore);
+			
+			leagueRecordList.add(hMap);
+		}
+		
+		sortForGameScore(leagueRecordList);
+		return leagueRecordList;
+	}
+	
+	/**
+	 * @name : sortForGameScore
+	 * @date : 2015. 7. 16.
+	 * @author : 이희재
+	 * @description : 승점에 따른 sort 함수
+	 */
+	public void sortForGameScore(ArrayList<HashMap<Object, Object>> leagueRecordList){
+		
+		for(int j=0;j<leagueRecordList.size()-1;j++){
+			for(int i=0;i<leagueRecordList.size()-1;i++){
+				int temp=(Integer) leagueRecordList.get(i).get("gameScore");
+				int temp2=(Integer) leagueRecordList.get(i+1).get("gameScore");
+				
+				if(temp<temp2){
+					HashMap<Object, Object> tempMap=leagueRecordList.get(i+1);
+					leagueRecordList.remove(i+1);
+					
+					leagueRecordList.add(i+1, leagueRecordList.get(i));
+					leagueRecordList.remove(i);
+					
+					leagueRecordList.add(i, tempMap);
+				}
+			}
+		}
+		
+		for(int j=0;j<leagueRecordList.size();j++){
+			leagueRecordList.get(j).put("teamRank", j+1);
 		}
 	}
 }

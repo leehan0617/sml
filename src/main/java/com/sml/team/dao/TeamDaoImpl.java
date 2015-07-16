@@ -58,12 +58,12 @@ public class TeamDaoImpl implements TeamDao{
 	}
 
 	
-
 	/**
-	 * @name : TeamDaoImpl
-	 * @date : 2015. 7. 2.
-	 * @author : 이희재
-	 * @description : 해당 팀 기록 출력 
+	 * 
+	 * @함수명: recordList
+	 * @작성일: 2015. 7. 16.
+	 * @작성자: 정성남
+	 * @설명 :
 	 */
 	@Override
 	public List<HashMap<String, Object>> recordList(String teamName, int startRow, int endRow) {
@@ -72,6 +72,23 @@ public class TeamDaoImpl implements TeamDao{
 		hMap.put("startRow", startRow);
 		hMap.put("endRow", endRow);
 		return sqlSession.selectList("team.dao.TeamMapper.recordList",hMap);
+	}
+	
+	/**
+	 * @함수명: searchRecordList
+	 * @작성일: 2015. 7. 16.
+	 * @작성자: 정성남
+	 * @설명 :
+	 */
+	@Override
+	public List<HashMap<String, Object>> searchRecordList(String searchBoxName, int startRow, int endRow) {
+		
+		HashMap<String, Object> hMap=new HashMap<String, Object>();		
+		hMap.put("searchBoxName", searchBoxName);
+		hMap.put("startRow", startRow);
+		hMap.put("endRow", endRow);
+		return sqlSession.selectList("team.dao.TeamMapper.searchRecordList",hMap);
+		
 	}
 
 	/**
@@ -263,5 +280,9 @@ public class TeamDaoImpl implements TeamDao{
 		hMap.put("teamIntro", teamIntro);
 		return sqlSession.update("team.dao.TeamMapper.editTeamIntro" , hMap);
 	}
+
+
+
+	
 		
 }

@@ -21,7 +21,6 @@
 						  		order by a.teamname asc) c) 
 				  where rnum>=#{startRow} and rnum<=#{endRow} 
 		]]>
-
 	</select>
 
 	<delete id="manageTeamDelete" parameterType="int">
@@ -43,11 +42,12 @@
 	</delete>
 
 	<update id="refereeAccept" parameterType="int"> 
-		update referee set refereeyes='1' where refereeNumber=#{refereeNumber} 
+		update referee set refereeyes='1' where refereeNumber=#{refereeNumber}
 	</update>
 
-	<select resultType="com.sml.referee.dto.RefereeDto" id="refereeSearch"
-		parameterType="String"> select * from referee where refereeName=#{refereeName}
+	<select resultType="com.sml.referee.dto.RefereeDto" id="refereeSearch" parameterType="String"> 
+		<!-- select * from referee where refereeName like #{refereeName} -->
+		select * from referee where refereeName like concat(#{refereeName}, '%')
 	</select>
 	
 	<insert id="createLeague" parameterType="com.sml.league.dto.LeagueDto">
@@ -88,4 +88,15 @@
 		update leagueInfo set leagueState=${leagueState} where leagueCode=${leagueCode}
 	</update>
 	
+	<select resultType="java.util.HashMap" id="searchTeamMember" parameterType="String">
+
+		<![CDATA[ select * 
+				  from (select rownum as rnum, c.* 
+						  from (select a.sporttype, a.emblem, a.teamname, a.teamleadername, b.* 
+						  		from team a, teamMember b 
+						  		where a.teamcode=b.teamcode and a.teamname like concat(#{teamName}, '%')
+						  		order by a.teamname asc) c) 
+				  
+		]]>
+	</select>
 </mapper>

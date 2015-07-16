@@ -19,6 +19,11 @@
 
 <script src="${root }/resources/js/jquery.js"></script>
 <script src="${root }/resources/js/bootstrap.js"></script>
+<style>
+div.col-md-2{
+	display:table-cell; text-align:center; vertical-align:middle;
+}
+</style>
 <title>관리자페이지</title>
 
 </head>
@@ -39,29 +44,48 @@
 		<div class="row-fluid">	
 			<div id="content" class="span10">
 									
-				<h1>관리자 페이지 </h1>
-					<br/>
-					<br/>
-				
-				<span style="font-size:20pt;">	
-					<a href="${root}/admin/manageTeam.do">회원관리페이지</a>
-				</span>
-				
-				<span style="font-size:20pt;">	
-					<a href="${root}/admin/createLeague.do">리그개설</a>
-				</span>
-				
-				<span style="font-size:20pt;">	
-					<a href="${root}/admin/manageLeague.do">리그관리</a>
-				</span>
-				
-				<span style="font-size:20pt;">	
-					<a href="${root}/admin/manageReferee.do">심판관리</a>
-				</span>
-				
-				<span style="font-size:20pt;">	
-					<a href="${root}/board/adminBoard.do">공지사항게시판</a>
-				</span>
+				<h1> 관리자 페이지 </h1>
+					<br/><br/><br/><br/><br/>
+					
+				<div class="row">
+					<div class="col-md-2">
+						<a href="${root}/admin/manageTeam.do">
+							<img src="${root}/img/adminImg/group.png " class="img-rounded" width="256" height="256"/><span style="font-size:15pt; ">회원관리페이지</span>
+							
+						</a>
+					</div>
+					
+					<div class="col-md-2">
+						<a href="${root}/admin/createLeague.do">
+							<img src="${root}/img/adminImg/league2.png " class="img-rounded" alt="Cinque Terre" width="256" height="256"/>
+							
+							<span class='col12' style="font-size:15pt; text-align: center;">리그개설</a>
+						</a>
+					</div>
+					
+					<div class="col-md-2">
+						<a href="${root}/admin/manageLeague.do">
+							<img src="${root}/img/adminImg/trophy.png " class="img-rounded" alt="Cinque Terre" width="256" height="256"/>
+							<span style="font-size:15pt; text-align: center;">리그관리</a></span>
+						</a>
+					</div>
+					
+					<div class="col-md-2">
+						<a href="${root}/admin/manageReferee.do">
+							<img src="${root}/img/adminImg/referee.png " class="img-rounded" width="256" height="256"/>
+							<span style="font-size:15pt;">심판관리</span></a></span>
+						</a>
+					</div>
+					
+					<div class="col-md-2">
+						<a href="${root}/board/adminBoard.do">
+							<img src="${root}/img/adminImg/commonboard.png " class="img-rounded" alt="Cinque Terre" width="256" height="256"/>
+							<span style="font-size:15pt;">공지사항게시판</span>
+						</a>
+					</div>
+					<div class="col-md-2"></div>
+				</div>
+				<br/><br/><br/><br/><br/><br/><br/><br/>				
 			</div>
 		</div>		
 	</div>

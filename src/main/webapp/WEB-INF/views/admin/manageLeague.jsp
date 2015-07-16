@@ -82,6 +82,14 @@
 						</div>
 					</div>
 					
+					<!-- search -->
+					<div class="text-right">
+						<form action="${root }/league/searchLeague.do" method="get" id="search-box" onsubmit="if(this.q.value ==' 리그 이름 검색'){this.q.focus();return false;}">
+							<input type="text" name="leagueName"  style="color: #D2D2D2;" value="리그 검색" onfocus="this.value='' "/>
+							<input type="submit" class="btn btn-defaulty btn-sm"  value="검색"/>							
+						</form>						
+					</div>
+					
 					<c:if test="${manageLeagueList==null }">
 						<div>	
 							<span>검색결과가 없습니다.</span>												
@@ -126,7 +134,7 @@
 											</td>											
 										</c:if>
 										
-										<c:if test="${manageLeagueList.leagueState== 1 }">
+										<c:if test="${manageLeagueList.leagueState!= -1 }">
 											<td>
 												<a href="${root}/admin/leagueSwitch.do?pageNumber=${currentPage }&leagueCode=${manageLeagueList.leagueCode }&leagueState=${manageLeagueList.leagueState}">
 													<span class="label label-warning">게시하기 않기</span>

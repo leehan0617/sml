@@ -149,6 +149,22 @@ public class TeamController {
 	}
 	
 	/**
+	 * 
+	 * @함수명: searchRecord
+	 * @작성일: 2015. 7. 16.
+	 * @작성자: 정성남
+	 * @설명 :
+	 */
+	@RequestMapping(value="/teamPage/searchRecord.do" , method=RequestMethod.GET)
+	public ModelAndView searchRecord(HttpServletRequest request){
+		logger.info("TeamController searchRecord");			
+		ModelAndView mav = new ModelAndView();	
+		mav.addObject("request",request);
+		service.searchRecord(mav);
+		return mav;
+	}
+	
+	/**
 	 * @name : TeamController
 	 * @date : 2015. 7. 2.
 	 * @author : 이희재
@@ -290,4 +306,7 @@ public class TeamController {
 		
 		return mav;
 	}
+	
+	
+	
 }

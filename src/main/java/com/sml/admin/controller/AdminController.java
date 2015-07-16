@@ -273,4 +273,22 @@ public class AdminController {
 			adminService.searchPlace(mav);
 			return mav;
 		}	
+		
+		/**
+		 * @name : searchTeamMember
+		 * @date : 2015. 7. 16.
+		 * @author : 변형린
+		 * @description : 공지사항 회원관리게시판에서 팀이름으로 회원 검색
+		 */
+		@RequestMapping(value="/admin/searchTeamMember.do",method=RequestMethod.GET)
+		public ModelAndView searchTeamMember(HttpServletRequest request){
+			logger.info("searchTeamMember-----------");
+			ModelAndView mav=new ModelAndView();
+			mav.addObject("request",request);
+
+			adminService.searchTeamMember(mav);
+			return mav;
+		}
+		
+		
 }

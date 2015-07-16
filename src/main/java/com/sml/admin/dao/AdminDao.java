@@ -22,4 +22,6 @@ public interface AdminDao {
 	public LeagueDto leagueUpdate(int leagueCode);
 	public int leagueUpdateOk(LeagueDto leagueDto);
 	public int leagueSwitch(int leagueState, int leagueCode);
+	public List<HashMap<String,Object>> searchTeamMember(String teamName);
+	
 }

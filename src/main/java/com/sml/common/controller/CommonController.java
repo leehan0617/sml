@@ -167,4 +167,23 @@ public class CommonController {
 		out.print(ja.toString());
 
 	} 
+	
+	
+		
+	/**
+	 * @name : searchBoard
+	 * @date : 2015. 6. 23.
+	 * @author : 변형린
+	 * @description : 관리자 공지사항게시판에서 공지사항 검색
+	 */
+	
+	@RequestMapping(value="/board/searchBoard.do",method=RequestMethod.GET)
+	public ModelAndView searchBoard(HttpServletRequest request){
+		logger.info("searchBoard-----------");
+		ModelAndView mav=new ModelAndView();
+		mav.addObject("request",request);
+		commonService.searchBoard(mav);
+		
+		return mav;
+	}
 }

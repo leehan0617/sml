@@ -12,6 +12,8 @@ public interface TeamService {
 	public void goTeamPage(ModelAndView mav);
 	
 	public void viewTeamRecord(ModelAndView mav);
+	public void searchRecord(ModelAndView mav);
+	
 	public void searchRegion(ModelAndView mav);
 	public void updateTeamEmblem(ModelAndView mav);
 	public void updateTeamEmblemOk(ModelAndView mav);
@@ -28,5 +30,6 @@ public interface TeamService {
 	public void replyDelete(ModelAndView mav);
 
 	public ModelAndView editTeamIntro(HttpServletRequest request);
+	
 	
 }

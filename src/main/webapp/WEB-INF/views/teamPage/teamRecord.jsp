@@ -93,14 +93,16 @@
 			  <tr>
 			   <td align="center">멤버가 존재하지 않습니다.</td>
 			  </tr>		
-			</c:if>			
+			</c:if>	
+					
             <c:forEach var="record" items="${recordList}">
 			  <tr>
 				<td>${record.GAMECODE}</td>
 				<td>${record.SPORTTYPE}</td>
-				<td>${record.TEAMCODE1}</td>
-				<td>VS</td>
-				<td>${record.TEAMCODE2}<br/>${record.GAMEPLACE}<br/><fmt:formatDate value="${record.GAMEDATE}" pattern="MM-dd"/>&nbsp;&nbsp;${record.GAMETIME}</td>
+				<td>${record.GAMETYPE}</td>
+				<td>${record.EMBLEM1} ${record.TEAM1}</td>
+				<td>VS<br/>${record.GAMEPLACE}<br/><fmt:formatDate value="${record.GAMEDATE}" pattern="MM-dd"/>&nbsp;&nbsp;${record.GAMETIME}</td>
+				<td>${record.EMBLEM2} ${record.TEAM2}</td>
 				<td>${record.GAMERESULT}</td>
 				<td>${record.GAMESTATE}</td>								
 			  </tr>
@@ -112,21 +114,20 @@
       </div>        
       </div> 	
 		<div id="navbar" class="navbar-collapse collapse">			 
-          <form class="navbar-form navbar-right" action="${root}/teamPage/searchMember.do" method="GET">
+          <form class="navbar-form navbar-right" action="${root}/teamPage/searchRecord.do" method="GET">
            
             <div class="form-group">
               <input type="text" placeholder="검색어를 입력하세요" class="form-control" name="searchBoxName">
               <input type="hidden" name="currentPage" value="${currentPage}">
               <input type="hidden" name="teamName" value="${teamName}">
-			  <input type="hidden" name="pageNumber" value="${pageNumber}">
-			  <input type="hidden" name="teamGrade" value="${teamGrade}">
+			  		  
             </div>             
              <button class="btn btn-success" type="submit"><span class="glyphicon glyphicon-search"></span></button>           	
           </form>
         </div>
     <div align="center">    
  			
-		<c:if test="${count>0 }">
+		<c:if test="${count>0&&searchBoxName==null}">			
 			<c:set var="pageBlock" value="${5}"/>
 			<c:set var="pageCount" value="${count/boardSize+(count%boardSize==0 ? 0:1)}"/>
 			<fmt:parseNumber var="rs" value="${(currentPage-1)/pageBlock }" integerOnly="true"/>
@@ -136,37 +137,46 @@
 			
 			<c:if test="${endPage>pageCount }">
 				<c:set var="endPage" value="${pageCount }"/>
-			</c:if>
-			
-			<c:if test="${teamGrade!=null}">
+			</c:if>		
 			<ul class="pager">
 			<c:if test="${startPage>pageBlock }">
-				<li><a href="${root }/teamPage/teamMemberInfo.do?pageNumber=${startPage-pageBlock}&teamName=${teamName}&teamCode=${teamCode}&teamGrade=${teamGrade}">BACK</a></li>
+				<li><a href="${root }/teamPage/viewTeamRecord.do?pageNumber=${startPage-pageBlock}&teamName=${teamName}">BACK</a></li>
 			</c:if>
 			
 			<c:forEach var="i" begin="${startPage}" end="${endPage}">
-				<li><a href="${root }/teamPage/teamMemberInfo.do?pageNumber=${i}&teamName=${teamName}&teamCode=${teamCode}&teamGrade=${teamGrade}">${i }</a></li>
+				<li><a href="${root }/teamPage/viewTeamRecord.do?pageNumber=${i}&teamName=${teamName}">${i }</a></li>
 			</c:forEach>
 			
 			<c:if test="${endPage<pageCount }">
-				<li><a href="${root }/teamPage/teamMemberInfo.do?pageNumber=${startPage+pageBlock}&teamName=${teamName}&teamCode=${teamCode}&teamGrade=${teamGrade}">NEXT</a></li>
+				<li><a href="${root }/teamPage/viewTeamRecord.do?pageNumber=${startPage+pageBlock}&teamName=${teamName}">NEXT</a></li>
 			</c:if>
-			</ul>
-			</c:if>
+			</ul>					
+		</c:if>
+		
+		<c:if test="${count>0&&searchBoxName!=null}">		
+			<c:set var="pageBlock" value="${5}"/>
+			<c:set var="pageCount" value="${count/boardSize+(count%boardSize==0 ? 0:1)}"/>
+			<fmt:parseNumber var="rs" value="${(currentPage-1)/pageBlock }" integerOnly="true"/>
 			
-			<c:if test="${teamGrade==null}">
+			<c:set var="startPage" value="${rs*pageBlock+1 }"/>
+			<c:set var="endPage" value="${startPage+pageBlock-1 }"/>
+			
+			<c:if test="${endPage>pageCount }">
+				<c:set var="endPage" value="${pageCount }"/>
+			</c:if>			
+			<ul class="pager">
 			<c:if test="${startPage>pageBlock }">
-				<a href="${root }/teamPage/teamMemberInfo.do?pageNumber=${startPage-pageBlock}&teamName=${teamName}&teamCode=${teamCode}">[이전]</a>
+				<li><a href="${root }/teamPage/searchRecord.do?pageNumber=${startPage-pageBlock}&teamName=${teamName}&searchBoxName=${searchBoxName}">BACK</a></li>
 			</c:if>
 			
 			<c:forEach var="i" begin="${startPage}" end="${endPage}">
-				<a href="${root }/teamPage/teamMemberInfo.do?pageNumber=${i}&teamName=${teamName}&teamCode=${teamCode}">[${i }]</a>
+				<li><a href="${root }/teamPage/searchRecord.do?pageNumber=${i}&teamName=${teamName}&searchBoxName=${searchBoxName}">${i }</a></li>
 			</c:forEach>
 			
 			<c:if test="${endPage<pageCount }">
-				<a href="${root }/teamPage/teamMemberInfo.do?pageNumber=${startPage+pageBlock}&teamName=${teamName}&teamCode=${teamCode}">[다음]</a>
+				<li><a href="${root }/teamPage/searchRecord.do?pageNumber=${startPage+pageBlock}&teamName=${teamName}&searchBoxName=${searchBoxName}">NEXT</a></li>
 			</c:if>
-			</c:if>
+			</ul>					
 		</c:if>
 	<br/><br/><br/>	
 	</div>

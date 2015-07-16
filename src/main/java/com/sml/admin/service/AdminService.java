@@ -17,4 +17,5 @@ public interface AdminService {
 	public void leagueUpdateOk(ModelAndView mav);
 	public void leagueSwitch(ModelAndView mav);
 	public void searchPlace(ModelAndView mav);
+	public void searchTeamMember(ModelAndView mav);
 }

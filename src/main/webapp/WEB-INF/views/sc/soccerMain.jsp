@@ -2,9 +2,9 @@
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <c:set var="root" value="${pageContext.request.contextPath }"/>
-
+<c:set var="sportCode" value="0"/>
 <!DOCTYPE html>
-<html lang="en"><head>
+<html lang="ko"><head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -13,7 +13,7 @@
     <meta name="author" content="">
     <link rel="icon" href="../../favicon.ico">
 
-    <title>Carousel Template for Bootstrap</title>
+    <title>SML Soccer Page</title>
 
     <!-- Bootstrap core CSS -->
     <link href="${root}/resources/css/bootstrap.css" rel="stylesheet" type="text/css">
@@ -41,20 +41,35 @@
             </div>
             <div id="navbar" class="navbar-collapse collapse">
               <ul class="nav navbar-nav">
-                <li class="active"><a href="#">Home</a></li>
-                <li><a href="#about">About</a></li>
-                <li><a href="#contact">Contact</a></li>
+              	<li class="active"><a href="#" data-toggle='modal' data-target='#modalSoccerBoard' onclick="viewSoccerBoard('${root}','${sportCode }','${currentPage}')">공지사항</a></li>
+                <li><a href="#">경기규칙</a></li>
+                <li><a href="#about">팀리스트</a></li>
+                <li><a href="#contact">심판현황</a></li>
                 <li class="dropdown">
-                  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Dropdown <span class="caret"></span></a>
+                  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">다른종목가기<span class="caret"></span></a>
                   <ul class="dropdown-menu" role="menu">
-                    <li><a href="#">Action</a></li>
-                    <li><a href="#">Another action</a></li>
-                    <li><a href="#">Something else here</a></li>
+                  	<li class="divider"></li>
+                    <li><a href="#">축구</a></li>
                     <li class="divider"></li>
-                    <li class="dropdown-header">Nav header</li>
-                    <li><a href="#">Separated link</a></li>
-                    <li><a href="#">One more separated link</a></li>
+                    <li><a href="#">야구</a></li>
+                    <li class="divider"></li>
+                    <li><a href="#">족구</a></li>
+                    <li class="divider"></li>
+                    <li><a href="#">풋살</a></li>
+                    <li class="divider"></li>
                   </ul>
+                </li>
+                <li>
+	                <form class="form-inline"  id="searchForm" name="searchForm" style="padding-top:10px;">
+						<div class="input-group">
+							<input type="text" class="form-control" placeholder="팀명을 검색하세요." name="teamName" id="searchTeamName">
+							<span class="input-group-btn">
+								<button class="btn btn-default" type="button" id="goTeamPage">
+									<span class="glyphicon glyphicon-search" aria-hidden="true"></span>
+								</button>
+							</span>
+						</div><!-- /input-group -->			
+					</form>
                 </li>
               </ul>
             </div>
@@ -79,9 +94,9 @@
           <img class="first-slide" src="${root }/resources/images/soccer01.jpg" alt="First slide">
           <div class="container">
             <div class="carousel-caption">
-              <h1>Example headline.</h1>
-              <p>Note: If you're viewing this page via a <code>file://</code> URL, the "next" and "previous" Glyphicon buttons on the left and right might not load/display properly due to web browser security rules.</p>
-              <p><a class="btn btn-lg btn-primary" href="#" role="button">Sign up today</a></p>
+              <h1>WELCOME SML SOCCER PAGE </h1>
+              <p>이 페이지에는 축구에 관련된 리그 및 팀들간 정보가 있습니다.</p>
+              <p><a class="btn btn-lg btn-primary" href="#" role="button">Default Button</a></p>
             </div>
           </div>
         </div>
@@ -89,9 +104,9 @@
           <img class="second-slide" src="${root }/resources/images/soccer03.jpg" alt="Second slide">
           <div class="container">
             <div class="carousel-caption">
-              <h1>Another example headline.</h1>
-              <p>Cras justo odio, dapibus ac facilisis in, egestas eget quam. Donec id elit non mi porta gravida at eget metus. Nullam id dolor id nibh ultricies vehicula ut id elit.</p>
-              <p><a class="btn btn-lg btn-primary" href="#" role="button">Learn more</a></p>
+              <h1>공지사항</h1>
+              <p>축구에 관련된 실시간 소식 및 정보를 여기서 확인해주세요.</p>
+              <p><a class="btn btn-lg btn-primary" role="button" data-toggle='modal' data-target='#modalSoccerBoard' onclick="viewSoccerBoard('${root}','${sportCode }','${currentPage}')">공지사항보기</a></p>
             </div>
           </div>
         </div>
@@ -99,9 +114,9 @@
           <img class="third-slide" src="${root}/resources/images/soccer04.jpg" alt="Third slide">
           <div class="container">
             <div class="carousel-caption">
-              <h1>One more for good measure.</h1>
-              <p>Cras justo odio, dapibus ac facilisis in, egestas eget quam. Donec id elit non mi porta gravida at eget metus. Nullam id dolor id nibh ultricies vehicula ut id elit.</p>
-              <p><a class="btn btn-lg btn-primary" href="#" role="button">Browse gallery</a></p>
+              <h1>다른종목이 궁금하세요?</h1>
+              <p>SML KOREA는 축구이외에도 야구,족구,풋살에 관한 친선및리그경기 매칭서비스를 제공하고있습니다.</p>
+              <p><a class="btn btn-lg btn-primary" href="#" role="button">다른종목가기</a></p>
             </div>
           </div>
         </div>
@@ -126,22 +141,22 @@
       <!-- Three columns of text below the carousel -->
       <div class="row">
         <div class="col-lg-4">
-          <img class="img-circle" src="data:image/gif;base64,R0lGODlhAQABAIAAAHd3dwAAACH5BAAAAAAALAAAAAABAAEAAAICRAEAOw==" alt="Generic placeholder image" width="140" height="140">
-          <h2>Heading</h2>
-          <p>Donec sed odio dui. Etiam porta sem malesuada magna mollis euismod. Nullam id dolor id nibh ultricies vehicula ut id elit. Morbi leo risus, porta ac consectetur ac, vestibulum at eros. Praesent commodo cursus magna.</p>
-          <p><a class="btn btn-default" href="#" role="button">View details »</a></p>
+          <img class="img-circle" src="${root}/resources/images/notice.png" alt="Generic placeholder image" width="140" height="140">
+          <h2>리그 게시판</h2>
+          <p>현재 진행중인 리그들에 관심이 있으시면 아래 버튼을 클릭해주세요.</p>
+          <p><a class="btn btn-default" href="#" role="button">리그 보기</a></p>
         </div><!-- /.col-lg-4 -->
         <div class="col-lg-4">
-          <img class="img-circle" src="data:image/gif;base64,R0lGODlhAQABAIAAAHd3dwAAACH5BAAAAAAALAAAAAABAAEAAAICRAEAOw==" alt="Generic placeholder image" width="140" height="140">
-          <h2>Heading</h2>
-          <p>Duis mollis, est non commodo luctus, nisi erat porttitor ligula, eget lacinia odio sem nec elit. Cras mattis consectetur purus sit amet fermentum. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh.</p>
-          <p><a class="btn btn-default" href="#" role="button">View details »</a></p>
+          <img class="img-circle" src="${root}/resources/images/geo.png" width="140" height="140">
+          <h2>경기 대진표</h2>
+          <p>실시간 경기 대진표를 보여주고 있습니다. 대진표를 보려면 여기를 눌러주세요.</p>
+          <p><a class="btn btn-default" href="#" role="button">대진표 보기</a></p>
         </div><!-- /.col-lg-4 -->
         <div class="col-lg-4">
-          <img class="img-circle" src="data:image/gif;base64,R0lGODlhAQABAIAAAHd3dwAAACH5BAAAAAAALAAAAAABAAEAAAICRAEAOw==" alt="Generic placeholder image" width="140" height="140">
-          <h2>Heading</h2>
-          <p>Donec sed odio dui. Cras justo odio, dapibus ac facilisis in, egestas eget quam. Vestibulum id ligula porta felis euismod semper. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus.</p>
-          <p><a class="btn btn-default" href="#" role="button">View details »</a></p>
+          <img class="img-circle" src="${root}/resources/images/surface.png" alt="Generic placeholder image" width="140" height="140">
+          <h2>통계 자료</h2>
+          <p>SML 축구회원 및 팀들간 통계에 관심이 있으시면 아래 버튼을 눌러주세요</p>
+          <p><a class="btn btn-default" href="#" role="button">통계자료 보기</a></p>
         </div><!-- /.col-lg-4 -->
       </div><!-- /.row -->
 
@@ -196,5 +211,79 @@
       </footer>
 
     </div><!-- /.container -->
+    
+    <div class="modal fade" id="modalSoccerBoard" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
+ 	 <div class="modal-dialog">
+    	<div class="modal-content">
+    		<div class="modal-header">
+    			<h3>공지사항</h3>
+    		</div>
+    		<div class="modal-body">
+    			<table class="table table-striped">
+					<thead>
+						<tr> 
+							<th style="width:15%">글번호</th><th style="width:45%">제목</th><th style="width:15%">작성자</th><th style="width:25%">작성일</th> 
+						</tr> 
+					</thead>
+					<tbody class="soccerBody">	
+					</tbody>
+				</table>
+				<nav>
+  					<ul class="pager">
+  					</ul>
+  				</nav>
+    		</div>
+      		<div class="modal-footer">
+            	<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+      		</div>
+  		</div>
+     </div>
+   </div>
+   
+<script>
+	function viewSoccerBoard(root,sportCode,currentPage){
+		var addr = root+"/viewSoccerBoard?sportCode="+sportCode+"&currentPage="+currentPage;
+		
+		$.ajax({
+			type:"get",
+			url:addr,
+			success:function(data){
+				console.log(data);
+				var boardSize = data.boardSize;
+				var blockCount = data.blockCount;
+				var blockSize = data.blockSize;
+				var currentPage = data.currentPage;
+				var count = data.count;
+				var list = data.soccerBoardList;
+				var rs = Math.floor((currentPage-1)/blockSize);
+				var startBlock = rs*blockSize+1;
+				var endBlock = startBlock+blockSize-1;
+				
+				$(".soccerBody").empty();
+				$(".pager").empty();
+				
+				$.each(list,function(i,val){
+					$('.soccerBody').append('<tr><td>'+list[i].boardNumber+"</td><td><a data-toggle='modal' data-target='#modalSoccerBoardRead' onclick=readSoccerBoard(\'"+root+"\','"+sportCode+"','"+currentPage+"','"+list[i].boardNumber+"')>"
+										+list[i].boardTitle+'</td><td>'+list[i].boardWriter+'</td><td>'+
+										(list[i].boardDate.year+1900)+'-'+(list[i].boardDate.month+1)+'-'+list[i].boardDate.date+'</td></tr>');
+				});
+				
+				if(startBlock > blockSize){
+					$('.pager').append("<li><a onclick=viewSoccerBoard(\'"+root+"\','"+sportCode+"','"+(startBlock-blockSize)+"')>"+'Previous'+"</a></li>");
+				}
+				
+				for(var i=startBlock ; i<=endBlock ; i++){
+					$('.pager').append("<li><a onclick=viewSoccerBoard(\'"+root+"\','"+sportCode+"','"+i+"')>"+i+"</a></li>");	
+				}
+				
+				if(endBlock < blockCount){
+					$('.pager').append("<li><a onclick=viewSoccerBoard(\'"+root+"\','"+sportCode+"','"+(startBlock+blockSize)+"')>"+'Next'+"</a></li>");
+				}
+
+			}
+		});
+	}
+</script>
+    
  </body>
  </html>

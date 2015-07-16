@@ -166,4 +166,105 @@ public class LeagueDaoImpl implements LeagueDao{
 		
 		sqlSession.update("dao.LeagueMapper.changeLeagueState", leagueCode);
 	}
+
+	@Override
+	public List<LeagueDto> searchLeague(String leagueName) {
+		return sqlSession.selectList("dao.LeagueMapper.searchLeague", leagueName);
+
+	}
+
+	/**
+	 * @name : getTeamLeagueInfo
+	 * @date : 2015. 7. 16.
+	 * @author : 이희재
+	 * @description : teamName을 이용하여 참가 중인 리그의 정보를 가져옴
+	 */
+	@Override
+	public LeagueDto getTeamLeagueInfo(String teamName) {
+		return sqlSession.selectOne("dao.LeagueMapper.getTeamLeagueInfo", teamName);
+	}
+
+	/**
+	 * @name : getLeagueTeamList
+	 * @date : 2015. 7. 16.
+	 * @author : 이희재
+	 * @description : 해당 리그에 참가하고 있는 모든 팀의 정보
+	 */
+	@Override
+	public List<TeamDto> getLeagueTeamList(int leagueCode) {
+		return sqlSession.selectList("dao.LeagueMapper.getLeagueTeamList", leagueCode);
+	}
+
+	/**
+	 * @name : getRecordList
+	 * @date : 2015. 7. 16.
+	 * @author : 이희재
+	 * @description : 해당 리그에 관한 경기 기록을 모두 가져옴
+	 */
+	@Override
+	public List<RecordDto> getRecordList(int leagueCode) {
+		return sqlSession.selectList("dao.LeagueMapper.getRecordList", leagueCode);
+	}
+
+	/**
+	 * @name : getCountWin
+	 * @date : 2015. 7. 16.
+	 * @author : 이희재
+	 * @description : 팀 코드 와 리그 코드에 따른 승수 출력
+	 */
+	@Override
+	public int getCountWin(int teamCode, int leagueCode) {
+		HashMap<String, Object> hMap=new HashMap<String, Object>();
+		hMap.put("teamCode", teamCode);
+		hMap.put("leagueCode", leagueCode);
+		
+		return sqlSession.selectOne("dao.LeagueMapper.getCountWin",hMap);
+	}
+
+	/**
+	 * @name : getCountLose
+	 * @date : 2015. 7. 16.
+	 * @author : 이희재
+	 * @description : 팀 코드 와 리그 코드에 따른 패수 출력
+	 */
+	@Override
+	public int getCountLose(int teamCode, int leagueCode) {
+		HashMap<String, Object> hMap=new HashMap<String, Object>();
+		hMap.put("teamCode", teamCode);
+		hMap.put("leagueCode", leagueCode);
+		
+		return sqlSession.selectOne("dao.LeagueMapper.getCountLose",hMap);
+	}
+
+	/**
+	 * @name : getCountDraw
+	 * @date : 2015. 7. 16.
+	 * @author : 이희재
+	 * @description : 팀 코드 와 리그 코드에 따른 무수 출력
+	 */
+	@Override
+	public int getCountDraw(int teamCode, int leagueCode) {
+		HashMap<String, Object> hMap=new HashMap<String, Object>();
+		hMap.put("teamCode", teamCode);
+		hMap.put("leagueCode", leagueCode);
+		
+		return sqlSession.selectOne("dao.LeagueMapper.getCountDraw",hMap);
+	}
+
+	/**
+	 * @name : getCountGame
+	 * @date : 2015. 7. 16.
+	 * @author : 이희재
+	 * @description : 팀 코드 와 리그 코드에 따른 전체 게임 수 출력
+	 */
+	@Override
+	public int getCountGame(int teamCode, int leagueCode) {
+		HashMap<String, Object> hMap=new HashMap<String, Object>();
+		hMap.put("teamCode", teamCode);
+		hMap.put("leagueCode", leagueCode);
+		
+		return sqlSession.selectOne("dao.LeagueMapper.getCountGame",hMap);
+	}
+	
+	
 }

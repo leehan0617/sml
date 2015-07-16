@@ -291,21 +291,21 @@ public class MemberServiceImpl implements MemberService{
 		HttpServletRequest request=(HttpServletRequest) hMap.get("request");
 		MemberDto member=(MemberDto) hMap.get("member");				
 		String searchBoxName=request.getParameter("searchBoxName");
-		System.out.println("22:"+searchBoxName);
+		//System.out.println("22:"+searchBoxName);
 		String teamName=request.getParameter("teamName");	
-		System.out.println("33:"+teamName);
+		//System.out.println("33:"+teamName);
 		String teamGrade=request.getParameter("teamGrade");	
-		System.out.println("44:"+teamGrade);
+		//System.out.println("44:"+teamGrade);
 		int teamCode=dao.getTeamInfo(teamName).getTeamCode();		
 		member.setTeamCode(teamCode);
-		System.out.println("55:"+teamCode);
+		//System.out.println("55:"+teamCode);
 		
 		int boardSize=5;
 		int currentPage=Integer.parseInt(request.getParameter("currentPage"));
 		int startRow=(currentPage-1)*boardSize+1;
 		int endRow=currentPage*boardSize;
 		
-		int count=dao.getTeamMemberCount(teamCode);
+		int count=dao.getSearchTeamMemberCount(teamCode,searchBoxName);
 		logger.info("count:"+count);
 		logger.info("currentPage"+currentPage);
 		logger.info("startRow"+startRow);
@@ -317,7 +317,7 @@ public class MemberServiceImpl implements MemberService{
 		}
 		
 		mav.addObject("teamMemberList",teamMemberList);
-			
+		mav.addObject("searchBoxName",searchBoxName);
 		mav.addObject("teamName",teamName);
 		mav.addObject("teamGrade",teamGrade);
 		mav.addObject("teamCode",teamCode);	

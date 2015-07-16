@@ -135,9 +135,9 @@
             <div class="form-group">
               <input type="text" placeholder="검색어를 입력하세요" class="form-control" name="searchBoxName">
               <input type="hidden" name="currentPage" value="${currentPage}">
-              <input type="hidden" name="teamName" value="${teamName}">
-			  <input type="hidden" name="pageNumber" value="${pageNumber}">
+              <input type="hidden" name="teamName" value="${teamName}">			 
 			  <input type="hidden" name="teamGrade" value="${teamGrade}">
+			  <input type="hidden" name="teamCode" value="${teamCode}">
             </div>             
              <button class="btn btn-success" type="submit"><span class="glyphicon glyphicon-search"></span></button>           	
           </form>
@@ -156,7 +156,7 @@
 				<c:set var="endPage" value="${pageCount }"/>
 			</c:if>
 			
-			<c:if test="${teamGrade!=null}">
+			<c:if test="${count>0&&searchBoxName==null}">
 			<ul class="pager">
 			<c:if test="${startPage>pageBlock }">
 				<li><a href="${root }/teamPage/teamMemberInfo.do?pageNumber=${startPage-pageBlock}&teamName=${teamName}&teamCode=${teamCode}&teamGrade=${teamGrade}">BACK</a></li>
@@ -172,18 +172,20 @@
 			</ul>
 			</c:if>
 			
-			<c:if test="${teamGrade==null}">
+			<c:if test="${count>0&&searchBoxName!=null}">
+			<ul class="pager">
 			<c:if test="${startPage>pageBlock }">
-				<a href="${root }/teamPage/teamMemberInfo.do?pageNumber=${startPage-pageBlock}&teamName=${teamName}&teamCode=${teamCode}">[이전]</a>
+				<li><a href="${root }/teamPage/searchMember.do?pageNumber=${startPage-pageBlock}&teamName=${teamName}&teamCode=${teamCode}&teamGrade=${teamGrade}&searchBoxName=${searchBoxName}">BACK</a></li>
 			</c:if>
 			
 			<c:forEach var="i" begin="${startPage}" end="${endPage}">
-				<a href="${root }/teamPage/teamMemberInfo.do?pageNumber=${i}&teamName=${teamName}&teamCode=${teamCode}">[${i }]</a>
+				<li><a href="${root }/teamPage/searchMember.do?pageNumber=${i}&teamName=${teamName}&teamCode=${teamCode}&teamGrade=${teamGrade}&searchBoxName=${searchBoxName}">${i }</a></li>
 			</c:forEach>
 			
 			<c:if test="${endPage<pageCount }">
-				<a href="${root }/teamPage/teamMemberInfo.do?pageNumber=${startPage+pageBlock}&teamName=${teamName}&teamCode=${teamCode}">[다음]</a>
+				<li><a href="${root }/teamPage/searchMember.do?pageNumber=${startPage+pageBlock}&teamName=${teamName}&teamCode=${teamCode}&teamGrade=${teamGrade}&searchBoxName=${searchBoxName}">NEXT</a></li>
 			</c:if>
+			</ul>
 			</c:if>
 		</c:if>
 	<br/><br/><br/>	

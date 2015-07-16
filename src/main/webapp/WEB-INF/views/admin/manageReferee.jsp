@@ -84,14 +84,15 @@
 									
 					<div class="text-right">
 						<form action="${root }/admin/refereeSearch.do" method="get" id="search-box" onsubmit="if(this.q.value ==' 심판 이름 검색'){this.q.focus();return false;}">
-							<input type="text" name="refereeName" style="height:33px; color: #D2D2D2;" value="심판 검색" onfocus="this.value='' "/>
-							<input type="submit" class="btn btn-defaulty btn-sm" value="검색"/>							
+							<input type="text" name="refereeName"  style="color: #D2D2D2;" value="심판 검색" onfocus="this.value='' "/>
+							<input type="submit" class="btn btn-defaulty btn-sm"  value="검색"/>							
 						</form>						
 					</div>
 							
 					<c:if test="${refereeList==null }">
 						<div>	
-							<span>검색결과가 없습니다.</span>												
+							<span>검색결과가 없습니다.</span>		
+							<span>첫페이지로</span>										
 						</div>
 					</c:if>
 					
