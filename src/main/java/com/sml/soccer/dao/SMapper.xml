@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+  
+ <mapper namespace="soccer.dao.SMapper">
+	<select id="getBoardCount" parameterType="int" resultType="int">
+		select count(*) from board where sportCode = #{sportCode}
+	</select>
+	
+	<select id="getSoccerBoardList" parameterType="java.util.HashMap" resultType="com.sml.common.dto.CommonBoardDto">
+		<![CDATA[
+			 select * from(
+             	select rownum as rrownum, d.* from(
+             		select rownum as rnum , c.* from 
+              			(select a.* from board a where a.sportCode = #{sportCode} order by boardNumber) c order by rnum desc)d ) 
+              				where rrownum>= #{startRow} and rrownum<= #{endRow}
+		]]>
+	</select>
+</mapper>
