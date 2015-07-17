@@ -44,7 +44,6 @@ public class TeamServiceImpl implements TeamService{
 		
 		HttpServletRequest request=(HttpServletRequest)map.get("request");
 		String teamId=request.getParameter("teamId");
-		
 		String check=dao.idCheck(teamId);
 		
 		mav.addObject("teamId",teamId);

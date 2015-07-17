@@ -7,9 +7,9 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>팀장 정보 입력</title>
-<script type="text/javascript" src="${root}/js/member/jquery.js"></script>
 <script type="text/javascript" src="${root}/js/member/member.js"></script>
 <script type="text/javascript" src="${root}/js/member/jquery-ui.js"></script>
+<script type="text/javascript" src="${root}/js/member/jquery.js"></script>
 <script type="text/javascript" src="${root}/js/xhr/xhr.js"></script>
 <link rel="stylesheet" type="text/css"  href="${root}/css/member/jquery-ui.css"/>
 <script type="text/javascript">

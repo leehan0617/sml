@@ -171,4 +171,7 @@ function modalWriteTeamBoard(root,teamName,teamCode){
 	});
 }
 
-
+function viewSchedule(root,teamName){
+	var url=root+"/teamPage/teamScheduleEdit.do?teamName="+teamName;
+	window.open(url,"스케쥴","width=630,height=630");
+}

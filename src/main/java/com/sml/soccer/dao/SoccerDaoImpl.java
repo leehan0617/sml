@@ -43,16 +43,7 @@ public class SoccerDaoImpl implements SoccerDao {
 		return sqlSession.selectList("dao.SoccerMapper.todayMatch", matchDay);
 	}
 
-	/**
-	 * @name : SoccerDaoImpl
-	 * @date : 2015. 6. 23.
-	 * @author : 이희재
-	 * @description : 팀리스트 페이지 이동시 첫 시작으로 전체 팀 리스트 가져오기
-	 */
-	@Override
-	public List<TeamDto> getAllTeamList(String sportType) {
-		return sqlSession.selectList("dao.SoccerMapper.getAllTeamSearch", sportType);
-	}
+
 	
 	/**
 	 * @name : commonBoardDto

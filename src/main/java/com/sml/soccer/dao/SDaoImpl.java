@@ -11,6 +11,7 @@ import org.springframework.stereotype.Repository;
 
 import com.sml.common.dto.CommonBoardDto;
 import com.sml.member.dto.MemberDto;
+import com.sml.team.dto.TeamDto;
 
 @Repository
 public class SDaoImpl implements SDao{
@@ -81,6 +82,18 @@ public class SDaoImpl implements SDao{
 	public List<Date> showDayChart(String sportType) {
 		// TODO Auto-generated method stub
 		return sqlSession.selectList("soccer.dao.SMapper.showDayChart", sportType);
+	}
+	
+	/**
+	 * 
+	 * @함수명: getAllTeamList
+	 * @작성일: 2015. 7. 17.
+	 * @작성자: 정성남
+	 * @설명 :
+	 */
+	@Override
+	public List<TeamDto> getAllTeamList(String sportType) {
+		return sqlSession.selectList("soccer.dao.SMapper.getAllTeamSearch", sportType);
 	}
 	
 	

@@ -60,42 +60,6 @@ public class SoccerController{
 	}
 	
 	/**
-	 * @name : soccerRule
-	 * @date : 2015. 6. 23.
-	 * @author : 변형린
-	 * @description : 축구 규칙 페이지로 이동시키는 메소드
-	 */
-	@RequestMapping(value="/soccer/soccerRule.do", method=RequestMethod.GET)
-	public ModelAndView soccerRule(HttpServletRequest request, HttpServletResponse response){
-		logger.info("Controller/soccerRule---------");
-		
-		ModelAndView mav=new ModelAndView();
-		mav.addObject("request", request);
-		
-		soccerService.soccerRule(mav);
-		
-		return mav;
-	}
-	
-	/**
-	 * @name : soccerTeamList
-	 * @date : 2015. 6. 23.
-	 * @author : 변형린
-	 * @description : 축구 팀 리스트 페이지로 이동시키는 메소드
-	 */
-	@RequestMapping(value="/soccer/soccerTeamList.do", method=RequestMethod.GET)
-	public ModelAndView soccerTeamList(HttpServletRequest request, HttpServletResponse response){
-		logger.info("Controller/soccerMain---------");
-		
-		ModelAndView mav=new ModelAndView();
-		mav.addObject("request", request);
-		
-		soccerService.soccerTeamList(mav);
-		
-		return mav;
-	}
-	
-	/**
 	 * @name : soccerGameScore
 	 * @date : 2015. 6. 23.
 	 * @author : 변형린

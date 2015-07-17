@@ -299,4 +299,40 @@ public class AdminController {
 			adminService.searchTeamMember(mav);
 			return mav;
 		}		
+		
+	
+		/**
+		 * @name : manageLeagueRecord
+		 * @date : 2015. 7. 17.
+		 * @author : 이희재
+		 * @description : leagueCode에 해당하는 리그 기록을 가져오기 위한 메소드
+		 */
+		@RequestMapping(value="/admin/manageLeagueRecord.do",method=RequestMethod.GET)
+		public ModelAndView manageLeagueRecord(HttpServletRequest request){
+			logger.info("searchTeamMember-----------");
+			ModelAndView mav=new ModelAndView();
+			mav.addObject("request",request);
+
+			adminService.manageLeagueRecord(mav);
+			return mav;
+		}
+		
+		/**
+		 * @name : insertGameResult
+		 * @date : 2015. 7. 17.
+		 * @author : 이희재
+		 * @description : 리그의 정보를 가져오고 그에 대한 결과를 입력하는 메소드
+		 */
+		@RequestMapping(value="/admin/manageLeagueRecord.do",method=RequestMethod.GET)
+		public ModelAndView insertGameResult(HttpServletRequest request){
+			logger.info("insertGameResult-----------");
+			ModelAndView mav=new ModelAndView();
+			mav.addObject("request",request);
+
+			adminService.insertGameResult(mav);
+			return mav;
+		}
+		
+		
+		
 }
