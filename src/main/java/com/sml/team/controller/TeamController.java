@@ -138,10 +138,11 @@ public class TeamController {
 	 * @설명 :
 	 */
 	@RequestMapping(value="/teamPage/viewTeamRecord.do", method=RequestMethod.GET)
-	 public ModelAndView viewTeamRecord(HttpServletRequest request){
+	 public ModelAndView viewTeamRecord(HttpServletRequest request,TeamDto teamDto){
 		logger.info("TeamController viewTeamRecord");
 		
 		ModelAndView mav=new ModelAndView();
+		mav.addObject("teamDto",teamDto);
 		mav.addObject("request",request);
 		service.viewTeamRecord(mav);
 		
