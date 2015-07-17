@@ -98,12 +98,12 @@
             <c:forEach var="member" items="${teamMemberList}">
 			  <tr>
 				<td>${member.rnum}</td>
-				<td>${member.memberName}</td>
-				<td>${member.memberBirth}</td>
-				<td>${member.memberRegion}</td>
-				<td>${member.memberEmail}</td>
-				<td>${member.memberPhone}</td>
-				<td>${member.memberGender}</td>
+				<td><span class="glyphicon glyphicon-user">${member.memberName}</span></td>
+				<td><span class="glyphicon glyphicon-calendar">${member.memberBirth}</span></td>
+				<td><span class="glyphicon glyphicon-home">${member.memberRegion}</span></td>
+				<td><span class="glyphicon glyphicon-tag">${member.memberEmail}</span></td>
+				<td><span class="glyphicon glyphicon-earphone">${member.memberPhone}</span></td>
+				<td><span class="glyphicon glyphicon-heart">${member.memberGender}</span></td>
 				<td><button class="btn btn-success" onclick="return deleteMember('${root}','${pageNumber}','${member.memberCode}','${teamName}','${teamCode}','${teamGrade}');"><span class="glyphicon glyphicon-trash">삭제</span></button></td>			
 				
 			  </tr>
@@ -113,12 +113,12 @@
 			<c:forEach var="member" items="${teamMemberList}">
 			  <tr>
 				<td>${member.rnum}</td>
-				<td>${member.memberName}</td>
-				<td>${member.memberBirth}</td>
-				<td>${member.memberRegion}</td>
-				<td>${member.memberEmail}</td>
-				<td>${member.memberPhone}</td>
-				<td>${member.memberGender}</td>				
+				<td><span class="glyphicon glyphicon-user">${member.memberName}</span></td>
+				<td><span class="glyphicon glyphicon-calendar">${member.memberBirth}</span></td>
+				<td><span class="glyphicon glyphicon-home">${member.memberRegion}</span></td>
+				<td><span class="glyphicon glyphicon-tag">${member.memberEmail}</span></td>
+				<td><span class="glyphicon glyphicon-earphone">${member.memberPhone}</span></td>
+				<td><span class="glyphicon glyphicon-heart">${member.memberGender}</span></td>				
 			  </tr>			 
 			</c:forEach>
 			</c:otherwise>
