@@ -107,12 +107,13 @@
 				<td><br/><br/><br/><span class="label label-success">리그경기</span></td>
 				</c:if>
 				<td>
-					<img src="${root}/resources/images/${record.EMBLEM1}.jpg" width="100" height="100">&nbsp;				
+					<img src="${root}/resources/images/${record.EMBLEM1}.jpg" width="100" height="100"><img>&nbsp;				
 					<img src="${root}/resources/images/versusIcon.png" width="30" height="30"></img>&nbsp;				
-					<img src="${root}/resources/images/${record.EMBLEM2}.jpg" width="100" height="100">&nbsp;
+					<img src="${root}/resources/images/${record.EMBLEM2}.jpg" width="100" height="100"></img>&nbsp;
 					<br/>
-					${record.TEAM1}&nbsp;&nbsp;
-					${record.TEAM2}&nbsp;&nbsp;
+					${record.TEAM1}
+					&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+					${record.TEAM2}
 					<br/>
 					${record.GAMEPLACE}
 					<br/>
