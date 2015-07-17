@@ -60,7 +60,7 @@
 						<li><a data-toggle="modal" data-target="#modalTeamBoard" onclick="getTeamBoardData('${root}','${teamName}')">팀공지사항</a></li>
 						<li><a href="${root }/teamPage/teamMemberInfo.do?teamName=${team.teamName}&teamCode=${team.teamCode}&teamGrade=${teamGrade}">팀원소개</a></li>
 						<li><a href="${root }/teamPage/teamScheduleEdit.do?teamName=${teamName}">팀 스케쥴</a></li>
-						<li><a href="${root }/teamPage/viewTeamRecord.do?teamName=${team.teamName}&teamGrade=${teamGrade}">팀 기록</a></li>
+						<li><a href="${root }/teamPage/viewTeamRecord.do?teamName=${team.teamName}&teamCode=${team.teamCode}&teamGrade=${teamGrade}">팀 기록</a></li>
 						<li><a href="${root }/teamPage/viewLeagueInfo.do?teamName=${team.teamName}">참가 중인 리그 정보</a></li>
 		
 						<li class="divider"></li>
