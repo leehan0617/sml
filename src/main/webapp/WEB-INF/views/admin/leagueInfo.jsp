@@ -74,7 +74,7 @@
 			<div class="row-fluid">		
 				<div class="box span12">
 					<div class="box-header" data-original-title>
-						<h2><i class="halflings-icon user"></i><span class="break"></span>리그 리스트</h2>
+						<h2><i class="halflings-icon user"></i><span class="break"></span>리그 정보</h2>
 						<div class="box-icon">
 							<a href="#" class="btn-setting"><i class="halflings-icon wrench"></i></a>
 							<a href="#" class="btn-minimize"><i class="halflings-icon chevron-up"></i></a>
@@ -82,16 +82,60 @@
 						</div>
 					</div>
 					
-					<!-- search -->
-					<div class="text-right">
-						<form action="${root }/league/searchLeague.do" method="get" id="search-box" onsubmit="if(this.q.value ==' 리그 이름 검색'){this.q.focus();return false;}">
-							<input type="text" name="leagueName"  style="color: #D2D2D2;" value="리그 검색" onfocus="this.value='' "/>
-							<input type="submit" class="btn btn-defaulty btn-sm"  value="검색"/>							
-						</form>						
-					</div>
 					
 						<div class="box-content">
-						 
+						 <h1>리그정보 읽기</h1>	
+	<input type="hidden" name="leagueCode" value="${leagueDto.leagueCode}"/>
+	<span>
+		<span>
+			
+		<select name="leagueSport" disabled="disabled" >
+				<option>${leagueDto.leagueSport}</option>				
+		</select>	
+			
+		</span>	
+		
+		<span class="">
+			<input type="text" name="leagueImage" value="${leagueDto.leagueImage}" disabled="disabled"/>
+		</span>
+		
+		<span class="">
+			<input type="text" name="leagueRegion" value="${leagueDto.leagueRegion}" disabled="disabled">	
+		</span>	
+		
+		<br/>			
+				
+		<span class="">
+			<input type="text" name="leagueName" value="${leagueDto.leagueName}" disabled="disabled">	
+		</span>
+		
+		<span class="">
+			<input type="text" name="leagueTeamNumber" value="${leagueDto.leagueTeamNumber}" disabled="disabled">	
+		</span>	
+		
+		<span class="">
+			<input type="text" name="leagueDay" value="${leagueDto.leagueDay}" disabled="disabled">	
+		</span>	
+		
+		<span class="">
+			<input type="text" name="leagueTime" value="${leagueDto.leagueTime}" disabled="disabled">	
+		</span>	
+		
+		<span class="">
+			<input type="text" name="leagueStartDate" value="${leagueDto.leagueStartDate}" disabled="disabled">	
+		</span>	
+		
+		<span class="">
+			<input type="text" name="leagueEndDate" value="${leagueDto.leagueEndDate}" disabled="disabled">	
+		</span>	
+		
+		<br/>
+		
+		
+		<input type="button" value="글수정" onclick="updateFun('${root}','${leagueDto.leagueCode }','${pageNumber }')" />
+		<input type="button" value="글삭제" onclick="deleteFun('${root}','${leagueDto.leagueCode }','${pageNumber }')"/>				
+		<input type="button" value="글목록" onclick="location.href='${root}/admin/manageLeague.do?pageNumber=${pageNumber }'"/>
+	</span>
 							
 							<!-- 페이지 번호 							
 							<div class="pagination pagination-centered">
@@ -154,9 +198,7 @@
 		</p>
 
 	</footer>		
-	<!-- start: JavaScript-->
-
-		<script src="${root}/resources/admin/js/jquery-1.9.1.min.js"></script>
+	<script src="${root}/resources/admin/js/jquery-1.9.1.min.js"></script>
 		<script src="${root}/resources/admin/js/jquery-migrate-1.0.0.min.js"></script>	
 		<script src="${root}/resources/admin/js/jquery-ui-1.10.0.custom.min.js"></script>	
 		<script src="${root}/resources/admin/js/jquery.ui.touch-punch.js"></script>	
@@ -164,7 +206,6 @@
 		<script src="${root}/resources/admin/js/bootstrap.min.js"></script>	
 		<script src="${root}/resources/admin/js/jquery.cookie.js"></script>	
 		<script src="${root}/resources/admin/js/fullcalendar.min.js"></script>
-		<script src="${root}/resources/admin/js/jquery.dataTables.min.js"></script>
 		<script src="${root}/resources/admin/js/excanvas.js"></script>
 		<script src="${root}/resources/admin/js/jquery.flot.js"></script>
 		<script src="${root}/resources/admin/js/jquery.flot.pie.js"></script>
@@ -185,7 +226,6 @@
 		<script src="${root}/resources/admin/js/jquery.sparkline.min.js"></script>
 		<script src="${root}/resources/admin/js/counter.js"></script>
 		<script src="${root}/resources/admin/js/retina.js"></script>
-		<script src="${root}/resources/admin/js/custom.js"></script>
 </body>
 </html>
 

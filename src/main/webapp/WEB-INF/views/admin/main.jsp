@@ -105,7 +105,6 @@ div.col-md-2{
 		<script src="${root}/resources/admin/js/bootstrap.min.js"></script>	
 		<script src="${root}/resources/admin/js/jquery.cookie.js"></script>	
 		<script src="${root}/resources/admin/js/fullcalendar.min.js"></script>
-		<script src="${root}/resources/admin/js/jquery.dataTables.min.js"></script>
 		<script src="${root}/resources/admin/js/excanvas.js"></script>
 		<script src="${root}/resources/admin/js/jquery.flot.js"></script>
 		<script src="${root}/resources/admin/js/jquery.flot.pie.js"></script>
@@ -126,6 +125,5 @@ div.col-md-2{
 		<script src="${root}/resources/admin/js/jquery.sparkline.min.js"></script>
 		<script src="${root}/resources/admin/js/counter.js"></script>
 		<script src="${root}/resources/admin/js/retina.js"></script>
-		<script src="${root}/resources/admin/js/custom.js"></script>
 </body>
 </html>
