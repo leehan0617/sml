@@ -74,8 +74,8 @@ function fromServer(){
 		}
 	});
 }*/
-function refereeRegion(root, sportType,regionSido){
-	var url=root + "/referee/refereeList.do?sportType=" + sportType + "&regionSido=" + regionSido;
+function refereeRegion(root, sportCode,regionSido){
+	var url=root + "/referee/refereeList.do?sportCode=" + sportCode + "&regionSido=" + regionSido;
 	location.replace(url);
 }
 

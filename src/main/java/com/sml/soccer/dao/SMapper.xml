@@ -37,5 +37,9 @@
  			select * from team where sporttype=#{sportType}
  		]]>
  	</select>
+ 	
+ 	<select id="showLeagueInfo" parameterType="String" resultType="com.sml.league.dto.LeagueDto">
+ 		select * from leagueInfo where leagueSport=#{sportType} and leagueState = 1
+ 	</select>
 	
 </mapper>

@@ -1,8 +1,7 @@
 package com.sml.referee.service;
 
 import java.io.File;
-import java.util.ArrayList;
-import java.util.HashMap;
+
 import java.util.List;
 import java.util.Map;
 import java.util.logging.Logger;
@@ -39,9 +38,20 @@ public class RefereeServiceImpl implements RefereeService{
 		Map<String, Object> map=mav.getModelMap();
 		HttpServletRequest request=(HttpServletRequest) map.get("request");
 		
-		//각 종목 메인 페이지의 심판리스트 불러올 종목변수 (예) "축구", "족구", "야구", 
-		String sportType=request.getParameter("sportType");
+		String sportType="";
+		int sportCode = Integer.parseInt(request.getParameter("sportCode"));
+		System.out.println("sportCode:"+sportCode);
 		
+		
+		switch(sportCode){
+			case 0: sportType="축구"; break;
+			case 1: sportType="야구"; break;
+			case 2: sportType="풋살"; break;
+			case 3: sportType="족구"; break;
+		}
+		
+		//각 종목 메인 페이지의 심판리스트 불러올 종목변수 (예) "축구", "족구", "야구", 		
+		System.out.println("sportType:"+sportType);
 		//심판 리스트로 넘어갈때 맨 처음 보여줄 심판들의 지역 , 초기값은 "서울"
 		String regionSido=request.getParameter("regionSido");		
 		if(regionSido==null){
@@ -64,12 +74,12 @@ public class RefereeServiceImpl implements RefereeService{
 		if(count>0){
 			refereeList=refereeDao.refereeList(startRow, endRow, sportType, regionSido);//sportType="축구"
 		}
-		logger.info("boardSize:" + refereeList.size());
-		
+		logger.info("boardSize:" + refereeList.size());		
 		//심판 지역 리스트
 		List<String> sidoList=refereeDao.sidoList(regionSido);
 		sidoList.add(0, regionSido);
 		
+		mav.addObject("sportCode",sportCode);
 		mav.addObject("sportType", sportType);
 		mav.addObject("refereeList", refereeList);
 		mav.addObject("sidoList", sidoList);		

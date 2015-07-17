@@ -24,7 +24,7 @@ public class SController {
 	 * @함수명: soccerPage
 	 * @작성일: 2015. 7. 17.
 	 * @작성자: 정성남
-	 * @설명 :  족구페이지이동
+	 * @설명 :  축구페이지이동
 	 */
 	@RequestMapping(value="/sc", method=RequestMethod.GET)
 	public String soccerPage(HttpServletRequest request , HttpServletResponse response){
@@ -137,5 +137,20 @@ public class SController {
 		
 		return mav;
 	}
+	/**
+	 * @함수명:showLeagueInfo
+	 * @작성일:2015. 7. 17.
+	 * @작성자:이한빈 
+	 * @설명문:리그정보 가져오는 함수 
+	 */
+	@RequestMapping(value="/showLeagueInfo" , method=RequestMethod.GET)
+	public ModelAndView showLeagueInfo(HttpServletRequest request , HttpServletResponse response){
+		logger.info("SController showLeagutInfo");
+		response.setCharacterEncoding("UTF-8");
+		ModelAndView mav = service.showLeagueInfo(request);
+		return mav;
+	}
+	
+	
 
 }
