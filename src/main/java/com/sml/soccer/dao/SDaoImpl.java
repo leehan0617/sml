@@ -1,5 +1,6 @@
 package com.sml.soccer.dao;
 
+import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.logging.Logger;
@@ -9,6 +10,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import com.sml.common.dto.CommonBoardDto;
+import com.sml.member.dto.MemberDto;
 
 @Repository
 public class SDaoImpl implements SDao{
@@ -55,6 +57,30 @@ public class SDaoImpl implements SDao{
 	@Override
 	public CommonBoardDto getBoardContent(int boardNumber) {
 		return sqlSession.selectOne("soccer.dao.SMapper.getBoardContent",boardNumber);
+	}
+	/**
+	 * 
+	 * @함수명:showAgeChart
+	 * @작성일:2015. 7. 17.
+	 * @작성자:이한빈 
+	 * @설명문:연령별 지역별 통계그래프에 쓸 데이터를 가져오는 함수 
+	 */
+	@Override
+	public List<MemberDto> showAgeChart(String sportType) {
+		// TODO Auto-generated method stub
+		return sqlSession.selectList("soccer.dao.SMapper.showAgeChart" , sportType);
+	}
+	/**
+	 * 
+	 * @함수명:showDayChart
+	 * @작성일:2015. 7. 17.
+	 * @작성자:이한빈 
+	 * @설명문:게임발생일 데이터를 가져오는 함
+	 */
+	@Override
+	public List<Date> showDayChart(String sportType) {
+		// TODO Auto-generated method stub
+		return sqlSession.selectList("soccer.dao.SMapper.showDayChart", sportType);
 	}
 	
 	

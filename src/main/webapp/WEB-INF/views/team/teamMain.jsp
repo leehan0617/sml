@@ -60,7 +60,7 @@
 						<li><a data-toggle="modal" data-target="#modalTeamBoard" onclick="getTeamBoardData('${root}','${teamName}')">팀공지사항</a></li>
 						<li><a href="${root }/teamPage/teamMemberInfo.do?teamName=${team.teamName}&teamCode=${team.teamCode}&teamGrade=${teamGrade}">팀원소개</a></li>
 						<li><a href="${root }/teamPage/teamScheduleEdit.do?teamName=${teamName}">팀 스케쥴</a></li>
-						<li><a href="${root }/teamPage/viewTeamRecord.do?teamName=${team.teamName}&teamGrade=${teamGrade}">팀 기록</a></li>
+						<li><a href="${root }/teamPage/viewTeamRecord.do?teamName=${team.teamName}&teamCode=${team.teamCode}&teamGrade=${teamGrade}">팀 기록</a></li>
 						<li><a href="${root }/teamPage/viewLeagueInfo.do?teamName=${team.teamName}">참가 중인 리그 정보</a></li>
 		
 						<li class="divider"></li>
@@ -92,7 +92,9 @@
 	 <div class="row well">
 	  <div class="col-md-1"></div>
 	  <div class="col-md-3">
-	  	<img src="${root }/resources/images/android@2x.png" alt="로고이미지" class="img-circle img-responsive">
+	    <a href="${root}/team/teamMain.do?teamName=${teamName}">
+	    <img alt="로고이미지" class="img-circle img-responsive" alt="logo" src="${root}/resources/images/${emblem}.jpg" width="200" height="150"></img>
+	    </a>	  	
 	  </div>
 	  <div class="col-md-4">
 	  	<br/><br/><br/><br/><br/><br/>

@@ -207,17 +207,14 @@
 		</p>
 
 	</footer>		
-	<!-- start: JavaScript-->
-		<script type="text/javascript" src="${root}/js/jquery/jquery.js"></script>
-		<script src="${root}/resources/admin/js/jquery-1.9.1.min.js"></script>
+	<script src="${root}/resources/admin/js/jquery-1.9.1.min.js"></script>
 		<script src="${root}/resources/admin/js/jquery-migrate-1.0.0.min.js"></script>	
 		<script src="${root}/resources/admin/js/jquery-ui-1.10.0.custom.min.js"></script>	
 		<script src="${root}/resources/admin/js/jquery.ui.touch-punch.js"></script>	
 		<script src="${root}/resources/admin/js/modernizr.js"></script>	
 		<script src="${root}/resources/admin/js/bootstrap.min.js"></script>	
 		<script src="${root}/resources/admin/js/jquery.cookie.js"></script>	
-		<script src='js/fullcalendar.min.js'></script>
-		<script src='js/jquery.dataTables.min.js'></script>
+		<script src="${root}/resources/admin/js/fullcalendar.min.js"></script>
 		<script src="${root}/resources/admin/js/excanvas.js"></script>
 		<script src="${root}/resources/admin/js/jquery.flot.js"></script>
 		<script src="${root}/resources/admin/js/jquery.flot.pie.js"></script>
@@ -238,90 +235,6 @@
 		<script src="${root}/resources/admin/js/jquery.sparkline.min.js"></script>
 		<script src="${root}/resources/admin/js/counter.js"></script>
 		<script src="${root}/resources/admin/js/retina.js"></script>
-		<script src="${root}/resources/admin/js/custom.js"></script>
-	<!-- end: JavaScript-->
 	
 </body>
 </html>
-<%--<table width="530" align="center">
-		<tr>
-			<td align="right" bgcolor="D1DBDB"><a href="${root }/board/addCommonBoard.do">글쓰기</a></td>
-		</tr>
-	</table>
-	
-	<c:if test="${count==0}">	
-		<tr>
-			<td align="center">게시판에 저장된 글이 없습니다.</td>
-		</tr>		
-	</c:if>
-	
-	<c:if test="${count>0}">	
-		<tr> 
-			<td align="center" width="30">종목</td>
-			<td align="center" width="30">작성자</td>	
-			<td align="center" width="250">제목</td>
-			<td align="center" width="70">날짜</td>			
-		</tr>		
-	<br/>
-	</c:if>	
-	
-	<c:forEach var="commonBoard" items="${commonBoardList}">
-		<tr>			
-			<td>
-				<c:if test="${commonBoard.sportCode=='0'}">
-					<td>전체</td>
-				</c:if>
-				
-				<c:if test="${commonBoard.sportCode=='1'}">
-					<td>축구</td>
-				</c:if>
-				
-				<c:if test="${commonBoard.sportCode=='2'}">
-					<td>야구</td>
-				</c:if>
-				
-				<c:if test="${commonBoard.sportCode=='3'}">
-					<td>족구</td>
-				</c:if>
-				
-				<c:if test="${commonBoard.sportCode=='4'}">
-					<td>풋살</td>
-				</c:if>				
-			</td>
-			<td>${commonBoard.boardWriter}</td>
-			<td><a href="${root }/board/readCommonBoard.do?boardNumber=${commonBoard.boardNumber}&pageNumber=${currentPage}">${commonBoard.boardTitle}</a></td>					
-			<td><fmt:formatDate value="${commonBoard.boardDate}" type="date"/></td>
-		</tr>
-			&nbsp;&nbsp;
-			<a href="${root }/board/deleteCommonBoard.do?boardNumber=${commonBoard.boardNumber}">[삭제]</a>
-			&nbsp;&nbsp;
-			<br/>
-	</c:forEach>
-	
-	 <!-- 페이지 번호 -->
-	<center>
-		<c:if test="${count>0 }">
-			<c:set var="pageBlock" value="${5}"/>
-			<c:set var="pageCount" value="${count/boardSize+(count%boardSize==0 ? 0:1)}"/>
-			<fmt:parseNumber var="rs" value="${(currentPage-1)/pageBlock }" integerOnly="true"/>
-			
-			<c:set var="startPage" value="${rs*pageBlock+1 }"/>
-			<c:set var="endPage" value="${startPage+pageBlock-1 }"/>
-			
-			<c:if test="${endPage>pageCount }">
-				<c:set var="endPage" value="${pageCount }"/>
-			</c:if>
-			
-			<c:if test="${startPage>pageBlock }">
-				<a href="${root }/board/adminBoard.do?pageNumber=${startPage-pageBlock}">[이전]</a>
-			</c:if>
-			
-			<c:forEach var="i" begin="${startPage}" end="${endPage}">
-				<a href="${root }/board/adminBoard.do?pageNumber=${i}">[${i }]</a>
-			</c:forEach>
-			
-			<c:if test="${endPage<pageCount }">
-				<a href="${root }/board/adminBoard.do?pageNumber=${startPage+pageBlock}">[다음]</a>
-			</c:if>
-		</c:if>
-	</center> --%>

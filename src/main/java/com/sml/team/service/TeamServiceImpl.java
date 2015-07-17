@@ -141,6 +141,9 @@ public class TeamServiceImpl implements TeamService{
 		int teamCode=team.getTeamCode();
 		System.out.println("teamCode:"+teamCode);
 		
+		String emblem=team.getEmblem();
+		System.out.println("emblemTEAMAIN:"+emblem);
+		
 		List<TeamLogDto> teamLogDtoList=null;
 		if(count>0){
 			teamLogDtoList=dao.teamLogDtoList(teamCode,startRow,endRow);
@@ -159,7 +162,7 @@ public class TeamServiceImpl implements TeamService{
 		//System.out.println("leagueDtoNAme: " + leagueDto.getLeagueName());
 		//System.out.println("leagueCode:" + leagueCode);
 		
-		
+		mav.addObject("emblem",emblem);
 		mav.addObject("count",count);		
 		mav.addObject("boardSize",boardSize);
 		mav.addObject("currentPage",currentPage);
@@ -187,9 +190,13 @@ public class TeamServiceImpl implements TeamService{
 	@Override
 	public void viewTeamRecord(ModelAndView mav) {
 		HashMap<String,Object> map=mav.getModelMap();
-		HttpServletRequest request=(HttpServletRequest) map.get("request");
+		HttpServletRequest request=(HttpServletRequest) map.get("request");		
 		String teamName=request.getParameter("teamName");		
-		String teamGrade=request.getParameter("teamGrade");	
+		String teamGrade=request.getParameter("teamGrade");
+		
+		TeamDto team=dao.getTeamInfo(teamName);
+		String emblem=team.getEmblem();
+		
 		
 		int count=dao.getRecordCount(teamName);	// 팀 멤버 전체 수 출력		
 		
@@ -204,6 +211,7 @@ public class TeamServiceImpl implements TeamService{
 		
 		List<HashMap<String, Object>> recordList = dao.recordList(teamName,startRow,endRow);
 		
+		mav.addObject("emblem",emblem);
 		mav.addObject("teamGrade",teamGrade);		
 		mav.addObject("teamName",teamName);
 		mav.addObject("count", count);

@@ -1,5 +1,6 @@
 package com.sml.soccer.service;
 
+import java.util.Date;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
@@ -10,6 +11,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.sml.common.dto.CommonBoardDto;
+import com.sml.member.dto.MemberDto;
 import com.sml.soccer.dao.SDao;
 
 @Service
@@ -86,6 +88,60 @@ public class SServiceImpl implements SService{
 		mav.addObject("board" , board);
 		mav.setViewName("jsonView");
 		
+		return mav;
+	}
+
+	@Override
+	public ModelAndView showAgeChart(HttpServletRequest request) {
+		int sportCode = Integer.parseInt(request.getParameter("sportCode"));
+		String sportType="";
+		switch(sportCode){
+			case 0: sportType="축구"; break;
+			case 1: sportType="야구"; break;
+			case 2: sportType="풋살"; break;
+			case 3: sportType="족구"; break;
+		}
+		
+		List<MemberDto> list = dao.showAgeChart(sportType);
+		ModelAndView mav = new ModelAndView();
+		mav.addObject("list", list);
+		mav.setViewName("jsonView");
+		return mav;
+	}
+
+	@Override
+	public ModelAndView showCityChart(HttpServletRequest request) {
+		int sportCode = Integer.parseInt(request.getParameter("sportCode"));
+		String sportType="";
+		switch(sportCode){
+			case 0: sportType="축구"; break;
+			case 1: sportType="야구"; break;
+			case 2: sportType="풋살"; break;
+			case 3: sportType="족구"; break;
+		}
+		
+		List<MemberDto> list = dao.showAgeChart(sportType);
+		ModelAndView mav = new ModelAndView();
+		mav.addObject("list", list);
+		mav.setViewName("jsonView");
+		return mav;
+	}
+
+	@Override
+	public ModelAndView showDayChart(HttpServletRequest request) {
+		int sportCode = Integer.parseInt(request.getParameter("sportCode"));
+		String sportType="";
+		switch(sportCode){
+			case 0: sportType="축구"; break;
+			case 1: sportType="야구"; break;
+			case 2: sportType="풋살"; break;
+			case 3: sportType="족구"; break;
+		}
+		
+		List<Date> list = dao.showDayChart(sportType);
+		ModelAndView mav = new ModelAndView();
+		mav.addObject("list", list);
+		mav.setViewName("jsonView");
 		return mav;
 	}
 	

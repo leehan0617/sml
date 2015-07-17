@@ -224,121 +224,27 @@
 		<script src="${root}/resources/admin/js/modernizr.js"></script>	
 		<script src="${root}/resources/admin/js/bootstrap.min.js"></script>	
 		<script src="${root}/resources/admin/js/jquery.cookie.js"></script>	
-		<script src='js/fullcalendar.min.js'></script>
-	
-		<script src='js/jquery.dataTables.min.js'></script>
-
+		<script src="${root}/resources/admin/js/fullcalendar.min.js"></script>
 		<script src="${root}/resources/admin/js/excanvas.js"></script>
 		<script src="${root}/resources/admin/js/jquery.flot.js"></script>
 		<script src="${root}/resources/admin/js/jquery.flot.pie.js"></script>
 		<script src="${root}/resources/admin/js/jquery.flot.stack.js"></script>
 		<script src="${root}/resources/admin/js/jquery.flot.resize.min.js"></script>
-	
 		<script src="${root}/resources/admin/js/jquery.chosen.min.js"></script>
-	
 		<script src="${root}/resources/admin/js/jquery.uniform.min.js"></script>
-		
 		<script src="${root}/resources/admin/js/jquery.cleditor.min.js"></script>
-	
 		<script src="${root}/resources/admin/js/jquery.noty.js"></script>
-	
 		<script src="${root}/resources/admin/js/jquery.elfinder.min.js"></script>
-	
 		<script src="${root}/resources/admin/js/jquery.raty.min.js"></script>
-	
 		<script src="${root}/resources/admin/js/jquery.iphone.toggle.js"></script>
-	
 		<script src="${root}/resources/admin/js/jquery.uploadify-3.1.min.js"></script>
-	
 		<script src="${root}/resources/admin/js/jquery.gritter.min.js"></script>
-	
 		<script src="${root}/resources/admin/js/jquery.imagesloaded.js"></script>
-	
 		<script src="${root}/resources/admin/js/jquery.masonry.min.js"></script>
-	
 		<script src="${root}/resources/admin/js/jquery.knob.modified.js"></script>
-	
 		<script src="${root}/resources/admin/js/jquery.sparkline.min.js"></script>
-	
 		<script src="${root}/resources/admin/js/counter.js"></script>
-	
 		<script src="${root}/resources/admin/js/retina.js"></script>
-
-		<script src="${root}/resources/admin/js/custom.js"></script>
-	<!-- end: JavaScript-->
-	<%-- 
-	
-	
-	<div>	
-		<span>종목</span>
-		<span>이름</span>
-		<span>성별</span>
-		<span>생년월일</span>
-		<span>주소</span>
-		<span>연락처</span>			
-	</div>
-	
-	<c:if test="${refereeList==null }">
-		<div>	
-			<span>검색결과가 없습니다.</span>												
-		</div>
-	</c:if>
-	
-	<c:if test="${refereeList!=null}">
-		<div>	
-			<c:forEach var="referee" items="${refereeList}">				
-				<div>	
-					<span>${referee.refereeSport }</span>
-					<span>${referee.refereeName}</span>
-					<span>${referee.refereeGender }</span>
-					<span>${referee.refereeBirth}</span>
-					<span>${referee.sido} ${referee.gugun}</span>
-					<span>${referee.refereePhoneNumber}</span>
-					<c:if test="${referee.refereeYes==0 }">
-						<input type="button" value="거절" onclick="location.href='${root}/admin/refereeDelete.do?pageNumber=${currentPage}&refereeNumber=${referee.refereeNumber }'"/>
-						<input type="button" value="수락" onclick="location.href='${root}/admin/refereeAccept.do?pageNumber=${currentPage}&refereeNumber=${referee.refereeNumber }'"/>
-						<span></span>	
-					</c:if>
-					<c:if test="${referee.refereeYes==1 }">
-						<input type="button" value="삭제" onclick="location.href='${root}/admin/refereeDelete.do?pageNumber=${currentPage}&refereeNumber=${referee.refereeNumber }'"/>
-					</c:if>												
-				</div>
-			</c:forEach>															
-		</div>
-		
-						
-						
-	</c:if>
-	
-	
-	
-	<!-- 페이지 번호 -->
-	<center>
-		<c:if test="${count>0 }">
-			<c:set var="pageBlock" value="${5}"/>
-			
-			<fmt:parseNumber var="pageCount" value="${count/boardSize+ (count/boardSize==0 ? 0:1) }" integerOnly="true"/>
-			
-			<fmt:parseNumber var="rs" value="${(currentPage-1)/pageBlock }" integerOnly="true"/>
-			<c:set var="startPage" value="${rs*pageBlock+1 }"/>
-			<c:set var="endPage" value="${startPage+pageBlock-1 }"/>			
-			<c:if test="${endPage>pageCount }">
-				<c:set var="endPage" value="${pageCount }"/>
-			</c:if>
-			
-			<c:if test="${startPage>pageBlock }">
-				<a href="${root }/referee/refereeList.do?pageNumber=${startPage-pageBlock }">[이전]</a>
-			</c:if>
-			
-			<c:forEach var="i" begin="${startPage }" end="${endPage}">
-				<a href="${root }/referee/refereeList.do?pageNumber=${i}">[${i }]</a>
-			</c:forEach>
-			
-			<c:if test="${endPage<pageCount }">
-				<a href="${root }/referee/refereeList.do?pageNumber=${startPage+pageBlock }">[다음]</a>
-			</c:if>
-		</c:if>
-	</center> --%>
 </body>
 </html>
 
