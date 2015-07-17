@@ -7,7 +7,7 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>중복 체크</title>
-<script type="text/javascript" src="${root}/js/member/member.js"></script>
+<script type="text/javascript" src="${root}/resources/js/jquery.js"></script>
 </head>
 <body>
 	<c:if test="${check!=null}">
@@ -21,7 +21,7 @@
 	<c:if test="${check==null}">
 		<div align="center">사용 가능한 아이디입니다</div>
 		
-		<a href="javascript:window.opener.form.teamId.value='${teamId}';close();">닫기</a>
+		<a href="javascript:window.opener.registerModal.teamId.value='${teamId}';close();">닫기</a>
 	</c:if>
 	
 	

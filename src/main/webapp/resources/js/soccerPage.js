@@ -60,14 +60,6 @@
 	function modalToggle(){
 		$("#modalSoccerBoard").toggle();
 	}
-	
-	jQuery(document).ready(function($) {
-	       $(".myScroll").click(function(event){            
-	               event.preventDefault();
-	               $('html,body').animate({scrollTop:$(this.hash).offset().top}, 500);
-	       });
-	   		showAgeChart("","${sportCode}");
-		});
 	   
 	   function showAgeChart(root,sportCode){
 		   var addr = root+"/showAgeChart?sportCode="+sportCode;

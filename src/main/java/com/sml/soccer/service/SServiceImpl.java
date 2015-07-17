@@ -2,7 +2,6 @@ package com.sml.soccer.service;
 
 import java.util.Date;
 import java.util.List;
-import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 
@@ -12,6 +11,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.sml.common.dto.CommonBoardDto;
+import com.sml.league.dto.LeagueDto;
 import com.sml.member.dto.MemberDto;
 import com.sml.soccer.dao.SDao;
 import com.sml.team.dto.TeamDto;
@@ -169,12 +169,36 @@ public class SServiceImpl implements SService{
 	 */
 	@Override
 	public void soccerTeamList(ModelAndView mav) {
-		Map <String, Object> map=mav.getModel();
-		
 		List<TeamDto> teamList=dao.getAllTeamList("축구");
 		logger.info("size: " + teamList.size());
 		mav.addObject("teamList",teamList);
 		mav.setViewName("soccer/soccerTeamList");
+	}
+
+	/**
+	 * 
+	 * @함수명:showLeagueInfo
+	 * @작성일:2015. 7. 17.
+	 * @작성자:이한빈 
+	 * @설명문:리그정보가져오는 함수 
+	 */
+	@Override
+	public ModelAndView showLeagueInfo(HttpServletRequest request) {
+		ModelAndView mav = new ModelAndView();
+		int sportCode = Integer.parseInt(request.getParameter("sportCode"));
+		String sportType="";
+		switch(sportCode){
+			case 0: sportType="축구"; break;
+			case 1: sportType="야구"; break;
+			case 2: sportType="풋살"; break;
+			case 3: sportType="족구"; break;
+		}
+		
+		List<LeagueDto> leagueList = dao.showLeagueInfo(sportType);
+		System.out.println("size"+leagueList.size());
+		mav.addObject("list" , leagueList );
+		mav.setViewName("jsonView");
+		return mav;
 	}
 	
 }
