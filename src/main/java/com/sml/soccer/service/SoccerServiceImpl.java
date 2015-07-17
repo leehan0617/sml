@@ -10,12 +10,10 @@ import java.util.logging.Logger;
 
 import javax.servlet.http.HttpServletRequest;
 
-import net.sf.json.JSON;
 import net.sf.json.JSONArray;
 import net.sf.json.JSONObject;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.dao.support.DaoSupport;
 import org.springframework.stereotype.Component;
 import org.springframework.web.servlet.ModelAndView;
 
@@ -24,7 +22,6 @@ import com.sml.common.dto.CommonBoardDto;
 import com.sml.league.dao.LeagueDao;
 import com.sml.league.dto.LeagueDto;
 import com.sml.member.dto.MemberDto;
-import com.sml.record.dto.RecordDto;
 import com.sml.soccer.dao.SoccerDao;
 import com.sml.team.dto.TeamDto;
 import com.sml.weather.WeatherDTO;
@@ -32,8 +29,7 @@ import com.sml.weather.WeatherParser;
 
 @Component
 public class SoccerServiceImpl implements SoccerService {
-	private static final ModelAndView mav = null;
-
+	
 	private final Logger logger=Logger.getLogger(this.getClass().getName());
 	
 	@Autowired
@@ -120,6 +116,30 @@ public class SoccerServiceImpl implements SoccerService {
 			weatherList=weatherParser.xmlRssParser();
 		} catch (Exception e1) {
 			e1.printStackTrace();
+		}
+		for(WeatherDTO weather:weatherList){
+			/*01 맑음
+			02 구름 조금
+			03 구름 많음
+			04 흐림
+			05 비
+			06 눈/비
+			07 눈*/			
+			if(weather.getWfKor().equals("맑음")){
+				weather.setWfKor("01.png");
+			}else if(weather.getWfKor().equals("구름 조금")){
+				weather.setWfKor("02.png");
+			}else if(weather.getWfKor().equals("구름 많음")){
+				weather.setWfKor("03.png");
+			}else if(weather.getWfKor().equals("흐림")){
+				weather.setWfKor("04.png");
+			}else if(weather.getWfKor().equals("비")){
+				weather.setWfKor("05.png");
+			}else if(weather.getWfKor().equals("눈/비")){
+				weather.setWfKor("06.png");
+			}else if(weather.getWfKor().equals("눈")){
+				weather.setWfKor("07.png");
+			}
 		}
 		
 		//리그 정보 가져오기
@@ -308,12 +328,12 @@ public class SoccerServiceImpl implements SoccerService {
 	 * @설명문:지역별 통계 서비스메소드
 	 */
 	@Override
-	public void cards(ModelAndView mav) {
-		Map<String,Object> map=mav.getModelMap();
-		HttpServletRequest request=(HttpServletRequest) map.get("request");	
-		
+	public ModelAndView cards(HttpServletRequest request) {
+		logger.info("SoccerService cards");
+		ModelAndView mav = new ModelAndView();
 		String legion=request.getParameter("legion");
 		String age=request.getParameter("age");
+		System.out.println("age:"+age);
 	    List<MemberDto> cardsList=soccerDao.cards();
 		
 	    JSONArray jsonArray=JSONArray.fromObject(cardsList);
@@ -328,10 +348,8 @@ public class SoccerServiceImpl implements SoccerService {
 		mav.addObject("jsonObject",jsonObject);
 		mav.addObject("legion",legion);
 		mav.addObject("age",age);
-		if(legion!=null){
-			mav.setViewName("static/legionChart");
-		}else if(age!=null){
-			mav.setViewName("static/ageChart");
-		}
+		mav.setViewName("jsonView");
+		
+		return mav;
 	}	
 }

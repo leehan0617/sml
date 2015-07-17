@@ -45,4 +45,19 @@ public class SController {
 		ModelAndView mav = service.viewSoccerBoard(request);
 		return mav;
 	}
+	/**
+	 * 
+	 * @함수명:readSoccerBoard
+	 * @작성일:2015. 7. 16.
+	 * @작성자:이한빈 
+	 * @설명문:축구페이지 공지사항 읽는 함수 
+	 */
+	@RequestMapping(value="/readSoccerBoard" , method=RequestMethod.GET)
+	public ModelAndView readSoccerBoard(HttpServletRequest request , HttpServletResponse response){
+		logger.info("SController readSoccerBoard");
+		response.setCharacterEncoding("UTF-8");
+		
+		ModelAndView mav = service.readSoccerBoard(request);
+		return mav;
+	}
 }

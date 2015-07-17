@@ -13,6 +13,7 @@
 <link rel="stylesheet" type="text/css" href="${root }/resources/css/font.css"/>
 <link rel="stylesheet" type="text/css" href="${root }/resources/css/bootstrap.css"/>
 <link rel="stylesheet" type="text/css" href="${root }/resources/css/jquery-ui.css"/>
+<link rel="stylesheet" type="text/css" href="${root }/resources/css/half-slider.css"/>
 
 <!-- SCRIPT -->
 <script src="${root }/resources/js/jquery.js"></script>
@@ -50,7 +51,7 @@
       <a class="skip" href="#main">Skip to Content</a><ul class="nav-lang"><li class="nav-lang-koselected">한국어</li></ul>
       <div class="container">
         <div class="full">
-          <img src="${root }/resources/images/schoolhouse.svg" alt="nodeschool logo">
+          <img src="${root}/resources/css/images/smlKoreaIcon.PNG" alt="SML Korea">
           <h1 class="name">SML KOREA</h1>
           <p class="subtitle">간단한 정보 입력만으로<br/>다른팀들과 경기를 매칭시킬수 있습니다.<br/>지금 매칭을 시작해보세요.</p>
           <nav role="navigation">
@@ -84,34 +85,54 @@
     	<section>
 		    <div class="container workshop-header" id="smlInfo" style="background-color: #fff; padding-bottom:2px;">
 		      <div class="full">
-		        <h2 class="big-heading">SML 소개</h2>
-		        <p>SML(Sport Matching League)은 무료로 주변 팀들과의 친선경기 및 리그경기를 성사시키도록 도와주는 홈페이지 입니다.</p>
+		        <h2 class="big-heading"><strong>What is SML Korea?</strong></h2>
+		        <p>저희 <strong>SML(Sport Matching League) Korea</strong>는 원하는 지역에서 원하는 시합을 할수있도록 도와드립니다</p>
 		        <nav>
-		          <ul class="inner-nav">
+<!-- 		          <ul class="inner-nav">
 		            <li><a href="#sign" data-toggle="modal" data-target="#popupJoin">회원가입 하기</a></li>
-		            <li><a href="#login" data-toggle="modal" data-target="#popupLogin">로그인 하기</a></li>
-		            <li><a href="#">리그현황 보기</a></li>
-		          </ul>
+		          </ul> -->
 		        </nav>
 		      </div>
 		    </div>
 		    <div class="container workshops" style="background-color: #fff; padding-top:0px;">
 		      <div class="third" aria-hidden="true">
-		        <div id="map2">gggg</div>
+		        <div id="map2"></div>
 		      </div>
 		
 		      <div class="third upcoming-workshoppers">
-		        <h4>경기 일정</h4>
-		        <div id="recordList">
-		        </div>
+		      	<table class="table table-hover">
+		      		<thead>
+		      			<tr>
+		        			<th><h4><strong>경기 일정</strong></h4></th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr>
+		        			<td><div id="recordList"></div></td>
+		        		</tr>
+		        	</tbody>
+		        </table>	
 		      </div>
+		     
 		
 		      <div class="third anyone-can-host">
-		        <h4>팀이 있으면 누구나 경기를 잡을수 있습니다.</h4>
+		      	<table class="table table-hover">
+		      		<thead>
+		      			<tr>
+		        			<th><h4><strong>지금 신청하세요!.</strong></h4></th>
+						</tr>
+					</thead>
+				</table>
 		        <p id="event-count"><span>지금까지 모두 </span> <strong class="cnt">?</strong> <span>건의 경기가 있었습니다!</span></p>
-		        <p><span>SML홈페이지는 모두 무료입니다. 경기를 잡고 싶으세요?</span> <a href="#sign" data-toggle="modal" data-target="#popupJoin">회원가입</a> <span>을 해주세요.</span></p>
+		        <p><span>SML홈페이지이용은 모두 무료입니다</span></p>
+		        <p><span>더많은 사람들과의 교류를 원한다면 지금바로 신청하세요.</span></p>
+			    <nav>
+	 		       <ul class="inner-nav">
+			         <li><a href="#sign" data-toggle="modal" data-target="#popupJoin">회원가입 하기</a></li>
+			       </ul>
+			    </nav>
 		      </div>
-		    </div>
+		     </div>
 	  </section>
   
    <section>
@@ -119,7 +140,7 @@
       <div class="container">
         <div class="full">
           <h2 class="big-heading">튜토리얼</h2>
-          <p>처음이시라면 간단하게 경기를 잡을 수 있습니다.</p>
+          <p>홈페이지가 처음이신 분들을 위하여.</p>
           <nav>
             <ul class="inner-nav">
               <li><a href="#workshopper-list">팀원 등록</a></li>
@@ -195,7 +216,7 @@
 			<div class='prose prose-big space-bottom1 pad4y space-top2 contain z1 clearfix'>
 				<h1>경기 종목</h1>
 				<div class="clearfix space-bottom2">
-				<p class='quiet block col9'>SML은 축구,야구,풋살,축구 총 4가지 종목을 서비스 하고있습니다.<br/> 아래 링크를 통해서 각각의 팀페이지로 이동해 실시간 리그정보 및 경기매칭을 진행해보세요.</p>
+				<p class='quiet block col9'>SML Korea는 현제 축구,야구,농구,족구 총 4가지 종목을 서비스 하고있습니다.<br/> 아래 링크를 통해서 각각의 팀페이지로 이동해 실시간 리그정보 및 경기매칭을 진행해보세요.</p>
 				</div>    
 			</div>
 		</div>
@@ -203,27 +224,27 @@
 		<div class="clearfix">
 			<div class='section clearfix col12 keyline-top  dev-tools space-bottom2 clip'>
 				<a href="${root}/soccer/soccerMain.do?legion=legion"  class='block center col3 pad2 pad4y keyline-right keyline-bottom'>
-					<div class='developer-tools-graphic noevents mapbox-js pad8 inline space-bottom2'></div>
-					<span class='col12'>축구</span>
-					<span class='col12 small quiet space-bottom1'>Soccer</span>
+					<img src="${root}/resources/images/soccerIcon2.jpg" width="200" height="200">
+					<span class='col12'><strong>축구</strong></span>
+					<span class='col12 small quiet space-bottom1'><strong>Soccer</strong></span>
 				</a>
 
 				<a href='/mapbox-gl-ios/' class='block col3 center pad2 pad4y keyline-right keyline-bottom'>
-					<div class='developer-tools-graphic noevents ios-sdk pad8 inline space-bottom2'></div>
-					<span class='col12'>야구</span>
-					<span class='col12 small quiet space-bottom1'>Baseball</span>
+					<img src="${root}/resources/images/baseballIcon.png" width="200" height="200">
+					<span class='col12'><strong>야구</strong></span>
+					<span class='col12 small quiet space-bottom1'><strong>Baseball</strong></span>
 				</a>
 
 				<a href='/mapbox-android-sdk/' class='block col3 center pad2 pad4y keyline-bottom keyline-right'>
-					<div class='developer-tools-graphic noevents android-sdk pad8 inline space-bottom2'></div>
-					<span class='col12'>풋살</span>
-					<span class='col12 small quiet space-bottom1'>Football</span>
+					<img src="${root}/resources/images/basketballIcon.PNG" width="200" height="200">
+					<span class='col12'><strong>농구</strong></span>
+					<span class='col12 small quiet space-bottom1'><strong>Football</strong></span>
 				</a>
 
-				<a href='${root }/sc' class='block center col3 pad2 pad4y keyline-bottom'>
-					<div class='developer-tools-graphic noevents maps-api pad8 inline space-bottom2'></div>
-					<span class='col12'>족구</span>
-					<span class='col12 small quiet space-bottom1'>Legball</span>
+				<a href='${root }/scMain' class='block center col3 pad2 pad4y keyline-bottom'>
+					<img src="${root}/resources/images/jokguIcon.PNG" width="200" height="200">
+					<span class='col12'><strong>족구</strong></span>
+					<span class='col12 small quiet space-bottom1'><strong>Legball</strong></span>
 				</a>
 
 			</div>
@@ -232,7 +253,8 @@
 
     <div class="container elective-workshoppers" style="background-color: #fff;">
       <div class="third" id="helpCenter">
-        <h3>고객센터</h3>
+        <img alt="imformation" src="${root}/resources/images/imformation.png" style="width:50px; height:50px;">
+        <label style="font-size:35px;"><strong>고객센터</strong></label>
         <p>이홈페이지의 운영자들에게 직접 물어보세요.</p>
         <p><span>문제가 생기셨나요? 이곳에서 문의하세요 &gt; </span> <span></span></p>
       </div>
@@ -240,17 +262,17 @@
         <div id="functionaljavascript" class="workshopper">
           <h4><a class="js-workshop-link" href="#" target="_blank">이희재 Lee Hee Jae</a></h4>
           <p>축구에 관한 정보 및 문의를 담당하고 있습니다.</p>
-          <code>leeheejae@gmail.com</code>
+          <code class="glyphicon glyphicon-envelope">&nbsp;<strong>leeheejae@gmail.com</strong></code>
         </div>
         <div id="levelmeup" class="workshopper">
           <h4><a class="js-workshop-link" href="#" target="_blank">변형린 Byun Hyung Rin</a></h4>
           <p>야구에 관한 정보 및 문의를 담당하고 있습니다.</p>
-          <code>byunhyungrin@naver.com</code>
+          <code class="glyphicon glyphicon-envelope">&nbsp;<strong>byunhyungrin@naver.com</strong></code>
         </div>
         <div id="expressworks" class="workshopper">
           <h4><a class="js-workshop-link" href="#" target="_blank">이한빈 Lee Han Bin</a></h4>
           <p>풋살에 관한 정보 및 문의를 담당하고 있습니다.</p>
-          <code>newbin0617@naver.com</code>
+          <code class="glyphicon glyphicon-envelope">&nbsp;<strong>newbin0617@naver.com</strong></code>
         </div>
       </div>
 
@@ -258,12 +280,12 @@
         <div id="shader-school" class="workshopper">
           <h4><a class="js-workshop-link" href="#" target="_blank">정성남 Jung Sung Nam</a></h4>
           <p>족구에 관한 정보 및 문의를 담당하고 있습니다.</p>
-          <code>sungnam@daum.net</code>
+          <code class="glyphicon glyphicon-envelope">&nbsp;<strong>sungnam@daum.net</strong></code>
         </div>
         <div id="bytewiser" class="workshopper">
           <h4><a class="js-workshop-link" href="#" target="_blank">조영석 Jo Young Seok</a></h4>
           <p>홈페이지 이용사항 및 건의사항에 관한 문의를 담당하고 있습니다.</p>
-          <code>youngseok@gmail.com</code>
+          <code class="glyphicon glyphicon-envelope">&nbsp;<strong>youngseok@gmail.com</strong></code>
         </div>
       </div>
     </div>
@@ -277,8 +299,8 @@
         <div class="two-thirds">
           <ul>
             <li><strong>연락처</strong></li>
-            <li><a href="https://twitter.com/nodeschool" target="_blank">010 4646 3522</a></li>
-            <li><a href="https://github.com/nodeschool" target="_blank">newbin0617@gmail.com</a></li>
+            <li><a href="https://twitter.com/nodeschool" target="_blank" class="glyphicon glyphicon-earphone">&nbsp;010 4646 3522</a></li>
+            <li><a href="https://github.com/nodeschool" target="_blank" class="glyphicon glyphicon-envelope">&nbsp;newbin0617@gmail.com</a></li>
           </ul>
           <ul>
             <li><strong>기여하기</strong></li>

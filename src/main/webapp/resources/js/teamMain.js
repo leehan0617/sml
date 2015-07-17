@@ -172,5 +172,3 @@ function modalWriteTeamBoard(root,teamName,teamCode){
 }
 
 
-
-

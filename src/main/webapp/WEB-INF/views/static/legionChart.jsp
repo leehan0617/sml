@@ -5,7 +5,7 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
   <head>
-    <script src="${root}/js/external/jquery-1.11.3.min.js"></script>
+    <script src="${root}/js/external/jquery-1.11.3.mi,n.js"></script>
     <script type="text/javascript" src="https://www.google.com/jsapi"></script>
     <script type="text/javascript">
 	var jsonData='${jsonObject}';

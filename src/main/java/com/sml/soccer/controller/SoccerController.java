@@ -33,7 +33,7 @@ public class SoccerController{
 		ModelAndView mav=new ModelAndView();
 		mav.addObject("request", request);
 		soccerService.soccerMain(mav);
-		soccerService.cards(mav);
+		//soccerService.cards(mav);
 		
 		mav.setViewName("soccer/soccerMain");
 		
@@ -170,10 +170,8 @@ public class SoccerController{
 	 */
 	@RequestMapping(value="/static/chart.do",method=RequestMethod.GET)
 	public ModelAndView cards(HttpServletRequest request, HttpServletResponse response){
-		ModelAndView mav=new ModelAndView();
-		mav.addObject("request", request);
-		
-		soccerService.cards(mav);
+		logger.info("SoccerController cards");	
+		ModelAndView mav = soccerService.cards(request);
 		return mav;
 	}
 	

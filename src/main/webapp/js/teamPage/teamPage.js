@@ -2,7 +2,7 @@
  * 
  */
 var latLng;
-
+var currentPage = 1;
 function deleteBoard(root, teamName, currentPage, boardNumber){
 	var value=confirm("정말로 삭제하시겠습니까?");
 	
@@ -16,26 +16,39 @@ $(document).ready(function(){
 	
 	$("#addMember").click(function(){
 		$("#addMemberForm").toggle();
-	});
+	});	
 	
-	$("#matchingSetting1").hide();
-	$("#matchingSetting2").hide();
-	$("#matchingComplete").hide();
+	$(".modalPageOne").show();
+    $(".modalPageTwo").hide();
+    $(".modalPageThree").hide();
+	
 });
 
 function addMember(form){
 	form.memberGender.value=form.gender.value;
 }
 
-function setting1(homeGround){
-	$("#matchingIntro").slideUp();
-	$("#matchingSetting1").slideDown();
-	createMap(homeGround);
+function setting1(homeGround){	
+	$(".modalPageOne").hide();
+    $(".modalPageTwo").show();   
+    $(".modalPageThree").hide();
+    createMap(homeGround);
 }
 
-function setting2(){
-	$("#matchingSetting1").slideUp();
-	$("#matchingSetting2").slideDown();
+function setting2(value){
+	if(value=="moveTo1"){
+		$(".modalPageOne").show();
+		$(".modalPageTwo").hide();   
+		$(".modalPageThree").hide();
+	}else if(value=="moveTo2"){
+		$(".modalPageOne").hide();
+		$(".modalPageTwo").show();   
+		$(".modalPageThree").hide();
+	}else if(value=="moveTo3"){
+		$(".modalPageOne").hide();
+	    $(".modalPageTwo").hide();   
+	    $(".modalPageThree").show();
+	}
 }
 
 function complete(){
@@ -646,3 +659,4 @@ function doSearching(root,teamCode, teamName){
 	alert("매칭이 시작되었습니다. ");
 	location.href=root + '/team/teamMain.do?teamName=' +teamName;
 }
+

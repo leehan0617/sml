@@ -21,9 +21,7 @@
 <%-- <script src="${root }/resources/js/smlStart.js"></script> --%>
 
 <script>
-$(function(){
-	
-	
+$(document).ready(function(){
 	//롤러 스크립트
 	$.fn.extend({
 		Scroll:function(opt,callback){
@@ -120,15 +118,15 @@ $(function(){
 	          <ul class="nav navbar-nav">
 	          	<li>
 	          		<!-- 날씨 -->
-					<div class="noti" id="roll" style="padding-top:14px; height:35px; overflow:hidden;width:150px;">			
-						<ul>
-							<%-- <c:forEach var="weather" items="${weatherList }">		 --%>
+					<div class="noti" id="roll" style="height:22px; overflow:hidden;width:300px;">			
+						<ul >
+							<c:forEach var="weather" items="${weatherList }">		
 								<li>	
-									<span><font color="white">서울</font></span>
-									<span><font color="white">28 C</font></span>
-									<span><img src="${root}/img/weatherImg/01.png" style="vertical-align:middle; width="27px" height="27px"/></span>
+									<span>${weather.sido}</span>
+									<span>${weather.temp} C</span>
+									<img src="${root}/img/weatherImg/${weather.wfKor}" style="vertical-align:middle; width="27px" height="27px"/>
 								</li>	
-						<%-- 	</c:forEach> --%>		
+							</c:forEach>		
 						</ul>
 					</div>
 	          	</li>

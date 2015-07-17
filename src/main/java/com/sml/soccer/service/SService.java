@@ -8,4 +8,6 @@ public interface SService {
 
 	public ModelAndView viewSoccerBoard(HttpServletRequest request);
 
+	public ModelAndView readSoccerBoard(HttpServletRequest request);
+
 }

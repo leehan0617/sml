@@ -20,6 +20,28 @@
 	<script src="${root }/resources/js/bootstrap.js"></script>
 	<script src="${root }/resources/js/teamMain.js"></script>
 	
+	<!-- before matching.jsp js/css -->
+	<script type="text/javascript" src="//apis.daum.net/maps/maps3.js?apikey=1442260e0c6af86974001269a7312e42&libraries=services"></script>
+	<link href="${root}/css/teamPage/matchingMap.css" type="text/css" rel="stylesheet"/>
+	<script src="${root }/js/teamPage/teamPage.js"></script>
+	
+	<style>
+		.modal.modal-wide .modal-dialog {
+		  width: 90%;
+		}
+		.modal-wide .modal-body {
+		  overflow-y: auto;
+		}
+		
+		/* irrelevant styling */
+		body { text-align: center; }
+		body p { 
+		  max-width: 350px; 
+		  margin: 20px auto; 
+		}
+		#tallModal .modal-body p { margin-bottom: 900px }
+	</style>
+	
 </head>
 <body>
 	<div class="row">
@@ -44,7 +66,7 @@
 						<li class="divider"></li>
 						<li><a data-toggle="modal" data-target="#modalTeamBoard" onclick="getTeamBoardData('${root}','${teamName}')">팀공지사항</a></li>						
 						<li><a href="${root }/teamPage/teamScheduleEdit.do?teamName=${teamName}">스케쥴관리</a></li>
-						<li><a href="${root }/teamPage/matching.do?teamName=${team.teamName}">매칭관리</a></li>
+						<li><a data-toggle="modal" data-target="#popupMatching" href="${root }/teamPage/matching.do?teamName=${team.teamName}">매칭관리</a></li>
 						<li><a href="${root }/teamPage/manageTeamEmblem.do?teamName=${team.teamName}">팀 로고 관리</a></li>
 						<li class="divider"></li>
 						<li><a href="${root}/teamPage/logout.do?teamId='${teamId}'">로그아웃</a></li>
@@ -358,8 +380,7 @@
 </div>
 
 <div class="modal fade" id="modalEditTeamIntro" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-  <div class="modal-dialog">
-    <div class="modal-content">
+  
       <div class="modal-header">
         <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
         <h4 class="modal-title">팀소개 편집하기.</h4>
@@ -380,8 +401,15 @@
   </div>
 </div>
 
+<div class="modal modal-wide fade" id="popupMatching">
+	<div class="modal-dialog">
+    	<div class="modal-content">
+    	</div>
+    </div>
+</div>
 
 <script>
+
 	function editTeamIntro(root , teamName , teamCode){
 		var teamIntro = $("#teamIntroContent").val();
 		var addr = root+"/editTeamIntro?teamName="+teamName+"&teamCode="+teamCode+"&teamIntro="+teamIntro;
