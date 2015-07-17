@@ -190,22 +190,6 @@ public class SoccerServiceImpl implements SoccerService {
 	}
 
 	/**
-	 * @name : SoccerServiceImpl
-	 * @date : 2015. 6. 23.
-	 * @author : 이희재
-	 * @description : 페이지 눌렀을때 전체 팀 리스트 먼저 가져오는 함수
-	 */
-	@Override
-	public void soccerTeamList(ModelAndView mav) {
-		Map <String, Object> map=mav.getModel();
-		
-		List<TeamDto> teamList=soccerDao.getAllTeamList("축구");
-		logger.info("size: " + teamList.size());
-		mav.addObject("teamList",teamList);
-		mav.setViewName("soccer/soccerTeamList");
-	}
-
-	/**
 	 * @name : soccerGameScore
 	 * @date : 2015. 6. 23.
 	 * @author : 변형린

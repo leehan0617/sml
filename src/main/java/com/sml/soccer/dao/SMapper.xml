@@ -22,4 +22,20 @@
 	<select id="getBoardContent" parameterType="int" resultType="com.sml.common.dto.CommonBoardDto">
 		select * from board where boardNumber = #{boardNumber}
 	</select>
+	
+	<select id="showAgeChart" parameterType="String" resultType="com.sml.member.dto.MemberDto">
+		select tm.memberbirth , tm.memberregion  from teammember tm , team t 
+			where t.sportType=#{sportType} and tm.teamcode = t.teamCode
+	</select>
+	
+	<select id="showDayChart" parameterType="String" resultType="java.util.Date">
+		select gameDate from gameRecord where sportType=#{sportType}
+	</select>
+	
+	<select id="getAllTeamSearch" resultType="com.sml.team.dto.TeamDto">
+ 		<![CDATA[
+ 			select * from team where sporttype=#{sportType}
+ 		]]>
+ 	</select>
+	
 </mapper>

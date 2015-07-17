@@ -17,12 +17,16 @@
     <title>SML Soccer Page</title>
 
     <!-- Bootstrap core CSS -->
-    <link href="${root}/resources/css/bootstrap.css" rel="stylesheet" type="text/css">
+    <link href="${root}/resources/css/bootstrap.css" rel="stylesheet" type="text/css"/>
+    <link href="${root}/resources/css/jquery.jqplot.css" rel="stylesheet" type="text/css"/>
 	<script src="${root }/resources/js/jquery.js"></script>
-	<script type="text/javascript" src="https://www.google.com/jsapi"></script>
 	<script src="${root }/resources/js/bootstrap.js"></script>
 	<script src="${root }/resources/js/soccerPage.js"></script>
+	<script src="${root }/resources/js/jquery.jqplot.js"></script>
 	
+	<script src="${root }/resources/js/jqplot.categoryAxisRenderer.js"></script>
+	<script src="${root }/resources/js/jqplot.barRenderer.js"></script>
+	<script src="${root }/resources/js/jqplot.pieRenderer.js"></script>
     <!-- Custom styles for this template -->
     <link href="${root}/resources/css/soccerPage.css" rel="stylesheet" type="text/css">
   </head>
@@ -46,20 +50,20 @@
             <div id="navbar" class="navbar-collapse collapse">
               <ul class="nav navbar-nav">
               	<li class="active"><a href="#" data-toggle='modal' data-target='#modalSoccerBoard' onclick="viewSoccerBoard('${root}','${sportCode }','${currentPage}')">공지사항</a></li>
-                <li><a href="#">경기규칙</a></li>
-                <li><a href="#about">팀리스트</a></li>
-                <li><a href="#contact">심판현황</a></li>
+                <li><a href="${root}/soccer/soccerRule.do">경기규칙</a></li>
+                <li><a href="${root}/soccer/soccerTeamList.do">팀리스트</a></li>
+                <li><a href="${root}/referee/refereeList.do?sportType=${sportType}">심판현황</a></li>
                 <li class="dropdown">
                   <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">다른종목가기<span class="caret"></span></a>
                   <ul class="dropdown-menu" role="menu">
                   	<li class="divider"></li>
-                    <li><a href="#">축구</a></li>
+                    <li><a href="${root}/soccer/soccerMain.do?legion=legion">축구</a></li>
                     <li class="divider"></li>
                     <li><a href="#">야구</a></li>
                     <li class="divider"></li>
                     <li><a href="#">족구</a></li>
                     <li class="divider"></li>
-                    <li><a href="#">풋살</a></li>
+                    <li><a href="${root }/scMain">풋살</a></li>
                     <li class="divider"></li>
                   </ul>
                 </li>
@@ -160,7 +164,7 @@
           <img class="img-circle" src="${root}/resources/images/surface.png" alt="Generic placeholder image" width="140" height="140">
           <h2>통계 자료</h2>
           <p>SML 축구회원 및 팀들간 통계에 관심이 있으시면 아래 버튼을 눌러주세요</p>
-          <p><a class="btn btn-default" role="button"  onclick="getChartData('${root}','${sportCode}')">통계자료 보기</a></p>
+          <p><a class="btn btn-default myScroll" role="button" href="#chartMain" onclick="showAgeChart('${root}','${sportCode}')">통계자료 보기</a></p>
         </div><!-- /.col-lg-4 -->
       </div><!-- /.row -->
 
@@ -193,13 +197,22 @@
 
       <hr class="featurette-divider">
 
-      <div class="row featurette">
+      <div class="row featurette" id="chartMain">
         <div class="col-md-7">
           <h2 class="featurette-heading">And lastly, this one. <span class="text-muted">Checkmate.</span></h2>
           <p class="lead">Donec ullamcorper nulla non metus auctor fringilla. Vestibulum id ligula porta felis euismod semper. Praesent commodo cursus magna, vel scelerisque nisl consectetur. Fusce dapibus, tellus ac cursus commodo.</p>
+       	  <br/>
+       	  <br/>
         </div>
         <div class="col-md-5">
-          <img class="featurette-image img-responsive center-block" data-src="holder.js/500x500/auto" alt="500x500" src="data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0iVVRGLTgiIHN0YW5kYWxvbmU9InllcyI/PjxzdmcgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIiB3aWR0aD0iNTAwIiBoZWlnaHQ9IjUwMCIgdmlld0JveD0iMCAwIDUwMCA1MDAiIHByZXNlcnZlQXNwZWN0UmF0aW89Im5vbmUiPjxkZWZzLz48cmVjdCB3aWR0aD0iNTAwIiBoZWlnaHQ9IjUwMCIgZmlsbD0iI0VFRUVFRSIvPjxnPjx0ZXh0IHg9IjE5MC4zMDQ2ODc1IiB5PSIyNTAiIHN0eWxlPSJmaWxsOiNBQUFBQUE7Zm9udC13ZWlnaHQ6Ym9sZDtmb250LWZhbWlseTpBcmlhbCwgSGVsdmV0aWNhLCBPcGVuIFNhbnMsIHNhbnMtc2VyaWYsIG1vbm9zcGFjZTtmb250LXNpemU6MjNwdDtkb21pbmFudC1iYXNlbGluZTpjZW50cmFsIj41MDB4NTAwPC90ZXh0PjwvZz48L3N2Zz4=" data-holder-rendered="true">
+          <ol class="breadcrumb">
+  			<li class="active" id="ageChart" onclick="showAgeChart('${root}','${sportCode }')">연령별 통계</li>
+  			<li id="cityChart" onclick="showCityChart('${root}','${sportCode }')">지역별 통계</li>
+  			<li id="dayChart" onclick="showDayChart('${root}','${sportCode}')">요일별 통계</li>
+		  </ol>	
+          <div id="soccerPieChart" data-holder-rendered="true" style="width:460px; height:400px;"></div>
+          <div id="soccerLineChart" data-holder-rendered="true" style="width:460px; height:400px;"></div>
+          <div id="soccerBarChart" data-holder-rendered="true" style="width:460px; height:400px;"></div>
         </div>
       </div>
 
@@ -268,97 +281,17 @@
    	<div class="modal-dialog">
     	<div class="modal-content">
     		<div class="modal-header">
-    			<h3></h3>
+    			<h3>통계자료</h3>
     			
     		</div>
     		<div class="modal-body">
-    	
-       		</div>
+    		</div>
       		<div class="modal-footer">
             	<button type="button" class="btn btn-default" data-dismiss="modal" onclick="javascript:modalToggle()">Close</button>
       		</div>
   		</div>
      </div>
    </div>
-   
-   <div id="piechart_3d" style="width: 900px; height: 500px;">
- 	</div>
-     
-   <script>
-   		function getChartData(root , sportCode){
-   			var addr = root+"/static/chart.do?sportCode="+sportCode+"&age=age";
-   			alert(addr);
-   			$.ajax({
-   				url:addr,
-   				type:"get",
-   				success:function(obj){
-   					alert("success");
-   					console.log(obj);
-   					$("#piechart_3d").hide();	
-   				   	var totalCount=0;
-   					/*연령별 통계*/
-   					var year=0;
-   					var age=0;
-   					/*연령 카운트*/
-   				 	var oneCount=0;
-   					var twoCount=0;
-   					var threeCount=0;
-   					var fourCount=0;
-   					var fiveCount=0;
-   					var otherCount=0;
-   					for(var i in obj.cardsList){
-   						year=Number(obj.cardsList[i].MEMBERBIRTH.substring(0,4));
-   						age=2015-year;
-   						if(i < 5){
-   							alert(year);
-   						}
-   				/* 		if(obj.cardsList[i].MEMBERREGION.split(" ")[0]==legion[j]){ */
-   						if(age<20){
-   							oneCount++;
-   						}else if(age<30){
-   							twoCount++;
-   						}else if(age<40){
-   							threeCount++;
-   						}else if(age<50){
-   							fourCount++;
-   						}else if(age<60){
-   							fiveCount++;
-   						}else{
-   							otherCount++;
-   						}
-   						totalCount++;
-   					} 
-   					
-   					/* 차트 구현 */		
-   					google.load("visualization", "1", {packages:["corechart"]});
-   				    google.setOnLoadCallback(drawChart);
-   				    function drawChart() {
-   				      var data = google.visualization.arrayToDataTable([
-   				        ['Task', 'Hours per Day'],
-   				        /*지역별 차트*/
-   				        ['10대',oneCount],
-   				        ['20대',twoCount],
-   				        ['30대',threeCount],
-   				        ['40대',fourCount],
-   				        ['50대',fiveCount],
-   				        ['기타',otherCount],
-
-   				      ]);
-
-   				      var options = {
-   				        title: 'SML Korea 회원 지역별 통계'+"\t"+"가입회원수"+totalCount,
-   				        is3D: true,
-   				      };
-
-   				      
-   				      var chart = new google.visualization.PieChart(document.getElementById('piechart_3d'));
-   				      chart.draw(data, options);
-   				      $("#piechart_3d").show();
-   				    }
-
-   				}
-   			});
-   		}
-   </script>
+  
  </body>
  </html>

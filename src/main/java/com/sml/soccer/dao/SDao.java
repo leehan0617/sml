@@ -1,8 +1,11 @@
 package com.sml.soccer.dao;
 
+import java.util.Date;
 import java.util.List;
 
 import com.sml.common.dto.CommonBoardDto;
+import com.sml.member.dto.MemberDto;
+import com.sml.team.dto.TeamDto;
 
 public interface SDao {
 
@@ -12,5 +15,11 @@ public interface SDao {
 			int endRow);
 
 	public CommonBoardDto getBoardContent(int boardNumber);
+
+	public List<MemberDto> showAgeChart(String sportType);
+
+	public List<Date> showDayChart(String sportType);
+	
+	public List<TeamDto> getAllTeamList(String sportType);
 
 }
