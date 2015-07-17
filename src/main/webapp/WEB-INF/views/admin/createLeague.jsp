@@ -254,116 +254,12 @@
 			<!-- end: Content -->
 	</div><!--/#content.span10-->
 	</div><!--/fluid-row-->
-	<form class="" action="${root}/admin/createLeague.do" enctype="multipart/form-data" method="post">
-		
-	<h2>SML KOREA</h2>
-	<div align="center">
-	
-	<h2>리그개설</h2>
-	<br/><br/><br/>
-	
-	<span>리그명</span>	
-	<input type="text" name=leagueName></input>	
-	<br/><br/>
-	
-	<span>종목</span>	
-	<select name="leagueSport" >
-				<option>종목선택</option>			
-				<option value="전체">전체</option>
-				<option value="축구">축구</option>
-				<option value="야구">야구</option>
-				<option value="족구">족구</option>
-				<option value="풋살">풋살</option>	
-	</select>
-	<br/><br/>
 	
 	<h1>선택한 시간에 따라 최소 기간이 달라짐 (유효성 검사)</h1>
 	<h3>시간대 4개 선택: 3주</h3>
 	<h3>시간대 3개 선택: 4주</h3>
 	<h3>시간대 2개 선택: 5주</h3>
 	<h3>시간대 1개 선택: 10주</h3>
-	
-	<span>리그기간</span>
-	<input type="text" id="leagueStartDate" name="leagueStartDate">
-	<span>~</span>
-	<input type="text" id="leagueEndDate" name="leagueEndDate">
-	<br/><br/>
-	
-	<span>리그팀수</span>
-	<input type="text" name="leagueTeamNumberValue" value="8" disabled="disabled">
-	<input type="hidden" name="leagueTeamNumber" value="8">
-	<br/><br/>
-	
-	<span>개최지</span>
-	
-	<select id="sido">
-		<option>서울</option>
-		<option>충남</option>
-		<option>부산</option>
-		<option>울산</option>
-		<option>인천</option>
-		<option>광주</option>
-		<option>제주</option>
-		<option>대전</option>
-		<option>대구</option>
-		<option>강원</option>
-		<option>경북</option>
-		<option>전북</option>
-		<option>전남</option>
-		<option>경기</option>
-		<option>경남</option>
-	</select>
-	
-	<input type="hidden" name="leagueRegion"></input>	
-	
-	<br/><br/>
-	
-	<div>
-	<span>리그요일</span>
-	<span>Sat</span>
-	<input type="radio" name="leagueDay" value="sat">
-	<span>Sun</span>
-	<input type="radio" name="leagueDay" value="sun">
-	</div>
-	
-	<br/><br/>
-	
-	<span>리그시간</span>
-	<span>10:00</span>
-	<input type="checkbox" name="time" value="10:00">
-	<span>13:00</span>
-	<input type="checkbox" name="time" value="13:00">
-	<span>16:00</span>
-	<input type="checkbox" name="time" value="16:00">
-	<span>20:00</span>
-	<input type="checkbox" name="time" value="20:00">
-	<input type="hidden" name="leagueTime">
-	<br/><br/>
-	
-	<span>리그 경기장</span>
-	<br/>
-	<input type="text" name="place1">
-	<br/>
-	<input type="text" name="place2">
-	<br/>
-	<input type="text" name="place3">
-	<br/>
-	<input type="button" name="searchPlace" value="경기장 찾기">
-	<br/><br/>
-	<input type="hidden" name="leaguePlace">
-	
-	<div>
-		<label>리그 이미지</label> 
-		<span> 
-			<input type="file" name="file"/>			
-		</span>
-	</div>
-	<br/><br/>	
-	
-	<input id="create" type="submit" name="createLeague" value="리그개설"></input>
-	
-	</div>
-	</form>
 
 	
 	<div class="clearfix"></div>
@@ -377,7 +273,6 @@
 
 	</footer>
 	<!-- start: JavaScript-->
-
 		<script src="${root}/resources/admin/js/jquery-1.9.1.min.js"></script>
 		<script src="${root}/resources/admin/js/jquery-migrate-1.0.0.min.js"></script>	
 		<script src="${root}/resources/admin/js/jquery-ui-1.10.0.custom.min.js"></script>	
@@ -385,46 +280,28 @@
 		<script src="${root}/resources/admin/js/modernizr.js"></script>	
 		<script src="${root}/resources/admin/js/bootstrap.min.js"></script>	
 		<script src="${root}/resources/admin/js/jquery.cookie.js"></script>	
-		<script src='js/fullcalendar.min.js'></script>
-	
-		<script src='js/jquery.dataTables.min.js'></script>
-
+		<script src="${root}/resources/admin/js/fullcalendar.min.js"></script>
+		<script src="${root}/resources/admin/js/jquery.dataTables.min.js"></script>
 		<script src="${root}/resources/admin/js/excanvas.js"></script>
 		<script src="${root}/resources/admin/js/jquery.flot.js"></script>
 		<script src="${root}/resources/admin/js/jquery.flot.pie.js"></script>
 		<script src="${root}/resources/admin/js/jquery.flot.stack.js"></script>
 		<script src="${root}/resources/admin/js/jquery.flot.resize.min.js"></script>
-	
 		<script src="${root}/resources/admin/js/jquery.chosen.min.js"></script>
-	
 		<script src="${root}/resources/admin/js/jquery.uniform.min.js"></script>
-		
 		<script src="${root}/resources/admin/js/jquery.cleditor.min.js"></script>
-	
 		<script src="${root}/resources/admin/js/jquery.noty.js"></script>
-	
 		<script src="${root}/resources/admin/js/jquery.elfinder.min.js"></script>
-	
 		<script src="${root}/resources/admin/js/jquery.raty.min.js"></script>
-	
 		<script src="${root}/resources/admin/js/jquery.iphone.toggle.js"></script>
-	
 		<script src="${root}/resources/admin/js/jquery.uploadify-3.1.min.js"></script>
-	
 		<script src="${root}/resources/admin/js/jquery.gritter.min.js"></script>
-	
 		<script src="${root}/resources/admin/js/jquery.imagesloaded.js"></script>
-	
 		<script src="${root}/resources/admin/js/jquery.masonry.min.js"></script>
-	
 		<script src="${root}/resources/admin/js/jquery.knob.modified.js"></script>
-	
 		<script src="${root}/resources/admin/js/jquery.sparkline.min.js"></script>
-	
 		<script src="${root}/resources/admin/js/counter.js"></script>
-	
 		<script src="${root}/resources/admin/js/retina.js"></script>
-
 		<script src="${root}/resources/admin/js/custom.js"></script>
 	<!-- end: JavaScript-->
 </body>
