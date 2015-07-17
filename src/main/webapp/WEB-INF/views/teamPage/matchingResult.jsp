@@ -106,23 +106,49 @@
 	<c:if test="${matchingDto.matchingState=='중' }">
 		<div class="modal-header">
 		<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-		<h1>Waiting Matching</h1>
+		<h1>매칭이 진행중입니다.</h1>
 		</div>
 		
-		<div class="modal-body">		
-			<h2>애니메이션 삽입</h2>
-			<h4>emblem : ${myTeamDto.emblem }</h4>
-			<h4>name : ${myTeamDto.teamName }</h4>
-			<h4>place : ${matchingDto.matchingPlace}</h4>
-			<h4>Day : ${matchingDto.matchingDay}</h4>
-			<h4>Time : ${matchingDto.matchingTime}</h4>
+		<div class="modal-body">				
+			<div class="row well">
+			  <div class="col-md-1"></div>
+			  
+			  <div class="col-md-4 well">
+			  	<div class="row">
+			  		<div class="col-xs-6 col-md-3" style="text-align:center">
+		    			<a href="#" class="thumbnail" style="max-width:100%;">
+		    				<img src="${root}/img/teamImg/${myTeamDto.emblem } alt=".." width=188/>
+		      			</a>
+		  			</div>
+				</div>
+			  </div>
+			  <div class="col-md-2 well"><h3>vs</h3></div>
+			  <div class="col-md-4 well">
+			  	<div class="row">
+			  		<div class="col-xs-6 col-md-3">
+		    			<a href="#" class="thumbnail">
+		      				<img src="${root }/img/teamImg/searching.gif" alt="..." width=188>
+		    			</a>
+		  			</div>
+			  	</div>
+			  </div>
+			  <div class="col-md-1"></div>
+			</div>				
+		
+			<h5> 팀 이름: ${myTeamDto.teamName }</h5>
+			<h5> 매칭 장소 : ${matchingDto.matchingPlace}</h5>
+			<h5> 매칭 희망 요일 : ${matchingDto.matchingDay}</h5>
+			<h5> 매칭 희망 시간 : ${matchingDto.matchingTime}</h5>
 			<br/><br/>
 			
 			<div style="color:green;"><h5>도움말 : 매칭이 잘 이루어지지 않는다면..</h5></div>
 			<h6> -> 거리, 요일, 시간대 등의 조건을 넓히면 매칭이 더욱 쉬워 질 수 있습니다. </h6>		
 		</div>
 		
-		<div class="modal-footer">
+		<div class="modal-footer">'
+			<button type="button" class="btn btn-warning" onclick="javascript:location.href='${root}/teamPage/deleteMatching.do?matchingCode=${matchingDto.matchingCode }&teamName=${teamName}'">
+			매칭 취소하기
+			</button>
 			<input type="button" value="매칭 취소" onclick="javascript:location.href='${root}/teamPage/deleteMatching.do?matchingCode=${matchingDto.matchingCode }&teamName=${teamName}'">
 		</div>
 	</c:if>

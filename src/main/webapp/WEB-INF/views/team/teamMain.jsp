@@ -67,7 +67,7 @@
 						<li><a data-toggle="modal" data-target="#modalTeamBoard" onclick="getTeamBoardData('${root}','${teamName}')">팀공지사항</a></li>						
 						<li><a href="${root }/teamPage/teamScheduleEdit.do?teamName=${teamName}">스케쥴관리</a></li>
 						<li><a data-toggle="modal" data-target="#popupMatching" href="${root }/teamPage/matching.do?teamName=${team.teamName}">매칭관리</a></li>
-						<li><a href="${root }/teamPage/manageTeamEmblem.do?teamName=${team.teamName}">팀 로고 관리</a></li>
+						<li><a data-toggle="modal" data-target="#popupTeamLog" href="${root }/teamPage/manageTeamEmblem.do?teamName=${team.teamName}">팀 로고 관리</a></li>
 						<li class="divider"></li>
 						<li><a href="${root}/teamPage/logout.do?teamId='${teamId}'">로그아웃</a></li>
 				  	</c:if>
@@ -404,6 +404,13 @@
 </div>
 
 <div class="modal modal-wide fade" id="popupMatching">
+	<div class="modal-dialog">
+    	<div class="modal-content">
+    	</div>
+    </div>
+</div>
+
+<div class="modal fade" id="popupTeamLog">
 	<div class="modal-dialog">
     	<div class="modal-content">
     	</div>

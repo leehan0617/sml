@@ -287,7 +287,7 @@ public class TeamServiceImpl implements TeamService{
 	 * @name : changeTeamEmblem
 	 * @date : 2015. 7. 7.
 	 * @author : 변형린
-	 * @description : 팀 로고 변경
+	 * @description : 팀 로고 변경 페이지로 이동
 	 */
 	@Override
 	public void updateTeamEmblem(ModelAndView mav) {
@@ -349,7 +349,7 @@ public class TeamServiceImpl implements TeamService{
 		logger.info("check:" + check);
 		
 		mav.addObject("check", check);
-		mav.setViewName("teamPage/teamPageMain");
+		mav.setViewName("teamPage/updateTeamEmblem");
 	}
 	
 	
