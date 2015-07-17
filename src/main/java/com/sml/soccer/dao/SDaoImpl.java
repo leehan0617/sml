@@ -10,6 +10,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import com.sml.common.dto.CommonBoardDto;
+import com.sml.league.dto.LeagueDto;
 import com.sml.member.dto.MemberDto;
 import com.sml.team.dto.TeamDto;
 
@@ -94,6 +95,17 @@ public class SDaoImpl implements SDao{
 	@Override
 	public List<TeamDto> getAllTeamList(String sportType) {
 		return sqlSession.selectList("soccer.dao.SMapper.getAllTeamSearch", sportType);
+	}
+	/**
+	 * 
+	 * @함수명:showLeagueInfo
+	 * @작성일:2015. 7. 17.
+	 * @작성자:이한빈 
+	 * @설명문:리그정보 가져오는 함수
+	 */
+	@Override
+	public List<LeagueDto> showLeagueInfo(String sportType) {
+		return sqlSession.selectList("soccer.dao.SMapper.showLeagueInfo",sportType);
 	}
 	
 	
