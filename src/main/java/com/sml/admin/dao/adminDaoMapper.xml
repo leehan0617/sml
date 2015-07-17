@@ -77,7 +77,7 @@
 	</select>
 	
 	<update id="leagueUpdateOk" parameterType="com.sml.league.dto.LeagueDto">
-		update leagueInfo set leagueSport=#{leagueSport},leagueImage=#{leagueImage},leagueRegion=#{leagueRegion},leagueName=#{leagueName},leagueTeamNumber=#{leagueTeamNumber},leagueDay=#{leagueDay},leagueTime=#{leagueTime},leagueStartDate=#{leagueStartDate},leagueEndDate=#{leagueEndDate},leaguePlace=#{leaguePlace} where leagueCode=#{leagueCode}
+		update leagueInfo set leagueSport=#{leagueSport},leagueRegion=#{leagueRegion},leagueName=#{leagueName},leagueTeamNumber=#{leagueTeamNumber},leagueDay=#{leagueDay},leagueTime=#{leagueTime},leagueStartDate=#{leagueStartDate},leagueEndDate=#{leagueEndDate},leaguePlace=#{leaguePlace} where leagueCode=#{leagueCode}
 	</update>
 	
 	<select id="getLeagueList" parameterType="String" resultType="com.sml.league.dto.LeagueDto">
@@ -98,5 +98,20 @@
 						  		order by a.teamname asc) c) 
 				  
 		]]>
+	</select>
+	
+	<select id="getRecordCount" parameterType="int" resultType="int">	
+		select count(*) from gameRecord where gameType=#{leagueCode}	
+	</select>
+	
+	<select id="getRecordList" parameterType="java.util.HashMap" resultType="java.util.HashMap">
+		<![CDATA[
+			select * from (
+				select rownum as rnum, d.* from
+				(select a.*, b.teamName as team1, c.teamName as team2, b.emblem as emblem1, c.emblem as emblem2
+					from gameRecord a, team b, team c 
+						where a.teamcode=b.teamcode and a.teamcode2=c.teamcode and gameType=#{leagueCode}
+							order by gameDate desc) d ) where rnum >= #{startRow} and rnum <= #{endRow}
+		]]>	
 	</select>
 </mapper>

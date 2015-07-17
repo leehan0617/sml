@@ -74,7 +74,7 @@
 			<div class="row-fluid">		
 				<div class="box span12">
 					<div class="box-header" data-original-title>
-						<h2><i class="halflings-icon user"></i><span class="break"></span>리그 정보</h2>
+						<h2><i class="halflings-icon user"></i><span class="break"></span>경기 리스트</h2>
 						<div class="box-icon">
 							<a href="#" class="btn-setting"><i class="halflings-icon wrench"></i></a>
 							<a href="#" class="btn-minimize"><i class="halflings-icon chevron-up"></i></a>
@@ -82,109 +82,119 @@
 						</div>
 					</div>
 					
+					<!-- search -->
+					<div class="text-right">
+						<form action="${root }/league/searchLeague.do" method="get" id="search-box" onsubmit="if(this.q.value ==' 리그 이름 검색'){this.q.focus();return false;}">
+							<input type="text" name="leagueName"  style="color: #D2D2D2;" value="리그 검색" onfocus="this.value='' "/>
+							<input type="submit" class="btn btn-defaulty btn-sm"  value="검색"/>							
+						</form>						
+					</div>
 					
-			<div class="box-content">
-			<div >
-				<input type="hidden" name="leagueCode" value="${leagueDto.leagueCode}"/>
-				<div style="width:50%; float:left;">
-       				<img src="${root }/img/leagueImg/${leagueDto.leagueImage}" style="width:400px; height:350px; padding-top: 50px; padding-left: 50px;">
-       				<br/><br/><br/><br/>
-       				<c:if test="${leagueDto.leagueState==0 }">
-       					<div style="text-align: center;">
-       						<button type="button" class="btn btn-success btn-lg" disabled="disabled">리그 진행 중</button>&nbsp;&nbsp;&nbsp;&nbsp;
-       						<button type="button" class="btn btn-warning btn-lg" onclick="javascript:location.href='${root}/admin/manageLeagueRecord.do?leagueCode=${leagueDto.leagueCode }'">결과 입력</button>
-       					</div>
-       				</c:if>
-       				<c:if test="${leagueDto.leagueState!=0 }">
-       					<div style="text-align: center;">
-       						<button type="button" class="btn btn-info btn-lg">참가 진행 중</button>
-       					</div>
-       				</c:if>
-        		</div>
-        	<div style="width:50%; float:left;">
-				<fieldset>
-					<div class="control-group">
-						<label class="control-label" for="focusedInput">리그명</label>
-						<div class="controls">
-							<input class="input-xlarge focused" id="focusedInput" type="text" value="${leagueDto.leagueName }" name="leagueName" disabled="disabled">
+					<c:if test="${recordList==null }">
+						<div class="box-content">	
+							<div style="text-align: ">검색 결과가 없습니다.</div>												
 						</div>
-					</div>							  
-							  
-					<div class="control-group">
-						<label class="control-label" for="selectError3">종목</label>
-						<div class="controls">
-						  <select id="selectError3" name="leagueSport" disabled="disabled">
-							<option>${leagueDto.leagueSport}</option>
-						  </select>
-						</div>
-					</div>	 
-							  
-				  	<div class="control-group">
-						<label class="control-label" for="focusedInput">리그 시작일</label>
-							<div class="controls">
-					  			<input class="input-xlarge focused" id="leagueStartDate" type="text" value="${leagueDto.leagueStartDate }" name="leagueStartDate" disabled="disabled">
-							</div>
+					</c:if>
 					
-						<label class="control-label" for="focusedInput">리그 종료일</label>
-					<div class="controls">
-					  <input class="input-xlarge focused" type="text" value="${leagueDto.leagueEndDate }" name="leagueEndDate" disabled="disabled">
-					</div>
-				  </div>							  
-				  	 
-				  <div class="control-group">
-					<label class="control-label" for="disabledInput">리그 팀수</label>
-					<div class="controls">
-					  <input class="input-xlarge disabled" type="text" placeholder="8팀"  name="leagueTeamNumberValue">
-					  <input type="hidden" name="leagueTeamNumber" value="8">
-					</div>
-				  </div>								 
-				  
-				  <div class="control-group">
-					<label class="control-label" for="selectError3">개최지</label>
-					<div class="controls">
-					  <input class="input-xlarge focused" type="text" value="${leagueDto.leagueRegion }" name="leagueRegion" disabled="disabled">
-					</div>
-				  </div>							  
-				  	
-				  <div class="control-group">
-					<label class="control-label">리그요일</label>
-					<div class="controls">
-					   <input class="input-xlarge disabled" type="text" value="${leagueDto.leagueDay }" name="leagueDay" disabled="disabled">
-					</div>
-				  </div>							
-				
-				  <div class="control-group">
-					<label class="control-label">리그시간</label>
-					<div class="controls">
-					  <input class="input-xlarge disabled" type="text" value="${leagueDto.leagueTime }" name="leagueTime" disabled="disabled">
-					</div>
-				  </div>
+					<c:if test="${recordList!=null}">
+						<div class="box-content">
+							<table class="table table-striped table-bordered bootstrap-datatable datatable">
+							  <thead>
+								<tr>				
+									<th style="width: 5%">경기 번호</th>
+									<th style="width: 15%">TEAM </th>
+									<th style="width: 5%">VS</th>
+									<th style="width: 15%">TEAM</th>	
+									<th style="width: 10%">경기 상태</th>
+									<th style="width: 15%">경기 일자</th>
+									<th style="width: 10%">경기 시간</th>	
+									<th style="width: 10%">경기 결과</th>
+									<th style="width: 10%">입력 여부</th>	
+								</tr>
+							</thead>																		
+							<tbody>	
+								<c:forEach var="recordList" items="${recordList}">
+									<tr>
+										<td>#${recordList.GAMECODE}</td>
+										<td>
+											<img src="${root }/img/teamImg/${recordList.EMBLEM1}" style="width:25px; height:25px;">
+											&nbsp;
+											<a href="${root }/team/teamMain.do?teamName=${recordList.TEAM1}">${recordList.TEAM1}</a>
+										</td>	
+										<td><span style="color: red; font-weight: bold;">VS</span></td>		
+										<td>
+											<img src="${root }/img/teamImg/${recordList.EMBLEM1}" style="width:25px; height:25px;">
+											&nbsp;
+											<a href="${root }/team/teamMain.do?teamName=${recordList.TEAM1}">${recordList.TEAM1}</a>
+										</td>	
+										<td>${recordList.GAMESTATE}</td>	
+										<td><fmt:formatDate value="${recordList.GAMEDATE}" pattern="yyyy-MM-dd"></fmt:formatDate></td>	
+										<td>${recordList.GAMETIME}</td>	
+										<td>${recordList.GAMERESULT}</td>	
+										<td>
+											<a data-toggle="modal" data-target="#insertGameResult" onclick="insertGameResult('${root}','${recordList.GAMECODE}')">
+												<span class="label label-important">입력</span>
+											</a>	
+										</td>
+											
+									</tr>
+								</c:forEach>
+							</tbody>							  
+						  </table> 
+						 
 							
-				  <div class="control-group">
-					<label class="control-label" for="focusedInput">리그 경기장</label>
-					<div class="controls">
-					<c:forTokens var="place" items="${leagueDto.leaguePlace }" delims=",">
-					  <input class="input-xlarge disabled" type="text" value="${place}" disabled="disabled">
-					</c:forTokens>
-					</div>							
-					<input type="hidden" name="leaguePlace">
-				  </div>  
-				</fieldset>
-				<div class="form-actions" style="margin-left: -550px; text-align: center;">
-					<input type="button" class="btn btn-primary" value="리그 수정" onclick="updateFun('${root}','${leagueDto.leagueCode }','${pageNumber }')" />
-					<input type="button" class="btn btn-danger" value="리그 삭제" onclick="deleteFun('${root}','${leagueDto.leagueCode }','${pageNumber }')"/>				
-					<input type="button" class="btn btn-default" value="글목록" onclick="location.href='${root}/admin/manageLeague.do?pageNumber=${pageNumber }'"/>
-				</div>
-			</div>
-			</div>
-			</div>
-		</div>	             
+							<!-- 페이지 번호 -->							
+							<div class="pagination pagination-centered">
+								<c:if test="${count>0 }">
+									<c:set var="pageBlock" value="${5}"/>									
+									<fmt:parseNumber var="pageCount" value="${count/boardSize+ (count/boardSize==0 ? 0:1) }" integerOnly="true"/>									
+									<fmt:parseNumber var="rs" value="${(currentPage-1)/pageBlock }" integerOnly="true"/>
+									<c:set var="startPage" value="${rs*pageBlock+1 }"/>
+									<c:set var="endPage" value="${startPage+pageBlock-1 }"/>			
+									<c:if test="${endPage>pageCount }">
+										<c:set var="endPage" value="${pageCount }"/>
+									</c:if>
+									<ul>
+										<c:if test="${startPage>pageBlock }">
+											<li><a href="${root }/admin/manageLeagueRecord.do?pageNumber=${startPage-pageBlock }&leagueCode=${leagueCode}">Prev</a></li>
+										</c:if>
+										
+										<c:forEach var="i" begin="${startPage }" end="${endPage}">
+											<li><a href="${root }/admin/manageLeagueRecord.do?pageNumber=${i}&leagueCode=${leagueCode}">${i }</a></li>
+										</c:forEach>
+										
+										<c:if test="${endPage<pageCount }">
+											<li><a href="${root }/admin/manageLeagueRecord.do?pageNumber=${startPage+pageBlock }&leagueCode=${leagueCode}">Next</a></li>
+										</c:if>
+									</ul>
+								</c:if>
+							</div> 							  
+						             
 						</div>
+					</c:if>
 				</div><!--/span-->
 			
 			</div><!--/row-->   
 
+	</div><!--/.fluid-container-->
+	
+			<!-- end: Content -->
+		</div><!--/#content.span10-->
+		</div><!--/fluid-row-->
+	<div class="modal hide fade" id="insertGameResult">
+		<div class="modal-header">
+			<button type="button" class="close" data-dismiss="modal">×</button>
+			<h3>경기 결과 입력</h3>
+		</div>
+		<div class="modal-body">
+			<p>Here settings can be configured...</p>
+		</div>
+		<div class="modal-footer">
+			<a href="#" class="btn" data-dismiss="modal">Close</a>
+			<a href="#" class="btn btn-primary">Save changes</a>
+		</div>
 	</div>
+	
 	
 	<div class="clearfix"></div>
 	
@@ -196,7 +206,8 @@
 		</p>
 
 	</footer>		
-	<script src="${root}/resources/admin/js/jquery-1.9.1.min.js"></script>
+	<!-- start: JavaScript-->
+		<script src="${root}/resources/admin/js/jquery-1.9.1.min.js"></script>
 		<script src="${root}/resources/admin/js/jquery-migrate-1.0.0.min.js"></script>	
 		<script src="${root}/resources/admin/js/jquery-ui-1.10.0.custom.min.js"></script>	
 		<script src="${root}/resources/admin/js/jquery.ui.touch-punch.js"></script>	
@@ -224,20 +235,7 @@
 		<script src="${root}/resources/admin/js/jquery.sparkline.min.js"></script>
 		<script src="${root}/resources/admin/js/counter.js"></script>
 		<script src="${root}/resources/admin/js/retina.js"></script>
-		<script src="${root}/resources/admin/js/custom.js"></script>
-		<script type="text/javascript">
-	function deleteFun(root, leagueCode, pageNumber){
-		var url=root+"/admin/leagueDelete.do?leagueCode="+leagueCode+"&pageNumber="+pageNumber;
-		//alert(url);
-		location.href=url;	
-	}
-	
-	function updateFun(root, leagueCode, pageNumber){
-		var url=root+"/admin/leagueUpdate.do?leagueCode="+leagueCode+"&pageNumber="+pageNumber;
-		//alert(url);
-		location.href=url;
-	}
-</script>
+		<script src="${root}/resources/admin/js/admin.js"></script>
 </body>
 </html>
 

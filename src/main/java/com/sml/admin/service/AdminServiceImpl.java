@@ -418,5 +418,48 @@ public class AdminServiceImpl implements AdminService{
 		mav.setViewName("admin/manageTeam");
 	}
 
+	/**
+	 * @name : manageLeagueRecord
+	 * @date : 2015. 7. 17.
+	 * @author : 이희재
+	 * @description : 해당 리그의 모든 기록을 가져옴
+	 */
+	@Override
+	public void manageLeagueRecord(ModelAndView mav) {
+		Map<String,Object> map=mav.getModelMap();
+		HttpServletRequest request=(HttpServletRequest) map.get("request");
+		int leagueCode=Integer.parseInt(request.getParameter("leagueCode"));
+		
+		String pageNumber=request.getParameter("pageNumber");
+		if(pageNumber==null) pageNumber="1";
+		
+		int boardSize=10;		
+		int currentPage=Integer.parseInt(pageNumber);
+		int startRow=(currentPage-1)*boardSize+1;
+		int endRow=currentPage*boardSize;
+		
+		int count=adminDao.getRecordCount(leagueCode);
+		
+		List<HashMap<String,Object>> recordList=adminDao.getRecordList(leagueCode, startRow, endRow);
+		
+		mav.addObject("leagueCode",leagueCode);
+		mav.addObject("recordList",recordList);
+		mav.addObject("count",count);		
+		mav.addObject("boardSize",boardSize);
+		mav.addObject("currentPage",currentPage);
+		mav.setViewName("admin/manageLeagueRecord");
+	}
+
+	/**
+	 * @name : insertGameResult
+	 * @date : 2015. 7. 17.
+	 * @author : 이희재
+	 * @description : 경기 결과 입력
+	 */
+	@Override
+	public void insertGameResult(ModelAndView mav) {
+		
+	}
+
 	
 }

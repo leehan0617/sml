@@ -18,4 +18,6 @@ public interface AdminService {
 	public void leagueSwitch(ModelAndView mav);
 	public void searchPlace(ModelAndView mav);
 	public void searchTeamMember(ModelAndView mav);
+	public void manageLeagueRecord(ModelAndView mav);
+	public void insertGameResult(ModelAndView mav);
 }
