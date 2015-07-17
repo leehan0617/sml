@@ -27,18 +27,18 @@
 	
 	<style>
 		.modal.modal-wide .modal-dialog {
-		  width: 90%;
+		  width: 70%;
 		}
 		.modal-wide .modal-body {
-		  overflow-y: auto;
+		 // overflow-y: auto;
 		}
 		
 		/* irrelevant styling */
-		body { text-align: center; }
+		/* body { text-align: center; }
 		body p { 
-		  max-width: 350px; 
+		  max-width: 300px; 
 		  margin: 20px auto; 
-		}
+		} */
 		#tallModal .modal-body p { margin-bottom: 900px }
 	</style>
 	
