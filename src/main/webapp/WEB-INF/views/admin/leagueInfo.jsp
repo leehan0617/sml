@@ -83,109 +83,95 @@
 					</div>
 					
 					
-						<div class="box-content">
-						 <h1>리그정보 읽기</h1>	
-	<input type="hidden" name="leagueCode" value="${leagueDto.leagueCode}"/>
-	<span>
-		<span>
-			
-		<select name="leagueSport" disabled="disabled" >
-				<option>${leagueDto.leagueSport}</option>				
-		</select>	
-			
-		</span>	
-		
-		<span class="">
-			<input type="text" name="leagueImage" value="${leagueDto.leagueImage}" disabled="disabled"/>
-		</span>
-		
-		<span class="">
-			<input type="text" name="leagueRegion" value="${leagueDto.leagueRegion}" disabled="disabled">	
-		</span>	
-		
-		<br/>			
+			<div class="box-content">
+			<div >
+				<input type="hidden" name="leagueCode" value="${leagueDto.leagueCode}"/>
+				<div style="width:50%; float:left;">
+       				<img src="${root }/img/leagueImg/${leagueDto.leagueImage}" style="width:400px; height:400px; padding-top: 50px; padding-left: 50px;">
+        		</div>
+        	<div style="width:50%; float:left;">
+				<fieldset>
+					<div class="control-group">
+						<label class="control-label" for="focusedInput">리그명</label>
+						<div class="controls">
+							<input class="input-xlarge focused" id="focusedInput" type="text" value="${leagueDto.leagueName }" name="leagueName" disabled="disabled">
+						</div>
+					</div>							  
+							  
+					<div class="control-group">
+						<label class="control-label" for="selectError3">종목</label>
+						<div class="controls">
+						  <select id="selectError3" name="leagueSport" disabled="disabled">
+							<option>${leagueDto.leagueSport}</option>
+						  </select>
+						</div>
+					</div>	 
+							  
+				  	<div class="control-group">
+						<label class="control-label" for="focusedInput">리그 시작일</label>
+							<div class="controls">
+					  			<input class="input-xlarge focused" id="leagueStartDate" type="text" value="${leagueDto.leagueStartDate }" name="leagueStartDate" disabled="disabled">
+							</div>
+					
+						<label class="control-label" for="focusedInput">리그 종료일</label>
+					<div class="controls">
+					  <input class="input-xlarge focused" type="text" value="${leagueDto.leagueEndDate }" name="leagueEndDate" disabled="disabled">
+					</div>
+				  </div>							  
+				  	 
+				  <div class="control-group">
+					<label class="control-label" for="disabledInput">리그 팀수</label>
+					<div class="controls">
+					  <input class="input-xlarge disabled" type="text" placeholder="8팀"  name="leagueTeamNumberValue">
+					  <input type="hidden" name="leagueTeamNumber" value="8">
+					</div>
+				  </div>								 
+				  
+				  <div class="control-group">
+					<label class="control-label" for="selectError3">개최지</label>
+					<div class="controls">
+					  <input class="input-xlarge focused" type="text" value="${leagueDto.leagueRegion }" name="leagueRegion" disabled="disabled">
+					</div>
+				  </div>							  
+				  	
+				  <div class="control-group">
+					<label class="control-label">리그요일</label>
+					<div class="controls">
+					   <input class="input-xlarge disabled" type="text" value="${leagueDto.leagueDay }" name="leagueDay" disabled="disabled">
+					</div>
+				  </div>							
 				
-		<span class="">
-			<input type="text" name="leagueName" value="${leagueDto.leagueName}" disabled="disabled">	
-		</span>
-		
-		<span class="">
-			<input type="text" name="leagueTeamNumber" value="${leagueDto.leagueTeamNumber}" disabled="disabled">	
-		</span>	
-		
-		<span class="">
-			<input type="text" name="leagueDay" value="${leagueDto.leagueDay}" disabled="disabled">	
-		</span>	
-		
-		<span class="">
-			<input type="text" name="leagueTime" value="${leagueDto.leagueTime}" disabled="disabled">	
-		</span>	
-		
-		<span class="">
-			<input type="text" name="leagueStartDate" value="${leagueDto.leagueStartDate}" disabled="disabled">	
-		</span>	
-		
-		<span class="">
-			<input type="text" name="leagueEndDate" value="${leagueDto.leagueEndDate}" disabled="disabled">	
-		</span>	
-		
-		<br/>
-		
-		
-		<input type="button" value="글수정" onclick="updateFun('${root}','${leagueDto.leagueCode }','${pageNumber }')" />
-		<input type="button" value="글삭제" onclick="deleteFun('${root}','${leagueDto.leagueCode }','${pageNumber }')"/>				
-		<input type="button" value="글목록" onclick="location.href='${root}/admin/manageLeague.do?pageNumber=${pageNumber }'"/>
-	</span>
+				  <div class="control-group">
+					<label class="control-label">리그시간</label>
+					<div class="controls">
+					  <input class="input-xlarge disabled" type="text" value="${leagueDto.leagueTime }" name="leagueTime" disabled="disabled">
+					</div>
+				  </div>
 							
-							<!-- 페이지 번호 							
-							<div class="pagination pagination-centered">
-								<c:if test="${count>0 }">
-									<c:set var="pageBlock" value="${5}"/>									
-									<fmt:parseNumber var="pageCount" value="${count/boardSize+ (count/boardSize==0 ? 0:1) }" integerOnly="true"/>									
-									<fmt:parseNumber var="rs" value="${(currentPage-1)/pageBlock }" integerOnly="true"/>
-									<c:set var="startPage" value="${rs*pageBlock+1 }"/>
-									<c:set var="endPage" value="${startPage+pageBlock-1 }"/>			
-									<c:if test="${endPage>pageCount }">
-										<c:set var="endPage" value="${pageCount }"/>
-									</c:if>
-									<ul>
-										<c:if test="${startPage>pageBlock }">
-											<li><a href="${root }/admin/manageLeague.do?pageNumber=${startPage-pageBlock }">Prev</a></li>
-										</c:if>
-										
-										<c:forEach var="i" begin="${startPage }" end="${endPage}">
-											<li><a href="${root }/admin/manageLeague.do?pageNumber=${i}">${i }</a></li>
-										</c:forEach>
-										
-										<c:if test="${endPage<pageCount }">
-											<li><a href="${root }/admin/manageLeague.do?pageNumber=${startPage+pageBlock }">Next</a></li>
-										</c:if>
-									</ul>
-								</c:if>
-							</div> 	-->						  
-						             
+				  <div class="control-group">
+					<label class="control-label" for="focusedInput">리그 경기장</label>
+					<div class="controls">
+					<c:forTokens var="place" items="${leagueDto.leaguePlace }" delims=",">
+					  <input class="input-xlarge disabled" type="text" value="${place}" disabled="disabled">
+					</c:forTokens>
+					</div>							
+					<input type="hidden" name="leaguePlace">
+				  </div>  
+				</fieldset>
+				<div class="form-actions" style="margin-left: -550px; text-align: center;">
+					<input type="button" class="btn btn-primary" value="리그 수정" onclick="updateFun('${root}','${leagueDto.leagueCode }','${pageNumber }')" />
+					<input type="button" class="btn btn-danger" value="리그 삭제" onclick="deleteFun('${root}','${leagueDto.leagueCode }','${pageNumber }')"/>				
+					<input type="button" class="btn btn-default" value="글목록" onclick="location.href='${root}/admin/manageLeague.do?pageNumber=${pageNumber }'"/>
+				</div>
+			</div>
+			</div>
+			</div>
+		</div>	             
 						</div>
 				</div><!--/span-->
 			
 			</div><!--/row-->   
 
-	</div><!--/.fluid-container-->
-	
-			<!-- end: Content -->
-		</div><!--/#content.span10-->
-		</div><!--/fluid-row-->
-	<div class="modal hide fade" id="myModal">
-		<div class="modal-header">
-			<button type="button" class="close" data-dismiss="modal">×</button>
-			<h3>Settings</h3>
-		</div>
-		<div class="modal-body">
-			<p>Here settings can be configured...</p>
-		</div>
-		<div class="modal-footer">
-			<a href="#" class="btn" data-dismiss="modal">Close</a>
-			<a href="#" class="btn btn-primary">Save changes</a>
-		</div>
 	</div>
 	
 	<div class="clearfix"></div>
@@ -226,6 +212,20 @@
 		<script src="${root}/resources/admin/js/jquery.sparkline.min.js"></script>
 		<script src="${root}/resources/admin/js/counter.js"></script>
 		<script src="${root}/resources/admin/js/retina.js"></script>
+		<script src="${root}/resources/admin/js/custom.js"></script>
+		<script type="text/javascript">
+	function deleteFun(root, leagueCode, pageNumber){
+		var url=root+"/admin/leagueDelete.do?leagueCode="+leagueCode+"&pageNumber="+pageNumber;
+		//alert(url);
+		location.href=url;	
+	}
+	
+	function updateFun(root, leagueCode, pageNumber){
+		var url=root+"/admin/leagueUpdate.do?leagueCode="+leagueCode+"&pageNumber="+pageNumber;
+		//alert(url);
+		location.href=url;
+	}
+</script>
 </body>
 </html>
 

@@ -300,5 +300,6 @@
 		<script src="${root}/resources/admin/js/jquery.sparkline.min.js"></script>
 		<script src="${root}/resources/admin/js/counter.js"></script>
 		<script src="${root}/resources/admin/js/retina.js"></script>
+		<script src="${root}/resources/admin/js/custom.js"></script>
 </body>
 </html>
