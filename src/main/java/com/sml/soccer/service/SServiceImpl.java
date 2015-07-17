@@ -1,6 +1,8 @@
 package com.sml.soccer.service;
 
+import java.util.Date;
 import java.util.List;
+import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 
@@ -10,7 +12,9 @@ import org.springframework.stereotype.Service;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.sml.common.dto.CommonBoardDto;
+import com.sml.member.dto.MemberDto;
 import com.sml.soccer.dao.SDao;
+import com.sml.team.dto.TeamDto;
 
 @Service
 public class SServiceImpl implements SService{
@@ -87,6 +91,90 @@ public class SServiceImpl implements SService{
 		mav.setViewName("jsonView");
 		
 		return mav;
+	}
+
+	@Override
+	public ModelAndView showAgeChart(HttpServletRequest request) {
+		int sportCode = Integer.parseInt(request.getParameter("sportCode"));
+		String sportType="";
+		switch(sportCode){
+			case 0: sportType="축구"; break;
+			case 1: sportType="야구"; break;
+			case 2: sportType="풋살"; break;
+			case 3: sportType="족구"; break;
+		}
+		
+		List<MemberDto> list = dao.showAgeChart(sportType);
+		ModelAndView mav = new ModelAndView();
+		mav.addObject("list", list);
+		mav.setViewName("jsonView");
+		return mav;
+	}
+
+	@Override
+	public ModelAndView showCityChart(HttpServletRequest request) {
+		int sportCode = Integer.parseInt(request.getParameter("sportCode"));
+		String sportType="";
+		switch(sportCode){
+			case 0: sportType="축구"; break;
+			case 1: sportType="야구"; break;
+			case 2: sportType="풋살"; break;
+			case 3: sportType="족구"; break;
+		}
+		
+		List<MemberDto> list = dao.showAgeChart(sportType);
+		ModelAndView mav = new ModelAndView();
+		mav.addObject("list", list);
+		mav.setViewName("jsonView");
+		return mav;
+	}
+
+	@Override
+	public ModelAndView showDayChart(HttpServletRequest request) {
+		int sportCode = Integer.parseInt(request.getParameter("sportCode"));
+		String sportType="";
+		switch(sportCode){
+			case 0: sportType="축구"; break;
+			case 1: sportType="야구"; break;
+			case 2: sportType="풋살"; break;
+			case 3: sportType="족구"; break;
+		}
+		
+		List<Date> list = dao.showDayChart(sportType);
+		ModelAndView mav = new ModelAndView();
+		mav.addObject("list", list);
+		mav.setViewName("jsonView");
+		return mav;
+	}
+
+	/**
+	 * 
+	 * @함수명: soccerRule
+	 * @작성일: 2015. 7. 17.
+	 * @작성자: 정성남
+	 * @설명 :
+	 */
+	@Override
+	public void soccerRule(ModelAndView mav) {		
+		
+		mav.setViewName("soccer/soccerRule");
+	}
+	
+	/**
+	 * 
+	 * @함수명: soccerTeamList
+	 * @작성일: 2015. 7. 17.
+	 * @작성자: 정성남
+	 * @설명 :
+	 */
+	@Override
+	public void soccerTeamList(ModelAndView mav) {
+		Map <String, Object> map=mav.getModel();
+		
+		List<TeamDto> teamList=dao.getAllTeamList("축구");
+		logger.info("size: " + teamList.size());
+		mav.addObject("teamList",teamList);
+		mav.setViewName("soccer/soccerTeamList");
 	}
 	
 }

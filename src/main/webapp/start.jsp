@@ -15,8 +15,6 @@
 <link rel="stylesheet" type="text/css" href="${root }/resources/css/jquery-ui.css"/>
 <link rel="stylesheet" type="text/css" href="${root }/resources/css/half-slider.css"/>
 
-
-
 <!-- SCRIPT -->
 <script src="${root }/resources/js/jquery.js"></script>
 <script src="//apis.daum.net/maps/maps3.js?apikey=1442260e0c6af86974001269a7312e42&libraries=services"></script>

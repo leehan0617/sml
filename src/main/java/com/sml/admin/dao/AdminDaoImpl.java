@@ -208,6 +208,34 @@ public class AdminDaoImpl implements AdminDao {
 		return sqlSession.selectList("dao.adminDaoMapper.searchTeamMember",teamName);
 	}
 
+	/**
+	 * @name : getRecordCount
+	 * @date : 2015. 7. 17.
+	 * @author : 이희재
+	 * @description : 리그 기록 리스트 가져오기
+	 */
+	@Override
+	public int getRecordCount(int leagueCode) {
+		return sqlSession.selectOne("dao.adminDaoMapper.getRecordCount",leagueCode);
+	}
+
+	/**
+	 * @name : getRecordList
+	 * @date : 2015. 7. 17.
+	 * @author : 이희재
+	 * @description : 페이징 기법에 따른 레코드 리스트
+	 */
+	@Override
+	public List<HashMap<String, Object>> getRecordList(int leagueCode,
+			int startRow, int endRow) {
+		HashMap<String, Object> hMap=new HashMap<String, Object>();
+		hMap.put("leagueCode", leagueCode);
+		hMap.put("startRow", startRow);
+		hMap.put("endRow", endRow);
+		
+		return sqlSession.selectList("dao.adminDaoMapper.getRecordList",hMap);
+	}
+
 	
 
 }

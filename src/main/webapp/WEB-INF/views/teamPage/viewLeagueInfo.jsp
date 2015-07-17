@@ -159,7 +159,7 @@
            	<c:forEach var="team" items="${joinTeamList}">
 			  <tr>
 				<td></td>
-				<td>${team.emblem} ${team.teamName }</td>
+				<td><img style="width:25px; height:20px;" src="${root }/img/teamImg/${team.emblem}.jpg"></img>&nbsp; ${team.teamName }</td>
 				<td></td>
 				<td></td>
 				<td></td>
@@ -172,7 +172,7 @@
             <c:forEach var="team" items="${leagueRecordList}">
 			  <tr>
 				<td>${team.teamRank }</td>
-				<td>${team.emblem} ${team.teamName }</td>
+				<td><img style="width:25px; height:20px;" src="${root }/img/teamImg/${team.emblem}.jpg"></img>&nbsp; ${team.teamName }</td>
 				<td>${team.countGame}</td>
 				<td>${team.countWin}</td>
 				<td>${team.countDraw}</td>

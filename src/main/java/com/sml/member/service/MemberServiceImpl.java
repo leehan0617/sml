@@ -10,6 +10,7 @@ import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.web.servlet.ModelAndView;
+
 import com.sml.member.dao.MemberDao;
 import com.sml.member.dto.MemberDto;
 import com.sml.team.dao.TeamDao;
@@ -186,6 +187,9 @@ public class MemberServiceImpl implements MemberService{
 		int teamCode=Integer.parseInt(request.getParameter("teamCode"));
 		System.out.println("teamCode-------:"+teamCode);
 		
+		TeamDto team=dao.getTeamInfo(teamName);
+		String emblem=team.getEmblem();
+		
 		String pageNumber=request.getParameter("pageNumber");
 		//System.out.println("pageNumber"+pageNumber);
 		if(pageNumber==null) pageNumber="1";
@@ -203,7 +207,7 @@ public class MemberServiceImpl implements MemberService{
 			teamMemberList = dao.getTeamMemberList(teamName,startRow,endRow);
 		}			
 		
-		
+		mav.addObject("emblem",emblem);
 		mav.addObject("teamMemberList",teamMemberList);
 		mav.addObject("count",count);		
 		mav.addObject("boardSize",boardSize);

@@ -23,5 +23,6 @@ public interface AdminDao {
 	public int leagueUpdateOk(LeagueDto leagueDto);
 	public int leagueSwitch(int leagueState, int leagueCode);
 	public List<HashMap<String,Object>> searchTeamMember(String teamName);
-	
+	public int getRecordCount(int leagueCode);
+	public List<HashMap<String,Object>> getRecordList(int leagueCode, int startRow, int endRow);
 }

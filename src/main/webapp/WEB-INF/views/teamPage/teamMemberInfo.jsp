@@ -61,8 +61,8 @@
     </nav>
 	
 	 <br/><br/><br/><br/>
-     <div class="container-fluid" style="background-color: gold; height: 100px; width: 100%;">
-       <span class="col-xs-2"><a href=""><img alt="logo" src="${root }/resources/images/android@2x.png" width="200" height="150"></a></span>   	  
+     <div class="container-fluid" style="background:url(${root}/resources/images/backGroundImage.jpg)">
+       <span class="col-xs-2"><a href="${root}/team/teamMain.do?teamName=${teamName}"><img class="img-circle img-responsive" alt="logo" src="${root}/resources/images/${emblem}.jpg" width="200" height="150"></img></a></span>
        <span class="col-xs-9" style="font-size:50pt;">${teamName}</span>
        <span class="col-xs-1" style="font-size:20pt"> 총원:${count}</span>
        </div>
@@ -98,12 +98,12 @@
             <c:forEach var="member" items="${teamMemberList}">
 			  <tr>
 				<td>${member.rnum}</td>
-				<td>${member.memberName}</td>
-				<td>${member.memberBirth}</td>
-				<td>${member.memberRegion}</td>
-				<td>${member.memberEmail}</td>
-				<td>${member.memberPhone}</td>
-				<td>${member.memberGender}</td>
+				<td><span class="glyphicon glyphicon-user">${member.memberName}</span></td>
+				<td><span class="glyphicon glyphicon-calendar">${member.memberBirth}</span></td>
+				<td><span class="glyphicon glyphicon-home">${member.memberRegion}</span></td>
+				<td><span class="glyphicon glyphicon-tag">${member.memberEmail}</span></td>
+				<td><span class="glyphicon glyphicon-earphone">${member.memberPhone}</span></td>
+				<td><span class="glyphicon glyphicon-heart">${member.memberGender}</span></td>
 				<td><button class="btn btn-success" onclick="return deleteMember('${root}','${pageNumber}','${member.memberCode}','${teamName}','${teamCode}','${teamGrade}');"><span class="glyphicon glyphicon-trash">삭제</span></button></td>			
 				
 			  </tr>
@@ -113,12 +113,12 @@
 			<c:forEach var="member" items="${teamMemberList}">
 			  <tr>
 				<td>${member.rnum}</td>
-				<td>${member.memberName}</td>
-				<td>${member.memberBirth}</td>
-				<td>${member.memberRegion}</td>
-				<td>${member.memberEmail}</td>
-				<td>${member.memberPhone}</td>
-				<td>${member.memberGender}</td>				
+				<td><span class="glyphicon glyphicon-user">${member.memberName}</span></td>
+				<td><span class="glyphicon glyphicon-calendar">${member.memberBirth}</span></td>
+				<td><span class="glyphicon glyphicon-home">${member.memberRegion}</span></td>
+				<td><span class="glyphicon glyphicon-tag">${member.memberEmail}</span></td>
+				<td><span class="glyphicon glyphicon-earphone">${member.memberPhone}</span></td>
+				<td><span class="glyphicon glyphicon-heart">${member.memberGender}</span></td>				
 			  </tr>			 
 			</c:forEach>
 			</c:otherwise>

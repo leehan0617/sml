@@ -15,7 +15,7 @@
     <meta name="author" content="">   
     <link rel="icon" href="${root }/resources/images/android@2x.png"/>
     
-    <title>teamRecord</title>    
+    <title>${teamName}의 리그기록</title>    
     
 
    <!-- Bootstrap core CSS -->
@@ -59,18 +59,19 @@
     </nav>
 	
 	 <br/><br/><br/><br/>
-     <div class="container-fluid" style="background-color: gold; height: 100px; width: 100%;">
-       <span class="col-xs-2"><a href=""><img alt="logo" src="${root }/resources/images/android@2x.png" width="200" height="150"></a></span>   	  
-       <span class="col-xs-9" style="font-size:50pt;">${teamName}</span>
-       <span class="col-xs-1" style="font-size:20pt;"> ${count} 전  ${winCount} 승  ${lostCount} 패</span>
-       </div>
+     <div class="container-fluid" style="background:url(${root}/resources/images/backGroundImage.jpg)">   
+       <span class="col-xs-2"><a href="${root}/team/teamMain.do?teamName=${teamName}"><img class="img-circle img-responsive" alt="logo" src="${root}/resources/images/${emblem}.jpg" width="200" height="150"></img></a></span> 	  
+       	  
+       <span class="col-xs-9" style="font-size:50pt;"><br/>${teamName}</span>
+       <span class="col-xs-1" style="font-size:15pt;"><br/><br/>총경기수: ${count}  </span>     
+     </div>
        <br/><br/>
 	
-    <div class="container">    	
+    <div class="container" style="background-color: ">    	
       <div class="row">      	   	
           <h2 class="sub-header">경기 기록</h2>
           <br/>         
-          <div class="table-responsive">
+          <div class="table-responsive" style="background-color: ">
             <table class="table table-striped">
               <c:if test="${count>0}">	
               <thead>
@@ -95,9 +96,9 @@
 			</c:if>						
            <c:forEach var="record" items="${recordList}">           	 
 			  <tr align="center">			
-				<td><br/><br/><br/>${record.GAMECODE}</td>	
+				<td style="font-size:20px;"><br/><br/><span>#${record.GAMECODE}</span></td>	
 				<c:if test="${record.SPORTTYPE=='축구'}">		
-				<td><br/><br/><img src="${root}/resources/images/soccerBallImg.jpg" width="50" height="50"></img><br/></td>
+				<td><br/><br/><img class="img-circle img-responsive" src="${root}/resources/images/soccerBallImg.jpg" width="50" height="60"></img><br/></td>
 				</c:if>	
 				
 				<c:if test="${record.GAMETYPE==0}">
@@ -107,22 +108,22 @@
 				<td><br/><br/><br/><span class="label label-success">리그경기</span></td>
 				</c:if>
 				<td>
-					<img src="${root}/resources/images/${record.EMBLEM1}.jpg" width="100" height="100"><img>&nbsp;				
+					<a href="${root}/team/teamMain.do?teamName=${record.TEAM1}"><img class="img-circle" src="${root}/resources/images/${record.EMBLEM1}.jpg" width="100" height="100"><img></a>&nbsp;				
 					<img src="${root}/resources/images/versusIcon.png" width="30" height="30"></img>&nbsp;				
-					<img src="${root}/resources/images/${record.EMBLEM2}.jpg" width="100" height="100"></img>&nbsp;
+					<a href="${root}/team/teamMain.do?teamName=${record.TEAM2}"><img class="img-circle" src="${root}/resources/images/${record.EMBLEM2}.jpg" width="100" height="100"></img></a>&nbsp;
 					<br/>
-					${record.TEAM1}
-					&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-					${record.TEAM2}
+					<span class="label label-primary">HOME</span>${record.TEAM1}
+					&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+					<span class="label label-danger">AWAY</span>${record.TEAM2}
 					<br/>
-					${record.GAMEPLACE}
+					<span class="glyphicon glyphicon-home">${record.GAMEPLACE}</span>
 					<br/>
-					<fmt:formatDate value="${record.GAMEDATE}" pattern="MM-dd"/>&nbsp;&nbsp;
-					${record.GAMETIME}
+					<span class="glyphicon glyphicon-calendar"> <fmt:formatDate value="${record.GAMEDATE}" pattern="MM-dd"/></span>&nbsp;&nbsp;
+					<span class="glyphicon glyphicon-time">${record.GAMETIME}</span>
 				
 				</td>				
-				<td style="font-size:20px; "><br/><br/>${record.GAMERESULT}</td>
-				<td><br/><br/><br/>${record.GAMESTATE}</td>								
+				<td style="font-size:20px; "><br/><br/><span class="label label-default">${record.GAMERESULT}</span></td>
+				<td><br/><br/><br/><span >${record.GAMESTATE}</span></td>								
 			  </tr>
 			  
 			</c:forEach>			
