@@ -18,4 +18,8 @@
               				where rrownum>= #{startRow} and rrownum<= #{endRow}
 		]]>
 	</select>
+	
+	<select id="getBoardContent" parameterType="int" resultType="com.sml.common.dto.CommonBoardDto">
+		select * from board where boardNumber = #{boardNumber}
+	</select>
 </mapper>

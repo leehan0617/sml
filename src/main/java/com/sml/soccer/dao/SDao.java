@@ -11,4 +11,6 @@ public interface SDao {
 	public List<CommonBoardDto> getSoccerBoardList(int sportCode, int startRow,
 			int endRow);
 
+	public CommonBoardDto getBoardContent(int boardNumber);
+
 }

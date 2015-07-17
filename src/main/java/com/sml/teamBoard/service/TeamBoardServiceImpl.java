@@ -69,7 +69,13 @@ public class TeamBoardServiceImpl implements TeamBoardService{
 		
 		return mav;
 	}
-	
+	/**
+	 * 
+	 * @함수명:viewTeamBoardTemplate
+	 * @작성일:2015. 7. 16.
+	 * @작성자:이한빈 
+	 * @설명문:팀메인페이지 게시판 띄우는함수 
+	 */
 	public void viewTeamBoardTemplate(ModelAndView mav) {
 		logger.info("Service viewTeamBoard");
 		Map <String , Object> map = mav.getModelMap();
@@ -243,7 +249,14 @@ public class TeamBoardServiceImpl implements TeamBoardService{
 		mav.addObject("currentPage",currentPage);
 		mav.setViewName("teamBoard/okTeamBoard");
 	}
-
+	
+	/**
+	 * 
+	 * @함수명:writeTeamBoard
+	 * @작성일:2015. 7. 16.
+	 * @작성자:이한빈 
+	 * @설명문:팀게시판 게시글 작성 함수 
+	 */
 	@Override
 	public ModelAndView writeTeamBoard(HttpServletRequest request) {
 		//String teamName = request.getParameter("teamName");

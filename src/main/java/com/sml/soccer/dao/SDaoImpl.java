@@ -27,7 +27,13 @@ public class SDaoImpl implements SDao{
 		logger.info("SDao getBoardCount");
 		return sqlSession.selectOne("soccer.dao.SMapper.getBoardCount",sportCode);
 	}
-
+	/**
+	 * 
+	 * @함수명:getSoccerBoardList
+	 * @작성일:2015. 7. 16.
+	 * @작성자:이한빈 
+	 * @설명문:게시글을 디비에서 가져오는 함수 
+	 */
 	@Override
 	public List<CommonBoardDto> getSoccerBoardList(int sportCode, int startRow,
 			int endRow) {
@@ -38,6 +44,17 @@ public class SDaoImpl implements SDao{
 		hMap.put("endRow", endRow);
 			
 		return sqlSession.selectList("soccer.dao.SMapper.getSoccerBoardList",hMap);
+	}
+	/**
+	 * 
+	 * @함수명:getBoardContent
+	 * @작성일:2015. 7. 16.
+	 * @작성자:이한빈 
+	 * @설명문:게시글 내용 가져오는 함수 
+	 */
+	@Override
+	public CommonBoardDto getBoardContent(int boardNumber) {
+		return sqlSession.selectOne("soccer.dao.SMapper.getBoardContent",boardNumber);
 	}
 	
 	
