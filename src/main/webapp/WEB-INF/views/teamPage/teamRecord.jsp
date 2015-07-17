@@ -51,10 +51,7 @@
 	        </c:otherwise>
 	        </c:choose>
 	        <c:if test="${teamGrade != null }">
-			  <li><a href="${root }/team/teamMain.do?teamName=${teamName}">메인</a></li>
-			  <li><a href="${root }/teamPage/viewTeamBoard.do?teamName=${teamName}">팀 공지사항</a></li>		      
-		      <li><a href="${root }/teamPage/teamMemberInfo.do?teamName=${team.teamName}&teamCode=${team.teamCode}&teamGrade=${teamGrade}">멤버소개</a></li>
-		      <li><a href="${root }/teamPage/teamScheduleEdit.do?teamName=${teamName}">팀 스케쥴</a></li>
+			  <li><a href="${root }/team/teamMain.do?teamName=${teamName}">메인</a></li>			  
 			</c:if>            
           </ul>         
         </div>
@@ -96,18 +93,18 @@
 			   <td align="center">멤버가 존재하지 않습니다.</td>
 			  </tr>		
 			</c:if>						
-           <c:forEach var="record" items="${recordList}">
+           <c:forEach var="record" items="${recordList}">           	 
 			  <tr align="center">			
-				<td>${record.GAMECODE}</td>	
+				<td><br/><br/><br/>${record.GAMECODE}</td>	
 				<c:if test="${record.SPORTTYPE=='축구'}">		
-				<td><img src="${root}/resources/images/soccerBallImg.jpg" width="50" height="50"></img><br/></td>
+				<td><br/><br/><img src="${root}/resources/images/soccerBallImg.jpg" width="50" height="50"></img><br/></td>
 				</c:if>	
 				
 				<c:if test="${record.GAMETYPE==0}">
 				<td><span class="label label-primary" style="width:200px;">친선경기</span></td>
 				</c:if>
 				<c:if test="${record.GAMETYPE!=0}">
-				<td><span class="label label-success">리그경기</span></td>
+				<td><br/><br/><br/><span class="label label-success">리그경기</span></td>
 				</c:if>
 				<td>
 					<img src="${root}/resources/images/${record.EMBLEM1}.jpg" width="100" height="100">&nbsp;				
@@ -123,9 +120,10 @@
 					${record.GAMETIME}
 				
 				</td>				
-				<td>${record.GAMERESULT}</td>
-				<td>${record.GAMESTATE}</td>								
+				<td style="font-size:20px; "><br/><br/>${record.GAMERESULT}</td>
+				<td><br/><br/><br/>${record.GAMESTATE}</td>								
 			  </tr>
+			  
 			</c:forEach>			
              </tbody>
             </table>               
