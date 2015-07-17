@@ -2,6 +2,7 @@ package com.sml.soccer.service;
 
 import java.util.Date;
 import java.util.List;
+import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 
@@ -13,6 +14,7 @@ import org.springframework.web.servlet.ModelAndView;
 import com.sml.common.dto.CommonBoardDto;
 import com.sml.member.dto.MemberDto;
 import com.sml.soccer.dao.SDao;
+import com.sml.team.dto.TeamDto;
 
 @Service
 public class SServiceImpl implements SService{
@@ -143,6 +145,36 @@ public class SServiceImpl implements SService{
 		mav.addObject("list", list);
 		mav.setViewName("jsonView");
 		return mav;
+	}
+
+	/**
+	 * 
+	 * @함수명: soccerRule
+	 * @작성일: 2015. 7. 17.
+	 * @작성자: 정성남
+	 * @설명 :
+	 */
+	@Override
+	public void soccerRule(ModelAndView mav) {		
+		
+		mav.setViewName("soccer/soccerRule");
+	}
+	
+	/**
+	 * 
+	 * @함수명: soccerTeamList
+	 * @작성일: 2015. 7. 17.
+	 * @작성자: 정성남
+	 * @설명 :
+	 */
+	@Override
+	public void soccerTeamList(ModelAndView mav) {
+		Map <String, Object> map=mav.getModel();
+		
+		List<TeamDto> teamList=dao.getAllTeamList("축구");
+		logger.info("size: " + teamList.size());
+		mav.addObject("teamList",teamList);
+		mav.setViewName("soccer/soccerTeamList");
 	}
 	
 }

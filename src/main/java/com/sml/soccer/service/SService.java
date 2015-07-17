@@ -15,5 +15,9 @@ public interface SService {
 	public ModelAndView showCityChart(HttpServletRequest request);
 
 	public ModelAndView showDayChart(HttpServletRequest request);
+	
+	public void soccerRule(ModelAndView mav);
+	
+	public void soccerTeamList(ModelAndView mav);
 
 }

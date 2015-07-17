@@ -32,4 +32,10 @@
 		select gameDate from gameRecord where sportType=#{sportType}
 	</select>
 	
+	<select id="getAllTeamSearch" resultType="com.sml.team.dto.TeamDto">
+ 		<![CDATA[
+ 			select * from team where sporttype=#{sportType}
+ 		]]>
+ 	</select>
+	
 </mapper>

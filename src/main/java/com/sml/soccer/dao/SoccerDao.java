@@ -12,8 +12,7 @@ import com.sml.team.dto.TeamDto;
 
 public interface SoccerDao {
 	public int teamSearch(String teamName);
-	public List<HashMap<String, Object>> todayMatch(String matchDay);
-	public List<TeamDto> getAllTeamList(String sportType);
+	public List<HashMap<String, Object>> todayMatch(String matchDay);	
 	public List<CommonBoardDto> commonBoard(int startRow, int endRow,int sportCode);
 	public Date moveMatchDay(String matchDay, String moveMatchDay);	
 	public int LeagueCount(int leagueCode);

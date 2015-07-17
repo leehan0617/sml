@@ -50,20 +50,20 @@
             <div id="navbar" class="navbar-collapse collapse">
               <ul class="nav navbar-nav">
               	<li class="active"><a href="#" data-toggle='modal' data-target='#modalSoccerBoard' onclick="viewSoccerBoard('${root}','${sportCode }','${currentPage}')">공지사항</a></li>
-                <li><a href="#">경기규칙</a></li>
-                <li><a href="#about">팀리스트</a></li>
-                <li><a href="#contact">심판현황</a></li>
+                <li><a href="${root}/soccer/soccerRule.do">경기규칙</a></li>
+                <li><a href="${root}/soccer/soccerTeamList.do">팀리스트</a></li>
+                <li><a href="${root}/referee/refereeList.do?sportType=${sportType}">심판현황</a></li>
                 <li class="dropdown">
                   <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">다른종목가기<span class="caret"></span></a>
                   <ul class="dropdown-menu" role="menu">
                   	<li class="divider"></li>
-                    <li><a href="#">축구</a></li>
+                    <li><a href="${root}/soccer/soccerMain.do?legion=legion">축구</a></li>
                     <li class="divider"></li>
                     <li><a href="#">야구</a></li>
                     <li class="divider"></li>
                     <li><a href="#">족구</a></li>
                     <li class="divider"></li>
-                    <li><a href="#">풋살</a></li>
+                    <li><a href="${root }/scMain">풋살</a></li>
                     <li class="divider"></li>
                   </ul>
                 </li>
