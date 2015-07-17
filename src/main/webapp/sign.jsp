@@ -27,7 +27,7 @@
 </script>
 <script src="${root }/js/xhr/xhr.js"></script>
 <script src="${root }/js/teamPage/teamPage.js"></script>
-<script src="${root }/js/member/member.js"></script>
+<script src="${root }/resources/js/member.js"></script>
 
 <form action="${root}/member/registerMember.do" method="post" name="registerModal" onsubmit="return teamCheck(this)">
 <div class="modal fade" id="popupJoin" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
@@ -48,7 +48,7 @@
 					        <div class="input-group">
 							      <input type="text" class="form-control" placeholder="팀아이디를 적어주세요." name="teamId">
 							      <span class="input-group-btn">
-							        <button class="btn btn-default" type="button">중복확인</button>
+							        <button class="btn btn-default" type="button" onclick="idCheck(registerModal,'${root}')">중복확인</button>
 							      </span>
 							 </div><!-- /input-group -->
 					      </div>
@@ -70,7 +70,7 @@
 						        <div class="input-group">
 							      <input type="text" class="form-control" placeholder="팀이름을 적어주세요." name="teamName">
 							      <span class="input-group-btn">
-							        <button class="btn btn-default" type="button">중복확인</button>
+							        <button class="btn btn-default" type="button"  onclick="teamIdCheck(registerModal,'${root}')">중복확인</button>
 							      </span>
 							    </div><!-- /input-group -->
 					      	</div>
@@ -104,8 +104,8 @@
 					    <div class="row">
 					    	<div class="col-xs-8 col-sm-4"></div>
 					    	<div class="col-xs-4 col-sm-6">
-					        <input class="btn btn-info" type="button" value="다음단계로" data-toggle="modal" data-target="#popupJoin2" id="step2">
-					         <button type="button" class="btn btn-danger" data-dismiss="modal">취소</button>
+					        <input class="btn btn-info" type="button" value="다음단계로" onclick="return Check(registerModal)"data-toggle="modal" data-target="#popupJoin2" id="step2">
+					        <button type="button" class="btn btn-danger" data-dismiss="modal">취소</button>
 					      </div>
 					    </div>
 				  	</div>
