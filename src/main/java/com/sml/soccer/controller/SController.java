@@ -60,4 +60,43 @@ public class SController {
 		ModelAndView mav = service.readSoccerBoard(request);
 		return mav;
 	}
+	/**
+	 * @함수명:showAgeChart
+	 * @작성일:2015. 7. 17.
+	 * @작성자:이한빈 
+	 * @설명문:연령별 통계보여주는 함수 
+	 */
+	@RequestMapping(value="/showAgeChart" , method=RequestMethod.GET)
+	public ModelAndView showAgeChart(HttpServletRequest request , HttpServletResponse response){
+		logger.info("SController showAgeChart");
+		response.setCharacterEncoding("UTF-8");
+		
+		ModelAndView mav = service.showAgeChart(request);
+		return mav;
+	}
+	/**
+	 * @함수명:showCityChart
+	 * @작성일:2015. 7. 17.
+	 * @작성자:이한빈 
+	 * @설명문:지역별 통계보여주는 함수
+	 */
+	@RequestMapping(value="/showCityChart" ,method=RequestMethod.GET)
+	public ModelAndView showCityChart(HttpServletRequest request , HttpServletResponse response){
+		logger.info("SController showCityChart");
+		response.setCharacterEncoding("UTF-8");
+		
+		ModelAndView mav = service.showCityChart(request);
+		return mav;
+	}
+	
+	@RequestMapping(value="/showDayChart" , method=RequestMethod.GET)
+	public ModelAndView showDayChart(HttpServletRequest request, HttpServletResponse response){
+		logger.info("SController showDayChart");
+		response.setCharacterEncoding("UTF-8");
+		
+		ModelAndView mav = service.showDayChart(request);
+		
+		return mav;
+	}
+
 }
