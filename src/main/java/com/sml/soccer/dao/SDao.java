@@ -1,6 +1,7 @@
 package com.sml.soccer.dao;
 
 import java.util.Date;
+import java.util.HashMap;
 import java.util.List;
 
 import com.sml.common.dto.CommonBoardDto;
@@ -24,5 +25,9 @@ public interface SDao {
 	public List<TeamDto> getAllTeamList(String sportType);
 
 	public List<LeagueDto> showLeagueInfo(String sportType);
+
+	public List<LeagueDto> getLeagueJoin();
+
+	public int joinLeague(HashMap<String, Object> hMap);
 
 }

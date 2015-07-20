@@ -22,4 +22,8 @@ public interface SService {
 
 	public ModelAndView showLeagueInfo(HttpServletRequest request);
 
+	public ModelAndView leagueTable(HttpServletRequest request);
+
+	public ModelAndView joinLeague(HttpServletRequest request);
+
 }

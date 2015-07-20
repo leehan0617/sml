@@ -60,14 +60,6 @@
 	function modalToggle(){
 		$("#modalSoccerBoard").toggle();
 	}
-	
-	jQuery(document).ready(function($) {
-	       $(".myScroll").click(function(event){            
-	               event.preventDefault();
-	               $('html,body').animate({scrollTop:$(this.hash).offset().top}, 500);
-	       });
-	   		showAgeChart("","${sportCode}");
-		});
 	   
 	   function showAgeChart(root,sportCode){
 		   var addr = root+"/showAgeChart?sportCode="+sportCode;
@@ -211,5 +203,85 @@
 		  
 		   });
 	   }
+	   
+	   function showLeagueInfo(root,sportCode){
+		   var addr = root+"/showLeagueInfo?sportCode="+sportCode;
+		   
+		   $.ajax({
+			  type:"GET",
+			  url:addr,
+			  success:function(data){
+				  console.log(data);
+				 		
+				  for(value in data.list){
+					  var src = root +'/img/leagueImg/';
+					  var img = data.list[value].leagueImage;
+					  var imgSrc = src+img;
+					  var text = "<div class='item'>"+"<img src="+imgSrc+"/><div class='carousel-caption'>"+data.list[value].leagueName+'</div></div>';
+					
+					  $('#leagueOl').append('<li data-target="#carousel-example-generic" data-slide-to='+(value+1)+'</li>');
+					  $('#leagueDiv').append(text);	
+				  }
+				
+				   			  
+				}
+		   });
+	   }
+	   
+	   function leagueTable(root , sportCode,teamName){
+		   var addr = root +"/leagueTable?sportCode="+sportCode;
+		   //alert(teamName);
+		   $.ajax({
+			  type:"GET",
+			  url:addr,
+			  success:function(data){
+				  console.log(data);
+				  leagueList = data.leaguelist;
+				  leagueJoin = data.leagueJoin;
+				  
+				  
+				  
+				  for(index in leagueList){
+					  var str="";
+					  
+					  for(var j in leagueJoin){
+						  if((leagueJoin[j].leagueCode == leagueList[index].leagueCode) &&(leagueJoin[j].leagueCount >= leagueList[index].leagueTeamNumber)){
+							  var check = "NO";
+							  str += '<tr><td><a data-toggle="modal" data-target="#modalLeagueInfo" onclick=modalLeague('+'"'+root+'",'+leagueList[index].leagueCode+',"'+leagueList[index].leagueName+'","'+leagueList[index].leagueRegion+'",'+leagueList[index].leagueTeamNumber+',"'+leagueList[index].leagueDay+'","'+leagueList[index].leagueTime+'","'+leagueList[index].leagueStartDate+'","'+leagueList[index].leagueEndDate+'","'+check+'","'+teamName+'")>'+leagueList[index].leagueName+"</a></td><td>"+leagueList[index].leagueStartDate+" ~ "+leagueList[index].leagueEndDate+"</td><td>"+leagueList[index].leagueRegion+"</td>";
+							  str += "<td>"+check+"</td></tr>";
+						  }else{
+							  var check = "YES";
+							  str += '<tr><td><a data-toggle="modal" data-target="#modalLeagueInfo" onclick=modalLeague('+'"'+root+'",'+leagueList[index].leagueCode+',"'+leagueList[index].leagueName+'","'+leagueList[index].leagueRegion+'",'+leagueList[index].leagueTeamNumber+',"'+leagueList[index].leagueDay+'","'+leagueList[index].leagueTime+'","'+leagueList[index].leagueStartDate+'","'+leagueList[index].leagueEndDate+'","'+check+'","'+teamName+'")>'+leagueList[index].leagueName+"</a></td><td>"+leagueList[index].leagueStartDate+" ~ "+leagueList[index].leagueEndDate+"</td><td>"+leagueList[index].leagueRegion+"</td>";
+							  str +="<td>"+check+"</td></tr>";
+						  } 
+						  
+						  $("#leagueTable").append(str);
+					  }
+				  }
+			  }
+		   });
+	   }
+	   
+	   function modalLeague(root,leagueCode,name,region,limitNumber,leagueDay,leagueTime,startDate,endDate,check,teamName){
+		   //alert(root+","+code+','+name+','+region+','+limitNumber+','+leagueDay+','+leagueTime+','+startDate+','+endDate);
+		  
+		  
+		   $('#leagueName').val(name);
+		   $('#leagueRegion').val(region);
+		   $('#leagueDate').val(startDate + " ~ " + endDate);
+		   $('#limitTeam').val(limitNumber+"팀");
+		   $('#leagueTime').val(leagueTime+"시");
+		   $('#hiddenCode').val(leagueCode);
+		   if(check == "YES"){
+			   if(teamName == null || teamName ==''){
+				   alert("리그신청은 로그인후 이용해 주세요.");
+			   }else{
+				   $('#modalLeagueFooter').prepend('<button type="button" class="btn btn-success" data-dismiss="modal" onclick=joinLeague('+leagueCode+',"'+root+'","'+teamName+'")>리그신청</button>');
+			   }
+		   }else{
+			   $('#modalLeagueFooter').prepend('<button type="button" class="btn btn-danger" data-dismiss="modal">정원초과</button>');
+		   }
+	   }
+
 
 	

@@ -152,7 +152,7 @@
           <img class="img-circle" src="${root}/resources/images/notice.png" alt="Generic placeholder image" width="140" height="140">
           <h2>리그 게시판</h2>
           <p>현재 진행중인 리그들에 관심이 있으시면 아래 버튼을 클릭해주세요.</p>
-          <p><a class="btn btn-default" href="#" role="button">리그 보기</a></p>
+          <p><a class="btn btn-default" href="#carousel-example-generic" role="button" id="leagueScroll">리그 보기</a></p>
         </div><!-- /.col-lg-4 -->
         <div class="col-lg-4">
           <img class="img-circle" src="${root}/resources/images/geo.png" width="140" height="140">
@@ -175,22 +175,35 @@
 
       <div class="row featurette">
         <div class="col-md-7">
-          <h2 class="featurette-heading">First featurette heading. <span class="text-muted">It'll blow your mind.</span></h2>
-          <p class="lead">Donec ullamcorper nulla non metus auctor fringilla. Vestibulum id ligula porta felis euismod semper. Praesent commodo cursus magna, vel scelerisque nisl consectetur. Fusce dapibus, tellus ac cursus commodo.</p>
+          <h2 class="featurette-heading">SML 리그 <span class="text-muted">현재 진행중인 리그목록들입니다.</span></h2>
+          <p class="lead">상세정보는 원하는 리그명을 클릭해주세요.</p>
+          	<table class="table table-hover">
+          		<thead>
+          			<tr><th style="width:20%">리그명</th><th style="width:30%">리그기간</th><th style="width:40%">리그장소</th><th style="width:10%">참가여부</th></tr>
+          		</thead>
+          		<tbody id="leagueTable">
+          			
+           		</tbody>
+          	</table>
+          
         </div>
         <div class="col-md-5">
           
           	<!--  -->
           	<div id="carousel-example-generic" class="carousel slide" data-ride="carousel" style="width:500px;height:500px">
 			  <!-- Indicators -->
-			  <ol class="carousel-indicators">
+			  <ol class="carousel-indicators" id="leagueOl">
 			    <li data-target="#carousel-example-generic" data-slide-to="0" class="active"></li>
-			    <li data-target="#carousel-example-generic" data-slide-to="1"></li>
-			    <li data-target="#carousel-example-generic" data-slide-to="2"></li>
 			  </ol>
 			
 			  <!-- Wrapper for slides -->
 			  <div class="carousel-inner" role="listbox" id="leagueDiv">
+			     <div class="item active"><img src="" alt="a">
+			     	<div class="carousel-caption">
+			        이곳은 현재 참가 가능한 리그목록이 있습니다. 
+			      </div>
+			     </div>
+			     
 			     
 			  </div>
 			
@@ -318,59 +331,67 @@
      </div>
    </div>
    
+     <div class="modal fade" id="modalLeagueInfo" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
+   	<div class="modal-dialog">
+    	<div class="modal-content">
+    		<div class="modal-header" id="modalLeagueHeader">
+    			<h3>리그정보</h3>
+    		</div>
+    		<div class="modal-body" id="modalLeagueBody">
+    			<div class="form-horizontal">
+  					<div class="form-group"><label class="col-sm-2 control-label">리그명</label>
+    					<div class="col-sm-10"><input type="text" class="form-control" id="leagueName" disabled="disabled"></div>
+  					</div>
+  					<div class="form-group"><label class="col-sm-2 control-label">리그지역</label>
+    					<div class="col-sm-10"><input type="text" class="form-control" id="leagueRegion" disabled="disabled"></div>
+  					</div>
+  					<div class="form-group"><label class="col-sm-2 control-label">리그기간</label>
+    					<div class="col-sm-10"><input type="text" class="form-control" id="leagueDate" disabled="disabled"></div>
+  					</div>
+  					<div class="form-group"><label class="col-sm-2 control-label">참가가능팀수</label>
+    					<div class="col-sm-10"><input type="text" class="form-control" id="limitTeam" disabled="disabled"></div>
+  					</div>
+  					<div class="form-group"><label class="col-sm-2 control-label">리그시간</label>
+    					<div class="col-sm-10"><input type="text" class="form-control" id="leagueTime" disabled="disabled"></div>
+  					</div>
+  					<input type="hidden" id="hiddenCode"/>
+  				</div>
+    		</div>
+      		<div class="modal-footer" id="modalLeagueFooter">
+            	<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+      		</div>
+  		</div>
+     </div>
+   </div>
+   
+   
    <script>
    jQuery(document).ready(function($) {
+	   showAgeChart("${root}","${sportCode}");
+  		showLeagueInfo("${root}","${sportCode}");
+  		leagueTable("${root}","${sportCode}",'${teamName}');
+  		
        $(".myScroll").click(function(event){            
                event.preventDefault();
                $('html,body').animate({scrollTop:$(this.hash).offset().top}, 500);
        });
-   		showAgeChart("${root}","${sportCode}");
-   		showLeagueInfo("${root}","${sportCode}");
+       
+       $("#leagueScroll").click(function(event){
+    	  event.preventDefault();
+    	  $('html,body').animate({scrollTop:$(this.hash).offset().top},500);
+       });
+
 	});
    
-   function showLeagueInfo(root,sportCode){
-	   var addr = root+"/showLeagueInfo?sportCode="+sportCode;
+   function joinLeague(code,root,teamName){
+	   alert(code+','+root+','+teamName);
+	   var addr = root+'/joinLeague?leagueCode='+code+'&teamName='+teamName;
 	   
 	   $.ajax({
-		  type:"GET",
 		  url:addr,
+		  type:'get',
 		  success:function(data){
-			  console.log(data);
-			  var list = data.list;
-			  var startDate = data.list[0].leagueStartDate;
-			  var endDate = data.list[0].leagueEndDate;  
-			  
-			  /**
-			  for(var i=0; i<list.length;i++){
-				  var imgSrc = root+"/img/leagueImg/"+list[i].leagueImg;
-				  if(i=0){
-				  	$("#leagueDiv").append('<div class="item active">'+'<img src='+imgSrc+'>');
-				  }else{
-					$("#leagueDiv").append('<div class="item">'+'<img src='+imgSrc+'>');
-				  }
-				  $("#leagueDiv").append('<div class="carousel-caption">'+list[i].leagueName+'</div></div>');	  
-			  }
-			  */
-			  
-			  /*
-			<div class="carousel-inner" role="listbox" id="leagueDiv">
-			    <div class="item active">
-			      <img src="..." alt="...">
-			      <div class="carousel-caption">
-			        내용1 
-			      </div>
-			    </div>
-			    <div class="item">
-			      <img src="..." alt="...">
-			      <div class="carousel-caption">
-			        내용2
-			      </div>
-			    </div>
-			    
-			  </div>
-
-			  */
-			  
+			  alert('리그신청이 완료되었습니다.');
 		  }
 	   });
    }

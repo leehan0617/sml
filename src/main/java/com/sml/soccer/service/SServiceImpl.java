@@ -1,6 +1,7 @@
 package com.sml.soccer.service;
 
 import java.util.Date;
+import java.util.HashMap;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
@@ -197,6 +198,62 @@ public class SServiceImpl implements SService{
 		List<LeagueDto> leagueList = dao.showLeagueInfo(sportType);
 		System.out.println("size"+leagueList.size());
 		mav.addObject("list" , leagueList );
+		mav.setViewName("jsonView");
+		return mav;
+	}
+	/**
+	 * 
+	 * @함수명:leagueTable
+	 * @작성일:2015. 7. 20.
+	 * @작성자:이한빈 
+	 * @설명문:테이블에 보여줄 리그정보 출력
+	 */
+	@Override
+	public ModelAndView leagueTable(HttpServletRequest request) {
+		logger.info("SService leagueTable");
+		ModelAndView mav = new ModelAndView();
+		int sportCode = Integer.parseInt(request.getParameter("sportCode"));
+		String sportType = this.setSportCode(sportCode);
+			
+		List<LeagueDto> leagueList = dao.showLeagueInfo(sportType);
+		List<LeagueDto> leagueJoin = dao.getLeagueJoin();
+		System.out.println("size:"+leagueJoin.size());
+		mav.addObject("leaguelist" , leagueList);
+		mav.addObject("leagueJoin" , leagueJoin);
+		mav.setViewName("jsonView");
+		return mav;
+	}
+	
+	/**
+	 * 
+	 * @함수명:setSportCode
+	 * @작성일:2015. 7. 20.
+	 * @작성자:이한빈 
+	 * @설명문:스포츠코드 스트링으로 전환함수 
+	 */
+	private String setSportCode(int sportCode){
+		String sportType="";
+		
+		switch(sportCode){
+			case 0: sportType="축구"; break;
+			case 1: sportType="야구"; break;
+			case 2: sportType="풋살"; break;
+			case 3: sportType="족구"; break;
+		}
+		return sportType;
+	}
+
+	@Override
+	public ModelAndView joinLeague(HttpServletRequest request) {
+		int leagueCode = Integer.parseInt(request.getParameter("leagueCode"));
+		String teamName = request.getParameter("teamName");
+		HashMap<String,Object> hMap = new HashMap<String,Object>();
+		hMap.put("leagueCode", leagueCode);
+		hMap.put("teamName", teamName);
+		
+		int check = dao.joinLeague(hMap);
+		ModelAndView mav = new ModelAndView();
+		mav.addObject("check",check);
 		mav.setViewName("jsonView");
 		return mav;
 	}
