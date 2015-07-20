@@ -35,7 +35,7 @@
 	<nav class="navbar navbar-inverse navbar-fixed-top">
       <div class="container-fluid">
         <div class="navbar-header">        
-          <a class="navbar-brand" href="${root}/team/teamMain.do?teamName=${teamName}">SML Korea</a>
+          <a class="navbar-brand" href="${root }/scMain">SML Korea</a>
         </div>
         <div id="navbar" class="navbar-collapse collapse">
           <ul class="nav navbar-nav navbar-right">
@@ -47,7 +47,7 @@
 	        	<li><a href="${root }/teamPage/logout.do">로그아웃</a></li>
 	        </c:otherwise>
 	        </c:choose>	       
-			  <li><a href="${root}/soccer/soccerMain.do">메인</a></li>			            
+			  <li><a href="${root }/scMain">메인</a></li>			            
           </ul>         
         </div>
       </div>
@@ -55,7 +55,7 @@
 	
 	 <br/><br/><br/><br/>
      <div class="container-fluid" style="background:url(${root}/resources/images/backGroundImage.jpg)">   
-       <span class="col-xs-2"><a href="${root}/soccer/soccerMain.do"><img class="img-circle img-responsive" alt="logo" src="" width="200" height="150"></img></a></span> 	  
+       <span class="col-xs-2"><a href="${root }/scMain"><img class="img-circle img-responsive" alt="logo" src="${root}/resources/images/android@2x.png" width="200" height="150"></img></a></span> 	  
        	  
        <span class="col-xs-9" style="font-size:50pt;"><br/>${teamName}</span>         
      </div>

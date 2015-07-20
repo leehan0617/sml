@@ -65,7 +65,8 @@ function fromServer(){
 function refereeRegion(root, sportCode,regionSido){
 	//alert("regionSido:"+regionSido);
 	if(regionSido=="전국"){
-		var url=root + "/referee/refereeList.do?sportCode=" + sportCode +"&regionSido=" + regionSido;
+		alert("성공");
+		var url=root + "/referee/refereeList.do?sportCode=" + sportCode;		
 		location.replace(url);
 	}
 	

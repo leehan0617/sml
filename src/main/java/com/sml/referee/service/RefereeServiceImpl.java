@@ -39,7 +39,7 @@ public class RefereeServiceImpl implements RefereeService{
 		
 		String sportType="";
 		int sportCode = Integer.parseInt(request.getParameter("sportCode"));
-		System.out.println("RefereeListsportCode:"+sportCode);
+		//System.out.println("RefereeListsportCode:"+sportCode);
 		
 		
 		switch(sportCode){
@@ -52,7 +52,8 @@ public class RefereeServiceImpl implements RefereeService{
 		//각 종목 메인 페이지의 심판리스트 불러올 종목변수 (예) "축구", "족구", "야구", 		
 		//System.out.println("sportType:"+sportType);
 		//심판 리스트로 넘어갈때 맨 처음 보여줄 심판들의 지역 , 초기값은 "서울"
-		String regionSido=request.getParameter("regionSido");		
+		String regionSido=request.getParameter("regionSido");	
+		System.out.println("regionSido"+regionSido);
 		if(regionSido==null){
 			regionSido="전국";
 		}
@@ -75,12 +76,13 @@ public class RefereeServiceImpl implements RefereeService{
 		
 		if(regionSido.equals("전국")){
 			refereeList=refereeDao.refereeAllList(startRow, endRow, sportType);
+			
 		}
 		
-		if(count>0&&regionSido!="전국"){
+		else if(count>0&&regionSido!="전국"){
 			refereeList=refereeDao.refereeList(startRow, endRow, sportType, regionSido);//sportType="축구"
 		}
-		//System.out.println(";;;;;;;;;;;;;"+regionSido);
+		
 		
 		logger.info("boardSize:" + refereeList.size());		
 		//심판 지역 리스트
@@ -94,7 +96,7 @@ public class RefereeServiceImpl implements RefereeService{
 		mav.addObject("count", count);
 		mav.addObject("boardSize", boardSize);		
 		mav.addObject("currentPage",currentPage);
-		
+		mav.addObject("regionSido",regionSido);
 		mav.setViewName("referee/refereeList");
 		//mav.setViewName("referee/refereeListOption");
 	}
