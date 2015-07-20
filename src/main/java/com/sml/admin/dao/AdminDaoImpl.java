@@ -236,6 +236,47 @@ public class AdminDaoImpl implements AdminDao {
 		return sqlSession.selectList("dao.adminDaoMapper.getRecordList",hMap);
 	}
 
+	/**
+	 * @name : getRecordInfo
+	 * @date : 2015. 7. 20.
+	 * @author : 이희재
+	 * @description : 게임 결과를 입력하기 위한 게임 결과 정보
+	 */
+	@Override
+	public HashMap<String, Object> getRecordInfo(int gameCode) {
+		return sqlSession.selectOne("dao.adminDaoMapper.getRecordInfo",gameCode);
+	}
+
+	/**
+	 * @name : insertDraw
+	 * @date : 2015. 7. 20.
+	 * @author : 이희재
+	 * @description : 경기 결과를 입력하기 위한 mapper
+	 */
+	@Override
+	public int insertDraw(int gameCode, String resultScore) {
+		HashMap<String, Object> hMap=new HashMap<String, Object>();
+		hMap.put("gameCode", gameCode);
+		hMap.put("resultScore", resultScore);
+		return sqlSession.update("dao.adminDaoMapper.insertDraw",hMap);
+	}
+
+	@Override
+	public int insertTeam1(int gameCode, String resultScore) {
+		HashMap<String, Object> hMap=new HashMap<String, Object>();
+		hMap.put("gameCode", gameCode);
+		hMap.put("resultScore", resultScore);
+		return sqlSession.update("dao.adminDaoMapper.insertTeam1",hMap);
+	}
+
+	@Override
+	public int insertTeam2(int gameCode, String resultScore) {
+		HashMap<String, Object> hMap=new HashMap<String, Object>();
+		hMap.put("gameCode", gameCode);
+		hMap.put("resultScore", resultScore);
+		return sqlSession.update("dao.adminDaoMapper.insertTeam2",hMap);
+	}
+
 	
 
 }

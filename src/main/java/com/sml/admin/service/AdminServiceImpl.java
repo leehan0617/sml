@@ -18,6 +18,7 @@ import org.springframework.web.servlet.ModelAndView;
 import com.sml.admin.dao.AdminDao;
 import com.sml.league.dto.LeagueDto;
 import com.sml.member.dto.MemberDto;
+import com.sml.record.dto.RecordDto;
 import com.sml.referee.dto.RefereeDto;
 import com.sml.team.dto.TeamDto;
 
@@ -458,7 +459,42 @@ public class AdminServiceImpl implements AdminService{
 	 */
 	@Override
 	public void insertGameResult(ModelAndView mav) {
+		Map<String,Object> map=mav.getModelMap();
+		HttpServletRequest request=(HttpServletRequest) map.get("request");
+		int gameCode=Integer.parseInt(request.getParameter("gameCode"));
+
+		HashMap<String, Object> recordMap=adminDao.getRecordInfo(gameCode);
 		
+		mav.addObject("recordMap",recordMap);
+		mav.setViewName("admin/insertGameResult");
+	}
+	
+	/**
+	 * @name : insertGameResult
+	 * @date : 2015. 7. 17.
+	 * @author : 이희재
+	 * @description : 경기 결과 입력
+	 */
+	@Override
+	public void insertGameResultOk(ModelAndView mav) {
+		Map<String,Object> map=mav.getModelMap();
+		HttpServletRequest request=(HttpServletRequest) map.get("request");
+		int gameCode=Integer.parseInt(request.getParameter("gameCode"));
+		String resultScore=request.getParameter("resultScore");
+		String result=request.getParameter("result");
+		
+		HashMap<String, Object> record=adminDao.getRecordInfo(gameCode);
+		int check=0;
+		
+		if(result.equals("무")){
+			check=adminDao.insertDraw(gameCode, resultScore);
+		}else if(result.equals(record.get("TEAM1"))){
+			check=adminDao.insertTeam1(gameCode, resultScore);
+		}else if(result.equals(record.get("TEAM2"))){
+			check=adminDao.insertTeam2(gameCode, resultScore);
+		}
+		
+		mav.addObject("check",check);
 	}
 
 	

@@ -25,4 +25,8 @@ public interface AdminDao {
 	public List<HashMap<String,Object>> searchTeamMember(String teamName);
 	public int getRecordCount(int leagueCode);
 	public List<HashMap<String,Object>> getRecordList(int leagueCode, int startRow, int endRow);
+	public HashMap<String,Object> getRecordInfo(int gameCode);
+	public int insertDraw(int gameCode, String resultScore);
+	public int insertTeam1(int gameCode, String resultScore);
+	public int insertTeam2(int gameCode, String resultScore);
 }
