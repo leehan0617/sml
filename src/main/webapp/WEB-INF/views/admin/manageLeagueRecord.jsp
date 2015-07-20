@@ -123,16 +123,16 @@
 										</td>	
 										<td><span style="color: red; font-weight: bold;">VS</span></td>		
 										<td>
-											<img src="${root }/img/teamImg/${recordList.EMBLEM1}" style="width:25px; height:25px;">
+											<img src="${root }/img/teamImg/${recordList.EMBLEM2}" style="width:25px; height:25px;">
 											&nbsp;
-											<a href="${root }/team/teamMain.do?teamName=${recordList.TEAM1}">${recordList.TEAM1}</a>
+											<a href="${root }/team/teamMain.do?teamName=${recordList.TEAM2}">${recordList.TEAM2}</a>
 										</td>	
 										<td>${recordList.GAMESTATE}</td>	
 										<td><fmt:formatDate value="${recordList.GAMEDATE}" pattern="yyyy-MM-dd"></fmt:formatDate></td>	
 										<td>${recordList.GAMETIME}</td>	
 										<td>${recordList.GAMERESULT}</td>	
 										<td>
-											<a data-toggle="modal" data-target="#insertGameResult" onclick="insertGameResult('${root}','${recordList.GAMECODE}')">
+											<a data-toggle="modal" data-target="#insertGameResult" href="${root }/admin/insertGameResult.do?gameCode=${recordList.GAMECODE }">
 												<span class="label label-important">입력</span>
 											</a>	
 										</td>
@@ -186,13 +186,11 @@
 			<button type="button" class="close" data-dismiss="modal">×</button>
 			<h3>경기 결과 입력</h3>
 		</div>
-		<div class="modal-body">
-			<p>Here settings can be configured...</p>
-		</div>
+		<div class="modal-body"></div>
 		<div class="modal-footer">
-			<a href="#" class="btn" data-dismiss="modal">Close</a>
-			<a href="#" class="btn btn-primary">Save changes</a>
-		</div>
+			<a href="#" class="btn" data-dismiss="modal">닫기</a>
+			<a href="#" class="btn btn-primary" data-dismiss="modal" id="insertButton">입력</a>
+	</div>
 	</div>
 	
 	
