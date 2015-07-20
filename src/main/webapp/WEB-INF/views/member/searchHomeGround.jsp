@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-    <%@ taglib prefix="c"  uri="http://java.sun.com/jsp/jstl/core" %>
+   <%@ taglib prefix="c"  uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE>
 <c:set var="root" value="${pageContext.request.contextPath }"></c:set>
 <html>
@@ -8,11 +8,16 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <meta name="viewport" contetn="width=device-width,initial-scale=1">
 <title>Insert title here</title>
+<script type="text/javascript" src="${root}/resources/js/jquery.js"></script>
+<script type="text/javascript" src="//apis.daum.net/maps/maps3.js?apikey=1442260e0c6af86974001269a7312e42&libraries=services"></script>
+<script type="text/javascript" src="${root}/js/member/map.js"></script>
+<script type="text/javascript" src="${root}/resources/js/member.js"></script>
+<script type="text/javascript" src="${root}/js/xhr/xhr.js"></script>
+<script src="${root }/resources/js/bootstrap.js"></script>
+
+
 <link href="${root}/css/map/map.css" type="text/css" rel="stylesheet"/>
 <link rel="stylesheet" type="text/css" href="${root}/resources/css/bootstrap.css"/>
-
-<script src="${root }/resources/js/jquery.js"></script>
-<script src="${root }/resources/js/bootstrap.js"></script>
 </head>
 <body>
 		<div class="map_wrap" align="center">
@@ -45,10 +50,4 @@
 		</p>
 	</footer>
 </body>
-
-<script type="text/javascript" src="${root}/js/jquery/jquery.js"></script>
-<script type="text/javascript" src="//apis.daum.net/maps/maps3.js?apikey=1442260e0c6af86974001269a7312e42&libraries=services"></script>
-<script type="text/javascript" src="${root}/js/member/map.js"></script>
-<script type="text/javascript" src="${root}/js/member/member.js"></script>
-<script type="text/javascript" src="${root}/js/xhr/xhr.js"></script>
 </html>

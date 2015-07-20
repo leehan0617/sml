@@ -8,14 +8,14 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>중복 체크</title>
 <script type="text/javascript" src="${root}/resources/js/jquery.js"></script>
-<script src="${root }/resources/js/bootstrap.js"></script>
 <script type="text/javascript" src="${root}/resources/js/member.js"></script>
+<script src="${root}/resources/js/bootstrap.js"></script>
 
 <link rel="stylesheet" type="text/css" href="${root}/resources/css/bootstrap.css"/>
 </head>
 <body class="jumbotron">
 		<c:if test="${check!=null}">
-			<form class="form-horizontal" onsubmit="return idCheck(this,'${root}')">
+			<form class="form-horizontal" onsubmit="idCheck(this,'${root}')">
 				<div class="alert alert-Warning">
 			    	<strong>사용중인 아이디입니다!</strong> 
 				</div>

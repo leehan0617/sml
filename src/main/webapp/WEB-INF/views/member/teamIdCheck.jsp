@@ -8,8 +8,8 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Insert title here</title>
 <script type="text/javascript" src="${root}/resources/js/jquery.js"></script>
-<script src="${root }/resources/js/bootstrap.js"></script>
 <script type="text/javascript" src="${root}/resources/js/member.js"></script>
+<script src="${root }/resources/js/bootstrap.js"></script>
 
 <link rel="stylesheet" type="text/css" href="${root}/resources/css/bootstrap.css"/>
 </head>

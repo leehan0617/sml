@@ -151,7 +151,7 @@ function searchHomeground(form, root){
 }
 
 function selectHomeGround(){
-	window.opener.registerModal.homeGround.value=$("#homeGround").text();
+	window.opener.form.homeGround.value=$("#homeGround").text();
 	close();
 }
 
