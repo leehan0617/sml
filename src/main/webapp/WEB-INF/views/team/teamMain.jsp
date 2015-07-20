@@ -94,8 +94,7 @@
 	  <div class="col-md-1"></div>
 	  <div class="col-md-3">
 	    <a href="${root}/team/teamMain.do?teamName=${teamName}">
-	    <img class="img-circle img-responsive" src="${root}/img/teamImg/${team.emblem}" width="200" height="150"></img>
-	    <img alt="로고이미지" class="img-circle img-responsive" alt="logo" src="${root}/img/teamImg/${emblem}" width="200" height="150"></img>
+	    <img class="img-circle img-responsive" src="${root}/img/teamImg/${team.emblem}" width="200" height="150"></img>	   
 	    </a>	  	
 	  </div>
 	  <div class="col-md-4">
