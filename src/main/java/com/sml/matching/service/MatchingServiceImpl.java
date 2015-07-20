@@ -48,7 +48,7 @@ public class MatchingServiceImpl implements MatchingService {
 		int check = dao.searchMatching(matchingDto);
 		mav.addObject("teamName",teamName);
 		mav.addObject("matchingCheck" , check);
-		mav.setViewName("teamPage/okTeamBoard");
+		mav.setViewName("teamBoard/okTeamBoard");
 	}
 
 	/**
@@ -169,7 +169,7 @@ public class MatchingServiceImpl implements MatchingService {
 		
 		mav.addObject("teamName", teamName);
 		mav.addObject("matchingDelete",matchingDelete);
-		mav.setViewName("teamPage/okTeamBoard");
+		mav.setViewName("teamBoard/okTeamBoard");
 	}
 
 

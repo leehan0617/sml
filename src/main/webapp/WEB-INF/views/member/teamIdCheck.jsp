@@ -20,7 +20,7 @@
 	<c:if test="${teamCheck==null}">
 		<div align="center">사용 가능한 팀명입니다</div>
 		
-		<a href="javascript:window.opener.form.teamName.value='${teamName}';close();">닫기</a>
+		<a href="javascript:window.opener.registerModal.teamName.value='${teamName}';close();">닫기</a>
 	</c:if>
 	
 </body>

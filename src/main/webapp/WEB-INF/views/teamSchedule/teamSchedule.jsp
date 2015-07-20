@@ -8,6 +8,10 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <link href='${root}/css/carlendar/fullcalendar.css' rel='stylesheet' />
 <link href='${root}/css/carlendar/fullcalendar.print.css' rel='stylesheet' media='print' />
+<link rel="stylesheet" type="text/css" href="${root}/resources/css/bootstrap.css"/>
+
+<script type="text/javascript" src="${root}/resources/js/jquery.js"></script>
+<script src="${root }/resources/js/bootstrap.js"></script>
 <script src='${root}/js/carlendar/moment.min.js' type="text/javascript"></script>
 <script src='${root}/js/carlendar/jquery.min.js' type="text/javascript"></script>
 <script src='${root}/js/carlendar/fullcalendar.min.js' type="text/javascript"></script>
@@ -52,7 +56,7 @@
  	 		   if (event.url) {
  	 			   var scheduleNumber=event.url;
  	 			   var url="${root}/teamPage/ScheduleContent.do?scheduleNumber="+scheduleNumber;
- 	 	            window.open(url,"","width=400 height=400");
+ 	 	            window.open(url,"","width=500 height=280");
  	 	            return false;
  	 	        }
 			}  
@@ -72,16 +76,34 @@
 		max-width: 900px;
 		margin: 0 auto;
 	}
-
+	
 </style>
 </head>
-<body>
-	
-	<c:if test="${teamId!=guest}">
-		<div align="right">
-			<input  type="button" value="writeSchedule" onclick="writeSchedule('${root}')"/>
-		</div>
-	</c:if>
-	<div id='calendar'></div>
+<body class="jumbotron">
+	<div id='calendar'>
+		<c:if test="${teamId!=guest}">
+			<div align="left">
+				<input  data-toggle="modal" data-target="#scheduleModal" type="button" id="writeButton" class="btn btn-info btn-sm" value="일정입력" onclick="writeSchedule('${root}')"/>
+			</div>
+		</c:if>
+	</div>
+	 <!-- Modal -->
+	  <div class="modal fade" id="scheduleModal" role="dialog">
+	    <div class="modal-dialog">
+		        <div class="modal-header">
+		        </div>
+		        
+		        <div class="modal-content">
+		        	<div class="modal-body">
+		        		<div id="resultEdit"></div>
+		        	</div>
+           		    <div class="modal-footer">
+						     <div class="modal-footer">
+					          <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+					        </div>
+		      		</div> 
+	   		    </div>	
+	    </div>
+	   </div>				
 </body>
 </html>

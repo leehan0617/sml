@@ -4,6 +4,7 @@ import java.util.Date;
 import java.util.List;
 
 import com.sml.common.dto.CommonBoardDto;
+import com.sml.league.dto.LeagueDto;
 import com.sml.member.dto.MemberDto;
 import com.sml.team.dto.TeamDto;
 
@@ -21,5 +22,7 @@ public interface SDao {
 	public List<Date> showDayChart(String sportType);
 	
 	public List<TeamDto> getAllTeamList(String sportType);
+
+	public List<LeagueDto> showLeagueInfo(String sportType);
 
 }

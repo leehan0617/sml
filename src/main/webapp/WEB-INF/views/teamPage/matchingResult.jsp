@@ -13,49 +13,20 @@
 <script src="${root }/js/teamPage/teamMatching.js"></script>
 <script type="text/javascript" src="//apis.daum.net/maps/maps3.js?apikey=1442260e0c6af86974001269a7312e42&libraries=services"></script>
 <link href="${root}/css/teamPage/matchingMap.css" type="text/css" rel="stylesheet"/>
-<body>
-	<div>
-		<a href="${root}/mainPage.jsp"><img alt="logo" src=""></a>
-		<a href="${root}/mainPage.jsp">SML Korea</a>
-	</div>
-	<br/><br/>
-
-	<c:if test="${teamGrade != null }">
-		<li>${teamId }님</li>
-		<li><a href="${root }/teamPage/teamPageMain.do?teamName=${teamName}">메인</a></li>
-		<li><a href="${root }/teamPage/viewTeamBoard.do?teamName=${teamName}">팀 공지사항</a></li>
-		<li><a href="${root }/teamPage/teamMemberInfo.do?teamName=${teamName}">팀원소개</a></li>
-		<li><a href="${root }/teamPage/viewTeamRecord.do?teamName=${teamName}">팀 기록</a></li>
-		<li><a href="${root }/viewSchedule.do">팀 스케쥴</a></li>
-		<li>----------</li>
-		<li><a href="${root }/teamPage/manageTeamBoard.do?teamName=${teamName}">공지사항관리</a></li>
-		<li><a href="${root }/teamPage/manageTeamMember.do?teamName=${teamName}">팀원관리</a></li>
-		<li><a href="${root }/manageTeamSchedule.do">스케쥴관리</a></li>
-		<li><a href="${root }/startMatching.do">매칭관리</a></li>
-		<li>-----------</li>
-		<li><a href="${root}/teamPage/logout.do?teamId='${teamId}'">로그아웃</a></li>
-  	</c:if>
-  	
-  	<c:if test="${teamGrade == null }">
-		<li><a href="${root }/teamPage/teamPageMain.do?teamName=${teamName}">메인</a></li>
-		<li><a href="${root }/teamPage/viewTeamBoard.do?teamName=${teamName}">팀 공지사항</a></li>
-		<li><a href="${root }/teamPage/teamMemberInfo.do?teamName=${teamName}">팀원소개</a></li>
-		<li><a href="${root }/teamPage/viewTeamRecord.do?teamName=${teamName}">팀 기록</a></li>
-		<li><a href="${root }/viewSchedule.do">팀 스케쥴</a></li>
-	</c:if>
-	
-	<h3>matching(${teamName })</h3>
-	<br/>
-	
-	
+<body>	
 	<c:if test="${matchingDto.matchingState=='후' }">
-	<h1>Result Matching</h1>
-	<div style="font-size: 40px; font: bold;">
-		${normalMatchInfo.TEAM1 }
-		<span style="color: red;">VS</span>
-		${normalMatchInfo.TEAM2 }
+	
+	<div class="modal-header">
+		<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+		<h1>Result Matching</h1>
+		<div style="font-size: 40px; font: bold;">
+			${normalMatchInfo.TEAM1 }
+			<span style="color: red;">VS</span>
+			${normalMatchInfo.TEAM2 }
+		</div>
 	</div>
 	
+	<div class="modal-body">
 		<c:if test="${normalMatchInfo.TEAM1==teamName }"><div>team1</div>
 			<h2>나의 팀</h2>
 			<h4>emblem : ${myTeamDto.emblem }</h4>
@@ -113,29 +84,73 @@
 			</c:forEach>
 		</c:if>
 	
-	<h2>날씨 정보 넣어야 함</h2>
-	<br/>
+		<h2>날씨 정보 넣어야 함</h2>
+		<br/>
 	
-	<h3>경기장 정보 부분 </h3>
+		<h3>경기장 정보 부분 </h3>
 	
-	<input type="button" value="경기 결과 입력">
-	<input type="button" value="경기장 정보" onclick="viewMatchingPlace('${root }','${myTeamDto.teamCode }','${otherTeamDto.teamCode }')">
-	<input type="button" value="상대 팀 및 팀장 정보" onclick="viewOtherTeamInfo('${root}','${otherMatchingDto.teamCode}')">
+	</div>
+	
+	<div class="modal-footer">
+		<input type="button" value="경기 결과 입력">
+		<input type="button" value="경기장 정보" onclick="viewMatchingPlace('${root }','${myTeamDto.teamCode }','${otherTeamDto.teamCode }')">
+		<input type="button" value="상대 팀 및 팀장 정보" onclick="viewOtherTeamInfo('${root}','${otherMatchingDto.teamCode}')">
+	</div>
+	
 	</c:if>
 	
+	
+	
+	
+	
 	<c:if test="${matchingDto.matchingState=='중' }">
-		<h1>Waiting Matching</h1>
-		<h2>애니메이션 삽입</h2>
-		<h4>emblem : ${myTeamDto.emblem }</h4>
-		<h4>name : ${myTeamDto.teamName }</h4>
-		<h4>place : ${matchingDto.matchingPlace}</h4>
-		<h4>Day : ${matchingDto.matchingDay}</h4>
-		<h4>Time : ${matchingDto.matchingTime}</h4>
-		<br/><br/>
+		<div class="modal-header">
+		<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+		<h1>매칭이 진행중입니다.</h1>
+		</div>
 		
-		<div style="color:green;"><h5>도움말 : 매칭이 잘 이루어지지 않는다면..</h5></div>
-		<h6> -> 거리, 요일, 시간대 등의 조건을 넓히면 매칭이 더욱 쉬워 질 수 있습니다. </h6>
-		<input type="button" value="매칭 취소" onclick="javascript:location.href='${root}/teamPage/deleteMatching.do?matchingCode=${matchingDto.matchingCode }&teamName=${teamName}'">
+		<div class="modal-body">				
+			<div class="row well">
+			  <div class="col-md-1"></div>
+			  
+			  <div class="col-md-4 well">
+			  	<div class="row">
+			  		<div class="col-xs-6 col-md-3" style="text-align:center">
+		    			<a href="#" class="thumbnail" style="max-width:100%;">
+		    				<img src="${root}/img/teamImg/${myTeamDto.emblem } alt=".." width=188/>
+		      			</a>
+		  			</div>
+				</div>
+			  </div>
+			  <div class="col-md-2 well"><h3>vs</h3></div>
+			  <div class="col-md-4 well">
+			  	<div class="row">
+			  		<div class="col-xs-6 col-md-3">
+		    			<a href="#" class="thumbnail">
+		      				<img src="${root }/img/teamImg/searching.gif" alt="..." width=188>
+		    			</a>
+		  			</div>
+			  	</div>
+			  </div>
+			  <div class="col-md-1"></div>
+			</div>				
+		
+			<h5> 팀 이름: ${myTeamDto.teamName }</h5>
+			<h5> 매칭 장소 : ${matchingDto.matchingPlace}</h5>
+			<h5> 매칭 희망 요일 : ${matchingDto.matchingDay}</h5>
+			<h5> 매칭 희망 시간 : ${matchingDto.matchingTime}</h5>
+			<br/><br/>
+			
+			<div style="color:green;"><h5>도움말 : 매칭이 잘 이루어지지 않는다면..</h5></div>
+			<h6> -> 거리, 요일, 시간대 등의 조건을 넓히면 매칭이 더욱 쉬워 질 수 있습니다. </h6>		
+		</div>
+		
+		<div class="modal-footer">'
+			<button type="button" class="btn btn-warning" onclick="javascript:location.href='${root}/teamPage/deleteMatching.do?matchingCode=${matchingDto.matchingCode }&teamName=${teamName}'">
+			매칭 취소하기
+			</button>
+			<input type="button" value="매칭 취소" onclick="javascript:location.href='${root}/teamPage/deleteMatching.do?matchingCode=${matchingDto.matchingCode }&teamName=${teamName}'">
+		</div>
 	</c:if>
 </body>
 </html>

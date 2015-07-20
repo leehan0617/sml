@@ -1,14 +1,9 @@
 package com.sml.admin.controller;
 
-import java.io.IOException;
-import java.io.PrintWriter;
-import java.util.ArrayList;
 import java.util.logging.Logger;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-
-import net.sf.json.JSONObject;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -19,8 +14,6 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.sml.admin.service.AdminService;
 import com.sml.league.dto.LeagueDto;
-import com.sml.weather.WeatherDTO;
-import com.sml.weather.WeatherParser;
 
 /**
  * @함수명: manageTeamDelete
@@ -29,7 +22,6 @@ import com.sml.weather.WeatherParser;
  * @설명 : 팀관리 페이지호출
  */
 @Controller
-
 public class AdminController {
 	final Logger logger=Logger.getLogger(this.getClass().getName());
 		

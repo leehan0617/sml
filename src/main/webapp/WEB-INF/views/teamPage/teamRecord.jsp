@@ -60,7 +60,7 @@
 	
 	 <br/><br/><br/><br/>
      <div class="container-fluid" style="background:url(${root}/resources/images/backGroundImage.jpg)">   
-       <span class="col-xs-2"><a href="${root}/team/teamMain.do?teamName=${teamName}"><img class="img-circle img-responsive" alt="logo" src="${root}/resources/images/${emblem}.jpg" width="200" height="150"></img></a></span> 	  
+       <span class="col-xs-2"><a href="${root}/team/teamMain.do?teamName=${teamName}"><img class="img-circle img-responsive" alt="logo" src="${root}/resources/images/${emblem}" width="200" height="150"></img></a></span> 	  
        	  
        <span class="col-xs-9" style="font-size:50pt;"><br/>${teamName}</span>
        <span class="col-xs-1" style="font-size:15pt;"><br/><br/>총경기수: ${count}  </span>     
@@ -108,9 +108,9 @@
 				<td><br/><br/><br/><span class="label label-success">리그경기</span></td>
 				</c:if>
 				<td>
-					<a href="${root}/team/teamMain.do?teamName=${record.TEAM1}"><img class="img-circle" src="${root}/resources/images/${record.EMBLEM1}.jpg" width="100" height="100"><img></a>&nbsp;				
+					<a href="${root}/team/teamMain.do?teamName=${record.TEAM1}"><img class="img-circle" src="${root}/resources/images/${record.EMBLEM1}" width="100" height="100"><img></a>&nbsp;				
 					<img src="${root}/resources/images/versusIcon.png" width="30" height="30"></img>&nbsp;				
-					<a href="${root}/team/teamMain.do?teamName=${record.TEAM2}"><img class="img-circle" src="${root}/resources/images/${record.EMBLEM2}.jpg" width="100" height="100"></img></a>&nbsp;
+					<a href="${root}/team/teamMain.do?teamName=${record.TEAM2}"><img class="img-circle" src="${root}/resources/images/${record.EMBLEM2}" width="100" height="100"></img></a>&nbsp;
 					<br/>
 					<span class="label label-primary">HOME</span>${record.TEAM1}
 					&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
@@ -199,72 +199,6 @@
 			</ul>					
 		</c:if>
 	<br/><br/><br/>	
-	</div>
-		
-		
-	<%-- <h1>팀 기록실 </h1>
-	<br/>
-	<div>
-		<span>게임</span>
-		<span>TEAM A</span>
-		<span>&nbsp;&nbsp;</span>
-		<span>TEAM B</span>
-		<span>RESULT</span>
-		<span>PLACE</span>
-		<span>STATE</span>
-		<span>TYPE</span>
-		<span>REFEREE</span>
-	</div>
-	<br/>
-	<c:set var="count" value="${count}"></c:set>
-	<c:set var="boardSize" value="${boardSize}"></c:set>
-	<c:set var="blockSize" value="${blockSize}"></c:set>
-	<c:set var="blockCount" value="${blockCount}"></c:set>
-	<fmt:parseNumber var="rs" value="${(currentPage-1)/blockSize}" integerOnly="true"></fmt:parseNumber>
-	
-	<c:set var="startBlock" value="${rs*blockSize+1 }"></c:set>
-	<c:set var="endBlock" value="${startBlock+blockSize-1}"></c:set>
-	
-	<c:forEach var="record" items="${recordList}">
-		<div>
-			<span>${record.GAMECODE}</span>
-			<c:if test="${record.TEAM1==teamName }">
-				<span style="color:blue;">${record.TEAM1}</span>
-			</c:if>
-			<c:if test="${record.TEAM1!=teamName }">
-				<span>${record.TEAM1}</span>
-			</c:if>
-			<span style="color:red;">VS</span>
-			<c:if test="${record.TEAM2==teamName }">
-				<span style="color:blue;">${record.TEAM2}</span>
-			</c:if>
-			<c:if test="${record.TEAM2!=teamName }">
-				<span>${record.TEAM2}</span>
-			</c:if>
-			<span>${record.GAMERESULT}</span>
-			<span>${record.GAMEPLACE}</span>
-			<span>${record.GAMESTATE}</span>
-			<span>${record.GAMETYPE}</span>
-			<span>${record.REFEREENUMBER}</span>
-		</div>
-	</c:forEach>
-	
-	<c:if test="${startBlock>blockSize}">
-		<a href="${root }/teamPage/viewTeamRecord.do?teamName=${teamName}&currentPage=${startBlock-blockSize}">[이전]</a>
-	</c:if>
-	
-	<c:if test="${endBlock>blockCount}">
-		<c:set var="endBlock" value="${blockCount}"></c:set>
-	</c:if>
-	
-	<c:forEach var="blockNumber" begin="${startBlock}" end="${endBlock}">
-		<a href="${root }/teamPage/viewTeamRecord.do?teamName=${teamName}&currentPage=${blockNumber}">[${blockNumber}]</a>
-	</c:forEach>
-	
-	<c:if test="${endBlock<blockCount}">
-		<a href="${root }/teamPage/viewTeamRecord.do?teamName=${teamName}&currentPage=${startBlock+blockSize}">[다음]</a>
-	</c:if> --%>
-
-   
+	</div>   
   </body>
 </html>

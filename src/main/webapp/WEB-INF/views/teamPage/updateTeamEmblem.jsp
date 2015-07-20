@@ -8,22 +8,69 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Insert title here</title>
+
+<script src="${root }/resources/js/jquery.js"></script>
+<script>
+	function readURL(input){
+		if(input.files && input.files[0]){
+			var reader=new FileReader();
+			reader.onload=function(e){
+				$("#UploadedImg").attr("src", e.target.result);
+			}
+			reader.readAsDataURL(input.files[0]);
+		}
+	}
+</script>
+
+<style>
+	#UploadedImg {
+		max-width: 80% ;
+		width: expression(this.width > 640 ? 640: true) ;
+		height: auto ;
+	}
+</style>
 </head>
 <body>
 	<form action="${root}/teamPage/manageTeamEmblem.do" method="post" enctype="multipart/form-data" onsubmit="return checkForm()">
-		<input type="hidden" name="teamName" value="${team.teamName }"/>	
+		<div class="modal-header">
+			<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+			<h1>로고 변경하기</h1>
+	   	</div>
 		
-		<div>
-			<label>${team.teamName } 팀 로고 변경</label>
-			<span>
-				<input type="file" name="teamImage"/>
-			</span>
+		<div class="modal-body">	
+			<div class="row">	
+				<input type="hidden" name="teamName" value="${team.teamName }"/>	
+				
+				<div class="col-md-5">
+					<div>
+						<img src="${root }/img/teamImg/${team.emblem}"/>
+					</div>					
+				</div>
+				<div class="col-md-2 " style="margin-top:15%; padding-left:7%;">
+					<div>
+						<img src="${root }/img/teamImg/narrow02.jpg" width="30px"/></div>
+					</div>
+				<div class="col-md-5">		
+					<div>
+						<img id="UploadedImg" src="${root }/img/teamImg/${team.emblem} "/>
+					</div>
+				</div>	
+			</div>		
+			<br/><br/>
+			<div class="row">
+				<div class="col-md-4"></div>
+				<div class="col-md-4">					
+					<input type="file" name="teamImage" onchange="readURL(this);" filter:alpha(opacity=0); opacity:();/>					
+				</div>
+				<div class="col-md-4"></div>
+			</div>	
 		</div>
 		
-		<div>
+		<div class="modal-footer">
 			<input type="submit" value="수정"/>
-			<input type="reset" value="취소"/>			
-		</div>
+			<input type="reset" value="취소"/>	
+		</div>		
 	</form>
+	
 </body>
 </html>

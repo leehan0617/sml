@@ -20,4 +20,6 @@ public interface SService {
 	
 	public void soccerTeamList(ModelAndView mav);
 
+	public ModelAndView showLeagueInfo(HttpServletRequest request);
+
 }
