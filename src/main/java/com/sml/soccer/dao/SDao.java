@@ -22,7 +22,7 @@ public interface SDao {
 
 	public List<Date> showDayChart(String sportType);
 	
-	public List<TeamDto> getAllTeamList(String sportType);
+	public List<HashMap<String,Object>> getAllTeamList(String sportType,int startRow,int endRow);
 
 	public List<LeagueDto> showLeagueInfo(String sportType);
 
@@ -31,5 +31,7 @@ public interface SDao {
 	public int joinLeague(HashMap<String, Object> hMap);
 
 	public int checkLeague(HashMap<String, Object> hMap);
+	
+	public int teamCount(String sportType);
 
 }

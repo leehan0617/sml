@@ -3,6 +3,7 @@ package com.sml.soccer.service;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 
@@ -170,8 +171,43 @@ public class SServiceImpl implements SService{
 	 */
 	@Override
 	public void soccerTeamList(ModelAndView mav) {
-		List<TeamDto> teamList=dao.getAllTeamList("축구");
+		Map<String,Object> map=mav.getModelMap();		
+		HttpServletRequest request=(HttpServletRequest)map.get("request");
+		
+		String sportType="";
+		int sportCode = Integer.parseInt(request.getParameter("sportCode"));
+		//System.out.println("RefereeListsportCode:"+sportCode);
+		
+		
+		switch(sportCode){
+			case 0: sportType="축구"; break;
+			case 1: sportType="야구"; break;
+			case 2: sportType="풋살"; break;
+			case 3: sportType="족구"; break;
+		}
+		
+		int teamCount=dao.teamCount(sportType);
+		
+		String pageNumber=request.getParameter("pageNumber");
+		//System.out.println("pageNumber"+pageNumber);
+		if(pageNumber==null) pageNumber="1";
+			
+		int boardSize=5;		
+		int currentPage=Integer.parseInt(pageNumber);
+		int startRow=(currentPage-1)*boardSize+1;
+		int endRow=currentPage*boardSize;
+		
+		
+		
+		List<HashMap<String,Object>> teamList=dao.getAllTeamList(sportType,startRow,endRow);
 		logger.info("size: " + teamList.size());
+		
+		
+		mav.addObject("sportCode",sportCode);
+		mav.addObject("sportType", sportType);
+		mav.addObject("boardSize", boardSize);		
+		mav.addObject("currentPage",currentPage);
+		mav.addObject("teamCount",teamCount);
 		mav.addObject("teamList",teamList);
 		mav.setViewName("soccer/soccerTeamList");
 	}

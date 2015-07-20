@@ -27,10 +27,11 @@ public class RefereeServiceImpl implements RefereeService{
 	private TeamDao teamDao;
 	
 	/**
-	 * @name : refereeList
-	 * @date : 2015. 6. 23.
-	 * @author : 변형린
-	 * @description : 심판 현황 페이지로 이동시키는 Service 메소드
+	 * 
+	 * @함수명: refereeList
+	 * @작성일: 2015. 7. 20.
+	 * @작성자: 정성남
+	 * @설명 :
 	 */
 	@Override
 	public void refereeList(ModelAndView mav) {	
