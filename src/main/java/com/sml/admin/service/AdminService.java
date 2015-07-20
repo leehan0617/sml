@@ -20,4 +20,5 @@ public interface AdminService {
 	public void searchTeamMember(ModelAndView mav);
 	public void manageLeagueRecord(ModelAndView mav);
 	public void insertGameResult(ModelAndView mav);
+	public void insertGameResultOk(ModelAndView mav);
 }

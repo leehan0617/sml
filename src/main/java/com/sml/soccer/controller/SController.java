@@ -150,7 +150,27 @@ public class SController {
 		ModelAndView mav = service.showLeagueInfo(request);
 		return mav;
 	}
+	/**
+	 * 
+	 * @함수명:leagueTable
+	 * @작성일:2015. 7. 20.
+	 * @작성자:이한빈 
+	 * @설명문:축구페이지 클릭시 리그테이블 뷰에 뿌려주는 함수 
+	 */
+	@RequestMapping(value="/leagueTable" , method=RequestMethod.GET)
+	public ModelAndView leagueTable(HttpServletRequest request , HttpServletResponse response){
+		logger.info("SController leagueTable");
+		response.setCharacterEncoding("UTF-8");
+		ModelAndView mav = service.leagueTable(request);
+		return mav;
+	}
 	
-	
+	@RequestMapping(value="/joinLeague" , method=RequestMethod.GET)
+	public ModelAndView joinLeague(HttpServletRequest request , HttpServletResponse response){
+		logger.info("SController joinLeague");
+		response.setCharacterEncoding("UTF-8");
+		ModelAndView mav = service.joinLeague(request);
+		return mav;
+	}
 
 }

@@ -1,79 +1,124 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-<c:set var="root" value="${pageContext.request.contextPath }"></c:set>
-<html>
-<head>
-<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>Insert title here</title>
-<script type="text/javascript" src="${root }/js/external/jquery-1.11.3.min.js"></script>
-<script type="text/javascript" src="${root }/js/referee/referee.js"></script>
-<script type="text/javascript" src="${root}/js/xhr/xhr.js"></script>
+    pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+<c:set var="root" value="${pageContext.request.contextPath }"/> 
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- 위 3개의 메타 태그는 *반드시* head 태그의 처음에 와야합니다; 어떤 다른 콘텐츠들은 반드시 이 태그들 *다음에* 와야 합니다 -->
+    
+    <meta name="description" content="">
+    <meta name="author" content="">   
+    <link rel="icon" href="${root }/resources/images/android@2x.png"/>
+    
+    <title>심판현황</title>    
+    
+
+   <!-- Bootstrap core CSS -->
+    <link rel="stylesheet" type="text/css" href="${root }/resources/css/bootstrap.css"/>    
+
+    <!-- Custom styles for this template -->       
+  	<script src="${root }/resources/js/jquery.js"></script> 	
+ 	<script src="${root }/resources/js/bootstrap.js"></script>
+  	<script src="${root }/resources/js/jquery-ui.js"></script>  	
+  	<script type="text/javascript" src="${root }/js/referee/referee.js"></script>
+	<script type="text/javascript" src="${root}/js/xhr/xhr.js"></script> 	
+    
+    <!-- Placed at the end of the document so the pages load faster -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
 </head>
 <body>
+	<nav class="navbar navbar-inverse navbar-fixed-top">
+      <div class="container-fluid">
+        <div class="navbar-header">        
+          <a class="navbar-brand" href="${root}/team/teamMain.do?teamName=${teamName}">SML Korea</a>
+        </div>
+        <div id="navbar" class="navbar-collapse collapse">
+          <ul class="nav navbar-nav navbar-right">
+          	<c:choose>
+          	<c:when test="${teamGrade == null }">          		
+            	<li><a href="${root }/teamPage/login.do">로그인</a></li>            	
+            </c:when>
+            <c:otherwise>
+	        	<li><a href="${root }/teamPage/logout.do">로그아웃</a></li>
+	        </c:otherwise>
+	        </c:choose>	       
+			  <li><a href="${root}/soccer/soccerMain.do">메인</a></li>			            
+          </ul>         
+        </div>
+      </div>
+    </nav>
 	
-	<h3>심판 등록</h3>
+	 <br/><br/><br/><br/>
+     <div class="container-fluid" style="background:url(${root}/resources/images/backGroundImage.jpg)">   
+       <span class="col-xs-2"><a href="${root}/soccer/soccerMain.do"><img class="img-circle img-responsive" alt="logo" src="" width="200" height="150"></img></a></span> 	  
+       	  
+       <span class="col-xs-9" style="font-size:50pt;"><br/>${teamName}</span>         
+     </div>
+       <br/><br/>	
+	<div class="container">  		
+  	<form action="${root}/referee/registerReferee.do" method="post" enctype="multipart/form-data" onsubmit="return refereeCheck(this)">  		
+  		
+  		<h2>심판 등록</h2>
+  		<p>본인의 정보를 입력해주세요.</p>	
+  		
+  		<div class="form-group">
+		  <label for="sel1">종목</label>
+		  <select class="form-control" id="sel1" name="sportCode">		  	
+		    <option>종목을 선택하세요</option>
+		    <option value="0">축구</option>
+		    <option value="1">야구</option>
+		    <option value="2">풋살</option>	
+		    <option value="3">족구</option>		     
+		  </select>
+		</div>
+			
+   		<div class="form-group">
+      		<label for="usr">NAME</label>
+       		<input placeholder="이름" type="text" class="form-control" name="refereeName">
+    	</div>
+	    <div class="form-group">
+      		<label for="usr">BIRTH</label>
+       		<input type="date" class="form-control" placeholder="생일을 선택해주세요" name="refereeBirth" />
+    	</div>    	
+    	
+    	<div class="form-group">
+		  <label for="sel1">지역</label>		  
+		  <select class="form-control" id="sel1" name="refereeRegion">			
+			<c:forEach var="sido" items="${sidoList}" >		
+			<option value="${sido}">${sido}</option>				
+			</c:forEach>
+		  </select>
+		  		   
+		</div>    	
+    		<div class="form-group">
+      		<label for="usr">사진등록</label>
+       		<input placeholder="사진을등록해주세요" type="file" class="form-control" name="file">
+    	</div>
+    		<div class="form-group">
+      		<label for="usr">연락처</label>
+       		<input placeholder="연락처를 입력해주세요" type="text" class="form-control" name="refereePhoneNumber">
+    	</div>
+    	
+    	<div class="form-group">
+		  <label for="sel1">성별:</label>
+		  <select class="form-control" id="sel1" name="refereeGender">		  	
+		    <option value="남">남</option>
+		    <option value="여">여</option>		    
+		  </select>
+		</div>
+				
+		<input type="submit" class="btn btn-info" value="Submit">			
+  		
+  	</form> 
+  		<br/><br/>
+  		<br/><br/>  		 	
+  	</div>
 	
-	<div>
-		<form action="${root}/referee/registerReferee.do" method="post" enctype="multipart/form-data" onsubmit="return refereeCheck(this)">
-			<div>
-				<label>지원종목</label>
-				<span>${sportType }</span>
-				<input type="hidden" name="sportType" value="${sportType }"/>				
-			</div>
-
-			<div>
-				<label>이름</label> 
-				<input type="text" name="refereeName" />				
-			</div>			
-			
-			<div>
-				<label>생년월일</label> 
-				<select id="yeardropdown" name="birthYear"></select>
-				<select id="monthdropdown" name="birthMonth"></select> 
-				<select id="daydropdown" name="birthDay"></select> 
-			</div>
-			
-			<div>
-				<label>지역:</label>
-				<select id="sido" onchange="regionSido('${root }')">
-					<option>시/도</option>
-				</select>
-				<select id="gugun">
-					<option>시/구/군</option>
-					<option></option>
-				</select>				
-				<input type="hidden" name="sido"/>
-				<input type="hidden" name="gugun"/>
-				<br/><br/>
-			</div>
-		
-			<!-- refereePicture -->
-			<div>
-				<label>파일명</label> 
-				<span> 
-					<input type="file" name="file" />
-				</span>
-			</div>
 	
-			<div>
-				<label>연락처:</label>
-				<input type="text" name="refereePhoneNumber"/>
-				<br/>
-			</div>
-			
-			<span>
-			<label>성별</label>
-			<span>
-				<input type="radio" name="sexValue" value="남"/>남
-				<input type="radio" name="sexValue" value="여"/>여
-				<input type="hidden" name="refereeGender"/>
-			</span>
-		</span><br/><br/>			
-
-			<input type="submit" value="등록 신청" />
-		</form>
-	</div>
 </body>
 </html>

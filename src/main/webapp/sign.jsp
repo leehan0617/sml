@@ -27,7 +27,7 @@
 </script>
 <script src="${root }/js/xhr/xhr.js"></script>
 <script src="${root }/js/teamPage/teamPage.js"></script>
-<script src="${root }/resources/js/member.js"></script>
+<script type="text/javascript" src="${root}/resources/js/member.js"></script>
 
 <form action="${root}/member/registerMember.do" method="post" name="registerModal" onsubmit="return teamCheck(this)">
 <div class="modal fade" id="popupJoin" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
@@ -48,7 +48,7 @@
 					        <div class="input-group">
 							      <input type="text" class="form-control" placeholder="팀아이디를 적어주세요." name="teamId">
 							      <span class="input-group-btn">
-							        <button class="btn btn-default" type="button" onclick="idCheck(registerModal,'${root}')">중복확인</button>
+							        <button class="btn btn-default"  type="button" onclick="idCheck(registerModal,'${root}')">중복확인</button>
 							      </span>
 							 </div><!-- /input-group -->
 					      </div>
@@ -91,9 +91,9 @@
 								<br/>
 							   <label>팀 주 경기장</label>
 							   <div class="input-group">
-							      <input type="text" size="20" class="form-control" placeholder="경기장을 입력해주세요." name="homeGround">
+							      <input type="text" size="20" class="form-control" placeholder="경기장을 입력해주세요." name="homeGround" disabled="disabled">
 							      <span class="input-group-btn">
-							        <button class="btn btn-default" type="button" onclick="searchHomeground(form,'${root}')">경기장 검색</button>
+							        <button type="button" class="btn btn-default"  onclick="searchHomeground(form,'${root}')">경기장 검색</button>
 							      </span>
 							  </div><!-- /input-group -->
 					    	</div>
@@ -199,4 +199,23 @@
 		    </div>
 		  </div>
 	</div>
+	
+	<!-- <!-- map Modal -->
+	  <div class="modal fade" id="mapModal" role="dialog">
+	    <div class="modal-dialog">
+		        <div class="modal-header">
+		        </div>
+		        
+		        <div class="modal-content">
+					<div class="modal-body">
+						<div id="resultMap"></div>
+					</div>
+           		    <div class="modal-footer">
+						     <div class="modal-footer">
+					          <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+					        </div>
+		      		</div> 
+	   		    </div>	
+	    </div>
+	   </div>			 -->
 </form>

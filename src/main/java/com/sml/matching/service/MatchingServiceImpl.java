@@ -63,7 +63,8 @@ public class MatchingServiceImpl implements MatchingService {
 		HashMap<String,Object> map=mav.getModelMap();
 		HttpServletRequest request=(HttpServletRequest) map.get("request");
 		String teamName=request.getParameter("teamName");
-		int teamCode=dao.getTeamInfo(teamName).getTeamCode();
+		TeamDto teamDto=dao.getTeamInfo(teamName);
+		int teamCode=teamDto.getTeamCode();
 		
 		MatchingDto matchingDto=dao.getTeamMatchingInfo(teamCode);
 		TeamDto myTeamDto=dao.getTeamInfo(teamName);

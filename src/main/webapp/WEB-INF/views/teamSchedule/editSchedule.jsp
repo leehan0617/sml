@@ -10,25 +10,12 @@
 <script type="text/javascript" src="${root}/js/carlendar/write.js"></script>
 <script src='${root}/js/carlendar/jquery.js' type="text/javascript"></script>
 <script src='${root}/js/carlendar/jquery-ui.js' type="text/javascript"></script>
-<script src="${root }/resources/js/bootstrap.js"></script>
 
 <link rel="stylesheet" href="http://code.jquery.com/ui/1.8.18/themes/base/jquery-ui.css" type="text/css" />
-<link rel="stylesheet" type="text/css" href="${root}/resources/css/bootstrap.css"/>
-<script type="text/javascript">
-/* 	$(function() {
-		$( "#startDate" ).datepicker({
-			dateFormat:"yy-mm-dd",
-			});
-		
-		$( "#endDate" ).datepicker({
-			dateFormat:"yy-mm-dd",
-			});
-}); */
-</script>	
+
 </head>
 <body>
   <form action="${root}/teamPage/editSchedule.do" method="get" onsubmit="return scheDule(this)" class="form-horizontal" role="form">
-		<div class="modal-body">
 			<div class="form-group">
 				<label><strong>일정관리</strong>
 					<select name="scheduleType">
@@ -65,7 +52,6 @@
 					<input class="btn btn-info btn-sm" type="reset" value="재입력"/>
 				</div>
 			</div>
-		</div>
   </form>
   
   <c:if test="${check>0}">

@@ -13,7 +13,7 @@ public class LeagueDto {
 	private String leagueImage;
 	private String leaguePlace;
 	private int leagueState;
-	private int legueCount;
+	private int leagueCount;
 	
 	
 	public String getLeaguePlace() {
@@ -22,11 +22,11 @@ public class LeagueDto {
 	public void setLeaguePlace(String leaguePlace) {
 		this.leaguePlace = leaguePlace;
 	}
-	public int getLegueCount() {
-		return legueCount;
+	public int getLeagueCount() {
+		return leagueCount;
 	}
-	public void setLegueCount(int legueCount) {
-		this.legueCount = legueCount;
+	public void setLeagueCount(int leagueCount) {
+		this.leagueCount = leagueCount;
 	}
 	public int getLeagueState() {
 		return leagueState;

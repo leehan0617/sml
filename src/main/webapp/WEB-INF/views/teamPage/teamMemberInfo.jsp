@@ -62,7 +62,7 @@
 	
 	 <br/><br/><br/><br/>
      <div class="container-fluid" style="background:url(${root}/resources/images/backGroundImage.jpg)">
-       <span class="col-xs-2"><a href="${root}/team/teamMain.do?teamName=${teamName}"><img class="img-circle img-responsive" alt="logo" src="${root}/resources/images/${emblem}.jpg" width="200" height="150"></img></a></span>
+       <span class="col-xs-2"><a href="${root}/team/teamMain.do?teamName=${teamName}"><img class="img-circle img-responsive" alt="logo" src="${root}/img/teamImg/${emblem}" width="200" height="150"></img></a></span>
        <span class="col-xs-9" style="font-size:50pt;">${teamName}</span>
        <span class="col-xs-1" style="font-size:20pt"> 총원:${count}</span>
        </div>

@@ -114,4 +114,20 @@
 							order by gameDate desc) d ) where rnum >= #{startRow} and rnum <= #{endRow}
 		]]>	
 	</select>
+	
+	<select id="getRecordInfo" parameterType="int" resultType="java.util.HashMap">
+		select a.*, b.teamName as team1, b.emblem as emblem1, c.teamName as team2, c.emblem as emblem2 from gameRecord a, team b, team c where a.teamCode=b.teamCode and a.teamCode2=c.teamCode and a.gameCode=#{gameCode}
+	</select>
+	
+	<update id="insertDraw" parameterType="java.util.HashMap">
+		update gameRecord set gameState='경기 종료', gameResult=#{resultScore}, teamResult='무', team2Result='무' where gameCode=#{gameCode}
+	</update>
+	
+	<update id="insertTeam1" parameterType="java.util.HashMap">
+		update gameRecord set gameState='경기 종료', gameResult=#{resultScore}, teamResult='승', team2Result='패' where gameCode=#{gameCode}
+	</update>
+	
+	<update id="insertTeam2" parameterType="java.util.HashMap">
+		update gameRecord set gameState='경기 종료', gameResult=#{resultScore}, teamResult='패', team2Result='승' where gameCode=#{gameCode}
+	</update>
 </mapper>

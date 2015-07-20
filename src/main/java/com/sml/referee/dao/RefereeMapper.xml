@@ -7,7 +7,7 @@
  	<insert id="refereeRegister" parameterType="com.sml.referee.dto.RefereeDto">
  		insert into referee values(referee_refereeNumber_sql.nextval, #{refereeName}, 
  								#{refereeBirth}, #{sido}, #{refereePhoneNumber},
- 								#{refereeYes}, #{refereePicture}, #{refereeSport}, #{refereeGender}, #{gugun}, #{path})
+ 								#{refereeYes}, #{refereePicture}, #{refereeSport}, #{refereeGender},#{gugun}, #{path})
  	</insert> 	
  	
  	<select id="refereeCount" resultType="int">
@@ -18,12 +18,21 @@
  		<![CDATA[
 	 		select * from
 	 			(select rownum rnum, a.* from
-	 				(select * from referee where refereeyes='1' and refereesport=#{sportType} and sido=#{regionSido} order by refereeName asc)a)
+	 				(select * from referee where refereeyes='1' and refereesport=#{sportType} and sido=#{regionSido} order by refereeNumber desc)a)
 	 		where rnum >=#{startRow} and rnum <=#{endRow}
  		]]>
  	</select>
  	
  	<select id="sidoList" parameterType="String" resultType="String">
  		select distinct sido from zipcode where not sido=#{regionSido}
+ 	</select>
+ 	
+ 	<select id="refereeAllList" parameterType="java.util.Map" resultType="com.sml.referee.dto.RefereeDto">
+ 		<![CDATA[
+	 		select * from
+	 			(select rownum rnum, a.* from
+	 				(select * from referee where refereeyes='1' and refereesport=#{sportType} order by refereeNumber desc)a)
+	 		where rnum >=#{startRow} and rnum <=#{endRow}
+ 		]]>
  	</select>
  </mapper>

@@ -107,6 +107,14 @@ public class SDaoImpl implements SDao{
 	public List<LeagueDto> showLeagueInfo(String sportType) {
 		return sqlSession.selectList("soccer.dao.SMapper.showLeagueInfo",sportType);
 	}
+	@Override
+	public List<LeagueDto> getLeagueJoin() {
+		return sqlSession.selectList("soccer.dao.SMapper.getLeagueJoin");
+	}
+	@Override
+	public int joinLeague(HashMap<String, Object> hMap) {
+		return sqlSession.insert("soccer.dao.SMapper.joinLeague",hMap);
+	}
 	
 	
 	
