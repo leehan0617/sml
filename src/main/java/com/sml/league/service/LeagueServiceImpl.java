@@ -454,19 +454,21 @@ public class LeagueServiceImpl implements LeagueService{
 		String teamName=request.getParameter("teamName");
 		
 		int rank=0;
-		int leagueCode=dao.getTeamLeagueInfo(teamName).getLeagueCode();
-		List<TeamDto> joinTeamList=dao.getLeagueTeamList(leagueCode);
-		ArrayList<HashMap<Object, Object>> recordList=calcRecordResult(joinTeamList, leagueCode);
-		
-		for(int i=0;i<recordList.size();i++){
-			if(recordList.get(i).get("teamName").equals(teamName)){
-				rank=i;
-				mav.addObject("leagueRank",rank);
-				mav.addObject("gameCount",recordList.get(i).get("countGame"));
-				mav.addObject("countWin",recordList.get(i).get("countWin"));
-				mav.addObject("countLose",recordList.get(i).get("countLose"));
-				mav.addObject("countDraw",recordList.get(i).get("countDraw"));
-				mav.addObject("gameScore",recordList.get(i).get("gameScore"));
+		if(dao.getTeamLeagueInfo(teamName)!=null){
+			int leagueCode=dao.getTeamLeagueInfo(teamName).getLeagueCode();
+			List<TeamDto> joinTeamList=dao.getLeagueTeamList(leagueCode);
+			ArrayList<HashMap<Object, Object>> recordList=calcRecordResult(joinTeamList, leagueCode);
+			
+			for(int i=0;i<recordList.size();i++){
+				if(recordList.get(i).get("teamName").equals(teamName)){
+					rank=i;
+					mav.addObject("leagueRank",rank);
+					mav.addObject("gameCount",recordList.get(i).get("countGame"));
+					mav.addObject("countWin",recordList.get(i).get("countWin"));
+					mav.addObject("countLose",recordList.get(i).get("countLose"));
+					mav.addObject("countDraw",recordList.get(i).get("countDraw"));
+					mav.addObject("gameScore",recordList.get(i).get("gameScore"));
+				}
 			}
 		}
 	}
