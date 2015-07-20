@@ -62,8 +62,7 @@
      <div class="container-fluid" style="background:url(${root}/resources/images/backGroundImage.jpg)">   
        <span class="col-xs-2"><a href="${root}/team/teamMain.do?teamName=${teamName}"><img class="img-circle img-responsive" alt="logo" src="${root}/img/teamImg/${emblem}" width="200" height="150"></img></a></span> 	  
        	  
-       <span class="col-xs-9" style="font-size:50pt;"><br/>${teamName}</span>
-       <span class="col-xs-1" style="font-size:15pt;"><br/><br/>총경기수: ${count}  </span>     
+       <span class="col-xs-9" style="font-size:50pt;"><br/>${teamName}</span>     
      </div>
        <br/><br/>
 	
@@ -102,7 +101,7 @@
 				</c:if>	
 				
 				<c:if test="${record.GAMETYPE==0}">
-				<td><span class="label label-primary" style="width:200px;">친선경기</span></td>
+				<td><br/><br/><br/><span class="label label-primary" style="width:200px;">친선경기</span></td>
 				</c:if>
 				<c:if test="${record.GAMETYPE!=0}">
 				<td><br/><br/><br/><span class="label label-success">리그경기</span></td>
@@ -123,7 +122,24 @@
 				
 				</td>				
 				<td style="font-size:20px; "><br/><br/><span class="label label-default">${record.GAMERESULT}</span></td>
-				<td><br/><br/><br/><span >${record.GAMESTATE}</span></td>								
+				<c:if test="${record.TEAMRESULT=='승'&&record.TEAM1==teamName}">
+					<td><br/><br/><br/><span style="color:green; font-weight: bold;">승리</span></td>
+				</c:if>	
+				<c:if test="${record.TEAMRESULT=='승'&&record.TEAM1!=teamName}">
+					<td><br/><br/><br/><span style="color:red; font-weight: bold;">패배</span></td>
+				</c:if>
+				<c:if test="${record.TEAMRESULT=='패'&&record.TEAM1==teamName}">
+					<td><br/><br/><br/><span style="color:red; font-weight: bold;">패배</span></td>
+				</c:if>	
+				<c:if test="${record.TEAMRESULT=='패'&&record.TEAM1!=teamName}">
+					<td><br/><br/><br/><span style="color:green; font-weight: bold;">승리</span></td>
+				</c:if>
+				<c:if test="${record.TEAMRESULT=='무'}">
+					<td><br/><br/><br/><span >무</span></td>
+				</c:if>	
+				<c:if test="${record.TEAMRESULT==null}">
+					<td><br/><br/><br/><span >진행 중</span></td>
+				</c:if>						
 			  </tr>
 			  
 			</c:forEach>			

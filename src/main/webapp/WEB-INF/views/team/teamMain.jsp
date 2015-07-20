@@ -94,7 +94,11 @@
 	  <div class="col-md-1"></div>
 	  <div class="col-md-3">
 	    <a href="${root}/team/teamMain.do?teamName=${teamName}">
+<<<<<<< HEAD
+	    <img class="img-circle img-responsive" src="${root}/img/teamImg/${team.emblem}" width="200" height="150"></img>
+=======
 	    <img alt="로고이미지" class="img-circle img-responsive" alt="logo" src="${root}/img/teamImg/${emblem}" width="200" height="150"></img>
+>>>>>>> branch 'master' of https://github.com/leehan0617/sml.git
 	    </a>	  	
 	  </div>
 	  <div class="col-md-4">
@@ -116,7 +120,6 @@
 	  <div class="col-md-1"></div>
 	  <div class="col-md-10 well">
 	  	<div class="jumbotron">
-  			<h2>vs112</h2>
   			<c:choose>
   				<c:when test="${team.teamIntro !=null }">
   					<p id="teamIntro">${team.teamIntro }</p>
@@ -180,50 +183,121 @@
 	<div class="row well">
 	  <div class="col-md-1"></div>
 	  <div class="col-md-5 well">
-	  	기록실
-	  	<br/><br/>
-	  	<div><span>팀 A</span><span> VS </span><span>팀 B</span><span> 결과 </span></div>
-	  	<br/>
-	  	<c:forEach var="record" items="${recordList }" begin="1" end="5">
-	  		<div>
-	  			<span>${record.EMBLEM1 }</span>
-	  			<span style="font-weight: bold;">${record.TEAMNAME1 }</span>
-	  			<span style="color:red;">VS</span>
-	  			<span>${record.EMBLEM2 }</span>
-	  			<span style="font-weight: bold;">${record.TEAMNAME2 }</span>
-	  			<span>${record.GAMERESULT }</span>
-	  		</div>
-	  		
-	  		
-	  		<div class="row well">	 	  	
-			  <div class="col-md-1"></div>		  	  	  
-			  <div class="col-md-4 well" style="display:table-cell; text-align:center; vertical-align:middle;">		  	
-			    			<a href="#"> 	
-			      				<img src="${root}/resources/images/${record.EMBLEM1}.jpg" alt="..." width="100">
-			      				<div style="font-weight: bold;">${record.TEAMNAME1 }</div>
-			    			</a>		  			
-			  </div>
-				  
-			  <div class="col-md-2 well" style="display:table-cell; text-align:center; vertical-align:middle;"><h3>vs</h3></div>
-			  <div class="col-md-4 well" style="display:table-cell; text-align:center; vertical-align:middle;">		
-			  			 
-		    			<a href="#">
-		      				<img src="${root}/resources/images/${record.EMBLEM2}.jpg" alt="..." width="100">
-		      				<div style="font-weight: bold;">${record.TEAMNAME2 }</div>
-		    			</a>	
-		   	  </div>		  	 
-			  <div class="col-md-1"></div>  
-			  
-			</div>
-	  		
-	  		
-	  		
-	  	</c:forEach>
+	  	<div class="panel panel-default">
+		  <!-- Default panel contents -->
+		  <div class="panel-heading"><h3>기록실</h3></div>
+		  <div class="panel-body">
+		    <p>해당 팀의 최근 기록을 볼 수 있습니다.</p>
+		  </div>
+		
+		  <!-- List group -->
+		  <table class="table" style="text-align:center;">
+		    <tr class="active">
+				<td style="width:10%;">일자</td>
+				<td style="width:30%;">팀</td>
+				<td style="width:10%;">VS</td>
+				<td style="width:30%;">팀</td>
+				<td style="width:20%;">결과</td>
+			</tr>
+			<c:forEach var="record" items="${recordList }" begin="1" end="7">
+				<c:if test="${record.TEAMRESULT==null }">
+					<tr>
+						<td style="width:10%;"><fmt:formatDate value="${record.GAMEDATE }" pattern="MM/dd"/></td>
+						<td style="width:30%;">
+							<img src="${root}/img/teamImg/${record.EMBLEM1}" style="width:25px; height:25px;">
+							<span><a href="${root }/team/teamMain.do?teamName=${record.TEAMNAME1 }">${record.TEAMNAME1 }</a></span>
+						</td>
+						<td style="width:10%; font-weight: bold;">VS</td>
+						<td style="width:30%;">
+							<img src="${root}/img/teamImg/${record.EMBLEM2}" style="width:25px; height:25px;">
+							<span><a href="${root }/team/teamMain.do?teamName=${record.TEAMNAME2 }">${record.TEAMNAME2 }</a></span>
+						</td>
+						<td style="width:20%;">진행 중</td>
+					</tr>
+				</c:if>
+				<c:if test="${record.TEAMRESULT=='승'&&record.TEAMNAME1==teamName}">
+					<tr class="success">
+						<td style="width:10%;"><fmt:formatDate value="${record.GAMEDATE }" pattern="MM/dd"/></td>
+						<td style="width:30%;">
+							<img src="${root}/img/teamImg/${record.EMBLEM1}" style="width:25px; height:25px;">
+							<span><a href="${root }/team/teamMain.do?teamName=${record.TEAMNAME1 }">${record.TEAMNAME1 }</a></span>
+						</td>
+						<td style="width:10%; font-weight: bold;" >VS</td>
+						<td style="width:30%;">
+							<img src="${root}/img/teamImg/${record.EMBLEM2}" style="width:25px; height:25px;">
+							<span><a href="${root }/team/teamMain.do?teamName=${record.TEAMNAME2 }">${record.TEAMNAME2 }</a></span>
+						</td>
+						<td style="width:20%;">승리</td>
+					</tr>
+				</c:if>
+				<c:if test="${record.TEAMRESULT=='패'&&record.TEAMNAME1!=teamName}">
+					<tr class="success">
+						<td style="width:10%;"><fmt:formatDate value="${record.GAMEDATE }" pattern="MM/dd"/></td>
+						<td style="width:30%;">
+							<img src="${root}/img/teamImg/${record.EMBLEM1}" style="width:25px; height:25px;">
+							<span><a href="${root }/team/teamMain.do?teamName=${record.TEAMNAME1 }">${record.TEAMNAME1 }</a></span>
+						</td>
+						<td style="width:10%; font-weight: bold;" >VS</td>
+						<td style="width:30%;">
+							<img src="${root}/img/teamImg/${record.EMBLEM2}" style="width:25px; height:25px;">
+							<span><a href="${root }/team/teamMain.do?teamName=${record.TEAMNAME2 }">${record.TEAMNAME2 }</a></span>
+						</td>
+						<td style="width:20%;">승리</td>
+					</tr>
+				</c:if>
+				<c:if test="${record.TEAMRESULT=='승'&&record.TEAMNAME1!=teamName }">
+					<tr class="warning">
+						<td style="width:10%;"><fmt:formatDate value="${record.GAMEDATE }" pattern="MM/dd"/></td>
+						<td style="width:30%;">
+							<img src="${root}/img/teamImg/${record.EMBLEM1}" style="width:25px; height:25px;">
+							<span><a href="${root }/team/teamMain.do?teamName=${record.TEAMNAME1 }">${record.TEAMNAME1 }</a></span>
+						</td>
+						<td style="width:10%; font-weight: bold;">VS</td>
+						<td style="width:30%;">
+							<img src="${root}/img/teamImg/${record.EMBLEM2}" style="width:25px; height:25px;">
+							<span><a href="${root }/team/teamMain.do?teamName=${record.TEAMNAME2 }">${record.TEAMNAME2 }</a></span>
+						</td>
+						<td style="width:20%;">패배</td>
+					</tr>
+				</c:if>
+				<c:if test="${record.TEAMRESULT=='패'&&record.TEAMNAME1==teamName }">
+					<tr class="warning">
+						<td style="width:10%;"><fmt:formatDate value="${record.GAMEDATE }" pattern="MM/dd"/></td>
+						<td style="width:30%;">
+							<img src="${root}/img/teamImg/${record.EMBLEM1}" style="width:25px; height:25px;">
+							<span><a href="${root }/team/teamMain.do?teamName=${record.TEAMNAME1 }">${record.TEAMNAME1 }</a></span>
+						</td>
+						<td style="width:10%; font-weight: bold;">VS</td>
+						<td style="width:30%;">
+							<img src="${root}/img/teamImg/${record.EMBLEM2}" style="width:25px; height:25px;">
+							<span><a href="${root }/team/teamMain.do?teamName=${record.TEAMNAME2 }">${record.TEAMNAME2 }</a></span>
+						</td>
+						<td style="width:20%;">패배</td>
+					</tr>
+				</c:if>
+				<c:if test="${record.TEAMRESULT=='무'}">
+					<tr class="active">
+						<td style="width:10%;"><fmt:formatDate value="${record.GAMEDATE }" pattern="MM/dd"/></td>
+						<td style="width:30%;">
+							<img src="${root}/img/teamImg/${record.EMBLEM1}" style="width:25px; height:25px;">
+							<span><a href="${root }/team/teamMain.do?teamName=${record.TEAMNAME1 }">${record.TEAMNAME1 }</a></span>
+						</td>
+						<td style="width:10%; font-weight: bold;">VS</td>
+						<td style="width:30%;">
+							<img src="${root}/img/teamImg/${record.EMBLEM2}" style="width:25px; height:25px;">
+							<span><a href="${root }/team/teamMain.do?teamName=${record.TEAMNAME2 }">${record.TEAMNAME2 }</a></span>
+						</td>
+						<td style="width:20%;">무</td>
+					</tr>
+				</c:if>
+			</c:forEach>
+		   </table>
+		</div>
 	  </div>
 	  <div class="col-md-5 well">
 	  	팀 전적정보 
 	  	<br/>
-	  	<img src="${root }/img/teamImg/${team.emblem}.jpg" alt="팀 엠블럼">
+	  	<img src="${root }/img/teamImg/${team.emblem}" alt="팀 엠블럼">
 	  	팀명 : ${team.teamName }
 	  	
 	  	<c:if test="${leagueDto==null }">

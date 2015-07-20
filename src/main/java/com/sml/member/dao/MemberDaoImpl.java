@@ -111,6 +111,7 @@ public class MemberDaoImpl implements MemberDao{
 	 */
 	@Override
 	public TeamDto getTeamInfo(String teamName) {
+		System.out.println("dao:"+teamName);
 		return sqlSession.selectOne("member.dao.MemberMapper.getTeamInfo",teamName);
 	}
 
