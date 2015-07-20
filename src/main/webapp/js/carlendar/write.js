@@ -9,8 +9,14 @@ function scheDule(form){
 
 function writeSchedule(root){
 	var url=root+"/teamPage/Schedule.do";
-	window.open(url,"schedule","width=500 height=500")
-	
+	$.ajax({
+		url:url,
+		type:"get",
+		dataType:"html",
+		success:function(data){
+			$('#resultCheck').html(data);
+		}
+	});
 }
 
 

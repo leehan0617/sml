@@ -1,13 +1,13 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<!DOCTYPE>
 <c:set var="root" value="${pageContext.request.contextPath }"/>
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>팀등록</title>
-<script type="text/javascript" src="${root}/js/member/member.js"></script>
+<script type="text/javascript" src="${root}/resources/js/member.js"></script>
 <script type="text/javascript" src="${root}/js/member/jquery.js"></script>
 </head>
 <body>
@@ -44,7 +44,7 @@
 			<br/>
 			<a>홈구장</a>
 			<input type="text" name="homeGround">
-			<input type="button" value="지도로 찾기" onclick="searchHomeground(form,'${root}')"> 
+			<input data-toggle="modal" data-target="#mapModal" type="button" value="asdads 찾기" onclick="searchHomeground(form,'${root}')"> 
 			<br/><br/>
 		</span>
 	
@@ -52,5 +52,22 @@
 	</form>
 	</div>
 	
+	
+	 <!-- idCheck Modal -->
+	  <div class="modal fade" id="mapModal" role="dialog">
+	    <div class="modal-dialog">
+		        <div class="modal-header">
+		        </div>
+		        
+		        <div class="modal-content">
+		        	<div class="modal-body"></div>
+           		    <div class="modal-footer">
+						     <div class="modal-footer">
+					          <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+					        </div>
+		      		</div> 
+	   		    </div>	
+	    </div>
+	   </div>			
 </body>
 </html>
