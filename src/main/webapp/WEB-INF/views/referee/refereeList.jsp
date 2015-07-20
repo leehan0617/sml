@@ -37,7 +37,7 @@
       <nav class="navbar navbar-inverse navbar-fixed-top">
       <div class="container-fluid">
         <div class="navbar-header">        
-          <a class="navbar-brand" href="${root}/team/teamMain.do?teamName=${teamName}">SML Korea</a>
+          <a class="navbar-brand" href="${root }/scMain">SML Korea</a>
         </div>
         <div id="navbar" class="navbar-collapse collapse">
           <ul class="nav navbar-nav navbar-right">
@@ -49,7 +49,7 @@
 	        	<li><a href="${root }/teamPage/logout.do">로그아웃</a></li>
 	        </c:otherwise>
 	        </c:choose>	       
-			  <li><a href="${root}/soccer/soccerMain.do">메인</a></li>			            
+			  <li><a href="${root }/scMain">메인</a></li>			            
           </ul>         
         </div>
       </div>
@@ -57,9 +57,9 @@
 	
 	 <br/><br/><br/><br/>
      <div class="container-fluid" style="background:url(${root}/resources/images/backGroundImage.jpg)">   
-       <span class="col-xs-2"><a href="${root}/team/teamMain.do?teamName=${teamName}"><img class="img-circle img-responsive" alt="logo" src="${root}/resources/images/${emblem}.jpg" width="200" height="150"></img></a></span> 	  
+       <span class="col-xs-2"><a href="${root }/scMain"><img class="img-circle img-responsive" alt="logo" src="${root}/resources/images/android@2x.png" width="200" height="150"></img></a></span> 	  
        	  
-       <span class="col-xs-9" style="font-size:50pt;"><br/>${teamName}</span>
+       <span class="col-xs-9" style="font-size:50pt;"><br/>SML KOREA</span>
        <span class="col-xs-1" style="font-size:15pt;"><br/><br/>인원: ${count}  </span>     
      </div>
        <br/><br/>
@@ -76,15 +76,16 @@
                	  <td>
                	    <div>
 						<label>지역:</label>
-						<select id="sido2" onchange="refereeRegion('${root}', '${sportCode}', this.value)">			
-						<c:forEach var="sido" items="${sidoList}">		
+						<select id="sido2" onchange="refereeRegion('${root}', '${sportCode}', this.value)">
+						<option>선택</option>				
+						<c:forEach var="sido" items="${sidoList}">												
 						<option value="${sido}">${sido}</option>				
 						</c:forEach>
 						</select>
 				    </div>
 				  </td>                 
                   <td>이름</td>
-                  <td>생일</td>
+                  <td>생년월일</td>
                   <td>지역</td>                               
                </tr>               
               </thead>
@@ -101,8 +102,8 @@
 			  <tr align="center">			
 				<td><span><img class="img-circle" src="${root }/img/refereeImg/${referee.refereePicture}" width="150px" height="150px"/></span></td>					
 				<td style="font-size:13pt;"><br/><br/><br/>${referee.refereeName }</td>				
-				<td style="font-size:13pt;"><br/><br/><br/>${refefree.refereeBirth }</td>				
-				<td style="font-size:13pt;"><br/><br/><br/>${referee.sido }  ${referee.gugun }</td>										
+				<td style="font-size:13pt;"><br/><br/><br/>${referee.refereeBirth }</td>				
+				<td style="font-size:13pt;"><br/><br/><br/>${referee.sido }</td>										
 			  </tr>
 			</c:forEach>			
 		   </c:if>		   		
@@ -114,35 +115,38 @@
 	
     <div align="center">    
  			
-		<c:if test="${count>0}">			
+		<c:if test="${count>0 }">
 			<c:set var="pageBlock" value="${5}"/>
-			
-			<fmt:parseNumber var="pageCount" value="${count/boardSize+ (count/boardSize==0 ? 0:1) }" integerOnly="true"/>
-			
+			<c:set var="pageCount" value="${count/boardSize+(count%boardSize==0 ? 0:1)}"/>
 			<fmt:parseNumber var="rs" value="${(currentPage-1)/pageBlock }" integerOnly="true"/>
+			
 			<c:set var="startPage" value="${rs*pageBlock+1 }"/>
-			<c:set var="endPage" value="${startPage+pageBlock-1 }"/>			
+			<c:set var="endPage" value="${startPage+pageBlock-1 }"/>
+			
 			<c:if test="${endPage>pageCount }">
 				<c:set var="endPage" value="${pageCount }"/>
 			</c:if>
-					
+			
+			<c:if test="${count>0&&searchBoxName==null}">
 			<ul class="pager">
 			<c:if test="${startPage>pageBlock }">
-				<li><a href="${root }/referee/refereeList.do?pageNumber=${startPage-pageBlock }&sportType=${sportType}">[이전]</a></li>
+				<li><a href="${root }/referee/refereeList.do?pageNumber=${startPage-pageBlock}&sportCode=${sportCode}">BACK</a></li>
 			</c:if>
 			
 			<c:forEach var="i" begin="${startPage}" end="${endPage}">
-				<li><a href="${root }/referee/refereeList.do?pageNumber=${i}&sportType=${sportType}">${i }</a></li>
+				<li><a href="${root }/referee/refereeList.do?pageNumber=${i}&sportCode=${sportCode}">${i }</a></li>
 			</c:forEach>
 			
 			<c:if test="${endPage<pageCount }">
-				<li><a href="${root }/referee/refereeList.do?pageNumber=${startPage+pageBlock }&sportType=${sportType}">[다음]</a></li>
+				<li><a href="${root }/referee/refereeList.do?pageNumber=${startPage+pageBlock}&sportCode=${sportCode}">NEXT</a></li>
 			</c:if>
-			</ul>					
-		</c:if>		
+			</ul>
+			</c:if>			
+		</c:if>
 	<br/><br/><br/>	
 	
-	<input type="button" value="심판 지원하기" onclick="location.href='${root}/referee/registerReferee.do?sportType=${sportType}'"/>
+	<input type="button" class="btn btn-info" value="심판 지원하기" onclick="location.href='${root}/referee/registerReferee.do?sportCode=${sportCode}'">	
+	
 	</div>   
   </body>
 </html>

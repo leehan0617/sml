@@ -1,6 +1,5 @@
 package com.sml.referee.dao;
 
-import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -46,6 +45,21 @@ public class RefereeDaoImpl implements RefereeDao{
 	@Override
 	public List<String> sidoList(String regionSido) {
 		return sqlSession.selectList("dao.RefereeMapper.sidoList", regionSido);
+	}
+
+	/**
+	 * @함수명: refereeAllList
+	 * @작성일: 2015. 7. 20.
+	 * @작성자: 정성남
+	 * @설명 :
+	 */
+	@Override
+	public List<RefereeDto> refereeAllList(int startRow, int endRow,String sportType) {
+		Map<String, Object> hMap=new HashMap<String, Object>();
+		hMap.put("startRow", startRow);
+		hMap.put("endRow", endRow);
+		hMap.put("sportType", sportType);		
+		return sqlSession.selectList("dao.RefereeMapper.refereeAllList", hMap);
 	}
 
 }

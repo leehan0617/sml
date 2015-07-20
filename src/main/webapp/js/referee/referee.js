@@ -62,27 +62,13 @@ function fromServer(){
 	}
 }
 
-/*function sidoReferee(root){
-	var url2=rroot+"/referee/refereeList.do";
-	var params="sido=" + $("#sido2").val();
-	$.ajax({
-		type:"GET",
-		url:url2,
-		data:params,
-		success:function(args){
-			$("#list").html(args);
-		}
-	});
-}*/
-function refereeRegion(root, sportType,regionSido){
-	var url=root + "/referee/refereeList.do?sportType=" + sportType + "&regionSido=" + regionSido;
-	location.replace(url);
-}
-
-function refereeCheck(){
-	var sex=$("input[name='sexValue']:radio:checked").val();
+function refereeRegion(root, sportCode,regionSido){
+	//alert("regionSido:"+regionSido);
+	if(regionSido=="전국"){
+		var url=root + "/referee/refereeList.do?sportCode=" + sportCode +"&regionSido=" + regionSido;
+		location.replace(url);
+	}
 	
-	$("input[name='refereeGender']").attr("value",sex);
-	$("input[name='sido']").attr("value", $("#sido").val());
-	$("input[name='gugun']").attr("value", $("#gugun").val());
+	var url=root + "/referee/refereeList.do?sportCode=" + sportCode + "&regionSido=" + regionSido;
+	location.replace(url);
 }
