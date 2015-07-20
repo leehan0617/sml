@@ -28,6 +28,7 @@
 <script src="${root }/js/xhr/xhr.js"></script>
 <script src="${root }/js/teamPage/teamPage.js"></script>
 <script type="text/javascript" src="${root}/resources/js/member.js"></script>
+<script type="text/javascript" src="${root}/resources/js/jquery.js"></script>
 
 <form action="${root}/member/registerMember.do" method="post" name="registerModal" onsubmit="return teamCheck(this)">
 <div class="modal fade" id="popupJoin" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">

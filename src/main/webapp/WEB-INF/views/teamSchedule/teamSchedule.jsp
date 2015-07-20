@@ -55,8 +55,9 @@
  	 		eventClick: function(event) {
  	 		   if (event.url) {
  	 			   var scheduleNumber=event.url;
+ 	 			 var popOption = "top="+(screen.availHeight/2-500/2)+", left="+(screen.availWidth/2-280/2)+",     width=290, height=250, scrollbars=no, location=no";
  	 			   var url="${root}/teamPage/ScheduleContent.do?scheduleNumber="+scheduleNumber;
- 	 	            window.open(url,"","width=500 height=280");
+ 	 	            window.open(url,"",popOption);
  	 	            return false;
  	 	        }
 			}  
