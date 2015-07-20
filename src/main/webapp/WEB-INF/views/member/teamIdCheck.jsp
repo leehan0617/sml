@@ -7,6 +7,7 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Insert title here</title>
+<script type="text/javascript" src="${root}/resources/js/jquery.js"></script>
 <script src="${root }/resources/js/bootstrap.js"></script>
 <script type="text/javascript" src="${root}/resources/js/member.js"></script>
 
@@ -14,7 +15,7 @@
 </head>
 <body class="jumbotron">
 	<c:if test="${teamCheck!=null}">
-		<form class="form-horizontal" action="${root}/member/idCheckName.do" method="get" onsubmit="return teamIdCheck(this,'${root}')">
+		<form class="form-horizontal" onsubmit="return teamIdCheck(this,'${root}')">
 			<div class="alert alert-Warning">
 			    <strong>사용중인 팀명입니다!</strong>
 			</div>
@@ -34,8 +35,8 @@
 			<div class="alert alert-success">
 			    <strong>사용 가능한 팀명입니다</strong> 
 			</div>
-		
-			<a href="javascript:window.opener.registerModal.teamName.value='${teamName}';close();"class="btn btn-info btn-lg">
+			
+			<a href="javascript:window.opener.form.teamName.value='${teamName}';close();"class="btn btn-info btn-lg">
 				<span class="glyphicon glyphicon-ok"></span>적용
 			</a>
 		</div>

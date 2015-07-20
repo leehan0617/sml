@@ -15,7 +15,7 @@
 </head>
 <body class="jumbotron">
 		<c:if test="${check!=null}">
-			<form class="form-horizontal" action="${root}/member/idCheck.do" method="get" onsubmit="return idCheck(this,'${root}')">
+			<form class="form-horizontal" onsubmit="return idCheck(this,'${root}')">
 				<div class="alert alert-Warning">
 			    	<strong>사용중인 아이디입니다!</strong> 
 				</div>
@@ -36,7 +36,7 @@
 			</div>
 			
 			<div align="center">
-				<a href="javascript:window.opener.registerModal.teamId.value='${teamId}';close();"  class="btn btn-info btn-lg">
+				<a href="javascript:window.opener.form.teamId.value='${teamId}';close();"  class="btn btn-info btn-lg">
 					<span class="glyphicon glyphicon-ok"></span>적용
 				</a>
 			</div>

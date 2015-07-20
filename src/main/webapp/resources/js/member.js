@@ -80,8 +80,8 @@ function Check(form){
 
 function idCheck(form,root){
 /*	alert("ok");
-	alert("idCheck:"+form.teamId.value+","+root);
-	*/
+	alert("idCheck:"+form.teamId.value+","+root);*/
+
 	if($("input[name='teamId']").val()==""){
 		alert("아이디를 입력하세요");
 		$("input[name='teamId']").focus();
@@ -133,7 +133,7 @@ function teamCheck(form){
 
 function teamIdCheck(form,root){
 /*	alert("ok");
-	alert("idCheck:"+form.teamName.value+","+root);*/
+	alert("idCheck:"+form.teamName.value+","+root);	*/
 	
 	if(form.teamName.value==""){
 		alert("팀명을 입력하세요");
