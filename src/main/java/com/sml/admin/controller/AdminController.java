@@ -308,23 +308,7 @@ public class AdminController {
 			adminService.manageLeagueRecord(mav);
 			return mav;
 		}
-		
-		/**
-		 * @name : insertGameResult
-		 * @date : 2015. 7. 17.
-		 * @author : 이희재
-		 * @description : 리그의 정보를 가져오고 그에 대한 결과를 입력하는 메소드
-		 */
-		@RequestMapping(value="/admin/manageLeagueRecord.do",method=RequestMethod.GET)
-		public ModelAndView insertGameResult(HttpServletRequest request){
-			logger.info("insertGameResult-----------");
-			ModelAndView mav=new ModelAndView();
-			mav.addObject("request",request);
 
-			adminService.insertGameResult(mav);
-			return mav;
-		}
-		
 		
 		
 }
