@@ -19,13 +19,14 @@
 			}
 			reader.readAsDataURL(input.files[0]);
 		}
+		
 	}
 </script>
 
 <style>
 	#UploadedImg {
-		max-width: 80% ;
-		width: expression(this.width > 640 ? 640: true) ;
+		max-width: 100% ;
+ 		width: expression(this.width > 640 ? 640: true) ; 
 		height: auto ;
 	}
 </style>
@@ -41,16 +42,16 @@
 			<div class="row">	
 				<input type="hidden" name="teamName" value="${team.teamName }"/>	
 				
-				<div class="col-md-5">
+				<div class="col-sm-5 col-md-5" style="display:table-cell; text-align:center; vertical-align:middle;">
 					<div>
 						<img src="${root }/img/teamImg/${team.emblem}"/>
 					</div>					
 				</div>
-				<div class="col-md-2 " style="margin-top:15%; padding-left:7%;">
+				<div class="col-sm-2 col-md-2 " style="margin-top:15%; padding-left:7%;">
 					<div>
 						<img src="${root }/img/teamImg/narrow02.jpg" width="30px"/></div>
 					</div>
-				<div class="col-md-5">		
+				<div class="col-sm-5 col-md-5" style="display:table-cell; text-align:center; vertical-align:middle;">		
 					<div>
 						<img id="UploadedImg" src="${root }/img/teamImg/${team.emblem} "/>
 					</div>
@@ -58,17 +59,16 @@
 			</div>		
 			<br/><br/>
 			<div class="row">
-				<div class="col-md-4"></div>
+				<div class="col-md-4"></div>					
 				<div class="col-md-4">					
-					<input type="file" name="teamImage" onchange="readURL(this);" filter:alpha(opacity=0); opacity:();/>					
+					<input type="file" name="teamImage" onchange="readURL(this);" filter:alpha(opacity=0); opacity:();/>				
 				</div>
 				<div class="col-md-4"></div>
 			</div>	
 		</div>
 		
 		<div class="modal-footer">
-			<input type="submit" value="수정"/>
-			<input type="reset" value="취소"/>	
+			<button type="submit" class="btn btn-success">수정하기</button>
 		</div>		
 	</form>
 	

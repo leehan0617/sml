@@ -18,7 +18,7 @@
 	<link rel="stylesheet" type="text/css" href="${root }/resources/css/bootstrap.css"/>
 	<script src="${root }/resources/js/jquery.js"></script>
 	<script src="${root }/resources/js/bootstrap.js"></script>
-	<script src="${root }/resources/js/teamMain.js"></script>
+	<script src="${root }/resources/js/teamMain.js"></script>	
 	
 	<!-- before matching.jsp js/css -->
 	<script type="text/javascript" src="//apis.daum.net/maps/maps3.js?apikey=1442260e0c6af86974001269a7312e42&libraries=services"></script>
@@ -40,6 +40,7 @@
 		  margin: 20px auto; 
 		} */
 		#tallModal .modal-body p { margin-bottom: 900px }
+				
 	</style>
 	
 </head>
@@ -67,7 +68,7 @@
 						<li><a data-toggle="modal" data-target="#modalTeamBoard" onclick="getTeamBoardData('${root}','${teamName}')">팀공지사항</a></li>						
 						<li><a onclick="viewSchedule('${root}','${team.teamName}')">스케쥴관리</a></li>
 						<li><a data-toggle="modal" data-target="#popupMatching" href="${root }/teamPage/matching.do?teamName=${team.teamName}">매칭관리</a></li>
-						<li><a data-toggle="modal" data-target="#popupTeamLog" href="${root }/teamPage/manageTeamEmblem.do?teamName=${team.teamName}">팀 로고 관리</a></li>
+						<li><a data-toggle="modal" data-target="#popupTeamLog" href="${root }/teamPage/manageTeamEmblem.do?teamName=${teamName}">팀 로고 관리</a></li>
 						<li class="divider"></li>
 						<li><a href="${root}/teamPage/logout.do?teamId='${teamId}'">로그아웃</a></li>
 				  	</c:if>
@@ -134,19 +135,21 @@
 	
 	<br/>
 	
-	<div class="row well">
-	  <div class="col-md-1"></div>
-	  
-	  <div class="col-md-4 well">
-	  	<div class="row">
-	  		<div class="col-xs-6 col-md-3">
-    			<a href="#" class="thumbnail">
-      				<img src="${root }/resources/images/android@2x.png" alt="...">
-    			</a>
-  			</div>
-		</div>
+	
+	<div class="row well">	 	  	
+	  <div class="col-md-1"></div>		  	  	  
+	  <div class="col-md-4 well">		  		   		  	
+		  	<div class="row">
+		  		<div class="col-xs-6 col-md-3" >
+	    			<a href="#" class="thumbnail">
+	      				<img src="${root }/resources/images/android@2x.png" alt="..."> 	
+	    			</a>
+	  			</div>
+			</div>
 	  </div>
+		  
 	  <div class="col-md-2 well"><h3>vs</h3></div>
+	  
 	  <div class="col-md-4 well">
 	  	<div class="row">
 	  		<div class="col-xs-6 col-md-3">
@@ -155,9 +158,10 @@
     			</a>
   			</div>
 	  	</div>
-	  </div>
-	  <div class="col-md-1"></div>
+	  </div>	 
+	  <div class="col-md-1"></div>  
 	</div>
+
 	
 	<div class="row well">
 	  <div class="col-md-1"></div>
@@ -189,12 +193,37 @@
 	  			<span style="font-weight: bold;">${record.TEAMNAME2 }</span>
 	  			<span>${record.GAMERESULT }</span>
 	  		</div>
+	  		
+	  		
+	  		<div class="row well">	 	  	
+			  <div class="col-md-1"></div>		  	  	  
+			  <div class="col-md-4 well" style="display:table-cell; text-align:center; vertical-align:middle;">		  	
+			    			<a href="#"> 	
+			      				<img src="${root}/resources/images/${record.EMBLEM1}.jpg" alt="..." width="100">
+			      				<div style="font-weight: bold;">${record.TEAMNAME1 }</div>
+			    			</a>		  			
+			  </div>
+				  
+			  <div class="col-md-2 well" style="display:table-cell; text-align:center; vertical-align:middle;"><h3>vs</h3></div>
+			  <div class="col-md-4 well" style="display:table-cell; text-align:center; vertical-align:middle;">		
+			  			 
+		    			<a href="#">
+		      				<img src="${root}/resources/images/${record.EMBLEM2}.jpg" alt="..." width="100">
+		      				<div style="font-weight: bold;">${record.TEAMNAME2 }</div>
+		    			</a>	
+		   	  </div>		  	 
+			  <div class="col-md-1"></div>  
+			  
+			</div>
+	  		
+	  		
+	  		
 	  	</c:forEach>
 	  </div>
 	  <div class="col-md-5 well">
 	  	팀 전적정보 
 	  	<br/>
-	  	<img src="${root }/img/teamImg/${team.emblem}/" alt="팀 엠블럼">
+	  	<img src="${root }/img/teamImg/${team.emblem}.jpg" alt="팀 엠블럼">
 	  	팀명 : ${team.teamName }
 	  	
 	  	<c:if test="${leagueDto==null }">

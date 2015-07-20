@@ -145,11 +145,11 @@
 			<h6> -> 거리, 요일, 시간대 등의 조건을 넓히면 매칭이 더욱 쉬워 질 수 있습니다. </h6>		
 		</div>
 		
-		<div class="modal-footer">'
+		<div class="modal-footer">
 			<button type="button" class="btn btn-warning" onclick="javascript:location.href='${root}/teamPage/deleteMatching.do?matchingCode=${matchingDto.matchingCode }&teamName=${teamName}'">
 			매칭 취소하기
 			</button>
-			<input type="button" value="매칭 취소" onclick="javascript:location.href='${root}/teamPage/deleteMatching.do?matchingCode=${matchingDto.matchingCode }&teamName=${teamName}'">
+			<%-- <input type="button" value="매칭 취소" onclick="javascript:location.href='${root}/teamPage/deleteMatching.do?matchingCode=${matchingDto.matchingCode }&teamName=${teamName}'"> --%>
 		</div>
 	</c:if>
 </body>

@@ -66,7 +66,7 @@ div.col-md-2{
 					<div class="col-md-2">
 						<a href="${root}/admin/manageLeague.do">
 							<img src="${root}/img/adminImg/trophy.png " class="img-rounded" alt="Cinque Terre" width="256" height="256"/>
-							<span style="font-size:15pt; text-align: center;">리그관리</a></span>
+							<span style="font-size:15pt;">리그관리</a></span>
 						</a>
 					</div>
 					

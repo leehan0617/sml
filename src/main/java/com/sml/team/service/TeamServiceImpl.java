@@ -338,7 +338,7 @@ public class TeamServiceImpl implements TeamService{
 			}
 			
 			TeamDto prevTeamDto=dao.getTeamInfo(teamName);
-			if(prevTeamDto.getEmblem()!=null){
+			if(prevTeamDto.getPath()!=null){				
 				File file=new File(prevTeamDto.getPath());
 				if(file.exists() && file.isFile()) file.delete();
 			}					
