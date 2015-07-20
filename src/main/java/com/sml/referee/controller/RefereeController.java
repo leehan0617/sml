@@ -60,10 +60,11 @@ public class RefereeController {
 	
 	
 	/**
-	 * @name : registerRefereeOk
-	 * @date : 2015. 6. 23.
-	 * @author : 변형린
-	 * @description : 심판 등록 신청 정보를 DB로 보내는 메소드
+	 * 
+	 * @함수명: registerRefereeOk
+	 * @작성일: 2015. 7. 20.
+	 * @작성자: 정성남
+	 * @설명 :
 	 */
 	@RequestMapping(value="/referee/registerReferee.do", method=RequestMethod.POST)
 	public ModelAndView registerRefereeOk(MultipartHttpServletRequest request, RefereeDto refereeDto){
