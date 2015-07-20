@@ -217,7 +217,7 @@
 					  var src = root +'/img/leagueImg/';
 					  var img = data.list[value].leagueImage;
 					  var imgSrc = src+img;
-					  var text = "<div class='item'>"+"<img src="+imgSrc+"/><div class='carousel-caption'>"+data.list[value].leagueName+'</div></div>';
+					  var text = '<div class="item">' +"<img src="+imgSrc+"/><div class='carousel-caption'>"+data.list[value].leagueName+'</div></div>';
 					
 					  $('#leagueOl').append('<li data-target="#carousel-example-generic" data-slide-to='+(value+1)+'</li>');
 					  $('#leagueDiv').append(text);	
@@ -230,6 +230,7 @@
 	   
 	   function leagueTable(root , sportCode,teamName){
 		   var addr = root +"/leagueTable?sportCode="+sportCode;
+		   $("#leagueTable").empty();
 		   //alert(teamName);
 		   $.ajax({
 			  type:"GET",
@@ -239,24 +240,9 @@
 				  leagueList = data.leaguelist;
 				  leagueJoin = data.leagueJoin;
 				  
-				  
-				  
+				  var check="YES";
 				  for(index in leagueList){
-					  var str="";
-					  
-					  for(var j in leagueJoin){
-						  if((leagueJoin[j].leagueCode == leagueList[index].leagueCode) &&(leagueJoin[j].leagueCount >= leagueList[index].leagueTeamNumber)){
-							  var check = "NO";
-							  str += '<tr><td><a data-toggle="modal" data-target="#modalLeagueInfo" onclick=modalLeague('+'"'+root+'",'+leagueList[index].leagueCode+',"'+leagueList[index].leagueName+'","'+leagueList[index].leagueRegion+'",'+leagueList[index].leagueTeamNumber+',"'+leagueList[index].leagueDay+'","'+leagueList[index].leagueTime+'","'+leagueList[index].leagueStartDate+'","'+leagueList[index].leagueEndDate+'","'+check+'","'+teamName+'")>'+leagueList[index].leagueName+"</a></td><td>"+leagueList[index].leagueStartDate+" ~ "+leagueList[index].leagueEndDate+"</td><td>"+leagueList[index].leagueRegion+"</td>";
-							  str += "<td>"+check+"</td></tr>";
-						  }else{
-							  var check = "YES";
-							  str += '<tr><td><a data-toggle="modal" data-target="#modalLeagueInfo" onclick=modalLeague('+'"'+root+'",'+leagueList[index].leagueCode+',"'+leagueList[index].leagueName+'","'+leagueList[index].leagueRegion+'",'+leagueList[index].leagueTeamNumber+',"'+leagueList[index].leagueDay+'","'+leagueList[index].leagueTime+'","'+leagueList[index].leagueStartDate+'","'+leagueList[index].leagueEndDate+'","'+check+'","'+teamName+'")>'+leagueList[index].leagueName+"</a></td><td>"+leagueList[index].leagueStartDate+" ~ "+leagueList[index].leagueEndDate+"</td><td>"+leagueList[index].leagueRegion+"</td>";
-							  str +="<td>"+check+"</td></tr>";
-						  } 
-						  
-						  $("#leagueTable").append(str);
-					  }
+					  $("#leagueTable").append('<tr><td><a data-toggle="modal" data-target="#modalLeagueInfo" onclick=modalLeague('+'"'+root+'",'+leagueList[index].leagueCode+',"'+leagueList[index].leagueName+'","'+leagueList[index].leagueRegion+'",'+leagueList[index].leagueTeamNumber+',"'+leagueList[index].leagueDay+'","'+leagueList[index].leagueTime+'","'+leagueList[index].leagueStartDate+'","'+leagueList[index].leagueEndDate+'","'+check+'","'+teamName+'")>'+leagueList[index].leagueName+"</a></td><td>"+leagueList[index].leagueStartDate+" ~ "+leagueList[index].leagueEndDate+"</td><td>"+leagueList[index].leagueRegion+"</td><td>"+check+"</td></tr>");
 				  }
 			  }
 		   });
@@ -264,8 +250,7 @@
 	   
 	   function modalLeague(root,leagueCode,name,region,limitNumber,leagueDay,leagueTime,startDate,endDate,check,teamName){
 		   //alert(root+","+code+','+name+','+region+','+limitNumber+','+leagueDay+','+leagueTime+','+startDate+','+endDate);
-		  
-		  
+		   $('#modalLeagueFooter').empty();
 		   $('#leagueName').val(name);
 		   $('#leagueRegion').val(region);
 		   $('#leagueDate').val(startDate + " ~ " + endDate);
@@ -281,7 +266,29 @@
 		   }else{
 			   $('#modalLeagueFooter').prepend('<button type="button" class="btn btn-danger" data-dismiss="modal">정원초과</button>');
 		   }
-	   }
+		   $('#modalLeagueFooter').append('<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>');
 
+	   }
+	   
+
+	   function joinLeague(code,root,teamName){
+		   var addr = root+'/joinLeague?leagueCode='+code+'&teamName='+teamName;
+		   
+		   $.ajax({
+			  url:addr,
+			  type:'get',
+			  success:function(data){
+				  if(data.value > 0){
+					  alert('리그신청이 완료되었습니다. ');  
+				  }else{
+					  alert('이미 신청한 리그입니다.');
+				  }
+			  }
+		   });
+	   }
+	   
+	   function test(root){
+		   alert(root);
+	   }
 
 	

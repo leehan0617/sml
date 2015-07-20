@@ -250,10 +250,15 @@ public class SServiceImpl implements SService{
 		HashMap<String,Object> hMap = new HashMap<String,Object>();
 		hMap.put("leagueCode", leagueCode);
 		hMap.put("teamName", teamName);
-		
-		int check = dao.joinLeague(hMap);
+		int check = dao.checkLeague(hMap);
+		int value=0;
+		if(check>0){
+			value=-1;
+		}else{
+			value=dao.joinLeague(hMap);
+		}		
 		ModelAndView mav = new ModelAndView();
-		mav.addObject("check",check);
+		mav.addObject("value",value);
 		mav.setViewName("jsonView");
 		return mav;
 	}

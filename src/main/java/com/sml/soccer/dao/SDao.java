@@ -30,4 +30,6 @@ public interface SDao {
 
 	public int joinLeague(HashMap<String, Object> hMap);
 
+	public int checkLeague(HashMap<String, Object> hMap);
+
 }
