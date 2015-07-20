@@ -358,7 +358,6 @@
   				</div>
     		</div>
       		<div class="modal-footer" id="modalLeagueFooter">
-            	<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
       		</div>
   		</div>
      </div>
@@ -382,19 +381,7 @@
        });
 
 	});
-   
-   function joinLeague(code,root,teamName){
-	   alert(code+','+root+','+teamName);
-	   var addr = root+'/joinLeague?leagueCode='+code+'&teamName='+teamName;
-	   
-	   $.ajax({
-		  url:addr,
-		  type:'get',
-		  success:function(data){
-			  alert('리그신청이 완료되었습니다.');
-		  }
-	   });
-   }
+
    </script>
   
  </body>

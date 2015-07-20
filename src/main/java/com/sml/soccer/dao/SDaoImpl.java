@@ -115,6 +115,11 @@ public class SDaoImpl implements SDao{
 	public int joinLeague(HashMap<String, Object> hMap) {
 		return sqlSession.insert("soccer.dao.SMapper.joinLeague",hMap);
 	}
+	@Override
+	public int checkLeague(HashMap<String, Object> hMap) {
+		// TODO Auto-generated method stub
+		return sqlSession.selectOne("soccer.dao.SMapper.checkLeague" , hMap);
+	}
 	
 	
 	

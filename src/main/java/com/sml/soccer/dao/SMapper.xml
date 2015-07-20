@@ -51,6 +51,9 @@
 	
 	<insert id="joinLeague" parameterType="java.util.HashMap">
 		insert into leagueJoin values(#{leagueCode} , (select teamCode from team where teamName=#{teamName}))
-		
 	</insert>
+	
+	<select id="checkLeague" parameterType="java.util.HashMap" resultType="int">
+		select count(*) from leagueJoin where leagueCode = #{leagueCode} and TeamCode = (select teamCode from team where teamName=#{teamName})
+	</select>
 </mapper>
