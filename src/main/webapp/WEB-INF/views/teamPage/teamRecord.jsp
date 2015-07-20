@@ -60,7 +60,7 @@
 	
 	 <br/><br/><br/><br/>
      <div class="container-fluid" style="background:url(${root}/resources/images/backGroundImage.jpg)">   
-       <span class="col-xs-2"><a href="${root}/team/teamMain.do?teamName=${teamName}"><img class="img-circle img-responsive" alt="logo" src="${root}/resources/images/${emblem}" width="200" height="150"></img></a></span> 	  
+       <span class="col-xs-2"><a href="${root}/team/teamMain.do?teamName=${teamName}"><img class="img-circle img-responsive" alt="logo" src="${root}/img/teamImg/${emblem}" width="200" height="150"></img></a></span> 	  
        	  
        <span class="col-xs-9" style="font-size:50pt;"><br/>${teamName}</span>
        <span class="col-xs-1" style="font-size:15pt;"><br/><br/>총경기수: ${count}  </span>     
@@ -108,9 +108,9 @@
 				<td><br/><br/><br/><span class="label label-success">리그경기</span></td>
 				</c:if>
 				<td>
-					<a href="${root}/team/teamMain.do?teamName=${record.TEAM1}"><img class="img-circle" src="${root}/resources/images/${record.EMBLEM1}" width="100" height="100"><img></a>&nbsp;				
+					<a href="${root}/team/teamMain.do?teamName=${record.TEAM1}"><img class="img-circle" src="${root}/img/teamImg/${record.EMBLEM1}" width="100" height="100"><img></a>&nbsp;				
 					<img src="${root}/resources/images/versusIcon.png" width="30" height="30"></img>&nbsp;				
-					<a href="${root}/team/teamMain.do?teamName=${record.TEAM2}"><img class="img-circle" src="${root}/resources/images/${record.EMBLEM2}" width="100" height="100"></img></a>&nbsp;
+					<a href="${root}/team/teamMain.do?teamName=${record.TEAM2}"><img class="img-circle" src="${root}/img/teamImg/${record.EMBLEM2}" width="100" height="100"></img></a>&nbsp;
 					<br/>
 					<span class="label label-primary">HOME</span>${record.TEAM1}
 					&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
