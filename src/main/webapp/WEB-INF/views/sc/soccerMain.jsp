@@ -237,8 +237,8 @@
 
       <div class="row featurette" id="chartMain">
         <div class="col-md-7">
-          <h2 class="featurette-heading">And lastly, this one. <span class="text-muted">Checkmate.</span></h2>
-          <p class="lead">Donec ullamcorper nulla non metus auctor fringilla. Vestibulum id ligula porta felis euismod semper. Praesent commodo cursus magna, vel scelerisque nisl consectetur. Fusce dapibus, tellus ac cursus commodo.</p>
+          <h2 class="featurette-heading">차트를 구경하시고 , <span class="text-muted">탭을 눌러보세요.</span></h2>
+          <p class="lead">여기는 SML 축구 이용자들의 각종 통계 및 차트를 보여주는 곳입니다. 차트와 자신의 정보를 비교해보세요. 이용자들이 많을 수록 통계는 더 정확한 정보를 보여줍니다.</p>
        	  <br/>
        	  <br/>
         </div>
