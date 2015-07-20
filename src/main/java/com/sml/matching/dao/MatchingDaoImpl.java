@@ -124,6 +124,7 @@ public class MatchingDaoImpl implements MatchingDao {
 	 */
 	@Override
 	public TeamDto getTeamInfo(String teamName) {
+		System.out.println("dao : " +teamName);
 		return sqlSession.selectOne("matching.dao.matchingMapper.getTeamInfo",teamName);
 	}
 
