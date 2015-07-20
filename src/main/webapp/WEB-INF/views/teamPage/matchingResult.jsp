@@ -113,33 +113,50 @@
 			<div class="row well">
 			  <div class="col-md-1"></div>
 			  
-			  <div class="col-md-4 well">
-			  	<div class="row">
-			  		<div class="col-xs-6 col-md-3" style="text-align:center">
-		    			<a href="#" class="thumbnail" style="max-width:100%;">
-		    				<img src="${root}/img/teamImg/${myTeamDto.emblem } alt=".." width=188/>
-		      			</a>
-		  			</div>
-				</div>
+			  <div class="col-md-4" style="display:table-cell; text-align:center; vertical-align:middle;">			  
+		    	<a href="#">
+		    		<img class="img-circle" src="${root}/img/teamImg/${myTeamDto.emblem }" alt=".." width=188/>
+		      	</a>
 			  </div>
-			  <div class="col-md-2 well"><h3>vs</h3></div>
-			  <div class="col-md-4 well">
-			  	<div class="row">
-			  		<div class="col-xs-6 col-md-3">
-		    			<a href="#" class="thumbnail">
-		      				<img src="${root }/img/teamImg/searching.gif" alt="..." width=188>
-		    			</a>
-		  			</div>
-			  	</div>
+			  <div class="col-md-2" style="display:table-cell; text-align:center; vertical-align:middle; height:230px; padding-top:70px;"><h2>vs</h2></div>
+			  <div class="col-md-4" style="display:table-cell; text-align:center; vertical-align:middle;">
+		    	<a href="#">
+		      		<img src="${root }/img/teamImg/searching.gif" alt="..." class="img-circle" width=188>
+		    	</a>
 			  </div>
 			  <div class="col-md-1"></div>
 			</div>				
-		
-			<h5> 팀 이름: ${myTeamDto.teamName }</h5>
-			<h5> 매칭 장소 : ${matchingDto.matchingPlace}</h5>
-			<h5> 매칭 희망 요일 : ${matchingDto.matchingDay}</h5>
-			<h5> 매칭 희망 시간 : ${matchingDto.matchingTime}</h5>
-			<br/><br/>
+			
+			<div class="container">
+			  <h2>매칭 정보</h2>      
+			  <br/>     
+			  <table class="table table-hover" style="width:50%;">
+			    <tbody>
+			      <tr>
+			        <td style="width:20%;">팀 이름</td>
+			        <td>${myTeamDto.teamName }</td>
+			      </tr>
+			      <tr>
+			        <td style="width:20%;">매칭 장소</td>
+			        <td>${matchingDto.matchingPlace}</td>
+			      </tr>
+			      <tr>
+			        <td style="width:20%;">매칭 희망 요일</td>	
+			        <td>${matchingDto.matchingDay}</td>
+			      </tr>
+			      <tr>
+			        <td style="width:20%;">매칭 희망 시간</td>
+			        <td>${matchingDto.matchingTime}</td>
+			      </tr>
+			      
+			      <tr>
+			      	<td></td>
+			      	<td></td>
+			      </tr>
+			    </tbody>
+			  </table>
+			</div>
+			<br/>
 			
 			<div style="color:green;"><h5>도움말 : 매칭이 잘 이루어지지 않는다면..</h5></div>
 			<h6> -> 거리, 요일, 시간대 등의 조건을 넓히면 매칭이 더욱 쉬워 질 수 있습니다. </h6>		

@@ -41,6 +41,11 @@
 		} */
 		#tallModal .modal-body p { margin-bottom: 900px }
 				
+				
+		/*gameRecord*/
+		#gameRecord div{
+			display:table-cell; text-align:center; vertical-align:middle;
+		}
 	</style>
 	
 </head>
@@ -94,7 +99,7 @@
 	  <div class="col-md-1"></div>
 	  <div class="col-md-3">
 	    <a href="${root}/team/teamMain.do?teamName=${teamName}">
-	    <img alt="로고이미지" class="img-circle img-responsive" alt="logo" src="${root}/resources/images/${emblem}.jpg" width="200" height="150"></img>
+	    <img alt="로고이미지" class="img-circle img-responsive" alt="logo" src="${root}/img/teamImg/${emblem}" width="200" height="150"></img>
 	    </a>	  	
 	  </div>
 	  <div class="col-md-4">
@@ -177,67 +182,98 @@
 	  <div class="col-md-1"></div>
 	</div>
 	
+	
+	
 	<div class="row well">
 	  <div class="col-md-1"></div>
 	  <div class="col-md-5 well">
-	  	기록실
-	  	<br/><br/>
-	  	<div><span>팀 A</span><span> VS </span><span>팀 B</span><span> 결과 </span></div>
-	  	<br/>
-	  	<c:forEach var="record" items="${recordList }" begin="1" end="5">
-	  		<div>
+	  	<h3>기록실</h3><hr/>	  	
+	  	<!-- 
+	  	<div><span>팀 A</span><span> VS </span><span>팀 B</span><span> 결과 </span></div> -->
+	  	
+	  	<c:forEach var="record" items="${recordList }" begin="1" end="5">	  		
+	  		<div class="row" id="gameRecord">  	
+			  <div class="col-md-2"></div>				  	  	  	  
+			  <div class="col-md-2">	
+			  	<div>				
+    			<a href="${root }/team/teamMain.do?teamName=${record.TEAMNAME1}"> 	
+      				<img src="${root}/resources/images/${record.EMBLEM1}.jpg" alt="..." width="50px">
+      				<div style="font-weight: bold;">${record.TEAMNAME1 }</div>
+    			</a>	
+    			</div>				      			
+			  </div>				  
+			  <div class="col-md-2"><h3>vs</h3></div>
+			  <div class="col-md-2">
+			  	<div>		  			 
+    			<a href="${root }/team/teamMain.do?teamName=${record.TEAMNAME2}">
+      				<img src="${root}/resources/images/${record.EMBLEM2}.jpg" alt="..." width="50px">
+      				<div style="font-weight: bold;">${record.TEAMNAME2 }</div>
+    			</a>
+    			</div>		
+		   	  </div>		  	 
+			  <div class="col-md-4 style"  ><h3>${record.GAMERESULT }</h3></div>  
+			  	
+			 	
+			  <br/>
+			</div>
+			 		
+	  		<%-- <div>
 	  			<span>${record.EMBLEM1 }</span>
 	  			<span style="font-weight: bold;">${record.TEAMNAME1 }</span>
 	  			<span style="color:red;">VS</span>
 	  			<span>${record.EMBLEM2 }</span>
 	  			<span style="font-weight: bold;">${record.TEAMNAME2 }</span>
 	  			<span>${record.GAMERESULT }</span>
-	  		</div>
-	  		
-	  		
-	  		<div class="row well">	 	  	
-			  <div class="col-md-1"></div>		  	  	  
-			  <div class="col-md-4 well" style="display:table-cell; text-align:center; vertical-align:middle;">		  	
-			    			<a href="#"> 	
-			      				<img src="${root}/resources/images/${record.EMBLEM1}.jpg" alt="..." width="100">
-			      				<div style="font-weight: bold;">${record.TEAMNAME1 }</div>
-			    			</a>		  			
-			  </div>
-				  
-			  <div class="col-md-2 well" style="display:table-cell; text-align:center; vertical-align:middle;"><h3>vs</h3></div>
-			  <div class="col-md-4 well" style="display:table-cell; text-align:center; vertical-align:middle;">		
-			  			 
-		    			<a href="#">
-		      				<img src="${root}/resources/images/${record.EMBLEM2}.jpg" alt="..." width="100">
-		      				<div style="font-weight: bold;">${record.TEAMNAME2 }</div>
-		    			</a>	
-		   	  </div>		  	 
-			  <div class="col-md-1"></div>  
-			  
-			</div>
-	  		
-	  		
-	  		
+	  		</div> --%>
 	  	</c:forEach>
 	  </div>
+	  	  
 	  <div class="col-md-5 well">
-	  	팀 전적정보 
-	  	<br/>
-	  	<img src="${root }/img/teamImg/${team.emblem}.jpg" alt="팀 엠블럼">
-	  	팀명 : ${team.teamName }
+	  <div class="row">
+	 	 <h3>팀 전적정보</h3><hr/>
+	  </div>
+	  	<div class="row">
+	  		<div class="col-md-1"></div>
+	  		<div class="col-md-4">
+	  			<img src="${root }/img/teamImg/${team.emblem}" alt="팀 엠블럼">		  		
+	  		</div>	  		
+	  		<div class="col-md-2"></div>
+	  		<div class="col-md-4">
+	  			팀명 : ${team.teamName }		  		
+	  		</div>
+	  		<div class="col-md-1"></div>
+	  	</div>
+	  	<br/><br/>
+	  	<div class="row">
+	 	 <h3>진행중인 리그</h3><hr/>
+	  	</div>
 	  	
-	  	<c:if test="${leagueDto==null }">
-	  		<label>참가중 리그 없음</label>
-	  	</c:if>
-	  	<br/>
+	  	<div class="row">
+	  		<div class="col-md-1"></div>
+	  		<div class="col-md-4">
+	  			<c:if test="${leagueDto==null }">
+	  			<label>참가중 리그 없음</label>
+	  		</c:if>
+	  		<br/>
 	  	
-	  	<c:if test="${leagueDto!=null }">
-	  		<label>진행중인 리그</label>
-	  		<br/>
-	  		<img style="width:500px; height:400px;" src="${root }/img/leagueImg/${leagueDto.leagueImage} "/>
-	  		<br/>
-	  		리그명 : ${leagueDto.leagueName }
-	  	</c:if>
+		  	<c:if test="${leagueDto!=null }">
+		  		<br/>
+		  		<img style="width:225px; height:225px;" src="${root }/img/leagueImg/${leagueDto.leagueImage} "/>
+		  		<br/>
+		  		리그명 : ${leagueDto.leagueName }
+		  	</c:if>	  		
+	  		</div>	  		
+	  		<div class="col-md-2"></div>
+	  		<div class="col-md-4">		  		
+	  		</div>
+	  		<div class="col-md-1"></div>
+	  	</div>
+	  	<div class="row" style="display:table-cell; text-align:center; vertical-align:middle; margin-left:15px;">
+	  		
+	  	</div>
+	  	
+	  	
+	  	
 	  	
 	  </div>
 	  <div class="col-md-1"></div>

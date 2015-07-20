@@ -17,6 +17,7 @@
 	.map_wrap{
 		position:relative;  left:5%; text-align=center;
 	}
+	
 </style>
 <body>   	
 	<div class="modal-body">
@@ -29,20 +30,15 @@
 				<div class="modalPageOne">						
 					<div class="modal-header">
 						<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-						<h1>매칭 등록</h1>
+						<h1>매칭 등록 시작</h1>
 				   	</div>
 					
 					<div class="modal-body">
-						이곳에 매칭에 관한 소개 및 설명을 작성
-						매칭은<br/>
-						어떻게<br/>
-						할까요<br/>
-						이렇게<br/>
-						합니다<br/>
-						아니면<br/>
-						저렇게<br/>
-						하도록<br/>
-						할까요<br/>			
+						<h2><small>
+							매칭 등록을 시작합니다.<br/>
+							매칭 시스템은 홈구장의 거리, 날짜, 시간등을 계산하여 <br/>
+						    매칭을 자동으로 결정해 줍니다.
+						</small></h2>		
 					</div>
 					<div class="modal-footer">
 					<button type="button" class="btn btn-info" onclick="setting1('${homeGround}')">다음단계로</button>		
@@ -143,9 +139,47 @@
 		<c:if test="${matchingDto!=null }">
 			<div class="modal-header">
 				<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-				<h1>매칭 정보 </h1>
+				<h1>매칭 시작하기 </h1>
 			</div>
 			<div class="modal-body">
+				
+
+				<div class="container">
+				  <h2>매칭 정보</h2>
+				  <p>매칭 시작하기를 누르면 매칭정보에 따라 경기가 정해집니다.</p>            
+				  <table class="table table-hover" style="width:50%;">
+				    <tbody>
+				      <tr>
+				        <td style="width:20%;">매칭 종목</td>
+				        <td>${matchingDto.matchingSport }</td>
+				      </tr>
+				      <tr>
+				        <td style="width:20%;">매칭 거리</td>
+				        <td>${matchingDto.matchingDistance }</td>
+				      </tr>
+				      <tr>
+				        <td style="width:20%;">매칭 시간</td>	
+				        <td>${matchingDto.matchingTime }</td>
+				      </tr>
+				      <tr>
+				        <td style="width:20%;">매칭 요일</td>
+				        <td>${matchingDto.matchingDay }</td>
+				      </tr>
+				      <tr>
+				        <td style="width:20%;">매칭 장소</td>
+				        <td>${matchingDto.matchingPlace }</td>
+				      </tr>
+				      
+				      <tr>
+				      	<td></td>
+				      	<td></td>
+				      </tr>
+				    </tbody>
+				  </table>
+				</div>
+
+
+
 				<div><span>매칭 종목 :</span><span style="color:blue;">${matchingDto.matchingSport }</span></div>
 				<div><span>매칭 거리 :</span><span style="color:blue;">${matchingDto.matchingDistance }</span></div>
 				<div><span>매칭 시간 :</span><span style="color:blue;">${matchingDto.matchingTime }</span></div>

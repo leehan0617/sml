@@ -47,7 +47,7 @@
 		select d.* from (
 			select a.*, b.teamName as team1, c.teamName as team2 
 				from gameRecord a, team b, team c 
-					where a.teamcode=b.teamcode and a.teamcode2=c.teamcode and (b.teamCode=#{teamCode} or c.teamCode=#{teamCode}) and gameState='경기 전'
+					where a.teamcode=b.teamcode and a.teamcode2=c.teamcode and (b.teamCode=#{teamCode} or c.teamCode=#{teamCode}) and gameState='경기 전' and gameType='0'
 						order by gameCode desc) d
 	</select>
 	
