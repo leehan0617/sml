@@ -14,7 +14,7 @@ function writeSchedule(root){
 		type:"get",
 		dataType:"html",
 		success:function(data){
-			$('#resultCheck').html(data);
+			$('#resultEdit').html(data);
 		}
 	});
 }
