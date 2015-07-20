@@ -340,6 +340,7 @@
 			  var startDate = data.list[0].leagueStartDate;
 			  var endDate = data.list[0].leagueEndDate;  
 			  
+			  /**
 			  for(var i=0; i<list.length;i++){
 				  var imgSrc = root+"/img/leagueImg/"+list[i].leagueImg;
 				  if(i=0){
@@ -349,6 +350,7 @@
 				  }
 				  $("#leagueDiv").append('<div class="carousel-caption">'+list[i].leagueName+'</div></div>');	  
 			  }
+			  */
 			  
 			  /*
 			<div class="carousel-inner" role="listbox" id="leagueDiv">
