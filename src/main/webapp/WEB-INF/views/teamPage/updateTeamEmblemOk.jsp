@@ -10,20 +10,17 @@
 <title>Insert title here</title>
 </head>
 <body>
-	<form action="${root}/teamPage/manageTeamEmblem.do" method="post" enctype="multipart/form-data" onsubmit="return checkForm()">
-			
-		<c:if test="${team.emblem==null || board.emblem.equals('') }">
-			<div>
-				<label>팀 로고</label>
-				<span>
-					<input type="file" name="teamImage"/>
-				</span>
-			</div>
-		</c:if>
-		<div>
-			<input type="submit" value="수정"/>
-			<input type="reset" value="취소"/>			
-		</div>
-	</form>
+	<c:if test="${check>0 }">
+		<script type="text/javascript">
+			alert("팀 로고가 변경 되었습니다.");
+			location.href="${root}/team/teamMain.do?teamName=${teamName}";
+		</script>
+	</c:if>
+	<c:if test="${check==0 }">
+		<script type="text/javascript">
+			alert("팀 로고가 변경에 실패하였습니다.");
+			location.href="${root}/team/teamMain.do?teamName=${teamName}";
+		</script>
+	</c:if>
 </body>
 </html>

@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.sml.league.service.LeagueService;
 import com.sml.record.service.RecordService;
 import com.sml.schedule.service.ScheduleService;
 import com.sml.team.dto.TeamDto;
@@ -31,6 +32,8 @@ public class TeamController {
 	private TeamBoardService teamBoardService;
 	@Autowired
 	private RecordService recordService;
+	@Autowired
+	private LeagueService leagueService;
 	
 	/**
 	 * @함수명:idCheck
@@ -124,6 +127,7 @@ public class TeamController {
 		scheduleService.readteamSchedule(mav);
 		recordService.getRecordList(mav);
 		service.getReplyList(mav);
+		leagueService.getLeagueInfo(mav);
 			
 		mav.setViewName("team/teamMain");
 		

@@ -28,8 +28,9 @@
 <script src="${root }/js/xhr/xhr.js"></script>
 <script src="${root }/js/teamPage/teamPage.js"></script>
 <script type="text/javascript" src="${root}/resources/js/member.js"></script>
+<script type="text/javascript" src="${root}/resources/js/jquery.js"></script>
 
-<form action="${root}/member/registerMember.do" method="post" name="registerModal" onsubmit="return teamCheck(this)">
+<form action="${root}/member/registerMember.do" method="post" name="form" onsubmit="return teamCheck(this)">
 <div class="modal fade" id="popupJoin" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
 		  <div class="modal-dialog">
 		    <div class="modal-content">
@@ -48,7 +49,7 @@
 					        <div class="input-group">
 							      <input type="text" class="form-control" placeholder="팀아이디를 적어주세요." name="teamId">
 							      <span class="input-group-btn">
-							        <button class="btn btn-default"  type="button" onclick="idCheck(registerModal,'${root}')">중복확인</button>
+							        <button class="btn btn-default"  type="button" onclick="idCheck(form,'${root}')">중복확인</button>
 							      </span>
 							 </div><!-- /input-group -->
 					      </div>
@@ -70,7 +71,7 @@
 						        <div class="input-group">
 							      <input type="text" class="form-control" placeholder="팀이름을 적어주세요." name="teamName">
 							      <span class="input-group-btn">
-							        <button class="btn btn-default" type="button"  onclick="teamIdCheck(registerModal,'${root}')">중복확인</button>
+							        <button class="btn btn-default" type="button"  onclick="teamIdCheck(form,'${root}')">중복확인</button>
 							      </span>
 							    </div><!-- /input-group -->
 					      	</div>

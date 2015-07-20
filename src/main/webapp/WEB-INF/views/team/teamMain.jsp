@@ -98,10 +98,8 @@
 	    </a>	  	
 	  </div>
 	  <div class="col-md-4">
-	  	<br/><br/><br/><br/><br/><br/>
-		<h3>${team.teamName}
-				
-		</h3>
+	  	<br/><br/><br/><br/><br/>
+		<h3>${team.teamName}</h3>
 	  </div>
 	  <div class="col-md-1"></div>
 	  <div class="col-md-3">
@@ -181,20 +179,23 @@
 	  <div class="col-md-5 well">
 	  	<div class="panel panel-default">
 		  <!-- Default panel contents -->
-		  <div class="panel-heading"><h3>기록실</h3></div>
+		  <div class="panel-heading"><h3>기록실 <a style="float: right;" class="btn btn-info" href="${root }/teamPage/viewTeamRecord.do?teamName=${team.teamName}">기록실로 이동</a></h3></div>
 		  <div class="panel-body">
 		    <p>해당 팀의 최근 기록을 볼 수 있습니다.</p>
 		  </div>
 		
 		  <!-- List group -->
 		  <table class="table" style="text-align:center;">
-		    <tr class="active">
+		    <thead class="active">
+		    <tr>
 				<td style="width:10%;">일자</td>
 				<td style="width:30%;">팀</td>
 				<td style="width:10%;">VS</td>
 				<td style="width:30%;">팀</td>
 				<td style="width:20%;">결과</td>
 			</tr>
+			</thead>
+			<tbody>
 			<c:forEach var="record" items="${recordList }" begin="1" end="7">
 				<c:if test="${record.TEAMRESULT==null }">
 					<tr>
@@ -287,16 +288,18 @@
 					</tr>
 				</c:if>
 			</c:forEach>
+			</tbody>
 		   </table>
 		</div>
 	  </div>
 	  <div class="col-md-5 well">
-	  	팀 전적정보 
-	  	<br/>
-	  	<img src="${root }/img/teamImg/${team.emblem}" alt="팀 엠블럼">
-	  	팀명 : ${team.teamName }
-	  	
-	  	<c:if test="${leagueDto==null }">
+	  	<div class="panel panel-default">
+		  <!-- Default panel contents -->
+		  <div class="panel-heading"><h3>진행중인 리그 <input style="float: right;" type="button" class="btn btn-info" value="리그 정보로 이동"></h3></div>
+		  <div class="panel-body">
+		    <p>진행 중인 리그의 정보를 간단하게 볼 수 있습니다.
+		    </p>
+		   <c:if test="${leagueDto==null }">
 	  		<label>참가중 리그 없음</label>
 	  	</c:if>
 	  	<br/>
@@ -304,11 +307,63 @@
 	  	<c:if test="${leagueDto!=null }">
 	  		<label>진행중인 리그</label>
 	  		<br/>
-	  		<img style="width:500px; height:400px;" src="${root }/img/leagueImg/${leagueDto.leagueImage} "/>
 	  		<br/>
-	  		리그명 : ${leagueDto.leagueName }
+	  		<div class="row">
+	  		<img style="width:30%; height:30%; float:left; margin-left:5%;" src="${root }/img/leagueImg/${leagueDto.leagueImage} "/>
+	  		<div style="float:left; width:50%; margin-left:10%; float:left; height: 50%;">
+	  			<table class="table table-hover">
+			    <tbody>
+			      <tr>
+			        <td style="width:20%;">리그 명</td>
+			        <td>${leagueDto.leagueName }</td>
+			      </tr>
+			      <tr>
+			        <td style="width:30%;">기간</td>
+			        <td>${leagueDto.leagueStartDate } ~ ${leagueDto.leagueEndDate }</td>
+			      </tr>
+			      <tr>
+			        <td style="width:20%;">지역</td>	
+			        <td>${leagueDto.leagueRegion }</td>
+			      </tr>
+			      <tr>
+			      	<td></td>
+			      	<td></td>
+			      </tr>
+			    </tbody>
+			  </table>
+	  		</div>
+	  		</div>
+	  		<br/>
 	  	</c:if>
-	  	
+	  	<label>해당 팀 순위</label>
+	  	<br/><br/>
+	  	<div class="row">
+		    <img src="${root }/img/teamImg/${team.emblem}" alt="팀 엠블럼" style="width:30%; height:50%; margin-left:5%; float:left;">
+		    <div style="float:left; width:50%; margin-left:10%; float:left; height: 50%;" >
+		    	<table class="table table-hover">
+			    <tbody>
+			      <tr>
+			        <td style="width:20%;">팀</td>
+			        <td>${teamName }</td>
+			      </tr>
+			      <tr>
+			        <td style="width:30%;">전적</td>
+			        <td>${gameCount }전   <span style="color: green;">${countWin }</span>승   ${countDraw }무   <span style="color: red;">${countLose }</span>패 </td>
+			      </tr>
+			      <tr>
+			        <td style="width:20%;">순위</td>	
+			        <td>현재 ${leagueRank+1} 위</td>
+			      </tr>
+			      <tr>
+			      	<td></td>
+			      	<td></td>
+			      </tr>
+			    </tbody>
+			  </table>
+		    </div>
+		   </div>
+		  </div>
+		</div>	  	
 	  </div>
 	  <div class="col-md-1"></div>
 	</div>

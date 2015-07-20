@@ -140,13 +140,15 @@
 			<div class="modal-header">
 				<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
 				<h1>매칭 시작하기 </h1>
+				<p class="text-info">
+						매칭 시작하기를 누르면 매칭정보에 따라 경기가 정해집니다.
+				</p>
 			</div>
 			<div class="modal-body">
 				
 
 				<div class="container">
-				  <h2>매칭 정보</h2>
-				  <p>매칭 시작하기를 누르면 매칭정보에 따라 경기가 정해집니다.</p>            
+				  <h2>매칭 정보</h2>				            
 				  <table class="table table-hover" style="width:50%;">
 				    <tbody>
 				      <tr>
@@ -180,13 +182,13 @@
 
 
 
-				<div><span>매칭 종목 :</span><span style="color:blue;">${matchingDto.matchingSport }</span></div>
+				<%-- <div><span>매칭 종목 :</span><span style="color:blue;">${matchingDto.matchingSport }</span></div>
 				<div><span>매칭 거리 :</span><span style="color:blue;">${matchingDto.matchingDistance }</span></div>
 				<div><span>매칭 시간 :</span><span style="color:blue;">${matchingDto.matchingTime }</span></div>
 				<div><span>매칭 요일 :</span><span style="color:blue;">${matchingDto.matchingDay }</span></div>
 				<div><span>매칭 장소 :</span><span style="color:blue;">${matchingDto.matchingPlace }</span></div>
 				<div><span>매칭 상태 :</span><span style="color:blue;">${matchingDto.matchingState }</span></div>
-				<div><span>매칭 위도, 경도 :</span><span style="color:blue;">${matchingDto.matchingLatlng }</span></div>
+				<div><span>매칭 위도, 경도 :</span><span style="color:blue;">${matchingDto.matchingLatlng }</span></div> --%>
 			</div>
 			
 			<div class="modal-footer">

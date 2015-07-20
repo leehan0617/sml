@@ -347,8 +347,9 @@ public class TeamServiceImpl implements TeamService{
 		int check=dao.updateTeamEmblem(teamDto);
 		logger.info("check:" + check);
 		
+		mav.addObject("teamName",teamName);
 		mav.addObject("check", check);
-		mav.setViewName("teamPage/updateTeamEmblem");
+		mav.setViewName("teamPage/updateTeamEmblemOk");
 	}
 	
 	

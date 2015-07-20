@@ -172,7 +172,8 @@ function modalWriteTeamBoard(root,teamName,teamCode){
 }
 
 function viewSchedule(root,teamName){
+	var popOption = "top="+(screen.availHeight/2-550/2)+", left="+(screen.availWidth/2-550/2)+",     width=550, height=550, scrollbars=no, location=no";
 	var url=root+"/teamPage/teamScheduleEdit.do?teamName="+teamName;
-	window.open(url,"스케쥴","width=550; height=550; scrollbars:no");
+	window.open(url,"스케쥴",popOption);
 }
 

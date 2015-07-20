@@ -64,15 +64,15 @@ function Check(form){
 		$("input[name='teamPassword']").focus();
 		return false;
 	}	
-	
-	if($("input[name='teamName']").val()==""){
+
+	if(form.teamName.value==""){
 		alert("팀명을 입력하세요");
-		$("input[name='teamName']").focus();
+		form.teamName.focus();
 		return false;
 	}
 	
-//	alert("form"+form.sportType.value);
-	if(form.sportType.value==""){
+	alert("form:"+form.sportType.value);
+	if(form.sportType.value=='null'){
 		alert("종목을 체크해주세요");
 		return false;
 	}
@@ -80,16 +80,16 @@ function Check(form){
 
 function idCheck(form,root){
 /*	alert("ok");
-	alert("idCheck:"+form.teamId.value+","+root);
-	*/
+	alert("idCheck:"+form.teamId.value+","+root);*/
+
 	if($("input[name='teamId']").val()==""){
-		alert("아이디를 입력하시오");
+		alert("아이디를 입력하세요");
 		$("input[name='teamId']").focus();
 		return false;
 	}
-	
+	var popOption = "top="+(screen.availHeight/2-290/2)+", left="+(screen.availWidth/2-250/2)+",     width=290, height=250, scrollbars=no, location=no"
 	var url=root+"/member/idCheck.do?teamId="+form.teamId.value;
-	window.open(url,"","width=290,height=250");
+	window.open(url,"",popOption);
 }
 
 
@@ -105,13 +105,6 @@ function teamCheck(form){
 		$("input[name='memberBirth']").focus();
 		return false;
 	}
-	
-	if($("input[name='memberRegion']").val()==""){
-		alert("지역을 입력하세요");
-		$("input[name='memberRegion']").focus();
-		return false;
-	}
-	
 	
 	if($("input[name='memberEmail']").val()==""){
 		alert("email을 입력하세요");
@@ -140,25 +133,25 @@ function teamCheck(form){
 
 function teamIdCheck(form,root){
 /*	alert("ok");
-	alert("idCheck:"+form.teamName.value+","+root);*/
+	alert("idCheck:"+form.teamName.value+","+root);	*/
 	
 	if(form.teamName.value==""){
 		alert("팀명을 입력하세요");
-		form.teamName.value.focus();
+		form.teamName.focus();
 		return false;
 	}
-	
+	var popOption = "top="+(screen.availHeight/2-290/2)+", left="+(screen.availWidth/2-250/2)+",     width=290, height=250, scrollbars=no, location=no"
 	var url=root+"/member/idCheckName.do?teamName="+form.teamName.value;
-	window.open(url,"","width=290,height=250");
+	window.open(url,"",popOption);
 }
 
 function searchHomeground(form, root){
 	var url=root+"/member/searchHomeGround.do";
-	window.open(url,"","width=900,height=900");
+	window.open(url,"",'width=1303,height=652');
 }
 
 function selectHomeGround(){
-	window.opener.registerModal.homeGround.value=$("#homeGround").text();
+	window.opener.form.homeGround.value=$("#homeGround").text();
 	close();
 }
 

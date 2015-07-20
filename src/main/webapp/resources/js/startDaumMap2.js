@@ -112,7 +112,7 @@ $(document).ready(function(){
 	
 	function displayRecord(mapList){
 		$("#recordList").append("<div style='text-align:center;'><h4><strong>"+mapList.TODAY+"</strong></h4></div>");
-		$("#recordList").append("<div style='text-align:center;'><img src="+root+"/img/teamImg/1436244711493_manu.jpg board='0' alt='팀1	' style='width:25px; height:25px;'><strong>"+mapList.TEAM1+"</strong><span style='color:red; margin-left:20px; margin-right:20px;'>VS</span style='align:right'><img src="+root+"/img/teamImg/1436244711493_manu.jpg style='width:25px; height:25px;'><strong>"+mapList.TEAM2+"</strong></div>");
+		$("#recordList").append("<div style='text-align:center;'><img src="+root+"/img/teamImg/"+mapList.emblem1+"board='0' alt='팀1	' style='width:25px; height:25px;'><strong>"+mapList.TEAM1+"</strong><span style='color:red; margin-left:20px; margin-right:20px;'>VS</span style='align:right'><img src="+root+"/img/teamImg/"+mapList.emblem2+"style='width:25px; height:25px;'><strong>"+mapList.TEAM2+"</strong></div>");
 		
 		$("#recordList").append("<div style='text-align:center;'><h6>"+mapList.GAMEPLACE+"</h6></div>");
 		$("#recordList").append("<br/>");

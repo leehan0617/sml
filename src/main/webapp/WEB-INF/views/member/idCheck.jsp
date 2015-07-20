@@ -8,14 +8,17 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>중복 체크</title>
 <script type="text/javascript" src="${root}/resources/js/jquery.js"></script>
-<script src="${root }/resources/js/bootstrap.js"></script>
+<script type="text/javascript" src="${root}/resources/js/member.js"></script>
+<script src="${root}/resources/js/bootstrap.js"></script>
 
 <link rel="stylesheet" type="text/css" href="${root}/resources/css/bootstrap.css"/>
 </head>
 <body class="jumbotron">
 		<c:if test="${check!=null}">
-			<div align="center"><h4><strong>이미 사용중인 아이디 입니다.</strong></h4></div>
-			<form class="form-horizontal" action="${root}/member/idCheck.do" method="get" onsubmit="idCheck(form,'${root}')">
+			<form class="form-horizontal" onsubmit="idCheck(this,'${root}')">
+				<div class="alert alert-Warning">
+			    	<strong>사용중인 아이디입니다!</strong> 
+				</div>
 				<div class="form-group">
 					<input class="form-control" placeholder="다른아이디를 입력해 주십시요" type="text" name="teamId"/>
 				</div>
@@ -28,13 +31,21 @@
 		</c:if>
 		
 		<c:if test="${check==null}">
-			<div align="center"><h4><strong>사용 가능한 아이디입니다</strong></h4></div>
+			<div class="alert alert-success">
+			    <strong>사용 가능한 아이디입니다</strong> 
+			</div>
 			
 			<div align="center">
-				<a href="javascript:window.opener.registerModal.teamId.value='${teamId}';close();">
-					<span style="font-size:20px"><b>적용</b></span>
+				<a href="javascript:window.opener.form.teamId.value='${teamId}';close();"  class="btn btn-info btn-lg">
+					<span class="glyphicon glyphicon-ok"></span>적용
 				</a>
 			</div>
 		</c:if>
+		
+		<footer>
+			<p>
+				<span style="text-align:left;float:left;font-size:15px">&copy; 2015 <Strong>SML KOREA</Strong></span>
+			</p>
+		</footer>
 </body>
 </html>
