@@ -73,25 +73,38 @@
               <thead>               
                <tr align="center" style="background-color:#E2D6D6;"> 
                	  <td>작성자</td>              	                 
-                  <td>내용</td>
-                  <td>작성날짜</td>                                                 
+                  <td>제목</td>
+                  <td>작성일</td>                                                                
                </tr>               
               </thead>
               </c:if>              
-              <tbody>              
-           <c:if test="${soccerBoardList==null}">	
+              <tbody id="accordion" class="panel-group panel panel-default" >
+              	             
+           	  <c:if test="${soccerBoardList==null}">	
 			  <tr>
 			   <td align="center">작성된 공지사항이 없습니다.</td>
 			  </tr>		
 			</c:if>
 						     					
-           <c:if test="${soccerBoardList!=null}">
-           	<c:forEach var="soccerBoardList" items="${soccerBoardList}">			         	 
-			  <tr align="center" style="background-color:">			
-				<td><span class="glyphicon glyphicon-home">${soccerBoardList.boardWriter}</span></td>					
-				<td><a href="${root }/board/readCommonBoard.do?boardNumber=${soccerBoardList.boardNumber}&pageNumber=${currentPage}">${soccerBoardList.boardTitle}</a></td>	
-				<td><a data-toggle="modal" href="#myModal">${soccerBoardList.boardTitle}</a></td>			
-				<td><fmt:formatDate value="${soccerBoardList.boardDate}" type="date"/></td>							
+              <c:if test="${soccerBoardList!=null}">
+           	  <c:forEach var="soccerBoardList" items="${soccerBoardList}">			         	 
+			  <tr align="center" style="background-color:" id="#accordion">				
+				<td width="20%" style="font-size:20px;"><span class="label label-danger glyphicon glyphicon-user">${soccerBoardList.boardWriter}</span></td>
+				<td>
+				 <div class="panel-group" id="accordion">				  
+    				<div class="panel panel-success">
+     					 <div class="panel-heading">
+        				<h4 class="panel-title">
+         					 <a data-toggle="collapse" data-parent="#accordion" href="#${soccerBoardList.boardNumber}">${soccerBoardList.boardTitle}</a>
+       				    </h4>
+     				    </div>
+     			    <div id="${soccerBoardList.boardNumber}" class="panel-collapse collapse">
+        				<div class="panel-body">${soccerBoardList.boardContent}</div>
+     			    </div>
+                   </div>
+                  </div>
+               </td>
+               <td width="10%"><span class="label label-info glyphicon glyphicon-calendar"><fmt:formatDate value="${soccerBoardList.boardDate}" type="date"/></span></td>
 			  </tr>
 			</c:forEach>			
 		   </c:if>		   		
@@ -131,30 +144,7 @@
 					
 		</c:if>
 	<br/><br/><br/>		
-	</div>
-	
-<!-- 	modal -->
-
-<div class="modal fade" id="myModal" role="dialog">
-    <div class="modal-dialog">
-    
-      <!-- Modal content-->
-      <div class="modal-content">
-        <div class="modal-header">
-          <button type="button" class="close" data-dismiss="modal">&times;</button>
-          <h4 class="modal-title"></h4>
-        </div>
-        <div class="modal-body">
-          <p>d</p>
-        </div>
-        <div class="modal-footer">
-          <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-        </div>
-      </div>
-      
-    </div>
-  </div>
-     
+	</div>     
   </body>
 </html>
 
