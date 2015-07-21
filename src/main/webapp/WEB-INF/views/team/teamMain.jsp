@@ -104,7 +104,18 @@
 	  <div class="col-md-1"></div>
 	  <div class="col-md-3">
 	  	<br/><br/><br/><br/><br/><br/><br/>
-	  	<input id="teamState" type="button" class="btn btn-warning" value="매칭 대기 중">
+	  	<c:if test="${matchingDto.matchingState==null }">
+	  			<input id="teamState" type="button" class="btn btn-active" value="매칭 전">
+	  	</c:if>
+	  	<c:if test="${matchingDto.matchingState=='전' }">
+	  			<input id="teamState" type="button" class="btn btn-info" value="매칭 대기 중">
+	  	</c:if>
+	  	<c:if test="${matchingDto.matchingState=='중' }">
+	  			<input id="teamState" type="button" class="btn btn-warning" value="매칭 중..">
+	  	</c:if>
+	  	<c:if test="${matchingDto.matchingState=='후' }">
+	  			<input id="teamState" type="button" class="btn btn-success" value="매칭 성사">
+	  	</c:if>
 	  </div>
 	</div>
 	
@@ -137,15 +148,15 @@
 		<h3>매칭 결과</h3>
 			<div class="col-md-1"></div>
 			<div class="col-md-4 well" style="height:150px;">
-				<img class="img-circle" src="${root}/img/teamImg/${matchingResult.EMBLEM1}" style="width:50%; height:100%; float:right;">
-				<h4 style="float:right;">${matchingResult.TEAMNAME1}</h4>
+				<img class="img-circle" src="${root}/img/teamImg/${matchingResult.EMBLEM1}" style="width:30%; height:100%; float: right;">
+				<h4 style="float:right; margin-right: 50px; margin-top: 40px;">${matchingResult.TEAMNAME1}</h4>
 			</div>
-			<div class="col-md-2" style=" text-align:center;">
+			<div class="col-md-2" style="text-align:center;">
 				<img src="${root}/resources/images/versusIcon.png" style="width:80%; height:80%;">
 			</div>
 			<div class="col-md-4 well" style="height:150px;">
-				<img class="img-circle" src="${root}/img/teamImg/${matchingResult.EMBLEM2}" style="width:50%; height:100%; float:left;">
-				<h4 style="float:left;">${matchingResult.TEAMNAME2}</h4>
+				<img class="img-circle" src="${root}/img/teamImg/${matchingResult.EMBLEM2}" style="width:30%; height:100%; float:left;">
+				<h4 style="float:left; margin-left: 50px; margin-top: 40px;">${matchingResult.TEAMNAME2}</h4>
 			</div>
 			<div class="col-md-1"></div>
 		</div>
@@ -153,13 +164,13 @@
 	
 	<div class="row well">
 	  <div class="col-md-1"></div>
-	  <div class="col-md-5 well">
+	  <div class="col-md-5 well" style="height: 500px;">
 	  	<h3>팀 공지사항</h3><hr/>
 	  	<a data-toggle="modal" data-target="#modalTeamBoard" onclick="getTeamBoardData('${root}','${teamName}')" style="color:black;">
 	  		<%@include file="../teamTemplate/teamBoardTemplate.jsp" %>
 	  	</a>
 	  </div>
-	  <div class="col-md-5 well">
+	  <div class="col-md-5 well" style="height: 500px;">
 	  	<%@include file="../teamTemplate/scheduleTemplate.jsp" %> 
 	  </div>
 	  <div class="col-md-1"></div>
@@ -167,7 +178,7 @@
 	
 	<div class="row well">
 	  <div class="col-md-1"></div>
-	  <div class="col-md-5 well">
+	  <div class="col-md-5 well" style="height: 600px;">
 	  	<div class="panel panel-default">
 		  <!-- Default panel contents -->
 		  <div class="panel-heading"><h3>기록실 <a style="float: right;" class="btn btn-info" href="${root }/teamPage/viewTeamRecord.do?teamName=${team.teamName}">기록실로 이동</a></h3></div>
@@ -187,7 +198,7 @@
 			</tr>
 			</thead>
 			<tbody>
-			<c:forEach var="record" items="${recordList }" begin="1" end="7">
+			<c:forEach var="record" items="${recordList }" begin="1" end="9">
 				<c:if test="${record.TEAMRESULT==null }">
 					<tr>
 						<td style="width:10%;"><fmt:formatDate value="${record.GAMEDATE }" pattern="MM/dd"/></td>
@@ -283,7 +294,7 @@
 		   </table>
 		</div>
 	  </div>
-	  <div class="col-md-5 well">
+	  <div class="col-md-5 well" style="height: 600px;">
 	  	<div class="panel panel-default">
 		  <!-- Default panel contents -->
 		  <div class="panel-heading"><h3>진행중인 리그 <input style="float: right;" type="button" class="btn btn-info" value="리그 정보로 이동"></h3></div>
@@ -305,15 +316,15 @@
 	  			<table class="table table-hover">
 			    <tbody>
 			      <tr>
-			        <td style="width:20%;">리그 명</td>
+			        <td style="width:20%;"><strong>리그 명</strong></td>
 			        <td>${leagueDto.leagueName }</td>
 			      </tr>
 			      <tr>
-			        <td style="width:30%;">기간</td>
+			        <td style="width:30%;"><strong>기간</strong></td>
 			        <td>${leagueDto.leagueStartDate } ~ ${leagueDto.leagueEndDate }</td>
 			      </tr>
 			      <tr>
-			        <td style="width:20%;">지역</td>	
+			        <td style="width:20%;"><strong>지역</strong></td>	
 			        <td>${leagueDto.leagueRegion }</td>
 			      </tr>
 			      <tr>
@@ -334,15 +345,15 @@
 		    	<table class="table table-hover">
 			    <tbody>
 			      <tr>
-			        <td style="width:20%;">팀</td>
+			        <td style="width:20%;"><strong>팀</strong></td>
 			        <td>${teamName }</td>
 			      </tr>
 			      <tr>
-			        <td style="width:30%;">전적</td>
+			        <td style="width:30%;"><strong>전적</strong></td>
 			        <td>${gameCount }전   <span style="color: green;">${countWin }</span>승   ${countDraw }무   <span style="color: red;">${countLose }</span>패 </td>
 			      </tr>
 			      <tr>
-			        <td style="width:20%;">순위</td>	
+			        <td style="width:20%;"><strong>순위</strong></td>	
 			        <td>현재 ${leagueRank+1} 위</td>
 			      </tr>
 			      <tr>
