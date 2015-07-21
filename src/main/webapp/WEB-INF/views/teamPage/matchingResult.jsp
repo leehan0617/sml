@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
     <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+    <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 	<c:set var="root" value="${pageContext.request.contextPath }"/>
 <!DOCTYPE html>
 <html>
@@ -18,12 +19,12 @@
 	
 	<div class="modal-header">
 		<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-		<h1>Result Matching</h1>
-		<div style="font-size: 40px; font: bold;">
+		<h1>매칭 결과</h1>
+		<%-- <div style="font-size: 40px; font: bold;">
 			${normalMatchInfo.TEAM1 }
 			<span style="color: red;">VS</span>
 			${normalMatchInfo.TEAM2 }
-		</div>
+		</div> --%>
 	</div>
 	
 	<div class="modal-body">	
@@ -101,7 +102,6 @@
 		      	</c:if>
 		      	
 		      	<c:if test="${normalMatchInfo.TEAM2==teamName }">
-				<h2>매칭 정보</h2>
 				<br/>      					   
 					  <table class="table table-hover" style="width:100%;">
 					    <tbody>
@@ -209,17 +209,20 @@
 	
 		<h2>날씨</h2>
 		<br/>
-			<div class="container" style="padding-left:10%;"> 
-			  <table class="table table-hover" style="width:70%;">
+			<div class="container"> 
+			  <table class="table table-hover" style="width:67%;">
 			    <tbody>
+			    
 			      <tr>
 			      	<c:forEach var="weather" items="${weatherAllList}" begin="1" end="7">
-			      		<td>${weather.tmEf }</td>
+			      		<fmt:parseDate var="fmtDate" value="${weather.tmEf }" pattern="yyyy-MM-dd HH:mm"/>
+			      		<td><fmt:formatDate value="${fmtDate }" pattern="MM/dd E"/></td>			      		
 			      	</c:forEach>
 			      </tr>
+			      
 			      <tr>
 			      	<c:forEach var="weather" items="${weatherAllList}" begin="1" end="7">
-			      		<td>${weather.wf }</td>
+			      		<td><img src="${root}/img/weatherImg/${weather.wf }" width="50px"/></td>
 			      	</c:forEach>
 			      </tr>
 			      <tr>
@@ -287,16 +290,15 @@
 	</div>
 	
 	<div class="modal-footer">
+		<button class="btn btn-default" data-toggle="modal" href="#stack2">Launch modal</button>		
+		
 		<input type="button" value="경기 결과 입력">
 		<input type="button" value="경기장 정보" onclick="viewMatchingPlace('${root }','${myTeamDto.teamCode }','${otherTeamDto.teamCode }')">
 		<input type="button" value="상대 팀 및 팀장 정보" onclick="viewOtherTeamInfo('${root}','${otherMatchingDto.teamCode}')">
 	</div>
 	
 	</c:if>
-	
-	
-	
-	
+		
 	
 	<c:if test="${matchingDto.matchingState=='중' }">
 		<div class="modal-header">
@@ -364,5 +366,8 @@
 			<%-- <input type="button" value="매칭 취소" onclick="javascript:location.href='${root}/teamPage/deleteMatching.do?matchingCode=${matchingDto.matchingCode }&teamName=${teamName}'"> --%>
 		</div>
 	</c:if>
+	
+</div>
 </body>
 </html>
+		

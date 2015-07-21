@@ -49,7 +49,7 @@
             </div>
             <div id="navbar" class="navbar-collapse collapse">
               <ul class="nav navbar-nav">
-              	<li class="active"><a href="#" data-toggle='modal' data-target='#modalSoccerBoard' onclick="viewSoccerBoard('${root}','${sportCode }','${currentPage}')">공지사항</a></li>
+              	<li><a href="${root}/soccer/soccerCommonBoardPage.do?sportCode=${sportCode}">공지사항</a></li>
                 <li><a href="${root}/soccer/soccerRule.do">경기규칙</a></li>
                 <li><a href="${root}/soccer/soccerTeamList.do?sportCode=${sportCode}">팀리스트</a></li>
                 <li><a href="${root}/referee/refereeList.do?sportCode=${sportCode}">심판현황</a></li>
@@ -158,7 +158,7 @@
           <img class="img-circle" src="${root}/resources/images/geo.png" width="140" height="140">
           <h2>경기 대진표</h2>
           <p>실시간 경기 대진표를 보여주고 있습니다. 대진표를 보려면 여기를 눌러주세요.</p>
-          <p><a class="btn btn-default" href="#" role="button">대진표 보기</a></p>
+          <p><a class="btn btn-default" href="#onAirMatch" role="button" id="matchScroll">대진표 보기</a></p>
         </div><!-- /.col-lg-4 -->
         <div class="col-lg-4">
           <img class="img-circle" src="${root}/resources/images/surface.png" alt="Generic placeholder image" width="140" height="140">
@@ -223,14 +223,30 @@
 
       <hr class="featurette-divider">
 
-      <div class="row featurette">
+      <div class="row featurette" id="onAirMatch">
         <div class="col-md-7 col-md-push-5">
-          <h2 class="featurette-heading">Oh yeah, it's that good. <span class="text-muted">See for yourself.</span></h2>
-          <p class="lead">Donec ullamcorper nulla non metus auctor fringilla. Vestibulum id ligula porta felis euismod semper. Praesent commodo cursus magna, vel scelerisque nisl consectetur. Fusce dapibus, tellus ac cursus commodo.</p>
+          <h2 class="featurette-heading">경기 대진표<span class="text-muted">&nbsp;See for yourself.</span></h2>
+          <p class="lead">이곳은 현재 경기 예정이 있는 팀들간 대진표들을 정렬해 놓았습니다. 경기를 예측해보세요!</p>
         </div>
         <div class="col-md-5 col-md-pull-7">
-          <img class="featurette-image img-responsive center-block" data-src="holder.js/500x500/auto" alt="500x500" src="data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0iVVRGLTgiIHN0YW5kYWxvbmU9InllcyI/PjxzdmcgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIiB3aWR0aD0iNTAwIiBoZWlnaHQ9IjUwMCIgdmlld0JveD0iMCAwIDUwMCA1MDAiIHByZXNlcnZlQXNwZWN0UmF0aW89Im5vbmUiPjxkZWZzLz48cmVjdCB3aWR0aD0iNTAwIiBoZWlnaHQ9IjUwMCIgZmlsbD0iI0VFRUVFRSIvPjxnPjx0ZXh0IHg9IjE5MC4zMDQ2ODc1IiB5PSIyNTAiIHN0eWxlPSJmaWxsOiNBQUFBQUE7Zm9udC13ZWlnaHQ6Ym9sZDtmb250LWZhbWlseTpBcmlhbCwgSGVsdmV0aWNhLCBPcGVuIFNhbnMsIHNhbnMtc2VyaWYsIG1vbm9zcGFjZTtmb250LXNpemU6MjNwdDtkb21pbmFudC1iYXNlbGluZTpjZW50cmFsIj41MDB4NTAwPC90ZXh0PjwvZz48L3N2Zz4=" data-holder-rendered="true">
-        </div>
+          <div class="onAirTable" style="width:480px;height:500px;">
+          	<!--  -->
+          	<div class="panel-group" id="accordion" role="tablist" aria-multiselectable="true">
+  				<div class="panel panel-default">
+    				<div class="panel-heading" role="tab" id="headingOne">
+      					<h4 class="panel-title">
+        				<a data-toggle="collapse" data-parent="#accordion" href="#collapseOne" aria-expanded="true" aria-controls="collapseOne">Collapsible Group Item #1</a>
+      					</h4>
+    				</div>
+    				<div id="collapseOne" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="headingOne">
+      					<div class="panel-body">Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. 3 wolf moon officia aute, non cupidatat skateboard dolor brunch. Food truck quinoa nesciunt laborum eiusmod. Brunch 3 wolf moon tempor, sunt aliqua put a bird on it squid single-origin coffee nulla assumenda shoreditch et. Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred nesciunt sapiente ea proident. Ad vegan excepteur butcher vice lomo. Leggings occaecat craft beer farm-to-table, raw denim aesthetic synth nesciunt you probably haven't heard of them accusamus labore sustainable VHS.
+      					</div>
+    				</div>
+ 			 	</div>
+            </div>
+            <!--  -->
+          </div>
+         </div>
       </div>
 
       <hr class="featurette-divider">
@@ -379,7 +395,11 @@
     	  event.preventDefault();
     	  $('html,body').animate({scrollTop:$(this.hash).offset().top},500);
        });
-
+	   
+       $("#matchScroll").click(function(event){
+    	   event.preventDefault();
+    	   $('html,body').animate({scrollTop:$(this.hash).offset().top},500);
+       });
 	});
 
    </script>
