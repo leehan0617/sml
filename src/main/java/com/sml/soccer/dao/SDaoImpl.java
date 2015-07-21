@@ -93,8 +93,12 @@ public class SDaoImpl implements SDao{
 	 * @설명 :
 	 */
 	@Override
-	public List<TeamDto> getAllTeamList(String sportType) {
-		return sqlSession.selectList("soccer.dao.SMapper.getAllTeamSearch", sportType);
+	public List<HashMap<String,Object>> getAllTeamList(String sportType,int startRow,int endRow) {
+		HashMap<String,Object> hMap=new HashMap<String,Object>();
+		hMap.put("sportType", sportType);
+		hMap.put("startRow", startRow);
+		hMap.put("endRow", endRow);
+		return sqlSession.selectList("soccer.dao.SMapper.getAllTeamSearch", hMap);
 	}
 	/**
 	 * 
@@ -119,6 +123,17 @@ public class SDaoImpl implements SDao{
 	public int checkLeague(HashMap<String, Object> hMap) {
 		// TODO Auto-generated method stub
 		return sqlSession.selectOne("soccer.dao.SMapper.checkLeague" , hMap);
+	}
+	/**
+	 * @함수명: teamCount
+	 * @작성일: 2015. 7. 20.
+	 * @작성자: 정성남
+	 * @설명 :
+	 */
+	@Override
+	public int teamCount(String sportType) {
+		
+		return sqlSession.selectOne("soccer.dao.SMapper.teamCount",sportType);
 	}
 	
 	

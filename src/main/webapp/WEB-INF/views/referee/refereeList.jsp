@@ -125,9 +125,8 @@
 			
 			<c:if test="${endPage>pageCount }">
 				<c:set var="endPage" value="${pageCount }"/>
-			</c:if>
+			</c:if>		
 			
-			<c:if test="${count>0&&searchBoxName==null}">
 			<ul class="pager">
 			<c:if test="${startPage>pageBlock }">
 				<li><a href="${root }/referee/refereeList.do?pageNumber=${startPage-pageBlock}&sportCode=${sportCode}">BACK</a></li>
@@ -141,7 +140,7 @@
 				<li><a href="${root }/referee/refereeList.do?pageNumber=${startPage+pageBlock}&sportCode=${sportCode}">NEXT</a></li>
 			</c:if>
 			</ul>
-			</c:if>			
+					
 		</c:if>
 	<br/><br/><br/>	
 	
