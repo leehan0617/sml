@@ -55,9 +55,9 @@
             </div>
             <div id="navbar" class="navbar-collapse collapse">
               <ul class="nav navbar-nav">
-              	<li><a href="${root}/soccer/soccerCommonBoardPage.do?sportCode=${sportCode}">공지사항</a></li>
-                <li><a href="${root}/soccer/soccerRule.do?sportCode=${sportCode}">경기규칙</a></li>
-                <li><a href="${root}/soccer/soccerTeamList.do?sportCode=${sportCode}">팀리스트</a></li>
+              	<li><a href="${root}/baseBall/baseBallCommonBoardPage.do?sportCode=${sportCode}">공지사항</a></li>
+                <li><a href="${root}/baseBall/baseBallRule.do?sportCode=${sportCode}">경기규칙</a></li>
+                <li><a href="${root}/baseBall/baseBallTeamList.do?sportCode=${sportCode}">팀리스트</a></li>
                 <li><a href="${root}/referee/refereeList.do?sportCode=${sportCode}">심판현황</a></li>
                 <li class="dropdown">
                   <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">다른종목가기<span class="caret"></span></a>

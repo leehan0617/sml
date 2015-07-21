@@ -104,7 +104,7 @@
       </ol>
       <div class="carousel-inner" role="listbox">
         <div class="item">
-          <img class="first-slide" src="${root }/resources/images/basketBall01.jpg" alt="First slide">
+          <img class="first-slide" src="${root }/resources/images/basketBallMain1.jpg" alt="First slide">
           <div class="container">
             <div class="carousel-caption">
               <h1>WELCOME SML basketBall PAGE </h1>
@@ -114,7 +114,7 @@
           </div>
         </div>
         <div class="item">
-          <img class="second-slide" src="${root }/resources/images/basketBall03.jpg" alt="Second slide">
+          <img class="second-slide" src="${root }/resources/images/basketBallMain4.jpg" alt="Second slide">
           <div class="container">
             <div class="carousel-caption">
               <h1>공지사항</h1>
@@ -124,7 +124,7 @@
           </div>
         </div>
         <div class="item active">
-          <img class="third-slide" src="${root}/resources/images/basketBall04.jpg" alt="Third slide">
+          <img class="third-slide" src="${root}/resources/images/basketBallMain3.jpg" alt="Third slide">
           <div class="container">
             <div class="carousel-caption">
               <h1>다른종목이 궁금하세요?</h1>
