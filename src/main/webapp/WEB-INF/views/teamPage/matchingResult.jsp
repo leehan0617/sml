@@ -28,10 +28,10 @@
 	
 	<div class="modal-body">	
 		<!-- 로고 -->	
-		<div class="row well">
+		<div class="row">
 		  <div class="col-md-1"></div>
 		  
-		  <div class="col-md-4 well" style="display:table-cell; text-align:center; vertical-align:middle; margin-top:50px;">	
+		  <div class="col-md-4 " style="display:table-cell; text-align:center; vertical-align:middle; margin-top:40px;">	
 		  	<c:if test="${normalMatchInfo.TEAM1==teamName }">		  
 		    	<a href="#">
 		    		<img class="img-circle" src="${root}/img/teamImg/${myTeamDto.emblem }" alt=".." width=188/>
@@ -47,7 +47,7 @@
 		  </div>
 		  <div class="col-md-2" style="display:table-cell; text-align:center; vertical-align:middle; height:230px; padding-top:70px;"><h2>vs</h2></div>
 		  
-		  <div class="col-md-4" style="display:table-cell; text-align:center; vertical-align:middle;">
+		  <div class="col-md-4" style="display:table-cell; text-align:center; vertical-align:middle; margin-top:40px;">
 	    	<c:if test="${normalMatchInfo.TEAM1==teamName }">		  
 		    	<a href="#">
 		    		<img class="img-circle" src="${root}/img/teamImg/${otherTeamDto.emblem }" alt=".." width=188/>
@@ -64,30 +64,26 @@
 		</div>
 		
 		<!-- 팀 정보 -->
-		<div class="row">
-			<div class="col-md-1"></div>
-		  
-		  <div class="col-md-4" style="display:table-cell; text-align:center; vertical-align:middle;">			  
-	    		<c:if test="${normalMatchInfo.TEAM1==teamName }">		    			
-	    			<div class="container">
-					  <h2>매칭 정보</h2>      
-					  <br/>     
-					  <table class="table table-hover" style="width:20%;">
+		<h2>매칭 정보</h2> 
+		<div class="row">		  
+		  <div class="col-md-6" style="display:table-cell; text-align:center; vertical-align:middle; ">			  
+	    		<c:if test="${normalMatchInfo.TEAM1==teamName }">		
+					  <table class="table table-hover" style="width:100%;">
 					    <tbody>
 					      <tr>
-					        <td style="width:20%;">팀 이름</td>
+					        <td style="width:20%;">팀</td>
 					        <td>${normalMatchInfo.TEAM1}</td>
 					      </tr>
 					      <tr>
-					        <td style="width:20%;">매칭 장소</td>
+					        <td style="width:20%;">장소</td>
 					        <td>${matchingDto.matchingPlace}</td>
 					      </tr>
 					      <tr>
-					        <td style="width:20%;">매칭 희망 요일</td>	
+					        <td style="width:20%;">요일</td>	
 					        <td>${matchingDto.matchingDay}</td>
 					      </tr>
 					      <tr>
-					        <td style="width:20%;">매칭 희망 시간</td>
+					        <td style="width:20%;">시간</td>
 					        <td>${matchingDto.matchingTime}</td>
 					      </tr>
 					      
@@ -96,8 +92,7 @@
 					      	<td></td>
 					      </tr>
 					    </tbody>
-					  </table>
-					</div>    			
+					  </table>  			
 	    			  
 			    	<%-- <h4>name : ${normalMatchInfo.TEAM1}</h4>
 					<h4>place : ${matchingDto.matchingPlace}</h4>
@@ -106,25 +101,24 @@
 		      	</c:if>
 		      	
 		      	<c:if test="${normalMatchInfo.TEAM2==teamName }">
-		      		<div class="container">
-					  <h2>매칭 정보</h2>      
-					  <br/>     
-					  <table class="table table-hover" style="width:20%;">
+				<h2>매칭 정보</h2>
+				<br/>      					   
+					  <table class="table table-hover" style="width:100%;">
 					    <tbody>
 					      <tr>
-					        <td style="width:20%;">팀 이름</td>
+					        <td style="width:20%;">팀</td>
 					        <td>${normalMatchInfo.TEAM2}</td>
 					      </tr>
 					      <tr>
-					        <td style="width:20%;">매칭 장소</td>
+					        <td style="width:20%;">장소</td>
 					        <td>${matchingDto.matchingPlace}</td>
 					      </tr>
 					      <tr>
-					        <td style="width:20%;">매칭 희망 요일</td>	
+					        <td style="width:20%;">요일</td>	
 					        <td>${matchingDto.matchingDay}</td>
 					      </tr>
 					      <tr>
-					        <td style="width:20%;">매칭 희망 시간</td>
+					        <td style="width:20%;">시간</td>
 					        <td>${matchingDto.matchingTime}</td>
 					      </tr>
 					      
@@ -134,7 +128,6 @@
 					      </tr>
 					    </tbody>
 					  </table>
-					</div> 
 		      		
 		      		<%-- <h4>name : ${normalMatchInfo.TEAM2}</h4>
 					<h4>place : ${matchingDto.matchingPlace}</h4>
@@ -142,28 +135,25 @@
 					<h4>Time : ${matchingDto.matchingTime}</h4>	 --%>
 		      	</c:if>
 		  </div>
-		  <div class="col-md-2" style="display:table-cell; text-align:center; vertical-align:middle; height:230px; padding-top:70px;"></div>
-		  <div class="col-md-4" style="display:table-cell; text-align:center; vertical-align:middle;">
-	    		<c:if test="${normalMatchInfo.TEAM1==teamName }">	
-	    			<div class="container">
-					  <h2>매칭 정보</h2>      
-					  <br/>     
-					  <table class="table table-hover" style="width:20%;">
+		  <!-- <div class="col-md-2" style="display:table-cell; text-align:center; vertical-align:middle; height:230px; padding-top:70px;"></div> -->
+		  <div class="col-md-6" style="display:table-cell; text-align:center; vertical-align:middle;">
+	    		<c:if test="${normalMatchInfo.TEAM1==teamName }">
+					  <table class="table table-hover" style="width:100%;">
 					    <tbody>
 					      <tr>
-					        <td style="width:20%;">팀 이름</td>
+					        <td style="width:20%;">팀</td>
 					        <td>${normalMatchInfo.TEAM2 }</td>
 					      </tr>
 					      <tr>
-					        <td style="width:20%;">매칭 장소</td>
+					        <td style="width:20%;">장소</td>
 					        <td>${otherMatchingDto.matchingPlace}</td>
 					      </tr>
 					      <tr>
-					        <td style="width:20%;">매칭 희망 요일</td>	
+					        <td style="width:20%;">요일</td>	
 					        <td>${otherMatchingDto.matchingDay}</td>
 					      </tr>
 					      <tr>
-					        <td style="width:20%;">매칭 희망 시간</td>
+					        <td style="width:20%;">시간</td>
 					        <td>${otherMatchingDto.matchingTime}</td>
 					      </tr>
 					      
@@ -173,7 +163,6 @@
 					      </tr>
 					    </tbody>
 					  </table>
-					</div>
 	    		
 	    			  
 			    	<%-- <h4>name : ${normalMatchInfo.TEAM2 }</h4>
@@ -183,25 +172,22 @@
 		      	</c:if>
 		      	
 		      	<c:if test="${normalMatchInfo.TEAM2==teamName }">
-		      		<div class="container">
-					  <h2>매칭 정보</h2>      
-					  <br/>     
-					  <table class="table table-hover" style="width:20%;">
+					  <table class="table table-hover" style="width:100%;">
 					    <tbody>
 					      <tr>
-					        <td style="width:20%;">팀 이름</td>
+					        <td style="width:20%;">팀</td>
 					        <td>${normalMatchInfo.TEAM1 }</td>
 					      </tr>
 					      <tr>
-					        <td style="width:20%;">매칭 장소</td>
+					        <td style="width:20%;">장소</td>
 					        <td>${otherMatchingDto.matchingPlace}</td>
 					      </tr>
 					      <tr>
-					        <td style="width:20%;">매칭 희망 요일</td>	
+					        <td style="width:20%;">요일</td>	
 					        <td>${otherMatchingDto.matchingDay}</td>
 					      </tr>
 					      <tr>
-					        <td style="width:20%;">매칭 희망 시간</td>
+					        <td style="width:20%;">시간</td>
 					        <td>${otherMatchingDto.matchingTime}</td>
 					      </tr>
 					      
@@ -211,7 +197,6 @@
 					      </tr>
 					    </tbody>
 					  </table>
-					</div>
 		      	
 		      	
 		      		<%-- <h4>name : ${normalMatchInfo.TEAM1 }</h4>
@@ -220,13 +205,12 @@
 					<h4>Time : ${otherMatchingDto.matchingTime}</h4> --%>	
 		      	</c:if>
 		  </div>
-		  <div class="col-md-1"></div>
 		</div>	
 	
 		<h2>날씨</h2>
-			<div class="container"> 
-			  <br/>     
-			  <table class="table table-hover" style="width:50%;">
+		<br/>
+			<div class="container" style="padding-left:10%;"> 
+			  <table class="table table-hover" style="width:70%;">
 			    <tbody>
 			      <tr>
 			      	<c:forEach var="weather" items="${weatherAllList}" begin="1" end="7">
@@ -244,22 +228,20 @@
 			      	</c:forEach>			      	
 			      </tr>
 			     			      
-			      <tr>
-			      	<td></td>
-			      	<td></td>
-			      </tr>
+			     <tr>
+			     </tr>
 			    </tbody>
 			  </table>
 			</div>
 			
-			<c:forEach var="weather" items="${weatherAllList}" begin="1" end="7">								
+			<%-- <c:forEach var="weather" items="${weatherAllList}" begin="1" end="7">								
 				<span>${weather.region }</span>
 				<span>${weather.tmEf }</span>
 				<span>${weather.wf }</span>
 				<span>최저온도 ${weather.tmn }</span>
 				<span>최고온도 ${weather.tmx }</span>
 				<br/>
-			</c:forEach>
+			</c:forEach> --%>
 		<br/>
 	
 		<h3>경기장 정보 부분 </h3>
@@ -323,7 +305,7 @@
 		</div>
 		
 		<div class="modal-body">				
-			<div class="row well">
+			<div class="row">
 			  <div class="col-md-1"></div>
 			  
 			  <div class="col-md-4" style="display:table-cell; text-align:center; vertical-align:middle;">			  
@@ -343,22 +325,22 @@
 			<div class="container">
 			  <h2>매칭 정보</h2>      
 			  <br/>     
-			  <table class="table table-hover" style="width:50%;">
+			  <table class="table table-hover" style="width:100%;">
 			    <tbody>
 			      <tr>
-			        <td style="width:20%;">팀 이름</td>
+			        <td style="width:20%;">팀</td>
 			        <td>${myTeamDto.teamName }</td>
 			      </tr>
 			      <tr>
-			        <td style="width:20%;">매칭 장소</td>
+			        <td style="width:20%;">장소</td>
 			        <td>${matchingDto.matchingPlace}</td>
 			      </tr>
 			      <tr>
-			        <td style="width:20%;">매칭 희망 요일</td>	
+			        <td style="width:20%;">요일</td>	
 			        <td>${matchingDto.matchingDay}</td>
 			      </tr>
 			      <tr>
-			        <td style="width:20%;">매칭 희망 시간</td>
+			        <td style="width:20%;">시간</td>
 			        <td>${matchingDto.matchingTime}</td>
 			      </tr>
 			      
