@@ -40,7 +40,7 @@ import com.sml.record.dto.RecordDto;
 			switch(sportCode){
 				case 0: sportType="축구"; break;
 				case 1: sportType="야구"; break;
-				case 2: sportType="풋살"; break;
+				case 2: sportType="농구"; break;
 				case 3: sportType="족구"; break;
 			}
 			
@@ -127,7 +127,7 @@ import com.sml.record.dto.RecordDto;
 			switch(sportCode){
 				case 0: sportType="축구"; break;
 				case 1: sportType="야구"; break;
-				case 2: sportType="풋살"; break;
+				case 2: sportType="농구"; break;
 				case 3: sportType="족구"; break;
 			}
 			
@@ -145,7 +145,7 @@ import com.sml.record.dto.RecordDto;
 			switch(sportCode){
 				case 0: sportType="축구"; break;
 				case 1: sportType="야구"; break;
-				case 2: sportType="풋살"; break;
+				case 2: sportType="농구"; break;
 				case 3: sportType="족구"; break;
 			}
 			
@@ -163,7 +163,7 @@ import com.sml.record.dto.RecordDto;
 			switch(sportCode){
 				case 0: sportType="축구"; break;
 				case 1: sportType="야구"; break;
-				case 2: sportType="풋살"; break;
+				case 2: sportType="농구"; break;
 				case 3: sportType="족구"; break;
 			}
 			
@@ -194,7 +194,7 @@ import com.sml.record.dto.RecordDto;
 			switch(sportCode){
 				case 0: sportType="축구"; break;
 				case 1: sportType="야구"; break;
-				case 2: sportType="풋살"; break;
+				case 2: sportType="농구"; break;
 				case 3: sportType="족구"; break;
 			}
 			
@@ -239,7 +239,7 @@ import com.sml.record.dto.RecordDto;
 			switch(sportCode){
 				case 0: sportType="축구"; break;
 				case 1: sportType="야구"; break;
-				case 2: sportType="풋살"; break;
+				case 2: sportType="농구"; break;
 				case 3: sportType="족구"; break;
 			}
 			
@@ -285,7 +285,7 @@ import com.sml.record.dto.RecordDto;
 			switch(sportCode){
 				case 0: sportType="축구"; break;
 				case 1: sportType="야구"; break;
-				case 2: sportType="풋살"; break;
+				case 2: sportType="농구"; break;
 				case 3: sportType="족구"; break;
 			}
 			return sportType;
