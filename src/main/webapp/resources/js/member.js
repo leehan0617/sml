@@ -87,10 +87,17 @@ function idCheck(form,root){
 		$("input[name='teamId']").focus();
 		return false;
 	}
-	var popOption = "top="+(screen.availHeight/2-290/2)+", left="+(screen.availWidth/2-250/2)+",     width=290, height=250, scrollbars=no, location=no"
 	var url=root+"/member/idCheck.do?teamId="+form.teamId.value;
-	window.open(url,"",popOption);
+		$.ajax({
+			url:url,
+			data:"get",
+			dataType:"html",
+			success:function(data){
+				$('#resultAlert').html(data);
+			}
+		});
 }
+
 
 
 function teamCheck(form){
@@ -140,9 +147,15 @@ function teamIdCheck(form,root){
 		form.teamName.focus();
 		return false;
 	}
-	var popOption = "top="+(screen.availHeight/2-290/2)+", left="+(screen.availWidth/2-250/2)+",     width=290, height=250, scrollbars=no, location=no"
 	var url=root+"/member/idCheckName.do?teamName="+form.teamName.value;
-	window.open(url,"",popOption);
+	$.ajax({
+		url:url,
+		data:"get",
+		dataType:"html",
+		success:function(data){
+			$('#resultTeamAlert').html(data);
+		}
+	});
 }
 
 function searchHomeground(form, root){
