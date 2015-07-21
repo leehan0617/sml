@@ -19,16 +19,26 @@
     <!-- Bootstrap core CSS -->
     <link href="${root}/resources/css/bootstrap.css" rel="stylesheet" type="text/css"/>
     <link href="${root}/resources/css/jquery.jqplot.css" rel="stylesheet" type="text/css"/>
-	<script src="${root }/resources/js/jquery.js"></script>
+    <link rel="stylesheet" type="text/css" href="${root }/resources/css/jquery-ui.css"/>	
+    <script src="${root }/resources/js/jquery.js"></script>
+    <script src="${root }/resources/js/jquery-ui.js"></script>
 	<script src="${root }/resources/js/bootstrap.js"></script>
 	<script src="${root }/resources/js/soccerPage.js"></script>
 	<script src="${root }/resources/js/jquery.jqplot.js"></script>
+	<script src="${root }/resources/js/smlStart.js"></script>
+	
+	
 	
 	<script src="${root }/resources/js/jqplot.categoryAxisRenderer.js"></script>
 	<script src="${root }/resources/js/jqplot.barRenderer.js"></script>
 	<script src="${root }/resources/js/jqplot.pieRenderer.js"></script>
     <!-- Custom styles for this template -->
     <link href="${root}/resources/css/soccerPage.css" rel="stylesheet" type="text/css">
+    <style>
+    .ui-autocomplete { 
+    overflow-y: scroll; 
+    overflow-x: hidden;}
+    </style>
   </head>
 <!-- NAVBAR
 ================================================== -->
@@ -68,16 +78,16 @@
                   </ul>
                 </li>
                 <li>
-	                <form class="form-inline"  id="searchForm" name="searchForm" style="padding-top:10px;">
-						<div class="input-group">
-							<input type="text" class="form-control" placeholder="팀명을 검색하세요." name="teamName" id="searchTeamName">
-							<span class="input-group-btn">
-								<button class="btn btn-default" type="button" id="goTeamPage">
-									<span class="glyphicon glyphicon-search" aria-hidden="true"></span>
-								</button>
-							</span>
-						</div><!-- /input-group -->			
-					</form>
+	               <form class="form-inline"  id="searchForm" name="searchForm" style="padding-top:10px;">
+		  			<div class="input-group">
+		      			<input type="text" class="form-control" placeholder="팀명을 검색하세요." name="teamName" id="searchTeamName">
+			    		<span class="input-group-btn">
+			      		<button class="btn btn-default" type="button" id="goTeamPage">
+			      		  <span class="glyphicon glyphicon-search" aria-hidden="true"></span>이동
+			      		</button>
+			      		</span>
+		    		</div><!-- /input-group -->
+	  			  </form>
                 </li>
               </ul>
             </div>
@@ -229,21 +239,11 @@
           <p class="lead">이곳은 현재 경기 예정이 있는 팀들간 대진표들을 정렬해 놓았습니다. 경기를 예측해보세요!</p>
         </div>
         <div class="col-md-5 col-md-pull-7">
-          <div class="onAirTable" style="width:480px;height:500px;">
+          <div class="onAirTable" style="width:480px;height:300px;">
+          	<div class="alert alert-info" role="alert">Coming Soon</div>
           	<!--  -->
           	<div class="panel-group" id="accordion" role="tablist" aria-multiselectable="true">
-  				<div class="panel panel-default">
-    				<div class="panel-heading" role="tab" id="headingOne">
-      					<h4 class="panel-title">
-        				<a data-toggle="collapse" data-parent="#accordion" href="#collapseOne" aria-expanded="true" aria-controls="collapseOne">Collapsible Group Item #1</a>
-      					</h4>
-    				</div>
-    				<div id="collapseOne" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="headingOne">
-      					<div class="panel-body">Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. 3 wolf moon officia aute, non cupidatat skateboard dolor brunch. Food truck quinoa nesciunt laborum eiusmod. Brunch 3 wolf moon tempor, sunt aliqua put a bird on it squid single-origin coffee nulla assumenda shoreditch et. Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred nesciunt sapiente ea proident. Ad vegan excepteur butcher vice lomo. Leggings occaecat craft beer farm-to-table, raw denim aesthetic synth nesciunt you probably haven't heard of them accusamus labore sustainable VHS.
-      					</div>
-    				</div>
- 			 	</div>
-            </div>
+  			</div>
             <!--  -->
           </div>
          </div>
@@ -385,6 +385,7 @@
 	   showAgeChart("${root}","${sportCode}");
   		showLeagueInfo("${root}","${sportCode}");
   		leagueTable("${root}","${sportCode}",'${teamName}');
+  		showRecentMatch("${root}","${sportCode}");
   		
        $(".myScroll").click(function(event){            
                event.preventDefault();
@@ -401,7 +402,7 @@
     	   $('html,body').animate({scrollTop:$(this.hash).offset().top},500);
        });
 	});
-
+   
    </script>
   
  </body>

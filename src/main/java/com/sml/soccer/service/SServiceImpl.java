@@ -15,6 +15,7 @@ import org.springframework.web.servlet.ModelAndView;
 import com.sml.common.dto.CommonBoardDto;
 import com.sml.league.dto.LeagueDto;
 import com.sml.member.dto.MemberDto;
+import com.sml.record.dto.RecordDto;
 import com.sml.soccer.dao.SDao;
 
 @Service
@@ -332,6 +333,7 @@ public class SServiceImpl implements SService{
 		List<CommonBoardDto> soccerBoardList = dao.getSoccerBoardList(sportCode,startRow,endRow);
 		
 		
+		
 		mav.addObject("sportCode",sportCode);
 		mav.addObject("count", count);
 		mav.addObject("boardSize", boardSize);		
@@ -339,6 +341,36 @@ public class SServiceImpl implements SService{
 		mav.addObject("soccerBoardList" , soccerBoardList);
 		mav.setViewName("soccer/soccerCommonBoardPage");		
 		
+	}
+	
+	/**
+	 * 
+	 * @함수명:showRecentMatch
+	 * @작성일:2015. 7. 21.
+	 * @작성자:이한빈 
+	 * @설명문:로딩시 대진표 보여주는 함수 
+	 */
+	@Override
+	public ModelAndView showRecentMatch(HttpServletRequest request) {
+		ModelAndView mav = new ModelAndView();
+		String gameType = setSportCode(Integer.parseInt(request.getParameter("sportCode")));
+		List<RecordDto> recordList = dao.showRecentMatch(gameType);
+		//System.out.println("recordList:"+recordList.size());
+		mav.addObject("recordList",recordList);
+		mav.setViewName("jsonView");
+		return mav;
+	}
+
+	@Override
+	public ModelAndView findMatchTeams(HttpServletRequest request) {
+		ModelAndView mav = new ModelAndView();
+		String team1 = dao.findMatchTeams(Integer.parseInt(request.getParameter("teamCode")));
+		String team2 = dao.findMatchTeams(Integer.parseInt(request.getParameter("teamCode2")));
+		mav.addObject("teamA",team1);
+		mav.addObject("teamB",team2);
+		System.out.println("teamA:"+team1+"teamB:"+team2);
+		mav.setViewName("jsonView");
+		return mav;
 	}
 	
 }
