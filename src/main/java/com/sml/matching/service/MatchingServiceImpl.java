@@ -426,4 +426,23 @@ public class MatchingServiceImpl implements MatchingService {
 		mav.addObject("otherGround", otherGround);
 		mav.setViewName("matching/viewOtherTeamInfo");
 	}
+
+	/**
+	 * @name : getMatchingInfo
+	 * @date : 2015. 7. 21.
+	 * @author : 이희재
+	 * @description : 팀 페이지로 이동시 팀에 대한 매칭 상태를 보여줌
+	 */
+	@Override
+	public void getMatchingInfo(ModelAndView mav) {
+		HashMap<String,Object> map=mav.getModelMap();
+		HttpServletRequest request=(HttpServletRequest) map.get("request");
+		String teamName=request.getParameter("teamName");
+		int teamCode=dao.getTeamInfo(teamName).getTeamCode();
+		MatchingDto matchingDto=dao.getTeamMatchingInfo(teamCode);
+		
+		if(matchingDto!=null){
+			mav.addObject("matchingDto", matchingDto);
+		}
+	}
 }

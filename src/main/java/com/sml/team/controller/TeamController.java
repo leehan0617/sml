@@ -13,6 +13,7 @@ import org.springframework.web.multipart.MultipartHttpServletRequest;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.sml.league.service.LeagueService;
+import com.sml.matching.service.MatchingService;
 import com.sml.record.service.RecordService;
 import com.sml.schedule.service.ScheduleService;
 import com.sml.team.dto.TeamDto;
@@ -34,6 +35,8 @@ public class TeamController {
 	private RecordService recordService;
 	@Autowired
 	private LeagueService leagueService;
+	@Autowired
+	private MatchingService matchingService;
 	
 	/**
 	 * @함수명:idCheck
@@ -129,6 +132,7 @@ public class TeamController {
 		recordService.getMatchingResult(mav);
 		service.getReplyList(mav);
 		leagueService.getLeagueInfo(mav);
+		matchingService.getMatchingInfo(mav);
 		
 			
 		mav.setViewName("team/teamMain");
@@ -307,8 +311,9 @@ public class TeamController {
 	}
 	
 	@RequestMapping(value="/editTeamIntro" , method=RequestMethod.GET)
-	public ModelAndView editTeamIntro(HttpServletRequest request){
+	public ModelAndView editTeamIntro(HttpServletRequest request,HttpServletResponse response){
 		logger.info("TeamController editTeamIntro");
+		response.setCharacterEncoding("UTF-8");
 		ModelAndView mav = service.editTeamIntro(request);
 		
 		return mav;
