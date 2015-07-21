@@ -32,7 +32,7 @@
 		<div class="row">
 		  <div class="col-md-1"></div>
 		  
-		  <div class="col-md-4 well" style="display:table-cell; text-align:center; vertical-align:middle; margin-top:5%;">	
+		  <div class="col-md-4 well" style="display:table-cell; text-align:center; vertical-align:middle; ">	
 		  	<c:if test="${normalMatchInfo.TEAM1==teamName }">		  
 		    	<a href="${root }/team/teamMain.do?teamName=${normalMatchInfo.TEAM1 }" target="_new">
 		    		<img class="img-circle" src="${root}/img/teamImg/${myTeamDto.emblem }" alt=".." height="188px"/>
@@ -48,7 +48,7 @@
 		  </div>
 		  <div class="col-md-2" style="display:table-cell; text-align:center; vertical-align:middle; height:230px; padding-top:70px;"><h2>vs</h2></div>
 		  
-		  <div class="col-md-4 well" style="display:table-cell; text-align:center; vertical-align:middle; margin-top:5%;">
+		  <div class="col-md-4 well" style="display:table-cell; text-align:center; vertical-align:middle; ">
 	    	<c:if test="${normalMatchInfo.TEAM1==teamName }">		  
 		    	<a href="${root }/team/teamMain.do?teamName=${normalMatchInfo.TEAM2}" target="_new">
 		    		<img class="img-circle" src="${root}/img/teamImg/${otherTeamDto.emblem }" alt=".." height="188px"/>
