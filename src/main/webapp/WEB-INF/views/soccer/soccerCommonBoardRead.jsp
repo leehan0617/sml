@@ -21,7 +21,7 @@
 	  <tr>
 		 <td><fmt:formatDate value="${commonBoard.boardDate }" type="date" pattern="MM/dd"/></td>
 		 <td>${commonBoard.boardTitle }</td>
-		 <td>${commonBoard.boardContent }</td> 
+		 <td>${commonBoard.boardContent}</td> 
 	  </tr> 
 	</table>
 </body>

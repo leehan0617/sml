@@ -332,6 +332,7 @@ public class SServiceImpl implements SService{
 		List<CommonBoardDto> soccerBoardList = dao.getSoccerBoardList(sportCode,startRow,endRow);
 		
 		
+		
 		mav.addObject("sportCode",sportCode);
 		mav.addObject("count", count);
 		mav.addObject("boardSize", boardSize);		
