@@ -160,8 +160,9 @@ public class MemberServiceImpl implements MemberService{
 		MemberDto memberDto=(MemberDto)map.get("memberDto");
 		
 		int teamCode=Integer.parseInt(request.getParameter("teamCode"));		
+		System.out.println("teamCode:" + teamCode);
 		int check=dao.updateMemberInfoOk(memberDto, teamCode);
-		System.out.println(check);
+		//System.out.println(check);
 		
 		mav.addObject("check", check);
 		mav.setViewName("member/updateMemberOk");

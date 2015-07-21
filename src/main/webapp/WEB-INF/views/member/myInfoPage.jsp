@@ -73,43 +73,54 @@
 <body>
 	<div class="modal-header">
 		<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-		<button type="button" onclick="move2Profil()">내 프로필</button>
-		<button type="button" onclick="move2teamInfo()">팀 정보</button>
+		<br/>
+		<div align="left">
+			<button id="2profilBtn" class="btn btn-link btn-xs" type="button" onclick="move2Profil()">내 프로필</button>
+			<button id="2teamInfoBtn" class="btn btn-link btn-xs" type="button" onclick="move2teamInfo()">팀 정보</button>
+		</div>
 	</div>
 	
-	<div class="modal-body">	
-		<div id="myProfil">      
-		  <table class="table">		    
-		    <tbody>
-		      <tr>
-		        <td style="width:20%;">이름</td>
-		        <td>${memberDto.memberName}</td>
-		      </tr>
-		      <tr>
-		        <td style="width:20%;">생년월일</td>
-		        <td>${memberDto.memberBirth}</td>
-		      </tr>
-		      <tr>
-		        <td style="width:20%;">지역</td>
-		        <td>${memberDto.memberRegion}</td>
-		      </tr>
-		      <tr>
-		        <td style="width:20%;">이메일</td>
-		        <td>${memberDto.memberEmail}</td>
-		      </tr>
-		      <tr>
-		        <td style="width:20%;">연락처</td>
-		        <td>${memberDto.memberPhone}</td>
-		      </tr>
-		      <tr>
-		        <td style="width:20%;">성별</td>
-		        <td>${memberDto.memberGender}</td>
-		      </tr>
-		      
-		    </tbody>
-		  </table>
-		  
-		  <button type="button" onclick="updateProfil()">수정하기</button>
+	<div class="modal-body">		
+		<div id="myProfil"> 
+			<h3>내 프로필</h3>
+			<br/>
+			<div class="row">	
+				<div class="col-sm-1"></div>	
+				<div class="col-sm-10">
+				  <table class="table" width="10">		    
+				    <tbody>
+				      <tr>
+				        <td style="width:30%;">이름</td>
+				        <td>${memberDto.memberName}</td>
+				      </tr>
+				      <tr>
+				        <td style="width:30%;">생년월일</td>
+				        <td>${memberDto.memberBirth}</td>
+				      </tr>
+				      <tr>
+				        <td style="width:30%;">지역</td>
+				        <td>${memberDto.memberRegion}</td>
+				      </tr>
+				      <tr>
+				        <td style="width:30%;">이메일</td>
+				        <td>${memberDto.memberEmail}</td>
+				      </tr>
+				      <tr>
+				        <td style="width:30%;">연락처</td>
+				        <td>${memberDto.memberPhone}</td>
+				      </tr>
+				      <tr>
+				        <td style="width:30%;">성별</td>
+				        <td>${memberDto.memberGender}</td>
+				      </tr> 
+				    </tbody>
+				   </table>	
+			  </div>
+			  <div class="col-sm-1"></div>	
+			</div>		   
+		  <div align="right">
+		 	 <button class="btn btn-success" type="button" onclick="updateProfil()">수정하기</button>
+		  </div>
 		</div>
 		
 		<%-- <div id="myProfil">
@@ -125,16 +136,28 @@
 		</div> --%>
 		
 		<div id="updateMyProfil">
+			<h3>프로필 수정</h3>
 			<form class="form-horizontal" action="${root}/member/updateMemberInfoOk.do" method="post" onsubmit="return teamCheck(this)" role="form">
-				<input type="hidden" name="teamCode" value="${teamCode }"/>
+				<input type="hidden" name="teamCode" value="${teamDto.teamCode }"/>
 				
-				<div class="form-group">
-					<label>이름</label>
-					<input type="text" class="form-control" name="memberName" value="${memberDto.memberName }"/><br/>
-					
-				    <label>생년월일:</label>
-					<input type="text" id="date1" name="memberBirth" value="${memberDto.memberBirth }"/>
-					<br/></br> 
+				 <div class="row">
+			    	<div class="col-xs-8 col-sm-3"></div>
+			    	 <div class="col-xs-4 col-sm-6">
+						<div class="form-group">
+							<label>이름</label>
+							<input type="text" id="disabledInput" class="form-control" name="memberName" value="${memberDto.memberName }"/>
+						</div>	
+					</div>
+				</div>
+				
+				<div class="row">
+			    	<div class="col-xs-8 col-sm-3"></div>
+			    	 <div class="col-xs-4 col-sm-6">
+						<div class="form-group">
+						    <label>생년월일:</label>
+							<input type="text" id="date1" class="form-control" name="memberBirth" value="${memberDto.memberBirth }"/>
+						</div>
+					</div>
 				</div>
 				
 				<!-- <script>
@@ -146,41 +169,61 @@
 						alert(values[i]);
 					}
 				</script> -->
-				<div>
-					<label>지역:</label>
-					<select id="sido" onchange="regionSido('${root }')">
-						<option>시/도</option>
-					</select>
-					
-					<select id="gugun">
-						<option>시/구/군</option>
-						<option></option>
-					</select>
-					<input type="hidden" name="memberRegion">
-					<br/><br/>
+				
+				<div class="row">
+			    	<div class="col-xs-8 col-sm-3"></div>
+			    	 <div class="col-xs-4 col-sm-6">
+						<div class="form-group">
+							<label>지역:</label>
+							<select id="sido" class="form-control" onchange="regionSido('${root }')">
+								<option>시/도</option>
+							</select>
+							
+							<select id="gugun" class="form-control">
+								<option>시/구/군</option>
+								<option></option>
+							</select>
+							<input type="hidden" name="memberRegion">
+						</div>
+					</div>
 				</div>
 				
-				<div>
-					<label>이메일:</label>
-					<input type="text" name="memberEmail" value="${memberDto.memberEmail }"/>
-					<br/>
+				<div class="row">
+			    	<div class="col-xs-8 col-sm-3"></div>
+			    	 <div class="col-xs-4 col-sm-6">
+						<div class="form-group">
+							<label>이메일:</label>
+							<input type="text" class="form-control" name="memberEmail" value="${memberDto.memberEmail }"/>
+						</div>
+					</div>
 				</div>
 				
-				<div>
-					<label>연락처:</label>
-					<input type="text" name="memberPhone" value="${memberDto.memberPhone }"/>
-					"-"는 생략하고 적어주십시요
-					<br/>
+				<div class="row">
+			    	<div class="col-xs-8 col-sm-3"></div>
+			    	 <div class="col-xs-4 col-sm-6">
+						<div class="form-group">
+							<label>연락처:</label>
+							<input type="text" class="form-control" name="memberPhone" value="${memberDto.memberPhone }"/>
+							"-"는 생략하고 적어주십시요
+							<br/>
+						</div>
+				     </div>
 				</div>
 				
-				<div>
-					<label>성별</label>
-					<span>
-						<input type="radio" name="sexValue" value="남"/>남
-						<input type="radio" name="sexValue" value="여"/>여
-						<input type="hidden" name="memberGender"/>
-					</span>
-				</div><br/><br/>
+				
+				<div class="row">
+			    	<div class="col-xs-8 col-sm-3"></div>
+			    	 <div class="col-xs-4 col-sm-6">
+			    	 <div class="form-group">
+						<label>성별:</label>						
+						<label class="radio-inline"><input type="radio" name="sexValue" value="남">남</label>
+						<label class="radio-inline"><input type="radio" name="sexValue" value="여">여</label>
+						<input type="hidden" name="memberGender"/>		
+						</div>				
+					 </div>
+				</div>
+				<br/><br/>
+				
 				
 				<script type="text/javascript">
 					$("input[type='radio']").each(function(){
@@ -189,43 +232,52 @@
 						}
 					})
 				</script>
-				
-				<input type="submit" value="수정하기"/>				
+				<div align="right">		
+					<button type="submit" class="btn btn-success">수정하기</button>	
+				</div>
 			</form>
 		</div>
 		
 		
 		
 		
-		<div id="teamInfo" >    
-		  <table class="table">		    
-		    <tbody>
-		      <tr>
-		        <td style="width:20%;">팀명</td>
-		        <td>${teamDto.teamName }</td>
-		      </tr>
-		      <tr>
-		        <td style="width:20%;">팀 아이디</td>
-		        <td>${teamDto.teamId }</td>
-		      </tr>
-		      <tr>
-		        <td style="width:20%;">팀장이름</td>
-		        <td>${teamDto.teamLeaderName }</td>
-		      </tr>
-		      <tr>
-		        <td style="width:20%;">팀 종목</td>
-		        <td>${teamDto.sportType }</td>
-		      </tr>
-		      <tr>
-		        <td style="width:20%;">홈구장</td>
-		        <td>${homeGround }</td>
-		      </tr>
-		      
-		    </tbody>
-		  </table>
-		
-		  <button type="button" onclick="updateTeamInfo()">수정하기</button>
-		  
+		<div id="teamInfo" >
+			<h3>팀 정보</h3>    
+			<br/>
+			<div class="row">	
+				<div class="col-sm-1"></div>	
+				<div class="col-sm-10">
+				  <table class="table">		    
+				    <tbody>
+				      <tr>
+				        <td style="width:30%;">팀명</td>
+				        <td>${teamDto.teamName }</td>
+				      </tr>
+				      <tr>
+				        <td style="width:30%;">팀 아이디</td>
+				        <td>${teamDto.teamId }</td>
+				      </tr>
+				      <tr>
+				        <td style="width:30%;">팀장이름</td>
+				        <td>${teamDto.teamLeaderName }</td>
+				      </tr>
+				      <tr>
+				        <td style="width:30%;">팀 종목</td>
+				        <td>${teamDto.sportType }</td>
+				      </tr>
+				      <tr>
+				        <td style="width:30%;">홈구장</td>
+				        <td>${homeGround }</td>
+				      </tr>
+				      
+				    </tbody>
+				  </table>
+				 </div>
+				 <div class="col-sm-1"></div>
+		   </div>
+		  <div align="right">
+		  	<button class="btn btn-success" type="button" onclick="updateTeamInfo()">수정하기</button>
+		  </div>
 			<%-- <h3>팀 정보</h3>
 			<img src="${root }/img/teamImg/${teamDto.emblem}" alt="팀 로고"/>
 			<div>팀명 : ${teamDto.teamName }</div>
@@ -237,34 +289,58 @@
 			
 		</div>
 		
-		<div id="updateTeamInfo">		
+		<div id="updateTeamInfo">	
+			<h3>팀 수정</h3>	
 			<form action="${root}/team/updateTeamInfoOk.do" method="post" name="registerModal" onsubmit="return Check(this)">
-			  	<label>팀 아이디</label>
-				<span>
-					<input placeholder="팀 아이디" type="text" name="teamId" value="${teamDto.teamId }" disabled="disabled"/>
-				</span><br/><br/>
+				<div class="row">
+			    	<div class="col-xs-8 col-sm-3"></div>
+			    	 <div class="col-xs-4 col-sm-6">
+						<div class="form-group">
+						  	<label>팀 아이디</label>
+							<span>
+								<input class="form-control" placeholder="팀 아이디" type="text" name="teamId" value="${teamDto.teamId }" disabled="disabled"/>
+							</span>
+						</div>
+					 </div>
+				</div>
 				
-				<label>비밀번호</label>
-				<input placeholder="새 비밀번호" type="password" name="teamPassword"/><br/>
+				<div class="row">
+			    	<div class="col-xs-8 col-sm-3"></div>
+			    	 <div class="col-xs-4 col-sm-6">
+						<div class="form-group">
+							<label>비밀번호</label>
+							<input class="form-control" placeholder="새 비밀번호" type="password" name="teamPassword"/>				
+							<label>새 비밀번호</label>
+							<input class="form-control" placeholder="새 비밀번호 확인" type="password" name="teamPassword2"/>
+						</div>
+					</div>
+				</div>
 				
-				<label>새 비밀번호</label>
-				<input placeholder="새 비밀번호 확인" type="password" name="teamPassword2"/>
-			<br/><br/>
+				<div class="row">
+			    	<div class="col-xs-8 col-sm-3"></div>
+			    	 <div class="col-xs-4 col-sm-6">
+						<div class="form-group">
+							<label>팀 이름</label>
+							<input class="form-control" placeholder="팀 이름" type="text" name="teamName" value="${teamDto.teamName }"/>
+						</div>
+					</div>
+				</div>
 				
-				<label>팀 이름</label>
-				<span>
-					<input placeholder="팀 이름" type="text" name="teamName" value="${teamDto.teamName }"/>
-				</span><br/><br/><br/>
-				<span>
-					
-					<label>종목</label>
-					<select name="sportType">
-						<option value="${teamDto.sportType}">${teamDto.sportType}</option>
-						<option value="축구">축구</option>
-						<option value="야구">야구</option>
-						<option value="족구">족구</option>
-						<option value="풋살">풋살</option>
-					</select>
+				<div class="row">
+			    	<div class="col-xs-8 col-sm-3"></div>
+			    	 <div class="col-xs-4 col-sm-6">
+						<div class="form-group">	
+							<label>종목</label>
+							<select class="form-control" name="sportType">
+								<option value="${teamDto.sportType}">${teamDto.sportType}</option>
+								<option value="축구">축구</option>
+								<option value="야구">야구</option>
+								<option value="족구">족구</option>
+								<option value="풋살">풋살</option>
+							</select>
+						</div>
+					</div>
+				</div>
 					<script>	 
 						var sportType="${teamDto.sportType}";
 						$("select").children().each(function(index, element){										
@@ -274,21 +350,32 @@
 						});
 					</script>
 					
-					<br/>
-					<a>홈구장</a>
-					<input type="text" name="homeGround" value="${homeGround }">
-					<input type="button" value="지도로 찾기" onclick="searchHomeground(form,'${root}')"> 
-					<br/><br/>
-				</span>
+				<div class="row">
+			    	<div class="col-xs-8 col-sm-3"></div>
+			    	 <div class="col-xs-4 col-sm-6">
+						<div class="form-group">	
+							<label>홈구장</label>
+							<div class="input-group">
+							<input class="form-control" type="text" name="homeGround" value="${homeGround }">
+							<span class="input-group-btn">
+								<button type="button" class="btn btn-default"  onclick="searchHomeground(form,'${root}')">경기장 검색</button>
+							</span>
+							</div>
+						</div>
+					</div>
+				</div>
+				
 			<hr/>
-			<input type="submit" value="수정하기"/>
+			<div align="right">
+				<input class="btn btn-success" type="submit" value="수정하기"/>
+			</div>
 			</form>			
 		</div>
 	</div>
 	
-	<div class="modal-footer">
+	<!-- <div class="modal-footer">
 	
-	</div>
+	</div> -->
 	
 	
 	<div class="modal fade" id="popup">
