@@ -9,29 +9,34 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <!-- 위 3개의 메타 태그는 *반드시* head 태그의 처음에 와야합니다; 어떤 다른 콘텐츠들은 반드시 이 태그들 *다음에* 와야 합니다 -->
-    
+    <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
     <meta name="description" content="">
-    <meta name="author" content="">   
-    <link rel="icon" href="${root }/resources/images/android@2x.png"/>
-    
-    <title>심판현황</title>    
-    
+    <meta name="author" content="">
+    <link rel="icon" href="../../favicon.ico">
 
-   <!-- Bootstrap core CSS -->
-    <link rel="stylesheet" type="text/css" href="${root }/resources/css/bootstrap.css"/>
-    
+    <title>SML Soccer Page</title>
 
-    <!-- Custom styles for this template -->     
-  
-  	<script src="${root }/resources/js/jquery.js"></script> 	
- 	<script src="${root }/resources/js/bootstrap.js"></script>
-  	<script src="${root }/resources/js/jquery-ui.js"></script>  	
-  	<script type="text/javascript" src="${root }/js/referee/referee.js"></script>
-	<script type="text/javascript" src="${root}/js/xhr/xhr.js"></script> 	
-    
-    <!-- Placed at the end of the document so the pages load faster -->
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
+    <!-- Bootstrap core CSS -->
+    <link href="${root}/resources/css/bootstrap.css" rel="stylesheet" type="text/css"/>
+    <link href="${root}/resources/css/jquery.jqplot.css" rel="stylesheet" type="text/css"/>
+    <link rel="stylesheet" type="text/css" href="${root }/resources/css/jquery-ui.css"/>	
+    <script src="${root }/resources/js/jquery.js"></script>
+    <script src="${root }/resources/js/jquery-ui.js"></script>
+	<script src="${root }/resources/js/bootstrap.js"></script>
+	<script src="${root }/resources/js/soccerPage.js"></script>
+	<script src="${root }/resources/js/jquery.jqplot.js"></script>
+	<script src="${root }/resources/js/smlStart.js"></script>	
+	<script type="text/javascript" src="${root }/js/referee/referee.js"></script>
+	<script src="${root }/resources/js/jqplot.categoryAxisRenderer.js"></script>
+	<script src="${root }/resources/js/jqplot.barRenderer.js"></script>
+	<script src="${root }/resources/js/jqplot.pieRenderer.js"></script>
+    <!-- Custom styles for this template -->
+    <link href="${root}/resources/css/soccerPage.css" rel="stylesheet" type="text/css">
+    <style>
+    .ui-autocomplete { 
+    overflow-y: scroll; 
+    overflow-x: hidden;}
+    </style>
   </head>
   <body>
       <div class="navbar-wrapper">
@@ -51,7 +56,7 @@
             <div id="navbar" class="navbar-collapse collapse">
               <ul class="nav navbar-nav">
               	<li><a href="${root}/soccer/soccerCommonBoardPage.do?sportCode=${sportCode}">공지사항</a></li>
-                <li><a href="${root}/soccer/soccerRule.do">경기규칙</a></li>
+                <li><a href="${root}/soccer/soccerRule.do?sportCode=${sportCode}">경기규칙</a></li>
                 <li><a href="${root}/soccer/soccerTeamList.do?sportCode=${sportCode}">팀리스트</a></li>
                 <li><a href="${root}/referee/refereeList.do?sportCode=${sportCode}">심판현황</a></li>
                 <li class="dropdown">

@@ -237,7 +237,7 @@
 					<span class='col12 small quiet space-bottom1'><strong>Soccer</strong></span>
 				</a>
 
-				<a href='/mapbox-gl-ios/' class='block col3 center pad2 pad4y keyline-right keyline-bottom'>
+				<a href="${root}/baseBall/baseBallMain.do" class='block col3 center pad2 pad4y keyline-right keyline-bottom'>
 					<img src="${root}/resources/images/baseballIcon.png" width="200" height="200">
 					<span class='col12'><strong>야구</strong></span>
 					<span class='col12 small quiet space-bottom1'><strong>Baseball</strong></span>
