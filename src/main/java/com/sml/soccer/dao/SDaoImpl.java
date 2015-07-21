@@ -12,7 +12,7 @@ import org.springframework.stereotype.Repository;
 import com.sml.common.dto.CommonBoardDto;
 import com.sml.league.dto.LeagueDto;
 import com.sml.member.dto.MemberDto;
-import com.sml.team.dto.TeamDto;
+import com.sml.record.dto.RecordDto;
 
 @Repository
 public class SDaoImpl implements SDao{
@@ -134,6 +134,15 @@ public class SDaoImpl implements SDao{
 	public int teamCount(String sportType) {
 		
 		return sqlSession.selectOne("soccer.dao.SMapper.teamCount",sportType);
+	}
+	@Override
+	public List<RecordDto> showRecentMatch(String gameType) {
+		return sqlSession.selectList("soccer.dao.SMapper.showRecentMatch" , gameType);
+	}
+	@Override
+	public String findMatchTeams(int teamCode) {
+		// TODO Auto-generated method stub
+		return sqlSession.selectOne("soccer.dao.SMapper.findMatchTeam",teamCode);
 	}
 	
 	
