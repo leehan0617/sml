@@ -15,37 +15,19 @@
 </head>
 <body class="jumbotron">
 		<c:if test="${check!=null}">
-			<form class="form-horizontal" onsubmit="idCheck(this,'${root}')">
-				<div class="alert alert-Warning">
-			    	<strong>사용중인 아이디입니다!</strong> 
-				</div>
-				<div class="form-group">
-					<input class="form-control" placeholder="다른아이디를 입력해 주십시요" type="text" name="teamId"/>
-				</div>
-				
-				<div class="col-sm-10" align="center">
-     		    	<input class="btn btn-info btn-sm" type="submit" value="입력"/>
-					<input class="btn btn-info btn-sm" type="reset" value="재입력"/>
-				</div>
-			</form>
+			<div class="alert-warning">
+				<script type="text/javascript">
+					alert("사용중인 아이디입니다! 다시입력 하십시요");
+				</script>
+			</div>
 		</c:if>
 		
 		<c:if test="${check==null}">
-			<div class="alert alert-success">
-			    <strong>사용 가능한 아이디입니다</strong> 
-			</div>
-			
-			<div align="center">
-				<a href="javascript:window.opener.form.teamId.value='${teamId}';close();"  class="btn btn-info btn-lg">
-					<span class="glyphicon glyphicon-ok"></span>적용
-				</a>
-			</div>
+			<div class="alert-success">
+	 			<script type="text/javascript">
+	 				alert("사용 가능한 아이디입니다")
+	 			</script>
+ 			</div>
 		</c:if>
-		
-		<footer>
-			<p>
-				<span style="text-align:left;float:left;font-size:15px">&copy; 2015 <Strong>SML KOREA</Strong></span>
-			</p>
-		</footer>
 </body>
 </html>

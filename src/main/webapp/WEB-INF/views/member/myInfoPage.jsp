@@ -17,7 +17,7 @@
 <!-- 팀장정보 -->
 <script type="text/javascript" src="${root}/js/member/member.js"></script>
 <script type="text/javascript" src="${root}/js/xhr/xhr.js"></script>
-
+<script type="text/javascript" src="${root}/js/member/jquery-ui.js"></script>
 <!-- 팀정보 -->
 </head>
 <script>
@@ -125,11 +125,13 @@
 		</div> --%>
 		
 		<div id="updateMyProfil">
-			<form action="${root}/member/updateMemberInfoOk.do" method="post" onsubmit="return teamCheck(this)">
+			<form class="form-horizontal" action="${root}/member/updateMemberInfoOk.do" method="post" onsubmit="return teamCheck(this)" role="form">
 				<input type="hidden" name="teamCode" value="${teamCode }"/>
-				<div>
+				
+				<div class="form-group">
 					<label>이름</label>
-					<input type="text" name="memberName" value="${memberDto.memberName }"/><br/>
+					<input type="text" class="form-control" name="memberName" value="${memberDto.memberName }"/><br/>
+					
 				    <label>생년월일:</label>
 					<input type="text" id="date1" name="memberBirth" value="${memberDto.memberBirth }"/>
 					<br/></br> 
@@ -149,6 +151,7 @@
 					<select id="sido" onchange="regionSido('${root }')">
 						<option>시/도</option>
 					</select>
+					
 					<select id="gugun">
 						<option>시/구/군</option>
 						<option></option>
@@ -170,14 +173,14 @@
 					<br/>
 				</div>
 				
-				<span>
+				<div>
 					<label>성별</label>
 					<span>
 						<input type="radio" name="sexValue" value="남"/>남
 						<input type="radio" name="sexValue" value="여"/>여
 						<input type="hidden" name="memberGender"/>
 					</span>
-				</span><br/><br/>
+				</div><br/><br/>
 				
 				<script type="text/javascript">
 					$("input[type='radio']").each(function(){
@@ -186,6 +189,7 @@
 						}
 					})
 				</script>
+				
 				<input type="submit" value="수정하기"/>				
 			</form>
 		</div>
@@ -239,8 +243,10 @@
 				<span>
 					<input placeholder="팀 아이디" type="text" name="teamId" value="${teamDto.teamId }" disabled="disabled"/>
 				</span><br/><br/>
+				
 				<label>비밀번호</label>
 				<input placeholder="새 비밀번호" type="password" name="teamPassword"/><br/>
+				
 				<label>새 비밀번호</label>
 				<input placeholder="새 비밀번호 확인" type="password" name="teamPassword2"/>
 			<br/><br/>

@@ -35,9 +35,14 @@
 	        <ul id="placesList"></ul>
 	        <div id="pagination"></div>
 	    </div>
-	    	<div class="col-sm-12" id="homeGround" align="center" style="font-size:30px;font-family:serif;font-style:oblique;"></div>
+	    	<div class="col-sm-12">
+	    		<div class="workshopper">
+	    			<div id="homeGround" align="center" style="font-size:30px;font-style:oblique;" ></div>
+	    		</div>
+	    	</div>
 		</div>
-		<div class="jumbotron">
+		
+		<div class="jumbotron" id="bytewiser">
 			<div class="col-sm-12" align="center">
 				<a  onclick="selectHomeGround()" class="btn btn-info btn-lg">
 					<span class="glyphicon glyphicon-ok"></span>완료

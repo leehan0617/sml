@@ -163,13 +163,53 @@ public class SController {
 		response.setCharacterEncoding("UTF-8");
 		ModelAndView mav = service.leagueTable(request);
 		return mav;
-	}
+	}	
 	
 	@RequestMapping(value="/joinLeague" , method=RequestMethod.GET)
 	public ModelAndView joinLeague(HttpServletRequest request , HttpServletResponse response){
 		logger.info("SController joinLeague");
 		response.setCharacterEncoding("UTF-8");
 		ModelAndView mav = service.joinLeague(request);
+		return mav;
+	}
+	
+	/**
+	 * 
+	 * @함수명: soccerCommonBoardPage
+	 * @작성일: 2015. 7. 21.
+	 * @작성자: 정성남
+	 * @설명 : 공지사항 이동 페이지
+	 */
+	@RequestMapping(value="/soccer/soccerCommonBoardPage.do", method=RequestMethod.GET)
+	public ModelAndView soccerCommonBoard(HttpServletRequest request , HttpServletResponse response){
+		logger.info("SController soccerCommonBoard");		
+		ModelAndView mav=new ModelAndView();
+		mav.addObject("request", request);
+		
+		service.soccerCommonBoard(mav);
+		
+		return mav;
+	}
+	/**
+	 * 
+	 * @함수명:showRecentMatch
+	 * @작성일:2015. 7. 21.
+	 * @작성자:이한빈 
+	 * @설명문:최근 다가오는 경기리스트 보여주기 
+	 */
+	@RequestMapping(value="/showRecentMatch" , method=RequestMethod.GET)
+	public ModelAndView showRecentMatch(HttpServletRequest request , HttpServletResponse response){
+		logger.info("SController showRecentMatch");
+		response.setCharacterEncoding("UTF-8");
+		ModelAndView mav = service.showRecentMatch(request);
+		return mav;
+	}
+	
+	@RequestMapping(value="/findMatchTeams",method=RequestMethod.GET)
+	public ModelAndView findMatchTeams(HttpServletRequest request , HttpServletResponse response){
+		logger.info("SController findMatchTeams");
+		response.setCharacterEncoding("UTF-8");
+		ModelAndView mav = service.findMatchTeams(request);
 		return mav;
 	}
 

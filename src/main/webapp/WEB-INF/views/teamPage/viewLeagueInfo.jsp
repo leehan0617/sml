@@ -49,10 +49,8 @@
 	        </c:otherwise>
 	        </c:choose>
 	        <c:if test="${teamGrade != null }">
-			  <li><a href="${root }/team/teamMain.do?teamName=${teamName}">메인</a></li>
-			  <li><a href="${root }/teamPage/viewTeamBoard.do?teamName=${teamName}">팀 공지사항</a></li>		      
+			  <li><a href="${root }/team/teamMain.do?teamName=${teamName}">메인</a></li>	      
 		      <li><a href="${root }/teamPage/viewTeamRecord.do?teamName=${teamName}">팀 기록</a></li>
-		      <li><a href="${root }/teamPage/teamScheduleEdit.do?teamName=${teamName}">팀 스케쥴</a></li>
 			</c:if>            
           </ul>         
         </div>

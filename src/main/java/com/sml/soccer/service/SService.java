@@ -25,5 +25,11 @@ public interface SService {
 	public ModelAndView leagueTable(HttpServletRequest request);
 
 	public ModelAndView joinLeague(HttpServletRequest request);
+	
+	public void soccerCommonBoard(ModelAndView mav);
+
+	public ModelAndView showRecentMatch(HttpServletRequest request);
+
+	public ModelAndView findMatchTeams(HttpServletRequest request);
 
 }
