@@ -19,16 +19,26 @@
     <!-- Bootstrap core CSS -->
     <link href="${root}/resources/css/bootstrap.css" rel="stylesheet" type="text/css"/>
     <link href="${root}/resources/css/jquery.jqplot.css" rel="stylesheet" type="text/css"/>
-	<script src="${root }/resources/js/jquery.js"></script>
+    <link rel="stylesheet" type="text/css" href="${root }/resources/css/jquery-ui.css"/>	
+    <script src="${root }/resources/js/jquery.js"></script>
+    <script src="${root }/resources/js/jquery-ui.js"></script>
 	<script src="${root }/resources/js/bootstrap.js"></script>
 	<script src="${root }/resources/js/soccerPage.js"></script>
 	<script src="${root }/resources/js/jquery.jqplot.js"></script>
+	<script src="${root }/resources/js/smlStart.js"></script>
+	
+	
 	
 	<script src="${root }/resources/js/jqplot.categoryAxisRenderer.js"></script>
 	<script src="${root }/resources/js/jqplot.barRenderer.js"></script>
 	<script src="${root }/resources/js/jqplot.pieRenderer.js"></script>
     <!-- Custom styles for this template -->
     <link href="${root}/resources/css/soccerPage.css" rel="stylesheet" type="text/css">
+    <style>
+    .ui-autocomplete { 
+    overflow-y: scroll; 
+    overflow-x: hidden;}
+    </style>
   </head>
 <!-- NAVBAR
 ================================================== -->
@@ -68,16 +78,16 @@
                   </ul>
                 </li>
                 <li>
-	                <form class="form-inline"  id="searchForm" name="searchForm" style="padding-top:10px;">
-						<div class="input-group">
-							<input type="text" class="form-control" placeholder="팀명을 검색하세요." name="teamName" id="searchTeamName">
-							<span class="input-group-btn">
-								<button class="btn btn-default" type="button" id="goTeamPage">
-									<span class="glyphicon glyphicon-search" aria-hidden="true"></span>
-								</button>
-							</span>
-						</div><!-- /input-group -->			
-					</form>
+	               <form class="form-inline"  id="searchForm" name="searchForm" style="padding-top:10px;">
+		  			<div class="input-group">
+		      			<input type="text" class="form-control" placeholder="팀명을 검색하세요." name="teamName" id="searchTeamName">
+			    		<span class="input-group-btn">
+			      		<button class="btn btn-default" type="button" id="goTeamPage">
+			      		  <span class="glyphicon glyphicon-search" aria-hidden="true"></span>이동
+			      		</button>
+			      		</span>
+		    		</div><!-- /input-group -->
+	  			  </form>
                 </li>
               </ul>
             </div>

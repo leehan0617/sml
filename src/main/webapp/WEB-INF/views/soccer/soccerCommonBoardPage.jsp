@@ -89,9 +89,9 @@
               <c:if test="${soccerBoardList!=null}">
            	  <c:forEach var="soccerBoardList" items="${soccerBoardList}">			         	 
 			  <tr align="center" style="background-color:" id="#accordion">				
-				<td width="20%" style="font-size:20px;"><span class="label label-danger glyphicon glyphicon-user">${soccerBoardList.boardWriter}</span></td>
+				<td width="10%" style="font-size:20px;"><span class="label label-danger glyphicon glyphicon-user">${soccerBoardList.boardWriter}</span></td>
 				<td>
-				 <div class="panel-group" id="accordion">				  
+				 <div style="" class="panel-group" id="accordion">				  
     				<div class="panel panel-success">
      					 <div class="panel-heading">
         				<h4 class="panel-title">
