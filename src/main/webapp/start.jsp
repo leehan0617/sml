@@ -233,7 +233,7 @@
 		</div>
 		<div class="clearfix">
 			<div class='section clearfix col12 keyline-top  dev-tools space-bottom2 clip'>
-				<a href="${root}/soccer/soccerMain.do?legion=legion"  class='block center col3 pad2 pad4y keyline-right keyline-bottom'>
+				<a href="${root }/sc"  class='block center col3 pad2 pad4y keyline-right keyline-bottom'>
 					<img src="${root}/resources/images/startImage/ss.png" width="200" height="200">
 					<span class='col12'><strong>축구</strong></span>
 					<span class='col12 small quiet space-bottom1'><strong>Soccer</strong></span>
@@ -245,13 +245,14 @@
 					<span class='col12 small quiet space-bottom1'><strong>Baseball</strong></span>
 				</a>
 
-				<a href='/mapbox-android-sdk/' class='block col3 center pad2 pad4y keyline-bottom keyline-right'>
+				<a href='${root}/basketBall/basketBallMain.do' class='block col3 center pad2 pad4y keyline-bottom keyline-right'>
 					<img src="${root}/resources/images/startImage/bk.png" width="200" height="200">
+
 					<span class='col12'><strong>농구</strong></span>
 					<span class='col12 small quiet space-bottom1'><strong>Basketball</strong></span>
 				</a>
 
-				<a href='${root }/scMain' class='block center col3 pad2 pad4y keyline-bottom'>
+				<a href='${root }/legBall/legBallMain.do' class='block center col3 pad2 pad4y keyline-bottom'>
 					<img src="${root}/resources/images/startImage/lg.png" width="200" height="200">
 					<span class='col12'><strong>족구</strong></span>
 					<span class='col12 small quiet space-bottom1'><strong>Legball</strong></span>

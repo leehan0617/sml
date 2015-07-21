@@ -1,4 +1,4 @@
-package com.sml.baseball.service;
+package com.sml.legBall.service;
 
 import java.util.Date;
 import java.util.HashMap;
@@ -15,49 +15,25 @@ import org.springframework.web.servlet.ModelAndView;
 import com.sml.baseball.dao.BaseballDao;
 import com.sml.common.dto.CommonBoardDto;
 import com.sml.league.dto.LeagueDto;
+import com.sml.legBall.dao.LegBallDao;
 import com.sml.member.dto.MemberDto;
 import com.sml.record.dto.RecordDto;
 	
 	@Service
-	public class BaseballServiceImpl implements BaseballService{
-		private Logger logger = Logger.getLogger(BaseballServiceImpl.class.getName());
+	public class LegBallServiceImpl implements LegBallService{
+		private Logger logger = Logger.getLogger(LegBallServiceImpl.class.getName());
 		@Autowired
-		private BaseballDao dao;
+		private LegBallDao dao;
 		
 		/**
-		 * 
-		 * @함수명: baseBallRule
-		 * @작성일: 2015. 7. 17.
-		 * @작성자: 정성남
-		 * @설명 :
-		 */
-		@Override
-		public void baseBallRule(ModelAndView mav) {
-			Map<String,Object> map=mav.getModelMap();		
-			HttpServletRequest request=(HttpServletRequest)map.get("request");
-			int sportCode = Integer.parseInt(request.getParameter("sportCode"));
-			String sportType="";
-			switch(sportCode){
-				case 0: sportType="축구"; break;
-				case 1: sportType="야구"; break;
-				case 2: sportType="농구"; break;
-				case 3: sportType="족구"; break;
-			}
-			
-			mav.addObject("sportCode",sportCode);
-			mav.addObject("sportType",sportType);
-			mav.setViewName("baseBall/baseBallRule");
-		}
-		
-		/**
-		 * @함수명:viewSoccerBoard
+		 * @함수명:viewlegBallBoard
 		 * @작성일:2015. 7. 16.
 		 * @작성자:이한빈 
 		 * @설명문:축구페이지에서 공지사항 게시판 보는 함수 
 		 */
 		@Override
-		public ModelAndView viewSoccerBoard(HttpServletRequest request) {
-			logger.info("SService viewSoccerBoard");
+		public ModelAndView viewlegBallBoard(HttpServletRequest request) {
+			logger.info("SService viewlegBallBoard");
 			//축구페이지 스포츠코드는 0 
 			int sportCode = Integer.parseInt(request.getParameter("sportCode"));
 			
@@ -86,7 +62,7 @@ import com.sml.record.dto.RecordDto;
 			//System.out.println("sportCode"+sportCode+",count:"+count+",currentPage:"+currentPage+",blockCount:"+blockCount+",startRow:"+startRow);
 			
 			//축구페이지 게시물 가져오기 
-			List<CommonBoardDto> soccerBoardList = dao.getSoccerBoardList(sportCode,startRow,endRow);
+			List<CommonBoardDto> legBallBoardList = dao.getlegBallBoardList(sportCode,startRow,endRow);
 
 			ModelAndView mav = new ModelAndView();
 			mav.addObject("blockCount", blockCount);
@@ -94,7 +70,7 @@ import com.sml.record.dto.RecordDto;
 			mav.addObject("boardSize", boardSize);
 			mav.addObject("blockSize", blockSize);
 			mav.addObject("currentPage",currentPage);
-			mav.addObject("soccerBoardList" , soccerBoardList);
+			mav.addObject("legBallBoardList" , legBallBoardList);
 			mav.setViewName("jsonView");
 			
 			return mav;
@@ -102,13 +78,13 @@ import com.sml.record.dto.RecordDto;
 		
 		/**
 		 * 
-		 * @함수명:readSoccerBoard
+		 * @함수명:readlegBallBoard
 		 * @작성일:2015. 7. 16.
 		 * @작성자:이한빈 
 		 * @설명문:축구페이지 공지사항 읽는 함수 
 		 */
 		@Override
-		public ModelAndView readSoccerBoard(HttpServletRequest request) {
+		public ModelAndView readlegBallBoard(HttpServletRequest request) {
 			int boardNumber=Integer.parseInt(request.getParameter("boardNumber"));
 			
 			CommonBoardDto board = dao.getBoardContent(boardNumber);
@@ -127,7 +103,7 @@ import com.sml.record.dto.RecordDto;
 			switch(sportCode){
 				case 0: sportType="축구"; break;
 				case 1: sportType="야구"; break;
-				case 2: sportType="농구"; break;
+				case 2: sportType="풋살"; break;
 				case 3: sportType="족구"; break;
 			}
 			
@@ -145,7 +121,7 @@ import com.sml.record.dto.RecordDto;
 			switch(sportCode){
 				case 0: sportType="축구"; break;
 				case 1: sportType="야구"; break;
-				case 2: sportType="농구"; break;
+				case 2: sportType="풋살"; break;
 				case 3: sportType="족구"; break;
 			}
 			
@@ -163,7 +139,7 @@ import com.sml.record.dto.RecordDto;
 			switch(sportCode){
 				case 0: sportType="축구"; break;
 				case 1: sportType="야구"; break;
-				case 2: sportType="농구"; break;
+				case 2: sportType="풋살"; break;
 				case 3: sportType="족구"; break;
 			}
 			
@@ -172,17 +148,42 @@ import com.sml.record.dto.RecordDto;
 			mav.addObject("list", list);
 			mav.setViewName("jsonView");
 			return mav;
-		}		
-		
+		}
+
 		/**
 		 * 
-		 * @함수명: soccerTeamList
+		 * @함수명: legBallRule
 		 * @작성일: 2015. 7. 17.
 		 * @작성자: 정성남
 		 * @설명 :
 		 */
 		@Override
-		public void soccerTeamList(ModelAndView mav) {
+		public void legBallRule(ModelAndView mav) {
+			Map<String,Object> map=mav.getModelMap();		
+			HttpServletRequest request=(HttpServletRequest)map.get("request");
+			int sportCode = Integer.parseInt(request.getParameter("sportCode"));
+			String sportType="";
+			switch(sportCode){
+				case 0: sportType="축구"; break;
+				case 1: sportType="야구"; break;
+				case 2: sportType="풋살"; break;
+				case 3: sportType="족구"; break;
+			}
+			
+			mav.addObject("sportCode",sportCode);
+			mav.addObject("sportType",sportType);
+			mav.setViewName("legBall/legBallRule");
+		}
+		
+		/**
+		 * 
+		 * @함수명: legBallTeamList
+		 * @작성일: 2015. 7. 17.
+		 * @작성자: 정성남
+		 * @설명 :
+		 */
+		@Override
+		public void legBallTeamList(ModelAndView mav) {
 			Map<String,Object> map=mav.getModelMap();		
 			HttpServletRequest request=(HttpServletRequest)map.get("request");
 			
@@ -194,7 +195,7 @@ import com.sml.record.dto.RecordDto;
 			switch(sportCode){
 				case 0: sportType="축구"; break;
 				case 1: sportType="야구"; break;
-				case 2: sportType="농구"; break;
+				case 2: sportType="풋살"; break;
 				case 3: sportType="족구"; break;
 			}
 			
@@ -221,7 +222,7 @@ import com.sml.record.dto.RecordDto;
 			mav.addObject("currentPage",currentPage);
 			mav.addObject("teamCount",teamCount);
 			mav.addObject("teamList",teamList);
-			mav.setViewName("baseBall/baseBallTeamList");
+			mav.setViewName("legBall/legBallTeamList");
 		}
 
 		/**
@@ -285,7 +286,7 @@ import com.sml.record.dto.RecordDto;
 			switch(sportCode){
 				case 0: sportType="축구"; break;
 				case 1: sportType="야구"; break;
-				case 2: sportType="농구"; break;
+				case 2: sportType="풋살"; break;
 				case 3: sportType="족구"; break;
 			}
 			return sportType;
@@ -312,16 +313,16 @@ import com.sml.record.dto.RecordDto;
 		}
 
 		/**
-		 * @함수명: soccerCommonBoard
+		 * @함수명: legBallCommonBoard
 		 * @작성일: 2015. 7. 21.
 		 * @작성자: 정성남
 		 * @설명 :
 		 */
 		@Override
-		public void soccerCommonBoard(ModelAndView mav) {
+		public void legBallCommonBoard(ModelAndView mav) {
 			Map<String,Object> map=mav.getModelMap();		
 			HttpServletRequest request=(HttpServletRequest)map.get("request");
-			logger.info("SService soccerCommonBoard");
+			logger.info("SService legBallCommonBoard");
 			
 			//축구페이지 스포츠코드는 0 
 			int sportCode = Integer.parseInt(request.getParameter("sportCode"));
@@ -342,7 +343,7 @@ import com.sml.record.dto.RecordDto;
 			int endRow=currentPage*boardSize;
 			
 			//축구페이지 게시물 가져오기 
-			List<CommonBoardDto> soccerBoardList = dao.getSoccerBoardList(sportCode,startRow,endRow);
+			List<CommonBoardDto> legBallBoardList = dao.getlegBallBoardList(sportCode,startRow,endRow);
 			
 			
 			
@@ -350,8 +351,8 @@ import com.sml.record.dto.RecordDto;
 			mav.addObject("count", count);
 			mav.addObject("boardSize", boardSize);		
 			mav.addObject("currentPage",currentPage);
-			mav.addObject("soccerBoardList" , soccerBoardList);
-			mav.setViewName("baseBall/baseBallCommonBoardPage");		
+			mav.addObject("legBallBoardList" , legBallBoardList);
+			mav.setViewName("legBall/legBallCommonBoardPage");		
 			
 		}
 		
@@ -384,7 +385,5 @@ import com.sml.record.dto.RecordDto;
 			mav.setViewName("jsonView");
 			return mav;
 		}
-		
-		
 }
 

@@ -124,7 +124,7 @@ public class SController {
 	 * @함수명: soccerTeamList
 	 * @작성일: 2015. 7. 17.
 	 * @작성자: 정성남
-	 * @설명 :
+	 * @설명 : 팀리스트 이동 컨트롤러
 	 */
 	@RequestMapping(value="/soccer/soccerTeamList.do", method=RequestMethod.GET)
 	public ModelAndView soccerTeamList(HttpServletRequest request, HttpServletResponse response){
