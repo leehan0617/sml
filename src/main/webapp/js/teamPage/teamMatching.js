@@ -4,7 +4,16 @@
 
 function viewMatchingPlace(root,myTeamCode, otherTeamCode){
 	var url=root + "/teamPage/viewMatchingPlace.do?myTeamCode="+myTeamCode+"&otherTeamCode="+otherTeamCode;
-	window.open(url,"","width=1000,height=600,scrollbars=yes");
+	
+	var winWidth = 1000;
+	 var winHeight = 600;
+	 var winPosLeft = (screen.width - winWidth) / 2;
+	 var winPosTop = 0;
+	 var winOpt = "width="+winWidth+",height="+winHeight+",top="+winPosTop+",left="+winPosLeft;
+	
+	window.open(url,"",winOpt  + ",menubar=no,status=no,scrollbars=no,resizable=no");
+	
+	
 }
 
 function viewOtherTeamInfo(root, otherTeamCode){
