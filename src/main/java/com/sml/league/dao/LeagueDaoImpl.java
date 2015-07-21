@@ -265,6 +265,12 @@ public class LeagueDaoImpl implements LeagueDao{
 		
 		return sqlSession.selectOne("dao.LeagueMapper.getCountGame",hMap);
 	}
+
+	@Override
+	public String getTeamId(String teamName) {
+		// TODO Auto-generated method stub
+		return sqlSession.selectOne("dao.LeagueMapper.getTeamId" ,teamName);
+	}
 	
 	
 }

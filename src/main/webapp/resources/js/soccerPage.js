@@ -261,7 +261,9 @@
 			   if(teamName == null || teamName ==''){
 				   alert("리그신청은 로그인후 이용해 주세요.");
 			   }else{
-				   $('#modalLeagueFooter').prepend('<button type="button" class="btn btn-success" data-dismiss="modal" onclick=joinLeague('+leagueCode+',"'+root+'","'+teamName+'")>리그신청</button>');
+				   var url=root+"/league/applicate.do?leagueCode="+leagueCode+"&teamName="+teamName+"&leagueTeamNumber="+limitNumber;
+				   //alert(url);
+				   $('#modalLeagueFooter').prepend("<a class='btn btn-success' role='button' data-dismiss='modal' onclick=joinLeague(\'"+url+"') >리그신청</a>");
 			   }
 		   }else{
 			   $('#modalLeagueFooter').prepend('<button type="button" class="btn btn-danger" data-dismiss="modal">정원초과</button>');
@@ -270,7 +272,7 @@
 
 	   }
 	   
-
+	   /**
 	   function joinLeague(code,root,teamName){
 		   var addr = root+'/joinLeague?leagueCode='+code+'&teamName='+teamName;
 		   
@@ -286,9 +288,14 @@
 			  }
 		   });
 	   }
+	   */
 	   
-	   function test(root){
-		   alert(root);
+	   function joinLeague(addr){
+		  // alert(addr);
+		  // var addr = url;
+		  location.href=addr;
+		 
+		  
 	   }
 
 	

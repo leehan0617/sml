@@ -29,4 +29,5 @@ public interface LeagueDao {
 	public int getCountLose(int teamCode, int leagueCode);
 	public int getCountDraw(int teamCode, int leagueCode);
 	public int getCountGame(int teamCode, int leagueCode);
+	public String getTeamId(String teamName);
 }

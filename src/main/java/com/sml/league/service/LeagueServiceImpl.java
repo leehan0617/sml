@@ -20,7 +20,6 @@ import org.springframework.web.servlet.ModelAndView;
 import com.sml.league.dao.LeagueDao;
 import com.sml.league.dto.LeagueDto;
 import com.sml.record.dto.RecordDto;
-import com.sml.referee.dto.RefereeDto;
 import com.sml.schedule.dto.ScheduleDto;
 import com.sml.team.dto.TeamDto;
 
@@ -39,7 +38,9 @@ public class LeagueServiceImpl implements LeagueService{
 	public void applicate(ModelAndView mav) {
 		Map<String,Object> map=mav.getModel();
 		HttpServletRequest request=(HttpServletRequest) map.get("request");
-		String teamId=request.getParameter("teamId");
+		String teamName = request.getParameter("teamName");
+		String teamId=dao.getTeamId(teamName);
+		//System.out.println("teamId:"+teamId);
 		int leagueCode=Integer.parseInt(request.getParameter("leagueCode"));
 		int leagueTeamNumber=Integer.parseInt(request.getParameter("leagueTeamNumber"));
 		int leagueCount=dao.getLeagueCount(leagueCode);

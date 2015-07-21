@@ -1,5 +1,7 @@
 package com.sml.league.controller;
 
+import java.util.logging.Logger;
+
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
@@ -13,8 +15,10 @@ import com.sml.league.service.LeagueService;
 
 @Controller
 public class LeagueController {
+	private Logger logger = Logger.getLogger(LeagueController.class.getName());
 	@Autowired
 	private LeagueService service;
+	
 	
 	/**
 	 * @함수명:applicate
@@ -24,6 +28,8 @@ public class LeagueController {
 	 */
 	@RequestMapping(value="/league/applicate.do",method=RequestMethod.GET)
 	public ModelAndView applicate(HttpServletRequest request,HttpServletResponse response){
+		logger.info("leagueCtrl applicate");
+		System.out.println("asdfsdf");
 		ModelAndView mav=new ModelAndView();
 		
 		mav.addObject("request",request);

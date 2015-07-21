@@ -90,4 +90,8 @@
  	<select id="getCountGame" parameterType="java.util.HashMap" resultType="int">
  		select count(*) from gameRecord where (teamCode=#{teamCode} or teamCode2=#{teamCode}) and gameType=#{leagueCode} and gameState='경기 종료'
  	</select>
+ 	
+ 	<select id="getTeamId" parameterType="String" resultType="String">
+ 		select teamId from team where teamName=#{teamName}
+ 	</select>
  </mapper>
