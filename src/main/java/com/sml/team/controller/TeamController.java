@@ -126,8 +126,10 @@ public class TeamController {
 		teamBoardService.viewTeamBoardTemplate(mav);
 		scheduleService.readteamSchedule(mav);
 		recordService.getRecordList(mav);
+		recordService.getMatchingResult(mav);
 		service.getReplyList(mav);
 		leagueService.getLeagueInfo(mav);
+		
 			
 		mav.setViewName("team/teamMain");
 		

@@ -132,33 +132,24 @@
 	
 	<br/>
 	
-	
-	<div class="row well">	 	  	
-	  <div class="col-md-1"></div>		  	  	  
-	  <div class="col-md-4 well">		  		   		  	
-		  	<div class="row">
-		  		<div class="col-xs-6 col-md-3" >
-	    			<a href="#" class="thumbnail">
-	      				<img src="${root }/resources/images/android@2x.png" alt="..."> 	
-	    			</a>
-	  			</div>
+	<c:if test="${matchingResult!=null }">
+		<div class="row well" style="text-align:center;">
+		<h3>매칭 결과</h3>
+			<div class="col-md-1"></div>
+			<div class="col-md-4 well" style="height:150px;">
+				<img class="img-circle" src="${root}/img/teamImg/${matchingResult.EMBLEM1}" style="width:50%; height:100%; float:right;">
+				<h4 style="float:right;">${matchingResult.TEAMNAME1}</h4>
 			</div>
-	  </div>
-		  
-	  <div class="col-md-2 well"><h3>vs</h3></div>
-	  
-	  <div class="col-md-4 well">
-	  	<div class="row">
-	  		<div class="col-xs-6 col-md-3">
-    			<a href="#" class="thumbnail">
-      				<img src="${root }/resources/images/mapboxjs@2x.png" alt="...">
-    			</a>
-  			</div>
-	  	</div>
-	  </div>	 
-	  <div class="col-md-1"></div>  
-	</div>
-
+			<div class="col-md-2" style=" text-align:center;">
+				<img src="${root}/resources/images/versusIcon.png" style="width:80%; height:80%;">
+			</div>
+			<div class="col-md-4 well" style="height:150px;">
+				<img class="img-circle" src="${root}/img/teamImg/${matchingResult.EMBLEM2}" style="width:50%; height:100%; float:left;">
+				<h4 style="float:left;">${matchingResult.TEAMNAME2}</h4>
+			</div>
+			<div class="col-md-1"></div>
+		</div>
+	</c:if>
 	
 	<div class="row well">
 	  <div class="col-md-1"></div>

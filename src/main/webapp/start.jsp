@@ -51,7 +51,6 @@
       <a class="skip" href="#main">Skip to Content</a><ul class="nav-lang"><li class="nav-lang-koselected">한국어</li></ul>
       <div class="container">
         <div class="full">
-          <img src="${root}/resources/css/images/smlKoreaIcon.PNG" alt="SML Korea">
           <h1 class="name">SML KOREA</h1>
           <p class="subtitle">간단한 정보 입력만으로<br/>다른팀들과 경기를 매칭시킬수 있습니다.<br/>지금 매칭을 시작해보세요.</p>
           <nav role="navigation">
@@ -211,16 +210,24 @@
 		    <div id="mapList" style="display:none;">dskjfhdskjfk</div>
 	  </section>
 	  
+	  <!--  
 	<section id='developers' class='developers fill-light'>
+		<div class='full'  id="workshopper-list" style="padding-top: 20px;">
+			<h2 class="big-heading">게임 페이지</h2>
+			<br/>
+			<p>현재 SML Korea에서 지원하고 있는 종목의 페이지 입니다.</p>
+			<br/>
+			-->
+			
+ <section id='developers' class='developers fill-light'>
 		<div class='limiter pad4y'  id="workshopper-list">
 			<div class='prose prose-big space-bottom1 pad4y space-top2 contain z1 clearfix'>
 				<h1>경기 종목</h1>
 				<div class="clearfix space-bottom2">
 				<p class='quiet block col9'>SML Korea는 현제 축구,야구,농구,족구 총 4가지 종목을 서비스 하고있습니다.<br/> 아래 링크를 통해서 각각의 팀페이지로 이동해 실시간 리그정보 및 경기매칭을 진행해보세요.</p>
-				</div>    
+				</div>
 			</div>
 		</div>
- 
 		<div class="clearfix">
 			<div class='section clearfix col12 keyline-top  dev-tools space-bottom2 clip'>
 				<a href="${root}/soccer/soccerMain.do?legion=legion"  class='block center col3 pad2 pad4y keyline-right keyline-bottom'>
@@ -249,9 +256,28 @@
 
 			</div>
 		</div>
-	</section>
+		</section>
 
-    <div class="container elective-workshoppers" style="background-color: #fff;">
+		<!--  
+		<div class="full" style="height:600px;">
+			<div style="width:25%; float:left; height:100%;">
+			<img src="${root }/resources/images/startImage/startSoccer.png" style="height:600px;">
+			</div>
+			<div style="width:25%; float:left;">
+			<img src="${root }/resources/images/startImage/startBaseBall.png" style="height:600px;">
+			</div>
+			<div style="width:25%; float:left;">
+			<img src="${root }/resources/images/startImage/startBasketBall.png" style="height:600px;">
+			</div>
+			<div style="width:25%; float:left;">
+			<img src="${root }/resources/images/startImage/startLegBall.png" style="height:600px;">
+			</div>
+		</div>
+		</div>
+	</section>
+	-->
+
+    <div class="container elective-workshoppers" style="background-color: #fff; padding-top: 100px;">
       <div class="third" id="helpCenter">
         <img alt="imformation" src="${root}/resources/images/imformation.png" style="width:50px; height:50px;">
         <label style="font-size:35px;"><strong>고객센터</strong></label>
