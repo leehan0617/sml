@@ -22,7 +22,7 @@ a.imglink {border: none; outline: none;}
 
 hr {border: 2px solid #333; margin: 0;}
 
-header {color: #333; background-image: url('../images/start-bg.png'); background-size: 25%; background-position: 0 -100px; z-index: -1; display: block; background-color: #FFE51F; background-blend-mode: multiply; }
+header {color: #333; background-image: url('../images/start-bg.png'); background-size: 25%; background-position: 0 -100px; z-index: -1; display: block; background-color: #FFF612; background-blend-mode: multiply; }
 header h1 {font-size: 500%; font-weight: 900; margin-bottom: 0px; margin-top: 20px; line-height: 1;}
 
 header .big-link { color: #333; font-weight: bold; border-color: #333;}
