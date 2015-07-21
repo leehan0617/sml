@@ -141,7 +141,7 @@ public class BasketBallController {
 	 * @작성자:이한빈 
 	 * @설명문:리그정보 가져오는 함수 
 	 */
-	@RequestMapping(value="/showLeaguebasketBallInfo" , method=RequestMethod.GET)
+	@RequestMapping(value="/basketBallshowLeagueInfo" , method=RequestMethod.GET)
 	public ModelAndView showLeagueInfo(HttpServletRequest request , HttpServletResponse response){
 		logger.info("SController showLeagutInfo");
 		response.setCharacterEncoding("UTF-8");
