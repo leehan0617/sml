@@ -68,23 +68,23 @@
 		<h2>매칭 정보</h2> 
 		<div class="row">		  
 		  <div class="col-md-6 well">			  
-	    		<c:if test="${normalMatchInfo.TEAM1==teamName }">		
-					  <table class="table table-hover">
+	    		<c:if test="${normalMatchInfo.TEAM1==teamName }">	
+	    		<!--  <table class="table table-hover">
 					    <tbody>
 					      <tr>
-					        <td style="width:20%;">팀</td>
+					        <td style="width:20%;"><strong>팀</strong></td>
 					        <td>${normalMatchInfo.TEAM1}</td>
 					      </tr>
 					      <tr>
-					        <td style="width:20%;">장소</td>
+					        <td style="width:20%;"><strong>장소</strong></td>
 					        <td>${matchingDto.matchingPlace}</td>
 					      </tr>
 					      <tr>
-					        <td style="width:20%;">요일</td>	
+					        <td style="width:20%;"><strong>요일</strong></td>	
 					        <td>${matchingDto.matchingDay}</td>
 					      </tr>
 					      <tr>
-					        <td style="width:20%;">시간</td>
+					        <td style="width:20%;"><strong>시간</strong></td>
 					        <td>${matchingDto.matchingTime}</td>
 					      </tr>
 					      
@@ -93,7 +93,29 @@
 					      	<td></td>
 					      </tr>
 					    </tbody>
-					  </table>  			
+					  </table> -->	
+					 
+				<table class="table table-condensed">
+				 	<tr></tr>
+  					<tr>
+  						<td class="info" style="width: 100px; font-weight: bold;">팀</td>
+  						<td style="background-color: white;">${normalMatchInfo.TEAM1}</td>
+  					</tr>
+  					<tr>
+  						<td class="info" style="width: 100px; font-weight: bold;">장소</td>
+  						<td style="background-color: white;">${matchingDto.matchingPlace}</td>
+  					</tr>
+  					<tr>
+  						<td class="info" style="width: 100px; font-weight: bold;">요일</td>
+  						<td style="background-color: white;">${matchingDto.matchingDay}</td>
+  					</tr>
+  					<tr>
+  						<td class="info" style="width: 100px; font-weight: bold;">시간</td>
+  						<td style="background-color: white;">
+  							${matchingDto.matchingTime}
+  						</td>
+  					</tr>
+				</table>  			
 	    			  
 			    	<%-- <h4>name : ${normalMatchInfo.TEAM1}</h4>
 					<h4>place : ${matchingDto.matchingPlace}</h4>
@@ -106,19 +128,19 @@
 					  <table class="table table-hover">
 					    <tbody>
 					      <tr>
-					        <td style="width:20%;">팀</td>
+					        <td style="width:20%;"><strong>팀</strong></td>
 					        <td>${normalMatchInfo.TEAM2}</td>
 					      </tr>
 					      <tr>
-					        <td style="width:20%;">장소</td>
+					        <td style="width:20%;"><strong>장소</strong></td>
 					        <td>${matchingDto.matchingPlace}</td>
 					      </tr>
 					      <tr>
-					        <td style="width:20%;">요일</td>	
+					        <td style="width:20%;"><strong>요일</strong></td>	
 					        <td>${matchingDto.matchingDay}</td>
 					      </tr>
 					      <tr>
-					        <td style="width:20%;">시간</td>
+					        <td style="width:20%;"><strong>시간</strong></td>
 					        <td>${matchingDto.matchingTime}</td>
 					      </tr>
 					      
@@ -138,31 +160,27 @@
 		  <!-- <div class="col-md-2" style="display:table-cell; text-align:center; vertical-align:middle; height:230px; padding-top:70px;"></div> -->		  
 		  <div class="col-md-6 well">
 	    		<c:if test="${normalMatchInfo.TEAM1==teamName }">
-					  <table class="table table-hover" >
-					    <tbody>
-					      <tr>
-					        <td style="width:20%;"> 팀 </td>
-					        <td>${normalMatchInfo.TEAM2 }</td>
-					      </tr>
-					      <tr>
-					        <td style="width:20%;">장소</td>
-					        <td>${otherMatchingDto.matchingPlace}</td>
-					      </tr>
-					      <tr>
-					        <td style="width:20%;">요일</td>	
-					        <td>${otherMatchingDto.matchingDay}</td>
-					      </tr>
-					      <tr>
-					        <td style="width:20%;">시간</td>
-					        <td>${otherMatchingDto.matchingTime}</td>
-					      </tr>
-					      
-					      <tr>
-					      	<td></td>
-					      	<td></td>
-					      </tr>
-					    </tbody>
-					  </table>
+	    		<table class="table table-condensed">
+	    		<tr></tr>
+  					<tr>
+  						<td class="info" style="width: 100px; font-weight: bold;">팀</td>
+  						<td style="background-color: white;">${normalMatchInfo.TEAM2 }</td>
+  					</tr>
+  					<tr>
+  						<td class="info" style="width: 100px; font-weight: bold;">장소</td>
+  						<td style="background-color: white;">${otherMatchingDto.matchingPlace}</td>
+  					</tr>
+  					<tr>
+  						<td class="info" style="width: 100px; font-weight: bold;">요일</td>
+  						<td style="background-color: white;">${otherMatchingDto.matchingDay}</td>
+  					</tr>
+  					<tr>
+  						<td class="info" style="width: 100px; font-weight: bold;">시간</td>
+  						<td style="background-color: white;">
+  							${otherMatchingDto.matchingTime}
+  						</td>
+  					</tr>
+			</table>
 	    		
 	    			  
 			    	<%-- <h4>name : ${normalMatchInfo.TEAM2 }</h4>
@@ -172,22 +190,23 @@
 		      	</c:if>
 		      	
 		      	<c:if test="${normalMatchInfo.TEAM2==teamName }">
+		      	<br/>
 					  <table class="table table-hover">
 					    <tbody>
 					      <tr>
-					        <td style="width:20%;">팀</td>
+					        <td style="width:20%;"><strong>팀</strong></td>
 					        <td>${normalMatchInfo.TEAM1 }</td>
 					      </tr>
 					      <tr>
-					        <td style="width:20%;">장소</td>
+					        <td style="width:20%;"><strong>장소</strong></td>
 					        <td>${otherMatchingDto.matchingPlace}</td>
 					      </tr>
 					      <tr>
-					        <td style="width:20%;">요일</td>	
+					        <td style="width:20%;"><strong>요일</strong></td>	
 					        <td>${otherMatchingDto.matchingDay}</td>
 					      </tr>
 					      <tr>
-					        <td style="width:20%;">시간</td>
+					        <td style="width:20%;"><strong>시간</strong></td>
 					        <td>${otherMatchingDto.matchingTime}</td>
 					      </tr>
 					      
@@ -229,8 +248,7 @@
 			      	<c:forEach var="weather" items="${weatherAllList}" begin="1" end="7">
 			      		<td>${weather.tmn } ~ ${weather.tmx }</td>
 			      	</c:forEach>			      	
-			      </tr>
-			     			      
+			      </tr>		      
 			     <tr>
 			     </tr>
 			    </tbody>
