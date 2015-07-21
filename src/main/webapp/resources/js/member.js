@@ -44,38 +44,54 @@ function Check(form){
 	if($("input[name='teamId']").val()==""){
 		alert("아이디를 입력하세요");
 		$("input[name='teamId']").focus();
+		$("#step2").attr("data-target", "#");
 		return false;
-	}
+	}       
 	
 	if($("input[name='teamPassword']").val()==""){
 		alert("비밀번호를 입력하세요");
 		$("input[name='teamPassword']").focus();
+		$("#step2").attr("data-target", "#");
 		return false;
 	}	
 	
 	if($("input[name='teamPassword2']").val()==""){
 		alert("비밀번호를 입력하세요");
 		$("input[name='teamPassword2']").focus();
+		$("#step2").attr("data-target", "#");
 		return false;
 	}	
 	
 	if($("input[name='teamPassword']").val()!=$("input[name='teamPassword2']").val()){
 		alert("비밀번호가 맞지않습니다");
 		$("input[name='teamPassword']").focus();
+		$("#step2").attr("data-target", "#");
 		return false;
 	}	
 
 	if(form.teamName.value==""){
 		alert("팀명을 입력하세요");
 		form.teamName.focus();
+		$("#step2").attr("data-target", "#");
 		return false;
 	}
 	
-	alert("form:"+form.sportType.value);
+	//alert("form:"+form.sportType.value);
 	if(form.sportType.value=='null'){
 		alert("종목을 체크해주세요");
+		$("#step2").attr("data-target", "#");
 		return false;
 	}
+	
+	if($("input[name='homeGround']").val()==""){
+		alert("경기장을 입력하세요");
+		$("input[name='homeGround']").focus();
+		$("#step2").attr("data-target", "#");
+		return false;
+	}	
+	
+	$("#step2").attr("data-target", "#popupJoin2");
+	return true;
 }
 
 function idCheck(form,root){
