@@ -49,7 +49,9 @@
 					        <div class="input-group">
 							      <input type="text" class="form-control" placeholder="팀아이디를 적어주세요." name="teamId">
 							      <span class="input-group-btn">
-							        <button class="btn btn-default"  type="button" onclick="idCheck(form,'${root}')">중복확인</button>
+							        <button class="btn btn-default"  type="button" onclick="return idCheck(form,'${root}')">중복확인
+							        	<div id="resultAlert" ></div>
+							        </button>
 							      </span>
 							 </div><!-- /input-group -->
 					      </div>
@@ -71,7 +73,9 @@
 						        <div class="input-group">
 							      <input type="text" class="form-control" placeholder="팀이름을 적어주세요." name="teamName">
 							      <span class="input-group-btn">
-							        <button class="btn btn-default" type="button"  onclick="teamIdCheck(form,'${root}')">중복확인</button>
+							        <button class="btn btn-default" type="button"  onclick="teamIdCheck(form,'${root}')">중복확인
+							        	<div id="resultTeamAlert"></div>
+							        </button>
 							      </span>
 							    </div><!-- /input-group -->
 					      	</div>
@@ -201,15 +205,16 @@
 		  </div>
 	</div>
 	
-	<!-- <!-- map Modal -->
-	  <div class="modal fade" id="mapModal" role="dialog">
-	    <div class="modal-dialog">
-		        <div class="modal-header">
-		        </div>
+ <!-- idCheck Modal -->
+	  <div class="modal fade" id="checkIdModal" role="dialog">
+	    <div class="modal-dialog modal-sm">
+	    		<div class="modal-content">
+			        <div class="modal-header">
+			        	 <h4 class="modal-title">SML Korea</h4>
+			        </div>
 		        
-		        <div class="modal-content">
 					<div class="modal-body">
-						<div id="resultMap"></div>
+						<div id="resultAlert"></div>
 					</div>
            		    <div class="modal-footer">
 						     <div class="modal-footer">
@@ -218,5 +223,5 @@
 		      		</div> 
 	   		    </div>	
 	    </div>
-	   </div>			 -->
+	   </div>			 
 </form>
