@@ -233,7 +233,7 @@
 		</div>
 		<div class="clearfix">
 			<div class='section clearfix col12 keyline-top  dev-tools space-bottom2 clip'>
-				<a href="${root }/scMain"  class='block center col3 pad2 pad4y keyline-right keyline-bottom'>
+				<a href="${root }/sc"  class='block center col3 pad2 pad4y keyline-right keyline-bottom'>
 					<img src="${root}/resources/images/startImage/ss.png" width="200" height="200">
 					<span class='col12'><strong>축구</strong></span>
 					<span class='col12 small quiet space-bottom1'><strong>Soccer</strong></span>
