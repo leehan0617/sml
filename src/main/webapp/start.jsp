@@ -236,7 +236,7 @@
 					<span class='col12 small quiet space-bottom1'><strong>Baseball</strong></span>
 				</a>
 
-				<a href='/mapbox-android-sdk/' class='block col3 center pad2 pad4y keyline-bottom keyline-right'>
+				<a href='${root}/basketBallMain' class='block col3 center pad2 pad4y keyline-bottom keyline-right'>
 					<img src="${root}/resources/images/basketballIcon.PNG" width="200" height="200">
 					<span class='col12'><strong>농구</strong></span>
 					<span class='col12 small quiet space-bottom1'><strong>Football</strong></span>
