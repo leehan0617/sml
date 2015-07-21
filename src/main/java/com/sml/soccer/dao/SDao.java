@@ -7,7 +7,7 @@ import java.util.List;
 import com.sml.common.dto.CommonBoardDto;
 import com.sml.league.dto.LeagueDto;
 import com.sml.member.dto.MemberDto;
-import com.sml.team.dto.TeamDto;
+import com.sml.record.dto.RecordDto;
 
 public interface SDao {
 
@@ -33,5 +33,9 @@ public interface SDao {
 	public int checkLeague(HashMap<String, Object> hMap);
 	
 	public int teamCount(String sportType);
+
+	public List<RecordDto> showRecentMatch(String gameType);
+
+	public String findMatchTeams(int parseInt);
 
 }

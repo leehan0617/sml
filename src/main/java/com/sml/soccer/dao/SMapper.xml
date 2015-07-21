@@ -53,16 +53,27 @@
 	<select id="getLeagueJoin" resultMap="leagueJoin">
 		select leagueCode , count(leagueCode) cnt from leagueJoin group by leagueCode 
 	</select>	
-	
-	<insert id="joinLeague" parameterType="java.util.HashMap">
-		insert into leagueJoin values(#{leagueCode} , (select teamCode from team where teamName=#{teamName}))
-	</insert>
-	
+		
 	<select id="checkLeague" parameterType="java.util.HashMap" resultType="int">
 		select count(*) from leagueJoin where leagueCode = #{leagueCode} and TeamCode = (select teamCode from team where teamName=#{teamName})
 	</select>
 	
 	<select id="teamCount" parameterType="String" resultType="int">
 		select count(*) from team where sportType=#{sportType}
+	</select>
+	
+	<select id="showRecentMatch" parameterType="String" resultType="com.sml.record.dto.RecordDto">
+		<![CDATA[
+			 select * from(
+             	select rownum as rrownum, d.* from(
+             		select rownum as rnum , c.* from 
+              			(select * from gameRecord where sportType = #{gameType} and gameState='경기 전' order by gameDate desc) c order by rnum desc)d ) 
+              				where rrownum>= 1 and rrownum<= 5
+			
+		]]>
+	</select>
+	
+	<select id="findMatchTeam" parameterType="Int" resultType="String">
+		select teamName from team where teamCode = #{teamCode}
 	</select>
 </mapper>

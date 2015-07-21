@@ -28,4 +28,8 @@ public interface SService {
 	
 	public void soccerCommonBoard(ModelAndView mav);
 
+	public ModelAndView showRecentMatch(HttpServletRequest request);
+
+	public ModelAndView findMatchTeams(HttpServletRequest request);
+
 }
