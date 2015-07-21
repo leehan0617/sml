@@ -14,7 +14,7 @@
 	<script type="text/javascript">
 		alert("신청이 완료되었습니다")
 		
-		var url="${root}/soccer/soccerMain.do";
+		var url="${root}/sc";
  		$(location).attr("href",url);  
 	</script>
 </c:if>
@@ -23,7 +23,7 @@
 	<script type="text/javascript">
 		alert("이미 처리된 아이디입니다.")
 		
-  		var url="${root}/soccer/soccerMain.do";
+  		var url="${root}/sc";
  		$(location).attr("href",url);    
 	</script>
 </c:if>
@@ -32,7 +32,7 @@
 	<script type="text/javascript">
 		alert("이미 참가하고 있는 리그가 있습니다.")
 		
-  		var url="${root}/soccer/soccerMain.do";
+  		var url="${root}/sc";
  		$(location).attr("href",url);
 	</script>
 </c:if>
@@ -41,7 +41,7 @@
 	<script type="text/javascript">
 		alert("죄송합니다! 마감되었습니다.")
 		
-		var url="${root}/soccer/soccerMain.do?check=${check}";
+		var url="${root}/sc";
  		$(location).attr("href",url); 
 	</script>
 </c:if>
