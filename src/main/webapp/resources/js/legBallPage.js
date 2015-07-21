@@ -1,5 +1,5 @@
 	function viewlegBallBoard(root,sportCode,currentPage){
-		var addr = root+"/viewlegBallBoard?sportCode="+sportCode+"&currentPage="+currentPage;
+		var addr = root+"/legBallviewlegBallBoard?sportCode="+sportCode+"&currentPage="+currentPage;
 		
 		$.ajax({
 			type:"get",
@@ -20,21 +20,21 @@
 				$(".pager").empty();
 				
 				$.each(list,function(i,val){
-					$('.legBallBody').append('<tr><td>'+list[i].boardNumber+"</td><td><a data-toggle='modal' data-target='#modallegBallBoardRead' onclick=readlegBallBoard(\'"+root+"\','"+sportCode+"','"+currentPage+"','"+list[i].boardNumber+"')>"
+					$('.legBallBody').append('<tr><td>'+list[i].boardNumber+"</td><td><a data-toggle='modal' data-target='#modallegBallBoardRead' onclick=legBallreadlegBallBoard(\'"+root+"\','"+sportCode+"','"+currentPage+"','"+list[i].boardNumber+"')>"
 										+list[i].boardTitle+'</td><td>'+list[i].boardWriter+'</td><td>'+
 										(list[i].boardDate.year+1900)+'-'+(list[i].boardDate.month+1)+'-'+list[i].boardDate.date+'</td></tr>');
 				});
 				
 				if(startBlock > blockSize){
-					$('.pager').append("<li><a onclick=viewlegBallBoard(\'"+root+"\','"+sportCode+"','"+(startBlock-blockSize)+"')>"+'Previous'+"</a></li>");
+					$('.pager').append("<li><a onclick=legBallviewlegBallBoard(\'"+root+"\','"+sportCode+"','"+(startBlock-blockSize)+"')>"+'Previous'+"</a></li>");
 				}
 				
 				for(var i=startBlock ; i<=endBlock ; i++){
-					$('.pager').append("<li><a onclick=viewlegBallBoard(\'"+root+"\','"+sportCode+"','"+i+"')>"+i+"</a></li>");	
+					$('.pager').append("<li><a onclick=legBallviewlegBallBoard(\'"+root+"\','"+sportCode+"','"+i+"')>"+i+"</a></li>");	
 				}
 				
 				if(endBlock < blockCount){
-					$('.pager').append("<li><a onclick=viewlegBallBoard(\'"+root+"\','"+sportCode+"','"+(startBlock+blockSize)+"')>"+'Next'+"</a></li>");
+					$('.pager').append("<li><a onclick=legBallviewlegBallBoard(\'"+root+"\','"+sportCode+"','"+(startBlock+blockSize)+"')>"+'Next'+"</a></li>");
 				}
 
 			}
@@ -43,7 +43,7 @@
 	
 	function readlegBallBoard(root, sportCode , currentPage , boardNumber){
 		  $("#modallegBallBoard").toggle();
-		   var addr = root+"/readlegBallBoard?sportCode="+sportCode+"&currentPage="+currentPage+"&boardNumber="+boardNumber;
+		   var addr = root+"/legBallreadlegBallBoard?sportCode="+sportCode+"&currentPage="+currentPage+"&boardNumber="+boardNumber;
 		  
 		   $.ajax({
 			   type:"get",
@@ -62,7 +62,7 @@
 	}
 	   
 	   function showAgeChart(root,sportCode){
-		   var addr = root+"/showAgeChart?sportCode="+sportCode;
+		   var addr = root+"/legBallshowAgeChart?sportCode="+sportCode;
 		   
 		   $.ajax({
 			  type:"GET",
@@ -106,7 +106,7 @@
 	   }
 	    
 	   function showCityChart(root,sportCode){
-		   var addr = root+"/showCityChart?sportCode="+sportCode;
+		   var addr = root+"/legBallshowCityChart?sportCode="+sportCode;
 		   
 		   $.ajax({
 			  type:"GET",
@@ -158,7 +158,7 @@
 	   }
 	   
 	   function showDayChart(root,sportCode){
-		   var addr = root+"/showDayChart?sportCode="+sportCode;
+		   var addr = root+"/legBallshowDayChart?sportCode="+sportCode;
 		   
 		   $.ajax({
 			  type:"get",
@@ -322,8 +322,7 @@
 					  });
 					  
 					  $("#accordion").append('<div class="panel panel-default"><div class="panel-heading" role="tab" id="'+array[i]+'"><h4 class="panel-title"><a data-toggle="collapse" data-parent="#accordion" href="#'+array2[i]+'" aria-expanded="true" aria-controls="'+array2[i]+'">'+(data.recordList[i].gameDate.year+1900)+"/"+data.recordList[i].gameDate.month+"/"+data.recordList[i].gameDate.day+":"+teamA+"&nbsp;vs&nbsp;"+teamB+'</a></h4></div><div id="'+array2[i]+'" class="panel-collapse collapse" role="tabpanel" aria-labelledby="'+array[i]+'"><div class="panel-body">'+"경기시간:"+data.recordList[i].gameTime+"<br/>"+"경기장소:"+data.recordList[i].gamePlace+"<br/>"+'</div></div>');   
-				  }
-				  
+				  }  
 			  }
 		   });
 	   }
