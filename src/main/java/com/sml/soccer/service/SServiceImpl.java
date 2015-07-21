@@ -16,7 +16,6 @@ import com.sml.common.dto.CommonBoardDto;
 import com.sml.league.dto.LeagueDto;
 import com.sml.member.dto.MemberDto;
 import com.sml.soccer.dao.SDao;
-import com.sml.team.dto.TeamDto;
 
 @Service
 public class SServiceImpl implements SService{
@@ -297,6 +296,49 @@ public class SServiceImpl implements SService{
 		mav.addObject("value",value);
 		mav.setViewName("jsonView");
 		return mav;
+	}
+
+	/**
+	 * @함수명: soccerCommonBoard
+	 * @작성일: 2015. 7. 21.
+	 * @작성자: 정성남
+	 * @설명 :
+	 */
+	@Override
+	public void soccerCommonBoard(ModelAndView mav) {
+		Map<String,Object> map=mav.getModelMap();		
+		HttpServletRequest request=(HttpServletRequest)map.get("request");
+		logger.info("SService soccerCommonBoard");
+		
+		//축구페이지 스포츠코드는 0 
+		int sportCode = Integer.parseInt(request.getParameter("sportCode"));
+		
+		
+		//축구페이지인 공지사항 총갯수 가져오기.
+		int count=dao.getBoardCount(sportCode);
+		
+		//System.out.println("축구페이지 공지사항 총갯수:" + count);
+		
+		String pageNumber=request.getParameter("pageNumber");
+		//System.out.println("pageNumber"+pageNumber);
+		if(pageNumber==null) pageNumber="1";
+			
+		int boardSize=5;		
+		int currentPage=Integer.parseInt(pageNumber);
+		int startRow=(currentPage-1)*boardSize+1;
+		int endRow=currentPage*boardSize;
+		
+		//축구페이지 게시물 가져오기 
+		List<CommonBoardDto> soccerBoardList = dao.getSoccerBoardList(sportCode,startRow,endRow);
+		
+		
+		mav.addObject("sportCode",sportCode);
+		mav.addObject("count", count);
+		mav.addObject("boardSize", boardSize);		
+		mav.addObject("currentPage",currentPage);
+		mav.addObject("soccerBoardList" , soccerBoardList);
+		mav.setViewName("soccer/soccerCommonBoardPage");		
+		
 	}
 	
 }

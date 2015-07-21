@@ -15,7 +15,7 @@
     <meta name="author" content="">   
     <link rel="icon" href="${root }/resources/images/android@2x.png"/>
     
-    <title>심판현황</title>    
+    <title>팀 리스트</title>    
     
 
    <!-- Bootstrap core CSS -->
@@ -59,52 +59,39 @@
      <div class="container-fluid" style="background:url(${root}/resources/images/backGroundImage.jpg)">   
        <span class="col-xs-2"><a href="${root }/scMain"><img class="img-circle img-responsive" alt="logo" src="${root}/resources/images/android@2x.png" width="200" height="150"></img></a></span> 	  
        	  
-       <span class="col-xs-9" style="font-size:50pt;"><br/>SML KOREA</span>
-       <span class="col-xs-1" style="font-size:15pt;"><br/><br/>인원: ${count}  </span>     
+       <span class="col-xs-9" style="font-size:50pt;"><br/>SML KOREA</span>            
      </div>
        <br/><br/>
 	
     <div class="container" style="background-color: ">    	
       <div class="row">      	   	
-          <h2 class="sub-header">심판 LIST</h2>
+          <h2 class="sub-header">공지사항</h2>
           <br/>         
           <div class="table-responsive" style="background-color: ">
             <table class="table table-striped">
-              <c:if test="${refereeList!=null}">	
+              <c:if test="${soccerBoardList!=null}">	
               <thead>               
-               <tr align="center" style="background-color:#E2D6D6;">
-               	  <td>
-               	    <div>
-						<label>지역:</label>
-						<select id="sido2" onchange="refereeRegion('${root}', '${sportCode}', this.value)">
-						<option>선택</option>				
-						<c:forEach var="sido" items="${sidoList}">												
-						<option value="${sido}">${sido}</option>				
-						</c:forEach>
-						</select>
-				    </div>
-				  </td>                 
-                  <td>이름</td>
-                  <td>생년월일</td>
-                  <td>지역</td>                               
+               <tr align="center" style="background-color:#E2D6D6;"> 
+               	  <td>작성자</td>              	                 
+                  <td>내용</td>
+                  <td>작성날짜</td>                                                 
                </tr>               
               </thead>
               </c:if>              
               <tbody>              
-           <c:if test="${refereeList==null}">	
+           <c:if test="${soccerBoardList==null}">	
 			  <tr>
-			   <td align="center">등록된 심판이 없습니다.</td>
+			   <td align="center">작성된 공지사항이 없습니다.</td>
 			  </tr>		
 			</c:if>
 						     					
-           <c:if test="${refereeList!=null}">
-           	<c:forEach var="referee" items="${refereeList}">			         	 
-			  <tr align="center">			
-				<td><span><img class="img-circle" src="${root }/img/refereeImg/${referee.refereePicture}" width="80px" height="80px"/></span></td>					
-				<td style="font-size:13pt;"><br/><span class="label label-danger">${referee.refereeName }</span></td>				
-				<td style="font-size:13pt;"><br/><span class="label label-primary">${referee.refereeBirth }</span></td>				
-				<td style="font-size:13pt;" width="20%"><br/><span class="glyphicon glyphicon-home">${referee.sido }</span></td>										
-				
+           <c:if test="${soccerBoardList!=null}">
+           	<c:forEach var="soccerBoardList" items="${soccerBoardList}">			         	 
+			  <tr align="center" style="background-color:">			
+				<td><span class="glyphicon glyphicon-home">${soccerBoardList.boardWriter}</span></td>					
+				<td><a href="${root }/board/readCommonBoard.do?boardNumber=${soccerBoardList.boardNumber}&pageNumber=${currentPage}">${soccerBoardList.boardTitle}</a></td>	
+				<td><a data-toggle="modal" href="#myModal">${soccerBoardList.boardTitle}</a></td>			
+				<td><fmt:formatDate value="${soccerBoardList.boardDate}" type="date"/></td>							
 			  </tr>
 			</c:forEach>			
 		   </c:if>		   		
@@ -126,27 +113,48 @@
 			
 			<c:if test="${endPage>pageCount }">
 				<c:set var="endPage" value="${pageCount }"/>
-			</c:if>		
+			</c:if>			
 			
 			<ul class="pager">
 			<c:if test="${startPage>pageBlock }">
-				<li><a href="${root }/referee/refereeList.do?pageNumber=${startPage-pageBlock}&sportCode=${sportCode}">BACK</a></li>
+				<li><a href="${root }/soccer/soccerCommonBoardPage.do?pageNumber=${startPage-pageBlock}&sportCode=${sportCode}">BACK</a></li>
 			</c:if>
 			
 			<c:forEach var="i" begin="${startPage}" end="${endPage}">
-				<li><a href="${root }/referee/refereeList.do?pageNumber=${i}&sportCode=${sportCode}">${i }</a></li>
+				<li><a href="${root }/soccer/soccerCommonBoardPage.do?pageNumber=${i}&sportCode=${sportCode}">${i }</a></li>
 			</c:forEach>
 			
 			<c:if test="${endPage<pageCount }">
-				<li><a href="${root }/referee/refereeList.do?pageNumber=${startPage+pageBlock}&sportCode=${sportCode}">NEXT</a></li>
+				<li><a href="${root }/soccer/soccerCommonBoardPage.do?pageNumber=${startPage+pageBlock}&sportCode=${sportCode}">NEXT</a></li>
 			</c:if>
 			</ul>
 					
 		</c:if>
-	<br/><br/><br/>	
+	<br/><br/><br/>		
+	</div>
 	
-	<input type="button" class="btn btn-info" value="심판 지원하기" onclick="location.href='${root}/referee/registerReferee.do?sportCode=${sportCode}'">	
-	
-	</div>   
+<!-- 	modal -->
+
+<div class="modal fade" id="myModal" role="dialog">
+    <div class="modal-dialog">
+    
+      <!-- Modal content-->
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
+          <h4 class="modal-title"></h4>
+        </div>
+        <div class="modal-body">
+          <p>d</p>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+        </div>
+      </div>
+      
+    </div>
+  </div>
+     
   </body>
 </html>
+
