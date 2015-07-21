@@ -111,12 +111,12 @@ public class MatchingServiceImpl implements MatchingService {
 				String temp=matchingDto.getMatchingPlace();
 				//String temp="세종특별자치시 테스트";
 				int index=temp.indexOf(" ");
-				System.out.println(index);
+				//System.out.println(index);
 				String matchingPlace=temp.substring(0, index);
 				if(index>4){
 					matchingPlace=temp.substring(0, 2);
 				}
-				System.out.println(matchingPlace);
+				//System.out.println(matchingPlace);
 
 				ArrayList<WeatherAllDTO> weatherAllList=new ArrayList<WeatherAllDTO>();
 				ArrayList<WeatherAllDTO> weatherAllList2=new ArrayList<WeatherAllDTO>();
@@ -128,15 +128,36 @@ public class MatchingServiceImpl implements MatchingService {
 				}				
 				
 				for(WeatherAllDTO weather : weatherAllList){					
-					System.out.println(weather.getRegion());					
-					System.out.println(matchingPlace);
+					//System.out.println(weather.getRegion());					
+					//System.out.println(matchingPlace);
 					if(weather.getRegion().contains(matchingPlace) && weather.getTmEf().contains("00:00")){
-						System.out.println(weather);
+						//System.out.println(weather);
+						if(weather.getWf().equals("맑음")){
+							weather.setWf("01.png");
+						}else if( weather.getWf().equals("구름조금")){
+							weather.setWf("02.png");
+						}
+						else if( weather.getWf().equals("구름많음")){
+							weather.setWf("03.png");
+						}
+						else if( weather.getWf().equals("흐림")){
+							weather.setWf("04.png");
+						}
+						else if( weather.getWf().equals("구름많고 비") || weather.getWf().equals("흐리고 비")){
+							weather.setWf("05.png");
+						}
+						else if( weather.getWf().equals("구름많고 눈/비") || weather.getWf().equals("구름많고 비/눈") || weather.getWf().equals("흐리고 눈/비") || weather.getWf().equals("흐리고 비/눈")){
+							weather.setWf("06.png");
+						}
+						else if( weather.getWf().equals("구름많고 눈") || weather.getWf().equals("흐리고 눈")){
+							weather.setWf("07.png");
+						}
+						
 						weatherAllList2.add(weather);
 					}
 				}
 				
-				System.out.println(weatherAllList2);
+				//System.out.println(weatherAllList2);
 				
 				mav.addObject("weatherAllList", weatherAllList2);
 				
