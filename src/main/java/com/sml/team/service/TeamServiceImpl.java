@@ -464,6 +464,7 @@ public class TeamServiceImpl implements TeamService{
 		ModelAndView mav = new ModelAndView();
 		
 		dao.editTeamIntro(teamCode,teamIntro);
+		
 		mav.addObject("teamIntro" , teamIntro);
 		mav.setViewName("jsonView");
 		return mav;
