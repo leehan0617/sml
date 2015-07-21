@@ -14,7 +14,7 @@
     <meta name="author" content="">
     <link rel="icon" href="../../favicon.ico">
 
-    <title>SML BasketBall Page</title>
+    <title>SML basketBall Page</title>
 
     <!-- Bootstrap core CSS -->
     <link href="${root}/resources/css/bootstrap.css" rel="stylesheet" type="text/css"/>
@@ -23,7 +23,7 @@
     <script src="${root }/resources/js/jquery.js"></script>
     <script src="${root }/resources/js/jquery-ui.js"></script>
 	<script src="${root }/resources/js/bootstrap.js"></script>
-	<script src="${root }/resources/js/soccerPage.js"></script>
+	<script src="${root }/resources/js/basketBallPage.js"></script>
 	<script src="${root }/resources/js/jquery.jqplot.js"></script>
 	<script src="${root }/resources/js/smlStart.js"></script>
 		
@@ -31,7 +31,7 @@
 	<script src="${root }/resources/js/jqplot.barRenderer.js"></script>
 	<script src="${root }/resources/js/jqplot.pieRenderer.js"></script>
     <!-- Custom styles for this template -->
-    <link href="${root}/resources/css/soccerPage.css" rel="stylesheet" type="text/css">
+    <link href="${root}/resources/css/basketBallPage.css" rel="stylesheet" type="text/css">
     <style>
     .ui-autocomplete { 
     overflow-y: scroll; 
@@ -57,7 +57,7 @@
             <div id="navbar" class="navbar-collapse collapse">
               <ul class="nav navbar-nav">
               	<li><a href="${root}/basketBall/basketBallCommonBoardPage.do?sportCode=${sportCode}">공지사항</a></li>
-                <li><a href="${root}/basketBall/basketBallRule.do?sportCode=${sportCode}{">경기규칙</a></li>
+                <li><a href="${root}/basketBall/basketBallRule.do?sportCode=${sportCode}">경기규칙</a></li>
                 <li><a href="${root}/basketBall/basketBallTeamList.do?sportCode=${sportCode}">팀리스트</a></li>
                 <li><a href="${root}/referee/refereeList.do?sportCode=${sportCode}">심판현황</a></li>
                 <li class="dropdown">
@@ -104,27 +104,27 @@
       </ol>
       <div class="carousel-inner" role="listbox">
         <div class="item">
-          <img class="first-slide" src="${root }/resources/images/soccer01.jpg" alt="First slide">
+          <img class="first-slide" src="${root }/resources/images/basketBall01.jpg" alt="First slide">
           <div class="container">
             <div class="carousel-caption">
-              <h1>WELCOME SML BasketBall PAGE </h1>
+              <h1>WELCOME SML basketBall PAGE </h1>
               <p>이 페이지에는 농구에 관련된 리그 및 팀들간 정보가 있습니다.</p>
               <p><a class="btn btn-lg btn-primary" href="#" role="button">Default Button</a></p>
             </div>
           </div>
         </div>
         <div class="item">
-          <img class="second-slide" src="${root }/resources/images/soccer03.jpg" alt="Second slide">
+          <img class="second-slide" src="${root }/resources/images/basketBall03.jpg" alt="Second slide">
           <div class="container">
             <div class="carousel-caption">
               <h1>공지사항</h1>
               <p>농구에 관련된 실시간 소식 및 정보를 여기서 확인해주세요.</p>
-              <p><a class="btn btn-lg btn-primary" role="button" data-toggle='modal' data-target='#modalSoccerBoard' onclick="viewSoccerBoard('${root}','${sportCode }','${currentPage}')">공지사항보기</a></p>
+              <p><a class="btn btn-lg btn-primary" role="button" data-toggle='modal' data-target='#modalbasketBallBoard' onclick="viewbasketBallBoard('${root}','${sportCode }','${currentPage}')">공지사항보기</a></p>
             </div>
           </div>
         </div>
         <div class="item active">
-          <img class="third-slide" src="${root}/resources/images/soccer04.jpg" alt="Third slide">
+          <img class="third-slide" src="${root}/resources/images/basketBall04.jpg" alt="Third slide">
           <div class="container">
             <div class="carousel-caption">
               <h1>다른종목이 궁금하세요?</h1>
@@ -259,9 +259,9 @@
   			<li id="cityChart" onclick="showCityChart('${root}','${sportCode }')">지역별 통계</li>
   			<li id="dayChart" onclick="showDayChart('${root}','${sportCode}')">요일별 통계</li>
 		  </ol>	
-          <div id="soccerPieChart" data-holder-rendered="true" style="width:460px; height:400px;"></div>
-          <div id="soccerLineChart" data-holder-rendered="true" style="width:460px; height:400px;"></div>
-          <div id="soccerBarChart" data-holder-rendered="true" style="width:460px; height:400px;"></div>
+          <div id="basketBallPieChart" data-holder-rendered="true" style="width:460px; height:400px;"></div>
+          <div id="basketBallLineChart" data-holder-rendered="true" style="width:460px; height:400px;"></div>
+          <div id="basketBallBarChart" data-holder-rendered="true" style="width:460px; height:400px;"></div>
         </div>
       </div>
 
@@ -275,7 +275,7 @@
 
     </div><!-- /.container -->
     
-    <div class="modal fade" id="modalSoccerBoard" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
+    <div class="modal fade" id="modalbasketBallBoard" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
  	 <div class="modal-dialog">
     	<div class="modal-content">
     		<div class="modal-header">
@@ -288,7 +288,7 @@
 							<th style="width:15%">글번호</th><th style="width:45%">제목</th><th style="width:15%">작성자</th><th style="width:25%">작성일</th> 
 						</tr> 
 					</thead>
-					<tbody class="soccerBody">	
+					<tbody class="basketBallBody">	
 					</tbody>
 				</table>
 				<nav>
@@ -303,7 +303,7 @@
      </div>
    </div>
    
-   <div class="modal fade" id="modalSoccerBoardRead" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
+   <div class="modal fade" id="modalbasketBallBoardRead" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
  	 <div class="modal-dialog">
     	<div class="modal-content">
     		<div class="modal-header">
@@ -312,11 +312,11 @@
     		<div class="modal-body">
     			 <div class="form-group">
            			 <label for="recipient-name" class="control-label" id="boardTitle">Title</label>
-           			 <input type="text" class="form-control" id="soccerBoardTitle" value="" disabled="disabled"/>
+           			 <input type="text" class="form-control" id="basketBallBoardTitle" value="" disabled="disabled"/>
         		  </div>
          		 <div class="form-group">
            			 <label for="message-text" class="control-label" id="boardContent">Content</label>
-           			 <textarea class="form-control" id="soccerBoardContent" disabled="disabled"></textarea>
+           			 <textarea class="form-control" id="basketBallBoardContent" disabled="disabled"></textarea>
         		  </div>
     		</div>
       		<div class="modal-footer">
@@ -326,7 +326,7 @@
      </div>
    </div>
    
-   <div class="modal fade" id="modalSoccerChart" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
+   <div class="modal fade" id="modalbasketBallChart" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
    	<div class="modal-dialog">
     	<div class="modal-content">
     		<div class="modal-header">

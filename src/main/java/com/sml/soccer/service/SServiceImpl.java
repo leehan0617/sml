@@ -157,8 +157,20 @@ public class SServiceImpl implements SService{
 	 * @설명 :
 	 */
 	@Override
-	public void soccerRule(ModelAndView mav) {		
+	public void soccerRule(ModelAndView mav) {
+		Map<String,Object> map=mav.getModelMap();		
+		HttpServletRequest request=(HttpServletRequest)map.get("request");
+		int sportCode = Integer.parseInt(request.getParameter("sportCode"));
+		String sportType="";
+		switch(sportCode){
+			case 0: sportType="축구"; break;
+			case 1: sportType="야구"; break;
+			case 2: sportType="풋살"; break;
+			case 3: sportType="족구"; break;
+		}
 		
+		mav.addObject("sportCode",sportCode);
+		mav.addObject("sportType",sportType);
 		mav.setViewName("soccer/soccerRule");
 	}
 	
