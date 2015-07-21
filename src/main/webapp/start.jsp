@@ -246,7 +246,7 @@
 				</a>
 
 				<a href='${root}/basketBall/basketBallMain.do' class='block col3 center pad2 pad4y keyline-bottom keyline-right'>
-					<img src="${root}/resources/images/basketballIcon.PNG" width="200" height="200">
+					<img src="${root}/resources/images/startImage/bk.png" width="200" height="200">
 
 					<span class='col12'><strong>농구</strong></span>
 					<span class='col12 small quiet space-bottom1'><strong>Basketball</strong></span>
