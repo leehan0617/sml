@@ -190,7 +190,27 @@ public class SController {
 		
 		return mav;
 	}
-	 
+	/**
+	 * 
+	 * @함수명:showRecentMatch
+	 * @작성일:2015. 7. 21.
+	 * @작성자:이한빈 
+	 * @설명문:최근 다가오는 경기리스트 보여주기 
+	 */
+	@RequestMapping(value="/showRecentMatch" , method=RequestMethod.GET)
+	public ModelAndView showRecentMatch(HttpServletRequest request , HttpServletResponse response){
+		logger.info("SController showRecentMatch");
+		response.setCharacterEncoding("UTF-8");
+		ModelAndView mav = service.showRecentMatch(request);
+		return mav;
+	}
 	
+	@RequestMapping(value="/findMatchTeams",method=RequestMethod.GET)
+	public ModelAndView findMatchTeams(HttpServletRequest request , HttpServletResponse response){
+		logger.info("SController findMatchTeams");
+		response.setCharacterEncoding("UTF-8");
+		ModelAndView mav = service.findMatchTeams(request);
+		return mav;
+	}
 
 }

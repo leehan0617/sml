@@ -270,7 +270,9 @@ public class TeamDaoImpl implements TeamDao{
 	 */
 	@Override
 	public TeamDto getTeamInfo(String teamName) {
+		System.out.println("teanNameDaoImpl555555555555555:"+teamName);
 		return sqlSession.selectOne("team.dao.TeamMapper.getTeamInfo",teamName);
+		
 	}
 
 	@Override

@@ -116,12 +116,18 @@ public class TeamServiceImpl implements TeamService{
 	public void goTeamPage(ModelAndView mav) {
 		logger.info("TeamService goTeamPage");
 		Map<String,Object> map=mav.getModelMap();
-		HttpServletRequest request=(HttpServletRequest) map.get("request");
-		
+		HttpServletRequest request=(HttpServletRequest) map.get("request");	
+		String searchTeamName=request.getParameter("searchTeamName");		
+		System.out.println("searchTeamName5555");
+		String teamName=request.getParameter("teamName");	
+		if(searchTeamName!=null){
+			teamName=searchTeamName;
+		}
+		System.out.println("teamName5555555"+teamName);
 		String pageNumber=request.getParameter("pageNumber");
-		System.out.println("pageNumber"+pageNumber);
-		if(pageNumber==null) pageNumber="1";
 		
+		if(pageNumber==null) pageNumber="1";
+		System.out.println("pageNumber"+pageNumber);
 		int boardSize=5;		
 		int currentPage=Integer.parseInt(pageNumber);
 		int startRow=(currentPage-1)*boardSize+1;
@@ -133,8 +139,9 @@ public class TeamServiceImpl implements TeamService{
 		logger.info("startRow"+startRow);
 		logger.info("endRow"+endRow);
 		
-		String teamName=request.getParameter("teamName");
-		//logger.info(request.getParameter("teamName"));
+		
+		//logger.info(request.getParameter("teamName"));		
+	    System.out.println("teamName:"+teamName);
 		TeamDto team=dao.getTeamInfo(teamName);
 		
 		int teamCode=team.getTeamCode();
@@ -159,7 +166,8 @@ public class TeamServiceImpl implements TeamService{
 			leagueDto=leagueDao.getLeagueInfo(leagueCode);
 		}
 		//System.out.println("leagueDtoNAme: " + leagueDto.getLeagueName());
-		//System.out.println("leagueCode:" + leagueCode);
+		//System.out.println("leagueCode:" + leagueCode);	
+		
 		
 		mav.addObject("emblem",emblem);
 		mav.addObject("count",count);		
@@ -173,10 +181,7 @@ public class TeamServiceImpl implements TeamService{
 		mav.addObject("teamName" , teamName);
 		mav.addObject("leagueDto" , leagueDto);		
 		mav.setViewName("team/teamMain");
-	}
-
-	
-
+		}
 	
 	/**
 	 * 

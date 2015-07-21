@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import com.sml.record.dto.RecordDto;
+import com.sml.team.dto.TeamDto;
 
 @Component
 public class RecordDaoImpl implements RecordDao {
@@ -28,5 +29,15 @@ public class RecordDaoImpl implements RecordDao {
 	@Override
 	public List<HashMap<String, Object>> getRecordList(String teamName) {
 		return sqlSession.selectList("dao.RecordMapper.getRecordList",teamName);
+	}
+
+	@Override
+	public TeamDto getTeamInfo(String teamName) {
+		return sqlSession.selectOne("dao.RecordMapper.getTeamInfo",teamName);
+	}
+
+	@Override
+	public HashMap<String, Object> getMatchingResult(int teamCode) {
+		return sqlSession.selectOne("dao.RecordMapper.getMatchingResult",teamCode);
 	}
 }

@@ -53,4 +53,24 @@ public class RecordServiceImpl implements RecordService {
 		List<HashMap<String, Object>> recordList=recordDao.getRecordList(teamName);
 		mav.addObject("recordList", recordList);
 	}
+
+	/**
+	 * @name : getMatchingResult
+	 * @date : 2015. 7. 21.
+	 * @author : 이희재
+	 * @description : 매칭 중인 결과를 출력
+	 */
+	@Override
+	public void getMatchingResult(ModelAndView mav) {
+		HashMap<String, Object> hMap=mav.getModelMap();
+		HttpServletRequest request=(HttpServletRequest) hMap.get("request");
+		String teamName=request.getParameter("teamName");
+		int teamCode=recordDao.getTeamInfo(teamName).getTeamCode();
+		
+		HashMap<String, Object> resultMap=recordDao.getMatchingResult(teamCode);
+		if(resultMap!=null){
+			mav.addObject("matchingResult", resultMap);
+		}
+		
+	}
 }

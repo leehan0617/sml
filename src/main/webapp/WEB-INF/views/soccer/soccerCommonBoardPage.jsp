@@ -34,28 +34,61 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
   </head>
   <body>
-      <nav class="navbar navbar-inverse navbar-fixed-top">
-      <div class="container-fluid">
-        <div class="navbar-header">        
-          <a class="navbar-brand" href="${root }/scMain">SML Korea</a>
-        </div>
-        <div id="navbar" class="navbar-collapse collapse">
-          <ul class="nav navbar-nav navbar-right">
-          	<c:choose>
-          	<c:when test="${teamGrade == null }">          		
-            	<li><a href="${root }/teamPage/login.do">로그인</a></li>            	
-            </c:when>
-            <c:otherwise>
-	        	<li><a href="${root }/teamPage/logout.do">로그아웃</a></li>
-	        </c:otherwise>
-	        </c:choose>	       
-			  <li><a href="${root }/scMain">메인</a></li>			            
-          </ul>         
-        </div>
+       <div class="navbar-wrapper">
+      <div class="container">
+
+        <nav class="navbar navbar-inverse navbar-fixed-top">
+          <div class="container-fluid">
+            <div class="navbar-header">
+              <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+              </button>
+              <a class="navbar-brand" href="${root }/start.jsp">SML KOREA</a>
+            </div>
+            <div id="navbar" class="navbar-collapse collapse">
+              <ul class="nav navbar-nav">
+              	<li><a href="${root}/soccer/soccerCommonBoardPage.do?sportCode=${sportCode}">공지사항</a></li>
+                <li><a href="${root}/soccer/soccerRule.do">경기규칙</a></li>
+                <li><a href="${root}/soccer/soccerTeamList.do?sportCode=${sportCode}">팀리스트</a></li>
+                <li><a href="${root}/referee/refereeList.do?sportCode=${sportCode}">심판현황</a></li>
+                <li class="dropdown">
+                  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">다른종목가기<span class="caret"></span></a>
+                  <ul class="dropdown-menu" role="menu">
+                  	<li class="divider"></li>
+                    <li><a href="${root}/soccer/soccerMain.do?legion=legion">축구</a></li>
+                    <li class="divider"></li>
+                    <li><a href="#">야구</a></li>
+                    <li class="divider"></li>
+                    <li><a href="#">족구</a></li>
+                    <li class="divider"></li>
+                    <li><a href="${root }/scMain">풋살</a></li>
+                    <li class="divider"></li>
+                  </ul>
+                </li>
+                <li>
+	               <form class="form-inline"  id="searchForm" name="searchForm" style="padding-top:10px;">
+		  			<div class="input-group">
+		      			<input type="text" class="form-control" placeholder="팀명을 검색하세요." name="teamName" id="searchTeamName">
+			    		<span class="input-group-btn">
+			      		<button class="btn btn-default" type="button" id="goTeamPage">
+			      		  <span class="glyphicon glyphicon-search" aria-hidden="true"></span>이동
+			      		</button>
+			      		</span>
+		    		</div><!-- /input-group -->
+	  			  </form>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </nav>
+
       </div>
-    </nav>
+    </div>
 	
-	 <br/><br/><br/><br/>
+	
      <div class="container-fluid" style="background:url(${root}/resources/images/backGroundImage.jpg)">   
        <span class="col-xs-2"><a href="${root }/scMain"><img class="img-circle img-responsive" alt="logo" src="${root}/resources/images/android@2x.png" width="200" height="150"></img></a></span> 	  
        	  
@@ -73,25 +106,39 @@
               <thead>               
                <tr align="center" style="background-color:#E2D6D6;"> 
                	  <td>작성자</td>              	                 
-                  <td>내용</td>
-                  <td>작성날짜</td>                                                 
+                  <td>제목</td>
+                  <td>작성일</td>                                                                
                </tr>               
               </thead>
               </c:if>              
-              <tbody>              
-           <c:if test="${soccerBoardList==null}">	
+              <tbody id="accordion">
+              	             
+           	  <c:if test="${soccerBoardList==null}">	
 			  <tr>
 			   <td align="center">작성된 공지사항이 없습니다.</td>
 			  </tr>		
 			</c:if>
 						     					
-           <c:if test="${soccerBoardList!=null}">
-           	<c:forEach var="soccerBoardList" items="${soccerBoardList}">			         	 
-			  <tr align="center" style="background-color:">			
-				<td><span class="glyphicon glyphicon-home">${soccerBoardList.boardWriter}</span></td>					
-				<td><a href="${root }/board/readCommonBoard.do?boardNumber=${soccerBoardList.boardNumber}&pageNumber=${currentPage}">${soccerBoardList.boardTitle}</a></td>	
-				<td><a data-toggle="modal" href="#myModal">${soccerBoardList.boardTitle}</a></td>			
-				<td><fmt:formatDate value="${soccerBoardList.boardDate}" type="date"/></td>							
+              <c:if test="${soccerBoardList!=null}">
+           	  <c:forEach var="soccerBoardList" items="${soccerBoardList}">			         	 
+			  <tr align="center" style="background-color:" id="#accordion">				
+				<td width="10%" style="font-size:20px; padding-top:20px;"><span class="label label-danger glyphicon glyphicon-user">${soccerBoardList.boardWriter}</span></td>
+				<td>
+				 <div style="padding-top:10px;" class="panel-group" id="accordion">				  
+    				<div class="panel panel-default">
+     					 <div class="panel-heading">
+        				<h4 class="panel-title">
+         					 <a data-toggle="collapse" data-parent="#accordion" href="#${soccerBoardList.boardNumber}">${soccerBoardList.boardTitle}</a>
+       				    </h4>
+     				    </div>
+     			    <div id="${soccerBoardList.boardNumber}" class="panel-collapse collapse">
+        				<div class="panel-body">${soccerBoardList.boardContent}</div>
+     			    </div>
+                   </div>
+                  </div>
+               </td>
+               <td width="10%" style="padding-top:25px;"><span class="label label-info glyphicon glyphicon-calendar"><fmt:formatDate value="${soccerBoardList.boardDate}" type="date"/></span></td>
+               
 			  </tr>
 			</c:forEach>			
 		   </c:if>		   		
@@ -131,30 +178,7 @@
 					
 		</c:if>
 	<br/><br/><br/>		
-	</div>
-	
-<!-- 	modal -->
-
-<div class="modal fade" id="myModal" role="dialog">
-    <div class="modal-dialog">
-    
-      <!-- Modal content-->
-      <div class="modal-content">
-        <div class="modal-header">
-          <button type="button" class="close" data-dismiss="modal">&times;</button>
-          <h4 class="modal-title"></h4>
-        </div>
-        <div class="modal-body">
-          <p>d</p>
-        </div>
-        <div class="modal-footer">
-          <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-        </div>
-      </div>
-      
-    </div>
-  </div>
-     
+	</div>     
   </body>
 </html>
 

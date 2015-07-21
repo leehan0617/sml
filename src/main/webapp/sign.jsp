@@ -96,7 +96,7 @@
 								<br/>
 							   <label>팀 주 경기장</label>
 							   <div class="input-group">
-							      <input type="text" size="20" class="form-control" placeholder="경기장을 입력해주세요." name="homeGround" disabled="disabled">
+							      <input type="text" size="20" class="form-control" placeholder="경기장을 입력해주세요." name="homeGround">
 							      <span class="input-group-btn">
 							        <button type="button" class="btn btn-default"  onclick="searchHomeground(form,'${root}')">경기장 검색</button>
 							      </span>

@@ -297,5 +297,35 @@
 		 
 		  
 	   }
+	   
+	   function showRecentMatch(root,sportCode){
+		   var addr = root+'/showRecentMatch?sportCode='+sportCode;
+		   var array=['headingOne','headingTwo','headingThree','headingFour','headingFive'];
+		   var array2=['collapseOne' , 'collapseTwo','collapseThree','collapseFour','collapseFive'];
+		   
+		   $.ajax({
+			  type:"GET",
+			  url:addr,
+			  success:function(data){
+				  console.log(data);
+				  var teamA,teamB;
+				  for(var i in data.recordList){  
+					  $.ajax({
+						 type:"GET",
+						 url:root+'/findMatchTeams?teamCode='+data.recordList[i].teamCode+'&teamCode2='+data.recordList[i].teamCode2,
+						 async:false,
+						 success:function(data2){
+							 console.log(data2);
+							 teamA=data2.teamA;
+							 teamB=data2.teamB;
+						 }
+					  });
+					  
+					  $("#accordion").append('<div class="panel panel-default"><div class="panel-heading" role="tab" id="'+array[i]+'"><h4 class="panel-title"><a data-toggle="collapse" data-parent="#accordion" href="#'+array2[i]+'" aria-expanded="true" aria-controls="'+array2[i]+'">'+(data.recordList[i].gameDate.year+1900)+"/"+data.recordList[i].gameDate.month+"/"+data.recordList[i].gameDate.day+":"+teamA+"&nbsp;vs&nbsp;"+teamB+'</a></h4></div><div id="'+array2[i]+'" class="panel-collapse collapse" role="tabpanel" aria-labelledby="'+array[i]+'"><div class="panel-body">'+"경기시간:"+data.recordList[i].gameTime+"<br/>"+"경기장소:"+data.recordList[i].gamePlace+"<br/>"+'</div></div>');   
+				  }
+				  
+			  }
+		   });
+	   }
 
 	
