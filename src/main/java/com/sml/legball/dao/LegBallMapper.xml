@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+  
+ <mapper namespace="legBall.dao.SMapper">
+ 	<resultMap type="com.sml.league.dto.LeagueDto" id="leagueJoin">
+ 		<result property="leagueCount" column="cnt"/>
+ 	</resultMap>
+	<select id="getBoardCount" parameterType="int" resultType="int">
+		select count(*) from board where sportCode = #{sportCode}
+	</select>
+	
+	<select id="getlegBallBoardList" parameterType="java.util.HashMap" resultType="com.sml.common.dto.CommonBoardDto">
+		<![CDATA[
+			 select * from(
+             	select rownum as rrownum, d.* from(
+             		select rownum as rnum , c.* from 
+              			(select a.* from board a where a.sportCode = #{sportCode} order by boardNumber) c order by rnum desc)d ) 
+              				where rrownum>= #{startRow} and rrownum<= #{endRow}
+		]]>
+	</select>
+	
+	<select id="getBoardContent" parameterType="int" resultType="com.sml.common.dto.CommonBoardDto">
+		select * from board where boardNumber = #{boardNumber}
+	</select>
+	
+	<select id="showAgeChart" parameterType="String" resultType="com.sml.member.dto.MemberDto">
+		select tm.memberbirth , tm.memberregion  from teammember tm , team t 
+			where t.sportType=#{sportType} and tm.teamcode = t.teamCode
+	</select>
+	
+	<select id="showDayChart" parameterType="String" resultType="java.util.Date">
+		select gameDate from gameRecord where sportType=#{sportType}
+	</select>
+	
+	<select id="getAllTeamSearch"  parameterType="java.util.HashMap" resultType="java.util.HashMap">
+ 		<![CDATA[ 		
+ 		select * from (
+				select rownum as rnum, d.* from
+				(select t.emblem,t.teamname,t.teamleaderName,h.ground
+					from homeground h, team t 
+						where t.sportType=#{sportType} and t.teamcode=h.teamCode 
+							order by t.teamCode desc) d ) where rnum >= #{startRow} and rnum <= #{endRow}
+ 		]]>
+ 	</select>
+ 	
+ 	<select id="showLeagueInfo" parameterType="String" resultType="com.sml.league.dto.LeagueDto">
+ 		select * from leagueInfo where leagueSport=#{sportType} and leagueState = 1
+ 	</select>
+	
+	<select id="getLeagueJoin" resultMap="leagueJoin">
+		select leagueCode , count(leagueCode) cnt from leagueJoin group by leagueCode 
+	</select>	
+		
+	<select id="checkLeague" parameterType="java.util.HashMap" resultType="int">
+		select count(*) from leagueJoin where leagueCode = #{leagueCode} and TeamCode = (select teamCode from team where teamName=#{teamName})
+	</select>
+	
+	<select id="teamCount" parameterType="String" resultType="int">
+		select count(*) from team where sportType=#{sportType}
+	</select>
+	
+	<select id="showRecentMatch" parameterType="String" resultType="com.sml.record.dto.RecordDto">
+		<![CDATA[
+			 select * from(
+             	select rownum as rrownum, d.* from(
+             		select rownum as rnum , c.* from 
+              			(select * from gameRecord where sportType = #{gameType} and gameState='경기 전' order by gameDate desc) c order by rnum desc)d ) 
+              				where rrownum>= 1 and rrownum<= 5
+			
+		]]>
+	</select>
+	
+	<select id="findMatchTeam" parameterType="Int" resultType="String">
+		select teamName from team where teamCode = #{teamCode}
+	</select>
+</mapper>

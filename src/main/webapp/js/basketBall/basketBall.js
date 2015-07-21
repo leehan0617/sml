@@ -75,11 +75,11 @@ $(document).ready(function(){
 });
 
 function moveMatchDay(root, num, matchDay){	
-		location.href=root + '/basketBall/basketBallMain.do?matchDay='+matchDay+'&moveMatchDay=' + num;
+		location.href=root + '/soccer/soccerMain.do?matchDay='+matchDay+'&moveMatchDay=' + num;
 }
 
 function commboard(root, boardNumber){
-	window.open(root + "/basketBall/readCommonBoard.do?boardNumber="+boardNumber + ", 공지사항", "width=400, height=200");
+	window.open(root + "/soccer/readCommonBoard.do?boardNumber="+boardNumber + ", 공지사항", "width=400, height=200");
 	return false; 
 	target="_blank";
 }
@@ -96,7 +96,7 @@ function applicate(root,teamId,leagueCode,leagueTeamNumber){
 
 
 function sModal(root,boardNumber){
-	var addr=root+"/basketBall/readCommonBoard.do?boardNumber="+boardNumber;
+	var addr=root+"/soccer/readCommonBoard.do?boardNumber="+boardNumber;
 	$.ajax({
 		type:"get",
 		url:addr,
@@ -107,7 +107,7 @@ function sModal(root,boardNumber){
 			var boardContent=data.commonBoard.boardContent;
 			var date=data.commonBoard.boardDate.year+1900+'-'+(data.commonBoard.boardDate.month+1)+'-'+data.commonBoard.boardDate.date
 			
-			$('.basketBallBoardTbody').append('<tr><td>'+boardNum+'</td>'+'<td>'+boardTitle+'</td>'+'<td>'+boardContent+'</td>'+'<td>'+date+'</td></tr>');
+			$('.soccerBoardTbody').append('<tr><td>'+boardNum+'</td>'+'<td>'+boardTitle+'</td>'+'<td>'+boardContent+'</td>'+'<td>'+date+'</td></tr>');
 		}
 	});
 }

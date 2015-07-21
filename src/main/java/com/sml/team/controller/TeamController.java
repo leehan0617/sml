@@ -311,8 +311,9 @@ public class TeamController {
 	}
 	
 	@RequestMapping(value="/editTeamIntro" , method=RequestMethod.GET)
-	public ModelAndView editTeamIntro(HttpServletRequest request){
+	public ModelAndView editTeamIntro(HttpServletRequest request,HttpServletResponse response){
 		logger.info("TeamController editTeamIntro");
+		response.setCharacterEncoding("UTF-8");
 		ModelAndView mav = service.editTeamIntro(request);
 		
 		return mav;

@@ -540,7 +540,8 @@
 </div>
 
 <div class="modal fade" id="modalEditTeamIntro" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-  
+  <div class="modal-dialog">
+  	<div class="modal-content">
       <div class="modal-header">
         <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
         <h4 class="modal-title">팀소개 편집하기.</h4>
@@ -558,7 +559,9 @@
         <button type="button" class="btn btn-primary" data-dismiss="modal" onclick="editTeamIntro('${root}','${teamName}','${team.teamCode }')">편집완료</button>
       </div>
     </div>
-
+    </div>
+    </div>
+    
 <div class="modal modal-wide fade" id="popupMatching">
 	<div class="modal-dialog">
     	<div class="modal-content">
@@ -597,14 +600,19 @@
 
 <script>
 	function editTeamIntro(root , teamName , teamCode){
-		var teamIntro = $("#teamIntroContent").val();
+		//var teamIntro = $("#teamIntroContent").val();
+		var teamIntro = $("#teamIntroContent").val().replace(/\n/g, '<br>');
+
 		var addr = root+"/editTeamIntro?teamName="+teamName+"&teamCode="+teamCode+"&teamIntro="+teamIntro;
 		
 		$.ajax({
 			type:"get",
 			url:addr,
 			success:function(data){
-				$("#teamIntro").text(data.teamIntro);
+				//console.log(data);
+				//console.log(data.teamIntro.replace(/<br>/gi,"\r\n"));
+				//$("#teamIntro").text(data.teamIntro.replace(/<br>/gi,"\r\n"));
+				$("#teamIntro").html(data.teamIntro);
 				$("#teamIntroContent").val("");
 			}
 		});

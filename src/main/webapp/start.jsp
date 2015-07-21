@@ -245,13 +245,14 @@
 					<span class='col12 small quiet space-bottom1'><strong>Baseball</strong></span>
 				</a>
 
-				<a href='/mapbox-android-sdk/' class='block col3 center pad2 pad4y keyline-bottom keyline-right'>
-					<img src="${root}/resources/images/startImage/bk.png" width="200" height="200">
+				<a href='${root}/basketBall/basketBallMain.do' class='block col3 center pad2 pad4y keyline-bottom keyline-right'>
+					<img src="${root}/resources/images/basketballIcon.PNG" width="200" height="200">
+
 					<span class='col12'><strong>농구</strong></span>
 					<span class='col12 small quiet space-bottom1'><strong>Basketball</strong></span>
 				</a>
 
-				<a href='${root }/scMain' class='block center col3 pad2 pad4y keyline-bottom'>
+				<a href='${root }/legBall/legBallMain.do' class='block center col3 pad2 pad4y keyline-bottom'>
 					<img src="${root}/resources/images/startImage/lg.png" width="200" height="200">
 					<span class='col12'><strong>족구</strong></span>
 					<span class='col12 small quiet space-bottom1'><strong>Legball</strong></span>
