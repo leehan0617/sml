@@ -9,51 +9,89 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <!-- 위 3개의 메타 태그는 *반드시* head 태그의 처음에 와야합니다; 어떤 다른 콘텐츠들은 반드시 이 태그들 *다음에* 와야 합니다 -->
-    
+    <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
     <meta name="description" content="">
-    <meta name="author" content="">   
-    <link rel="icon" href="${root }/resources/images/android@2x.png"/>
-    
-    <title>심판현황</title>    
-    
+    <meta name="author" content="">
+    <link rel="icon" href="../../favicon.ico">
 
-   <!-- Bootstrap core CSS -->
-    <link rel="stylesheet" type="text/css" href="${root }/resources/css/bootstrap.css"/>
-    
+    <title>SML Soccer Page</title>
 
-    <!-- Custom styles for this template -->     
-  
-  	<script src="${root }/resources/js/jquery.js"></script> 	
- 	<script src="${root }/resources/js/bootstrap.js"></script>
-  	<script src="${root }/resources/js/jquery-ui.js"></script>  	
-  	<script type="text/javascript" src="${root }/js/referee/referee.js"></script>
-	<script type="text/javascript" src="${root}/js/xhr/xhr.js"></script> 	
-    
-    <!-- Placed at the end of the document so the pages load faster -->
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
+    <!-- Bootstrap core CSS -->
+    <link href="${root}/resources/css/bootstrap.css" rel="stylesheet" type="text/css"/>
+    <link href="${root}/resources/css/jquery.jqplot.css" rel="stylesheet" type="text/css"/>
+    <link rel="stylesheet" type="text/css" href="${root }/resources/css/jquery-ui.css"/>	
+    <script src="${root }/resources/js/jquery.js"></script>
+    <script src="${root }/resources/js/jquery-ui.js"></script>
+	<script src="${root }/resources/js/bootstrap.js"></script>
+	<script src="${root }/resources/js/soccerPage.js"></script>
+	<script src="${root }/resources/js/jquery.jqplot.js"></script>
+	<script src="${root }/resources/js/smlStart.js"></script>	
+	<script type="text/javascript" src="${root }/js/referee/referee.js"></script>
+	<script src="${root }/resources/js/jqplot.categoryAxisRenderer.js"></script>
+	<script src="${root }/resources/js/jqplot.barRenderer.js"></script>
+	<script src="${root }/resources/js/jqplot.pieRenderer.js"></script>
+    <!-- Custom styles for this template -->
+    <link href="${root}/resources/css/soccerPage.css" rel="stylesheet" type="text/css">
+    <style>
+    .ui-autocomplete { 
+    overflow-y: scroll; 
+    overflow-x: hidden;}
+    </style>
   </head>
   <body>
-      <nav class="navbar navbar-inverse navbar-fixed-top">
-      <div class="container-fluid">
-        <div class="navbar-header">        
-          <a class="navbar-brand" href="${root }/scMain">SML Korea</a>
-        </div>
-        <div id="navbar" class="navbar-collapse collapse">
-          <ul class="nav navbar-nav navbar-right">
-          	<c:choose>
-          	<c:when test="${teamGrade == null }">          		
-            	<li><a href="${root }/teamPage/login.do">로그인</a></li>            	
-            </c:when>
-            <c:otherwise>
-	        	<li><a href="${root }/teamPage/logout.do">로그아웃</a></li>
-	        </c:otherwise>
-	        </c:choose>	       
-			  <li><a href="${root }/scMain">메인</a></li>			            
-          </ul>         
-        </div>
+      <div class="navbar-wrapper">
+      <div class="container">
+
+        <nav class="navbar navbar-inverse navbar-fixed-top">
+          <div class="container-fluid">
+            <div class="navbar-header">
+              <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+              </button>
+              <a class="navbar-brand" href="${root }/start.jsp">SML KOREA</a>
+            </div>
+            <div id="navbar" class="navbar-collapse collapse">
+              <ul class="nav navbar-nav">
+              	<li><a href="${root}/soccer/soccerCommonBoardPage.do?sportCode=${sportCode}">공지사항</a></li>
+                <li><a href="${root}/soccer/soccerRule.do?sportCode=${sportCode}">경기규칙</a></li>
+                <li><a href="${root}/soccer/soccerTeamList.do?sportCode=${sportCode}">팀리스트</a></li>
+                <li><a href="${root}/referee/refereeList.do?sportCode=${sportCode}">심판현황</a></li>
+                <li class="dropdown">
+                  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">다른종목가기<span class="caret"></span></a>
+                  <ul class="dropdown-menu" role="menu">
+                  	<li class="divider"></li>
+                    <li><a href="${root}/soccer/soccerMain.do?legion=legion">축구</a></li>
+                    <li class="divider"></li>
+                    <li><a href="#">야구</a></li>
+                    <li class="divider"></li>
+                    <li><a href="#">족구</a></li>
+                    <li class="divider"></li>
+                    <li><a href="${root }/scMain">풋살</a></li>
+                    <li class="divider"></li>
+                  </ul>
+                </li>
+                <li>
+	               <form class="form-inline"  id="searchForm" name="searchForm" style="padding-top:10px;">
+		  			<div class="input-group">
+		      			<input type="text" class="form-control" placeholder="팀명을 검색하세요." name="teamName" id="searchTeamName">
+			    		<span class="input-group-btn">
+			      		<button class="btn btn-default" type="button" id="goTeamPage">
+			      		  <span class="glyphicon glyphicon-search" aria-hidden="true"></span>이동
+			      		</button>
+			      		</span>
+		    		</div><!-- /input-group -->
+	  			  </form>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </nav>
+
       </div>
-    </nav>
+    </div>
 	
 	 <br/><br/><br/><br/>
      <div class="container-fluid" style="background:url(${root}/resources/images/backGroundImage.jpg)">   

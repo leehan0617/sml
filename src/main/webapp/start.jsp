@@ -52,6 +52,7 @@
       <div class="container">
         <div class="full">
           <h1 class="name">SML KOREA</h1>
+          <br/>
           <p class="subtitle">간단한 정보 입력만으로<br/>다른팀들과 경기를 매칭시킬수 있습니다.<br/>지금 매칭을 시작해보세요.</p>
           <nav role="navigation">
             <ul class="nav">
@@ -72,6 +73,7 @@
           </nav>
           <p>
           	<span>
+          		<br/>
           		<br/>
           		<br/>
           	</span> 
@@ -232,25 +234,25 @@
 		<div class="clearfix">
 			<div class='section clearfix col12 keyline-top  dev-tools space-bottom2 clip'>
 				<a href="${root}/soccer/soccerMain.do?legion=legion"  class='block center col3 pad2 pad4y keyline-right keyline-bottom'>
-					<img src="${root}/resources/images/soccerIcon2.jpg" width="200" height="200">
+					<img src="${root}/resources/images/startImage/ss.png" width="200" height="200">
 					<span class='col12'><strong>축구</strong></span>
 					<span class='col12 small quiet space-bottom1'><strong>Soccer</strong></span>
-				</a>
+				</a>				
 
-				<a href='/mapbox-gl-ios/' class='block col3 center pad2 pad4y keyline-right keyline-bottom'>
-					<img src="${root}/resources/images/baseballIcon.png" width="200" height="200">
+				<a href="${root}/baseBall/baseBallMain.do"  class='block col3 center pad2 pad4y keyline-right keyline-bottom'>
+					<img src="${root}/resources/images/startImage/bb.png" width="200" height="200">
 					<span class='col12'><strong>야구</strong></span>
 					<span class='col12 small quiet space-bottom1'><strong>Baseball</strong></span>
 				</a>
 
 				<a href='/mapbox-android-sdk/' class='block col3 center pad2 pad4y keyline-bottom keyline-right'>
-					<img src="${root}/resources/images/basketballIcon.PNG" width="200" height="200">
+					<img src="${root}/resources/images/startImage/bk.png" width="200" height="200">
 					<span class='col12'><strong>농구</strong></span>
-					<span class='col12 small quiet space-bottom1'><strong>Football</strong></span>
+					<span class='col12 small quiet space-bottom1'><strong>Basketball</strong></span>
 				</a>
 
 				<a href='${root }/scMain' class='block center col3 pad2 pad4y keyline-bottom'>
-					<img src="${root}/resources/images/jokguIcon.PNG" width="200" height="200">
+					<img src="${root}/resources/images/startImage/lg.png" width="200" height="200">
 					<span class='col12'><strong>족구</strong></span>
 					<span class='col12 small quiet space-bottom1'><strong>Legball</strong></span>
 				</a>

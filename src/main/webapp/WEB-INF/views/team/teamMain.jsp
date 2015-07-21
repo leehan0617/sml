@@ -25,6 +25,8 @@
 	<link href="${root}/css/teamPage/matchingMap.css" type="text/css" rel="stylesheet"/>
 	<script src="${root }/js/teamPage/teamPage.js"></script>
 	
+	<!-- viewMatchingPlace.jsp -->
+	<script src="${root }/js/teamPage/teamMatching.js"></script>
 	<style>
 		.modal.modal-wide .modal-dialog {
 		  width: 70%;
@@ -587,6 +589,9 @@
     <button type="button" data-dismiss="modal" class="btn btn-default">Close</button>
     <button type="button" class="btn btn-primary">Ok</button>
   </div>
+</div>
+
+<div id="listDiv" class="modal-content">
 </div>
 
 

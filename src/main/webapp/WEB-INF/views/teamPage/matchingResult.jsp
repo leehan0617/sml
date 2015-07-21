@@ -32,32 +32,32 @@
 		<div class="row">
 		  <div class="col-md-1"></div>
 		  
-		  <div class="col-md-4 " style="display:table-cell; text-align:center; vertical-align:middle; margin-top:40px;">	
+		  <div class="col-md-4 well" style="display:table-cell; text-align:center; vertical-align:middle; margin-top:5%;">	
 		  	<c:if test="${normalMatchInfo.TEAM1==teamName }">		  
-		    	<a href="#">
-		    		<img class="img-circle" src="${root}/img/teamImg/${myTeamDto.emblem }" alt=".." width=188/>
+		    	<a href="${root }/team/teamMain.do?teamName=${normalMatchInfo.TEAM1 }" target="_new">
+		    		<img class="img-circle" src="${root}/img/teamImg/${myTeamDto.emblem }" alt=".." height="188px"/>
 		      	</a>
 	      	</c:if>
 	      	
 	      	<c:if test="${normalMatchInfo.TEAM2==teamName }">
-	      		<a href="#">
-		    		<img class="img-circle" src="${root}/img/teamImg/${myTeamDto.emblem }" alt=".." width=188/>
+	      		<a href="${root }/team/teamMain.do?teamName=${normalMatchInfo.TEAM1 }" target="_new">
+		    		<img class="img-circle" src="${root}/img/teamImg/${myTeamDto.emblem }" alt=".." height="188px"/>
 		      	</a>	
 	      	</c:if>
 	      	
 		  </div>
 		  <div class="col-md-2" style="display:table-cell; text-align:center; vertical-align:middle; height:230px; padding-top:70px;"><h2>vs</h2></div>
 		  
-		  <div class="col-md-4" style="display:table-cell; text-align:center; vertical-align:middle; margin-top:40px;">
+		  <div class="col-md-4 well" style="display:table-cell; text-align:center; vertical-align:middle; margin-top:5%;">
 	    	<c:if test="${normalMatchInfo.TEAM1==teamName }">		  
-		    	<a href="#">
-		    		<img class="img-circle" src="${root}/img/teamImg/${otherTeamDto.emblem }" alt=".." width=188/>
+		    	<a href="${root }/team/teamMain.do?teamName=${normalMatchInfo.TEAM2}" target="_new">
+		    		<img class="img-circle" src="${root}/img/teamImg/${otherTeamDto.emblem }" alt=".." height="188px"/>
 		      	</a>
 	      	</c:if>
 	      	
 	      	<c:if test="${normalMatchInfo.TEAM2==teamName }">
-	      		<a href="#">
-		    		<img class="img-circle" src="${root}/img/teamImg/${otherTeamDto.emblem }" alt=".." width=188/>
+	      		<a href="${root }/team/teamMain.do?teamName=${normalMatchInfo.TEAM2}" target="_new">
+		    		<img class="img-circle" src="${root}/img/teamImg/${otherTeamDto.emblem }" alt=".." height="188px"/>
 		      	</a>
 	      	</c:if>
 		  </div>
@@ -67,9 +67,9 @@
 		<!-- 팀 정보 -->
 		<h2>매칭 정보</h2> 
 		<div class="row">		  
-		  <div class="col-md-6" style="display:table-cell; text-align:center; vertical-align:middle; ">			  
+		  <div class="col-md-6 well">			  
 	    		<c:if test="${normalMatchInfo.TEAM1==teamName }">		
-					  <table class="table table-hover" style="width:100%;">
+					  <table class="table table-hover">
 					    <tbody>
 					      <tr>
 					        <td style="width:20%;">팀</td>
@@ -103,7 +103,7 @@
 		      	
 		      	<c:if test="${normalMatchInfo.TEAM2==teamName }">
 				<br/>      					   
-					  <table class="table table-hover" style="width:100%;">
+					  <table class="table table-hover">
 					    <tbody>
 					      <tr>
 					        <td style="width:20%;">팀</td>
@@ -135,13 +135,13 @@
 					<h4>Time : ${matchingDto.matchingTime}</h4>	 --%>
 		      	</c:if>
 		  </div>
-		  <!-- <div class="col-md-2" style="display:table-cell; text-align:center; vertical-align:middle; height:230px; padding-top:70px;"></div> -->
-		  <div class="col-md-6" style="display:table-cell; text-align:center; vertical-align:middle;">
+		  <!-- <div class="col-md-2" style="display:table-cell; text-align:center; vertical-align:middle; height:230px; padding-top:70px;"></div> -->		  
+		  <div class="col-md-6 well">
 	    		<c:if test="${normalMatchInfo.TEAM1==teamName }">
-					  <table class="table table-hover" style="width:100%;">
+					  <table class="table table-hover" >
 					    <tbody>
 					      <tr>
-					        <td style="width:20%;">팀</td>
+					        <td style="width:20%;"> 팀 </td>
 					        <td>${normalMatchInfo.TEAM2 }</td>
 					      </tr>
 					      <tr>
@@ -172,7 +172,7 @@
 		      	</c:if>
 		      	
 		      	<c:if test="${normalMatchInfo.TEAM2==teamName }">
-					  <table class="table table-hover" style="width:100%;">
+					  <table class="table table-hover">
 					    <tbody>
 					      <tr>
 					        <td style="width:20%;">팀</td>
@@ -290,11 +290,10 @@
 	</div>
 	
 	<div class="modal-footer">
-		<button class="btn btn-default" data-toggle="modal" href="#stack2">Launch modal</button>		
-		
 		<input type="button" value="경기 결과 입력">
 		<input type="button" value="경기장 정보" onclick="viewMatchingPlace('${root }','${myTeamDto.teamCode }','${otherTeamDto.teamCode }')">
-		<input type="button" value="상대 팀 및 팀장 정보" onclick="viewOtherTeamInfo('${root}','${otherMatchingDto.teamCode}')">
+		<%-- <input type="button" value="상대 팀 및 팀장 정보" onclick="viewOtherTeamInfo('${root}','${otherMatchingDto.teamCode}')"> --%>
+		
 	</div>
 	
 	</c:if>
@@ -368,6 +367,8 @@
 	</c:if>
 	
 </div>
+
+
 </body>
 </html>
 		

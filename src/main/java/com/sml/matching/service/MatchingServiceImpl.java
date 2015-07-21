@@ -17,7 +17,9 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.sml.matching.dao.MatchingDao;
 import com.sml.matching.dto.MatchingDto;
+import com.sml.member.dao.MemberDao;
 import com.sml.member.dto.MemberDto;
+import com.sml.team.dao.TeamDao;
 import com.sml.team.dto.TeamDto;
 import com.sml.team.service.TeamServiceImpl;
 import com.sml.weather.WeatherAllDTO;
@@ -28,6 +30,8 @@ public class MatchingServiceImpl implements MatchingService {
 	private Logger logger = Logger.getLogger(TeamServiceImpl.class.getName());
 	@Autowired
 	private MatchingDao dao;
+	@Autowired
+	private MemberDao memberDao;
 	/**
 	 * @name : TeamServiceImpl
 	 * @date : 2015. 7. 6.
@@ -107,6 +111,9 @@ public class MatchingServiceImpl implements MatchingService {
 					otherTeamDto=dao.getTeamInfo(String.valueOf(normalMatchInfo.get("TEAM1")));
 				}
 				
+				//상대팀 팀장 정보
+				MemberDto otherMemberDto=memberDao.getMemberInfo(otherTeamDto.getTeamCode());
+				
 				//일주일 날씨 파싱
 				String temp=matchingDto.getMatchingPlace();
 				//String temp="세종특별자치시 테스트";
@@ -160,6 +167,7 @@ public class MatchingServiceImpl implements MatchingService {
 				//System.out.println(weatherAllList2);
 				
 				mav.addObject("weatherAllList", weatherAllList2);
+				mav.addObject("otherMemberDto", otherMemberDto);
 				
 				mav.addObject("normalMatchInfo",normalMatchInfo);
 				mav.addObject("otherMatchingDto",otherMatchingDto);
