@@ -44,7 +44,7 @@
 				
 				<div class="col-sm-5 col-md-5" style="display:table-cell; text-align:center; vertical-align:middle;">
 					<div>
-						<img class="img-circle" src="${root }/img/teamImg/${team.emblem}" />
+						<img class="img-circle" style="width:100%; height:100%;" src="${root }/img/teamImg/${team.emblem}" />
 					</div>					
 				</div>
 				<div class="col-sm-2 col-md-2 " style="margin-top:15%; padding-left:7%;">
