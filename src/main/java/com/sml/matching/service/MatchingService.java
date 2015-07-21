@@ -9,4 +9,5 @@ public interface MatchingService {
 	public void searching(ModelAndView mav);
 	public void viewMatchingPlace(ModelAndView mav);
 	public void viewOtherTeamInfo(ModelAndView mav);
+	public void getMatchingInfo(ModelAndView mav);
 }
