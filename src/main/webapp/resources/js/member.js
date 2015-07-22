@@ -1,6 +1,7 @@
 
 var rroot="/home";
 
+
 $(document).ready(function(){
 	var url=rroot+"/member/searchRegion.do";
 	
@@ -18,7 +19,9 @@ $(document).ready(function(){
 			}
 		}
 	}
-
+	
+	idChk="X";
+	teamIdChk="X";
 });
 
 function regionSido(root){
@@ -41,12 +44,38 @@ function fromServer(){
 }
 
 function Check(form){
+	//아이디 입력여부 검사
 	if($("input[name='teamId']").val()==""){
 		alert("아이디를 입력하세요");
 		$("input[name='teamId']").focus();
 		$("#step2").attr("data-target", "#");
 		return false;
 	}       
+	
+	//아이디 유효성 검사 (영문소문자, 숫자만 허용)
+	for (var i=0;i<$("input[name='teamId']").val().length ;i++ ){
+	 var ch=$("input[name='teamId']").val().charAt(i);
+	  if (!(ch>='0' && ch<='9') && !(ch>='a' && ch<='z')){
+		  alert ("아이디는 소문자, 숫자만 입력가능합니다.");
+		  $("#step2").attr("data-target", "#");
+		  return;
+	  }
+	}
+	//아이디에 공백 사용하지 않기
+	if ($("input[name='teamId']").val().indexOf(" ")>=0)
+	{
+	 alert("아이디에 공백을 사용할 수 없습니다.");
+	 $("#step2").attr("data-target", "#");
+	 return;
+	}
+	//아이디 길이 체크 (6~12자)
+	if ($("input[name='teamId']").val().length<6 || $("input[name='teamId']").val().length>12)
+	{
+	 alert ("아이디를 6~12자까지 입력해주세요.");
+	 $("input[name='teamId']").focus();
+	 $("#step2").attr("data-target", "#");
+	 return;
+	}
 	
 	if($("input[name='teamPassword']").val()==""){
 		alert("비밀번호를 입력하세요");
@@ -69,6 +98,14 @@ function Check(form){
 		return false;
 	}	
 
+	//비밀번호 길이 체크(4~8자 까지 허용)
+	if ($("input[name='teamPassword']").val().length<4 || $("input[name='teamPassword']").val().length>8){
+		alert ("비밀번호를 4~8자까지 입력해주세요.")
+		$("input[name='teamPassword']").focus();
+		$("#step2").attr("data-target", "#");
+		return
+	}
+	
 	if(form.teamName.value==""){
 		alert("팀명을 입력하세요");
 		form.teamName.focus();
@@ -90,8 +127,20 @@ function Check(form){
 		return false;
 	}	
 	
+	alert(idChk + " + " + teamIdChk );
+	if(idChk!="ok"){
+		alert("아이디 중복검사를 하세요.");
+		$("#step2").attr("data-target", "#");
+		return;
+	}
+	
+	if(teamIdChk!="ok"){
+		alert("팀 중복검사를 하세요.");
+		$("#step2").attr("data-target", "#");
+		return;
+	}
 	$("#step2").attr("data-target", "#popupJoin2");
-	return true;
+	return;
 }
 
 function idCheck(form,root){
@@ -157,7 +206,6 @@ function teamCheck(form){
 function teamIdCheck(form,root){
 /*	alert("ok");
 	alert("idCheck:"+form.teamName.value+","+root);	*/
-	
 	if(form.teamName.value==""){
 		alert("팀명을 입력하세요");
 		form.teamName.focus();
@@ -170,6 +218,7 @@ function teamIdCheck(form,root){
 		dataType:"html",
 		success:function(data){
 			$('#resultTeamAlert').html(data);
+			alert(idChk + " + " + teamIdChk );
 		}
 	});
 }
