@@ -62,4 +62,9 @@
 	<select id="getTeamLeaderInfo" parameterType="java.util.HashMap" resultType="com.sml.member.dto.MemberDto">
 		select * from teamMember where teamCode=#{teamCode} and memberName=#{leaderName}
 	</select>
+	
+	<select id="getNormalRecordInfo" parameterType="java.util.HashMap" resultType="com.sml.record.dto.RecordDto">
+		select * from gameRecord where ((teamCode=#{teamCode} and teamCode2=#{teamCode2}) or (teamCode=#{teamCode2} and teamCode2=#{teamCode}))
+			and gameType=0 and gameState='경기 전'
+	</select>
 </mapper>

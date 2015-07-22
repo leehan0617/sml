@@ -64,7 +64,7 @@
                   <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">다른종목가기<span class="caret"></span></a>
                   <ul class="dropdown-menu" role="menu">
                   	<li class="divider"></li>
-                    <li><a href="${root }/scMain">축구</a></li>
+                    <li><a href="${root }/sc">축구</a></li>
                     <li class="divider"></li>
                     <li><a href="${root}/baseBall/baseBallMain.do">야구</a></li>
                     <li class="divider"></li>
@@ -104,7 +104,7 @@
       </ol>
       <div class="carousel-inner" role="listbox">
         <div class="item">
-          <img class="first-slide" src="${root }/resources/images/legBallImg.jpg" alt="First slide">
+          <img class="first-slide" src="${root }/resources/images/legBallImg3.jpg" alt="First slide">
           <div class="container">
             <div class="carousel-caption">
               <h1>WELCOME SML legBall PAGE </h1>

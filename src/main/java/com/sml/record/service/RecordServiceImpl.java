@@ -73,4 +73,24 @@ public class RecordServiceImpl implements RecordService {
 		}
 		
 	}
+
+	@Override
+	public void insertMatchingResult(ModelAndView mav) {
+		HashMap<String, Object> hMap=mav.getModelMap();
+		HttpServletRequest request=(HttpServletRequest) hMap.get("request");
+		int gameCode=Integer.parseInt(request.getParameter("gameCode"));
+		String resultScore=request.getParameter("resultScore");
+		String result=request.getParameter("result");
+		
+//		HashMap<String, Object> record=.getRecordInfo(gameCode);
+//		int check=0;
+//		
+//		if(result.equals("무")){
+//			check=adminDao.insertDraw(gameCode, resultScore);
+//		}else if(result.equals(record.get("TEAM1"))){
+//			check=adminDao.insertTeam1(gameCode, resultScore);
+//		}else if(result.equals(record.get("TEAM2"))){
+//			check=adminDao.insertTeam2(gameCode, resultScore);
+//		}
+	}
 }

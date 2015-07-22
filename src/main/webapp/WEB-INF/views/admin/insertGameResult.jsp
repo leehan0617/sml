@@ -73,7 +73,8 @@
 				<input type="text" name="scoreTeam2"  placeholder="Team 2 스코어" size="5">
 			</div>
 			<input type="hidden" id="score">
-	  </div>		
+	  </div>
+	 		
     </div>
 </div>
 </body>

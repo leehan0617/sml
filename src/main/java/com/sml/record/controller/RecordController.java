@@ -37,4 +37,12 @@ public class RecordController {
 		recordService.soccerGameScore(mav);
 		return mav;
 	}
+	
+	public ModelAndView insertMatchingResult(HttpServletRequest request){
+		ModelAndView mav=new ModelAndView();
+		mav.addObject("request", request);
+		
+		recordService.insertMatchingResult(mav);
+		return mav;
+	}
 }
