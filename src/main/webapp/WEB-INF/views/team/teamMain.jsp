@@ -598,6 +598,7 @@
 </div>
 
 
+
 <script>
 	function editTeamIntro(root , teamName , teamCode){
 		//var teamIntro = $("#teamIntroContent").val();

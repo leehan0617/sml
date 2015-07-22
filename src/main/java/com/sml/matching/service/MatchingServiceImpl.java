@@ -19,6 +19,7 @@ import com.sml.matching.dao.MatchingDao;
 import com.sml.matching.dto.MatchingDto;
 import com.sml.member.dao.MemberDao;
 import com.sml.member.dto.MemberDto;
+import com.sml.record.dto.RecordDto;
 import com.sml.team.dao.TeamDao;
 import com.sml.team.dto.TeamDto;
 import com.sml.team.service.TeamServiceImpl;
@@ -102,6 +103,7 @@ public class MatchingServiceImpl implements MatchingService {
 				
 				int tempTeamCode=Integer.valueOf(String.valueOf(normalMatchInfo.get("TEAMCODE")));
 				int tempTeamCode2=Integer.valueOf(String.valueOf(normalMatchInfo.get("TEAMCODE2")));
+				RecordDto recordDto=dao.getNormalRecordInfo(tempTeamCode, tempTeamCode2);
 				
 				if(teamCode==tempTeamCode){
 					otherMatchingDto=dao.getTeamMatchingInfo(tempTeamCode2);
@@ -169,6 +171,7 @@ public class MatchingServiceImpl implements MatchingService {
 				mav.addObject("weatherAllList", weatherAllList2);
 				//mav.addObject("otherMemberDto", otherMemberDto);
 				
+				mav.addObject("recordDto",recordDto);
 				mav.addObject("normalMatchInfo",normalMatchInfo);
 				mav.addObject("otherMatchingDto",otherMatchingDto);
 				mav.addObject("matchingDto", matchingDto);
