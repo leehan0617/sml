@@ -27,6 +27,7 @@
 <script src="${root }/resources/js/smlStart.js"></script>
 <script src="${root }/js/xhr/xhr.js"></script>
 
+
 <style>
 	  .ui-autocomplete { 
 	    overflow-y: scroll; 
@@ -205,26 +206,26 @@
 		</div>
 		<div class="clearfix">
 			<div class='section clearfix col12 keyline-top  dev-tools space-bottom2 clip'>
-				<a href="${root }/sc"  class='block center col3 pad2 pad4y keyline-right keyline-bottom'>
+				<a href="${root }/sc"  class='block center col3 pad2 pad4y keyline-right keyline-bottom' id="goScPage">
 					<img src="${root}/resources/images/startImage/mainPageSoccer.jpg" width="100" height="300">
 					<span class='col12' style="font-size:20px;"><strong>축구</strong></span>
 					<span class='col12 small quiet space-bottom1'><strong>Soccer</strong></span>
 				</a>				
 
-				<a href="${root}/baseBall/baseBallMain.do"  class='block col3 center pad2 pad4y keyline-right keyline-bottom'>
+				<a href="${root}/baseBall/baseBallMain.do"  class='block col3 center pad2 pad4y keyline-right keyline-bottom' id="goBbPage">
 					<img src="${root}/resources/images/startImage/mainBaseBall.jpg" width="100" height="300">
 					<span class='col12' style="font-size:20px;"><strong>야구</strong></span>
 					<span class='col12 small quiet space-bottom1'><strong>Baseball</strong></span>
 				</a>
 
-				<a href='${root}/basketBall/basketBallMain.do' class='block col3 center pad2 pad4y keyline-bottom keyline-right'>
+				<a href='${root}/basketBall/basketBallMain.do' class='block col3 center pad2 pad4y keyline-bottom keyline-right' id="goBkPage">
 					<img src="${root}/resources/images/startImage/mainPageBaskeyBall.jpg" width="100" height="300">
 
 					<span class='col12' style="font-size:20px;"><strong>농구</strong></span>
 					<span class='col12 small quiet space-bottom1'><strong>Basketball</strong></span>
 				</a>
 
-				<a href='${root }/sportLegBall/legBallMain.do' class='block center col3 pad2 pad4y keyline-bottom'>
+				<a href='${root }/sportLegBall/legBallMain.do' class='block center col3 pad2 pad4y keyline-bottom' id="goLbPage">
 					<img src="${root}/resources/images/legBallImg1.jpg" width="100" height="300">
 					<span class='col12' style="font-size:20px;"><strong>족구</strong></span>
 					<span class='col12 small quiet space-bottom1'><strong>Legball</strong></span>
@@ -317,16 +318,19 @@
     </div>
   </div>
   
-  <div class="sign" id="sign"></div>
+   <div class="sign" id="sign"></div>
   <div class="login" id="login"></div>
- <script>
+ <script>  	 
 	 $(".startScroll").click(function(event){            
 	     event.preventDefault();
 	     $('html,body').animate({scrollTop:$(this.hash).offset().top}, 500);
 	});
+	 
+	 
 	 function alertInfo(){
 		 alert("준비중입니다.");
 	 }
  </script>
+
 </body>
 </html>
