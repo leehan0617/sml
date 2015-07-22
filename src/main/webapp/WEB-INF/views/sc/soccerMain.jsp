@@ -117,7 +117,7 @@
           </div>
         </div>
         <div class="item">
-          <img class="second-slide" src="${root }/resources/images/soccer03.jpg" alt="Second slide">
+          <img class="second-slide" src="${root }/resources/images/soccerMain01.jpg" alt="Second slide">
           <div class="container">
             <div class="carousel-caption">
               <h1>공지사항</h1>
