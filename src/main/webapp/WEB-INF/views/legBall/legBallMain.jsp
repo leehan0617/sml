@@ -2,7 +2,7 @@
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <c:set var="root" value="${pageContext.request.contextPath }"/>
-<c:set var="sportCode" value="2"/>
+<c:set var="sportCode" value="3"/>
 <!DOCTYPE html>
 <html lang="ko">
 	<head>
@@ -64,11 +64,11 @@
                   <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">다른종목가기<span class="caret"></span></a>
                   <ul class="dropdown-menu" role="menu">
                   	<li class="divider"></li>
-                    <li><a href="${root }/scMain">축구</a></li>
+                    <li><a href="${root }/sc">축구</a></li>
                     <li class="divider"></li>
                     <li><a href="${root}/baseBall/baseBallMain.do">야구</a></li>
                     <li class="divider"></li>
-                    <li><a href="${root }/legBall/legBallMain.do">족구</a></li>
+                    <li><a href="${root }/basketBall/basketBallMain.do">농구</a></li>
                     <li class="divider"></li>
                   </ul>
                 </li>
@@ -104,31 +104,31 @@
       </ol>
       <div class="carousel-inner" role="listbox">
         <div class="item">
-          <img class="first-slide" src="${root }/resources/images/legBall01.jpg" alt="First slide">
+          <img class="first-slide" src="${root }/resources/images/legBallImg3.jpg" alt="First slide">
           <div class="container">
             <div class="carousel-caption">
               <h1>WELCOME SML legBall PAGE </h1>
-              <p>이 페이지에는 농구에 관련된 리그 및 팀들간 정보가 있습니다.</p>
+              <p>이 페이지에는 족구에 관련된 리그 및 팀들간 정보가 있습니다.</p>
               <p><a class="btn btn-lg btn-primary" href="#" role="button">Default Button</a></p>
             </div>
           </div>
         </div>
         <div class="item">
-          <img class="second-slide" src="${root }/resources/images/legBall03.jpg" alt="Second slide">
+          <img class="second-slide" src="${root }/resources/images/legBallImg1.jpg" alt="Second slide">
           <div class="container">
             <div class="carousel-caption">
               <h1>공지사항</h1>
-              <p>농구에 관련된 실시간 소식 및 정보를 여기서 확인해주세요.</p>
+              <p>족구에 관련된 실시간 소식 및 정보를 여기서 확인해주세요.</p>
               <p><a class="btn btn-lg btn-primary" role="button" data-toggle='modal' data-target='#modallegBallBoard' onclick="viewlegBallBoard('${root}','${sportCode }','${currentPage}')">공지사항보기</a></p>
             </div>
           </div>
         </div>
         <div class="item active">
-          <img class="third-slide" src="${root}/resources/images/legBall04.jpg" alt="Third slide">
+          <img class="third-slide" src="${root}/resources/images/legBallImg2.jpg" alt="Third slide">
           <div class="container">
             <div class="carousel-caption">
               <h1>다른종목이 궁금하세요?</h1>
-              <p>SML KOREA는 농구이외에도 야구,족구,풋살에 관한 친선및리그경기 매칭서비스를 제공하고있습니다.</p>
+              <p>SML KOREA는 족구이외에도 야구,족구,풋살에 관한 친선및리그경기 매칭서비스를 제공하고있습니다.</p>
               <p><a class="btn btn-lg btn-primary" href="#" role="button">다른종목가기</a></p>
             </div>
           </div>
@@ -168,7 +168,7 @@
         <div class="col-lg-4">
           <img class="img-circle" src="${root}/resources/images/surface.png" alt="Generic placeholder image" width="140" height="140">
           <h2>통계 자료</h2>
-          <p>SML 농구회원 및 팀들간 통계에 관심이 있으시면 아래 버튼을 눌러주세요</p>
+          <p>SML 족구회원 및 팀들간 통계에 관심이 있으시면 아래 버튼을 눌러주세요</p>
           <p><a class="btn btn-default myScroll" role="button" href="#chartMain" onclick="showAgeChart('${root}','${sportCode}')">통계자료 보기</a></p>
         </div><!-- /.col-lg-4 -->
       </div><!-- /.row -->
@@ -249,7 +249,7 @@
       <div class="row featurette" id="chartMain">
         <div class="col-md-7">
           <h2 class="featurette-heading">차트를 구경하시고 , <span class="text-muted">탭을 눌러보세요.</span></h2>
-          <p class="lead">여기는 SML 농구 이용자들의 각종 통계 및 차트를 보여주는 곳입니다. 차트와 자신의 정보를 비교해보세요. 이용자들이 많을 수록 통계는 더 정확한 정보를 보여줍니다.</p>
+          <p class="lead">여기는 SML 족구 이용자들의 각종 통계 및 차트를 보여주는 곳입니다. 차트와 자신의 정보를 비교해보세요. 이용자들이 많을 수록 통계는 더 정확한 정보를 보여줍니다.</p>
        	  <br/>
        	  <br/>
         </div>

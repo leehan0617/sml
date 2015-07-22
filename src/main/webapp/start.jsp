@@ -27,13 +27,78 @@
 <script src="${root }/resources/js/smlStart.js"></script>
 <script src="${root }/js/xhr/xhr.js"></script>
 
+<style>
+	  .ui-autocomplete { 
+	    overflow-y: scroll; 
+	    overflow-x: hidden;}
+	
+</style>
 <title>SML Korea</title>
 </head>
 <body data-ng-app="app">
 	<header>
+		<!--  -->
+		<nav class="navbar navbar-inverse navbar-fixed-top">
+          <div class="container-fluid">
+            <div class="navbar-header">
+              <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+              </button>
+              
+            </div>
+            <div id="navbar" class="navbar-collapse collapse">
+              <ul class="nav navbar-nav">
+                <li><a class="navbar-brand startScroll" href="${root }/start.jsp">SML KOREA</a></li>
+                <li>&nbsp;</li>
+                <li>&nbsp;</li>
+                <li>&nbsp;</li>
+                <li>&nbsp;</li>
+                <li>&nbsp;</li>
+                <li>&nbsp;</li>
+                <li>&nbsp;</li>
+                <li>&nbsp;</li>
+                <li>&nbsp;</li>
+                <li>&nbsp;</li>
+              	<li><a class="startScroll" href="#smlInfo">SML 소개</a></li>
+                <li><a class="startScroll" href="#nearGround">SML 경기장</a></li>
+                <li><a class="startScroll" href="#workshopper-list">SML 서비스</a></li>
+                <li><a class="startScroll" href="#helpCenter">SML 고객센터</a></li>
+                             
+                  <c:choose>
+	              <c:when test="${teamName == null }">
+	              	<li><a href="#sign" data-toggle="modal" data-target="#popupJoin">SML 회원가입</a></li>
+	              	<li><a href="#login" data-toggle="modal" data-target="#popupLogin">SML 로그인</a></li>
+	              </c:when>
+	              <c:otherwise>
+	              	<li><a href="${root}/team/teamMain.do?teamName=${teamName}">팀페이지 이동</a></li>
+	              	<li><a href="${root }/teamPage/logout.do">로그아웃</a></li>
+	              </c:otherwise>
+              	</c:choose>
+                
+                <li>
+	               <form class="form-inline"  id="searchForm" name="searchForm" style="padding-top:10px;">
+		  			<div class="input-group">
+		      			<input type="text" class="form-control" placeholder="팀명을 검색하세요." name="teamName" id="searchTeamName">
+			    		<span class="input-group-btn">
+			      		<button class="btn btn-default" type="button" id="goTeamPage">
+			      		  <span class="glyphicon glyphicon-search" aria-hidden="true"></span>이동
+			      		</button>
+			      		</span>
+		    		</div><!-- /input-group -->
+	  			</form>
+                </li>
+                           
+                </ul>
+            </div>
+          </div>
+        </nav>
+		<!--  -->
 		<div class="row">
 	  		<div class="col-md-1"></div>
-	  		<div class="col-md-3"><h3><strong>SML KOREA</strong></h3></div>
+	  		<div class="col-md-3" id="startTop"><h3><strong>SML KOREA</strong></h3></div>
 	  		<div class="col-md-4"></div>
 	  		<div class="col-md-4">
 	  			<form class="form-inline"  id="searchForm" name="searchForm" style="padding-top:15px;">
@@ -48,15 +113,16 @@
 	  			</form>
 	  	   </div>
 	   </div>
+	   <!--  -->
       <a class="skip" href="#main">Skip to Content</a><ul class="nav-lang"><li class="nav-lang-koselected">한국어</li></ul>
       <div class="container">
         <div class="full">
           <h1 class="name">SML KOREA</h1>
           <br/>
           <p class="subtitle">간단한 정보 입력만으로<br/>다른팀들과 경기를 매칭시킬수 있습니다.<br/>지금 매칭을 시작해보세요.</p>
-          <nav role="navigation">
+          <nav role="navigation" id="introNav" >
             <ul class="nav">
-              <li><a href="#smlInfo">SML 소개</a></li>
+              <li><a href="#smlInfo" class="startScroll">SML 소개</a></li>
               <c:choose>
 	              <c:when test="${teamName == null }">
 	              	<li><a href="#sign" data-toggle="modal" data-target="#popupJoin">회원가입</a></li>
@@ -66,9 +132,9 @@
 	              	<li><a href="${root }/teamPage/logout.do">로그아웃</a></li>
 	              </c:otherwise>
               </c:choose>
-              <li><a href="#nearGround">주변 경기장</a></li>
-              <li><a href="#workshopper-list">게임 페이지</a></li>
-              <li><a href="#helpCenter">고객센터</a></li>
+              <li><a href="#nearGround" class="startScroll">주변 경기장</a></li>
+              <li><a href="#workshopper-list" class="startScroll">게임 페이지</a></li>
+              <li><a href="#helpCenter" class="startScroll">고객센터</a></li>
             </ul>
           </nav>
           <p>
@@ -234,26 +300,26 @@
 		<div class="clearfix">
 			<div class='section clearfix col12 keyline-top  dev-tools space-bottom2 clip'>
 				<a href="${root }/sc"  class='block center col3 pad2 pad4y keyline-right keyline-bottom'>
-					<img src="${root}/resources/images/startImage/ss.png" width="200" height="200">
+					<img src="${root}/resources/images/startImage/mainPageSoccer.jpg" width="100" height="300">
 					<span class='col12'><strong>축구</strong></span>
 					<span class='col12 small quiet space-bottom1'><strong>Soccer</strong></span>
 				</a>				
 
 				<a href="${root}/baseBall/baseBallMain.do"  class='block col3 center pad2 pad4y keyline-right keyline-bottom'>
-					<img src="${root}/resources/images/startImage/bb.png" width="200" height="200">
+					<img src="${root}/resources/images/startImage/mainBaseBall.jpg" width="100" height="300">
 					<span class='col12'><strong>야구</strong></span>
 					<span class='col12 small quiet space-bottom1'><strong>Baseball</strong></span>
 				</a>
 
 				<a href='${root}/basketBall/basketBallMain.do' class='block col3 center pad2 pad4y keyline-bottom keyline-right'>
-					<img src="${root}/resources/images/startImage/bk.png" width="200" height="200">
+					<img src="${root}/resources/images/startImage/mainPageBaskeyBall.jpg" width="100" height="300">
 
 					<span class='col12'><strong>농구</strong></span>
 					<span class='col12 small quiet space-bottom1'><strong>Basketball</strong></span>
 				</a>
 
 				<a href='${root }/sportLegBall/legBallMain.do' class='block center col3 pad2 pad4y keyline-bottom'>
-					<img src="${root}/resources/images/startImage/lg.png" width="200" height="200">
+					<img src="${root}/resources/images/legBallImg1.jpg" width="100" height="300">
 					<span class='col12'><strong>족구</strong></span>
 					<span class='col12 small quiet space-bottom1'><strong>Legball</strong></span>
 				</a>
@@ -262,27 +328,8 @@
 		</div>
 		</section>
 
-		<!--  
-		<div class="full" style="height:600px;">
-			<div style="width:25%; float:left; height:100%;">
-			<img src="${root }/resources/images/startImage/startSoccer.png" style="height:600px;">
-			</div>
-			<div style="width:25%; float:left;">
-			<img src="${root }/resources/images/startImage/startBaseBall.png" style="height:600px;">
-			</div>
-			<div style="width:25%; float:left;">
-			<img src="${root }/resources/images/startImage/startBasketBall.png" style="height:600px;">
-			</div>
-			<div style="width:25%; float:left;">
-			<img src="${root }/resources/images/startImage/startLegBall.png" style="height:600px;">
-			</div>
-		</div>
-		</div>
-	</section>
-	-->
-
-    <div class="container elective-workshoppers" style="background-color: #fff; padding-top: 100px;">
-      <div class="third" id="helpCenter">
+    <div class="container elective-workshoppers" id="helpCenter" style="background-color: #fff; padding-top: 100px;">
+      <div class="third">
         <img alt="imformation" src="${root}/resources/images/imformation.png" style="width:50px; height:50px;">
         <label style="font-size:35px;"><strong>고객센터</strong></label>
         <p>이홈페이지의 운영자들에게 직접 물어보세요.</p>
@@ -350,6 +397,12 @@
   
   <div class="sign" id="sign"></div>
   <div class="login" id="login"></div>
- 
+ <script>
+	 $(".startScroll").click(function(event){            
+	     event.preventDefault();
+	     $('html,body').animate({scrollTop:$(this.hash).offset().top}, 500);
+	});
+
+ </script>
 </body>
 </html>

@@ -16,13 +16,16 @@
 	<title><c:out value="${teamName }"/> 페이지</title>
 	
 	<link rel="stylesheet" type="text/css" href="${root }/resources/css/bootstrap.css"/>
+	<link rel="stylesheet" type="text/css" href="${root }/resources/css/jquery-ui.css"/>
+	<link href="${root}/css/teamPage/matchingMap.css" type="text/css" rel="stylesheet"/>	
 	<script src="${root }/resources/js/jquery.js"></script>
+    <script src="${root }/resources/js/jquery-ui.js"></script>
 	<script src="${root }/resources/js/bootstrap.js"></script>
 	<script src="${root }/resources/js/teamMain.js"></script>	
-	
+	<script src="${root }/resources/js/smlStart.js"></script>	
+
 	<!-- before matching.jsp js/css -->
 	<script type="text/javascript" src="//apis.daum.net/maps/maps3.js?apikey=1442260e0c6af86974001269a7312e42&libraries=services"></script>
-	<link href="${root}/css/teamPage/matchingMap.css" type="text/css" rel="stylesheet"/>
 	<script src="${root }/js/teamPage/teamPage.js"></script>
 	
 	<!-- viewMatchingPlace.jsp -->
@@ -42,92 +45,99 @@
 		  margin: 20px auto; 
 		} */
 		#tallModal .modal-body p { margin-bottom: 900px }
-				
-	</style>
+		   
+	    .ui-autocomplete { 
+	    overflow-y: scroll; 
+	    overflow-x: hidden;}
+     </style>
 	
 </head>
 <body>
-	<div class="row">
-	  		<div class="col-md-1"></div>
-	  		<div class="col-md-3"><h3><strong><a href="${root}/start.jsp">SML KOREA</a></strong></h3></div>
-	  		<div class="col-md-4"></div>
-	  		<div class="col-md-2"></div>
-	  		<div class="col-md-2">
-	  			<div class="btn-group"><br/>
-				  <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
-				    빠른이동<span class="caret"></span>
-				  </button>
-				  <ul class="dropdown-menu" role="menu">
-			    	  <c:if test="${teamGrade != null }">	    
-						<li><a data-toggle="modal" data-target="#popup" href="${root }/member/myInfoPage.do?teamName=${teamName }">${teamId }님</a></li>
-						<li><a data-toggle="modal" data-target="#modalTeamBoard" onclick="getTeamBoardData('${root}','${teamName}')">팀공지사항</a></li>
-						<li><a href="${root }/teamPage/teamMemberInfo.do?teamName=${team.teamName}&teamCode=${team.teamCode}&teamGrade=${teamGrade}">팀원소개</a></li>
-						<li><a onclick="viewSchedule('${root}','${team.teamName}')">팀 스케쥴</a></li>
-						<li><a href="${root }/teamPage/viewTeamRecord.do?teamName=${team.teamName}&teamCode=${team.teamCode}&teamGrade=${teamGrade}">팀 기록</a></li>
-						<li><a href="${root }/teamPage/viewLeagueInfo.do?teamName=${team.teamName}">참가 중인 리그 정보</a></li>
-		
-						<li class="divider"></li>
-						<li><a data-toggle="modal" data-target="#modalTeamBoard" onclick="getTeamBoardData('${root}','${teamName}')">팀공지사항</a></li>						
-						<li><a onclick="viewSchedule('${root}','${team.teamName}')">스케쥴관리</a></li>
-						<li><a data-toggle="modal" data-target="#popupMatching" href="${root }/teamPage/matching.do?teamName=${team.teamName}">매칭관리</a></li>
-						<li><a data-toggle="modal" data-target="#popup" href="${root }/teamPage/manageTeamEmblem.do?teamName=${teamName}">팀 로고 관리</a></li>
-						<li class="divider"></li>
-						<li><a href="${root}/teamPage/logout.do?teamId='${teamId}'">로그아웃</a></li>
-				  	</c:if>
-				  	
-				  	<c:if test="${teamGrade == null }">
-						<li><a data-toggle="modal" data-target="#modalTeamBoard" onclick="getTeamBoardData('${root}','${teamName}')">팀공지사항</a></li>
-						<li><a href="${root }/teamPage/teamMemberInfo.do?teamName=${team.teamName}&teamCode=${team.teamCode}">팀원소개</a></li>
-						<li><a href="${root }/teamPage/viewTeamRecord.do?teamName=${team.teamName}">팀 기록</a></li>
-						<li><a onclick="viewSchedule('${root}','${team.teamName}')">팀 스케쥴</a></li>
-					</c:if>
-					
-					
-				  </ul>
-				  
-				</div>
-	  	   </div>
-	</div>
-	
-	<br/><br/>
-	 
-	 
-	 <div class="row well">
-	  <div class="col-md-1"></div>
-	  <div class="col-md-3">
-	    <a href="${root}/team/teamMain.do?teamName=${teamName}">
-	    <img class="img-circle img-responsive" src="${root}/img/teamImg/${team.emblem}" width="200" height="150"></img>	   
-	    </a>	  	
-	  </div>
-	  <div class="col-md-4">
-	  	<br/><br/><br/><br/><br/>
-		<h3>${team.teamName}</h3>
-	  </div>
-	  <div class="col-md-1"></div>
-	  <div class="col-md-3">
-	  	<br/><br/><br/><br/><br/><br/><br/>
-	  	<c:if test="${matchingDto.matchingState==null }">
+	 <div class="container">
+
+      <!-- Static navbar -->
+      <nav class="navbar navbar-inverse">
+        <div class="container-fluid">
+          <div class="navbar-header">
+            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+              <span class="sr-only">Toggle navigation</span>
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="${root}/start.jsp" style="color:white;">SML KOREA</a>
+          </div>
+          <div id="navbar" class="navbar-collapse collapse">
+            <ul class="nav navbar-nav">
+              <li><a href="#"data-toggle="modal" data-target="#modalTeamBoard" onclick="getTeamBoardData('${root}','${teamName}')" style="color:white;">팀공지사항</a></li>
+              <li><a href="${root }/teamPage/teamMemberInfo.do?teamName=${team.teamName}&teamCode=${team.teamCode}&teamGrade=${teamGrade}" style="color:white;">팀원소개</a></li>
+              <li><a href="#" onclick="viewSchedule('${root}','${team.teamName}')" style="color:white;">팀스케쥴</a></li>
+              <li><a href="${root }/teamPage/viewTeamRecord.do?teamName=${team.teamName}&teamCode=${team.teamCode}&teamGrade=${teamGrade}" style="color:white;">팀기록실</a></li>
+              <li><a href="${root }/teamPage/viewLeagueInfo.do?teamName=${team.teamName}" style="color:white;">참가리그</a>
+              
+              <li class="dropdown">
+                <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false" style="color:white;">팀장관리실 <span class="caret"></span></a>
+                <ul class="dropdown-menu" role="menu">
+                <c:if test="${teamGrade !=null }">					
+                  <li><a data-toggle="modal" data-target="#modalTeamBoard" onclick="getTeamBoardData('${root}','${teamName}')">팀공지사항 관리</a></li>
+                  <li><a href="${root }/teamPage/teamMemberInfo.do?teamName=${team.teamName}&teamCode=${team.teamCode}&teamGrade=${teamGrade}">팀원 관리</a></li>
+                  <li><a href="#" onclick="viewSchedule('${root}','${team.teamName}')">팀스케쥴 관리</a></li>
+                  <li><a data-toggle="modal" data-target="#popupMatching" href="${root }/teamPage/matching.do?teamName=${team.teamName}">매칭관리</a></li>
+                  <li class="divider"></li>
+                  <li class="dropdown-header">Sub Menu</li>
+                  <li><a data-toggle="modal" data-target="#popup" href="${root }/teamPage/manageTeamEmblem.do?teamName=${teamName}">팀로고 관리</a></li>
+                  <li><a data-toggle="modal" data-target="#popup" href="${root }/member/myInfoPage.do?teamName=${teamName }">개인정보수정</a></li>
+                  <li><a href="#">로그아웃</a></li>
+                 </c:if>
+                <c:if test="${teamGrade == null }">
+                	<li class="dropdown-header">로그인을 해주세요</li>
+                	<li><a href="${root }/start.jsp">시작페이지로</a></li>
+                </c:if>
+                </ul>
+                
+               
+                </li>
+            </ul>
+			<form class="form-inline"  id="searchForm" name="searchForm" style="padding-top:10px;">             
+            <ul class="nav navbar-nav navbar-right">
+           		<li class="input-group">
+	      			<input type="text" class="form-control" placeholder="팀명을 검색하세요." name="teamName" id="searchTeamName">
+		    		<span class="input-group-btn">
+		      		<button class="btn btn-default" type="button" id="goTeamPage">
+		      		  <span class="glyphicon glyphicon-search" aria-hidden="true"></span>이동
+		      		</button>
+		      		</span>
+	    		</li><!-- /input-group -->
+            </ul>
+            </form>
+          </div><!--/.nav-collapse -->
+        </div><!--/.container-fluid -->
+      </nav>
+
+      <!-- Main component for a primary marketing message or call to action -->
+      <div class="jumbotron row">
+      	<div class="col-md-2">
+      		  <a href="${root}/team/teamMain.do?teamName=${teamName}">
+	   		 <img class="img-circle img-responsive" src="${root}/img/teamImg/${team.emblem}" width="200" height="150"></img>	   
+	    	</a><br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+	    		<c:if test="${matchingDto.matchingState==null }">
 	  			<input id="teamState" type="button" class="btn btn-active" value="매칭 전">
-	  	</c:if>
-	  	<c:if test="${matchingDto.matchingState=='전' }">
-	  			<input id="teamState" type="button" class="btn btn-info" value="매칭 대기 중">
-	  	</c:if>
-	  	<c:if test="${matchingDto.matchingState=='중' }">
-	  			<input id="teamState" type="button" class="btn btn-warning" value="매칭 중..">
-	  	</c:if>
-	  	<c:if test="${matchingDto.matchingState=='후' }">
-	  			<input id="teamState" type="button" class="btn btn-success" value="매칭 성사">
-	  	</c:if>
-	  </div>
-	</div>
-	
-	<br/>
-	
-	<div class="row well">
-	  <div class="col-md-1"></div>
-	  <div class="col-md-10 well">
-	  	<div class="jumbotron">
-  			<c:choose>
+	  			</c:if>
+			  	<c:if test="${matchingDto.matchingState=='전' }">
+			  			<input id="teamState" type="button" class="btn btn-info" value="매칭 대기 중">
+			  	</c:if>
+			  	<c:if test="${matchingDto.matchingState=='중' }">
+			  			<input id="teamState" type="button" class="btn btn-warning" value="매칭 중..">
+			  	</c:if>
+			  	<c:if test="${matchingDto.matchingState=='후' }">
+			  			<input id="teamState" type="button" class="btn btn-success" value="매칭 성사">
+			  	</c:if>
+			    		
+		      	</div>
+      	<div class="col-md-10">
+      		<h1>${team.teamName}</h1>
+        <p>
+        	<c:choose>
   				<c:when test="${team.teamIntro !=null }">
   					<p id="teamIntro">${team.teamIntro }</p>
   				</c:when>
@@ -135,17 +145,17 @@
   					<p id="teamIntro">작성된 팀소개가 없습니다.</p>
   				</c:otherwise>
   			</c:choose>
-  			<c:if test="${teamGrade !=null }">
+        </p>
+        <c:if test="${teamGrade !=null }">
   			<p><a class="btn btn-primary btn-lg" role="button" data-toggle="modal" data-target="#modalEditTeamIntro">팀소개 편집하기</a></p>
   			</c:if>
-		</div>
-	  </div>
-	  <div class="col-md-1"></div>
-	</div>
-	
-	<br/>
-	
-	<c:if test="${matchingResult!=null }">
+      	</div>
+      </div>
+      
+      <!-- /end 팀소개및 팀엠블럼 div -->
+	  	<c:if test="${matchingResult!=null }">
+	  <div class="jumbotron row">
+	   
 		<div class="row well" style="text-align:center;">
 		<h3>매칭 결과</h3>
 			<div class="col-md-1"></div>
@@ -162,25 +172,27 @@
 			</div>
 			<div class="col-md-1"></div>
 		</div>
-	</c:if>
-	
-	<div class="row well">
-	  <div class="col-md-1"></div>
-	  <div class="col-md-5 well" style="height: 500px;">
-	  	<h3>팀 공지사항</h3><hr/>
-	  	<a data-toggle="modal" data-target="#modalTeamBoard" onclick="getTeamBoardData('${root}','${teamName}')" style="color:black;">
-	  		<%@include file="../teamTemplate/teamBoardTemplate.jsp" %>
-	  	</a>
-	  </div>
-	  <div class="col-md-5 well" style="height: 500px;">
-	  	<%@include file="../teamTemplate/scheduleTemplate.jsp" %> 
-	  </div>
-	  <div class="col-md-1"></div>
-	</div>
-	
-	<div class="row well">
-	  <div class="col-md-1"></div>
-	  <div class="col-md-5 well" style="height: 600px;">
+		 
+	  </div></c:if> <!--  end 매칭결과되면 생기는 div -->
+	  
+	  <div class="jumbotron row">
+	  	  
+		  <div class="col-md-6 well" style="height: 500px;">
+		  	<h3 align="center">팀 공지사항</h3><hr/>
+		  	<a data-toggle="modal" data-target="#modalTeamBoard" onclick="getTeamBoardData('${root}','${teamName}')" style="color:black;">
+		  		<%@include file="../teamTemplate/teamBoardTemplate.jsp" %>
+		  	</a>
+		  </div>
+		  <div class="col-md-6 well" style="height: 500px;">
+		  	<h3 align="center">팀 스케쥴</h3>
+		  	<%@include file="../teamTemplate/scheduleTemplate.jsp" %> 
+		  </div>
+		  	
+		  </div>
+		  <!-- end 팀공지사항이랑 팀스케쥴 div -->
+	    <div class="jumbotron row">
+	    	
+	  <div class="col-md-6 well" style="height: 600px;">
 	  	<div class="panel panel-default">
 		  <!-- Default panel contents -->
 		  <div class="panel-heading"><h3>기록실 <a style="float: right;" class="btn btn-info" href="${root }/teamPage/viewTeamRecord.do?teamName=${team.teamName}">기록실로 이동</a></h3></div>
@@ -296,7 +308,7 @@
 		   </table>
 		</div>
 	  </div>
-	  <div class="col-md-5 well" style="height: 600px;">
+	  <div class="col-md-6 well" style="height: 600px;">
 	  	<div class="panel panel-default">
 		  <!-- Default panel contents -->
 		  <div class="panel-heading"><h3>진행중인 리그 <input style="float: right;" type="button" class="btn btn-info" value="리그 정보로 이동"></h3></div>
@@ -369,14 +381,12 @@
 		  </div>
 		</div>	  	
 	  </div>
-	  <div class="col-md-1"></div>
-	</div>
 	
-	<!-- 댓글부분 -->
-	<input type="hidden" id="replyTeamCode" value="${team.teamCode }"/>
-	<div class="row well">
-		<div class="col-md-1"></div>
-		<div class="col-md-10 replyWrap">
+	    </div><!-- end 기록실,진행중ㅇ인리그  -->
+	    
+   	    <div class="jumbotron row">
+   	    	<input type="hidden" id="replyTeamCode" value="${team.teamCode }"/>
+		<div class="col-md-12 replyWrap">
 			<div class="row">
   				<div class="col-md-3">
    					 <div class="input-group">
@@ -438,9 +448,13 @@
 			
 			<div class="alert alert-warning" role="alert" onclick="moreReadReply('${root}','${team.teamCode }' , '${replyPageNumber }')"><p class="text-center">더보기</p></div>
 		</div>
-		<div class="col-md-1"></div>
-	</div>
-	
+   	    	
+		</div>    <!-- end 댓글 div -->
+	  
+    </div> <!-- /container -->
+	<!--  -->
+
+		
 	
 	
 	<c:if test="${team==null}">

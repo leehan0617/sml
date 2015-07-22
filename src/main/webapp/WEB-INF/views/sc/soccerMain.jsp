@@ -117,7 +117,7 @@
           </div>
         </div>
         <div class="item">
-          <img class="second-slide" src="${root }/resources/images/soccer03.jpg" alt="Second slide">
+          <img class="second-slide" src="${root }/resources/images/soccerMain01.jpg" alt="Second slide">
           <div class="container">
             <div class="carousel-caption">
               <h1>공지사항</h1>
@@ -127,7 +127,7 @@
           </div>
         </div>
         <div class="item active">
-          <img class="third-slide" src="${root}/resources/images/soccer04.jpg" alt="Third slide">
+          <img class="third-slide" src="${root}/resources/images/soccerMain02.jpg" alt="Third slide">
           <div class="container">
             <div class="carousel-caption">
               <h1>다른종목이 궁금하세요?</h1>
