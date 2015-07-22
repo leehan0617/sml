@@ -81,16 +81,26 @@ public class RecordServiceImpl implements RecordService {
 		int gameCode=Integer.parseInt(request.getParameter("gameCode"));
 		String resultScore=request.getParameter("resultScore");
 		String result=request.getParameter("result");
+		String teamName=request.getParameter("teamName");
+
+		HashMap<String, Object> record=recordDao.getRecordInfo(gameCode);
+		int check=0;
 		
-//		HashMap<String, Object> record=.getRecordInfo(gameCode);
-//		int check=0;
-//		
-//		if(result.equals("무")){
-//			check=adminDao.insertDraw(gameCode, resultScore);
-//		}else if(result.equals(record.get("TEAM1"))){
-//			check=adminDao.insertTeam1(gameCode, resultScore);
-//		}else if(result.equals(record.get("TEAM2"))){
-//			check=adminDao.insertTeam2(gameCode, resultScore);
-//		}
+		if(result.equals("무")){
+			check=recordDao.insertDraw(gameCode, resultScore);
+		}else if(result.equals(record.get("TEAMNAME1"))){
+			check=recordDao.insertTeam1(gameCode, resultScore);
+		}else if(result.equals(record.get("TEAMNAME2"))){
+			check=recordDao.insertTeam2(gameCode, resultScore);
+		}
+		int teamCode=Integer.valueOf(String.valueOf(record.get("TEAMCODE")));
+		int teamCode2=Integer.valueOf(String.valueOf(record.get("TEAMCODE2")));
+		
+		recordDao.deleteMatching(teamCode);
+		recordDao.deleteMatching(teamCode2);
+		
+		mav.addObject("teamName",teamName);
+		mav.addObject("check",check);
+		mav.setViewName("teamPage/insertResultOk");
 	}
 }

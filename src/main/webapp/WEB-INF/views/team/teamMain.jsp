@@ -197,7 +197,7 @@
 		  <!-- Default panel contents -->
 		  <div class="panel-heading"><h3>기록실 <a style="float: right;" class="btn btn-info" href="${root }/teamPage/viewTeamRecord.do?teamName=${team.teamName}">기록실로 이동</a></h3></div>
 		  <div class="panel-body">
-		    <p>해당 팀의 최근 기록을 볼 수 있습니다.</p>
+		    <h6>해당 팀의 최근 기록을 볼 수 있습니다.</h6>
 		  </div>
 		
 		  <!-- List group -->
@@ -313,8 +313,7 @@
 		  <!-- Default panel contents -->
 		  <div class="panel-heading"><h3>진행중인 리그 <input style="float: right;" type="button" class="btn btn-info" value="리그 정보로 이동"></h3></div>
 		  <div class="panel-body">
-		    <p>진행 중인 리그의 정보를 간단하게 볼 수 있습니다.
-		    </p>
+		    <h6>진행중인 리그의 정보를 간단하게 볼 수 있습니다.</h6>
 		   <c:if test="${leagueDto==null }">
 	  		<label>참가중 리그 없음</label>
 	  	</c:if>
@@ -349,7 +348,6 @@
 			  </table>
 	  		</div>
 	  		</div>
-	  		<br/>
 	  	</c:if>
 	  	<label>해당 팀 순위</label>
 	  	<br/><br/>
