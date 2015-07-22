@@ -13,14 +13,14 @@
 	<c:if test="${check ==1 }">
 		<script type="text/javascript">
 			alert("수정 완료");
-			location.href="${root}/member/myInfoPage.do?teamName=${teamName }";
+			location.href="${root}/team/teamMain.do?teamName=${teamName }";
 		</script>
 	</c:if>
 	
 	<c:if test="${check ==0 }">
 		<script type="text/javascript">
 			alert("수정 실패");
-			location.href="${root}/member/myInfoPage.do?teamName=${teamName }";
+			location.href="${root}/team/teamMain.do?teamName=${teamName }";s
 		</script>
 	</c:if>
 </body>

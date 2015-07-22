@@ -1,4 +1,4 @@
-package com.sml.legBall.controller;
+package com.sml.legball.controller;
 
 import java.util.logging.Logger;
 
@@ -11,7 +11,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
-import com.sml.legBall.service.LegBallService;
+import com.sml.legball.service.LegBallService;
 
 
 @Controller

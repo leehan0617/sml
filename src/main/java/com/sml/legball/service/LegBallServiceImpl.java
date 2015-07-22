@@ -1,4 +1,4 @@
-package com.sml.legBall.service;
+package com.sml.legball.service;
 
 import java.util.Date;
 import java.util.HashMap;
@@ -15,7 +15,7 @@ import org.springframework.web.servlet.ModelAndView;
 import com.sml.baseball.dao.BaseballDao;
 import com.sml.common.dto.CommonBoardDto;
 import com.sml.league.dto.LeagueDto;
-import com.sml.legBall.dao.LegBallDao;
+import com.sml.legball.dao.LegBallDao;
 import com.sml.member.dto.MemberDto;
 import com.sml.record.dto.RecordDto;
 	

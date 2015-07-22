@@ -1,4 +1,4 @@
-package com.sml.legBall.dao;
+package com.sml.legball.dao;
 
 import java.util.Date;
 import java.util.HashMap;
