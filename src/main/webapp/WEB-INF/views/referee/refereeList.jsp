@@ -94,13 +94,19 @@
     </div>
 	
 	 <br/><br/><br/><br/>
-     <div class="container-fluid" style="background:url(${root}/resources/images/backGroundImage.jpg)">   
-       <span class="col-xs-2"><a href="${root }/scMain"><img class="img-circle img-responsive" alt="logo" src="${root}/resources/images/android@2x.png" width="200" height="150"></img></a></span> 	  
-       	  
-       <span class="col-xs-9" style="font-size:50pt;"><br/>SML KOREA</span>
-       <span class="col-xs-1" style="font-size:15pt;"><br/><br/>인원: ${count}  </span>     
+     <div class="container" style="background:url(${root}/resources/images/refereeImg.jpg); height:220px">
+       <div align="center">
+       <span class=""><a href="${root}/team/teamMain.do?teamName=${teamName}"><img class="img-circle img-responsive" alt="logo" src="${root}/img/teamImg/defaultEmblem.jpg" width="150" height="150"></img></a></span>
+       </div>
+       <div align="center" style="padding-top:10px;">
+       <span class="label label-danger" style="font-size:20pt;">SML KOREA</span>
+       </div>           
+       <br/>     
+        <hr style="border: solid 1px ;">        
      </div>
-       <br/><br/>
+      
+     
+       
 	
     <div class="container" style="background-color: ">    	
       <div class="row">      	   	
@@ -122,9 +128,9 @@
 						</select>
 				    </div>
 				  </td>                 
-                  <td>이름</td>
-                  <td>생년월일</td>
-                  <td>지역</td>                               
+                  <td ><span class="glyphicon glyphicon-user">이름</span></td>
+                  <td><span class="glyphicon glyphicon-calendar">생년월일</span></td>
+                  <td><span class="glyphicon glyphicon-home">지역</span></td>                               
                </tr>               
               </thead>
               </c:if>              
@@ -139,9 +145,9 @@
            	<c:forEach var="referee" items="${refereeList}">			         	 
 			  <tr align="center">			
 				<td><span><img class="img-circle" src="${root }/img/refereeImg/${referee.refereePicture}" width="80px" height="80px"/></span></td>					
-				<td style="font-size:13pt;"><br/><span class="label label-danger">${referee.refereeName }</span></td>				
-				<td style="font-size:13pt;"><br/><span class="label label-primary">${referee.refereeBirth }</span></td>				
-				<td style="font-size:13pt;" width="20%"><br/><span class="glyphicon glyphicon-home">${referee.sido }</span></td>										
+				<td style="font-size:13pt;"><br/><span class="">${referee.refereeName }</span></td>				
+				<td style="font-size:13pt;"><br/><span class="">${referee.refereeBirth }</span></td>				
+				<td style="font-size:13pt;" width="20%"><br/><span class="">${referee.sido }</span></td>										
 				
 			  </tr>
 			</c:forEach>			

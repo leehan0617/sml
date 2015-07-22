@@ -1,7 +1,8 @@
-
 var rroot="/home";
-
-
+var idChk;
+var teamIdChk;
+/*var idChk="X";
+var teamIdChk="X";*/
 $(document).ready(function(){
 	var url=rroot+"/member/searchRegion.do";
 	
@@ -18,10 +19,7 @@ $(document).ready(function(){
 				sendRequest("GET", url, fromServer, params);
 			}
 		}
-	}
-	
-	idChk="X";
-	teamIdChk="X";
+	}		
 });
 
 function regionSido(root){
@@ -127,14 +125,14 @@ function Check(form){
 		return false;
 	}	
 	
-	alert(idChk + " + " + teamIdChk );
-	if(idChk!="ok"){
+	//alert(idChk + " + " + teamIdChk );
+	if(idChk==null){
 		alert("아이디 중복검사를 하세요.");
 		$("#step2").attr("data-target", "#");
 		return;
 	}
 	
-	if(teamIdChk!="ok"){
+	if(teamIdChk==null){
 		alert("팀 중복검사를 하세요.");
 		$("#step2").attr("data-target", "#");
 		return;
@@ -159,9 +157,10 @@ function idCheck(form,root){
 			dataType:"html",
 			success:function(data){
 				$('#resultAlert').html(data);
+				//alert(idChk + " + " + teamIdChk );
 			}
 		});
-}
+	}
 
 
 
@@ -218,7 +217,7 @@ function teamIdCheck(form,root){
 		dataType:"html",
 		success:function(data){
 			$('#resultTeamAlert').html(data);
-			alert(idChk + " + " + teamIdChk );
+			//alert(idChk + " + " + teamIdChk );
 		}
 	});
 }

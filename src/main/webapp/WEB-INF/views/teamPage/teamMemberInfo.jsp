@@ -61,16 +61,38 @@
     </nav>
 	
 	 <br/><br/><br/><br/>
-     <div class="container-fluid" style="background:url(${root}/resources/images/backGroundImage.jpg)">
-       <span class="col-xs-2"><a href="${root}/team/teamMain.do?teamName=${teamName}"><img class="img-circle img-responsive" alt="logo" src="${root}/img/teamImg/${emblem}" width="200" height="150"></img></a></span>
-       <span class="col-xs-9" style="font-size:50pt;">${teamName}</span>
-       <span class="col-xs-1" style="font-size:20pt"> 총원:${count}</span>
+     <div class="container" style="background:url(${root}/resources/images/backgroundMain2.jpg); border:">
+       <div align="center">
+       <span class=""><a href="${root}/team/teamMain.do?teamName=${teamName}"><img class="img-circle img-responsive" alt="logo" src="${root}/img/teamImg/${emblem}" width="150" height="150"></img></a></span>
        </div>
-       <br/><br/>
+       <div align="center" style="padding-top:10px;">
+       <span class="label label-danger" style="font-size:20pt;">${teamName}</span>
+       </div>       
+       <div align="right">
+       <span class="" style="font-size:15pt"> 총원:${count}</span>
+       </div>
+       <br/>
+        <hr style="border: solid 1px ;">      
+     </div>
+     
+       
 	
-    <div class="container">    	
+    <div class="container" style="width:1000px">    	
       <div class="row">      	   	
-          <h2 class="sub-header">MEMBER LIST</h2>          
+          <h2 class="sub-header">MEMBER LIST</h2>
+          <div id="navbar" class="navbar-collapse collapse">			 
+          <form class="navbar-form navbar-right" action="${root}/teamPage/searchMember.do" method="GET">
+           
+            <div class="form-group">
+              <input type="text" placeholder="팀원을 검색하세요" class="form-control" name="searchBoxName">
+              <input type="hidden" name="currentPage" value="${currentPage}">
+              <input type="hidden" name="teamName" value="${teamName}">			 
+			  <input type="hidden" name="teamGrade" value="${teamGrade}">
+			  <input type="hidden" name="teamCode" value="${teamCode}">
+            </div>             
+             <button class="btn btn-success" type="submit"><span class="glyphicon glyphicon-search"></span></button>           	
+          </form>
+        </div>          
           <div class="table-responsive">
             <table class="table table-striped">
               <c:if test="${count>0}">	
@@ -129,19 +151,7 @@
                  
       </div>        
       </div> 	
-		<div id="navbar" class="navbar-collapse collapse">			 
-          <form class="navbar-form navbar-right" action="${root}/teamPage/searchMember.do" method="GET">
-           
-            <div class="form-group">
-              <input type="text" placeholder="검색어를 입력하세요" class="form-control" name="searchBoxName">
-              <input type="hidden" name="currentPage" value="${currentPage}">
-              <input type="hidden" name="teamName" value="${teamName}">			 
-			  <input type="hidden" name="teamGrade" value="${teamGrade}">
-			  <input type="hidden" name="teamCode" value="${teamCode}">
-            </div>             
-             <button class="btn btn-success" type="submit"><span class="glyphicon glyphicon-search"></span></button>           	
-          </form>
-        </div>
+		
     <div align="center">    
  			
 		<c:if test="${count>0 }">

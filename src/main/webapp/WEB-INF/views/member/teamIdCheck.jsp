@@ -23,7 +23,7 @@
 	<c:if test="${teamCheck==null}">
 		<script type="text/javascript">
 			alert("사용 가능한 팀명입니다");
-			teamIdChk="ok";
+			var teamIdChk="ok";
 		</script>
 	</c:if>
 </body>

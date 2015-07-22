@@ -26,7 +26,7 @@
 			<div class="alert-success">
 	 			<script type="text/javascript">
 	 				alert("사용 가능한 아이디입니다");
-	 				idChk="ok";
+	 				var idChk="ok";
 	 			</script>
  			</div>
 		</c:if>

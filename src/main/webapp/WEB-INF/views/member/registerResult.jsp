@@ -10,7 +10,6 @@
 <script type="text/javascript" src="${root}/js/member/member.js"></script>
 </head>
 <body>
-	<h3>결과</h3>
 		<c:if test="${check>0}">
 			<script type="text/javascript">
 				alert("가입이완료되었습니다");
