@@ -93,7 +93,7 @@
         </nav>
 
       </div>
-    </div>
+    </div><br/><br/>
 
 
     <!-- Carousel
@@ -107,7 +107,7 @@
       </ol>
       <div class="carousel-inner" role="listbox">
         <div class="item">
-          <img class="first-slide" src="${root }/resources/images/soccer01.jpg" alt="First slide">
+          <img class="first-slide" src="${root }/resources/images/soccer01.jpg" alt="First slide" style="width:1200px;height:500px;">
           <div class="container">
             <div class="carousel-caption">
               <h1>WELCOME SML SOCCER PAGE </h1>
@@ -117,7 +117,7 @@
           </div>
         </div>
         <div class="item">
-          <img class="second-slide" src="${root }/resources/images/soccerMain01.jpg" alt="Second slide">
+          <img class="second-slide" src="${root }/resources/images/soccerMain01.jpg" alt="Second slide" style="width:1200px;height:500px;">
           <div class="container">
             <div class="carousel-caption">
               <h1>공지사항</h1>
@@ -127,7 +127,7 @@
           </div>
         </div>
         <div class="item active">
-          <img class="third-slide" src="${root}/resources/images/soccerMain02.jpg" alt="Third slide">
+          <img class="third-slide" src="${root}/resources/images/soccerMain02.jpg" alt="Third slide" style="width:1200px;height:500px;">
           <div class="container">
             <div class="carousel-caption">
               <h1>다른종목이 궁금하세요?</h1>
