@@ -61,7 +61,7 @@
 	
 	 <br/><br/><br/><br/>
 	 
-     <div class="container" style="background:url(${root}/resources/images/leagueInfoBackGround.jpg); border:">
+     <div class="container-fluid" style="background:url(${root}/resources/images/leagueInfoBackGround.jpg); border:">
        <div align="center">
        <span class=""><a href="${root}/team/teamMain.do?teamName=${teamName}"><img class="img-circle img-responsive" alt="logo" src="${root}/img/teamImg/${emblem}" width="150" height="150"></img></a></span>
        </div>

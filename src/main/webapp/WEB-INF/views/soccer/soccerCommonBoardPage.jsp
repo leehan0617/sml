@@ -92,14 +92,20 @@
 
       </div>
     </div>
+	<br/><br/><br/><br/>
 	
-	
-     <div class="container-fluid" style="background:url(${root}/resources/images/backGroundImage.jpg)">   
-       <span class="col-xs-2"><a href="${root }/scMain"><img class="img-circle img-responsive" alt="logo" src="${root}/resources/images/android@2x.png" width="200" height="150"></img></a></span> 	  
-       	  
-       <span class="col-xs-9" style="font-size:50pt;"><br/>SML KOREA</span>            
+    <div class="container-fluid" style="background:url(${root}/resources/images/teamCommonBoardBackGroundImage.jpg);">
+       <div align="center">
+       <span class=""><a href="${root}/team/teamMain.do?teamName=${teamName}"><img class="img-circle img-responsive" alt="logo" src="${root}/img/teamImg/defaultEmblem.jpg" width="150" height="150"></img></a></span>
+       </div>
+       <div align="center" style="padding-top:10px;">
+       <span class="label label-danger" style="font-size:20pt;">SML KOREA</span>
+       </div>
+       <br/>           
+       <br/>           
      </div>
-       <br/><br/>
+     <br/>
+      <hr style="border: solid 1px ;"> 
 	
     <div class="container" style="background-color: ">    	
       <div class="row">      	   	
