@@ -27,6 +27,12 @@
 <script src="${root }/resources/js/smlStart.js"></script>
 <script src="${root }/js/xhr/xhr.js"></script>
 
+<style>
+	  .ui-autocomplete { 
+	    overflow-y: scroll; 
+	    overflow-x: hidden;}
+	
+</style>
 <title>SML Korea</title>
 </head>
 <body data-ng-app="app">
