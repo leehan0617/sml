@@ -2,7 +2,7 @@
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <c:set var="root" value="${pageContext.request.contextPath }"/>
-<c:set var="sportCode" value="2"/>
+<c:set var="sportCode" value="3"/>
 <!DOCTYPE html>
 <html lang="ko">
 	<head>
@@ -68,7 +68,7 @@
                     <li class="divider"></li>
                     <li><a href="${root}/baseBall/baseBallMain.do">야구</a></li>
                     <li class="divider"></li>
-                    <li><a href="${root }/legBall/legBallMain.do">족구</a></li>
+                    <li><a href="${root }/basketBall/basketBallMain.do">농구</a></li>
                     <li class="divider"></li>
                   </ul>
                 </li>
