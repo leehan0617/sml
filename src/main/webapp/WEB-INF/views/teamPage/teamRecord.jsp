@@ -95,7 +95,7 @@
                   <td>경기번호</td>
                   <td>종목</td>
                   <td>게임종류</td>
-                  <td>경기</td>                 
+                  <td><span class="label label-primary">HOME</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;경기&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="label label-danger">AWAY</span></td>                 
                   <td>결과</td>
                   <td>진행상황</td>                             
                </tr>               
@@ -117,25 +117,24 @@
 				</c:if>	
 				
 				<c:if test="${record.GAMETYPE==0}">
-				<td><br/><br/><br/><span class="label label-primary" style="width:200px;">친선경기</span></td>
+				<td><br/><br/><br/><span class="label label-primary" style="font-size:13pt;">친선경기</span></td>
 				</c:if>
 				<c:if test="${record.GAMETYPE!=0}">
-				<td><br/><br/><br/><span class="label label-success">리그경기</span></td>
+				<td><br/><br/><br/><span class="label label-success" style="font-size:13pt;">리그경기</span></td>
 				</c:if>
 				<td>
-					<a href="${root}/team/teamMain.do?teamName=${record.TEAM1}"><img class="img-circle" src="${root}/img/teamImg/${record.EMBLEM1}" width="50" height="60"><img></a>&nbsp;				
-					<img src="${root}/resources/images/versusIcon.png" width="30" height="30"></img>&nbsp;				
+				    <br/>				   
+					<a href="${root}/team/teamMain.do?teamName=${record.TEAM1}"><img class="img-circle" src="${root}/img/teamImg/${record.EMBLEM1}" width="50" height="60"><img></a>
+					<span>${record.TEAM1}</span>									
+					<img src="${root}/resources/images/versusIcon.png" width="30" height="30"></img>&nbsp;
+					<span>${record.TEAM2}</span>				
 					<a href="${root}/team/teamMain.do?teamName=${record.TEAM2}"><img class="img-circle" src="${root}/img/teamImg/${record.EMBLEM2}" width="50" height="60"></img></a>&nbsp;
-					<br/>
-					<span class="label label-primary">HOME</span>${record.TEAM1}
-					&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-					<span class="label label-danger">AWAY</span>${record.TEAM2}
-					<br/>
-					<span class="glyphicon glyphicon-home">${record.GAMEPLACE}</span>
+					<br/>			
 					<br/>
 					<span class="glyphicon glyphicon-calendar"> <fmt:formatDate value="${record.GAMEDATE}" pattern="MM-dd"/></span>&nbsp;&nbsp;
-					<span class="glyphicon glyphicon-time">${record.GAMETIME}</span>
-				
+					<span class="glyphicon glyphicon-time">${record.GAMETIME}</span>					
+					<br/>					
+					<span class="glyphicon glyphicon-home">${record.GAMEPLACE}</span>
 				</td>				
 				<td style="font-size:20px; "><br/><br/><span class="label label-default">${record.GAMERESULT}</span></td>
 				<c:if test="${record.TEAMRESULT=='승'&&record.TEAM1==teamName}">
