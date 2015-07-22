@@ -1,4 +1,4 @@
-package com.sml.legBall.controller;
+package com.sml.sportLegBall.controller;
 
 import java.util.logging.Logger;
 
@@ -11,7 +11,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
-import com.sml.legBall.service.LegBallService;
+import com.sml.sportLegBall.service.LegBallService;
 
 
 @Controller
@@ -26,7 +26,7 @@ public class LegBallController {
 	 * @작성자: 정성남
 	 * @설명 :
 	 */
-	@RequestMapping(value="/legBall/legBallMain.do", method=RequestMethod.GET)
+	@RequestMapping(value="/sportLegBall/legBallMain.do", method=RequestMethod.GET)
 	public String legBallPage(HttpServletRequest request , HttpServletResponse response){
 		logger.info("legBallController legBallPage ");
 		

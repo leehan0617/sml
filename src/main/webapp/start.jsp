@@ -252,7 +252,7 @@
 					<span class='col12 small quiet space-bottom1'><strong>Basketball</strong></span>
 				</a>
 
-				<a href='${root }/legBall/legBallMain.do' class='block center col3 pad2 pad4y keyline-bottom'>
+				<a href='${root }/sportLegBall/legBallMain.do' class='block center col3 pad2 pad4y keyline-bottom'>
 					<img src="${root}/resources/images/startImage/lg.png" width="200" height="200">
 					<span class='col12'><strong>족구</strong></span>
 					<span class='col12 small quiet space-bottom1'><strong>Legball</strong></span>
