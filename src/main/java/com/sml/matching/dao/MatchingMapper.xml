@@ -39,8 +39,8 @@
 	</update>
 	
 	<insert id="createGameRecord" parameterType="java.util.HashMap">
-		insert into gameRecord (gameCode, teamCode, teamCode2, gameType, refereeNumber, gameState, sportType)
-		values (gameRecord_gameCode_sql.nextVal, #{teamCode}, #{teamCode2}, #{gameType}, #{refereeNumber}, #{gameState}, #{sportType})
+		insert into gameRecord (gameCode, teamCode, teamCode2, gameType, refereeNumber, gameState, sportType, gamePlace)
+		values (gameRecord_gameCode_sql.nextVal, #{teamCode}, #{teamCode2}, #{gameType}, #{refereeNumber}, #{gameState}, #{sportType}, #{gamePlace})
 	</insert>
 	
 	<select id="getNormalMatchInfo" parameterType="int" resultType="java.util.HashMap">
@@ -61,5 +61,10 @@
 	
 	<select id="getTeamLeaderInfo" parameterType="java.util.HashMap" resultType="com.sml.member.dto.MemberDto">
 		select * from teamMember where teamCode=#{teamCode} and memberName=#{leaderName}
+	</select>
+	
+	<select id="getNormalRecordInfo" parameterType="java.util.HashMap" resultType="com.sml.record.dto.RecordDto">
+		select * from gameRecord where ((teamCode=#{teamCode} and teamCode2=#{teamCode2}) or (teamCode=#{teamCode2} and teamCode2=#{teamCode}))
+			and gameType=0 and gameState='경기 전'
 	</select>
 </mapper>

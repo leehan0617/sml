@@ -28,6 +28,7 @@
 	</div>
 	
 	<div class="modal-body">	
+		
 		<!-- 로고 -->	
 		<div class="row">
 		  <div class="col-md-1"></div>
@@ -40,7 +41,7 @@
 	      	</c:if>
 	      	
 	      	<c:if test="${normalMatchInfo.TEAM2==teamName }">
-	      		<a href="${root }/team/teamMain.do?teamName=${normalMatchInfo.TEAM1 }" target="_new">
+	      		<a href="${root }/team/teamMain.do?teamName=${normalMatchInfo.TEAM2 }" target="_new">
 		    		<img class="img-circle" src="${root}/img/teamImg/${myTeamDto.emblem }" alt=".." height="188px"/>
 		      	</a>	
 	      	</c:if>
@@ -56,7 +57,7 @@
 	      	</c:if>
 	      	
 	      	<c:if test="${normalMatchInfo.TEAM2==teamName }">
-	      		<a href="${root }/team/teamMain.do?teamName=${normalMatchInfo.TEAM2}" target="_new">
+	      		<a href="${root }/team/teamMain.do?teamName=${normalMatchInfo.TEAM1}" target="_new">
 		    		<img class="img-circle" src="${root}/img/teamImg/${otherTeamDto.emblem }" alt=".." height="188px"/>
 		      	</a>
 	      	</c:if>
@@ -65,62 +66,32 @@
 		</div>
 		
 		<!-- 팀 정보 -->
+		<div class="modalPageOne">
 		<h2>매칭 정보</h2> 
 		<div class="row">		  
 		  <div class="col-md-6 well">			  
-	    		<c:if test="${normalMatchInfo.TEAM1==teamName }">	
-	    		<!--  <table class="table table-hover">
-					    <tbody>
-					      <tr>
-					        <td style="width:20%;"><strong>팀</strong></td>
-					        <td>${normalMatchInfo.TEAM1}</td>
-					      </tr>
-					      <tr>
-					        <td style="width:20%;"><strong>장소</strong></td>
-					        <td>${matchingDto.matchingPlace}</td>
-					      </tr>
-					      <tr>
-					        <td style="width:20%;"><strong>요일</strong></td>	
-					        <td>${matchingDto.matchingDay}</td>
-					      </tr>
-					      <tr>
-					        <td style="width:20%;"><strong>시간</strong></td>
-					        <td>${matchingDto.matchingTime}</td>
-					      </tr>
-					      
-					      <tr>
-					      	<td></td>
-					      	<td></td>
-					      </tr>
-					    </tbody>
-					  </table> -->	
-					 
+	    		<c:if test="${normalMatchInfo.TEAM1==teamName }">
 				<table class="table table-condensed">
 				 	<tr></tr>
   					<tr>
-  						<td class="info" style="width: 100px; font-weight: bold;">팀</td>
+  						<td style="width: 100px; font-weight: bold;">팀</td>
   						<td style="background-color: white;">${normalMatchInfo.TEAM1}</td>
   					</tr>
   					<tr>
-  						<td class="info" style="width: 100px; font-weight: bold;">장소</td>
+  						<td style="width: 100px; font-weight: bold;">장소</td>
   						<td style="background-color: white;">${matchingDto.matchingPlace}</td>
   					</tr>
   					<tr>
-  						<td class="info" style="width: 100px; font-weight: bold;">요일</td>
+  						<td style="width: 100px; font-weight: bold;">요일</td>
   						<td style="background-color: white;">${matchingDto.matchingDay}</td>
   					</tr>
   					<tr>
-  						<td class="info" style="width: 100px; font-weight: bold;">시간</td>
+  						<td style="width: 100px; font-weight: bold;">시간</td>
   						<td style="background-color: white;">
   							${matchingDto.matchingTime}
   						</td>
   					</tr>
-				</table>  			
-	    			  
-			    	<%-- <h4>name : ${normalMatchInfo.TEAM1}</h4>
-					<h4>place : ${matchingDto.matchingPlace}</h4>
-					<h4>Day : ${matchingDto.matchingDay}</h4>
-					<h4>Time : ${matchingDto.matchingTime}</h4> --%>
+				</table>
 		      	</c:if>
 		      	
 		      	<c:if test="${normalMatchInfo.TEAM2==teamName }">
@@ -150,11 +121,6 @@
 					      </tr>
 					    </tbody>
 					  </table>
-		      		
-		      		<%-- <h4>name : ${normalMatchInfo.TEAM2}</h4>
-					<h4>place : ${matchingDto.matchingPlace}</h4>
-					<h4>Day : ${matchingDto.matchingDay}</h4>
-					<h4>Time : ${matchingDto.matchingTime}</h4>	 --%>
 		      	</c:if>
 		  </div>
 		  <!-- <div class="col-md-2" style="display:table-cell; text-align:center; vertical-align:middle; height:230px; padding-top:70px;"></div> -->		  
@@ -163,30 +129,24 @@
 	    		<table class="table table-condensed">
 	    		<tr></tr>
   					<tr>
-  						<td class="info" style="width: 100px; font-weight: bold;">팀</td>
+  						<td style="width: 100px; font-weight: bold;">팀</td>
   						<td style="background-color: white;">${normalMatchInfo.TEAM2 }</td>
   					</tr>
   					<tr>
-  						<td class="info" style="width: 100px; font-weight: bold;">장소</td>
+  						<td style="width: 100px; font-weight: bold;">장소</td>
   						<td style="background-color: white;">${otherMatchingDto.matchingPlace}</td>
   					</tr>
   					<tr>
-  						<td class="info" style="width: 100px; font-weight: bold;">요일</td>
+  						<td style="width: 100px; font-weight: bold;">요일</td>
   						<td style="background-color: white;">${otherMatchingDto.matchingDay}</td>
   					</tr>
   					<tr>
-  						<td class="info" style="width: 100px; font-weight: bold;">시간</td>
+  						<td style="width: 100px; font-weight: bold;">시간</td>
   						<td style="background-color: white;">
   							${otherMatchingDto.matchingTime}
   						</td>
   					</tr>
 			</table>
-	    		
-	    			  
-			    	<%-- <h4>name : ${normalMatchInfo.TEAM2 }</h4>
-					<h4>place : ${otherMatchingDto.matchingPlace}</h4>
-					<h4>Day : ${otherMatchingDto.matchingDay}</h4>
-					<h4>Time : ${otherMatchingDto.matchingTime}</h4> --%>
 		      	</c:if>
 		      	
 		      	<c:if test="${normalMatchInfo.TEAM2==teamName }">
@@ -216,12 +176,6 @@
 					      </tr>
 					    </tbody>
 					  </table>
-		      	
-		      	
-		      		<%-- <h4>name : ${normalMatchInfo.TEAM1 }</h4>
-					<h4>place : ${otherMatchingDto.matchingPlace}</h4>
-					<h4>Day : ${otherMatchingDto.matchingDay}</h4>
-					<h4>Time : ${otherMatchingDto.matchingTime}</h4> --%>	
 		      	</c:if>
 		  </div>
 		</div>	
@@ -255,65 +209,59 @@
 			  </table>
 			</div>
 			
-			<%-- <c:forEach var="weather" items="${weatherAllList}" begin="1" end="7">								
-				<span>${weather.region }</span>
-				<span>${weather.tmEf }</span>
-				<span>${weather.wf }</span>
-				<span>최저온도 ${weather.tmn }</span>
-				<span>최고온도 ${weather.tmx }</span>
-				<br/>
-			</c:forEach> --%>
 		<br/>
-	
-		<h3>경기장 정보 부분 </h3>
-	
-		<%-- <c:if test="${normalMatchInfo.TEAM1==teamName }">	
-			<div>team1</div>
-			<h2>나의 팀</h2>
-			<h4>emblem : ${myTeamDto.emblem }</h4>
-			<h4>name : ${normalMatchInfo.TEAM1}</h4>
-			<h4>place : ${matchingDto.matchingPlace}</h4>
-			<h4>Day : ${matchingDto.matchingDay}</h4>
-			<h4>Time : ${matchingDto.matchingTime}</h4>
+		</div>
+	<div class="modalPageTwo" style="text-align:center;">
+		<input type="hidden" id="gameCode" value="${recordDto.gameCode }">
+	<br/>
+		<label class="control-label" style="text-align:center; font-weight: bold;">승리 팀</label>
+	<div>
+		<div style="text-align:center; width:100%; ">
+		<br/>
+			<div style="width:33%; text-align: center; float:left; display:inline-block;"><input name="result" type="radio" value="${myTeamDto.teamName}" ></div>
+		 	<div style="width:33%; text-align: center; float:left; display:inline-block;"><input name="result" type="radio" value="무"></div>
+		  	<div style="width:33%; text-align: center; float:left; display:inline-block;"><input name="result" type="radio" value="${otherTeamDto.teamName}"></div>
+		</div>
+		<br/><br/>
+		<div class="btn-group btn-group-justified" style="text-align:center; width:100%; margin-left: 15px;">
+		  <div class="btn-group" role="group" style="width:32%; text-align: center; float:left; display:inline-block;">
+		    <button type="button" class="btn btn-info" id="team1Button">${myTeamDto.teamName}</button>
+		  </div>
+		  <div class="btn-group" role="group" style="width:32%; text-align: center; float:left; display:inline-block;">
+		    <button type="button" class="btn btn-default" id="drawButton">무승부</button>
+		  </div>
+		  <div class="btn-group" role="group" style="width:32%; text-align: center; float:left; display:inline-block;">
+		    <button type="button" class="btn btn-success" id="team2Button">${otherTeamDto.teamName}</button>
+		  </div>
+		  <input type="hidden" id="winnerTeam">
+		</div>
+	  <br/><br/>
+	  <div class="control-group">
+			<div style="width:49%; display: inline-block; float:left; text-align: center;" >
+				<input type="text" name="scoreTeam1" placeholder="Team 1 스코어" size="12">
+			</div>
+			<div style="width:1%; display: inline-block; float:left; text-align: center;">:</div>
+			<div style="width:49%; display: inline-block; float:left; text-align: center;" >
+				<input type="text" name="scoreTeam2"  placeholder="Team 2 스코어" size="12">
+			</div>
+			<input type="hidden" id="score">
 			<br/><br/>
 			
-			<h2>상대 팀</h2>
-			<h4>emblem : ${otherTeamDto.emblem }</h4>
-			<h4>name : ${normalMatchInfo.TEAM2 }</h4>
-			<h4>place : ${otherMatchingDto.matchingPlace}</h4>
-			<h4>Day : ${otherMatchingDto.matchingDay}</h4>
-			<h4>Time : ${otherMatchingDto.matchingTime}</h4>
-			<br/><br/>
-						
-		</c:if>
-		<c:if test="${normalMatchInfo.TEAM2==teamName }"><div>team2</div>
-			<h2>나의 팀</h2>
-			<h4>emblem : ${myTeamDto.emblem }</h4>
-			<h4>name : ${normalMatchInfo.TEAM2}</h4>
-			<h4>place : ${matchingDto.matchingPlace}</h4>
-			<h4>Day : ${matchingDto.matchingDay}</h4>
-			<h4>Time : ${matchingDto.matchingTime}</h4>
-			<br/><br/>
-			
-			<h2>상대 팀</h2>
-			<h4>emblem : ${otherTeamDto.emblem }</h4>
-			<h4>name : ${normalMatchInfo.TEAM1 }</h4>
-			<h4>place : ${otherMatchingDto.matchingPlace}</h4>
-			<h4>Day : ${otherMatchingDto.matchingDay}</h4>
-			<h4>Time : ${otherMatchingDto.matchingTime}</h4>
-			<br/><br/>			
-			
-		</c:if> --%>
-	
+	  </div>
+	   <div>
+	  	<input type="button" class="btn btn-info" value="입력" onclick="insertMatchingResult('${myTeamDto.teamName}')">
+	  	<input type="button" class="btn btn-default" value="취소" onclick="showPageOne()">
+	  </div>		
+    </div>
+	</div>
 	</div>
 	
 	<div class="modal-footer">
-		<input type="button" value="경기 결과 입력">
-		<input type="button" value="경기장 정보" onclick="viewMatchingPlace('${root }','${myTeamDto.teamCode }','${otherTeamDto.teamCode }')">
-		<%-- <input type="button" value="상대 팀 및 팀장 정보" onclick="viewOtherTeamInfo('${root}','${otherMatchingDto.teamCode}')"> --%>
-		
+		<input class="btn btn-info" type="button" value="경기 결과 입력" onclick="showPageTwo()">
+		<input class="btn btn-active" type="button" value="경기장 정보" onclick="viewMatchingPlace('${root }','${myTeamDto.teamCode }','${otherTeamDto.teamCode }')">
+		<input class="btn btn-default" type="button" value="상대 팀 및 팀장 정보" onclick="viewOtherTeamInfo('${root}','${otherMatchingDto.teamCode}')">
 	</div>
-	
+
 	</c:if>
 		
 	
@@ -342,8 +290,8 @@
 			</div>				
 			
 			<div class="container">
-			  <h2>매칭 정보</h2>      
-			  <br/>     
+			  <h2>매칭 정보</h2>
+			  <br/>
 			  <table class="table table-hover" style="width:100%;">
 			    <tbody>
 			      <tr>
@@ -383,10 +331,6 @@
 			<%-- <input type="button" value="매칭 취소" onclick="javascript:location.href='${root}/teamPage/deleteMatching.do?matchingCode=${matchingDto.matchingCode }&teamName=${teamName}'"> --%>
 		</div>
 	</c:if>
-	
-</div>
-
-
 </body>
 </html>
 		

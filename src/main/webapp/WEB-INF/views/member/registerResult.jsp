@@ -8,13 +8,20 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Insert title here</title>
 <script type="text/javascript" src="${root}/js/member/member.js"></script>
+
+
+<link rel="stylesheet" type="text/css" href="${root }/resources/css/bootstrap.css"/>
+<link rel="stylesheet" type="text/css"  href="${root}/css/member/jquery-ui.css"/>
+
+<script type="text/javascript" src="${root }/js/jquery/jquery.js"></script>
+<script type="text/javascript" src="${root }/resources/js/bootstrap.js"></script>
 </head>
 <body>
 		<c:if test="${check>0}">
 			<script type="text/javascript">
 				alert("가입이완료되었습니다");
 				location.href="${root}/start.jsp";
-			</script>	
+			</script>			
 		</c:if>
 		<c:if test="${check==0}">
 			<script type="text/javascript">

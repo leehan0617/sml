@@ -9,6 +9,7 @@ import org.springframework.stereotype.Component;
 
 import com.sml.matching.dto.MatchingDto;
 import com.sml.member.dto.MemberDto;
+import com.sml.record.dto.RecordDto;
 import com.sml.team.dto.TeamDto;
 
 @Component
@@ -90,7 +91,7 @@ public class MatchingDaoImpl implements MatchingDao {
 	 */
 	@Override
 	public void createGameRecord(MatchingDto myMatchingDto,
-			MatchingDto otherMatchingDto) {
+			MatchingDto otherMatchingDto, String homeGround) {
 		HashMap<String, Object> hMap=new HashMap<String, Object>();
 		hMap.put("teamCode", myMatchingDto.getTeamCode());
 		hMap.put("teamCode2", otherMatchingDto.getTeamCode());
@@ -98,6 +99,7 @@ public class MatchingDaoImpl implements MatchingDao {
 		hMap.put("refereeNumber",1);
 		hMap.put("gameState", "경기 전");
 		hMap.put("sportType", myMatchingDto.getMatchingSport());
+		hMap.put("homeGround", homeGround);
 		
 		sqlSession.insert("matching.dao.matchingMapper.createGameRecord", hMap);
 	}
@@ -176,4 +178,21 @@ public class MatchingDaoImpl implements MatchingDao {
 		hMap.put("leaderName", leaderName);
 		return sqlSession.selectOne("matching.dao.matchingMapper.getTeamLeaderInfo", hMap);
 	}
+
+
+	/**
+	 * @name : getNormalRecordInfo
+	 * @date : 2015. 7. 22.
+	 * @author : 이희재
+	 * @description : 친선 경기 정보 가져옴
+	 */
+	@Override
+	public RecordDto getNormalRecordInfo(int teamCode, int teamCode2) {
+		HashMap<String, Object> hMap=new HashMap<String, Object>();
+		hMap.put("teamCode", teamCode);
+		hMap.put("teamCode2", teamCode2);
+		return sqlSession.selectOne("matching.dao.matchingMapper.getNormalRecordInfo",hMap);
+	}
+
+
 }

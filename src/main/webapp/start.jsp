@@ -27,6 +27,7 @@
 <script src="${root }/resources/js/smlStart.js"></script>
 <script src="${root }/js/xhr/xhr.js"></script>
 
+
 <style>
 	  .ui-autocomplete { 
 	    overflow-y: scroll; 
@@ -51,30 +52,20 @@
             </div>
             <div id="navbar" class="navbar-collapse collapse">
               <ul class="nav navbar-nav">
-                <li><a class="navbar-brand startScroll" href="${root }/start.jsp">SML KOREA</a></li>
-                <li>&nbsp;</li>
-                <li>&nbsp;</li>
-                <li>&nbsp;</li>
-                <li>&nbsp;</li>
-                <li>&nbsp;</li>
-                <li>&nbsp;</li>
-                <li>&nbsp;</li>
-                <li>&nbsp;</li>
-                <li>&nbsp;</li>
-                <li>&nbsp;</li>
-              	<li><a class="startScroll" href="#smlInfo">SML 소개</a></li>
-                <li><a class="startScroll" href="#nearGround">SML 경기장</a></li>
-                <li><a class="startScroll" href="#workshopper-list">SML 서비스</a></li>
-                <li><a class="startScroll" href="#helpCenter">SML 고객센터</a></li>
+                <li><a class="navbar-brand startScroll" href="${root }/start.jsp" style="color:white;">SML KOREA</a></li>
+              	<li><a class="startScroll" href="#smlInfo" style="color:white;">SML 소개</a></li>
+                <li><a class="startScroll" href="#nearGround" style="color:white;">SML 경기장</a></li>
+                <li><a class="startScroll" href="#workshopper-list" style="color:white;">SML 서비스</a></li>
+                <li><a class="startScroll" href="#helpCenter" style="color:white;">SML 고객센터</a></li>
                              
                   <c:choose>
 	              <c:when test="${teamName == null }">
-	              	<li><a href="#sign" data-toggle="modal" data-target="#popupJoin">SML 회원가입</a></li>
-	              	<li><a href="#login" data-toggle="modal" data-target="#popupLogin">SML 로그인</a></li>
+	              	<li><a href="#sign" data-toggle="modal" data-target="#popupJoin" style="color:white;">SML 회원가입</a></li>
+	              	<li><a href="#login" data-toggle="modal" data-target="#popupLogin" style="color:white;">SML 로그인</a></li>
 	              </c:when>
 	              <c:otherwise>
-	              	<li><a href="${root}/team/teamMain.do?teamName=${teamName}">팀페이지 이동</a></li>
-	              	<li><a href="${root }/teamPage/logout.do">로그아웃</a></li>
+	              	<li><a href="${root}/team/teamMain.do?teamName=${teamName}" style="color:white;">팀페이지 이동</a></li>
+	              	<li><a href="${root }/teamPage/logout.do" style="color:white;">로그아웃</a></li>
 	              </c:otherwise>
               	</c:choose>
                 
@@ -129,11 +120,12 @@
 	              	<li><a href="#login" data-toggle="modal" data-target="#popupLogin">로그인</a></li>
 	              </c:when>
 	              <c:otherwise>
+	              	<li><a href="${root}/team/teamMain.do?teamName=${teamName}">팀페이지 이동</a></li>
 	              	<li><a href="${root }/teamPage/logout.do">로그아웃</a></li>
 	              </c:otherwise>
               </c:choose>
-              <li><a href="#nearGround" class="startScroll">주변 경기장</a></li>
               <li><a href="#workshopper-list" class="startScroll">게임 페이지</a></li>
+               <li><a href="#nearGround" class="startScroll">주변 경기장</a></li>
               <li><a href="#helpCenter" class="startScroll">고객센터</a></li>
             </ul>
           </nav>
@@ -203,68 +195,47 @@
 		     </div>
 	  </section>
   
-   <section>
-    <div id="workshoppers">
-      <div class="container">
-        <div class="full">
-          <h2 class="big-heading">튜토리얼</h2>
-          <p>홈페이지가 처음이신 분들을 위하여.</p>
-          <nav>
-            <ul class="inner-nav">
-              <li><a href="#workshopper-list">팀원 등록</a></li>
-              <li><a href="https://github.com/nodeschool/discussions/issues/new">매칭시작</a></li>
-              <li><a href="https://github.com/nodeschool/discussions">매칭상태보기</a></li>
-              <li><a href="#">경기 결과 입력</a></li>
-            </ul>
-          </nav>
-        </div>
-      </div>
-      <div class="container">
-        <div class="third">
-          <div class="term">
-            <div class="chrome">
-              <span class="btn btn-term close"></span>
-              <span class="btn btn-term min"></span>
-              <span class="btn btn-term max"></span>
-            </div>
-            <div class="shell">
-              <code>친선경기</code>
-              <code>리그경기</code>
-            </div>
-          </div>
-        </div>
+   <section id='developers' class='developers fill-light'>
+		<div class='limiter pad4y'  id="workshopper-list">
+			<div class='prose prose-big space-bottom1 pad4y space-top2 contain z1 clearfix'>
+				<h1>경기 종목</h1>
+				<div class="clearfix space-bottom2">
+				<p class='quiet block col9'>SML Korea는 현제 축구,야구,농구,족구 총 4가지 종목을 서비스 하고있습니다.<br/> 아래 링크를 통해서 각각의 팀페이지로 이동해 실시간 리그정보 및 경기매칭을 진행해보세요.</p>
+				</div>
+			</div>
+		</div>
+		<div class="clearfix">
+			<div class='section clearfix col12 keyline-top  dev-tools space-bottom2 clip'>
+				<a href="${root }/sc"  class='block center col3 pad2 pad4y keyline-right keyline-bottom' id="goScPage">
+					<img src="${root}/resources/images/startImage/mainPageSoccer.jpg" width="100" height="300">
+					<span class='col12' style="font-size:20px;"><strong>축구</strong></span>
+					<span class='col12 small quiet space-bottom1'><strong>Soccer</strong></span>
+				</a>				
 
-        <div class="third">
-          <div class="term">
-            <div class="chrome">
-              <span class="btn btn-term close"></span>
-              <span class="btn btn-term min"></span>
-              <span class="btn btn-term max"></span>
-            </div>
-            <div class="shell">
-              <div class="workshopper">
-                <code>» 팀생성</code>
-                <code>» 팀원등록</code>
-                <code>» 매칭시작!</code>
-              </div>
-            </div>
-          </div>
-        </div>
+				<a href="${root}/baseBall/baseBallMain.do"  class='block col3 center pad2 pad4y keyline-right keyline-bottom' id="goBbPage">
+					<img src="${root}/resources/images/startImage/mainBaseBall.jpg" width="100" height="300">
+					<span class='col12' style="font-size:20px;"><strong>야구</strong></span>
+					<span class='col12 small quiet space-bottom1'><strong>Baseball</strong></span>
+				</a>
 
-        <div class="third">
-          <div id="get-going">
-            <h3>시작하세요 —</h3>
-            <p><span>먼저 </span> 경기별 최소 팀원 
-            	<span>이 필요합니다. 다음에는 </span>  
-            	<span>팀페이지에서 매칭시작을 눌러주세요. 간단한 입력만으로 경기가 성사됩니다.</span></p>
-            <p><span>리그 경기는 </span> <strong>매 시즌별 공지사항</strong>
-            	<span>을 확인해주세요. 종목별 리그열리는 기간</span> 
-            	<span>이 다를수 있습니다.</span></p>
-          </div>	
-        </div>
-      </div>
-    </div></section>
-    
+				<a href='${root}/basketBall/basketBallMain.do' class='block col3 center pad2 pad4y keyline-bottom keyline-right' id="goBkPage">
+					<img src="${root}/resources/images/startImage/mainPageBaskeyBall.jpg" width="100" height="300">
+
+					<span class='col12' style="font-size:20px;"><strong>농구</strong></span>
+					<span class='col12 small quiet space-bottom1'><strong>Basketball</strong></span>
+				</a>
+
+				<a href='${root }/sportLegBall/legBallMain.do' class='block center col3 pad2 pad4y keyline-bottom' id="goLbPage">
+					<img src="${root}/resources/images/legBallImg1.jpg" width="100" height="300">
+					<span class='col12' style="font-size:20px;"><strong>족구</strong></span>
+					<span class='col12 small quiet space-bottom1'><strong>Legball</strong></span>
+				</a>
+
+			</div>
+		</div>
+		</section>
+  
+       
     <section>
 		    <div class="container workshop-header" style="background-color: #fff;">
 		      <div class="full">
@@ -279,54 +250,7 @@
 		    <div id="mapList" style="display:none;">dskjfhdskjfk</div>
 	  </section>
 	  
-	  <!--  
-	<section id='developers' class='developers fill-light'>
-		<div class='full'  id="workshopper-list" style="padding-top: 20px;">
-			<h2 class="big-heading">게임 페이지</h2>
-			<br/>
-			<p>현재 SML Korea에서 지원하고 있는 종목의 페이지 입니다.</p>
-			<br/>
-			-->
 			
- <section id='developers' class='developers fill-light'>
-		<div class='limiter pad4y'  id="workshopper-list">
-			<div class='prose prose-big space-bottom1 pad4y space-top2 contain z1 clearfix'>
-				<h1>경기 종목</h1>
-				<div class="clearfix space-bottom2">
-				<p class='quiet block col9'>SML Korea는 현제 축구,야구,농구,족구 총 4가지 종목을 서비스 하고있습니다.<br/> 아래 링크를 통해서 각각의 팀페이지로 이동해 실시간 리그정보 및 경기매칭을 진행해보세요.</p>
-				</div>
-			</div>
-		</div>
-		<div class="clearfix">
-			<div class='section clearfix col12 keyline-top  dev-tools space-bottom2 clip'>
-				<a href="${root }/sc"  class='block center col3 pad2 pad4y keyline-right keyline-bottom'>
-					<img src="${root}/resources/images/startImage/mainPageSoccer.jpg" width="100" height="300">
-					<span class='col12'><strong>축구</strong></span>
-					<span class='col12 small quiet space-bottom1'><strong>Soccer</strong></span>
-				</a>				
-
-				<a href="${root}/baseBall/baseBallMain.do"  class='block col3 center pad2 pad4y keyline-right keyline-bottom'>
-					<img src="${root}/resources/images/startImage/mainBaseBall.jpg" width="100" height="300">
-					<span class='col12'><strong>야구</strong></span>
-					<span class='col12 small quiet space-bottom1'><strong>Baseball</strong></span>
-				</a>
-
-				<a href='${root}/basketBall/basketBallMain.do' class='block col3 center pad2 pad4y keyline-bottom keyline-right'>
-					<img src="${root}/resources/images/startImage/mainPageBaskeyBall.jpg" width="100" height="300">
-
-					<span class='col12'><strong>농구</strong></span>
-					<span class='col12 small quiet space-bottom1'><strong>Basketball</strong></span>
-				</a>
-
-				<a href='${root }/sportLegBall/legBallMain.do' class='block center col3 pad2 pad4y keyline-bottom'>
-					<img src="${root}/resources/images/legBallImg1.jpg" width="100" height="300">
-					<span class='col12'><strong>족구</strong></span>
-					<span class='col12 small quiet space-bottom1'><strong>Legball</strong></span>
-				</a>
-
-			</div>
-		</div>
-		</section>
 
     <div class="container elective-workshoppers" id="helpCenter" style="background-color: #fff; padding-top: 100px;">
       <div class="third">
@@ -376,18 +300,17 @@
         <div class="two-thirds">
           <ul>
             <li><strong>연락처</strong></li>
-            <li><a href="https://twitter.com/nodeschool" target="_blank" class="glyphicon glyphicon-earphone">&nbsp;010 4646 3522</a></li>
-            <li><a href="https://github.com/nodeschool" target="_blank" class="glyphicon glyphicon-envelope">&nbsp;newbin0617@gmail.com</a></li>
+            <li><a href="#" target="_blank" class="glyphicon glyphicon-earphone" onclick="alertInfo()">&nbsp;010 4646 3522</a></li>
+            <li><a href="#" target="_blank" class="glyphicon glyphicon-envelope" onclick="alertInfo()">&nbsp;newbin0617@gmail.com</a></li>
           </ul>
           <ul>
             <li><strong>기여하기</strong></li>
-            <li><a href="https://github.com/nodeschool/discussions/issues/new" target="_blank" >이슈 만들기</a></li>
-            <li><a href="https://github.com/nodeschool/discussions/issues" target="_blank">질문에 답하기</a></li>
+            <li><a href="https://github.com/leehan0617/sml" target="_blank" >개발페이지 방문</a></li>
+            <li><a href="https://github.com/leehan0617/sml" target="_blank">개발에 관한 질문</a></li>
           </ul>
           <ul>
             <li><strong>About</strong></li>
-            <li><a href="#">워크쇼퍼 만들기</a></li>
-            <li><a href="#">워크숍 개최하기</a></li>
+            <li><a href="#">상단으로</a>
             <li><a href="${root }/admin/main.do">관리자 페이지</a></li>
           </ul>
         </div>
@@ -395,14 +318,19 @@
     </div>
   </div>
   
-  <div class="sign" id="sign"></div>
+   <div class="sign" id="sign"></div>
   <div class="login" id="login"></div>
- <script>
+ <script>  	 
 	 $(".startScroll").click(function(event){            
 	     event.preventDefault();
 	     $('html,body').animate({scrollTop:$(this.hash).offset().top}, 500);
 	});
-
+	 
+	 
+	 function alertInfo(){
+		 alert("준비중입니다.");
+	 }
  </script>
+
 </body>
 </html>
