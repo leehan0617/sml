@@ -123,9 +123,9 @@
 				<td><br/><br/><br/><span class="label label-success">리그경기</span></td>
 				</c:if>
 				<td>
-					<a href="${root}/team/teamMain.do?teamName=${record.TEAM1}"><img class="img-circle" src="${root}/img/teamImg/${record.EMBLEM1}" width="100" height="100"><img></a>&nbsp;				
+					<a href="${root}/team/teamMain.do?teamName=${record.TEAM1}"><img class="img-circle" src="${root}/img/teamImg/${record.EMBLEM1}" width="50" height="60"><img></a>&nbsp;				
 					<img src="${root}/resources/images/versusIcon.png" width="30" height="30"></img>&nbsp;				
-					<a href="${root}/team/teamMain.do?teamName=${record.TEAM2}"><img class="img-circle" src="${root}/img/teamImg/${record.EMBLEM2}" width="100" height="100"></img></a>&nbsp;
+					<a href="${root}/team/teamMain.do?teamName=${record.TEAM2}"><img class="img-circle" src="${root}/img/teamImg/${record.EMBLEM2}" width="50" height="60"></img></a>&nbsp;
 					<br/>
 					<span class="label label-primary">HOME</span>${record.TEAM1}
 					&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;

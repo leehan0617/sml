@@ -271,6 +271,18 @@ public class LeagueDaoImpl implements LeagueDao{
 		// TODO Auto-generated method stub
 		return sqlSession.selectOne("dao.LeagueMapper.getTeamId" ,teamName);
 	}
+
+	/**
+	 * @함수명: getTeamEmblem
+	 * @작성일: 2015. 7. 22.
+	 * @작성자: 정성남
+	 * @설명 :
+	 */
+	@Override
+	public String getTeamEmblem(String teamName) {
+		
+		return sqlSession.selectOne("dao.LeagueMapper.getTeamEmblem" ,teamName);
+	}
 	
 	
 }

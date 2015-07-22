@@ -66,7 +66,7 @@ function getTeamBoardData(root , teamName){
 			var endBlock = startBlock+blockSize-1;
 			
 			$.each(boardList,function(i,val){
-				$('.teamBoardTbody').append('<tr><td>'+boardList[i].rnum+"</td><td><li><a data-toggle='modal' data-target='#modalTeamBoardRead' onclick=readTeamBoard(\'"+root+"\','"+teamName+"','"+currentPage+"','"+boardList[i].boardNumber+"')>"+boardList[i].boardTitle+'</td><td>'+boardList[i].boardWriter+'</td><td>'+
+				$('.teamBoardTbody').append('<tr><td>'+boardList[i].rnum+"</td><td><a data-toggle='modal' data-target='#modalTeamBoardRead' onclick=readTeamBoard(\'"+root+"\','"+teamName+"','"+currentPage+"','"+boardList[i].boardNumber+"')>"+boardList[i].boardTitle+'</td><td>'+boardList[i].boardWriter+'</td><td>'+
 									(boardList[i].boardDate.year+1900)+'-'+(boardList[i].boardDate.month+1)+'-'+boardList[i].boardDate.date+'</td></tr>');
 			});
 			
@@ -106,7 +106,7 @@ function paging(root,teamName,blockNumber){
 			$('.teamBoardTbody').empty();
 			$('.pager').empty();
 			$.each(boardList,function(i,val){
-				$('.teamBoardTbody').append('<tr><td>'+boardList[i].rnum+"</td><td><li><a data-toggle='modal' data-target='#modalTeamBoardRead' onclick=readTeamBoard(\'"+root+"\','"+teamName+"','"+currentPage+"','"+boardList[i].boardNumber+"')>"+boardList[i].boardTitle+'</td><td>'+boardList[i].boardWriter+'</td><td>'+
+				$('.teamBoardTbody').append('<tr><td>'+boardList[i].rnum+"</td><td><a data-toggle='modal' data-target='#modalTeamBoardRead' onclick=readTeamBoard(\'"+root+"\','"+teamName+"','"+currentPage+"','"+boardList[i].boardNumber+"')>"+boardList[i].boardTitle+'</td><td>'+boardList[i].boardWriter+'</td><td>'+
 									(boardList[i].boardDate.year+1900)+'-'+(boardList[i].boardDate.month+1)+'-'+boardList[i].boardDate.date+'</td></tr>');
 			});
 

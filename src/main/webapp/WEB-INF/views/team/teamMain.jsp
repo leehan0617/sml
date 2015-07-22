@@ -22,7 +22,7 @@
     <script src="${root }/resources/js/jquery-ui.js"></script>
 	<script src="${root }/resources/js/bootstrap.js"></script>
 	<script src="${root }/resources/js/teamMain.js"></script>	
-	<script src="${root }/resources/js/smlStart.js"></script>	
+		
 
 	<!-- before matching.jsp js/css -->
 	<script type="text/javascript" src="//apis.daum.net/maps/maps3.js?apikey=1442260e0c6af86974001269a7312e42&libraries=services"></script>
@@ -86,7 +86,7 @@
                   <li class="divider"></li>
                   <li class="dropdown-header">Sub Menu</li>
                   <li><a data-toggle="modal" data-target="#popup" href="${root }/teamPage/manageTeamEmblem.do?teamName=${teamName}">팀로고 관리</a></li>
-                  <li><a data-toggle="modal" data-target="#popup" href="${root }/member/myInfoPage.do?teamName=${teamName }">개인정보수정</a></li>
+                  <li><a data-toggle="modal" data-target="#popupMyInfo" href="${root }/member/myInfoPage.do?teamName=${teamName }">개인정보수정</a></li>
                   <li><a href="#">로그아웃</a></li>
                  </c:if>
                 <c:if test="${teamGrade == null }">
@@ -119,18 +119,18 @@
       	<div class="col-md-2">
       		  <a href="${root}/team/teamMain.do?teamName=${teamName}">
 	   		 <img class="img-circle img-responsive" src="${root}/img/teamImg/${team.emblem}" width="200" height="150"></img>	   
-	    	</a><br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+	    	</a><br/>
 	    		<c:if test="${matchingDto.matchingState==null }">
-	  			<input id="teamState" type="button" class="btn btn-active" value="매칭 전">
+	  			&nbsp;&nbsp;&nbsp;&nbsp;<input id="teamState" type="button" class="btn btn-active" value="매칭 전">
 	  			</c:if>
 			  	<c:if test="${matchingDto.matchingState=='전' }">
-			  			<input id="teamState" type="button" class="btn btn-info" value="매칭 대기 중">
+			  			&nbsp;&nbsp;&nbsp;&nbsp;<input id="teamState" type="button" class="btn btn-info" value="매칭 대기 중">
 			  	</c:if>
 			  	<c:if test="${matchingDto.matchingState=='중' }">
-			  			<input id="teamState" type="button" class="btn btn-warning" value="매칭 중..">
+			  			&nbsp;&nbsp;&nbsp;&nbsp;<input id="teamState" type="button" class="btn btn-warning" value="매칭 중..">
 			  	</c:if>
 			  	<c:if test="${matchingDto.matchingState=='후' }">
-			  			<input id="teamState" type="button" class="btn btn-success" value="매칭 성사">
+			  			&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input id="teamState" type="button" class="btn btn-success" value="매칭 성사">
 			  	</c:if>
 			    		
 		      	</div>
@@ -588,6 +588,13 @@
     </div>
 </div>
 
+<div class="modal fade" id="popupMyInfo">
+	<div class="modal-dialog">
+    	<div class="modal-content">
+    	</div>
+    </div>
+</div>
+
 <div id="stack2" class="modal fade" tabindex="-1" data-focus-on="input:first" style="display: none;">
   <div class="modal-header">
     <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
@@ -612,6 +619,35 @@
 
 
 <script>
+$(document).ready(function() {
+	var urlAddr="/home/autocomplete";
+	$("#searchTeamName").autocomplete({
+		source : function(request, response) {
+			$.ajax({
+				url : urlAddr,
+				type : "post",
+				dataType : "json",
+				data: { term : request.term, param1 : "param1 Value", param2 : "param2 Value"},
+				contentType: "application/x-www-form-urlencoded; charset=UTF-8",  
+				data : request,
+				success : function(data) {
+					var result = data;
+					response(result);
+				},
+				error : function(data) {
+					alert("에러가 발생하였습니다.");
+				}
+			});
+		}
+	});
+	
+	$("#goTeamPage").click(function(){
+		var text = $("input[id='searchTeamName']").val();
+		
+		var url = "/home/team/teamMain.do?teamName="+text;
+		window.open(url);
+	});
+});
 	function editTeamIntro(root , teamName , teamCode){
 		//var teamIntro = $("#teamIntroContent").val();
 		var teamIntro = $("#teamIntroContent").val().replace(/\n/g, '<br>');

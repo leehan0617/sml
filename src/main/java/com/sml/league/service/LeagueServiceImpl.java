@@ -367,8 +367,10 @@ public class LeagueServiceImpl implements LeagueService{
 		Map<String,Object> map=mav.getModel();
 		HttpServletRequest request=(HttpServletRequest) map.get("request");
 		
+		
 		String teamName=request.getParameter("teamName");
 		LeagueDto league=dao.getTeamLeagueInfo(teamName);
+		String emblem=dao.getTeamEmblem(teamName);
 		
 		if(league!=null){
 			List<TeamDto> joinTeamList=dao.getLeagueTeamList(league.getLeagueCode());
@@ -379,7 +381,7 @@ public class LeagueServiceImpl implements LeagueService{
 				mav.addObject("leagueRecordList", leagueRecordList);
 			}
 		}
-		
+		mav.addObject("emblem",emblem);
 		mav.addObject("league",league);
 		mav.setViewName("teamPage/viewLeagueInfo");
 	}
