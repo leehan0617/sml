@@ -46,8 +46,22 @@
             <div id="navbar" class="navbar-collapse collapse">
               <ul class="nav navbar-nav">
                 <li><a class="navbar-brand startScroll" href="${root }/start.jsp">SML KOREA</a></li>
+                <li>&nbsp;</li>
+                <li>&nbsp;</li>
+                <li>&nbsp;</li>
+                <li>&nbsp;</li>
+                <li>&nbsp;</li>
+                <li>&nbsp;</li>
+                <li>&nbsp;</li>
+                <li>&nbsp;</li>
+                <li>&nbsp;</li>
+                <li>&nbsp;</li>
               	<li><a class="startScroll" href="#smlInfo">SML 소개</a></li>
-              	<c:choose>
+                <li><a class="startScroll" href="#nearGround">SML 경기장</a></li>
+                <li><a class="startScroll" href="#workshopper-list">SML 서비스</a></li>
+                <li><a class="startScroll" href="#helpCenter">SML 고객센터</a></li>
+                             
+                  <c:choose>
 	              <c:when test="${teamName == null }">
 	              	<li><a href="#sign" data-toggle="modal" data-target="#popupJoin">SML 회원가입</a></li>
 	              	<li><a href="#login" data-toggle="modal" data-target="#popupLogin">SML 로그인</a></li>
@@ -57,9 +71,7 @@
 	              	<li><a href="${root }/teamPage/logout.do">로그아웃</a></li>
 	              </c:otherwise>
               	</c:choose>
-                <li><a class="startScroll" href="#nearGround">SML 경기장</a></li>
-                <li><a class="startScroll" href="#workshopper-list">SML 서비스</a></li>
-                <li><a class="startScroll" href="#helpCenter">SML 고객센터</a></li>
+                
                 <li>
 	               <form class="form-inline"  id="searchForm" name="searchForm" style="padding-top:10px;">
 		  			<div class="input-group">
@@ -72,8 +84,8 @@
 		    		</div><!-- /input-group -->
 	  			</form>
                 </li>
-                <li><a class="startScroll" href="#startTop">맨위로</a></li>
-              </ul>
+                           
+                </ul>
             </div>
           </div>
         </nav>
