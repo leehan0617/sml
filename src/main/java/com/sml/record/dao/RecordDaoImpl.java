@@ -40,4 +40,52 @@ public class RecordDaoImpl implements RecordDao {
 	public HashMap<String, Object> getMatchingResult(int teamCode) {
 		return sqlSession.selectOne("dao.RecordMapper.getMatchingResult",teamCode);
 	}
+
+	@Override
+	public HashMap<String, Object> getRecordInfo(int gameCode) {
+		return sqlSession.selectOne("dao.RecordMapper.getRecordInfo",gameCode);
+	}
+
+	@Override
+	public int insertDraw(int gameCode, String resultScore) {
+		HashMap<String, Object> hMap=new HashMap<String, Object>();
+		hMap.put("gameCode", gameCode);
+		hMap.put("resultScore", resultScore);
+		
+		return sqlSession.insert("dao.RecordMapper.insertDraw",hMap);
+	}
+
+	@Override
+	public int insertTeam1(int gameCode, String resultScore) {
+		HashMap<String, Object> hMap=new HashMap<String, Object>();
+		hMap.put("gameCode", gameCode);
+		hMap.put("resultScore", resultScore);
+		
+		return sqlSession.insert("dao.RecordMapper.insertTeam1",hMap);
+	}
+
+	@Override
+	public int insertTeam2(int gameCode, String resultScore) {
+		HashMap<String, Object> hMap=new HashMap<String, Object>();
+		hMap.put("gameCode", gameCode);
+		hMap.put("resultScore", resultScore);
+		
+		return sqlSession.insert("dao.RecordMapper.insertTeam2",hMap);
+	}
+
+	/**
+	 * @name : deleteMatching
+	 * @date : 2015. 7. 22.
+	 * @author : 이희재
+	 * @description : 매칭 상태 삭제
+	 */
+	@Override
+	public int deleteMatching(int teamCode) {
+		return sqlSession.delete("dao.RecordMapper.deleteMatching",teamCode);
+	}
+
+	@Override
+	public List<RecordDto> getTeamRecordList(int teamCode) {
+		return sqlSession.selectList("dao.RecordMapper.getTeamRecordList",teamCode);
+	}
 }

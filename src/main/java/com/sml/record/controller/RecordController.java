@@ -38,6 +38,7 @@ public class RecordController {
 		return mav;
 	}
 	
+	@RequestMapping(value="/record/insertMatchingResult.do", method=RequestMethod.GET)
 	public ModelAndView insertMatchingResult(HttpServletRequest request){
 		ModelAndView mav=new ModelAndView();
 		mav.addObject("request", request);

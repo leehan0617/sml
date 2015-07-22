@@ -24,7 +24,7 @@
 	<script src="${root }/resources/js/teamMain.js"></script>	
 		
 
-	<!-- before matching.jsp js/css -->
+	<!-- matching.jsp js/css -->
 	<script type="text/javascript" src="//apis.daum.net/maps/maps3.js?apikey=1442260e0c6af86974001269a7312e42&libraries=services"></script>
 	<script src="${root }/js/teamPage/teamPage.js"></script>
 	
@@ -53,10 +53,8 @@
 	
 </head>
 <body>
-	 <div class="container">
 
-      <!-- Static navbar -->
-      <nav class="navbar navbar-inverse">
+<nav class="navbar navbar-inverse">
         <div class="container-fluid">
           <div class="navbar-header">
             <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
@@ -98,8 +96,25 @@
                
                 </li>
             </ul>
-			<form class="form-inline"  id="searchForm" name="searchForm" style="padding-top:10px;">             
+            
+           
             <ul class="nav navbar-nav navbar-right">
+            	<li>
+	          		<!-- 날씨 -->
+					<div class="noti" id="roll" style="padding-top:14px; height:35px; overflow:hidden;width:150px;">			
+						<ul>
+							<c:forEach var="weather" items="${weatherList }">		
+								<li>	
+									<span><font color="white">${weather.sido }</font></span>
+									<span><font color="white">${weather.temp }</font></span>
+									<span><img src="${root}/img/weatherImg/${weather.wfKor}" style="vertical-align:middle; width="27px" height="27px"/></span>
+								</li>	
+							</c:forEach>		
+						</ul>
+					</div>
+            	</li>
+            	<li>
+			<form class="form-inline"  id="searchForm" name="searchForm" style="padding-top:10px;">            	
            		<li class="input-group">
 	      			<input type="text" class="form-control" placeholder="팀명을 검색하세요." name="teamName" id="searchTeamName">
 		    		<span class="input-group-btn">
@@ -108,11 +123,18 @@
 		      		</button>
 		      		</span>
 	    		</li><!-- /input-group -->
-            </ul>
+           
             </form>
+            </li>
+             </ul>
+             
           </div><!--/.nav-collapse -->
         </div><!--/.container-fluid -->
       </nav>
+
+	 <div class="container">
+      <!-- Static navbar -->
+      
 
       <!-- Main component for a primary marketing message or call to action -->
       <div class="jumbotron row">
@@ -134,8 +156,10 @@
 			  	</c:if>
 			    		
 		      	</div>
-      	<div class="col-md-10">
+      	<div class="col-md-4">
       		<h1>${team.teamName}</h1>
+      	</div>
+      	<div class="col-md-6">
         <p>
         	<c:choose>
   				<c:when test="${team.teamIntro !=null }">
@@ -161,14 +185,50 @@
 			<div class="col-md-1"></div>
 			<div class="col-md-4 well" style="height:150px;">
 				<img class="img-circle" src="${root}/img/teamImg/${matchingResult.EMBLEM1}" style="width:30%; height:100%; float: right;">
-				<h4 style="float:right; margin-right: 50px; margin-top: 40px;">${matchingResult.TEAMNAME1}</h4>
+				<table class="table table-condensed" style="float: right; width:60%; margin-right: 20px; margin-top: 0px;">
+				 	<tr></tr>
+  					<tr>
+  						<td style="width: 30px; font-weight: bold; background-color: silver;">팀</td>
+  						<td style="background-color: white;">${matchingResult.TEAMNAME1}</td>
+  					</tr>
+  					<tr>
+  						<td style="width: 50px; font-weight: bold; background-color: silver;">통산 전적</td>
+  						<td style="background-color: white;">${team1Map.gameCount } 전<br/> ${team1Map.countWin } 승 ${team1Map.countDraw } 무 ${team1Map.countLose } 패 </td>
+  					</tr>
+  					<tr>
+  						<td style="width: 50px; font-weight: bold; background-color: silver;">승률</td>
+  						<td style="background-color: white;"><fmt:formatNumber value="${team1Map.winPer }" pattern="#.#"/>%</td>
+  					</tr>
+  					<tr>
+  						<td></td>
+  						<td></td>
+  					</tr>
+				</table>
 			</div>
 			<div class="col-md-2" style="text-align:center;">
 				<img src="${root}/resources/images/versusIcon.png" style="width:80%; height:80%;">
 			</div>
 			<div class="col-md-4 well" style="height:150px;">
 				<img class="img-circle" src="${root}/img/teamImg/${matchingResult.EMBLEM2}" style="width:30%; height:100%; float:left;">
-				<h4 style="float:left; margin-left: 50px; margin-top: 40px;">${matchingResult.TEAMNAME2}</h4>
+				<table class="table table-condensed" style="float: left; width:60%; margin-left: 20px; margin-top: 0px;">
+				 	<tr></tr>
+  					<tr>
+  						<td style="width: 30px; font-weight: bold; background-color: silver;">팀</td>
+  						<td style="background-color: white;">${matchingResult.TEAMNAME2}</td>
+  					</tr>
+  					<tr>
+  						<td style="width: 50px; font-weight: bold; background-color: silver;">통산 전적</td>
+  						<td style="background-color: white;">${team2Map.gameCount } 전<br/> ${team2Map.countWin } 승 ${team2Map.countDraw } 무 ${team2Map.countLose } 패 </td>
+  					</tr>
+  					<tr>
+  						<td style="width: 50px; font-weight: bold; background-color: silver;">승률</td>
+  						<td style="background-color: white;"><fmt:formatNumber value="${team2Map.winPer }" pattern="#.#"/>%</td>
+  					</tr>
+  					<tr>
+  						<td></td>
+  						<td></td>
+  					</tr>
+				</table>
 			</div>
 			<div class="col-md-1"></div>
 		</div>
@@ -197,7 +257,7 @@
 		  <!-- Default panel contents -->
 		  <div class="panel-heading"><h3>기록실 <a style="float: right;" class="btn btn-info" href="${root }/teamPage/viewTeamRecord.do?teamName=${team.teamName}">기록실로 이동</a></h3></div>
 		  <div class="panel-body">
-		    <p>해당 팀의 최근 기록을 볼 수 있습니다.</p>
+		    <h6>해당 팀의 최근 기록을 볼 수 있습니다.</h6>
 		  </div>
 		
 		  <!-- List group -->
@@ -217,13 +277,13 @@
 					<tr>
 						<td style="width:10%;"><fmt:formatDate value="${record.GAMEDATE }" pattern="MM/dd"/></td>
 						<td style="width:30%;">
-							<img src="${root}/img/teamImg/${record.EMBLEM1}" style="width:25px; height:25px;">
-							<span><a href="${root }/team/teamMain.do?teamName=${record.TEAMNAME1 }">${record.TEAMNAME1 }</a></span>
+							<img src="${root}/img/teamImg/${record.EMBLEM1}" style="width:25px; height:25px; float:right;">
+							<span style="float:right; padding-right: 10px;"><a href="${root }/team/teamMain.do?teamName=${record.TEAMNAME1 }">${record.TEAMNAME1 }</a></span>
 						</td>
 						<td style="width:10%; font-weight: bold;">VS</td>
 						<td style="width:30%;">
-							<img src="${root}/img/teamImg/${record.EMBLEM2}" style="width:25px; height:25px;">
-							<span><a href="${root }/team/teamMain.do?teamName=${record.TEAMNAME2 }">${record.TEAMNAME2 }</a></span>
+							<img src="${root}/img/teamImg/${record.EMBLEM2}" style="width:25px; height:25px; float: left;">
+							<span style="float: left; padding-left: 10px;"><a href="${root }/team/teamMain.do?teamName=${record.TEAMNAME2 }">${record.TEAMNAME2 }</a></span>
 						</td>
 						<td style="width:20%;">진행 중</td>
 					</tr>
@@ -232,13 +292,13 @@
 					<tr class="success">
 						<td style="width:10%;"><fmt:formatDate value="${record.GAMEDATE }" pattern="MM/dd"/></td>
 						<td style="width:30%;">
-							<img src="${root}/img/teamImg/${record.EMBLEM1}" style="width:25px; height:25px;">
-							<span><a href="${root }/team/teamMain.do?teamName=${record.TEAMNAME1 }">${record.TEAMNAME1 }</a></span>
+							<img src="${root}/img/teamImg/${record.EMBLEM1}" style="width:25px; height:25px; float:right;">
+							<span style="float:right; padding-right: 10px;"><a href="${root }/team/teamMain.do?teamName=${record.TEAMNAME1 }">${record.TEAMNAME1 }</a></span>
 						</td>
 						<td style="width:10%; font-weight: bold;" >VS</td>
 						<td style="width:30%;">
-							<img src="${root}/img/teamImg/${record.EMBLEM2}" style="width:25px; height:25px;">
-							<span><a href="${root }/team/teamMain.do?teamName=${record.TEAMNAME2 }">${record.TEAMNAME2 }</a></span>
+							<img src="${root}/img/teamImg/${record.EMBLEM2}" style="width:25px; height:25px; float: left;">
+							<span style="float: left; padding-left: 10px;"><a href="${root }/team/teamMain.do?teamName=${record.TEAMNAME2 }">${record.TEAMNAME2 }</a></span>
 						</td>
 						<td style="width:20%;">승리</td>
 					</tr>
@@ -247,13 +307,13 @@
 					<tr class="success">
 						<td style="width:10%;"><fmt:formatDate value="${record.GAMEDATE }" pattern="MM/dd"/></td>
 						<td style="width:30%;">
-							<img src="${root}/img/teamImg/${record.EMBLEM1}" style="width:25px; height:25px;">
-							<span><a href="${root }/team/teamMain.do?teamName=${record.TEAMNAME1 }">${record.TEAMNAME1 }</a></span>
+							<img src="${root}/img/teamImg/${record.EMBLEM1}" style="width:25px; height:25px; float:right;">
+							<span style="float:right; padding-right: 10px;"><a href="${root }/team/teamMain.do?teamName=${record.TEAMNAME1 }">${record.TEAMNAME1 }</a></span>
 						</td>
 						<td style="width:10%; font-weight: bold;" >VS</td>
 						<td style="width:30%;">
-							<img src="${root}/img/teamImg/${record.EMBLEM2}" style="width:25px; height:25px;">
-							<span><a href="${root }/team/teamMain.do?teamName=${record.TEAMNAME2 }">${record.TEAMNAME2 }</a></span>
+							<img src="${root}/img/teamImg/${record.EMBLEM2}" style="width:25px; height:25px; float: left;">
+							<span style="float: left; padding-left: 10px;"><a href="${root }/team/teamMain.do?teamName=${record.TEAMNAME2 }">${record.TEAMNAME2 }</a></span>
 						</td>
 						<td style="width:20%;">승리</td>
 					</tr>
@@ -262,13 +322,13 @@
 					<tr class="warning">
 						<td style="width:10%;"><fmt:formatDate value="${record.GAMEDATE }" pattern="MM/dd"/></td>
 						<td style="width:30%;">
-							<img src="${root}/img/teamImg/${record.EMBLEM1}" style="width:25px; height:25px;">
-							<span><a href="${root }/team/teamMain.do?teamName=${record.TEAMNAME1 }">${record.TEAMNAME1 }</a></span>
+							<img src="${root}/img/teamImg/${record.EMBLEM1}" style="width:25px; height:25px; float:right;">
+							<span style="float:right; padding-right: 10px;"><a href="${root }/team/teamMain.do?teamName=${record.TEAMNAME1 }">${record.TEAMNAME1 }</a></span>
 						</td>
 						<td style="width:10%; font-weight: bold;">VS</td>
 						<td style="width:30%;">
-							<img src="${root}/img/teamImg/${record.EMBLEM2}" style="width:25px; height:25px;">
-							<span><a href="${root }/team/teamMain.do?teamName=${record.TEAMNAME2 }">${record.TEAMNAME2 }</a></span>
+							<img src="${root}/img/teamImg/${record.EMBLEM2}" style="width:25px; height:25px; float: left;">
+							<span style="float: left; padding-left: 10px;"><a href="${root }/team/teamMain.do?teamName=${record.TEAMNAME2 }">${record.TEAMNAME2 }</a></span>
 						</td>
 						<td style="width:20%;">패배</td>
 					</tr>
@@ -277,13 +337,13 @@
 					<tr class="warning">
 						<td style="width:10%;"><fmt:formatDate value="${record.GAMEDATE }" pattern="MM/dd"/></td>
 						<td style="width:30%;">
-							<img src="${root}/img/teamImg/${record.EMBLEM1}" style="width:25px; height:25px;">
-							<span><a href="${root }/team/teamMain.do?teamName=${record.TEAMNAME1 }">${record.TEAMNAME1 }</a></span>
+							<img src="${root}/img/teamImg/${record.EMBLEM1}" style="width:25px; height:25px; float:right;">
+							<span style="float:right; padding-right: 10px;"><a href="${root }/team/teamMain.do?teamName=${record.TEAMNAME1 }">${record.TEAMNAME1 }</a></span>
 						</td>
 						<td style="width:10%; font-weight: bold;">VS</td>
 						<td style="width:30%;">
-							<img src="${root}/img/teamImg/${record.EMBLEM2}" style="width:25px; height:25px;">
-							<span><a href="${root }/team/teamMain.do?teamName=${record.TEAMNAME2 }">${record.TEAMNAME2 }</a></span>
+							<img src="${root}/img/teamImg/${record.EMBLEM2}" style="width:25px; height:25px; float: left;">
+							<span style="float: left; padding-left: 10px;"><a href="${root }/team/teamMain.do?teamName=${record.TEAMNAME2 }">${record.TEAMNAME2 }</a></span>
 						</td>
 						<td style="width:20%;">패배</td>
 					</tr>
@@ -292,13 +352,13 @@
 					<tr class="active">
 						<td style="width:10%;"><fmt:formatDate value="${record.GAMEDATE }" pattern="MM/dd"/></td>
 						<td style="width:30%;">
-							<img src="${root}/img/teamImg/${record.EMBLEM1}" style="width:25px; height:25px;">
-							<span><a href="${root }/team/teamMain.do?teamName=${record.TEAMNAME1 }">${record.TEAMNAME1 }</a></span>
+							<img src="${root}/img/teamImg/${record.EMBLEM1}" style="width:25px; height:25px; float:right;">
+							<span style="float:right; padding-right: 10px;"><a href="${root }/team/teamMain.do?teamName=${record.TEAMNAME1 }">${record.TEAMNAME1 }</a></span>
 						</td>
 						<td style="width:10%; font-weight: bold;">VS</td>
 						<td style="width:30%;">
-							<img src="${root}/img/teamImg/${record.EMBLEM2}" style="width:25px; height:25px;">
-							<span><a href="${root }/team/teamMain.do?teamName=${record.TEAMNAME2 }">${record.TEAMNAME2 }</a></span>
+							<img src="${root}/img/teamImg/${record.EMBLEM2}" style="width:25px; height:25px; float: left;">
+							<span style="float: left; padding-left: 10px;"><a href="${root }/team/teamMain.do?teamName=${record.TEAMNAME2 }">${record.TEAMNAME2 }</a></span>
 						</td>
 						<td style="width:20%;">무</td>
 					</tr>
@@ -311,10 +371,9 @@
 	  <div class="col-md-6 well" style="height: 600px;">
 	  	<div class="panel panel-default">
 		  <!-- Default panel contents -->
-		  <div class="panel-heading"><h3>진행중인 리그 <input style="float: right;" type="button" class="btn btn-info" value="리그 정보로 이동"></h3></div>
+		  <div class="panel-heading"><h3>진행중인 리그 <input style="float: right;" type="button" class="btn btn-info" value="리그 정보로 이동" onclick="javascript:location.href='${root }/teamPage/viewLeagueInfo.do?teamName=${team.teamName}'"></h3></div>
 		  <div class="panel-body">
-		    <p>진행 중인 리그의 정보를 간단하게 볼 수 있습니다.
-		    </p>
+		    <h6>진행중인 리그의 정보를 간단하게 볼 수 있습니다.</h6>
 		   <c:if test="${leagueDto==null }">
 	  		<label>참가중 리그 없음</label>
 	  	</c:if>
@@ -349,7 +408,6 @@
 			  </table>
 	  		</div>
 	  		</div>
-	  		<br/>
 	  	</c:if>
 	  	<label>해당 팀 순위</label>
 	  	<br/><br/>

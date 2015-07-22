@@ -359,15 +359,15 @@ function showPageTwo(){
 	$(".modalPageTwo").slideDown();
 }
 
-function insertMatchingResult(){
-		score+=$("input[name='scoreTeam1']").val() + ":"+$("input[name='scoreTeam2']").val();
+function insertMatchingResult(teamName){
+		var score=$("input[name='scoreTeam1']").val() + ":"+$("input[name='scoreTeam2']").val();
 		$("#score").attr("value", score);
 
 		var gameCode=$("#gameCode").val();
 		var resultScore=$("#score").val();
 		var result=$('input:radio[name="result"]:checked').val();
 		
-		location.href="/home/record/insertMatchingResult.do?gameCode="+gameCode+"&resultScore="+resultScore+"&result="+result;
+		location.href="/home/record/insertMatchingResult.do?gameCode="+gameCode+"&resultScore="+score+"&result="+result+"&teamName="+teamName;
 }
 
 function showPageOne(){
