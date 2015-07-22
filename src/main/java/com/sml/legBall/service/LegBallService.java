@@ -1,4 +1,4 @@
-package com.sml.legball.service;
+package com.sml.legBall.service;
 
 import javax.servlet.http.HttpServletRequest;
 
