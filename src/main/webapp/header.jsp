@@ -97,11 +97,7 @@ $(function(){
 	$("#roll").Scroll({line:1,speed:1500,timer:3000,up:"#topbtnid",down:"#btmbtnid",autoplay:'#bannerplay',autostop:'#bannerstop'});
 });
 
-$(function({
-	$.ajax({
-		
-	})
-});
+
 </script>
 </head>
 <body>
@@ -126,13 +122,13 @@ $(function({
 	          		<!-- 날씨 -->
 					<div class="noti" id="roll" style="padding-top:14px; height:35px; overflow:hidden;width:150px;">			
 						<ul>
-							<%-- <c:forEach var="weather" items="${weatherList }">		 --%>
+							<c:forEach var="weather" items="${weatherList }">		
 								<li>	
 									<span><font color="white">서울</font></span>
 									<span><font color="white">28 C</font></span>
 									<span><img src="${root}/img/weatherImg/01.png" style="vertical-align:middle; width="27px" height="27px"/></span>
 								</li>	
-						<%-- 	</c:forEach> --%>		
+							</c:forEach>		
 						</ul>
 					</div>
 	          	</li>
@@ -150,7 +146,7 @@ $(function({
 					</form>
 		        </li> 
 	          	
-		       <%--  <li>
+		        <li>
 			        <c:if test="${teamId!=null }">
 				        <li class="dropdown">
 				          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">${teamId }님 <span class="caret"></span></a>
@@ -161,7 +157,7 @@ $(function({
 				          </ul>
 				        </li>
 				    </c:if>
-	          	</li> --%>
+	          	</li>
 		        <li style="padding-top:10px;">			       	
 					  <button type="button"  class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
 					    <span class="glyphicon glyphicon-th-large"></span>
@@ -196,7 +192,11 @@ $(function({
 			</div>       
         </div>
       </div>
-    </nav>
+    </nav> 
+
+
+
+
 
 	<p>This is a sample text.This is a sample text.This is a sample text.
    		This is a sample text.</p>

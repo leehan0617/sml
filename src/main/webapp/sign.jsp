@@ -109,7 +109,7 @@
 					    <div class="row">
 					    	<div class="col-xs-8 col-sm-4"></div>
 					    	<div class="col-xs-4 col-sm-6">
-					        <input class="btn btn-info" type="button" value="다음단계로" onclick="return Check(form)" data-toggle="modal" data-target="#popupJoin2" id="step2">
+					        <input class="btn btn-info" type="button" value="다음단계로"  data-toggle="modal" data-target="#popupJoin2" id="step2">
 					        <button type="button" class="btn btn-danger" data-dismiss="modal">취소</button>
 					      </div>
 					    </div>

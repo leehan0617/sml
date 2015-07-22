@@ -24,7 +24,7 @@
 	<script src="${root }/resources/js/teamMain.js"></script>	
 		
 
-	<!-- before matching.jsp js/css -->
+	<!-- matching.jsp js/css -->
 	<script type="text/javascript" src="//apis.daum.net/maps/maps3.js?apikey=1442260e0c6af86974001269a7312e42&libraries=services"></script>
 	<script src="${root }/js/teamPage/teamPage.js"></script>
 	
@@ -53,10 +53,8 @@
 	
 </head>
 <body>
-	 <div class="container">
 
-      <!-- Static navbar -->
-      <nav class="navbar navbar-inverse">
+<nav class="navbar navbar-inverse">
         <div class="container-fluid">
           <div class="navbar-header">
             <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
@@ -98,8 +96,25 @@
                
                 </li>
             </ul>
-			<form class="form-inline"  id="searchForm" name="searchForm" style="padding-top:10px;">             
+            
+           
             <ul class="nav navbar-nav navbar-right">
+            	<li>
+	          		<!-- 날씨 -->
+					<div class="noti" id="roll" style="padding-top:14px; height:35px; overflow:hidden;width:150px;">			
+						<ul>
+							<c:forEach var="weather" items="${weatherList }">		
+								<li>	
+									<span><font color="white">${weather.sido }</font></span>
+									<span><font color="white">${weather.temp }</font></span>
+									<span><img src="${root}/img/weatherImg/${weather.wfKor}" style="vertical-align:middle; width="27px" height="27px"/></span>
+								</li>	
+							</c:forEach>		
+						</ul>
+					</div>
+            	</li>
+            	<li>
+			<form class="form-inline"  id="searchForm" name="searchForm" style="padding-top:10px;">            	
            		<li class="input-group">
 	      			<input type="text" class="form-control" placeholder="팀명을 검색하세요." name="teamName" id="searchTeamName">
 		    		<span class="input-group-btn">
@@ -108,11 +123,18 @@
 		      		</button>
 		      		</span>
 	    		</li><!-- /input-group -->
-            </ul>
+           
             </form>
+            </li>
+             </ul>
+             
           </div><!--/.nav-collapse -->
         </div><!--/.container-fluid -->
       </nav>
+
+	 <div class="container">
+      <!-- Static navbar -->
+      
 
       <!-- Main component for a primary marketing message or call to action -->
       <div class="jumbotron row">
