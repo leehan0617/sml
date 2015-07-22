@@ -104,7 +104,7 @@
       </ol>
       <div class="carousel-inner" role="listbox">
         <div class="item">
-          <img class="first-slide" src="${root }/resources/images/legBallImg.jpg" alt="First slide">
+          <img class="first-slide" src="${root }/resources/images/legBallImg3.jpg" alt="First slide">
           <div class="container">
             <div class="carousel-caption">
               <h1>WELCOME SML legBall PAGE </h1>
