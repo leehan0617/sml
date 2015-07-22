@@ -206,7 +206,7 @@
 			
 			  <!-- Wrapper for slides -->
 			  <div class="carousel-inner" role="listbox" id="leagueDiv">
-			     <div class="item active"><img src="" alt="a">
+			     <div class="item active"><img src="${root}/resources/images/soccerLeague.jpg" alt="a">
 			     	<div class="carousel-caption">
 			        이곳은 현재 참가 가능한 리그목록이 있습니다. 
 			      </div>
