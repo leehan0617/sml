@@ -17,7 +17,7 @@
 		<c:if test="${check!=null}">
 			<div class="alert-warning">
 				<script type="text/javascript">
-					alert("사용중인 아이디입니다! 다시입력 하십시요");
+					alert("사용중인 아이디입니다! 다시입력 하십시요");	
 				</script>
 			</div>
 		</c:if>
@@ -25,7 +25,8 @@
 		<c:if test="${check==null}">
 			<div class="alert-success">
 	 			<script type="text/javascript">
-	 				alert("사용 가능한 아이디입니다")
+	 				alert("사용 가능한 아이디입니다");
+	 				idChk="ok";
 	 			</script>
  			</div>
 		</c:if>

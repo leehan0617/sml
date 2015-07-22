@@ -21,9 +21,7 @@
 <%-- <script src="${root }/resources/js/smlStart.js"></script> --%>
 
 <script>
-$(function(){
-	
-	
+$(function(){	
 	//롤러 스크립트
 	$.fn.extend({
 		Scroll:function(opt,callback){
@@ -97,6 +95,12 @@ $(function(){
 	})
 	
 	$("#roll").Scroll({line:1,speed:1500,timer:3000,up:"#topbtnid",down:"#btmbtnid",autoplay:'#bannerplay',autostop:'#bannerstop'});
+});
+
+$(function({
+	$.ajax({
+		
+	})
 });
 </script>
 </head>
