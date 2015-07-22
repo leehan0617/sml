@@ -249,7 +249,7 @@
 			
 	  </div>
 	   <div>
-	  	<input type="button" class="btn btn-info" value="입력" onclick="insertMatchingResult()">
+	  	<input type="button" class="btn btn-info" value="입력" onclick="insertMatchingResult('${myTeamDto.teamName}')">
 	  	<input type="button" class="btn btn-default" value="취소" onclick="showPageOne()">
 	  </div>		
     </div>

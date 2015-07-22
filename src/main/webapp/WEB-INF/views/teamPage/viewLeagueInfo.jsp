@@ -49,8 +49,10 @@
 	        </c:otherwise>
 	        </c:choose>
 	        <c:if test="${teamGrade != null }">
-			  <li><a href="${root }/team/teamMain.do?teamName=${teamName}">메인</a></li>	      
+			  <li><a href="${root }/team/teamMain.do?teamName=${teamName}">메인</a></li>
+			  <li><a href="${root }/teamPage/viewTeamBoard.do?teamName=${teamName}">팀 공지사항</a></li>		      
 		      <li><a href="${root }/teamPage/viewTeamRecord.do?teamName=${teamName}">팀 기록</a></li>
+		      <li><a href="${root }/teamPage/teamScheduleEdit.do?teamName=${teamName}">팀 스케쥴</a></li>
 			</c:if>            
           </ul>         
         </div>
@@ -58,14 +60,23 @@
     </nav>
 	
 	 <br/><br/><br/><br/>
-     <div class="container-fluid" style="background-color: gold; height: 100px; width: 100%;">
-       <span class="col-xs-2"><a href=""><img alt="logo" src="${root }/resources/images/android@2x.png" width="200" height="150"></a></span>   	  
-       <span class="col-xs-9" style="font-size:50pt;">${teamName}</span>
+	 
+     <div class="container" style="background:url(${root}/resources/images/leagueInfoBackGround.jpg); border:">
+       <div align="center">
+       <span class=""><a href="${root}/team/teamMain.do?teamName=${teamName}"><img class="img-circle img-responsive" alt="logo" src="${root}/img/teamImg/${emblem}" width="150" height="150"></img></a></span>
        </div>
+       <div align="center" style="padding-top:10px;">
+       <span class="label label-danger" style="font-size:20pt;">${teamName}</span>
+       </div>       
+       <br/>
+       <br/>
+              
+     </div>
+     <hr style="border: solid 1px ;">
        <br/><br/>
 	
 	<c:if test="${league==null}">	
-	<div class="container">    	
+	<div class="container" style="width:1000px">    	
       <div class="row">      	   	
           <h2 class="sub-header">LEAGUE INFO</h2>          
           <div class="table-responsive">
@@ -81,7 +92,7 @@
 	</c:if>
 			
 	<c:if test="${league!=null}">
-	<div class="container">    	
+	<div class="container" style="width:1000px">    	
       <div class="row">      	   	
           <h2 class="sub-header">LEAGUE INFO</h2>          
           <div class="row well">
@@ -136,7 +147,7 @@
       </div>
       </div> 
       	
-    <div class="container">    	
+    <div class="container" style="width:1000px">    	
       <div class="row">
           <h2 class="sub-header">LEAGUE TEAM LIST</h2>          
           <div class="table-responsive">

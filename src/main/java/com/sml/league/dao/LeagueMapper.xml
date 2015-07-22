@@ -94,4 +94,8 @@
  	<select id="getTeamId" parameterType="String" resultType="String">
  		select teamId from team where teamName=#{teamName}
  	</select>
+ 	
+ 	<select id="getTeamEmblem" parameterType="String" resultType="String">
+ 		select emblem from team where teamName=#{teamName}
+ 	</select>
  </mapper>
