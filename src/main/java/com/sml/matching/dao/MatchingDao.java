@@ -14,7 +14,7 @@ public interface MatchingDao {
 	public int deleteMatching(int matchingCode);
 	public List<MatchingDto> getOtherMatchingInfo(int teamCode, String sportType);
 	public void changeMatchingState(MatchingDto matchingDto);
-	public void createGameRecord(MatchingDto myMatchingDto, MatchingDto otherMatchingDto);
+	public void createGameRecord(MatchingDto myMatchingDto, MatchingDto otherMatchingDto, String homeGround);
 	public void setWaitMatching(int teamCode);
 	public TeamDto getTeamInfo(String teamName);
 	public String getTeamGround(int teamCode);

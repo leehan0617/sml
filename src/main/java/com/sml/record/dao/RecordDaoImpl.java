@@ -83,4 +83,9 @@ public class RecordDaoImpl implements RecordDao {
 	public int deleteMatching(int teamCode) {
 		return sqlSession.delete("dao.RecordMapper.deleteMatching",teamCode);
 	}
+
+	@Override
+	public List<RecordDto> getTeamRecordList(int teamCode) {
+		return sqlSession.selectList("dao.RecordMapper.getTeamRecordList",teamCode);
+	}
 }

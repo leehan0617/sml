@@ -274,6 +274,7 @@ public class MatchingServiceImpl implements MatchingService {
 		MatchingDto myMatchingDto=dao.getTeamMatchingInfo(teamCode);
 		List<MatchingDto> otherMatchingInfo=dao.getOtherMatchingInfo(teamCode,myMatchingDto.getMatchingSport());
 		HashMap<Integer, Integer> resultMap=new HashMap<Integer, Integer>();
+		String homeGround=dao.getTeamGround(teamCode);
 		
 		if(otherMatchingInfo!=null){
 			for(int i=0;i<otherMatchingInfo.size();i++){
@@ -307,7 +308,7 @@ public class MatchingServiceImpl implements MatchingService {
 		if(resultIdx!=-1){
 			dao.changeMatchingState(otherMatchingInfo.get(resultIdx));
 			dao.changeMatchingState(myMatchingDto);
-			dao.createGameRecord(myMatchingDto, otherMatchingInfo.get(resultIdx));
+			dao.createGameRecord(myMatchingDto, otherMatchingInfo.get(resultIdx), homeGround);
 		}
 		
 		

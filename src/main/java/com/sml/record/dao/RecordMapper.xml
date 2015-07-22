@@ -53,4 +53,8 @@
 	<delete id="deleteMatching" parameterType="int">
 		delete matching where teamCode=#{teamCode}
 	</delete>
+	
+	<select id="getTeamRecordList" parameterType="int" resultType="com.sml.record.dto.RecordDto">
+		select * from gameRecord where (teamCode=#{teamCode} or teamCode2=#{teamCode}) and gameState='경기 종료'
+	</select>
  </mapper>

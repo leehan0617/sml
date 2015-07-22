@@ -68,12 +68,82 @@ public class RecordServiceImpl implements RecordService {
 		int teamCode=recordDao.getTeamInfo(teamName).getTeamCode();
 		
 		HashMap<String, Object> resultMap=recordDao.getMatchingResult(teamCode);
+		
+		
+		// 통산 전적 출력
+		int teamCode1=Integer.valueOf(String.valueOf(resultMap.get("TEAMCODE")));
+		int teamCode2=Integer.valueOf(String.valueOf(resultMap.get("TEAMCODE2")));
+		
+		List<RecordDto> team1RecordList=recordDao.getTeamRecordList(teamCode1);
+		List<RecordDto> team2RecordList=recordDao.getTeamRecordList(teamCode2);
+		
+		HashMap<String, Object> team1Map=calcTeamRecord(team1RecordList, teamCode1);
+		HashMap<String, Object> team2Map=calcTeamRecord(team2RecordList, teamCode2);
+		
 		if(resultMap!=null){
+			mav.addObject("team1Map",team1Map);
+			mav.addObject("team2Map",team2Map);
 			mav.addObject("matchingResult", resultMap);
 		}
 		
 	}
 
+	/**
+	 * @name : calcTeamRecord
+	 * @date : 2015. 7. 22.
+	 * @author : 이희재
+	 * @description : 승 무 패 확인 함수
+	 */
+	public HashMap<String, Object> calcTeamRecord(List<RecordDto> teamRecordList, int teamCode){
+		HashMap<String, Object> resultMap=new HashMap<String, Object>();
+		int countWin=0;
+		int countLose=0;
+		int countDraw=0;
+		int gameCount=0;
+		double winPer=0.0;
+		
+		if(teamRecordList!=null){
+			for(int i=0;i<teamRecordList.size();i++){
+				if(teamRecordList.get(i).getTeamResult()!=null){
+					gameCount++;
+					if(teamRecordList.get(i).getTeamResult().equals("무")){
+						countDraw++;
+					}
+					
+					if(teamRecordList.get(i).getTeamResult().equals("승")&&(teamRecordList.get(i).getTeamCode()==teamCode)){
+						countWin++;
+					}else if(teamRecordList.get(i).getTeamResult().equals("승")&&(teamRecordList.get(i).getTeamCode()!=teamCode)){
+						countLose++;
+					}
+					
+					if(teamRecordList.get(i).getTeamResult().equals("패")&&(teamRecordList.get(i).getTeamCode()==teamCode)){
+						countLose++;
+					}else if(teamRecordList.get(i).getTeamResult().equals("패")&&(teamRecordList.get(i).getTeamCode()!=teamCode)){
+						countWin++;
+					}
+				}
+			}
+		}
+		
+		if(gameCount!=0){
+			winPer=((double)countWin)/gameCount;
+		}
+		
+		resultMap.put("gameCount", gameCount);
+		resultMap.put("countWin", countWin);
+		resultMap.put("countLose", countLose);
+		resultMap.put("countDraw", countDraw);
+		resultMap.put("winPer",winPer * 100);
+		
+		return resultMap;
+	}
+	
+	/**
+	 * @name : insertMatchingResult
+	 * @date : 2015. 7. 22.
+	 * @author : 이희재
+	 * @description : 매칭 후 친선 전 경기 결과 입력
+	 */
 	@Override
 	public void insertMatchingResult(ModelAndView mav) {
 		HashMap<String, Object> hMap=mav.getModelMap();

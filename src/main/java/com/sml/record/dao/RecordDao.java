@@ -16,4 +16,5 @@ public interface RecordDao {
 	public int insertTeam1(int gameCode, String resultScore);
 	public int insertTeam2(int gameCode, String resultScore);
 	public int deleteMatching(int teamCode);
+	public List<RecordDto> getTeamRecordList(int teamCode);
 }
