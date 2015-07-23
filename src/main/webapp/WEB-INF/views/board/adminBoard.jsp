@@ -78,17 +78,18 @@
 							<a href="#" class="btn-minimize"><i class="halflings-icon chevron-up"></i></a>
 							<a href="#" class="btn-close"><i class="halflings-icon remove"></i></a>
 						</div>
-					</div>	
+					</div>						
 					
-					<a href="${root }/board/addCommonBoard.do">글쓰기</a>
+					
+					<button type="button" class="btn btn-default" onclick="javascript:location.href='${root}/board/addCommonBoard.do'">글쓰기</button>
 					
 					<!-- search -->
-					<div class="text-right">
-						<form action="${root }/board/searchBoard.do" method="get" id="search-box" onsubmit="if(this.q.value ==' 공지사항 검색'){this.q.focus();return false;}">
-							<input type="text" name="boardName"  style="color: #D2D2D2;" value="공지사항 검색" onfocus="this.value='' "/>
-							<input type="submit" class="btn btn-defaulty btn-sm"  value="검색"/>							
-						</form>						
-					</div>
+					
+					<form action="${root }/board/searchBoard.do" method="get" style="float:right"  id="search-box" onsubmit="if(this.q.value ==' 공지사항 검색'){this.q.focus();return false;}">
+						<input type="text" name="boardName"  style="color: #D2D2D2;" value="공지사항 제목 검색" onfocus="this.value='' "/>
+						<input type="submit" class="btn btn-defaulty btn-sm"  value="검색" style="margin-top:0"/>							
+					</form>						
+					
 					
 					<c:if test="${commonBoardList==null }"><!-- commonBoardList -> count -->
 						<div>	

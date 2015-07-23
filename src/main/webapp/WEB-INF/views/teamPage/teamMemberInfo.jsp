@@ -24,15 +24,40 @@
     <link rel="stylesheet" type="text/css" href="${root }/resources/css/bootstrap.css"/>
 	<link rel="stylesheet" type="text/css" href="${root }/resources/css/jquery-ui.css"/>
     <!-- Custom styles for this template -->     
-  
+    
+ 	<link href="${root}/css/teamPage/matchingMap.css" type="text/css" rel="stylesheet"/>
   	<script src="${root }/resources/js/jquery.js"></script> 	
  	<script src="${root }/resources/js/bootstrap.js"></script>
   	<script src="${root }/resources/js/jquery-ui.js"></script>  
   	<script src="${root }/js/member/deleteMember.js"></script>
     <script src="${root }/resources/js/teamMain.js"></script>	
     
+    <!-- matching.jsp js/css -->
+    <script type="text/javascript" src="//apis.daum.net/maps/maps3.js?apikey=1442260e0c6af86974001269a7312e42&libraries=services"></script>
+    
     <!-- Placed at the end of the document so the pages load faster -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
+    
+    <style>
+		.modal.modal-wide .modal-dialog {
+		  width: 70%;
+		}
+		.modal-wide .modal-body {
+		 // overflow-y: auto;
+		}
+		
+		/* irrelevant styling */
+		/* body { text-align: center; }
+		body p { 
+		  max-width: 300px; 
+		  margin: 20px auto; 
+		} */
+		#tallModal .modal-body p { margin-bottom: 900px }
+		   
+	    .ui-autocomplete { 
+	    overflow-y: scroll; 
+	    overflow-x: hidden;}
+     </style>
   </head>
   <body>
       <nav class="navbar navbar-inverse ">
@@ -154,8 +179,9 @@
                   <th><span class="glyphicon glyphicon-user">이름</span></th>
                   <th><span class="glyphicon glyphicon-calendar">생년월일</span></th>
                   <th><span class="glyphicon glyphicon-home">지역</span></th>
-                  <th><span class="glyphicon glyphicon-tag">이메일</span></th>
                   <th><span class="glyphicon glyphicon-earphone">전화번호</span></th>
+                  <th><span class="glyphicon glyphicon-tag">이메일</span></th>
+                  
                   <th><span class="glyphicon glyphicon-heart">성별</span></th>
                 </tr>               
               </thead>
@@ -175,8 +201,9 @@
 				<td>${member.memberName}</td>
 				<td>${member.memberBirth}</td>
 				<td>${member.memberRegion}</td>
-				<td>${member.memberEmail}</td>
+				
 				<td>${member.memberPhone}</td>
+				<td>${member.memberEmail}</td>
 				<td>${member.memberGender}</td>
 				<td><button class="btn btn-success" onclick="return deleteMember('${root}','${pageNumber}','${member.memberCode}','${teamName}','${teamCode}','${teamGrade}');"><span class="glyphicon glyphicon-trash">삭제</span></button></td>			
 				
@@ -190,8 +217,9 @@
 				<td>${member.memberName}</td>
 				<td>${member.memberBirth}</td>
 				<td>${member.memberRegion}</td>
-				<td>${member.memberEmail}</td>
 				<td>${member.memberPhone}</td>
+				<td>${member.memberEmail}</td>
+				
 				<td>${member.memberGender}</td>			
 			  </tr>			 
 			</c:forEach>

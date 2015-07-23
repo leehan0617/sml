@@ -26,6 +26,7 @@
 
     <!-- Custom styles for this template -->     
   
+    <link href="${root}/css/teamPage/matchingMap.css" type="text/css" rel="stylesheet"/>
   	<script src="${root }/resources/js/jquery.js"></script> 	
  	<script src="${root }/resources/js/bootstrap.js"></script>
   	<script src="${root }/resources/js/jquery-ui.js"></script>  
@@ -33,6 +34,30 @@
     <script src="${root }/resources/js/teamMain.js"></script>	
     <!-- Placed at the end of the document so the pages load faster -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
+    
+     <!-- matching.jsp js/css -->
+    <script type="text/javascript" src="//apis.daum.net/maps/maps3.js?apikey=1442260e0c6af86974001269a7312e42&libraries=services"></script>
+    <style>
+		.modal.modal-wide .modal-dialog {
+		  width: 70%;
+		}
+		.modal-wide .modal-body {
+		 // overflow-y: auto;
+		}
+		
+		/* irrelevant styling */
+		/* body { text-align: center; }
+		body p { 
+		  max-width: 300px; 
+		  margin: 20px auto; 
+		} */
+		#tallModal .modal-body p { margin-bottom: 900px }
+		   
+	    .ui-autocomplete { 
+	    overflow-y: scroll; 
+	    overflow-x: hidden;}
+     </style>
+     
   </head>
   <body>
       <nav class="navbar navbar-inverse ">
