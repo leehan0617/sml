@@ -286,7 +286,8 @@
 			</tr>
 			</thead>
 			<tbody>
-			<c:forEach var="record" items="${recordList }" begin="1" end="9">
+			
+			<c:forEach var="record" items="${recordList }" begin="0" end="8">
 				<c:if test="${record.TEAMRESULT==null }">
 					<tr>
 						<td style="width:10%;"><fmt:formatDate value="${record.GAMEDATE }" pattern="MM/dd"/></td>
