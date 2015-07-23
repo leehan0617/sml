@@ -7,11 +7,6 @@
 <!DOCTYPE html>
 <c:set var="root" value="${pageContext.request.contextPath }"/>
 <c:set value="${fn:replace(teamName, ' ', '%20')}" var="teamNameNoSpace" />
-<c:if test="${team!=null}">
-	<c:set var="teamId" value="${teamId}" scope="session"/>
-	<c:set var="teamGrade" value="${teamGrade}" scope="session"/>
-	<c:set var="teamName" value="${teamName }" scope="session"/>
-</c:if>
 <html>
 <head>
 	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
