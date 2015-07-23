@@ -106,6 +106,7 @@ public class MemberServiceImpl implements MemberService{
 		
 		//팀 정보 가져오기
 		String teamName=request.getParameter("teamName");
+		System.out.println("info : " + teamName);
 		TeamDto teamDto=dao.getTeamInfo(teamName);
 		
 		//팀 홈그라운드 가져오기
