@@ -17,6 +17,12 @@ $(document).ready(function(){
 	    geocoder.coord2addr(coords, callback);         
 	}
 	
+	var options = {
+		    location : new daum.maps.LatLng(centerLat, centerLng),
+		    sort : daum.maps.services.SortBy.DISTANCE, 
+		    sort : daum.maps.services.SortBy.POPULARITY
+	};
+	
 	// 지도를 생성합니다   
 	var map = new daum.maps.Map(mapContainer, mapOption); 
 	
@@ -50,7 +56,7 @@ $(document).ready(function(){
 		}
 
 		    // 장소검색 객체를 통해 키워드로 장소검색을 요청합니다
-		    ps.keywordSearch( keyword, placesSearchCB); 
+		    ps.keywordSearch( keyword, placesSearchCB, options); 
 	});
 
 	// 장소검색이 완료됐을 때 호출되는 콜백함수 입니다
