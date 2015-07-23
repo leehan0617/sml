@@ -184,7 +184,7 @@ function paging(root,teamName,blockNumber){
 			var blockSize = data.blockSize;
 			var blockCount = data.blockCount;
 			var currentPage = data.currentPage;
-			var pageCount = Math.floor(count/boardSize+(count%boardSize == 0?0:1));
+			var pageCount = Math.floor(count/boardSize+(count/boardSize == 0?0:1));
 			var rs = Math.floor((currentPage-1)/blockSize);
 			var startBlock = rs*blockSize+1;
 			var endBlock = startBlock+blockSize-1;
@@ -200,11 +200,11 @@ function paging(root,teamName,blockNumber){
 				$('.pager').append("<li><a onclick=paging(\'"+root+"\','"+teamName+"','"+(startBlock-blockSize)+"')>"+'Previous'+"</a></li>");
 			}
 			
-			for(var i=startBlock ; i<=endBlock ; i++){
+			for(var i=startBlock ; i<=blockCount ; i++){
 				$('.pager').append("<li><a onclick=paging(\'"+root+"\','"+teamName+"','"+i+"')>"+i+"</a></li>");	
 			}
 			
-			if(endBlock < blockCount){
+			if(endBlock < pageCount){
 				$('.pager').append("<li><a onclick=paging(\'"+root+"\','"+teamName+"','"+(startBlock+blockSize)+"')>"+'Next'+"</a></li>");
 			}
 		}

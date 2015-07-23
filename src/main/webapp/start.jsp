@@ -73,7 +73,7 @@
 	              </c:otherwise>
               	</c:choose>       
               </ul>
-              <ul class="nav navbar-nav navber-right">
+              <ul class="nav navbar-nav navbar-right">
                 <li>
 	               <form class="form-inline"  id="searchForm" name="searchForm" style="padding-top:10px;">
 		  			<div class="input-group">
@@ -187,7 +187,7 @@
 						</tr>
 					</thead>
 				</table>
-		        <p id="event-count"><span>지금까지 모두 </span> <strong class="cnt">?</strong> <span>건의 경기가 있었습니다!</span></p>
+		        <p id="event-count"><span>오늘 총 </span> <strong class="cnt">56</strong> <span>건의 경기가 있습니다!</span></p>
 		        <p><span>SML홈페이지이용은 모두 무료입니다</span></p>
 		        <p><span>더많은 사람들과의 교류를 원한다면 지금바로</span></p>
 		        <p><span> 신청하세요.</span></p>

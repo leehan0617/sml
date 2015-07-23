@@ -78,7 +78,7 @@ ul.inner-nav li:last-of-type {margin-right: 0;}
 span.no-break {display:inline-block;}
 
 ul.nav {display: inline; list-style: none; color: #333; /*text-transform: uppercase;*/ letter-spacing: .1em; padding-left: 0;}
-ul.nav li {display: inline; font-size: 16px; margin-right: 10px;}
+ul.nav li {display: inline;  margin-right: 10px;}
 ul.nav li:last-of-type {margin-right: 0;}
 ul.nav li a {display: inline-block; }
 ul.nav li:hover a {color: #F7DA03; background: #333; cursor: pointer;}

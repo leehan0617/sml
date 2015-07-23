@@ -155,15 +155,15 @@
 									</c:if>
 									<ul>
 										<c:if test="${startPage>pageBlock }">
-											<li><a href="${root }/referee/refereeList.do?pageNumber=${startPage-pageBlock }">Prev</a></li>
+											<li><a href="${root }/admin/manageReferee.do?pageNumber=${startPage-pageBlock }">Prev</a></li>
 										</c:if>
 										
 										<c:forEach var="i" begin="${startPage }" end="${endPage}">
-											<li><a href="${root }/referee/refereeList.do?pageNumber=${i}">${i }</a></li>
+											<li><a href="${root }/admin/manageReferee.do?pageNumber=${i}">${i }</a></li>
 										</c:forEach>
 										
 										<c:if test="${endPage<pageCount }">
-											<li><a href="${root }/referee/refereeList.do?pageNumber=${startPage+pageBlock }">Next</a></li>
+											<li><a href="${root }/admin/manageReferee.do?pageNumber=${startPage+pageBlock }">Next</a></li>
 										</c:if>
 									</ul>
 								</c:if>
