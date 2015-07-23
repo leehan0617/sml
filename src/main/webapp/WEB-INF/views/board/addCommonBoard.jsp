@@ -13,11 +13,10 @@
 		<h1>공지사항 글쓰기</h1>
 		<select name="sportCode">
 			<option>종목</option>
-			<option value="0">전체</option>
-			<option value="1">축구</option>
-			<option value="2">야구</option>
-			<option value="3">족구</option>
-			<option value="4">풋살</option>	
+			<option value="0">축구</option>
+			<option value="1">야구</option>
+			<option value="2">농구</option>
+			<option value="3">족구</option>	
 		</select>
 		
 		<span class="">

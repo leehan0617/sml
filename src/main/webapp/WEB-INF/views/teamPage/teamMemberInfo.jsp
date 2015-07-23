@@ -3,6 +3,8 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <c:set var="root" value="${pageContext.request.contextPath }"/> 
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
+<c:set value="${fn:replace(team.teamName, ' ', '%20')}" var="teamNameNoSpace" />
 <!DOCTYPE html>
 <html lang="ko">
   <head>
@@ -59,11 +61,11 @@
                   <li><a data-toggle="modal" data-target="#modalTeamBoard" onclick="getTeamBoardData('${root}','${teamName}')">팀공지사항 관리</a></li>
                   <li><a href="${root }/teamPage/teamMemberInfo.do?teamName=${team.teamName}&teamCode=${team.teamCode}&teamGrade=${teamGrade}">팀원 관리</a></li>
                   <li><a href="#" onclick="viewSchedule('${root}','${team.teamName}')">팀스케쥴 관리</a></li>
-                  <li><a data-toggle="modal" data-target="#popupMatching" href="${root }/teamPage/matching.do?teamName=${team.teamName}">매칭관리</a></li>
+                  <li><a data-toggle="modal" data-target="#popupMatching" href="${root }/teamPage/matching.do?teamName=${teamNameNoSpace}">매칭관리</a></li>
                   <li class="divider"></li>
                   <li class="dropdown-header">Sub Menu</li>
-                  <li><a data-toggle="modal" data-target="#popup" href="${root }/teamPage/manageTeamEmblem.do?teamName=${teamName}">팀로고 관리</a></li>
-                  <li><a data-toggle="modal" data-target="#popupMyInfo" href="${root }/member/myInfoPage.do?teamName=${teamName }">개인정보수정</a></li>
+                  <li><a data-toggle="modal" data-target="#popup" href="${root }/teamPage/manageTeamEmblem.do?teamName=${teamNameNoSpace}">팀로고 관리</a></li>
+                  <li><a data-toggle="modal" data-target="#popupMyInfo" href="${root }/member/myInfoPage.do?teamName=${teamNameNoSpace }">개인정보수정</a></li>
                   <li><a href="#">로그아웃</a></li>
                  </c:if>
                 <c:if test="${teamGrade == null }">
