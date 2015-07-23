@@ -91,7 +91,7 @@
 								    <option value="축구">축구</option>
 									<option value="야구">야구</option>
 									<option value="족구">족구</option>
-									<option value="풋살">풋살</option>
+									<option value="농구">농구</option>
 								</select>
 								<br/>
 							   <label>팀 주 경기장</label>

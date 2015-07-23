@@ -156,10 +156,10 @@
 			  	</c:if>
 			    		
 		      	</div>
-      	<div class="col-md-4">
+      	<div class="col-md-6">
       		<h1>${team.teamName}</h1>
       	</div>
-      	<div class="col-md-6">
+      	<div class="col-md-4">
         <p>
         	<c:choose>
   				<c:when test="${team.teamIntro !=null }">

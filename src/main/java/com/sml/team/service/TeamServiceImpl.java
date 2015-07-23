@@ -398,9 +398,9 @@ public class TeamServiceImpl implements TeamService{
 		if(fileSize!=0){
 			try{
 				//절대경로
-				String dir="C:\\Users\\kosta\\git\\sml\\src\\main\\webapp\\img\\teamImg";
+				//String dir="C:\\Users\\kosta\\git\\sml\\src\\main\\webapp\\img\\teamImg";
 				//상대경로				
-				//String dir=request.getSession().getServletContext().getRealPath("/fileUp");
+				String dir=request.getSession().getServletContext().getRealPath("/img/teamImg");
 				
 				File file=new File(dir, timeName);			
 				

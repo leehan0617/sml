@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Random;
 
 import javax.servlet.http.HttpServletRequest;
 
@@ -38,8 +39,8 @@ public class MemberServiceImpl implements MemberService{
 		Map<String,Object> map=mav.getModelMap();
 		HttpServletRequest request=(HttpServletRequest)map.get("request");
 		MemberDto memberDto=(MemberDto)map.get("memberDto");
+		Random random = new Random();
 		
-	
 		/*//MultipartFile upFile=request.getFile("teamImage");
 		//String fileName=upFile.getOriginalFilename();
 		String timeName=Long.toString(System.currentTimeMillis()) + "_" + fileName;
@@ -70,7 +71,7 @@ public class MemberServiceImpl implements MemberService{
 		String sportType=request.getParameter("sportType");
 		String homeGround=request.getParameter("homeGround");
 		String teamReaderName="";
-		String emblem="";//timename
+		String emblem="iconEdit"+random.nextInt(24);//timename
 		
 		String teamGrade="AA";
 		
@@ -109,6 +110,7 @@ public class MemberServiceImpl implements MemberService{
 		
 		//팀 정보 가져오기
 		String teamName=request.getParameter("teamName");
+		System.out.println("info : " + teamName);
 		TeamDto teamDto=dao.getTeamInfo(teamName);
 		
 		//팀 홈그라운드 가져오기

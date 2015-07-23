@@ -69,22 +69,24 @@ public class RecordServiceImpl implements RecordService {
 		
 		HashMap<String, Object> resultMap=recordDao.getMatchingResult(teamCode);
 		
-		
-		// 통산 전적 출력
-		int teamCode1=Integer.valueOf(String.valueOf(resultMap.get("TEAMCODE")));
-		int teamCode2=Integer.valueOf(String.valueOf(resultMap.get("TEAMCODE2")));
-		
-		List<RecordDto> team1RecordList=recordDao.getTeamRecordList(teamCode1);
-		List<RecordDto> team2RecordList=recordDao.getTeamRecordList(teamCode2);
-		
-		HashMap<String, Object> team1Map=calcTeamRecord(team1RecordList, teamCode1);
-		HashMap<String, Object> team2Map=calcTeamRecord(team2RecordList, teamCode2);
-		
 		if(resultMap!=null){
-			mav.addObject("team1Map",team1Map);
-			mav.addObject("team2Map",team2Map);
-			mav.addObject("matchingResult", resultMap);
+			// 통산 전적 출력
+			int teamCode1=Integer.valueOf(String.valueOf(resultMap.get("TEAMCODE")));
+			int teamCode2=Integer.valueOf(String.valueOf(resultMap.get("TEAMCODE2")));
+			
+			List<RecordDto> team1RecordList=recordDao.getTeamRecordList(teamCode1);
+			List<RecordDto> team2RecordList=recordDao.getTeamRecordList(teamCode2);
+			
+			HashMap<String, Object> team1Map=calcTeamRecord(team1RecordList, teamCode1);
+			HashMap<String, Object> team2Map=calcTeamRecord(team2RecordList, teamCode2);
+			
+			if(resultMap!=null){
+				mav.addObject("team1Map",team1Map);
+				mav.addObject("team2Map",team2Map);
+				mav.addObject("matchingResult", resultMap);
+			}
 		}
+		
 		
 	}
 
