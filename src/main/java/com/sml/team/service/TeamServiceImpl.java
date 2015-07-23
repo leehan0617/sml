@@ -472,7 +472,13 @@ public class TeamServiceImpl implements TeamService{
 		mav.setViewName("member/updateTeamOk");
 		
 	}
-
+	/**
+	 * 
+	 * @함수명:replyWrite
+	 * @작성일:2015. 7. 23.
+	 * @작성자:이한빈 
+	 * @설명문:댓글쓰는기능 
+	 */
 	@Override
 	public void replyWrite(ModelAndView mav) {
 		Map<String , Object> map = mav.getModelMap();
@@ -482,7 +488,13 @@ public class TeamServiceImpl implements TeamService{
 		mav.addObject("teamLog" , teamLog);
 		System.out.println("check : " + check);
 	}
-
+	/**
+	 * 
+	 * @함수명:getReplyList
+	 * @작성일:2015. 7. 23.
+	 * @작성자:이한빈 
+	 * @설명문:댓글리스트 가져오는 기능
+	 */
 	@Override
 	public void getReplyList(ModelAndView mav) {
 		Map<String , Object> map = mav.getModelMap();
@@ -493,7 +505,13 @@ public class TeamServiceImpl implements TeamService{
 		//System.out.println(replyList.size());
 		mav.addObject("replyList" ,replyList);
 	}
-
+	/**
+	 * 
+	 * @함수명:replyMoreRead
+	 * @작성일:2015. 7. 23.
+	 * @작성자:이한빈 
+	 * @설명문:댓글 더보기 기
+	 */
 	@Override
 	public void replyMoreRead(ModelAndView mav) {
 		Map<String , Object> map = mav.getModel();
@@ -510,7 +528,13 @@ public class TeamServiceImpl implements TeamService{
 		List<TeamLogDto> replyList = dao.getMoreReplyList(teamCode , pn*5);
 		mav.addObject("replyList" , replyList);
 	}
-
+	/**
+	 * 
+	 * @함수명:replyDelete
+	 * @작성일:2015. 7. 23.
+	 * @작성자:이한빈 
+	 * @설명문:댓글 삭제기능
+	 */
 	@Override
 	public void replyDelete(ModelAndView mav) {
 		logger.info("TeamService replyDelete");
@@ -523,7 +547,13 @@ public class TeamServiceImpl implements TeamService{
 		int check = dao.replyDelete(teamCode,replyCode);
 		mav.addObject("check" , check);
 	}
-
+	/**
+	 * 
+	 * @함수명:editTeamIntro
+	 * @작성일:2015. 7. 23.
+	 * @작성자:이한빈 
+	 * @설명문:팀소개 변경 메소드 
+	 */
 	@Override
 	public ModelAndView editTeamIntro(HttpServletRequest request) {
 		logger.info("TeamService editTeamIntro");

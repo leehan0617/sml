@@ -491,7 +491,7 @@
 			
 			<div class="row replyList replyFirst">	
   				<c:forEach var="teamLog" items="${replyList}" begin="0" varStatus="status" end="4">
-					<div class="col-md-3 ${teamLog.replyCode }" style="margin-top:5px;">
+					<div class="firstReply col-md-3 ${teamLog.replyCode }" style="margin-top:5px;">
 						 <div class="input-group">
 							 <span class="input-group-btn">
 								<button class="btn btn-default" type="button" disabled="disabled">닉네임</button>
@@ -499,7 +499,7 @@
 							<input type="text" class="form-control" value="${teamLog.replyNickName }" id="replyNickName" disabled="disabled">
 						 </div><!-- /input-group -->
 					</div>
-					<div class="col-md-3 ${teamLog.replyCode }" style="margin-top:5px;">
+					<div class="firstReply col-md-3 ${teamLog.replyCode }" style="margin-top:5px;">
 						 <div class="input-group">
 									 <span class="input-group-btn">
 					  					<button class="btn btn-default" type="button" disabled="disabled">작성일</button>
@@ -507,7 +507,7 @@
 										<input type="text" class="form-control" value="<fmt:formatDate value="${teamLog.replyDate }" pattern="yy-MM-dd"/>" id="replyDate" disabled="disabled">
 							 </div><!-- /input-group -->
 					</div>
-					<div class="col-md-6 ${teamLog.replyCode }" style="margin-top:5px;">
+					<div class="firstReply col-md-6 ${teamLog.replyCode }" style="margin-top:5px;">
 						<div class="input-group">
 							 <input type="text" class="form-control" value="${teamLog.replyContent }" id="replyContent" disabled="disabled">
 					     <span class="input-group-btn">
@@ -519,8 +519,8 @@
 
 			</div><!-- /.row -->
 			
-			<br/>
-			<div class="alert alert-warning" role="alert" onclick="moreReadReply('${root}','${team.teamCode }' , '${replyPageNumber }')"><p class="text-center">더보기</p></div>
+			
+			<div class="alert alert-warning" role="alert" onclick="moreReadReply('${root}','${team.teamCode }' , '${replyPageNumber }')" style="margin-top:10px;"><p class="text-center">더보기</p></div>
 		</div>
    	    	
 		</div>    <!-- end 댓글 div -->
