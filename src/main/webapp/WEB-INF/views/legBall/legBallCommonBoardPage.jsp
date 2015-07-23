@@ -35,38 +35,42 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
   </head>
   <body>
-      <nav class="navbar navbar-inverse navbar-fixed-top">
-      <div class="container-fluid">
-        <div class="navbar-header">
+     <div class="navbar-wrapper">
+      <div class="container">
+
+        <nav class="navbar navbar-inverse navbar-fixed-top">
+          <div class="container-fluid">
+            <div class="navbar-header">
               <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
                 <span class="sr-only">Toggle navigation</span>
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
               </button>
-              <a class="navbar-brand" href="${root }/start.jsp"style="color:white;">SML KOREA</a>
+              <a class="navbar-brand" href="${root }/start.jsp">SML KOREA</a>
             </div>
             <div id="navbar" class="navbar-collapse collapse">
               <ul class="nav navbar-nav">
-              	<li><a href="${root}/basketBall/basketBallCommonBoardPage.do?sportCode=${sportCode}"style="color:white;">공지사항</a></li>
-                <li><a href="${root}/basketBall/basketBallRule.do?sportCode=${sportCode}"style="color:white;">경기규칙</a></li>
-                <li><a href="${root}/basketBall/basketBallTeamList.do?sportCode=${sportCode}"style="color:white;">팀리스트</a></li>
-                <li><a href="${root}/referee/refereeList.do?sportCode=${sportCode}"style="color:white;">심판현황</a></li>
+              	<li><a href="${root}/legBall/legBallCommonBoardPage.do?sportCode=${sportCode}">공지사항</a></li>
+                <li><a href="${root}/legBall/legBallRule.do?sportCode=${sportCode}">경기규칙</a></li>
+                <li><a href="${root}/legBall/legBallTeamList.do?sportCode=${sportCode}">팀리스트</a></li>
+                <li><a href="${root}/referee/refereeList.do?sportCode=${sportCode}">심판현황</a></li>
                 <li class="dropdown">
-                  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false"style="color:white;">다른종목가기<span class="caret"></span></a>
+                  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">다른종목가기<span class="caret"></span></a>
                   <ul class="dropdown-menu" role="menu">
-                  	<li class="divider"></li>
-                    <li><a href="${root }/sc">축구</a></li>
+                  	<li><a href="${root }/sc">축구</a></li>
                     <li class="divider"></li>
                     <li><a href="${root}/baseBall/baseBallMain.do">야구</a></li>
+                    <li class="divider"></li>
+                    <li><a href="${root}/basketBall/basketBallMain.do">족구</a></li>
                     <li class="divider"></li>
                     <li><a href="${root }/sportLegBall/legBallMain.do">족구</a></li>
                     <li class="divider"></li>
                   </ul>
                 </li>
-              </ul>
-              <ul class="nav navbar-nav navbar-right">
-                <li>
+             </ul>
+    		 <ul class="nav navbar-nav navbar-right">  
+    		 	<li>
 	          		<!-- 날씨 -->
 					<div class="noti" id="roll" style="padding-top:14px; height:35px; overflow:hidden;width:150px;">			
 						<ul>
@@ -93,17 +97,27 @@
 	  			  </form>
                 </li>
               </ul>
+            </div>
+          </div>
+        </nav>
+
       </div>
-    </nav>
+    </div>
 	
 	
 	 <br/><br/><br/><br/>
-     <div class="container-fluid" style="background:url(${root}/resources/images/backGroundImage.jpg)">   
-       <span class="col-xs-2"><a href="${root }/scMain"><img class="img-circle img-responsive" alt="logo" src="${root}/resources/images/android@2x.png" width="200" height="150"></img></a></span> 	  
-       	  
-       <span class="col-xs-9" style="font-size:50pt;"><br/>SML KOREA</span>            
+      <div class="container-fluid" style="background:url(${root}/resources/images/teamCommonBoardBackGroundImage.jpg);">
+       <div align="center">
+       <span class=""><a href="${root}/team/teamMain.do?teamName=${teamName}"><img class="img-circle img-responsive" alt="logo" src="${root}/img/teamImg/defaultEmblem.jpg" width="150" height="150"></img></a></span>
+       </div>
+       <div align="center" style="padding-top:10px;">
+       <span class="label label-danger" style="font-size:20pt;">SML KOREA</span>
+       </div>
+       <br/>           
+       <br/>           
      </div>
-       <br/><br/>
+     <br/>
+      <hr style="border: solid 1px ;"> 
 	
     <div class="container" style="background-color: ">    	
       <div class="row">      	   	
