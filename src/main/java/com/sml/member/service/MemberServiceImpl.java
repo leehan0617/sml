@@ -189,6 +189,7 @@ public class MemberServiceImpl implements MemberService{
 		//System.out.println("teamName:"+teamName);
 		String teamGrade=request.getParameter("teamGrade");
 		//System.out.println("teamGrade:"+teamGrade);
+		String teamLeaderName=request.getParameter("teamLeaderName");
 		
 		TeamDto team=dao.getTeamInfo(teamName);
 		String emblem=team.getEmblem();
@@ -255,6 +256,7 @@ public class MemberServiceImpl implements MemberService{
 		mav.addObject("currentPage",currentPage);			
 		mav.addObject("teamName",teamName);	
 		mav.addObject("teamGrade",teamGrade);
+		mav.addObject("teamLeaderName",teamLeaderName);
 		mav.setViewName("teamPage/teamMemberInfo");
 		
 	}	
@@ -311,8 +313,9 @@ public class MemberServiceImpl implements MemberService{
 		String pageNumber=request.getParameter("pageNumber");
 		int teamCode=dao.getTeamInfo(teamName).getTeamCode();		
 		member.setTeamCode(teamCode);		
+		String teamLeaderName=dao.getTeamLeaderName(teamName);
 		
-		int check=dao.deleteMember(memberCode);	
+		int check=dao.deleteMember(memberCode,teamLeaderName);	
 		
 		mav.addObject("pageNumber",pageNumber);
 		mav.addObject("teamGrade",teamGrade);
