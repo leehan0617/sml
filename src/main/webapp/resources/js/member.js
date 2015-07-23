@@ -265,7 +265,7 @@ function teamCheck(form){
 	
 	$("input[name='memberGender']").attr("value",sex);
 	$("input[name='memberRegion']").attr("value",$("#sido").val()+" "+$("#gugun").val());
-	alert($("input[name='memberRegion']").val());
+	//alert($("input[name='memberRegion']").val());
 }
 
 function teamIdCheck(form,root){
@@ -290,7 +290,7 @@ function teamIdCheck(form,root){
 
 function searchHomeground(form, root){
 	var url=root+"/member/searchHomeGround.do";
-	window.open(url,"",'width=1303,height=652');
+	window.open(url,"",'width=1303,height=452');
 }
 
 function selectHomeGround(){

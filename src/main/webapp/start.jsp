@@ -31,7 +31,9 @@
 <style>
 	  .ui-autocomplete { 
 	    overflow-y: scroll; 
-	    overflow-x: hidden;}
+	    overflow-x: hidden;
+	    z-index:10;
+	    }
 	
 </style>
 <title>SML Korea</title>
@@ -314,7 +316,9 @@
           <ul>
             <li><strong>About</strong></li>
             <li><a href="#">상단으로</a>
+            <c:if test="${teamId=='master'}">
             <li><a href="${root }/admin/main.do">관리자 페이지</a></li>
+          	</c:if>
           </ul>
         </div>
       </footer>
