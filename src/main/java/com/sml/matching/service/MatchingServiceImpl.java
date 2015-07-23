@@ -306,6 +306,7 @@ public class MatchingServiceImpl implements MatchingService {
 		
 		int resultIdx=getResultIdx(resultMap);
 		if(resultIdx!=-1){
+			System.out.println("resultIdx : "+ resultIdx);
 			dao.changeMatchingState(otherMatchingInfo.get(resultIdx));
 			dao.changeMatchingState(myMatchingDto);
 			dao.createGameRecord(myMatchingDto, otherMatchingInfo.get(resultIdx), homeGround);
@@ -402,9 +403,9 @@ public class MatchingServiceImpl implements MatchingService {
 				}
 			}
 		}
-//		System.out.println("매칭 키 : " + key);
-//		System.out.println("tempDistance : "+ tempDistance);
-//		System.out.println("매칭 될 거리 : " + resultMap.get(key));
+		System.out.println("매칭 키 : " + key);
+		System.out.println("tempDistance : "+ tempDistance);
+		System.out.println("매칭 될 거리 : " + resultMap.get(key));
 		return key;
 	}
 

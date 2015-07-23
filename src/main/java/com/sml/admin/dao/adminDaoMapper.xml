@@ -18,6 +18,7 @@
 						  from (select a.sporttype, a.emblem, a.teamname, a.teamleadername, b.* 
 						  		from team a, teamMember b 
 						  		where a.teamcode=b.teamcode
+						  		and a.teamLeaderName=b.memberName
 						  		order by a.teamname asc) c) 
 				  where rnum>=#{startRow} and rnum<=#{endRow} 
 		]]>

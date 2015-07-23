@@ -31,6 +31,8 @@
 	<script src="${root }/resources/js/jqplot.barRenderer.js"></script>
 	<script src="${root }/resources/js/jqplot.pieRenderer.js"></script>
 	<script src="${root }/js/scrollnews.js"></script>
+	<script src="${root }/js/xhr/xhr.js"></script>
+	
     <!-- Custom styles for this template -->
     <link href="${root}/resources/css/soccerPage.css" rel="stylesheet" type="text/css">
     <style>

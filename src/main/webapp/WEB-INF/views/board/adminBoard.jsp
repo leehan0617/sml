@@ -131,8 +131,8 @@
 										<td>${commonBoard.boardWriter}</td>
 										<td><a href="${root }/board/readCommonBoard.do?boardNumber=${commonBoard.boardNumber}&pageNumber=${currentPage}">${commonBoard.boardTitle}</a></td>					
 										<td><fmt:formatDate value="${commonBoard.boardDate}" type="date"/></td>		
-										<td>
-											<a href="{root }/board/deleteCommonBoard.do?boardNumber=${commonBoard.boardNumber}">
+										<td>               
+											<a href="${root }/board/deleteCommonBoard.do?boardNumber=${commonBoard.boardNumber}">
 												<span class="label label-important">삭제</span>
 											</a>	
 										</td>							

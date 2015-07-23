@@ -118,7 +118,7 @@
 								<c:forEach var="containerList" items="${containerList}">		
 									<tr>						
 										<td>${containerList.SPORTTYPE}</td>
-										<td><img src="${root}/img/teamImg/${containerList.EMBLEM}" alt="${containerList.EMBLEM}"/></td>		
+										<td style="text-align: center;"><img src="${root}/img/teamImg/${containerList.EMBLEM}" alt="${containerList.EMBLEM}" style="width:50px; height:50px;"/></td>		
 										<td><a href="${root }/teamPage/teamPageMain.do?teamCode=${containerList.TEAMCODE}">${containerList.TEAMNAME}</a></td>
 										<td>${containerList.TEAMLEADERNAME}</td>
 										<td>${containerList.MEMBERBIRTH}</td>
