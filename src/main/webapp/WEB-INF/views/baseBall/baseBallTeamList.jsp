@@ -40,7 +40,7 @@
     </style>
   </head>
   <body>
-      <div class="navbar-wrapper">
+     <div class="navbar-wrapper">
       <div class="container">
 
         <nav class="navbar navbar-inverse navbar-fixed-top">
@@ -63,20 +63,19 @@
                 <li class="dropdown">
                   <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">다른종목가기<span class="caret"></span></a>
                   <ul class="dropdown-menu" role="menu">
-                  	<li class="divider"></li>
-                    <li><a href="${root}/soccer/soccerMain.do?legion=legion">축구</a></li>
+                  	<li><a href="${root }/sc">축구</a></li>
                     <li class="divider"></li>
-                    <li><a href="#">야구</a></li>
+                    <li><a href="${root}/baseBall/baseBallMain.do">야구</a></li>
                     <li class="divider"></li>
-                    <li><a href="#">족구</a></li>
+                    <li><a href="${root}/basketBall/basketBallMain.do">족구</a></li>
                     <li class="divider"></li>
-                    <li><a href="${root }/scMain">풋살</a></li>
+                    <li><a href="${root }/sportLegBall/legBallMain.do">족구</a></li>
                     <li class="divider"></li>
                   </ul>
                 </li>
-                </ul>       
-              <ul class="nav navbar-nav navbar-right">              
-              	<li>
+              </ul>              
+           	  <ul class="nav navbar-nav navbar-right">
+           	  	<li>
 	          		<!-- 날씨 -->
 					<div class="noti" id="roll" style="padding-top:14px; height:35px; overflow:hidden;width:150px;">			
 						<ul>
@@ -84,7 +83,7 @@
 								<li>	
 									<span><font color="white">${weather.sido }</font></span>
 									<span><font color="white">${weather.temp }</font></span>
-									<span><img src="${root}/img/weatherImg/${weather.wfKor}" style="vertical-align:middle; width="27px" height="27px"/></span>
+									<span><img src="${root}/img/weatherImg/${weather.wfKor}" style="vertical-align:middle; width="27px;" height="27px;"/></span>
 								</li>	
 							</c:forEach>		
 						</ul>
@@ -102,7 +101,6 @@
 		    		</div><!-- /input-group -->
 	  			  </form>
                 </li>
-              
               </ul>
             </div>
           </div>
@@ -111,13 +109,18 @@
       </div>
     </div>
 	
-	 <br/><br/><br/><br/>
-     <div class="container-fluid" style="background:url(${root}/resources/images/backGroundImage.jpg)">   
-       <span class="col-xs-2"><a href="${root }/scMain"><img class="img-circle img-responsive" alt="logo" src="${root}/resources/images/android@2x.png" width="200" height="150"></img></a></span> 	  
-       	  
-       <span class="col-xs-9" style="font-size:50pt;"><br/>SML KOREA</span>
-       <span class="col-xs-1" style="font-size:15pt;"><br/><br/>총 팀수: ${teamCount}  </span>     
+	  <br/><br/><br/><br/>
+      <div class="container-fluid" style="background:url(${root}/resources/images/teamListBackGroundImage.jpg)">     
+     <div align="center" style="padding-top:10px;">      
+       <br/><br/><br/>
+       <br/><br/>
+       <span class="label label-danger" style="font-size:20pt;">SML KOREA</span>
+       <br/><br/><br/>
+       <br/>
+      
+       </div>             
      </div>
+      <hr style="border: solid 2px ;"> 
        <br/><br/>
 	
     <div class="container" style="background-color: ">    	
