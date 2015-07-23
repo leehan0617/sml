@@ -58,9 +58,10 @@ $(document).ready(function(){
 	    success : function(data) {
 	    	mapList=data.recordList;
 	    	for(var i=0; i<mapList.length;i++){
+	    		$(".cnt").text(mapList.length);
 	    		if(mapList[i].GAMEPLACE!=null){
 	    			
-	    			if(currentIdx>5){
+	    			if(currentIdx>3){
 	    				break;
 	    			}
 	    			currentIdx++;
