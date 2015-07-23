@@ -400,8 +400,9 @@ public class TeamServiceImpl implements TeamService{
 				//절대경로
 				//String dir="C:\\Users\\kosta\\git\\sml\\src\\main\\webapp\\img\\teamImg";
 				//상대경로				
-				String dir=request.getSession().getServletContext().getRealPath("/img/teamImg");
-				
+//				String dir=request.getSession().getServletContext().getRealPath("/img/teamImg");
+//				/Users/ihanbin/Documents/stsworkspace/smlProject/src/main/webapp/img
+				String dir="/Users/ihanbin/Documents/stsworkspace/smlProject/src/main/webapp/img/teamImg";
 				File file=new File(dir, timeName);			
 				
 				upFile.transferTo(file);

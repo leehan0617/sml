@@ -243,7 +243,7 @@ public class LeagueServiceImpl implements LeagueService{
 				gameRecord.setTeamCode(team1);
 				gameRecord.setTeamCode2(team2);
 				gameRecord.setGameType(league.getLeagueCode());
-				gameRecord.setRefereeNumber(3);
+				gameRecord.setRefereeNumber(190);
 				gameRecord.setGameState("경기 전");
 				
 				StringTokenizer scheduleToken=new StringTokenizer(schedule,",");

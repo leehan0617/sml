@@ -219,9 +219,12 @@ public class AdminServiceImpl implements AdminService{
 		
 		if(fileSize!=0){
 			try{
-				String dir="C:\\Users\\kosta\\git\\sml\\src\\main\\webapp\\img\\leagueImg";
-				//String dir=request.getSession().getServletContext().getRealPath("/resources");
-				
+				//String dir="C:\\Users\\kosta\\git\\sml\\src\\main\\webapp\\img\\leagueImg";
+				//dir:/Users/ihanbin/Downloads/apache-tomcat-7.0.53/wtpwebapps/smlProject/resources
+				///Users/ihanbin/Documents/stsworkspace/smlProject/src/main/webapp/img
+//				String dir=request.getSession().getServletContext().getRealPath("/resources");
+				String dir="/Users/ihanbin/Documents/stsworkspace/smlProject/src/main/webapp/img/leagueImg";
+				System.out.println("dir:"+dir);
 				File file=new File(dir, fileName);
 				upFile.transferTo(file);
 				

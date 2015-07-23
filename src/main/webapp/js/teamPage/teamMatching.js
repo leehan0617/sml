@@ -6,7 +6,7 @@ function viewMatchingPlace(root,myTeamCode, otherTeamCode){
 	var url=root + "/teamPage/viewMatchingPlace.do?myTeamCode="+myTeamCode+"&otherTeamCode="+otherTeamCode;
 	
 	var winWidth = 1000;
-	 var winHeight = 600;
+	 var winHeight = 400;
 	 var winPosLeft = (screen.width - winWidth) / 2;
 	 var winPosTop = 0;
 	 var winOpt = "width="+winWidth+",height="+winHeight+",top="+winPosTop+",left="+winPosLeft;
