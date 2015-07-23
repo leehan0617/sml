@@ -85,7 +85,7 @@
                     <li class="divider"></li>
                     <li><a href="${root}/baseBall/baseBallMain.do">야구</a></li>
                     <li class="divider"></li>
-                    <li><a href="${root}/basketBall/basketBallMain.do">족구</a></li>
+                    <li><a href="${root}/basketBall/basketBallMain.do">농구</a></li>
                     <li class="divider"></li>
                     <li><a href="${root }/sportLegBall/legBallMain.do">족구</a></li>
                     <li class="divider"></li>
@@ -129,12 +129,9 @@
 	
 	 <br/><br/><br/><br/>
      <div class="container-fluid" style="background:url(${root}/resources/images/refereeBackgroundImage.jpg);">
-       <div align="center">
-       <span class=""><a href="${root}/team/teamMain.do?teamName=${teamName}"><img class="img-circle img-responsive" alt="logo" src="${root}/img/.png" width="250" height="250"></img></a></span>
-       </div>
-       <div align="center" style="padding-top:10px;">
-       <span class="label label-danger" style="font-size:20pt;">SML KOREA</span>
-       </div>
+        <div align="center">
+       <span class=""><a href="${root}/team/teamMain.do?teamName=${teamName}"><img class="img-circle img-responsive" alt="logo" src="${root}/img/SMLKOREA.png" width="300" height="300"></img></a></span>
+       </div>       
        <br/>           
        <br/>           
      </div>

@@ -59,7 +59,7 @@
                     <li class="divider"></li>
                     <li><a href="${root}/baseBall/baseBallMain.do">야구</a></li>
                     <li class="divider"></li>
-                    <li><a href="${root}/basketBall/basketBallMain.do">족구</a></li>
+                    <li><a href="${root}/basketBall/basketBallMain.do">농구</a></li>
                     <li class="divider"></li>
                     <li><a href="${root }/sportLegBall/legBallMain.do">족구</a></li>
                     <li class="divider"></li>

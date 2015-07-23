@@ -37,6 +37,8 @@
 <title>SML Korea</title>
 </head>
 <body data-ng-app="app">
+  <div class="sign" id="sign"></div>
+  <div class="login" id="login"></div>
 	<header>
 		<!--  -->
 		<nav class="navbar navbar-inverse navbar-fixed-top">
@@ -319,8 +321,6 @@
     </div>
   </div>
   
-   <div class="sign" id="sign"></div>
-  <div class="login" id="login"></div>
  <script>  	 
 	 $(".startScroll").click(function(event){            
 	     event.preventDefault();

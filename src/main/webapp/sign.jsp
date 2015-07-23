@@ -66,7 +66,7 @@
 					    	<div class="col-xs-4 col-sm-6">
 					    	<label>팀 비밀번호</label>
 					        <input type="password" class="form-control" placeholder="팀 비밀번호를 적어주세요." name="teamPassword">
-					        <input type="password" class="form-control" placeholder="비밀번호를 한번더 적어주세요." name="teamPassword2">
+					        <input type="password" class="form-control" placeholder="비밀번호를 한번더 적어주세요." name="teamPassword2" style="margin-top:5px;">
 					      </div>
 					    </div>
 					    <br/>

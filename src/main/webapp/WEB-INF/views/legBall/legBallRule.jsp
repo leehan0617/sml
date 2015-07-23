@@ -59,7 +59,7 @@
                     <li class="divider"></li>
                     <li><a href="${root}/baseBall/baseBallMain.do">야구</a></li>
                     <li class="divider"></li>
-                    <li><a href="${root}/basketBall/basketBallMain.do">족구</a></li>
+                    <li><a href="${root}/basketBall/basketBallMain.do">농구</a></li>
                     <li class="divider"></li>
                     <li><a href="${root }/sportLegBall/legBallMain.do">족구</a></li>
                     <li class="divider"></li>
@@ -103,8 +103,8 @@
     <div class="container">
 
       <div class="blog-header">
-        <h1 class="blog-title">축구경기 규칙</h1>
-        <p class="lead blog-description">축구 경기 규칙은 국제축구평의회(IFAB)에 의해 제정된 축구 경기의 기본 규칙이다.</p>
+        <h1 class="blog-title">족구경기 규칙</h1>
+        <p class="lead blog-description">족구 경기 규칙은 국제축구평의회(IFAB)에 의해 제정된 축구 경기의 기본 규칙이다.</p>
       </div>
 
       <div class="row">
