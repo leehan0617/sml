@@ -151,7 +151,7 @@
       
 
       <!-- Main component for a primary marketing message or call to action -->
-      <div class="jumbotron row" style="margin-top:50px; background:url(${root}/resources/images/teamMainBackGround1.jpg); color:white;">
+      <div class="jumbotron row" style="margin-top:50px;">
       	<div class="col-md-2">
       		  <a href="${root}/team/teamMain.do?teamName=${teamName}">
 	   		 <img class="img-circle img-responsive" src="${root}/img/teamImg/${team.emblem}" width="200" height="150"></img>	   
@@ -249,7 +249,7 @@
 		 
 	  </div></c:if> <!--  end 매칭결과되면 생기는 div -->
 	  
-	  <div class="jumbotron row" style="background:url(${root}/resources/images/teamMainBackGround.jpg);">
+	  <div class="jumbotron row">
 	  	  
 		  <div class="col-md-6 well" style="height: 500px;">
 		  	<h3 align="center">팀 공지사항</h3><hr/>
