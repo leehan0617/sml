@@ -39,7 +39,7 @@ public class TeamBoardServiceImpl implements TeamBoardService{
 		// 한 블록 당 출력될 게시물 수
 		int boardSize=8;
 		// 한 페이지당 들어갈 블록
-		int blockSize=2;
+		int blockSize=5;
 		
 		int currentPage;
 		if(request.getParameter("currentPage")==null){
