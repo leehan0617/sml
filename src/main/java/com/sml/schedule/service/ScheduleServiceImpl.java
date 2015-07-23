@@ -69,11 +69,9 @@ public class ScheduleServiceImpl implements ScheduleService{
 		HttpServletRequest request = (HttpServletRequest) map.get("request");
 		ScheduleDto scheduleDto=(ScheduleDto)map.get("scheduleDto");
 		String teamId=request.getParameter("teamId");
-		System.out.println("content:::"+scheduleDto.getscheduleContent());
-		System.out.println("start:::"+scheduleDto.getStartDate());
-		System.out.println("number:::"+scheduleDto.getScheduleNumber());
-		System.out.println("title:::"+scheduleDto.getscheduleTitle());
-		System.out.println("endDate:::"+scheduleDto.getEndDate());
+		String teamName=request.getParameter("teamName");
+		
+		System.out.println("teamNameEdit"+teamName);
 		int check=dao.editSchedule(scheduleDto,teamId);
 		
 		

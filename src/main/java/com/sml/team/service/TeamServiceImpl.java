@@ -121,16 +121,13 @@ public class TeamServiceImpl implements TeamService{
 		Map<String,Object> map=mav.getModelMap();
 		HttpServletRequest request=(HttpServletRequest) map.get("request");	
 		String searchTeamName=request.getParameter("searchTeamName");		
-		System.out.println("searchTeamName5555");
 		String teamName=request.getParameter("teamName");	
 		if(searchTeamName!=null){
 			teamName=searchTeamName;
 		}
-		System.out.println("teamName5555555"+teamName);
 		String pageNumber=request.getParameter("pageNumber");
 		
 		if(pageNumber==null) pageNumber="1";
-		System.out.println("pageNumber"+pageNumber);
 		int boardSize=5;		
 		int currentPage=Integer.parseInt(pageNumber);
 		int startRow=(currentPage-1)*boardSize+1;
@@ -142,16 +139,11 @@ public class TeamServiceImpl implements TeamService{
 		logger.info("startRow"+startRow);
 		logger.info("endRow"+endRow);
 		
-		
-		//logger.info(request.getParameter("teamName"));		
-	    System.out.println("teamName:"+teamName);
 		TeamDto team=dao.getTeamInfo(teamName);
 		
 		int teamCode=team.getTeamCode();
-		System.out.println("teamCode:"+teamCode);
 		
 		String emblem=team.getEmblem();
-		System.out.println("emblemTEAMAIN:"+emblem);
 		
 		List<TeamLogDto> teamLogDtoList=null;
 		if(count>0){
@@ -368,7 +360,7 @@ public class TeamServiceImpl implements TeamService{
 		HashMap<String, Object> map=mav.getModelMap();
 		HttpServletRequest request=(HttpServletRequest) map.get("request");
 		String teamName=request.getParameter("teamName");
-		logger.info("teamName : " + teamName);
+		System.out.println("updateEmblem: "+ teamName);
 		TeamDto team=dao.getTeamInfo(teamName);
 		
 		mav.addObject("team", team);
