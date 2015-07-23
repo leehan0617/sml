@@ -48,7 +48,7 @@ public class TeamBoardServiceImpl implements TeamBoardService{
 			currentPage=Integer.parseInt(request.getParameter("currentPage"));
 		}
 		
-		int blockCount=count/boardSize + (count%boardSize==0? 0:1);
+		int blockCount=count/boardSize + (count/boardSize==0? 0:1);
 		int startRow=(currentPage-1)*boardSize+1;
 		int endRow=startRow+boardSize-1;
 		

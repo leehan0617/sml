@@ -166,10 +166,11 @@ public class MemberDaoImpl implements MemberDao{
 	 * @설명 :
 	 */
 	@Override
-	public int deleteMember(int memberCode,String teamLeaderName) {
+	public int deleteMember(int memberCode,String teamLeaderName){
 		HashMap<String,Object> hMap=new HashMap<String,Object>();
 		hMap.put("memberCode", memberCode);
 		hMap.put("teamLeaderName",teamLeaderName);
+		
 		return sqlSession.insert("member.dao.MemberMapper.deleteMember", hMap);
 	}
 

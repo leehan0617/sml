@@ -23,6 +23,7 @@
    <!-- Bootstrap core CSS -->
     <link rel="stylesheet" type="text/css" href="${root }/resources/css/bootstrap.css"/>
 	<link rel="stylesheet" type="text/css" href="${root }/resources/css/jquery-ui.css"/>
+	<link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
     <!-- Custom styles for this template -->     
     
  	<link href="${root}/css/teamPage/matchingMap.css" type="text/css" rel="stylesheet"/>
@@ -193,7 +194,7 @@
 			  </tr>		
 			</c:if>
 			<c:choose>
-			<c:when test="${teamGrade!=null}">
+			<c:when test="${teamGrade=='AA'}">
             <c:forEach var="member" items="${teamMemberList}">
 			  <tr>
 				<td>${member.rnum}</td>
@@ -203,8 +204,9 @@
 				<td>${member.memberPhone}</td>
 				<td>${member.memberEmail}</td>
 				<td>${member.memberGender}</td>
-				<td><button class="btn btn-success" onclick="return deleteMember('${root}','${pageNumber}','${member.memberCode}','${teamName}','${teamCode}','${teamGrade}');"><span class="glyphicon glyphicon-trash">삭제</span></button></td>			
-				
+				<c:if test="${member.rnum!=1}">
+				<td><button class="btn btn-success" data-toggle="tooltip" title="팀장은 삭제할 수 없습니다." onclick="return deleteMember('${root}','${pageNumber}','${member.memberCode}','${teamName}','${teamCode}','${teamGrade}');"><span class="glyphicon glyphicon-trash">삭제</span></button></td>			
+				</c:if>				
 			  </tr>
 			</c:forEach>
 			</c:when>
