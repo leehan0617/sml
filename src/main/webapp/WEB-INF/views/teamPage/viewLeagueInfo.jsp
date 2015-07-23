@@ -186,19 +186,19 @@
 				 <table class="table table-condensed">
 				 	<tr></tr>
   					<tr>
-  						<td class="info" style="width: 100px; font-weight: bold;">리그 이름</td>
+  						<td style="background-color: #B2EBF4;" style="width: 100px; font-weight: bold;">리그 이름</td>
   						<td style="background-color: white;">${league.leagueName }</td>
   					</tr>
   					<tr>
-  						<td class="info" style="width: 100px; font-weight: bold;">리그 지역</td>
+  						<td style="background-color: #B2EBF4;" style="width: 100px; font-weight: bold;">리그 지역</td>
   						<td style="background-color: white;">${league.leagueRegion }</td>
   					</tr>
   					<tr>
-  						<td class="info" style="width: 100px; font-weight: bold;">리그 기간</td>
+  						<td style="background-color: #B2EBF4;" style="width: 100px; font-weight: bold;">리그 기간</td>
   						<td style="background-color: white;">${league.leagueStartDate } ~ ${league.leagueEndDate }</td>
   					</tr>
   					<tr>
-  						<td class="info" style="width: 100px; font-weight: bold;">리그 경기장</td>
+  						<td style="background-color: #B2EBF4;" style="width: 100px; font-weight: bold;">리그 경기장</td>
   						<td style="background-color: white;">
   							<c:forTokens var="place" items="${league.leaguePlace }" delims=",">
   								${place}<br/>
@@ -206,7 +206,7 @@
   						</td>
   					</tr>
   					<tr>
-  						<td class="info" style="width: 100px; font-weight: bold;">리그 요일 </td>
+  						<td style="background-color: #B2EBF4;" style="width: 100px; font-weight: bold;">리그 요일 </td>
   						<td style="background-color: white;">${league.leagueDay }</td>
   					</tr>
 				</table>

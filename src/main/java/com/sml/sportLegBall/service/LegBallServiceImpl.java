@@ -18,6 +18,7 @@ import com.sml.common.dto.CommonBoardDto;
 import com.sml.league.dto.LeagueDto;
 import com.sml.member.dto.MemberDto;
 import com.sml.record.dto.RecordDto;
+import com.sml.referee.dto.RefereeDto;
 import com.sml.sportLegBall.dao.LegBallDao;
 import com.sml.weather.WeatherDTO;
 import com.sml.weather.WeatherParser;
@@ -248,8 +249,13 @@ import com.sml.weather.WeatherParser;
 			int startRow=(currentPage-1)*boardSize+1;
 			int endRow=currentPage*boardSize;
 			
-			
-			
+			String regionSido=request.getParameter("regionSido");	
+			System.out.println("regionSido"+regionSido);
+			if(regionSido==null){
+				regionSido="전국";
+			}
+			logger.info("regionSido:" + regionSido);
+	
 			List<HashMap<String,Object>> teamList=dao.getAllTeamList(sportType,startRow,endRow);
 			logger.info("size: " + teamList.size());
 			

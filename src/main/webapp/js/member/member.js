@@ -135,7 +135,7 @@ function teamCheck(form){
 //
 	$("input[name='memberGender']").attr("value",sex);
 	$("input[name='memberRegion']").attr("value",$("#sido").val()+" "+$("#gugun").val());
-	alert($("input[name='memberRegion']").val());
+	//alert($("input[name='memberRegion']").val());
 }
 
 function teamIdCheck(form,root){

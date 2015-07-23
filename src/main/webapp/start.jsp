@@ -31,7 +31,9 @@
 <style>
 	  .ui-autocomplete { 
 	    overflow-y: scroll; 
-	    overflow-x: hidden;}
+	    overflow-x: hidden;
+	    z-index:10;
+	    }
 	
 </style>
 <title>SML Korea</title>
@@ -185,7 +187,7 @@
 						</tr>
 					</thead>
 				</table>
-		        <p id="event-count"><span>지금까지 모두 </span> <strong class="cnt">?</strong> <span>건의 경기가 있었습니다!</span></p>
+		        <p id="event-count"><span>오늘 총 </span> <strong class="cnt">56</strong> <span>건의 경기가 있습니다!</span></p>
 		        <p><span>SML홈페이지이용은 모두 무료입니다</span></p>
 		        <p><span>더많은 사람들과의 교류를 원한다면 지금바로</span></p>
 		        <p><span> 신청하세요.</span></p>
@@ -314,7 +316,9 @@
           <ul>
             <li><strong>About</strong></li>
             <li><a href="#">상단으로</a>
+            <c:if test="${teamId=='master'}">
             <li><a href="${root }/admin/main.do">관리자 페이지</a></li>
+          	</c:if>
           </ul>
         </div>
       </footer>

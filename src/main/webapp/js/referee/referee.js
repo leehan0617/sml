@@ -74,6 +74,7 @@ function refereeRegion(root, sportCode,regionSido){
 	
 	var url=root + "/referee/refereeList.do?sportCode=" + sportCode + "&regionSido=" + regionSido;
 	location.replace(url);
+
 }
 
 function teamListRegion(root, sportCode,regionSido){
@@ -87,3 +88,6 @@ function teamListRegion(root, sportCode,regionSido){
 	var url=root + "/soccer/soccerTeamList.do?sportCode=" + sportCode + "&regionSido=" + regionSido;
 	location.replace(url);
 }
+
+
+

@@ -123,7 +123,14 @@
               <c:if test="${teamList!=null}">	
               <thead>               
                <tr align="center" style="background-color:#E2D6D6;"> 
-               	  <td>엠블럼</td>              	                 
+               	  <td><label>지역:</label>
+					<select id="sido2" onchange="refereeRegion('${root}', '${sportCode}', this.value)">
+					<option>선택</option>				
+						<c:forEach var="sido" items="${sidoList}">												
+						<option value="${sido}">${sido}</option>				
+						</c:forEach>						
+					</select>  
+				  </td>		     	                 
                   <td>팀명</td>
                   <td>리더이름</td>
                   <td>연고지</td>                               

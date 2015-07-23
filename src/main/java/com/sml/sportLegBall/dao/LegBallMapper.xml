@@ -76,4 +76,5 @@
 	<select id="findMatchTeam" parameterType="Int" resultType="String">
 		select teamName from team where teamCode = #{teamCode}
 	</select>
+	
 </mapper>

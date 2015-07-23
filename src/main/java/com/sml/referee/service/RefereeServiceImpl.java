@@ -66,7 +66,7 @@ public class RefereeServiceImpl implements RefereeService{
 		}
 		logger.info("regionSido:" + regionSido);
 		
-		int count=refereeDao.refereeCount();
+		int count=refereeDao.refereeCount(sportType);
 		//logger.info("count:" + count);
 		
 		String pageNumber=request.getParameter("pageNumber");

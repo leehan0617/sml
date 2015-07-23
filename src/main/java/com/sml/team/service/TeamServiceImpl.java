@@ -19,6 +19,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.sml.league.dao.LeagueDao;
 import com.sml.league.dto.LeagueDto;
+import com.sml.referee.dto.RefereeDto;
 import com.sml.team.dao.TeamDao;
 import com.sml.team.dto.TeamDto;
 import com.sml.team.dto.TeamLogDto;
@@ -168,6 +169,7 @@ public class TeamServiceImpl implements TeamService{
 		
 		//System.out.println("leagueDtoNAme: " + leagueDto.getLeagueName());
 		//System.out.println("leagueCode:" + leagueCode);	
+		
 		
 		//날씨 파싱 정보 가져오기		
 		ArrayList<WeatherDTO> weatherList=null;
@@ -398,8 +400,9 @@ public class TeamServiceImpl implements TeamService{
 				//절대경로
 				//String dir="C:\\Users\\kosta\\git\\sml\\src\\main\\webapp\\img\\teamImg";
 				//상대경로				
-				String dir=request.getSession().getServletContext().getRealPath("/img/teamImg");
-				
+//				String dir=request.getSession().getServletContext().getRealPath("/img/teamImg");
+//				/Users/ihanbin/Documents/stsworkspace/smlProject/src/main/webapp/img
+				String dir="/Users/ihanbin/Documents/stsworkspace/smlProject/src/main/webapp/img/teamImg";
 				File file=new File(dir, timeName);			
 				
 				upFile.transferTo(file);
