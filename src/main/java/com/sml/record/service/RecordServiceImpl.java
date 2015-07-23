@@ -13,6 +13,7 @@ import org.springframework.web.servlet.ModelAndView;
 import com.sml.member.service.MemberServiceImpl;
 import com.sml.record.dao.RecordDao;
 import com.sml.record.dto.RecordDto;
+import com.sml.team.dto.TeamDto;
 
 
 @Service
@@ -65,29 +66,30 @@ public class RecordServiceImpl implements RecordService {
 		HashMap<String, Object> hMap=mav.getModelMap();
 		HttpServletRequest request=(HttpServletRequest) hMap.get("request");
 		String teamName=request.getParameter("teamName");
-		int teamCode=recordDao.getTeamInfo(teamName).getTeamCode();
-		
-		HashMap<String, Object> resultMap=recordDao.getMatchingResult(teamCode);
-		
-		if(resultMap!=null){
-			// 통산 전적 출력
-			int teamCode1=Integer.valueOf(String.valueOf(resultMap.get("TEAMCODE")));
-			int teamCode2=Integer.valueOf(String.valueOf(resultMap.get("TEAMCODE2")));
+		TeamDto teamDto=recordDao.getTeamInfo(teamName);
+		if(teamDto!=null){
+			int teamCode=recordDao.getTeamInfo(teamName).getTeamCode();
 			
-			List<RecordDto> team1RecordList=recordDao.getTeamRecordList(teamCode1);
-			List<RecordDto> team2RecordList=recordDao.getTeamRecordList(teamCode2);
-			
-			HashMap<String, Object> team1Map=calcTeamRecord(team1RecordList, teamCode1);
-			HashMap<String, Object> team2Map=calcTeamRecord(team2RecordList, teamCode2);
+			HashMap<String, Object> resultMap=recordDao.getMatchingResult(teamCode);
 			
 			if(resultMap!=null){
-				mav.addObject("team1Map",team1Map);
-				mav.addObject("team2Map",team2Map);
-				mav.addObject("matchingResult", resultMap);
+				// 통산 전적 출력
+				int teamCode1=Integer.valueOf(String.valueOf(resultMap.get("TEAMCODE")));
+				int teamCode2=Integer.valueOf(String.valueOf(resultMap.get("TEAMCODE2")));
+				
+				List<RecordDto> team1RecordList=recordDao.getTeamRecordList(teamCode1);
+				List<RecordDto> team2RecordList=recordDao.getTeamRecordList(teamCode2);
+				
+				HashMap<String, Object> team1Map=calcTeamRecord(team1RecordList, teamCode1);
+				HashMap<String, Object> team2Map=calcTeamRecord(team2RecordList, teamCode2);
+				
+				if(resultMap!=null){
+					mav.addObject("team1Map",team1Map);
+					mav.addObject("team2Map",team2Map);
+					mav.addObject("matchingResult", resultMap);
+				}
 			}
 		}
-		
-		
 	}
 
 	/**

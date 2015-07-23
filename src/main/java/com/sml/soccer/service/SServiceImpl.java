@@ -482,9 +482,12 @@ public class SServiceImpl implements SService{
 		ModelAndView mav = new ModelAndView();
 		String team1 = dao.findMatchTeams(Integer.parseInt(request.getParameter("teamCode")));
 		String team2 = dao.findMatchTeams(Integer.parseInt(request.getParameter("teamCode2")));
+		String team1Emblem =dao.getFindEmblem(Integer.parseInt(request.getParameter("teamCode")));
+		String team2Emblem =dao.getFindEmblem(Integer.parseInt(request.getParameter("teamCode2")));
 		mav.addObject("teamA",team1);
 		mav.addObject("teamB",team2);
-		System.out.println("teamA:"+team1+"teamB:"+team2);
+		mav.addObject("teamAEmblem",team1Emblem);
+		mav.addObject("teamBEmblem",team2Emblem);
 		mav.setViewName("jsonView");
 		return mav;
 	}

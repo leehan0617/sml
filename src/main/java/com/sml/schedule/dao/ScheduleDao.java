@@ -12,4 +12,5 @@ public interface ScheduleDao {
 	public ScheduleDto scheduleContents(int scheduleNumber);
 	public TeamDto selectMember(int scheduleNumber);
 	public int deleteSchedule(int scheduleNumber);
+	public TeamDto getTeamDto(String teamName);
 }

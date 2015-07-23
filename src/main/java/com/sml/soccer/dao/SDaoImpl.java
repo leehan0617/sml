@@ -141,8 +141,11 @@ public class SDaoImpl implements SDao{
 	}
 	@Override
 	public String findMatchTeams(int teamCode) {
-		// TODO Auto-generated method stub
 		return sqlSession.selectOne("soccer.dao.SMapper.findMatchTeam",teamCode);
+	}
+	@Override
+	public String getFindEmblem(int teamCode) {
+		return sqlSession.selectOne("soccer.dao.SMapper.getFindEmblem",teamCode);
 	}
 	
 	

@@ -100,4 +100,10 @@ public class ScheduleDaoImpl implements ScheduleDao{
 		return sqlSession.delete("schedule.dao.ScheduleMapper.deleteSchedule",scheduleNumber);
 	}
 
+	@Override
+	public TeamDto getTeamDto(String teamName) {
+		return sqlSession.selectOne("schedule.dao.ScheduleMapper.getTeamDto",teamName);
+	}
+
+
 }

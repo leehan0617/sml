@@ -7,11 +7,6 @@
 <!DOCTYPE html>
 <c:set var="root" value="${pageContext.request.contextPath }"/>
 <c:set value="${fn:replace(teamName, ' ', '%20')}" var="teamNameNoSpace" />
-<c:if test="${team!=null}">
-	<c:set var="teamId" value="${teamId}" scope="session"/>
-	<c:set var="teamGrade" value="${teamGrade}" scope="session"/>
-	<c:set var="teamName" value="${teamName }" scope="session"/>
-</c:if>
 <html>
 <head>
 	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
@@ -53,12 +48,7 @@
 	    overflow-y: scroll; 
 	    overflow-x: hidden;}
      </style>
- 	 <script>
- 		function goMatching(root, teamName){ 			
- 			var temp=teamName.replace(" ", "%20");
- 			location.href=root + "/teamPage/matching.do?teamName=" + teamName.replace(" ", "%20");
- 		}
- 	 </script>
+ 	 
 </head>
 <body>
 
@@ -142,6 +132,21 @@
         </div><!--/.container-fluid -->
       </nav>
 
+<c:if test="${team==null}">
+	<div style="text-align:center;">
+		
+		<br/>
+		<br/>
+		<br/>
+		<br/>
+		<h1>SML KOREA</h1>
+		<br/>
+		<h6>해당 팀이 존재하지 않습니다.</h6>
+	</div>
+		
+	</c:if>
+	
+	<c:if test="${team!=null }">
 	 <div class="container">
       <!-- Static navbar -->
       
@@ -523,19 +528,6 @@
     </div> <!-- /container -->
 	<!--  -->
 
-		
-	
-	
-	<c:if test="${team==null}">
-	<div style="text-align:center;">
-		<h1>SML KOREA</h1>
-		<br/>
-		<h6>해당 팀이 존재하지 않습니다.</h6>
-	</div>
-		
-	</c:if>
-	
-
 	<div class="modal fade" id="modalTeamBoard" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
  	 <div class="modal-dialog">
     	<div class="modal-content">
@@ -686,6 +678,7 @@
 
 <div id="listDiv" class="modal-content">
 </div>
+</c:if>
 
 
 

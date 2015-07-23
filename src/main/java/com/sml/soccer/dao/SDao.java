@@ -37,5 +37,7 @@ public interface SDao {
 	public List<RecordDto> showRecentMatch(String gameType);
 
 	public String findMatchTeams(int parseInt);
+	
+	public String getFindEmblem(int teamCode);
 
 }
