@@ -10,12 +10,13 @@
 <script type="text/javascript" src="${root }/resources/js/bootstrap.js"></script>
 <script>
 	$('#step2').click(function(){
-		$('#popupJoin').modal('toggle');
+		//$('#popupJoin').modal('hide');
+		//$('#popupJoin2').modal('show');
 	});
 	
 	$('#prevStep1').click(function(){
-		$('#popupJoin').modal('toggle');
-		$('#popupJoin2').modal('toggle');
+		//$('#popupJoin').modal('show');
+		//$('#popupJoin2').modal('hide');
 	});
 </script>
 <script>
