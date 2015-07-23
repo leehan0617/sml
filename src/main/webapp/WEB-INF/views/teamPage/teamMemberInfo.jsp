@@ -146,7 +146,7 @@
        <span class="label label-danger" style="font-size:20pt;">${teamName}</span>
        </div>       
        <div align="right">
-       <span class="" style="font-size:15pt"> 총원:${count}</span>
+       <span class="" style="font-size:15pt"> 총원:${count}${teamLeaderName}</span>
        </div>
        <br/>
         <hr style="border: solid 1px ;">      

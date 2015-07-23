@@ -151,22 +151,22 @@
       
 
       <!-- Main component for a primary marketing message or call to action -->
-      <div class="jumbotron row" style="margin-top:50px; background:url(${root}/resources/images/teamMainBackGround.jpg);">
+      <div class="jumbotron row" style="margin-top:50px; background:url(${root}/resources/images/teamMainBackGround1.jpg); color:white;">
       	<div class="col-md-2">
       		  <a href="${root}/team/teamMain.do?teamName=${teamName}">
 	   		 <img class="img-circle img-responsive" src="${root}/img/teamImg/${team.emblem}" width="200" height="150"></img>	   
 	    	</a><br/>
 	    		<c:if test="${matchingDto.matchingState==null }">
-	  			&nbsp;&nbsp;&nbsp;&nbsp;<input id="teamState" type="button" class="btn btn-active" value="매칭 전">
+	  			&nbsp;&nbsp;&nbsp;&nbsp;<input id="teamState" type="button" class="btn btn-primary" style="color:white;" value="매칭 전">
 	  			</c:if>
 			  	<c:if test="${matchingDto.matchingState=='전' }">
-			  			&nbsp;&nbsp;&nbsp;&nbsp;<input id="teamState" type="button" class="btn btn-info" value="매칭 대기 중">
+			  			&nbsp;&nbsp;&nbsp;&nbsp;<input id="teamState" type="button" class="btn btn-info" style="color:white;" value="매칭 대기 중">
 			  	</c:if>
 			  	<c:if test="${matchingDto.matchingState=='중' }">
-			  			&nbsp;&nbsp;&nbsp;&nbsp;<input id="teamState" type="button" class="btn btn-warning" value="매칭 중..">
+			  			&nbsp;&nbsp;&nbsp;&nbsp;<input id="teamState" type="button" class="btn btn-warning" style="color:white;" value="매칭 중..">
 			  	</c:if>
 			  	<c:if test="${matchingDto.matchingState=='후' }">
-			  			&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input id="teamState" type="button" class="btn btn-success" value="매칭 성사">
+			  			&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input id="teamState" type="button" class="btn btn-success" style="color:white;" value="매칭 성사">
 			  	</c:if>
 			    		
 		      	</div>
@@ -249,7 +249,7 @@
 		 
 	  </div></c:if> <!--  end 매칭결과되면 생기는 div -->
 	  
-	  <div class="jumbotron row">
+	  <div class="jumbotron row" style="background:url(${root}/resources/images/teamMainBackGround.jpg);">
 	  	  
 		  <div class="col-md-6 well" style="height: 500px;">
 		  	<h3 align="center">팀 공지사항</h3><hr/>
