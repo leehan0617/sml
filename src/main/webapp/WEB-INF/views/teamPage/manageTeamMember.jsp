@@ -15,7 +15,7 @@
 <body>
 	<div>
 		<a href="${root}/start.jsp"><img alt="logo" src=""></a>
-		<a href="${root}/start.jsp">SML Korea</a>
+		<a href="${root}/start.jsp">SML Korea${teamName}${teamCode}${teamGrade}</a>
 	</div>
 
 	<c:if test="${teamGrade != null }">
@@ -45,7 +45,7 @@
 	<h1>팀원 소개</h1>
 	<br/>
 	
-	<div>
+	<div>		
 		<span>번호</span>
 		<span>이름</span>
 		<span>생년월일</span>
@@ -73,7 +73,7 @@
 			<span>${member.memberEmail}</span>
 			<span>${member.memberPhone}</span>
 			<span>${member.memberGender}</span>
-			<span><input type="button" value="삭제" onclick="return deleteMember('${root }','${currentPage}','${member.memberCode}')"/></span>
+			<span><input type="button" value="삭제" onclick="return deleteMember('${root }','${currentPage}','${member.memberCode}','${teamName}','${teamCode}','${teamGrade}')"/></span>
 		</div>
 	</c:forEach>
 	

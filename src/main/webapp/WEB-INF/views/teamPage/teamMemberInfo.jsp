@@ -28,7 +28,7 @@
   	<script src="${root }/resources/js/jquery.js"></script> 	
  	<script src="${root }/resources/js/bootstrap.js"></script>
   	<script src="${root }/resources/js/jquery-ui.js"></script>  
-  	<%-- <script src="${root }/js/member/member.js"></script>   --%>	
+  	<script src="${root }/js/member/deleteMember.js"></script>
     <script src="${root }/resources/js/teamMain.js"></script>	
     
     <!-- Placed at the end of the document so the pages load faster -->
