@@ -291,11 +291,7 @@
 	   */
 	   
 	   function joinLeague(addr){
-		  // alert(addr);
-		  // var addr = url;
 		  location.href=addr;
-		 
-		  
 	   }
 	   
 	   function showRecentMatch(root,sportCode){

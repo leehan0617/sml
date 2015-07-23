@@ -129,7 +129,6 @@
             <div class="carousel-caption">
               <h1>WELCOME SML SOCCER PAGE </h1>
               <p>이 페이지에는 축구에 관련된 리그 및 팀들간 정보가 있습니다.</p>
-              <p><a class="btn btn-lg btn-primary" href="#" role="button">Default Button</a></p>
             </div>
           </div>
         </div>
@@ -200,7 +199,7 @@
 
       <div class="row featurette">
         <div class="col-md-7">
-          <h2 class="featurette-heading">SML 리그 <span class="text-muted">현재 진행중인 리그목록들입니다.</span></h2>
+          <h2 class="featurette-heading">SML 리그 <br/> <span class="text-muted" style="font-size: 40px;">현재 진행중인 리그목록들입니다.</span></h2>
           <p class="lead">상세정보는 원하는 리그명을 클릭해주세요.</p>
           	<table class="table table-hover">
           		<thead>
@@ -250,7 +249,7 @@
 
       <div class="row featurette" id="onAirMatch">
         <div class="col-md-7 col-md-push-5">
-          <h2 class="featurette-heading">경기 대진표<span class="text-muted">&nbsp;See for yourself.</span></h2>
+          <h2 class="featurette-heading">경기 대진표<span class="text-muted">&nbsp;</span></h2>
           <p class="lead">이곳은 현재 경기 예정이 있는 팀들간 대진표들을 정렬해 놓았습니다. 경기를 예측해보세요!</p>
         </div>
         <div class="col-md-5 col-md-pull-7">
