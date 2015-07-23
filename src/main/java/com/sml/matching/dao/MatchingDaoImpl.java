@@ -96,7 +96,7 @@ public class MatchingDaoImpl implements MatchingDao {
 		hMap.put("teamCode", myMatchingDto.getTeamCode());
 		hMap.put("teamCode2", otherMatchingDto.getTeamCode());
 		hMap.put("gameType", 0);
-		hMap.put("refereeNumber",1);
+		hMap.put("refereeNumber",190);
 		hMap.put("gameState", "경기 전");
 		hMap.put("sportType", myMatchingDto.getMatchingSport());
 		hMap.put("homeGround", homeGround);

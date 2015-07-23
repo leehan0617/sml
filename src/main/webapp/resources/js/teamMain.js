@@ -103,6 +103,7 @@ function moreReadReply(root,teamCode,replyPageNumber){
 		type:"get",
 		url:addr,
 		success:function(data){
+			$(".firstReply").hide();
 			$(".alert-warning").hide();
 			$(".replyWrap").append(data);
 		}

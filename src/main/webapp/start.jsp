@@ -71,7 +71,7 @@
 	              </c:otherwise>
               	</c:choose>       
               </ul>
-              <ul class="nav navbar-nav navber-right">
+              <ul class="nav navbar-nav navbar-right">
                 <li>
 	               <form class="form-inline"  id="searchForm" name="searchForm" style="padding-top:10px;">
 		  			<div class="input-group">

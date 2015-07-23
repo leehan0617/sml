@@ -15,13 +15,41 @@
 	
 	<link rel="stylesheet" type="text/css" href="${root }/resources/css/bootstrap.css"/>
 	<link rel="stylesheet" type="text/css" href="${root }/resources/css/jquery-ui.css"/>
+	<link href="${root}/resources/css/jquery.jqplot.css" rel="stylesheet" type="text/css"/>
+	 
 	<link href="${root}/css/teamPage/matchingMap.css" type="text/css" rel="stylesheet"/>	
 	<script src="${root }/resources/js/jquery.js"></script>
     <script src="${root }/resources/js/jquery-ui.js"></script>
 	<script src="${root }/resources/js/bootstrap.js"></script>
 	<script src="${root }/resources/js/teamMain.js"></script>	
-		
-
+	<script src="${root }/resources/js/jquery.jqplot.js"></script>
+	
+	<script src="${root }/resources/js/smlStart.js"></script>	
+	
+	<script src="${root }/resources/js/jqplot.categoryAxisRenderer.js"></script>
+	<script src="${root }/resources/js/jqplot.barRenderer.js"></script>
+	<script src="${root }/resources/js/jqplot.pieRenderer.js"></script>
+	
+	<%-- 
+	<!-- Bootstrap core CSS -->
+    <link href="${root}/resources/css/bootstrap.css" rel="stylesheet" type="text/css"/>
+    <link href="${root}/resources/css/jquery.jqplot.css" rel="stylesheet" type="text/css"/>
+    <link rel="stylesheet" type="text/css" href="${root }/resources/css/jquery-ui.css"/>	
+    <script src="${root }/resources/js/jquery.js"></script>
+    <script src="${root }/resources/js/jquery-ui.js"></script>
+	<script src="${root }/resources/js/bootstrap.js"></script>
+	<script src="${root }/resources/js/soccerPage.js"></script>
+	<script src="${root }/resources/js/jquery.jqplot.js"></script>
+	<script src="${root }/resources/js/smlStart.js"></script>	
+	
+	<script src="${root }/resources/js/jqplot.categoryAxisRenderer.js"></script>
+	<script src="${root }/resources/js/jqplot.barRenderer.js"></script>
+	<script src="${root }/resources/js/jqplot.pieRenderer.js"></script>
+	<script src="${root }/js/scrollnews.js"></script>
+    <!-- Custom styles for this template -->
+    <link href="${root}/resources/css/soccerPage.css" rel="stylesheet" type="text/css"> --%>
+	
+			
 	<!-- matching.jsp js/css -->
 	<script type="text/javascript" src="//apis.daum.net/maps/maps3.js?apikey=1442260e0c6af86974001269a7312e42&libraries=services"></script>
 	<script src="${root }/js/teamPage/teamPage.js"></script>
@@ -45,8 +73,9 @@
 		#tallModal .modal-body p { margin-bottom: 900px }
 		   
 	    .ui-autocomplete { 
-	    overflow-y: scroll; 
-	    overflow-x: hidden;}
+		    overflow-y: scroll; 
+		    overflow-x: hidden;
+	    }	    
      </style>
  	 
 </head>
@@ -114,17 +143,17 @@
 					</div>
             	</li>
             	<li>
-					<form class="form-inline"  id="searchForm" name="searchForm" style="padding-top:10px;">            	
-		           		<li class="input-group">
-			      			<input type="text" class="form-control" placeholder="팀명을 검색하세요." name="teamName" id="searchTeamName">
-				    		<span class="input-group-btn">
-				      		<button class="btn btn-default" type="button" id="goTeamPage">
-				      		  <span class="glyphicon glyphicon-search" aria-hidden="true"></span>이동
-				      		</button>
-				      		</span>
-			    		</li><!-- /input-group -->		           
-		            </form>
-            	</li>
+	               <form class="form-inline"  id="searchForm" name="searchForm" style="padding-top:10px;">
+		  			<div class="input-group">
+		      			<input type="text" class="form-control" placeholder="팀명을 검색하세요." name="teamName" id="searchTeamName">
+			    		<span class="input-group-btn">
+			      		<button class="btn btn-default" type="button" id="goTeamPage">
+			      		  <span class="glyphicon glyphicon-search" aria-hidden="true"></span>이동
+			      		</button>
+			      		</span>
+		    		</div><!-- /input-group -->
+	  			  </form>
+                </li>
              </ul>
              
           </div><!--/.nav-collapse -->
@@ -286,7 +315,8 @@
 			</tr>
 			</thead>
 			<tbody>
-			<c:forEach var="record" items="${recordList }" begin="1" end="9">
+			
+			<c:forEach var="record" items="${recordList }" begin="0" end="8">
 				<c:if test="${record.TEAMRESULT==null }">
 					<tr>
 						<td style="width:10%;"><fmt:formatDate value="${record.GAMEDATE }" pattern="MM/dd"/></td>
@@ -490,7 +520,7 @@
 			
 			<div class="row replyList replyFirst">	
   				<c:forEach var="teamLog" items="${replyList}" begin="0" varStatus="status" end="4">
-					<div class="col-md-3 ${teamLog.replyCode }" style="margin-top:5px;">
+					<div class="firstReply col-md-3 ${teamLog.replyCode }" style="margin-top:5px;">
 						 <div class="input-group">
 							 <span class="input-group-btn">
 								<button class="btn btn-default" type="button" disabled="disabled">닉네임</button>
@@ -498,7 +528,7 @@
 							<input type="text" class="form-control" value="${teamLog.replyNickName }" id="replyNickName" disabled="disabled">
 						 </div><!-- /input-group -->
 					</div>
-					<div class="col-md-3 ${teamLog.replyCode }" style="margin-top:5px;">
+					<div class="firstReply col-md-3 ${teamLog.replyCode }" style="margin-top:5px;">
 						 <div class="input-group">
 									 <span class="input-group-btn">
 					  					<button class="btn btn-default" type="button" disabled="disabled">작성일</button>
@@ -506,7 +536,7 @@
 										<input type="text" class="form-control" value="<fmt:formatDate value="${teamLog.replyDate }" pattern="yy-MM-dd"/>" id="replyDate" disabled="disabled">
 							 </div><!-- /input-group -->
 					</div>
-					<div class="col-md-6 ${teamLog.replyCode }" style="margin-top:5px;">
+					<div class="firstReply col-md-6 ${teamLog.replyCode }" style="margin-top:5px;">
 						<div class="input-group">
 							 <input type="text" class="form-control" value="${teamLog.replyContent }" id="replyContent" disabled="disabled">
 					     <span class="input-group-btn">
@@ -518,8 +548,8 @@
 
 			</div><!-- /.row -->
 			
-			<br/>
-			<div class="alert alert-warning" role="alert" onclick="moreReadReply('${root}','${team.teamCode }' , '${replyPageNumber }')"><p class="text-center">더보기</p></div>
+			
+			<div class="alert alert-warning" role="alert" onclick="moreReadReply('${root}','${team.teamCode }' , '${replyPageNumber }')" style="margin-top:10px;"><p class="text-center">더보기</p></div>
 		</div>
    	    	
 		</div>    <!-- end 댓글 div -->
@@ -712,7 +742,7 @@
 
 
 <script>
-$(document).ready(function() {
+/* $(document).ready(function() {
 	var urlAddr="/home/autocomplete";
 	$("#searchTeamName").autocomplete({
 		source : function(request, response) {
@@ -732,15 +762,15 @@ $(document).ready(function() {
 				}
 			});
 		}
-	});
+	}); 
 	
-	$("#goTeamPage").click(function(){
+	 $("#goTeamPage").click(function(){
 		var text = $("input[id='searchTeamName']").val();
 		
 		var url = "/home/team/teamMain.do?teamName="+text;
 		window.open(url);
-	});
-});
+	}); 
+}); */
 	function editTeamIntro(root , teamName , teamCode){
 		//var teamIntro = $("#teamIntroContent").val();
 		var teamIntro = $("#teamIntroContent").val().replace(/\n/g, '<br>');

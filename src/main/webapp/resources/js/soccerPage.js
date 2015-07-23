@@ -249,7 +249,7 @@
 	   }
 	   
 	   function modalLeague(root,leagueCode,name,region,limitNumber,leagueDay,leagueTime,startDate,endDate,check,teamName){
-		   //alert(root+","+code+','+name+','+region+','+limitNumber+','+leagueDay+','+leagueTime+','+startDate+','+endDate);
+		   //alert(root+","+leagueCode+','+name+','+region+','+limitNumber+','+leagueDay+','+leagueTime+','+startDate+','+endDate);
 		   $('#modalLeagueFooter').empty();
 		   $('#leagueName').val(name);
 		   $('#leagueRegion').val(region);

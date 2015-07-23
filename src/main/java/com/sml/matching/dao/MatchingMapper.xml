@@ -39,8 +39,8 @@
 	</update>
 	
 	<insert id="createGameRecord" parameterType="java.util.HashMap">
-		insert into gameRecord (gameCode, teamCode, teamCode2, gameType, refereeNumber, gameState, sportType, gamePlace)
-		values (gameRecord_gameCode_sql.nextVal, #{teamCode}, #{teamCode2}, #{gameType}, #{refereeNumber}, #{gameState}, #{sportType}, #{homeGround})
+		insert into gameRecord (gameCode, teamCode, teamCode2, gameType, refereeNumber, gameState,gameDate , sportType, gamePlace)
+		values (gameRecord_gameCode_sql.nextVal, #{teamCode}, #{teamCode2}, #{gameType}, #{refereeNumber}, #{gameState},sysdate, #{sportType}, #{homeGround})
 	</insert>
 	
 	<select id="getNormalMatchInfo" parameterType="int" resultType="java.util.HashMap">
