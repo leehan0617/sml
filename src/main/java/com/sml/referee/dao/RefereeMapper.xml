@@ -10,8 +10,8 @@
  								#{refereeYes}, #{refereePicture}, #{refereeSport}, #{refereeGender},#{gugun}, #{path})
  	</insert> 	
  	
- 	<select id="refereeCount" resultType="int">
- 		select count(*) from referee
+ 	<select id="refereeCount" parameterType="String" resultType="int">
+ 		select count(*) from referee where refereesport=#{sportType}
  	</select>
  	
  	<select id="refereeList" parameterType="java.util.Map" resultType="com.sml.referee.dto.RefereeDto">

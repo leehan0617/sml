@@ -49,7 +49,7 @@ public class RefereeServiceImpl implements RefereeService{
 		switch(sportCode){
 			case 0: sportType="축구"; break;
 			case 1: sportType="야구"; break;
-			case 2: sportType="풋살"; break;
+			case 2: sportType="농구"; break;
 			case 3: sportType="족구"; break;
 		}
 		
@@ -63,7 +63,7 @@ public class RefereeServiceImpl implements RefereeService{
 		}
 		logger.info("regionSido:" + regionSido);
 		
-		int count=refereeDao.refereeCount();
+		int count=refereeDao.refereeCount(sportType);
 		//logger.info("count:" + count);
 		
 		String pageNumber=request.getParameter("pageNumber");
