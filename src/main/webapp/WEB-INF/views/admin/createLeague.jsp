@@ -240,7 +240,7 @@
 							
 							  
 							  <div class="form-actions">
-								<button type="submit" class="btn btn-primary">리그 생성</button>
+								<button type="submit" class="btn btn-primary" id="create">리그 생성</button>
 								<button class="btn">취소</button>
 							  </div>
 							</fieldset>
