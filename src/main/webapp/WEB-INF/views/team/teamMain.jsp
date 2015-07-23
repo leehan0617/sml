@@ -53,12 +53,7 @@
 	    overflow-y: scroll; 
 	    overflow-x: hidden;}
      </style>
- 	 <script>
- 		function goMatching(root, teamName){ 			
- 			var temp=teamName.replace(" ", "%20");
- 			location.href=root + "/teamPage/matching.do?teamName=" + teamName.replace(" ", "%20");
- 		}
- 	 </script>
+ 	 
 </head>
 <body>
 
