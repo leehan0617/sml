@@ -179,8 +179,9 @@
                   <th><span class="glyphicon glyphicon-user">이름</span></th>
                   <th><span class="glyphicon glyphicon-calendar">생년월일</span></th>
                   <th><span class="glyphicon glyphicon-home">지역</span></th>
-                  <th><span class="glyphicon glyphicon-tag">이메일</span></th>
                   <th><span class="glyphicon glyphicon-earphone">전화번호</span></th>
+                  <th><span class="glyphicon glyphicon-tag">이메일</span></th>
+                  
                   <th><span class="glyphicon glyphicon-heart">성별</span></th>
                 </tr>               
               </thead>
@@ -200,8 +201,9 @@
 				<td>${member.memberName}</td>
 				<td>${member.memberBirth}</td>
 				<td>${member.memberRegion}</td>
-				<td>${member.memberEmail}</td>
+				
 				<td>${member.memberPhone}</td>
+				<td>${member.memberEmail}</td>
 				<td>${member.memberGender}</td>
 				<td><button class="btn btn-success" onclick="return deleteMember('${root}','${pageNumber}','${member.memberCode}','${teamName}','${teamCode}','${teamGrade}');"><span class="glyphicon glyphicon-trash">삭제</span></button></td>			
 				
@@ -215,8 +217,9 @@
 				<td>${member.memberName}</td>
 				<td>${member.memberBirth}</td>
 				<td>${member.memberRegion}</td>
-				<td>${member.memberEmail}</td>
 				<td>${member.memberPhone}</td>
+				<td>${member.memberEmail}</td>
+				
 				<td>${member.memberGender}</td>			
 			  </tr>			 
 			</c:forEach>
