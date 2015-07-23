@@ -1,5 +1,6 @@
 package com.sml.sportLegBall.service;
 
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
@@ -18,6 +19,8 @@ import com.sml.league.dto.LeagueDto;
 import com.sml.member.dto.MemberDto;
 import com.sml.record.dto.RecordDto;
 import com.sml.sportLegBall.dao.LegBallDao;
+import com.sml.weather.WeatherDTO;
+import com.sml.weather.WeatherParser;
 	
 	@Service
 	public class LegBallServiceImpl implements LegBallService{
@@ -172,6 +175,41 @@ import com.sml.sportLegBall.dao.LegBallDao;
 			
 			mav.addObject("sportCode",sportCode);
 			mav.addObject("sportType",sportType);
+			
+			//날씨 파싱 정보 가져오기		
+			ArrayList<WeatherDTO> weatherList=null;
+			try {
+				WeatherParser weatherParser = new WeatherParser();
+				weatherList=weatherParser.xmlRssParser();
+			} catch (Exception e1) {
+				e1.printStackTrace();
+			}
+			for(WeatherDTO weather:weatherList){
+				/*01 맑음
+				02 구름 조금
+				03 구름 많음
+				04 흐림
+				05 비
+				06 눈/비
+				07 눈*/			
+				if(weather.getWfKor().equals("맑음")){
+					weather.setWfKor("01.png");
+				}else if(weather.getWfKor().equals("구름 조금")){
+					weather.setWfKor("02.png");
+				}else if(weather.getWfKor().equals("구름 많음")){
+					weather.setWfKor("03.png");
+				}else if(weather.getWfKor().equals("흐림")){
+					weather.setWfKor("04.png");
+				}else if(weather.getWfKor().equals("비")){
+					weather.setWfKor("05.png");
+				}else if(weather.getWfKor().equals("눈/비")){
+					weather.setWfKor("06.png");
+				}else if(weather.getWfKor().equals("눈")){
+					weather.setWfKor("07.png");
+				}
+			}
+			
+			mav.addObject("weatherList", weatherList);
 			mav.setViewName("legBall/legBallRule");
 		}
 		
@@ -216,6 +254,40 @@ import com.sml.sportLegBall.dao.LegBallDao;
 			logger.info("size: " + teamList.size());
 			
 			
+			//날씨 파싱 정보 가져오기		
+			ArrayList<WeatherDTO> weatherList=null;
+			try {
+				WeatherParser weatherParser = new WeatherParser();
+				weatherList=weatherParser.xmlRssParser();
+			} catch (Exception e1) {
+				e1.printStackTrace();
+			}
+			for(WeatherDTO weather:weatherList){
+				/*01 맑음
+				02 구름 조금
+				03 구름 많음
+				04 흐림
+				05 비
+				06 눈/비
+				07 눈*/			
+				if(weather.getWfKor().equals("맑음")){
+					weather.setWfKor("01.png");
+				}else if(weather.getWfKor().equals("구름 조금")){
+					weather.setWfKor("02.png");
+				}else if(weather.getWfKor().equals("구름 많음")){
+					weather.setWfKor("03.png");
+				}else if(weather.getWfKor().equals("흐림")){
+					weather.setWfKor("04.png");
+				}else if(weather.getWfKor().equals("비")){
+					weather.setWfKor("05.png");
+				}else if(weather.getWfKor().equals("눈/비")){
+					weather.setWfKor("06.png");
+				}else if(weather.getWfKor().equals("눈")){
+					weather.setWfKor("07.png");
+				}
+			}
+			
+			mav.addObject("weatherList", weatherList);
 			mav.addObject("sportCode",sportCode);
 			mav.addObject("sportType", sportType);
 			mav.addObject("boardSize", boardSize);		
@@ -346,7 +418,40 @@ import com.sml.sportLegBall.dao.LegBallDao;
 			List<CommonBoardDto> legBallBoardList = dao.getlegBallBoardList(sportCode,startRow,endRow);
 			
 			
+			//날씨 파싱 정보 가져오기		
+			ArrayList<WeatherDTO> weatherList=null;
+			try {
+				WeatherParser weatherParser = new WeatherParser();
+				weatherList=weatherParser.xmlRssParser();
+			} catch (Exception e1) {
+				e1.printStackTrace();
+			}
+			for(WeatherDTO weather:weatherList){
+				/*01 맑음
+				02 구름 조금
+				03 구름 많음
+				04 흐림
+				05 비
+				06 눈/비
+				07 눈*/			
+				if(weather.getWfKor().equals("맑음")){
+					weather.setWfKor("01.png");
+				}else if(weather.getWfKor().equals("구름 조금")){
+					weather.setWfKor("02.png");
+				}else if(weather.getWfKor().equals("구름 많음")){
+					weather.setWfKor("03.png");
+				}else if(weather.getWfKor().equals("흐림")){
+					weather.setWfKor("04.png");
+				}else if(weather.getWfKor().equals("비")){
+					weather.setWfKor("05.png");
+				}else if(weather.getWfKor().equals("눈/비")){
+					weather.setWfKor("06.png");
+				}else if(weather.getWfKor().equals("눈")){
+					weather.setWfKor("07.png");
+				}
+			}
 			
+			mav.addObject("weatherList", weatherList);		
 			mav.addObject("sportCode",sportCode);
 			mav.addObject("count", count);
 			mav.addObject("boardSize", boardSize);		

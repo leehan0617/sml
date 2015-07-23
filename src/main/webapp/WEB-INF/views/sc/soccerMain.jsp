@@ -30,6 +30,7 @@
 	<script src="${root }/resources/js/jqplot.categoryAxisRenderer.js"></script>
 	<script src="${root }/resources/js/jqplot.barRenderer.js"></script>
 	<script src="${root }/resources/js/jqplot.pieRenderer.js"></script>
+	<script src="${root }/js/scrollnews.js"></script>
     <!-- Custom styles for this template -->
     <link href="${root}/resources/css/soccerPage.css" rel="stylesheet" type="text/css">
     <style>
@@ -75,6 +76,22 @@
                     <li class="divider"></li>
                   </ul>
                 </li>
+              </ul>       
+              <ul class="nav navbar-nav navbar-right">              
+              	<li>
+	          		<!-- 날씨 -->
+					<div class="noti" id="roll" style="padding-top:14px; height:35px; overflow:hidden;width:150px;">			
+						<ul>
+							<c:forEach var="weather" items="${weatherList }">		
+								<li>	
+									<span><font color="white">${weather.sido }</font></span>
+									<span><font color="white">${weather.temp }</font></span>
+									<span><img src="${root}/img/weatherImg/${weather.wfKor}" style="vertical-align:middle; width="27px" height="27px"/></span>
+								</li>	
+							</c:forEach>		
+						</ul>
+					</div>
+            	</li>
                 <li>
 	               <form class="form-inline"  id="searchForm" name="searchForm" style="padding-top:10px;">
 		  			<div class="input-group">
