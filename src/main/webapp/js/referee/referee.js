@@ -75,3 +75,15 @@ function refereeRegion(root, sportCode,regionSido){
 	var url=root + "/referee/refereeList.do?sportCode=" + sportCode + "&regionSido=" + regionSido;
 	location.replace(url);
 }
+
+function teamListRegion(root, sportCode,regionSido){
+	//alert("regionSido:"+regionSido);
+	if(regionSido=="전국"){
+		alert("성공");
+		var url=root + "/soccer/soccerTeamList.do?sportCode=" + sportCode;		
+		location.replace(url);
+	}
+	
+	var url=root + "/soccer/soccerTeamList.do?sportCode=" + sportCode + "&regionSido=" + regionSido;
+	location.replace(url);
+}

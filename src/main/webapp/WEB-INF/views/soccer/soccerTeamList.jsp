@@ -26,6 +26,7 @@
 	<script src="${root }/resources/js/soccerPage.js"></script>
 	<script src="${root }/resources/js/jquery.jqplot.js"></script>
 	<script src="${root }/resources/js/smlStart.js"></script>	
+	<script type="text/javascript" src="${root }/js/referee/referee.js"></script>
 	
 	<script src="${root }/resources/js/jqplot.categoryAxisRenderer.js"></script>
 	<script src="${root }/resources/js/jqplot.barRenderer.js"></script>
@@ -127,7 +128,17 @@
               <c:if test="${teamList!=null}">	
               <thead>               
                <tr align="center" style="background-color:#E2D6D6;"> 
-               	  <td>엠블럼</td>              	                 
+               	   <td>
+               	    <div>
+						<label>지역:</label>
+						<select id="sido2" onchange="teamListRegion('${root}', '${sportCode}', this.value)">
+						<option>선택</option>				
+						<c:forEach var="sido" items="${sidoList}">												
+						<option value="${sido}">${sido}</option>				
+						</c:forEach>
+						</select>
+				    </div>
+				  </td>                   	                 
                   <td>팀명</td>
                   <td>리더이름</td>
                   <td>연고지</td>                               

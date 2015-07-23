@@ -17,6 +17,7 @@ import com.sml.common.dto.CommonBoardDto;
 import com.sml.league.dto.LeagueDto;
 import com.sml.member.dto.MemberDto;
 import com.sml.record.dto.RecordDto;
+import com.sml.referee.dao.RefereeDao;
 import com.sml.soccer.dao.SDao;
 import com.sml.weather.WeatherDTO;
 import com.sml.weather.WeatherParser;
@@ -26,6 +27,7 @@ public class SServiceImpl implements SService{
 	private Logger logger = Logger.getLogger(SServiceImpl.class.getName());
 	@Autowired
 	private SDao dao;
+	private RefereeDao refereeDao;
 	
 	/**
 	 * @함수명:viewSoccerBoard
@@ -236,6 +238,14 @@ public class SServiceImpl implements SService{
 			case 3: sportType="족구"; break;
 		}
 		
+		String regionSido=request.getParameter("regionSido");	
+		
+		if(regionSido==null){
+			regionSido="전국";
+		}
+		System.out.println("regionSido"+regionSido);
+		logger.info("regionSido:" + regionSido);
+		
 		int teamCount=dao.teamCount(sportType);
 		
 		String pageNumber=request.getParameter("pageNumber");
@@ -245,12 +255,24 @@ public class SServiceImpl implements SService{
 		int boardSize=5;		
 		int currentPage=Integer.parseInt(pageNumber);
 		int startRow=(currentPage-1)*boardSize+1;
-		int endRow=currentPage*boardSize;
+		int endRow=currentPage*boardSize;		
 		
+		List<HashMap<String,Object>> teamList=null;
+		if(regionSido.equals("전국")){
+		teamList=dao.getAllTeamList(sportType,startRow,endRow);		
+		}
+		else if(teamCount>0&&regionSido!="전국"){			
+		teamList=dao.getTeamList(startRow, endRow, sportType, regionSido);
+		}
 		
-		
-		List<HashMap<String,Object>> teamList=dao.getAllTeamList(sportType,startRow,endRow);
 		logger.info("size: " + teamList.size());
+		
+		
+		List<String> sidoList=dao.sidoList(regionSido);
+		System.out.println("sidoList:"+sidoList);
+		sidoList.add("전국");
+		
+		
 		
 		//날씨 파싱 정보 가져오기		
 		ArrayList<WeatherDTO> weatherList=null;
@@ -285,6 +307,8 @@ public class SServiceImpl implements SService{
 			}
 		}
 		
+		
+		mav.addObject("sidoList", sidoList);
 		mav.addObject("weatherList", weatherList);
 		mav.addObject("sportCode",sportCode);
 		mav.addObject("sportType", sportType);
