@@ -6,7 +6,7 @@
 
 <!DOCTYPE html>
 <c:set var="root" value="${pageContext.request.contextPath }"/>
-<c:set value="${fn:replace(teamName, ' ', '%20')}" var="teamNameNoSpace" />
+<c:set value="${fn:replace(team.teamName, ' ', '%20')}" var="teamNameNoSpace" />
 <html>
 <head>
 	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
@@ -114,18 +114,17 @@
 					</div>
             	</li>
             	<li>
-			<form class="form-inline"  id="searchForm" name="searchForm" style="padding-top:10px;">            	
-           		<li class="input-group">
-	      			<input type="text" class="form-control" placeholder="팀명을 검색하세요." name="teamName" id="searchTeamName">
-		    		<span class="input-group-btn">
-		      		<button class="btn btn-default" type="button" id="goTeamPage">
-		      		  <span class="glyphicon glyphicon-search" aria-hidden="true"></span>이동
-		      		</button>
-		      		</span>
-	    		</li><!-- /input-group -->
-           
-            </form>
-            </li>
+					<form class="form-inline"  id="searchForm" name="searchForm" style="padding-top:10px;">            	
+		           		<li class="input-group">
+			      			<input type="text" class="form-control" placeholder="팀명을 검색하세요." name="teamName" id="searchTeamName">
+				    		<span class="input-group-btn">
+				      		<button class="btn btn-default" type="button" id="goTeamPage">
+				      		  <span class="glyphicon glyphicon-search" aria-hidden="true"></span>이동
+				      		</button>
+				      		</span>
+			    		</li><!-- /input-group -->		           
+		            </form>
+            	</li>
              </ul>
              
           </div><!--/.nav-collapse -->

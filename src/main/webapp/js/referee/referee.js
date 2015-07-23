@@ -43,6 +43,8 @@ $(document).ready(function(){
 	//////////////////////////////////////////////////
 });
 
+
+
 function regionSido(root){
 	var url=root+"/member/searchRegion.do";
 	

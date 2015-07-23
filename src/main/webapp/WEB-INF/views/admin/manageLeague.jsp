@@ -118,7 +118,7 @@
 								<c:forEach var="manageLeagueList" items="${manageLeagueList}">
 									<tr>
 										<td>${manageLeagueList.leagueSport}</td>
-										<td><img src="${root }/img/leagueImg/${manageLeagueList.leagueImage}" alt="${manageLeagueList.leagueImage}"></td>	
+										<td style="text-align:center;"><img src="${root }/img/leagueImg/${manageLeagueList.leagueImage}" alt="${manageLeagueList.leagueImage}" style="width:100px; height:100px;"></td>	
 										<td>${manageLeagueList.leagueRegion}</td>		
 										<td><a href="${root }/admin/leagueInfo.do?leagueCode=${manageLeagueList.leagueCode}&pageNumber=${currentPage}">${manageLeagueList.leagueName}</a></td>	
 										<td>${manageLeagueList.leagueTeamNumber}</td>	
