@@ -52,7 +52,7 @@
             </div>
             <div id="navbar" class="navbar-collapse collapse">
               <ul class="nav navbar-nav">
-                <li><a class="navbar-brand startScroll" href="${root }/start.jsp" style="color:white;"><img src="${root}\resources\css\images\" style="width:80px; height:30px;"></img></a></li>
+                <li><a class="navbar-brand startScroll" href="${root }/start.jsp" style="color:white;">SML KOREA</a></li>
               	<li><a class="startScroll" href="#smlInfo" style="color:white;">SML 소개</a></li>
                 <li><a class="startScroll" href="#nearGround" style="color:white;">SML 경기장</a></li>
                 <li><a class="startScroll" href="#workshopper-list" style="color:white;">SML 서비스</a></li>
