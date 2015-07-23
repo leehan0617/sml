@@ -30,6 +30,7 @@
 	<script src="${root }/resources/js/jqplot.categoryAxisRenderer.js"></script>
 	<script src="${root }/resources/js/jqplot.barRenderer.js"></script>
 	<script src="${root }/resources/js/jqplot.pieRenderer.js"></script>
+	<script src="${root }/js/scrollnews.js"></script>
     <!-- Custom styles for this template -->
     <link href="${root}/resources/css/soccerPage.css" rel="stylesheet" type="text/css">
     <style>
@@ -73,6 +74,22 @@
                     <li class="divider"></li>
                   </ul>
                 </li>
+              </ul>              
+           	  <ul class="nav navbar-nav navbar-right">
+           	  	<li>
+	          		<!-- 날씨 -->
+					<div class="noti" id="roll" style="padding-top:14px; height:35px; overflow:hidden;width:150px;">			
+						<ul>
+							<c:forEach var="weather" items="${weatherList }">		
+								<li>	
+									<span><font color="white">${weather.sido }</font></span>
+									<span><font color="white">${weather.temp }</font></span>
+									<span><img src="${root}/img/weatherImg/${weather.wfKor}" style="vertical-align:middle; width="27px" height="27px"/></span>
+								</li>	
+							</c:forEach>		
+						</ul>
+					</div>
+            	</li>
                 <li>
 	               <form class="form-inline"  id="searchForm" name="searchForm" style="padding-top:10px;">
 		  			<div class="input-group">
@@ -93,13 +110,18 @@
       </div>
     </div>
 	
-	 <br/><br/><br/><br/>
-     <div class="container-fluid" style="background:url(${root}/resources/images/backGroundImage.jpg)">   
-       <span class="col-xs-2"><a href="${root }/scMain"><img class="img-circle img-responsive" alt="logo" src="${root}/resources/images/android@2x.png" width="200" height="150"></img></a></span> 	  
-       	  
-       <span class="col-xs-9" style="font-size:50pt;"><br/>SML KOREA</span>
-       <span class="col-xs-1" style="font-size:15pt;"><br/><br/>총 팀수: ${teamCount}  </span>     
+	  <br/><br/><br/><br/>
+     <div class="container-fluid" style="background:url(${root}/resources/images/teamListBackGroundImage.jpg)">     
+     <div align="center" style="padding-top:10px;">      
+       <br/><br/><br/>
+       <br/><br/>
+       <span class="label label-danger" style="font-size:20pt;">SML KOREA</span>
+       <br/><br/><br/>
+       <br/>
+      
+       </div>             
      </div>
+      <hr style="border: solid 2px ;"> 
        <br/><br/>
 	
     <div class="container" style="background-color: ">    	

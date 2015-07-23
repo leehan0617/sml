@@ -26,4 +26,41 @@ $(document).ready(function() {
 		var url = "/home/team/teamMain.do?teamName="+text;
 		window.open(url);
 	});
+	
+	 $("#goScPage").mouseover(function(){
+	 		$("#goScPage").fadeTo("slow", 0.4);
+
+	 	 });
+	 	 
+	 	 $("#goScPage").mouseout(function(){
+	 		 $("#goScPage").fadeTo("slow",1);
+	 	 });
+	 	 
+	 	$("#goBbPage").mouseover(function(){
+	 		$("#goBbPage").fadeTo("slow", 0.4);
+
+	 	 });
+	 	 
+	 	 $("#goBbPage").mouseout(function(){
+	 		 $("#goBbPage").fadeTo("slow",1);
+	 	 });
+	 	 
+	 	$("#goBkPage").mouseover(function(){
+	 		$("#goBkPage").fadeTo("slow", 0.4);
+
+	 	 });
+	 	 
+	 	 $("#goBkPage").mouseout(function(){
+	 		 $("#goBkPage").fadeTo("slow",1);
+	 	 });
+	 	 
+	 	$("#goLbPage").mouseover(function(){
+	 		$("#goLbPage").fadeTo("slow", 0.4);
+
+	 	 });
+	 	 
+	 	 $("#goLbPage").mouseout(function(){
+	 		 $("#goLbPage").fadeTo("slow",1);
+	 	 });
+
 });

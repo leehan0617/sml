@@ -20,51 +20,106 @@
 
    <!-- Bootstrap core CSS -->
     <link rel="stylesheet" type="text/css" href="${root }/resources/css/bootstrap.css"/>
-    
+    <link rel="stylesheet" type="text/css" href="${root }/resources/css/jquery-ui.css"/>
 
     <!-- Custom styles for this template -->     
   
   	<script src="${root }/resources/js/jquery.js"></script> 	
  	<script src="${root }/resources/js/bootstrap.js"></script>
   	<script src="${root }/resources/js/jquery-ui.js"></script>  
-  	<script src="${root }/js/member/member.js"></script>  	
-    
+  	<%-- <script src="${root }/js/member/member.js"></script>  --%> 	
+    <script src="${root }/resources/js/teamMain.js"></script>	
     <!-- Placed at the end of the document so the pages load faster -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
   </head>
   <body>
-      <nav class="navbar navbar-inverse navbar-fixed-top">
-      <div class="container-fluid">
-        <div class="navbar-header">        
-          <a class="navbar-brand" href="${root}/team/teamMain.do?teamName=${teamName}">SML Korea</a>
-        </div>
-        <div id="navbar" class="navbar-collapse collapse">
-          <ul class="nav navbar-nav navbar-right">
-          	<c:choose>
-          	<c:when test="${teamGrade == null }">
-          		
-            	<li><a href="${root }/teamPage/login.do">로그인</a></li>
-            	
-            </c:when>
-            <c:otherwise>
-	        	<li><a href="${root }/teamPage/logout.do">로그아웃</a></li>
-	        </c:otherwise>
-	        </c:choose>
-	        <c:if test="${teamGrade != null }">
-			  <li><a href="${root }/team/teamMain.do?teamName=${teamName}">메인</a></li>			  
-			</c:if>            
-          </ul>         
-        </div>
-      </div>
-    </nav>
+      <nav class="navbar navbar-inverse ">
+        <div class="container-fluid">
+          <div class="navbar-header">
+            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+              <span class="sr-only">Toggle navigation</span>
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="${root}/start.jsp" style="color:white;">SML KOREA</a>
+          </div>
+          <div id="navbar" class="navbar-collapse collapse">
+            <ul class="nav navbar-nav">
+              <li><a href="#"data-toggle="modal" data-target="#modalTeamBoard" onclick="getTeamBoardData('${root}','${team.teamName}')" style="color:white;">팀공지사항</a></li>
+              <li><a href="${root }/teamPage/teamMemberInfo.do?teamName=${team.teamName}&teamGrade=${teamGrade}" style="color:white;">팀원소개</a></li>
+              <li><a href="#" onclick="viewSchedule('${root}','${team.teamName}')" style="color:white;">팀스케쥴</a></li>
+              <li><a href="${root }/teamPage/viewTeamRecord.do?teamName=${team.teamName}&teamGrade=${teamGrade}" style="color:white;">팀기록실</a></li>
+              <li><a href="${root }/teamPage/viewLeagueInfo.do?teamName=${team.teamName}" style="color:white;">참가리그</a>
+              
+              <li class="dropdown">
+                <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false" style="color:white;">팀장관리실 <span class="caret"></span></a>
+                <ul class="dropdown-menu" role="menu">
+                <c:if test="${teamGrade !=null }">					
+                  <li><a data-toggle="modal" data-target="#modalTeamBoard" onclick="getTeamBoardData('${root}','${teamName}')">팀공지사항 관리</a></li>
+                  <li><a href="${root }/teamPage/teamMemberInfo.do?teamName=${team.teamName}&teamCode=${team.teamCode}&teamGrade=${teamGrade}">팀원 관리</a></li>
+                  <li><a href="#" onclick="viewSchedule('${root}','${team.teamName}')">팀스케쥴 관리</a></li>
+                  <li><a data-toggle="modal" data-target="#popupMatching" href="${root }/teamPage/matching.do?teamName=${team.teamName}">매칭관리</a></li>
+                  <li class="divider"></li>
+                  <li class="dropdown-header">Sub Menu</li>
+                  <li><a data-toggle="modal" data-target="#popup" href="${root }/teamPage/manageTeamEmblem.do?teamName=${teamName}">팀로고 관리</a></li>
+                  <li><a data-toggle="modal" data-target="#popupMyInfo" href="${root }/member/myInfoPage.do?teamName=${teamName }">개인정보수정</a></li>
+                  <li><a href="#">로그아웃</a></li>
+                 </c:if>
+                <c:if test="${teamGrade == null }">
+                	<li class="dropdown-header">로그인을 해주세요</li>
+                	<li><a href="${root }/start.jsp">시작페이지로</a></li>
+                </c:if>
+                </ul>
+                
+               
+                </li>
+            </ul>
+            
+           
+            <ul class="nav navbar-nav navbar-right">
+            	<li>
+	          		<!-- 날씨 -->
+					<div class="noti" id="roll" style="padding-top:14px; height:35px; overflow:hidden;width:150px;">			
+						<ul>
+							<c:forEach var="weather" items="${weatherList }">		
+								<li>	
+									<span><font color="white">${weather.sido }</font></span>
+									<span><font color="white">${weather.temp }</font></span>
+									<span><img src="${root}/img/weatherImg/${weather.wfKor}" style="vertical-align:middle; width="27px" height="27px"/></span>
+								</li>	
+							</c:forEach>		
+						</ul>
+					</div>
+            	</li>
+            	<li>
+			<form class="form-inline"  id="searchForm" name="searchForm" style="padding-top:10px;">            	
+           		<li class="input-group">
+	      			<input type="text" class="form-control" placeholder="팀명을 검색하세요." name="teamName" id="searchTeamName">
+		    		<span class="input-group-btn">
+		      		<button class="btn btn-default" type="button" id="goTeamPage">
+		      		  <span class="glyphicon glyphicon-search" aria-hidden="true"></span>이동
+		      		</button>
+		      		</span>
+	    		</li><!-- /input-group -->
+           
+            </form>
+            </li>
+             </ul>
+             
+          </div><!--/.nav-collapse -->
+        </div><!--/.container-fluid -->
+      </nav>
 	
-	 <br/><br/><br/><br/>
-     <div class="container-fluid" style="background:url(${root}/resources/images/backgroundMain2.jpg)">
+	 
+     <div class="container-fluid" style="background:url(${root}/resources/images/teamRecordBackGroundImg.jpg)">
        <div align="center">
        <span class=""><a href="${root}/team/teamMain.do?teamName=${teamName}"><img class="img-circle img-responsive" alt="logo" src="${root}/img/teamImg/${emblem}" width="150" height="150"></img></a></span>
        </div>
        <div align="center" style="padding-top:10px;">
        <span class="label label-danger" style="font-size:20pt;">${teamName}</span>
+       <br/>
+       <br/>
        </div>             
      </div>
       <hr style="border: solid 2px ;"> 
@@ -219,6 +274,211 @@
 			</ul>					
 		</c:if>
 	<br/><br/><br/>	
-	</div>   
+	</div> 
+	
+	
+	<div class="modal fade" id="modalTeamBoard" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
+ 	 <div class="modal-dialog">
+    	<div class="modal-content">
+    		<div class="modal-header">
+    			공지사항
+    		</div>
+    		<div class="modal-body">
+    			<table class="table table-striped">
+					<thead>
+						<tr> 
+							<th style="width:15%">글번호</th><th style="width:45%">제목</th><th style="width:15%">작성자</th><th style="width:25%">작성일</th> 
+						</tr> 
+					</thead>
+					<tbody class="teamBoardTbody">	
+					</tbody>
+				</table>
+				<nav>
+  					<ul class="pager">
+  					</ul>
+  				</nav>
+    		</div>
+      		<div class="modal-footer">
+            	<button type="button" class="btn btn-default modalTeamBoardClose" data-dismiss="modal" onclick="emptyContent()">Close</button>
+            	<c:if test="${teamGrade !=null }">
+       			<button type="button" data-toggle='modal' data-target='#modalTeamBoardWrite' class="btn btn-primary" onclick="teamBoardToggle()">글쓰기</button>
+       			</c:if>
+      		</div>
+  		</div>
+     </div>
+   </div>
+   
+   <div class="modal fade" id="modalTeamBoardRead" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title">공지사항.</h4>
+      </div>
+      <div class="modal-body">
+        <form>
+          <div class="form-group">
+            <label for="recipient-name" class="control-label" id="boardTitle">Title</label>
+            <input type="text" class="form-control" id="recipient-name" value="" disabled="disabled"/>
+          </div>
+          <div class="form-group">
+            <label for="message-text" class="control-label" id="boardContent">Content</label>
+            <textarea class="form-control" id="message-text" disabled="disabled"></textarea>
+          </div>
+        </form>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal" onclick="teamBoardToggle()">Close</button>
+        <button type="button" class="btn btn-primary">수정하기</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<div class="modal fade" id="modalTeamBoardWrite" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title">공지사항 >> 글쓰기</h4>
+      </div>
+      <div class="modal-body">
+        <form>
+          <div class="form-group">
+            <label for="recipient-name" class="control-label" id="boardTitle">Title</label>
+            <input type="text" class="form-control" id="teamBoardTitle"/>
+          </div>
+          <div class="form-group">
+            <label for="message-text" class="control-label" id="boardContent">Content</label>
+            <textarea class="form-control" id="teamBoardContent"></textarea>
+          </div>
+        </form>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal" onclick="teamBoardToggle()">Close</button>
+        <button type="button" class="btn btn-primary" data-dismiss="modal"onclick="modalWriteTeamBoard('${root}','${teamName}','${team.teamCode }')">글쓰기</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="modal fade" id="modalEditTeamIntro" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+  	<div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title">팀소개 편집하기.</h4>
+      </div>
+      <div class="modal-body">
+        <form>
+          <div class="form-group">
+            <label for="message-text" class="control-label" id="boardContent">팀소개를 적어주세요.</label>
+            <textarea class="form-control" id="teamIntroContent"></textarea>
+          </div>
+        </form>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">취소</button>
+        <button type="button" class="btn btn-primary" data-dismiss="modal" onclick="editTeamIntro('${root}','${teamName}','${team.teamCode }')">편집완료</button>
+      </div>
+    </div>
+    </div>
+    </div>
+    
+<div class="modal modal-wide fade" id="popupMatching">
+	<div class="modal-dialog">
+    	<div class="modal-content">
+    	</div>
+    </div>
+</div>
+
+<div class="modal fade" id="popup">
+	<div class="modal-dialog">
+    	<div class="modal-content">
+    	</div>
+    </div>
+</div>
+
+<div class="modal fade" id="popupMyInfo">
+	<div class="modal-dialog">
+    	<div class="modal-content">
+    	</div>
+    </div>
+</div>
+
+<div id="stack2" class="modal fade" tabindex="-1" data-focus-on="input:first" style="display: none;">
+  <div class="modal-header">
+    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+    <h4 class="modal-title">Stack Two</h4>
+  </div>
+  <div class="modal-body">
+    <p>One fine body…</p>
+    <p>One fine body…</p>
+    <input class="form-control" type="text" data-tabindex="1">
+    <input class="form-control" type="text" data-tabindex="2">
+    <button class="btn btn-default" data-toggle="modal" href="#stack3">Launch modal</button>
+  </div>
+  <div class="modal-footer">
+    <button type="button" data-dismiss="modal" class="btn btn-default">Close</button>
+    <button type="button" class="btn btn-primary">Ok</button>
+  </div>
+</div>
+
+<div id="listDiv" class="modal-content">
+</div>
+
+
+
+<script>
+$(document).ready(function() {
+	var urlAddr="/home/autocomplete";
+	$("#searchTeamName").autocomplete({
+		source : function(request, response) {
+			$.ajax({
+				url : urlAddr,
+				type : "post",
+				dataType : "json",
+				data: { term : request.term, param1 : "param1 Value", param2 : "param2 Value"},
+				contentType: "application/x-www-form-urlencoded; charset=UTF-8",  
+				data : request,
+				success : function(data) {
+					var result = data;
+					response(result);
+				},
+				error : function(data) {
+					alert("에러가 발생하였습니다.");
+				}
+			});
+		}
+	});
+	
+	$("#goTeamPage").click(function(){
+		var text = $("input[id='searchTeamName']").val();
+		
+		var url = "/home/team/teamMain.do?teamName="+text;
+		window.open(url);
+	});
+});
+	function editTeamIntro(root , teamName , teamCode){
+		//var teamIntro = $("#teamIntroContent").val();
+		var teamIntro = $("#teamIntroContent").val().replace(/\n/g, '<br>');
+
+		var addr = root+"/editTeamIntro?teamName="+teamName+"&teamCode="+teamCode+"&teamIntro="+teamIntro;
+		
+		$.ajax({
+			type:"get",
+			url:addr,
+			success:function(data){
+				//console.log(data);
+				//console.log(data.teamIntro.replace(/<br>/gi,"\r\n"));
+				//$("#teamIntro").text(data.teamIntro.replace(/<br>/gi,"\r\n"));
+				$("#teamIntro").html(data.teamIntro);
+				$("#teamIntroContent").val("");
+			}
+		});
+	}
+</script>
+  
   </body>
 </html>

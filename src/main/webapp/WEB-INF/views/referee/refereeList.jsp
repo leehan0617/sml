@@ -30,6 +30,7 @@
 	<script src="${root }/resources/js/jqplot.categoryAxisRenderer.js"></script>
 	<script src="${root }/resources/js/jqplot.barRenderer.js"></script>
 	<script src="${root }/resources/js/jqplot.pieRenderer.js"></script>
+	<script src="${root }/js/scrollnews.js"></script>
     <!-- Custom styles for this template -->
     <link href="${root}/resources/css/soccerPage.css" rel="stylesheet" type="text/css">
     <style>
@@ -54,25 +55,58 @@
               <a class="navbar-brand" href="${root }/start.jsp">SML KOREA</a>
             </div>
             <div id="navbar" class="navbar-collapse collapse">
-              <ul class="nav navbar-nav">
+              <ul class="nav navbar-nav">              	
+              	<c:if test="${sportCode==0}">
               	<li><a href="${root}/soccer/soccerCommonBoardPage.do?sportCode=${sportCode}">공지사항</a></li>
-                <li><a href="${root}/soccer/soccerRule.do?sportCode=${sportCode}">경기규칙</a></li>
-                <li><a href="${root}/soccer/soccerTeamList.do?sportCode=${sportCode}">팀리스트</a></li>
-                <li><a href="${root}/referee/refereeList.do?sportCode=${sportCode}">심판현황</a></li>
+              	<li><a href="${root}/soccer/soccerRule.do?sportCode=${sportCode}">경기규칙</a></li>
+                <li><a href="${root}/soccer/soccerTeamList.do?sportCode=${sportCode}">팀리스트</a></li>                
+              	</c:if>
+              	<c:if test="${sportCode==1}">
+              	<li><a href="${root}/baseBall/baseBallCommonBoardPage.do?sportCode=${sportCode}">공지사항</a></li>
+              	<li><a href="${root}/baseBall/baseBallRule.do?sportCode=${sportCode}">경기규칙</a></li>
+                <li><a href="${root}/baseBall/baseBallTeamList.do?sportCode=${sportCode}">팀리스트</a></li> 
+              	</c:if>
+              	<c:if test="${sportCode==2}">
+              	<li><a href="${root}/basketBall/basketBallCommonBoardPage.do?sportCode=${sportCode}">공지사항</a></li>
+              	<li><a href="${root}/basketBall/basketBallRule.do?sportCode=${sportCode}">경기규칙</a></li>
+              	<li><a href="${root}/basketBall/basketBallTeamList.do?sportCode=${sportCode}">팀리스트</a></li>
+                
+              	</c:if>
+              	<c:if test="${sportCode==3}">
+              	<li><a href="${root}/legBall/legBallCommonBoardPage.do?sportCode=${sportCode}">공지사항</a></li>
+              	<li><a href="${root}/legBall/legBallRule.do?sportCode=${sportCode}">경기규칙</a></li>
+                <li><a href="${root}/legBall/legBallTeamList.do?sportCode=${sportCode}">팀리스트</a></li>
+              	</c:if>               
                 <li class="dropdown">
                   <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">다른종목가기<span class="caret"></span></a>
                   <ul class="dropdown-menu" role="menu">
                   	<li class="divider"></li>
-                    <li><a href="${root}/soccer/soccerMain.do?legion=legion">축구</a></li>
+                    <li><a href="${root }/sc">축구</a></li>
                     <li class="divider"></li>
-                    <li><a href="#">야구</a></li>
+                    <li><a href="${root}/baseBall/baseBallMain.do">야구</a></li>
                     <li class="divider"></li>
-                    <li><a href="#">족구</a></li>
+                    <li><a href="${root}/basketBall/basketBallMain.do">족구</a></li>
                     <li class="divider"></li>
-                    <li><a href="${root }/scMain">풋살</a></li>
+                    <li><a href="${root }/sportLegBall/legBallMain.do">족구</a></li>
                     <li class="divider"></li>
                   </ul>
                 </li>
+              </ul>
+              <ul class="nav navbar-nav navbar-right">
+              	<li>
+	          		<!-- 날씨 -->
+					<div class="noti" id="roll" style="padding-top:14px; height:35px; overflow:hidden;width:150px;">			
+						<ul>
+							<c:forEach var="weather" items="${weatherList }">		
+								<li>	
+									<span><font color="white">${weather.sido }</font></span>
+									<span><font color="white">${weather.temp }</font></span>
+									<span><img src="${root}/img/weatherImg/${weather.wfKor}" style="vertical-align:middle; width="27px" height="27px"/></span>
+								</li>	
+							</c:forEach>		
+						</ul>
+					</div>
+            	</li>
                 <li>
 	               <form class="form-inline"  id="searchForm" name="searchForm" style="padding-top:10px;">
 		  			<div class="input-group">
@@ -94,17 +128,18 @@
     </div>
 	
 	 <br/><br/><br/><br/>
-     <div class="container" style="background:url(${root}/resources/images/refereeImg.jpg); height:220px">
+     <div class="container-fluid" style="background:url(${root}/resources/images/refereeBackgroundImage.jpg);">
        <div align="center">
        <span class=""><a href="${root}/team/teamMain.do?teamName=${teamName}"><img class="img-circle img-responsive" alt="logo" src="${root}/img/teamImg/defaultEmblem.jpg" width="150" height="150"></img></a></span>
        </div>
        <div align="center" style="padding-top:10px;">
        <span class="label label-danger" style="font-size:20pt;">SML KOREA</span>
-       </div>           
-       <br/>     
-        <hr style="border: solid 1px ;">        
+       </div>
+       <br/>           
+       <br/>           
      </div>
-      
+     <br/>
+      <hr style="border: solid 1px ;">    
      
        
 	

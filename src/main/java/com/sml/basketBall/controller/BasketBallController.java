@@ -1,5 +1,6 @@
 package com.sml.basketBall.controller;
 
+import java.util.ArrayList;
 import java.util.logging.Logger;
 
 import javax.servlet.http.HttpServletRequest;
@@ -12,6 +13,8 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.sml.basketBall.service.BasketBallService;
+import com.sml.weather.WeatherDTO;
+import com.sml.weather.WeatherParser;
 
 @Controller
 public class BasketBallController {
@@ -26,10 +29,47 @@ public class BasketBallController {
 	 * @설명 :
 	 */
 	@RequestMapping(value="/basketBall/basketBallMain.do", method=RequestMethod.GET)
-	public String basketBallPage(HttpServletRequest request , HttpServletResponse response){
+	public ModelAndView basketBallPage(HttpServletRequest request , HttpServletResponse response){
 		logger.info("basketBallController basketBallPage ");
+		ModelAndView mav=new ModelAndView();
 		
-		return "basketBall/basketBallMain";
+//날씨 파싱 정보 가져오기		
+		ArrayList<WeatherDTO> weatherList=null;
+		try {
+			WeatherParser weatherParser = new WeatherParser();
+			weatherList=weatherParser.xmlRssParser();
+		} catch (Exception e1) {
+			e1.printStackTrace();
+		}
+		for(WeatherDTO weather:weatherList){
+			/*01 맑음
+			02 구름 조금
+			03 구름 많음
+			04 흐림
+			05 비
+			06 눈/비
+			07 눈*/			
+			if(weather.getWfKor().equals("맑음")){
+				weather.setWfKor("01.png");
+			}else if(weather.getWfKor().equals("구름 조금")){
+				weather.setWfKor("02.png");
+			}else if(weather.getWfKor().equals("구름 많음")){
+				weather.setWfKor("03.png");
+			}else if(weather.getWfKor().equals("흐림")){
+				weather.setWfKor("04.png");
+			}else if(weather.getWfKor().equals("비")){
+				weather.setWfKor("05.png");
+			}else if(weather.getWfKor().equals("눈/비")){
+				weather.setWfKor("06.png");
+			}else if(weather.getWfKor().equals("눈")){
+				weather.setWfKor("07.png");
+			}
+		}
+		
+		mav.addObject("weatherList", weatherList);
+		mav.setViewName("basketBall/basketBallMain");
+		return mav;
+		//return "basketBall/basketBallMain";
 	}
 	/**
 	 * 

@@ -19,15 +19,19 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.sml.league.dao.LeagueDao;
 import com.sml.league.dto.LeagueDto;
+import com.sml.member.dao.MemberDao;
 import com.sml.record.dto.RecordDto;
 import com.sml.schedule.dto.ScheduleDto;
 import com.sml.team.dto.TeamDto;
+import com.sml.weather.WeatherDTO;
+import com.sml.weather.WeatherParser;
 
 @Component
 public class LeagueServiceImpl implements LeagueService{
 	@Autowired
 	private LeagueDao dao;
-
+	@Autowired
+	private MemberDao memberDao;
 	/**
 	 * @함수명:applicate
 	 * @작성일:2015. 7. 9.
@@ -372,6 +376,8 @@ public class LeagueServiceImpl implements LeagueService{
 		LeagueDto league=dao.getTeamLeagueInfo(teamName);
 		String emblem=dao.getTeamEmblem(teamName);
 		
+		TeamDto team=memberDao.getTeamInfo(teamName);
+		
 		if(league!=null){
 			List<TeamDto> joinTeamList=dao.getLeagueTeamList(league.getLeagueCode());
 			mav.addObject("joinTeamList",joinTeamList);
@@ -381,6 +387,42 @@ public class LeagueServiceImpl implements LeagueService{
 				mav.addObject("leagueRecordList", leagueRecordList);
 			}
 		}
+		
+		//날씨 파싱 정보 가져오기		
+		ArrayList<WeatherDTO> weatherList=null;
+		try {
+			WeatherParser weatherParser = new WeatherParser();
+			weatherList=weatherParser.xmlRssParser();
+		} catch (Exception e1) {
+			e1.printStackTrace();
+		}
+		for(WeatherDTO weather:weatherList){
+			/*01 맑음
+			02 구름 조금
+			03 구름 많음
+			04 흐림
+			05 비
+			06 눈/비
+			07 눈*/			
+			if(weather.getWfKor().equals("맑음")){
+				weather.setWfKor("01.png");
+			}else if(weather.getWfKor().equals("구름 조금")){
+				weather.setWfKor("02.png");
+			}else if(weather.getWfKor().equals("구름 많음")){
+				weather.setWfKor("03.png");
+			}else if(weather.getWfKor().equals("흐림")){
+				weather.setWfKor("04.png");
+			}else if(weather.getWfKor().equals("비")){
+				weather.setWfKor("05.png");
+			}else if(weather.getWfKor().equals("눈/비")){
+				weather.setWfKor("06.png");
+			}else if(weather.getWfKor().equals("눈")){
+				weather.setWfKor("07.png");
+			}
+		}
+		
+		mav.addObject("weatherList", weatherList);
+		mav.addObject("team", team);
 		mav.addObject("emblem",emblem);
 		mav.addObject("league",league);
 		mav.setViewName("teamPage/viewLeagueInfo");
