@@ -86,7 +86,7 @@
 		select * from 
 				(select rownum as rrownum, d.*  from 
 					((select rownum as rnum, c.* from 
-						(select team.*,homeground.ground from team,teammember,homeground where team.teamcode=teammember.teamcode and team.teamcode=homeground.teamcode and teammember.MEMBERREGION like '%'||#{regionSido}||'%') c order by rnum desc) d) )e 
+						(select team.*,homeground.ground from team,teammember,homeground where team.teamcode=teammember.teamcode and team.teamcode=homeground.teamcode and homeground.ground like #{regionSido}||'%') c order by rnum desc) d) )e 
 							where rrownum>=#{startRow} and rrownum <=#{endRow}
 		]]>
 	</select>
