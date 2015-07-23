@@ -15,13 +15,41 @@
 	
 	<link rel="stylesheet" type="text/css" href="${root }/resources/css/bootstrap.css"/>
 	<link rel="stylesheet" type="text/css" href="${root }/resources/css/jquery-ui.css"/>
+	<link href="${root}/resources/css/jquery.jqplot.css" rel="stylesheet" type="text/css"/>
+	 
 	<link href="${root}/css/teamPage/matchingMap.css" type="text/css" rel="stylesheet"/>	
 	<script src="${root }/resources/js/jquery.js"></script>
     <script src="${root }/resources/js/jquery-ui.js"></script>
 	<script src="${root }/resources/js/bootstrap.js"></script>
 	<script src="${root }/resources/js/teamMain.js"></script>	
-		
-
+	<script src="${root }/resources/js/jquery.jqplot.js"></script>
+	
+	<script src="${root }/resources/js/smlStart.js"></script>	
+	
+	<script src="${root }/resources/js/jqplot.categoryAxisRenderer.js"></script>
+	<script src="${root }/resources/js/jqplot.barRenderer.js"></script>
+	<script src="${root }/resources/js/jqplot.pieRenderer.js"></script>
+	
+	<%-- 
+	<!-- Bootstrap core CSS -->
+    <link href="${root}/resources/css/bootstrap.css" rel="stylesheet" type="text/css"/>
+    <link href="${root}/resources/css/jquery.jqplot.css" rel="stylesheet" type="text/css"/>
+    <link rel="stylesheet" type="text/css" href="${root }/resources/css/jquery-ui.css"/>	
+    <script src="${root }/resources/js/jquery.js"></script>
+    <script src="${root }/resources/js/jquery-ui.js"></script>
+	<script src="${root }/resources/js/bootstrap.js"></script>
+	<script src="${root }/resources/js/soccerPage.js"></script>
+	<script src="${root }/resources/js/jquery.jqplot.js"></script>
+	<script src="${root }/resources/js/smlStart.js"></script>	
+	
+	<script src="${root }/resources/js/jqplot.categoryAxisRenderer.js"></script>
+	<script src="${root }/resources/js/jqplot.barRenderer.js"></script>
+	<script src="${root }/resources/js/jqplot.pieRenderer.js"></script>
+	<script src="${root }/js/scrollnews.js"></script>
+    <!-- Custom styles for this template -->
+    <link href="${root}/resources/css/soccerPage.css" rel="stylesheet" type="text/css"> --%>
+	
+			
 	<!-- matching.jsp js/css -->
 	<script type="text/javascript" src="//apis.daum.net/maps/maps3.js?apikey=1442260e0c6af86974001269a7312e42&libraries=services"></script>
 	<script src="${root }/js/teamPage/teamPage.js"></script>
@@ -45,8 +73,9 @@
 		#tallModal .modal-body p { margin-bottom: 900px }
 		   
 	    .ui-autocomplete { 
-	    overflow-y: scroll; 
-	    overflow-x: hidden;}
+		    overflow-y: scroll; 
+		    overflow-x: hidden;
+	    }	    
      </style>
  	 
 </head>
@@ -114,17 +143,17 @@
 					</div>
             	</li>
             	<li>
-					<form class="form-inline"  id="searchForm" name="searchForm" style="padding-top:10px;">            	
-		           		<li class="input-group">
-			      			<input type="text" class="form-control" placeholder="팀명을 검색하세요." name="teamName" id="searchTeamName">
-				    		<span class="input-group-btn">
-				      		<button class="btn btn-default" type="button" id="goTeamPage">
-				      		  <span class="glyphicon glyphicon-search" aria-hidden="true"></span>이동
-				      		</button>
-				      		</span>
-			    		</li><!-- /input-group -->		           
-		            </form>
-            	</li>
+	               <form class="form-inline"  id="searchForm" name="searchForm" style="padding-top:10px;">
+		  			<div class="input-group">
+		      			<input type="text" class="form-control" placeholder="팀명을 검색하세요." name="teamName" id="searchTeamName">
+			    		<span class="input-group-btn">
+			      		<button class="btn btn-default" type="button" id="goTeamPage">
+			      		  <span class="glyphicon glyphicon-search" aria-hidden="true"></span>이동
+			      		</button>
+			      		</span>
+		    		</div><!-- /input-group -->
+	  			  </form>
+                </li>
              </ul>
              
           </div><!--/.nav-collapse -->
@@ -713,7 +742,7 @@
 
 
 <script>
-$(document).ready(function() {
+/* $(document).ready(function() {
 	var urlAddr="/home/autocomplete";
 	$("#searchTeamName").autocomplete({
 		source : function(request, response) {
@@ -733,15 +762,15 @@ $(document).ready(function() {
 				}
 			});
 		}
-	});
+	}); 
 	
-	$("#goTeamPage").click(function(){
+	 $("#goTeamPage").click(function(){
 		var text = $("input[id='searchTeamName']").val();
 		
 		var url = "/home/team/teamMain.do?teamName="+text;
 		window.open(url);
-	});
-});
+	}); 
+}); */
 	function editTeamIntro(root , teamName , teamCode){
 		//var teamIntro = $("#teamIntroContent").val();
 		var teamIntro = $("#teamIntroContent").val().replace(/\n/g, '<br>');

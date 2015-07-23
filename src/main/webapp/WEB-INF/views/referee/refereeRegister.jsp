@@ -143,7 +143,7 @@
 		    <option>종목을 선택하세요</option>
 		    <option value="0">축구</option>
 		    <option value="1">야구</option>
-		    <option value="2">풋살</option>	
+		    <option value="2">농구</option>	
 		    <option value="3">족구</option>		     
 		  </select>
 		</div>
