@@ -340,6 +340,7 @@ function fromServer(){
 }
 
 function deleteMember(root,pageNumber,memberCode,teamName,teamCode,teamGrade){
+	
 	var value=confirm("정말로 삭제하시겠습니까?");
 	
 	if(value==true){

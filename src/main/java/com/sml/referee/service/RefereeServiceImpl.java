@@ -42,7 +42,10 @@ public class RefereeServiceImpl implements RefereeService{
 		HttpServletRequest request=(HttpServletRequest) map.get("request");
 		
 		String sportType="";
+		
+		
 		int sportCode = Integer.parseInt(request.getParameter("sportCode"));
+		
 		//System.out.println("RefereeListsportCode:"+sportCode);
 		
 		
