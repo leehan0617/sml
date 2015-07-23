@@ -50,8 +50,8 @@ public class RecordServiceImpl implements RecordService {
 		HashMap<String, Object> hMap=mav.getModelMap();
 		HttpServletRequest request=(HttpServletRequest) hMap.get("request");
 		String teamName=request.getParameter("teamName");
-//		System.out.println(teamName);
 		List<HashMap<String, Object>> recordList=recordDao.getRecordList(teamName);
+		System.out.println("recordList : "+ recordList.size());
 		mav.addObject("recordList", recordList);
 	}
 
