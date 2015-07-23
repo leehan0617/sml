@@ -79,7 +79,7 @@ public class CommonServiceImpl implements CommonService {
 			commonBoardList=commonDao.getCommonBoardList(startRow,endRow);
 		}
 		
-		logger.info("boardListSize:"+commonBoardList.size());
+		//logger.info("boardListSize:"+commonBoardList.size());
 		
 		mav.addObject("commonBoardList",commonBoardList);
 		mav.addObject("count",count);		

@@ -67,8 +67,9 @@
 	              	<li><a href="${root}/team/teamMain.do?teamName=${teamName}" style="color:white;">팀페이지 이동</a></li>
 	              	<li><a href="${root }/teamPage/logout.do" style="color:white;">로그아웃</a></li>
 	              </c:otherwise>
-              	</c:choose>
-                
+              	</c:choose>       
+              </ul>       
+              <ul class="nav navbar-nav navber-right">
                 <li>
 	               <form class="form-inline"  id="searchForm" name="searchForm" style="padding-top:10px;">
 		  			<div class="input-group">
