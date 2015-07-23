@@ -14,7 +14,8 @@ public interface MemberDao {
 	public int getTeamMemberCount(int teamCode);
 	public TeamDto getTeamInfo(String teamName);	
 	public int addMember(MemberDto member);
-	public int deleteMember(int memberCode);
+	public int deleteMember(int memberCode,String teamLeaderName);
 	public List<MemberDto> getMemberSearchList(String teamName, String searchBoxName,int startRow,int endRow);
 	public int getSearchTeamMemberCount(int teamCode,String searchBoxName);
+	public String getTeamLeaderName(String teamName);
 }

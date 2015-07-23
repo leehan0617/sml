@@ -19,7 +19,7 @@
 	
 	<c:if test="${check==0 }">
 		<script type="text/javascript">
-			alert("삭제실패");
+			alert("팀장은 삭제할수 없습니다");
 			location.href="${root}/teamPage/teamMemberInfo.do?teamName=${teamName}&teamCode=${teamCode}&teamGrade=${teamGrade}";
 		</script>
 	</c:if>

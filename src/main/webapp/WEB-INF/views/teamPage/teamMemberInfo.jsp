@@ -146,7 +146,7 @@
        <span class="label label-danger" style="font-size:20pt;">${teamName}</span>
        </div>       
        <div align="right">
-       <span class="" style="font-size:15pt"> 총원:${count}</span>
+       <span class="" style="font-size:15pt"> 총원:${count}${teamLeaderName}</span>
        </div>
        <br/>
         <hr style="border: solid 1px ;">      
@@ -178,10 +178,9 @@
                   <th>번호</th>
                   <th><span class="glyphicon glyphicon-user">이름</span></th>
                   <th><span class="glyphicon glyphicon-calendar">생년월일</span></th>
-                  <th><span class="glyphicon glyphicon-home">지역</span></th>
+                  <th><span class="glyphicon glyphicon-home">지역</span></th>                  
                   <th><span class="glyphicon glyphicon-earphone">전화번호</span></th>
                   <th><span class="glyphicon glyphicon-tag">이메일</span></th>
-                  
                   <th><span class="glyphicon glyphicon-heart">성별</span></th>
                 </tr>               
               </thead>
@@ -200,8 +199,7 @@
 				<td>${member.rnum}</td>
 				<td>${member.memberName}</td>
 				<td>${member.memberBirth}</td>
-				<td>${member.memberRegion}</td>
-				
+				<td>${member.memberRegion}</td>				
 				<td>${member.memberPhone}</td>
 				<td>${member.memberEmail}</td>
 				<td>${member.memberGender}</td>
@@ -218,8 +216,7 @@
 				<td>${member.memberBirth}</td>
 				<td>${member.memberRegion}</td>
 				<td>${member.memberPhone}</td>
-				<td>${member.memberEmail}</td>
-				
+				<td>${member.memberEmail}</td>				
 				<td>${member.memberGender}</td>			
 			  </tr>			 
 			</c:forEach>

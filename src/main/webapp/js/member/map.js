@@ -12,6 +12,12 @@ $(document).ready(function(){
 	        level: 3 // 지도의 확대 레벨
 	    };  
 
+	var options = {
+		    location : new daum.maps.LatLng(centerLat, centerLng),
+		    sort : daum.maps.services.SortBy.DISTANCE, 
+		    sort : daum.maps.services.SortBy.POPULARITY
+	};
+	
 	function searchAddrFromCoords(coords, callback) {
 	    // 좌표로 주소 정보를 요청합니다
 	    geocoder.coord2addr(coords, callback);         
@@ -50,7 +56,7 @@ $(document).ready(function(){
 		}
 
 		    // 장소검색 객체를 통해 키워드로 장소검색을 요청합니다
-		    ps.keywordSearch( keyword, placesSearchCB); 
+		    ps.keywordSearch( keyword, placesSearchCB, options); 
 	});
 
 	// 장소검색이 완료됐을 때 호출되는 콜백함수 입니다
