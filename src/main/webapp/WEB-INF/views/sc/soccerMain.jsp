@@ -64,9 +64,7 @@
                 <li><a href="${root}/referee/refereeList.do?sportCode=${sportCode}" style="color:white;">심판현황</a></li>
                 <li class="dropdown">
                   <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false" style="color:white;">다른종목가기<span class="caret"></span></a>
-                  <ul class="dropdown-menu" role="menu">
-                  	<li class="divider"></li>
-                    <li><a href="${root}/sc">축구</a></li>
+                  <ul class="dropdown-menu" role="menu">                 
                     <li class="divider"></li>
                     <li><a href="${root}/baseBall/baseBallMain.do">야구</a></li>
                     <li class="divider"></li>
