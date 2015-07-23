@@ -4,11 +4,10 @@ function scheDule(form){
 		form.scheduleType.focus();
 		return false;
 	}
-	
 }
 
-function writeSchedule(root){
-	var url=root+"/teamPage/Schedule.do";
+function writeSchedule(root,teamName){
+	var url=root+"/teamPage/Schedule.do?teamName="+teamName;
 	$.ajax({
 		url:url,
 		type:"get",
@@ -18,7 +17,10 @@ function writeSchedule(root){
 		}
 	});
 }
-
+function  closeSchedule(root,teamName){
+	 	window.opener.location.reload();
+  	 	window.close();
+}
 
 function deleteSchedule(root,scheduleNumber,teamGrade){
 	var url=root+"/teamPage/deleteSchedule.do?scheduleNumber="+scheduleNumber;

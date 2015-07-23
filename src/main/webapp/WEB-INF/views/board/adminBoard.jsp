@@ -110,25 +110,21 @@
 							  </thead>   
 							  <tbody>
 							  	<c:forEach var="commonBoard" items="${commonBoardList}">				
-									<tr>											
+									<tr>										
 										<c:if test="${commonBoard.sportCode=='0'}">
-											<td>전체</td>
-										</c:if>
-										
-										<c:if test="${commonBoard.sportCode=='1'}">
 											<td>축구</td>
 										</c:if>
 										
-										<c:if test="${commonBoard.sportCode=='2'}">
+										<c:if test="${commonBoard.sportCode=='1'}">
 											<td>야구</td>
+										</c:if>
+										
+										<c:if test="${commonBoard.sportCode=='2'}">
+											<td>농구</td>
 										</c:if>
 										
 										<c:if test="${commonBoard.sportCode=='3'}">
 											<td>족구</td>
-										</c:if>
-										
-										<c:if test="${commonBoard.sportCode=='4'}">
-											<td>풋살</td>
 										</c:if>				
 										
 										<td>${commonBoard.boardWriter}</td>

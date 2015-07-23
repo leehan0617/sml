@@ -83,10 +83,9 @@
 <body class="jumbotron">
 	<div id='calendar'>
 		<c:if test="${teamId!=guest}">
-			<div align="left">
-				<input  data-toggle="modal" data-target="#scheduleModal" type="button" id="writeButton" class="btn btn-info btn-sm" value="일정입력" onclick="writeSchedule('${root}')"/>
-			</div>
+			<input  data-toggle="modal" data-target="#scheduleModal" type="button" id="writeButton" class="btn btn-info btn-sm" value="일정입력" onclick="writeSchedule('${root}','${teamName}')"/>
 		</c:if>
+			<input type="button" id="writeButton" class="btn btn-info btn-sm" value="닫기" onclick="closeSchedule('${root}','${teamName}')"/>
 	</div>
 	 <!-- Modal -->
 	  <div class="modal fade" id="scheduleModal" role="dialog">

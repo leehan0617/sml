@@ -63,21 +63,19 @@
                 <li class="dropdown">
                   <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">다른종목가기<span class="caret"></span></a>
                   <ul class="dropdown-menu" role="menu">
-                  	<li class="divider"></li>
-                    <li><a href="${root}/soccer/soccerMain.do?legion=legion">축구</a></li>
+                  	<li><a href="${root }/sc">축구</a></li>
                     <li class="divider"></li>
-                    <li><a href="#">야구</a></li>
+                    <li><a href="${root}/baseBall/baseBallMain.do">야구</a></li>
                     <li class="divider"></li>
-                    <li><a href="#">족구</a></li>
+                    <li><a href="${root}/basketBall/basketBallMain.do">족구</a></li>
                     <li class="divider"></li>
-                    <li><a href="${root }/scMain">풋살</a></li>
+                    <li><a href="${root }/sportLegBall/legBallMain.do">족구</a></li>
                     <li class="divider"></li>
                   </ul>
                 </li>
-              </ul>
-              
-              <ul class="nav navbar-nav navbar-right">
-                <li>
+             </ul>
+    		 <ul class="nav navbar-nav navbar-right">  
+    		 	<li>
 	          		<!-- 날씨 -->
 					<div class="noti" id="roll" style="padding-top:14px; height:35px; overflow:hidden;width:150px;">			
 						<ul>
@@ -110,14 +108,21 @@
 
       </div>
     </div>
+    <br/><br/><br/><br/>
 	
 	
-     <div class="container-fluid" style="background:url(${root}/resources/images/backGroundImage.jpg)">   
-       <span class="col-xs-2"><a href="${root }/scMain"><img class="img-circle img-responsive" alt="logo" src="${root}/resources/images/android@2x.png" width="200" height="150"></img></a></span> 	  
-       	  
-       <span class="col-xs-9" style="font-size:50pt;"><br/>SML KOREA</span>            
+      <div class="container-fluid" style="background:url(${root}/resources/images/teamCommonBoardBackGroundImage.jpg);">
+       <div align="center">
+       <span class=""><a href="${root}/team/teamMain.do?teamName=${teamName}"><img class="img-circle img-responsive" alt="logo" src="${root}/img/teamImg/defaultEmblem.jpg" width="150" height="150"></img></a></span>
+       </div>
+       <div align="center" style="padding-top:10px;">
+       <span class="label label-danger" style="font-size:20pt;">SML KOREA</span>
+       </div>
+       <br/>           
+       <br/>           
      </div>
-       <br/><br/>
+     <br/>
+      <hr style="border: solid 1px ;"> 
 	
     <div class="container" style="background-color: ">    	
       <div class="row">      	   	

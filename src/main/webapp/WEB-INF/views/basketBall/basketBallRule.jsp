@@ -55,10 +55,11 @@
                 <li class="dropdown">
                   <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false"style="color:white;">다른종목가기<span class="caret"></span></a>
                   <ul class="dropdown-menu" role="menu">
-                  	<li class="divider"></li>
-                    <li><a href="${root }/sc">축구</a></li>
+                  	<li><a href="${root }/sc">축구</a></li>
                     <li class="divider"></li>
                     <li><a href="${root}/baseBall/baseBallMain.do">야구</a></li>
+                    <li class="divider"></li>
+                    <li><a href="${root}/basketBall/basketBallMain.do">족구</a></li>
                     <li class="divider"></li>
                     <li><a href="${root }/sportLegBall/legBallMain.do">족구</a></li>
                     <li class="divider"></li>
