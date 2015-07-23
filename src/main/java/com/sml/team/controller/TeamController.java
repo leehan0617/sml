@@ -1,5 +1,6 @@
 package com.sml.team.controller;
 
+import java.io.UnsupportedEncodingException;
 import java.util.logging.Logger;
 
 import javax.servlet.http.HttpServletRequest;
@@ -299,6 +300,13 @@ public class TeamController {
 		return mav;
 	}
 	
+	/**
+	 * 
+	 * @함수명:replyDelete
+	 * @작성일:2015. 7. 23.
+	 * @작성자:이한빈 
+	 * @설명문:댓글삭제 메소드 
+	 */
 	@RequestMapping(value="/replyDelete" , method=RequestMethod.GET)
 	public ModelAndView replyDelete(HttpServletRequest request){
 		logger.info("TeamController replyDelete");
@@ -310,6 +318,13 @@ public class TeamController {
 		return null;
 	}
 	
+	/**
+	 * 
+	 * @함수명:editTeamIntro
+	 * @작성일:2015. 7. 23.
+	 * @작성자:이한빈 
+	 * @설명문:팀소개 변경하는 메소드 
+	 */
 	@RequestMapping(value="/editTeamIntro" , method=RequestMethod.GET)
 	public ModelAndView editTeamIntro(HttpServletRequest request,HttpServletResponse response){
 		logger.info("TeamController editTeamIntro");

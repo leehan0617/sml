@@ -2,6 +2,12 @@
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <c:set var="root" value="${pageContext.request.contextPath }"/>
+<script src="${root }/js/xhr/xhr.js"></script>
+<script src="${root }/js/teamPage/teamPage.js"></script>
+<script type="text/javascript" src="${root}/resources/js/member.js"></script>
+<script type="text/javascript" src="${root}/resources/js/jquery.js"></script>
+<script src="${root }/resources/js/jquery-ui.js"></script>
+<script type="text/javascript" src="${root }/resources/js/bootstrap.js"></script>
 <script>
 	$('#step2').click(function(){
 		$('#popupJoin').modal('toggle');
@@ -11,7 +17,8 @@
 		$('#popupJoin').modal('toggle');
 		$('#popupJoin2').modal('toggle');
 	});
-	
+</script>
+<script>
 	$("#date1").datepicker({
 		dateFormat:"yy-mm-dd",
 		yearRange: "1950:2015",
@@ -25,10 +32,7 @@
 		changeMonth:true
 	});
 </script>
-<script src="${root }/js/xhr/xhr.js"></script>
-<script src="${root }/js/teamPage/teamPage.js"></script>
-<script type="text/javascript" src="${root}/resources/js/member.js"></script>
-<script type="text/javascript" src="${root}/resources/js/jquery.js"></script>
+
 
 <form action="${root}/member/registerMember.do" method="post" name="form" onsubmit="return teamCheck(this)">
 <div class="modal fade" id="popupJoin" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">

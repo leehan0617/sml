@@ -93,6 +93,7 @@
                   <li class="dropdown-header">Sub Menu</li>
                   <li><a data-toggle="modal" data-target="#popup" href="${root }/teamPage/manageTeamEmblem.do?teamName=${teamNameNoSpace}">팀로고 관리</a></li>
                   <li><a data-toggle="modal" data-target="#popupMyInfo" href="${root }/member/myInfoPage.do?teamName=${teamNameNoSpace }">개인정보수정</a></li>
+
                   <li><a href="#">로그아웃</a></li>
                  </c:if>
                 <c:if test="${teamGrade == null }">
@@ -146,7 +147,7 @@
       
 
       <!-- Main component for a primary marketing message or call to action -->
-      <div class="jumbotron row">
+      <div class="jumbotron row" style="margin-top:50px;">
       	<div class="col-md-2">
       		  <a href="${root}/team/teamMain.do?teamName=${teamName}">
 	   		 <img class="img-circle img-responsive" src="${root}/img/teamImg/${team.emblem}" width="200" height="150"></img>	   
@@ -165,10 +166,10 @@
 			  	</c:if>
 			    		
 		      	</div>
-      	<div class="col-md-4">
+      	<div class="col-md-6">
       		<h1>${team.teamName}</h1>
       	</div>
-      	<div class="col-md-6">
+      	<div class="col-md-4">
         <p>
         	<c:choose>
   				<c:when test="${team.teamIntro !=null }">
@@ -417,7 +418,7 @@
 			  </table>
 	  		</div>
 	  		</div>
-	  	</c:if>
+	  	
 	  	<label>해당 팀 순위</label>
 	  	<br/><br/>
 	  	<div class="row">
@@ -445,6 +446,7 @@
 			  </table>
 		    </div>
 		   </div>
+		   </c:if>
 		  </div>
 		</div>	  	
 	  </div>

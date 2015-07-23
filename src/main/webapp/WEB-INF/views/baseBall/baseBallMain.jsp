@@ -42,7 +42,7 @@
 <!-- NAVBAR
 ================================================== -->
   <body>
-    <div class="navbar-wrapper">
+   <div class="navbar-wrapper">
       <div class="container">
 
         <nav class="navbar navbar-inverse navbar-fixed-top">
@@ -54,31 +54,30 @@
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
               </button>
-              <a class="navbar-brand" href="${root }/start.jsp"style="color:white;">SML KOREA</a>
+              <a class="navbar-brand" href="${root }/start.jsp">SML KOREA</a>
             </div>
             <div id="navbar" class="navbar-collapse collapse">
               <ul class="nav navbar-nav">
-              	<li><a href="${root}/baseBall/baseBallCommonBoardPage.do?sportCode=${sportCode}"style="color:white;">공지사항</a></li>
-                <li><a href="${root}/baseBall/baseBallRule.do?sportCode=${sportCode}"style="color:white;">경기규칙</a></li>
-                <li><a href="${root}/baseBall/baseBallTeamList.do?sportCode=${sportCode}"style="color:white;">팀리스트</a></li>
-                <li><a href="${root}/referee/refereeList.do?sportCode=${sportCode}"style="color:white;">심판현황</a></li>
+              	<li><a href="${root}/baseBall/baseBallCommonBoardPage.do?sportCode=${sportCode}">공지사항</a></li>
+                <li><a href="${root}/baseBall/baseBallRule.do?sportCode=${sportCode}">경기규칙</a></li>
+                <li><a href="${root}/baseBall/baseBallTeamList.do?sportCode=${sportCode}">팀리스트</a></li>
+                <li><a href="${root}/referee/refereeList.do?sportCode=${sportCode}">심판현황</a></li>
                 <li class="dropdown">
-                  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false"style="color:white;">다른종목가기<span class="caret"></span></a>
+                  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">다른종목가기<span class="caret"></span></a>
                   <ul class="dropdown-menu" role="menu">
-                  	<li class="divider"></li>
-                    <li><a href="${root}/sc">축구</a></li>
+                  	<li><a href="${root }/sc">축구</a></li>
                     <li class="divider"></li>
                     <li><a href="${root}/baseBall/baseBallMain.do">야구</a></li>
                     <li class="divider"></li>
-                    <li><a href="${root}/sportLegBall/legBallMain.do">족구</a></li>
+                    <li><a href="${root}/basketBall/basketBallMain.do">족구</a></li>
                     <li class="divider"></li>
-                    <li><a href="${root}/basketBall/basketBallMain.do">농구</a></li>
+                    <li><a href="${root }/sportLegBall/legBallMain.do">족구</a></li>
                     <li class="divider"></li>
                   </ul>
                 </li>
-              </ul>
-              <ul class="nav navbar-nav navbar-right">
-                <li>
+             </ul>
+    		 <ul class="nav navbar-nav navbar-right">  
+    		 	<li>
 	          		<!-- 날씨 -->
 					<div class="noti" id="roll" style="padding-top:14px; height:35px; overflow:hidden;width:150px;">			
 						<ul>
@@ -111,6 +110,7 @@
 
       </div>
     </div>
+    <br/><br/><br/><br/>
 
 
     <!-- Carousel

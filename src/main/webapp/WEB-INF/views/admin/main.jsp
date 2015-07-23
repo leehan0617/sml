@@ -6,7 +6,7 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<meta name="viewport" contetn="width=device-width,initial-scale=1">
+<meta name="viewport" content="width=device-width, initial-scale=1">
 <!-- start: CSS -->
 	<link id="bootstrap-style" href="${root}/resources/admin/css/bootstrap.min.css" rel="stylesheet">
 	<link href="${root}/resources/admin/css/bootstrap-responsive.min.css" rel="stylesheet">
@@ -125,5 +125,6 @@ div.col-md-2{
 		<script src="${root}/resources/admin/js/jquery.sparkline.min.js"></script>
 		<script src="${root}/resources/admin/js/counter.js"></script>
 		<script src="${root}/resources/admin/js/retina.js"></script>
+		<script src="${root}/resources/admin/js/custom.js"></script>
 </body>
 </html>

@@ -20,9 +20,9 @@ public class ScheduleDaoImpl implements ScheduleDao{
 	 * @설명문:스케쥴일정 값을 데이터베이스에 집어넣는 메소드 
 	 */
 	@Override
-	public int editSchedule(ScheduleDto scheduleDto,String teamId) {
+	public int editSchedule(ScheduleDto scheduleDto,String teamName) {
 		int value=0;
-		int teamCode=sqlSession.selectOne("schedule.dao.ScheduleMapper.scheduleTeamid",teamId);
+		int teamCode=sqlSession.selectOne("schedule.dao.ScheduleMapper.scheduleTeamid",teamName);
 		scheduleDto.setTeamCode(teamCode);
 		value=sqlSession.insert("schedule.dao.ScheduleMapper.insertSchedule",scheduleDto);
 		return value;
