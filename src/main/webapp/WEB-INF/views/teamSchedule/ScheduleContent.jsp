@@ -39,7 +39,7 @@
 					<c:if test="${check>0}">
 						<script type="text/javascript">
 							window.opener.location.reload();
-							window.close();
+				  	 		window.close();
 						</script>
 					</c:if>
 			</div>

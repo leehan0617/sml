@@ -27,7 +27,7 @@
 					</select>
 				</label>
 			</div>
-			<input type="hidden" name="teamId" value="${teamId}"/>
+			<input type="hidden" name="teamName" value="${teamName}"/>
 			
 			<div class="form-group">
 				<label class="control-label col-sm-2" for="기간">기간</label>

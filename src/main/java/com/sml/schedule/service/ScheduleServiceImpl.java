@@ -71,9 +71,8 @@ public class ScheduleServiceImpl implements ScheduleService{
 		String teamId=request.getParameter("teamId");
 		String teamName=request.getParameter("teamName");
 		
-		System.out.println("teamNameEdit"+teamName);
-		int check=dao.editSchedule(scheduleDto,teamId);
-		
+		System.out.println("editteamNAme"+teamName);
+		int check=dao.editSchedule(scheduleDto,teamName);	
 		
 		mav.addObject("check",check);
 		mav.setViewName("teamSchedule/editSchedule");
@@ -89,8 +88,8 @@ public class ScheduleServiceImpl implements ScheduleService{
 		HashMap<String,Object> map=mav.getModelMap();
 		HttpServletRequest request=(HttpServletRequest) map.get("request");
 		String teamId=request.getParameter("teamId");
-		
-		mav.addObject("teamId",teamId);
+		String teamName=request.getParameter("teamName");
+		mav.addObject("teamName",teamName);
 		mav.setViewName("teamSchedule/editSchedule");
 		
 	}
