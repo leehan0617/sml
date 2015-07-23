@@ -147,7 +147,7 @@
       
 
       <!-- Main component for a primary marketing message or call to action -->
-      <div class="jumbotron row" style="margin-top:50px;">
+      <div class="jumbotron row" style="margin-top:50px; background:url(${root}/resources/images/teamMainBackGround.jpg);">
       	<div class="col-md-2">
       		  <a href="${root}/team/teamMain.do?teamName=${teamName}">
 	   		 <img class="img-circle img-responsive" src="${root}/img/teamImg/${team.emblem}" width="200" height="150"></img>	   
