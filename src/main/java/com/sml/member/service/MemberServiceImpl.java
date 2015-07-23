@@ -71,7 +71,7 @@ public class MemberServiceImpl implements MemberService{
 		String sportType=request.getParameter("sportType");
 		String homeGround=request.getParameter("homeGround");
 		String teamReaderName="";
-		String emblem="iconEdit"+random.nextInt(24);//timename
+		String emblem="iconEdit"+random.nextInt(24)+".png";//timename
 		
 		String teamGrade="AA";
 		
