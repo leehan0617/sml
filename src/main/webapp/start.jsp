@@ -70,7 +70,7 @@
 	              	<li><a href="${root }/teamPage/logout.do" style="color:white;">로그아웃</a></li>
 	              </c:otherwise>
               	</c:choose>       
-              </ul>       
+              </ul>
               <ul class="nav navbar-nav navber-right">
                 <li>
 	               <form class="form-inline"  id="searchForm" name="searchForm" style="padding-top:10px;">
