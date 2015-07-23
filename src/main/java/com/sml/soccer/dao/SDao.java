@@ -39,5 +39,8 @@ public interface SDao {
 	public String findMatchTeams(int parseInt);
 	
 	public String getFindEmblem(int teamCode);
-
+	
+	public List<HashMap<String,Object>> getTeamList(int startRow, int endRow, String sportType, String regionSido);
+	
+	public List<String> sidoList(String regionSido);
 }

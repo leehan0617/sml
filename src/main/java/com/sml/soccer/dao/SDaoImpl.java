@@ -147,6 +147,35 @@ public class SDaoImpl implements SDao{
 	public String getFindEmblem(int teamCode) {
 		return sqlSession.selectOne("soccer.dao.SMapper.getFindEmblem",teamCode);
 	}
+	/**
+	 * @함수명: getTeamList
+	 * @작성일: 2015. 7. 23.
+	 * @작성자: 정성남
+	 * @설명 :
+	 */
+	@Override
+	public List<HashMap<String, Object>> getTeamList(int startRow, int endRow, String sportType, String regionSido) {
+		HashMap<String,Object> hMap=new HashMap<String,Object>();		
+		hMap.put("startRow",startRow);
+		hMap.put("endRow",endRow);
+		hMap.put("sportType",sportType);
+		hMap.put("regionSido",regionSido);
+		System.out.println("확인확딘15232532532525"+endRow);
+		
+		return sqlSession.selectList("soccer.dao.SMapper.getTeamList",hMap);
+		
+	}
+	/**
+	 * @함수명: sidoList
+	 * @작성일: 2015. 7. 23.
+	 * @작성자: 정성남
+	 * @설명 :
+	 */
+	@Override
+	public List<String> sidoList(String regionSido) {
+		
+		return sqlSession.selectList("soccer.dao.SMapper.sidoList", regionSido);
+	}
 	
 	
 	
