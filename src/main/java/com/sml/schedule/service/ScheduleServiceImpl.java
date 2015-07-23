@@ -70,9 +70,9 @@ public class ScheduleServiceImpl implements ScheduleService{
 		ScheduleDto scheduleDto=(ScheduleDto)map.get("scheduleDto");
 		String teamId=request.getParameter("teamId");
 		String teamName=request.getParameter("teamName");
-		System.out.println("editteamNAme"+teamName);
-		int check=dao.editSchedule(scheduleDto,teamName);
 		
+		System.out.println("editteamNAme"+teamName);
+		int check=dao.editSchedule(scheduleDto,teamName);	
 		
 		mav.addObject("check",check);
 		mav.setViewName("teamSchedule/editSchedule");
