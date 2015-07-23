@@ -21,6 +21,7 @@ $(document).ready(function(){
 	$(".modalPageOne").show();
     $(".modalPageTwo").hide();
     $(".modalPageThree").hide();
+    $("#modalPageFour").hide();
 	
 });
 
@@ -51,6 +52,9 @@ function setting2(value){
 	}
 }
 
+function showPageFour(){
+	$("#modalPageFour").toggle();
+}
 function complete(){
 	$("#matchingSetting2").slideUp();
 	$("#matchingComplete").slideDown();

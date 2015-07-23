@@ -3,17 +3,22 @@
     <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
     <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 	<c:set var="root" value="${pageContext.request.contextPath }"/>
+	
 <!DOCTYPE html>
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>매칭페이지</title>
-</head>
+<link rel="stylesheet" type="text/css" href="${root }/resources/css/jquery-ui.css"/>
 <script src="${root }/js/jquery/jquery.js"></script>
+
 <script src="${root }/js/teamPage/teamPage.js"></script>
 <script src="${root }/js/teamPage/teamMatching.js"></script>
 <script type="text/javascript" src="//apis.daum.net/maps/maps3.js?apikey=1442260e0c6af86974001269a7312e42&libraries=services"></script>
 <link href="${root}/css/teamPage/matchingMap.css" type="text/css" rel="stylesheet"/>
+
+</head>
+
 <body>	
 	<c:if test="${matchingDto.matchingState=='후' }">
 	
@@ -254,12 +259,43 @@
 	  </div>		
     </div>
 	</div>
+	
+	<div id="modalPageFour">
+		<h2>${otherTeamDto.teamName} 팀장 정보 </h2>
+		
+		<div class="container"> 
+			  <table class="table table-hover" style="width:67%;">
+			    <tbody>
+			    
+			      <tr>		      		
+			      		<td>팀장 이름</td>	
+			      		<td>${otherMemberDto.memberName }</td>		      	
+			      </tr>
+			      <tr>		      		
+			      		<td>성별</td>	
+			      		<td>${otherMemberDto.memberGender }</td>		      	
+			      </tr>
+			      <tr>		      		
+			      		<td>전화번호</td>	
+			      		<td>${otherMemberDto.memberPhone }</td>		      	
+			      </tr>      
+			     <tr>
+			     </tr>
+			    </tbody>
+			  </table>
+			</div>
 	</div>
+	</div>
+	
 	
 	<div class="modal-footer">
 		<input class="btn btn-info" type="button" value="경기 결과 입력" onclick="showPageTwo()">
-		<input class="btn btn-active" type="button" value="경기장 정보" onclick="viewMatchingPlace('${root }','${myTeamDto.teamCode }','${otherTeamDto.teamCode }')">
-		<input class="btn btn-default" type="button" value="상대 팀 및 팀장 정보" onclick="viewOtherTeamInfo('${root}','${otherMatchingDto.teamCode}')">
+		<input class="btn btn-active" type="button" value="경기장 정보" onclick="viewMatchingPlace('${root }','${myTeamDto.teamCode }','${otherTeamDto.teamCode }')">		
+		
+		
+		<button  type="button" class="btn btn-default" onclick="showPageFour()">상대 팀장 정보</button>
+
+		<%-- <input class="btn btn-default" type="button" value="상대 팀 및 팀장 정보" onclick="viewOtherTeamInfo('${root}','${otherMatchingDto.teamCode}')"> --%>
 	</div>
 
 	</c:if>

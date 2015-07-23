@@ -33,7 +33,7 @@ public class MatchingServiceImpl implements MatchingService {
 	private MatchingDao dao;
 	@Autowired
 	private MemberDao memberDao;
-	/**
+	/**Navigation Bar
 	 * @name : TeamServiceImpl
 	 * @date : 2015. 7. 6.
 	 * @author : 이희재
@@ -114,7 +114,7 @@ public class MatchingServiceImpl implements MatchingService {
 				}
 				
 				//상대팀 팀장 정보
-				//MemberDto otherMemberDto=memberDao.getMemberInfo(otherTeamDto.getTeamCode());
+				MemberDto otherMemberDto=memberDao.getMemberInfo(otherTeamDto.getTeamCode());
 				
 				//일주일 날씨 파싱
 				String temp=matchingDto.getMatchingPlace();
@@ -169,7 +169,7 @@ public class MatchingServiceImpl implements MatchingService {
 				//System.out.println(weatherAllList2);
 				
 				mav.addObject("weatherAllList", weatherAllList2);
-				//mav.addObject("otherMemberDto", otherMemberDto);
+				mav.addObject("otherMemberDto", otherMemberDto);
 				
 				mav.addObject("recordDto",recordDto);
 				mav.addObject("normalMatchInfo",normalMatchInfo);

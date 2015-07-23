@@ -1,4 +1,4 @@
-$(function(){	
+$(function(){	 
 	//롤러 스크립트
 	$.fn.extend({
 		Scroll:function(opt,callback){
