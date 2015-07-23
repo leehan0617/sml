@@ -101,8 +101,9 @@ public class CommonServiceImpl implements CommonService {
 		HttpServletRequest request=(HttpServletRequest) map.get("request");
 		
 		int boardNumber=Integer.parseInt(request.getParameter("boardNumber"));
+		System.out.println(boardNumber);
 		int check=commonDao.deleteCommonBoard(boardNumber);
-		
+		System.out.println(" " + check);
 		mav.addObject("check",check);
 		mav.setViewName("board/deleteCommonBoard");
 	}

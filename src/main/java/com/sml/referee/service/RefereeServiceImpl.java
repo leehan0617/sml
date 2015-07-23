@@ -174,6 +174,40 @@ public class RefereeServiceImpl implements RefereeService{
 		
 		logger.info("registersportType : " + sportType );
 		
+		//날씨 파싱 정보 가져오기		
+				ArrayList<WeatherDTO> weatherList=null;
+				try {
+					WeatherParser weatherParser = new WeatherParser();
+					weatherList=weatherParser.xmlRssParser();
+				} catch (Exception e1) {
+					e1.printStackTrace();
+				}
+				for(WeatherDTO weather:weatherList){
+					/*01 맑음
+					02 구름 조금
+					03 구름 많음
+					04 흐림
+					05 비
+					06 눈/비
+					07 눈*/			
+					if(weather.getWfKor().equals("맑음")){
+						weather.setWfKor("01.png");
+					}else if(weather.getWfKor().equals("구름 조금")){
+						weather.setWfKor("02.png");
+					}else if(weather.getWfKor().equals("구름 많음")){
+						weather.setWfKor("03.png");
+					}else if(weather.getWfKor().equals("흐림")){
+						weather.setWfKor("04.png");
+					}else if(weather.getWfKor().equals("비")){
+						weather.setWfKor("05.png");
+					}else if(weather.getWfKor().equals("눈/비")){
+						weather.setWfKor("06.png");
+					}else if(weather.getWfKor().equals("눈")){
+						weather.setWfKor("07.png");
+					}
+				}
+				
+				mav.addObject("weatherList", weatherList);
 		mav.addObject("sportCode",sportCode);
 		mav.addObject("sidoList", sidoList);
 		mav.addObject("sportType", sportType);
@@ -206,7 +240,7 @@ public class RefereeServiceImpl implements RefereeService{
 		String refereeRegion=request.getParameter("refereeRegion");
 		RefereeDto refereeDto=(RefereeDto)map.get("refereeDto");
 		refereeDto.setRefereeSport(sportType);
-		refereeDto.setRefereeYes(1);//default=0; 수락거부	
+		refereeDto.setRefereeYes(0);//default=0; 수락거부	
 		refereeDto.setSido(refereeRegion);
 		refereeDto.setGugun("");
 		
