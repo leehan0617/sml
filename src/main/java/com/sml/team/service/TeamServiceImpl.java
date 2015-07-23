@@ -140,26 +140,32 @@ public class TeamServiceImpl implements TeamService{
 		logger.info("endRow"+endRow);
 		
 		TeamDto team=dao.getTeamInfo(teamName);
-		
-		int teamCode=team.getTeamCode();
-		
-		String emblem=team.getEmblem();
-		
+		String emblem="";
 		List<TeamLogDto> teamLogDtoList=null;
-		if(count>0){
-			teamLogDtoList=dao.teamLogDtoList(teamCode,startRow,endRow);
-		}		
-				
-		String getLeagueCode=(leagueDao.getJoinLeagueCode(teamCode));
-		if(getLeagueCode==null){
-			getLeagueCode="0";
-		}
-		int leagueCode=Integer.parseInt(getLeagueCode);
-		
+		String getLeagueCode=null;
 		LeagueDto leagueDto=null;
-		if(leagueCode>0){
-			leagueDto=leagueDao.getLeagueInfo(leagueCode);
+		
+		if(team!=null){
+			int teamCode=team.getTeamCode();
+			
+			emblem=team.getEmblem();
+
+			if(count>0){
+				teamLogDtoList=dao.teamLogDtoList(teamCode,startRow,endRow);
+			}		
+			getLeagueCode=(leagueDao.getJoinLeagueCode(teamCode));
+			
+			if(getLeagueCode==null){
+				getLeagueCode="0";
+			}
+			int leagueCode=Integer.parseInt(getLeagueCode);
+			
+
+			if(leagueCode>0){
+				leagueDto=leagueDao.getLeagueInfo(leagueCode);
+			}
 		}
+		
 		//System.out.println("leagueDtoNAme: " + leagueDto.getLeagueName());
 		//System.out.println("leagueCode:" + leagueCode);	
 		

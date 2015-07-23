@@ -40,4 +40,8 @@
 	<delete id="deleteSchedule" parameterType="int">
 		delete from TEAMSCHEDULE where scheduleNumber=#{scheduleNumber}
 	</delete>
+	
+	<select id="getTeamDto" parameterType="String" resultType="com.sml.team.dto.TeamDto">
+		select * from team where teamName=#{teamName}
+	</select>
  </mapper>

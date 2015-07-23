@@ -442,11 +442,15 @@ public class MatchingServiceImpl implements MatchingService {
 		HashMap<String,Object> map=mav.getModelMap();
 		HttpServletRequest request=(HttpServletRequest) map.get("request");
 		String teamName=request.getParameter("teamName");
-		int teamCode=dao.getTeamInfo(teamName).getTeamCode();
-		MatchingDto matchingDto=dao.getTeamMatchingInfo(teamCode);
-		
-		if(matchingDto!=null){
-			mav.addObject("matchingDto", matchingDto);
+		TeamDto teamDto=dao.getTeamInfo(teamName);
+		if(teamDto!=null){
+			int teamCode=dao.getTeamInfo(teamName).getTeamCode();
+			MatchingDto matchingDto=dao.getTeamMatchingInfo(teamCode);
+			
+			if(matchingDto!=null){
+				mav.addObject("matchingDto", matchingDto);
+			}
 		}
+		
 	}
 }

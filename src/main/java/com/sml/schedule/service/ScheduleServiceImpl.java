@@ -36,21 +36,24 @@ public class ScheduleServiceImpl implements ScheduleService{
 		HttpServletRequest request = (HttpServletRequest) map.get("request");
 		List<ScheduleDto> scheduleDtoList=null;
 		String teamName=request.getParameter("teamName");
+		TeamDto teamDto=dao.getTeamDto(teamName);
+		JSONObject jsonObject=null;
 		
-		System.out.println("teamName : " + teamName);
-		int count=dao.readCount(teamName);
-		if(count>0){
-			scheduleDtoList=dao.readSchedule(teamName); 
+		if(teamDto!=null){
+			int count=dao.readCount(teamName);
+			if(count>0){
+				scheduleDtoList=dao.readSchedule(teamName); 
+			}
+			
+			JSONArray jsonArray=JSONArray.fromObject(scheduleDtoList);
+//			System.out.println("scheduleDtoList:"+jsonArray);
+			
+			Map<String,Object> Map=new HashMap<String,Object>();
+			Map.put("scheduleDtoList", jsonArray);
+			
+			jsonObject=JSONObject.fromObject(Map);
+//			System.out.println("json-"+jsonObject);
 		}
-		
-		JSONArray jsonArray=JSONArray.fromObject(scheduleDtoList);
-//		System.out.println("scheduleDtoList:"+jsonArray);
-		
-		Map<String,Object> Map=new HashMap<String,Object>();
-		Map.put("scheduleDtoList", jsonArray);
-		
-		JSONObject jsonObject=JSONObject.fromObject(Map);
-//		System.out.println("json-"+jsonObject);
 		
 		mav.addObject("jsonObject",jsonObject);
 		mav.addObject("teamName",teamName);
