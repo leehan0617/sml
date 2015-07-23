@@ -103,6 +103,7 @@ function moreReadReply(root,teamCode,replyPageNumber){
 		type:"get",
 		url:addr,
 		success:function(data){
+			$(".firstReply").hide();
 			$(".alert-warning").hide();
 			$(".replyWrap").append(data);
 		}
@@ -136,11 +137,19 @@ function getTeamBoardData(root , teamName){
 			var boardSize = data.boardSize;
 			var blockSize = data.blockSize;
 			var blockCount = data.blockCount;
+			var flag = count%boardSize;
+			console.log(flag);
+			var pageCount = (count/boardSize+((flag===0)?0:1));
 			var currentPage = data.currentPage;
 			var rs = Math.floor((currentPage-1)/blockSize);
 			var startBlock = rs*blockSize+1;
 			var endBlock = startBlock+blockSize-1;
 			
+			if(endBlock>pageCount){
+				endBlock = pageCount;
+			}
+			console.log("rs:"+rs+",startBlock:"+startBlock+",endBlock:"+endBlock + ",pageCount:"+pageCount);
+			//<c:set var="pageCount" value="${count/boardSize+(count%boardSize==0 ? 0:1)}"/>
 			$.each(boardList,function(i,val){
 				$('.teamBoardTbody').append('<tr><td>'+boardList[i].rnum+"</td><td><a data-toggle='modal' data-target='#modalTeamBoardRead' onclick=readTeamBoard(\'"+root+"\','"+teamName+"','"+currentPage+"','"+boardList[i].boardNumber+"')>"+boardList[i].boardTitle+'</td><td>'+boardList[i].boardWriter+'</td><td>'+
 									(boardList[i].boardDate.year+1900)+'-'+(boardList[i].boardDate.month+1)+'-'+boardList[i].boardDate.date+'</td></tr>');
@@ -175,6 +184,7 @@ function paging(root,teamName,blockNumber){
 			var blockSize = data.blockSize;
 			var blockCount = data.blockCount;
 			var currentPage = data.currentPage;
+			var pageCount = Math.floor(count/boardSize+(count%boardSize == 0?0:1));
 			var rs = Math.floor((currentPage-1)/blockSize);
 			var startBlock = rs*blockSize+1;
 			var endBlock = startBlock+blockSize-1;

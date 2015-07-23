@@ -166,8 +166,11 @@ public class MemberDaoImpl implements MemberDao{
 	 * @설명 :
 	 */
 	@Override
-	public int deleteMember(int memberCode) {
-		return sqlSession.insert("member.dao.MemberMapper.deleteMember", memberCode);
+	public int deleteMember(int memberCode,String teamLeaderName) {
+		HashMap<String,Object> hMap=new HashMap<String,Object>();
+		hMap.put("memberCode", memberCode);
+		hMap.put("teamLeaderName",teamLeaderName);
+		return sqlSession.insert("member.dao.MemberMapper.deleteMember", hMap);
 	}
 
 	/**
@@ -199,5 +202,17 @@ public class MemberDaoImpl implements MemberDao{
 		hMap.put("teamCode", teamCode);
 		hMap.put("searchBoxName", searchBoxName);				
 		return sqlSession.selectOne("member.dao.MemberMapper.getSearchTeamMemberCount", hMap);
+	}
+
+	/**
+	 * @함수명: getTeamLeaderName
+	 * @작성일: 2015. 7. 23.
+	 * @작성자: 정성남
+	 * @설명 :
+	 */
+	@Override
+	public String getTeamLeaderName(String teamName) {
+		
+		return sqlSession.selectOne("member.dao.MemberMapper.getTeamLeaderName", teamName);
 	}
 }

@@ -186,16 +186,16 @@
 	   		 <img class="img-circle img-responsive" src="${root}/img/teamImg/${team.emblem}" width="200" height="150"></img>	   
 	    	</a><br/>
 	    		<c:if test="${matchingDto.matchingState==null }">
-	  			&nbsp;&nbsp;&nbsp;&nbsp;<input id="teamState" type="button" class="btn btn-active" value="매칭 전">
+	  			&nbsp;&nbsp;&nbsp;&nbsp;<input id="teamState" type="button" class="btn btn-primary" style="color:white;" value="매칭 전">
 	  			</c:if>
 			  	<c:if test="${matchingDto.matchingState=='전' }">
-			  			&nbsp;&nbsp;&nbsp;&nbsp;<input id="teamState" type="button" class="btn btn-info" value="매칭 대기 중">
+			  			&nbsp;&nbsp;&nbsp;&nbsp;<input id="teamState" type="button" class="btn btn-info" style="color:white;" value="매칭 대기 중">
 			  	</c:if>
 			  	<c:if test="${matchingDto.matchingState=='중' }">
-			  			&nbsp;&nbsp;&nbsp;&nbsp;<input id="teamState" type="button" class="btn btn-warning" value="매칭 중..">
+			  			&nbsp;&nbsp;&nbsp;&nbsp;<input id="teamState" type="button" class="btn btn-warning" style="color:white;" value="매칭 중..">
 			  	</c:if>
 			  	<c:if test="${matchingDto.matchingState=='후' }">
-			  			&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input id="teamState" type="button" class="btn btn-success" value="매칭 성사">
+			  			&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input id="teamState" type="button" class="btn btn-success" style="color:white;" value="매칭 성사">
 			  	</c:if>
 			    		
 		      	</div>
@@ -315,7 +315,8 @@
 			</tr>
 			</thead>
 			<tbody>
-			<c:forEach var="record" items="${recordList }" begin="1" end="9">
+			
+			<c:forEach var="record" items="${recordList }" begin="0" end="8">
 				<c:if test="${record.TEAMRESULT==null }">
 					<tr>
 						<td style="width:10%;"><fmt:formatDate value="${record.GAMEDATE }" pattern="MM/dd"/></td>
@@ -519,7 +520,7 @@
 			
 			<div class="row replyList replyFirst">	
   				<c:forEach var="teamLog" items="${replyList}" begin="0" varStatus="status" end="4">
-					<div class="col-md-3 ${teamLog.replyCode }" style="margin-top:5px;">
+					<div class="firstReply col-md-3 ${teamLog.replyCode }" style="margin-top:5px;">
 						 <div class="input-group">
 							 <span class="input-group-btn">
 								<button class="btn btn-default" type="button" disabled="disabled">닉네임</button>
@@ -527,7 +528,7 @@
 							<input type="text" class="form-control" value="${teamLog.replyNickName }" id="replyNickName" disabled="disabled">
 						 </div><!-- /input-group -->
 					</div>
-					<div class="col-md-3 ${teamLog.replyCode }" style="margin-top:5px;">
+					<div class="firstReply col-md-3 ${teamLog.replyCode }" style="margin-top:5px;">
 						 <div class="input-group">
 									 <span class="input-group-btn">
 					  					<button class="btn btn-default" type="button" disabled="disabled">작성일</button>
@@ -535,7 +536,7 @@
 										<input type="text" class="form-control" value="<fmt:formatDate value="${teamLog.replyDate }" pattern="yy-MM-dd"/>" id="replyDate" disabled="disabled">
 							 </div><!-- /input-group -->
 					</div>
-					<div class="col-md-6 ${teamLog.replyCode }" style="margin-top:5px;">
+					<div class="firstReply col-md-6 ${teamLog.replyCode }" style="margin-top:5px;">
 						<div class="input-group">
 							 <input type="text" class="form-control" value="${teamLog.replyContent }" id="replyContent" disabled="disabled">
 					     <span class="input-group-btn">
@@ -547,8 +548,8 @@
 
 			</div><!-- /.row -->
 			
-			<br/>
-			<div class="alert alert-warning" role="alert" onclick="moreReadReply('${root}','${team.teamCode }' , '${replyPageNumber }')"><p class="text-center">더보기</p></div>
+			
+			<div class="alert alert-warning" role="alert" onclick="moreReadReply('${root}','${team.teamCode }' , '${replyPageNumber }')" style="margin-top:10px;"><p class="text-center">더보기</p></div>
 		</div>
    	    	
 		</div>    <!-- end 댓글 div -->
@@ -608,7 +609,7 @@
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-default" data-dismiss="modal" onclick="teamBoardToggle()">Close</button>
-        <button type="button" class="btn btn-primary">수정하기</button>
+        <button type="button" class="btn btn-primary" onclick="teamBoardUpdate('${root}','${teamName}','${team.teamCode }')">수정하기</button>
       </div>
     </div>
   </div>
@@ -641,6 +642,36 @@
     </div>
   </div>
 </div>
+
+<div class="modal fade" id="modalTeamBoardUpdate" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title">공지사항 >> 공지사항 수정</h4>
+      </div>
+      <div class="modal-body">
+        <form>
+          <div class="form-group">
+            <label for="recipient-name" class="control-label" id="boardTitle">Title</label>
+            <input type="text" class="form-control" id="teamBoardTitle"/>
+          </div>
+          <div class="form-group">
+            <label for="message-text" class="control-label" id="boardContent">Content</label>
+            <textarea class="form-control" id="teamBoardContent"></textarea>
+          </div>
+        </form>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal" onclick="teamBoardToggle()">Close</button>
+        <button type="button" class="btn btn-primary" data-dismiss="modal"onclick="modalUpdateTeamBoard('${root}','${teamName}','${team.teamCode }')">글쓰기</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
 
 <div class="modal fade" id="modalEditTeamIntro" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
   <div class="modal-dialog">

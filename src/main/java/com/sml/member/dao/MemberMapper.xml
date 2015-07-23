@@ -64,13 +64,13 @@
 	
 	<insert id="addMember" parameterType="com.sml.member.dto.MemberDto">
 		<![CDATA[
-			insert into teamMember(memberCode,teamCode,memberName,memberBirth,memberRegion,memberEmail,memberPhone,memberGender)
+			insert into teamMember(memberCode,teamCode,memberName,memberBirth,memberRegion,memberPhone,memberEmail,memberGender)
 			values(teammember_membercode_sql.nextval,#{teamCode},#{memberName},#{memberBirth},#{memberRegion},#{memberPhone},#{memberEmail},#{memberGender})
 		]]>	
 	</insert>
 	
-	<delete id="deleteMember" parameterType="int">
-		delete teamMember where memberCode=#{memberCode}
+	<delete id="deleteMember" parameterType="java.util.HashMap">
+		<![CDATA[delete teamMember where memberCode=#{memberCode} and memberName<>#{teamLeaderName}]]>
 	</delete>
 	
 	<select id="getMemberSearchList" parameterType="java.util.HashMap" resultType="com.sml.member.dto.MemberDto">
@@ -85,5 +85,9 @@
 	
 	<select id="getSearchTeamMemberCount" parameterType="java.util.HashMap" resultType="int">
 		select count(*) from teammember where teamCode=#{teamCode} and memberName=#{searchBoxName}
+	</select>
+	
+	<select id="getTeamLeaderName" parameterType="String" resultType="String">
+		select teamLeaderName from team where teamName=#{teamName}
 	</select>
 </mapper>  
