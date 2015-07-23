@@ -28,8 +28,9 @@ public class RefereeDaoImpl implements RefereeDao{
 	}
 
 	@Override
-	public int refereeCount() {
-		return sqlSession.selectOne("dao.RefereeMapper.refereeCount");
+	public int refereeCount(String sportType) {
+		System.out.println("referee sportType:"+sportType);
+		return sqlSession.selectOne("dao.RefereeMapper.refereeCount",sportType);
 	}
 
 	@Override

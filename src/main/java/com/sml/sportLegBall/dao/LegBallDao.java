@@ -8,6 +8,7 @@ import com.sml.common.dto.CommonBoardDto;
 import com.sml.league.dto.LeagueDto;
 import com.sml.member.dto.MemberDto;
 import com.sml.record.dto.RecordDto;
+import com.sml.referee.dto.RefereeDto;
 
 public interface LegBallDao {
 	public int getBoardCount(int sportCode);
@@ -36,4 +37,5 @@ public interface LegBallDao {
 	public List<RecordDto> showRecentMatch(String gameType);
 
 	public String findMatchTeams(int parseInt);
+	
 }

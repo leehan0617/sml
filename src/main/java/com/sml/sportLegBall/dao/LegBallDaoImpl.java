@@ -3,6 +3,7 @@ package com.sml.sportLegBall.dao;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.logging.Logger;
 
 import org.mybatis.spring.SqlSessionTemplate;
@@ -13,6 +14,7 @@ import com.sml.common.dto.CommonBoardDto;
 import com.sml.league.dto.LeagueDto;
 import com.sml.member.dto.MemberDto;
 import com.sml.record.dto.RecordDto;
+import com.sml.referee.dto.RefereeDto;
 
 @Repository
 public class LegBallDaoImpl implements LegBallDao{
@@ -88,7 +90,7 @@ public class LegBallDaoImpl implements LegBallDao{
 	}
 	
 	/**
-	 * 
+	 * 	
 	 * @함수명: getAllTeamList
 	 * @작성일: 2015. 7. 17.
 	 * @작성자: 정성남
@@ -146,4 +148,5 @@ public class LegBallDaoImpl implements LegBallDao{
 		// TODO Auto-generated method stub
 		return sqlSession.selectOne("legBall.dao.SMapper.findMatchTeam",teamCode);
 	}
+	
 }

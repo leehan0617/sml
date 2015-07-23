@@ -265,7 +265,7 @@ function teamCheck(form){
 	
 	$("input[name='memberGender']").attr("value",sex);
 	$("input[name='memberRegion']").attr("value",$("#sido").val()+" "+$("#gugun").val());
-	alert($("input[name='memberRegion']").val());
+	//alert($("input[name='memberRegion']").val());
 }
 
 function teamIdCheck(form,root){
@@ -290,7 +290,7 @@ function teamIdCheck(form,root){
 
 function searchHomeground(form, root){
 	var url=root+"/member/searchHomeGround.do";
-	window.open(url,"",'width=1303,height=652');
+	window.open(url,"",'width=1303,height=452');
 }
 
 function selectHomeGround(){
@@ -340,6 +340,7 @@ function fromServer(){
 }
 
 function deleteMember(root,pageNumber,memberCode,teamName,teamCode,teamGrade){
+	
 	var value=confirm("정말로 삭제하시겠습니까?");
 	
 	if(value==true){
