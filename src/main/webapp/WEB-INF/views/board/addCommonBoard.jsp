@@ -32,12 +32,12 @@
 			</div>
 			<div class="form-group">
 				<label>제목:</label>
-				<input type="text" class="form-control" name="boardTitle"  style="width:100%;">	
+				<input type="text" class="form-control" name="boardTitle" style="width:100%;">	
 			</div>	
 					
 			<div class="form-group">	
 				<label>Comment:</label>		
-				<textarea class="form-control" rows="14" cols="20" name="boardContent" style="width:100%;"></textarea>
+				<textarea class="form-control" rows="14" cols="30" name="boardContent" style="width:100%;"></textarea>
 			</div>	
 		
 		<div class="modal-footer">

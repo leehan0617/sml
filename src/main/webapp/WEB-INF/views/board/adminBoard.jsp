@@ -80,7 +80,7 @@
 							<a href="#" class="btn-setting"><i class="halflings-icon wrench"></i></a>
 							<a href="#" class="btn-minimize"><i class="halflings-icon chevron-up"></i></a>
 							<a href="#" class="btn-close"><i class="halflings-icon remove"></i></a>
-							<a data-toggle="modal" data-target="#popup" href="${root}/board/addCommonBoard.do">글쓰기</a>
+							<a data-toggle="modal" data-target="#popupWrite" href="${root}/board/addCommonBoard.do">글쓰기</a>
 						</div>
 					</div>						
 					
@@ -144,7 +144,7 @@
 										</c:if>				
 										
 										<td>${commonBoard.boardWriter}</td>
-										<td><a href="${root }/board/readCommonBoard.do?boardNumber=${commonBoard.boardNumber}&pageNumber=${currentPage}">${commonBoard.boardTitle}</a></td>					
+										<td><a data-toggle="modal" data-target="#popupRead" href="${root }/board/readCommonBoard.do?boardNumber=${commonBoard.boardNumber}&pageNumber=${currentPage}">${commonBoard.boardTitle}</a></td>					
 										<td><fmt:formatDate value="${commonBoard.boardDate}" type="date"/></td>		
 										<td>               
 											<a href="${root }/board/deleteCommonBoard.do?boardNumber=${commonBoard.boardNumber}">
@@ -196,7 +196,13 @@
 		</div><!--/#content.span10-->
 		</div><!--/fluid-row-->
 	
-	<div class="modal fade" id="popup">
+	<div class="modal fade" id="popupWrite">
+		<div class="modal-dialog">
+	    	<div class="modal-content">
+	    	</div>
+	    </div>
+	</div>
+	<div class="modal fade" id="popupRead">
 		<div class="modal-dialog">
 	    	<div class="modal-content">
 	    	</div>
