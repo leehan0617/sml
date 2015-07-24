@@ -140,7 +140,12 @@ $(document).ready(function(){
 	            };
 	            
 	            itemEl.onclick=function(){
-	            	map.setCenter(marker.getPosition());
+	            	searchAddrFromCoords(marker.getPosition(), function(status, result) {
+	                    if (status === daum.maps.services.Status.OK) {
+	                        $("#homeGround").text(result[0].fullName+" " + title);
+	                     
+	                    }   
+	                });
 	            };
 	        })(marker, places[i].title);
 

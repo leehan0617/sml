@@ -145,7 +145,20 @@ $(document).ready(function(){
 	            };
 	            
 	            itemEl.onclick=function(){
-	            	map.setCenter(marker.getPosition());
+	            	searchAddrFromCoords(marker.getPosition(), function(status, result) {
+	                    if (status === daum.maps.services.Status.OK) {
+	                    	if (status === daum.maps.services.Status.OK) {
+		                    	if($("#place1").text()==""){
+		                    		$("#place1").text(result[0].fullName+" " + title);
+		                    	}else if($("#place2").text()==""){
+		                    		$("#place2").text(result[0].fullName+" " + title);
+		                    	}else{
+		                    		$("#place3").text(result[0].fullName+" " + title);
+		                    	}
+		                     
+		                    }   
+	                    }   
+	                });
 	            };
 	        })(marker, places[i].title);
 

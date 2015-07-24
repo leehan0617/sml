@@ -12,14 +12,14 @@
 	<c:set var="root" value="${pageContext.request.contextPath }"/>
 	<c:if test="${check>0 }">
 		<script type="text/javascript">
-			alert("글이작성됨");
+			alert("멤버 등록 완료");
 			location.href="${root}/teamPage/teamMemberInfo.do?teamName=${teamName}&teamCode=${teamCode}&teamGrade=${teamGrade}";
 		</script>
 	</c:if>
 	
 	<c:if test="${check==0 }">
 		<script type="text/javascript">
-			alert("작성실패");
+			alert("멤버 등록 실패");
 			location.href="${root}/teamPage/teamMemberInfo.do?teamName=${teamName}&teamCode=${teamCode}&teamGrade=${teamGrade}";
 		</script>
 	</c:if>
