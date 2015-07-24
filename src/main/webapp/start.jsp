@@ -305,7 +305,7 @@
         <div class="two-thirds">
           <ul>
             <li><strong>연락처</strong></li>
-            <li><a href="#" target="_blank" class="glyphicon glyphicon-earphone" onclick="alertInfo()">&nbsp;010 4646 3522</a></li>
+            <li><a href="#" target="_blank" class="glyphicon glyphicon-earphone" onclick="alertInfo()">&nbsp;010-4646-3522</a></li>
             <li><a href="#" target="_blank" class="glyphicon glyphicon-envelope" onclick="alertInfo()">&nbsp;newbin0617@gmail.com</a></li>
           </ul>
           <ul>

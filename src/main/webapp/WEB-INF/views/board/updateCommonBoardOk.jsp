@@ -12,14 +12,12 @@
 	<c:set var="root" value="${pageContext.request.contextPath }"/>
 	<c:if test="${check>0 }">
 		<script type="text/javascript">
-			alert("수정 성공");
 			location.href="${root}/board/adminBoard.do";
 		</script>
 	</c:if>
 	
 	<c:if test="${check==0 }">
 		<script type="text/javascript">
-			alert("수정 실패");
 			location.href="${root}/board/updateCommonBoard.do";
 		</script>
 	</c:if>
