@@ -15,8 +15,11 @@
 	<link id="base-style" href="${root}/resources/admin/css/style.css" rel="stylesheet">
 	<link id="base-style-responsive" href="${root}/resources/admin/css/style-responsive.css" rel="stylesheet">
 	<link href='http://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800&subset=latin,cyrillic-ext,latin-ext' rel='stylesheet' type='text/css'>
-	<!-- end: CSS -->
+<!-- end: CSS -->
+	 
 	<title>게시판 목록보기</title>
+	
+
 </head>
 <body>
 	<div class="navbar">
@@ -77,23 +80,35 @@
 							<a href="#" class="btn-setting"><i class="halflings-icon wrench"></i></a>
 							<a href="#" class="btn-minimize"><i class="halflings-icon chevron-up"></i></a>
 							<a href="#" class="btn-close"><i class="halflings-icon remove"></i></a>
+							<a data-toggle="modal" data-target="#popup" href="${root}/board/addCommonBoard.do">글쓰기</a>
 						</div>
 					</div>						
 					
 					
-					<button type="button" class="btn btn-default" onclick="javascript:location.href='${root}/board/addCommonBoard.do'">글쓰기</button>
+					
 					
 					<!-- search -->
-					
-					<form action="${root }/board/searchBoard.do" method="get" style="float:right"  id="search-box" onsubmit="if(this.q.value ==' 공지사항 검색'){this.q.focus();return false;}">
+					<div class="text-right">
+					<form action="${root }/board/searchBoard.do" method="get"   id="search-box" onsubmit="if(this.q.value ==' 공지사항 검색'){this.q.focus();return false;}">
 						<input type="text" name="boardName"  style="color: #D2D2D2;" value="공지사항 제목 검색" onfocus="this.value='' "/>
 						<input type="submit" class="btn btn-defaulty btn-sm"  value="검색" style="margin-top:0"/>							
-					</form>						
-					
+					</form>					
+					</div>
 					
 					<c:if test="${commonBoardList==null }"><!-- commonBoardList -> count -->
-						<div>	
-							<span>검색결과가 없습니다.</span>												
+						<div>								
+							<table class="table table-striped table-bordered bootstrap-datatable datatable">
+							  <thead>
+								  <tr>
+									  <th>종목</th>
+									  <th>작성자</th>	
+									  <th>제목</th>
+									  <th>날짜</th>	
+									  <th>삭제 여부</th>
+								  </tr>
+							  </thead>  
+							</table>	
+							<span>게시물이 없습니다.</span>											
 						</div>
 					</c:if>
 					
@@ -180,38 +195,28 @@
 			<!-- end: Content -->
 		</div><!--/#content.span10-->
 		</div><!--/fluid-row-->
-	<div class="modal hide fade" id="myModal">
-		<div class="modal-header">
-			<button type="button" class="close" data-dismiss="modal">×</button>
-			<h3>Settings</h3>
-		</div>
-		<div class="modal-body">
-			<p>Here settings can be configured...</p>
-		</div>
-		<div class="modal-footer">
-			<a href="#" class="btn" data-dismiss="modal">Close</a>
-			<a href="#" class="btn btn-primary">Save changes</a>
-		</div>
+	
+	<div class="modal fade" id="popup">
+		<div class="modal-dialog">
+	    	<div class="modal-content">
+	    	</div>
+	    </div>
 	</div>
-	
-	<div class="clearfix"></div>
-	
+<div class="clearfix"></div>	
 	<footer>
-
 		<p>
-			<span style="text-align:left;float:left">&copy; 2013 <a href="http://jiji262.github.io/Bootstrap_Metro_Dashboard/" alt="Bootstrap_Metro_Dashboard">Bootstrap Metro Dashboard</a></span>
-			
+			<span style="text-align:left;float:left">&copy; 2015 <a href="" alt="Bootstrap_Metro_Dashboard">SML KOREA</a></span>
 		</p>
-
-	</footer>		
+	</footer>	
 	<script src="${root}/resources/admin/js/jquery-1.9.1.min.js"></script>
 		<script src="${root}/resources/admin/js/jquery-migrate-1.0.0.min.js"></script>	
 		<script src="${root}/resources/admin/js/jquery-ui-1.10.0.custom.min.js"></script>	
 		<script src="${root}/resources/admin/js/jquery.ui.touch-punch.js"></script>	
 		<script src="${root}/resources/admin/js/modernizr.js"></script>	
-		<script src="${root}/resources/admin/js/bootstrap.min.js"></script>	
+		<script src="${root }/resources/js/bootstrap.js"></script>
 		<script src="${root}/resources/admin/js/jquery.cookie.js"></script>	
 		<script src="${root}/resources/admin/js/fullcalendar.min.js"></script>
+		<script src="${root}/resources/admin/js/jquery.dataTables.min.js"></script>
 		<script src="${root}/resources/admin/js/excanvas.js"></script>
 		<script src="${root}/resources/admin/js/jquery.flot.js"></script>
 		<script src="${root}/resources/admin/js/jquery.flot.pie.js"></script>
@@ -224,7 +229,7 @@
 		<script src="${root}/resources/admin/js/jquery.elfinder.min.js"></script>
 		<script src="${root}/resources/admin/js/jquery.raty.min.js"></script>
 		<script src="${root}/resources/admin/js/jquery.iphone.toggle.js"></script>
-		<script src="${root}/resources/admin/js/jquery.uploadify-3.1.min.js"></script>
+		<%-- <script src="${root}/resources/admin/js/jquery.uploadify-3.1.min.js"></script> --%>
 		<script src="${root}/resources/admin/js/jquery.gritter.min.js"></script>
 		<script src="${root}/resources/admin/js/jquery.imagesloaded.js"></script>
 		<script src="${root}/resources/admin/js/jquery.masonry.min.js"></script>
@@ -232,6 +237,10 @@
 		<script src="${root}/resources/admin/js/jquery.sparkline.min.js"></script>
 		<script src="${root}/resources/admin/js/counter.js"></script>
 		<script src="${root}/resources/admin/js/retina.js"></script>
+		<script src="${root}/resources/admin/js/custom.js"></script>
+		<script src="${root }/resources/admin/js/jquery.dataTables.min.js"></script>
+		
+	
 	
 </body>
 </html>

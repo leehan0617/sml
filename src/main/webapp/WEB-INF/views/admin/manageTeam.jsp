@@ -192,13 +192,10 @@
 	<div class="clearfix"></div>
 	
 	<footer>
-
 		<p>
-			<span style="text-align:left;float:left">&copy; 2013 <a href="http://jiji262.github.io/Bootstrap_Metro_Dashboard/" alt="Bootstrap_Metro_Dashboard">Bootstrap Metro Dashboard</a></span>
-			
+			<span style="text-align:left;float:left">&copy; 2015 <a href="" alt="Bootstrap_Metro_Dashboard">SML KOREA</a></span>
 		</p>
-
-	</footer>		
+	</footer>s		
 	<script src="${root}/resources/admin/js/jquery-1.9.1.min.js"></script>
 		<script src="${root}/resources/admin/js/jquery-migrate-1.0.0.min.js"></script>	
 		<script src="${root}/resources/admin/js/jquery-ui-1.10.0.custom.min.js"></script>	

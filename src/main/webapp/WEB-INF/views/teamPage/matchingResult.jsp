@@ -74,7 +74,7 @@
 		<div class="modalPageOne">
 		<h2>매칭 정보</h2> 
 		<div class="row">		  
-		  <div class="col-md-6 well">			  
+		  <div class="col-md-6">			  
 	    		<c:if test="${normalMatchInfo.TEAM1==teamName }">
 				<table class="table table-condensed">
 				 	<tr></tr>
@@ -129,7 +129,7 @@
 		      	</c:if>
 		  </div>
 		  <!-- <div class="col-md-2" style="display:table-cell; text-align:center; vertical-align:middle; height:230px; padding-top:70px;"></div> -->		  
-		  <div class="col-md-6 well">
+		  <div class="col-md-6">
 	    		<c:if test="${normalMatchInfo.TEAM1==teamName }">
 	    		<table class="table table-condensed">
 	    		<tr></tr>
