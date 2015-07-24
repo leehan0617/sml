@@ -52,12 +52,12 @@ public class CommonDaoImpl implements CommonDao {
 
 	@Override
 	public int updateCommonBoardOk(CommonBoardDto commonBoard) {
+		System.out.println("commonBoard"+commonBoard.getSportCode());
 		return sqlSession.update("dao.BoardMapper.updateCommonBoardOk",commonBoard);
 	}
 
 	@Override
 	public List<String> autoSearch(String result) {
-		// TODO Auto-generated method stub
 		return sqlSession.selectList("dao.BoardMapper.autoSearch",result);
 	}
 

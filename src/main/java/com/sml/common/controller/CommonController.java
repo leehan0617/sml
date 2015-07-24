@@ -135,8 +135,8 @@ public class CommonController {
 	 */
 	
 	@RequestMapping(value="/board/updateCommonBoard.do",method=RequestMethod.POST)
-	public ModelAndView updateCommonBoard(HttpServletRequest request, CommonBoardDto commonBoardDto){
-		logger.info("boardUpdate-----------");
+	public ModelAndView updateCommonBoardOk(HttpServletRequest request, CommonBoardDto commonBoardDto){
+		logger.info("boardUpdateOK-----------");
 		ModelAndView mav=new ModelAndView();
 		mav.addObject("request",request);
 		mav.addObject("commonBoardDto",commonBoardDto);
@@ -145,6 +145,12 @@ public class CommonController {
 		return mav;
 	}
 	
+	/**
+	 * @함수명:autoTeamname
+	 * @작성일:2015. 7. 24.
+	 * @작성자:조영석
+	 * @설명문:검색어 입력시 데이터베이스에 있는 팀 목록을 보여주는 메소드
+	 */
 	@RequestMapping(value="/autocomplete" ,method=RequestMethod.POST)
 	public void autoTeamname(Locale locale, Model model, HttpServletRequest request,
 			HttpServletResponse resp, String teamName) throws IOException {
