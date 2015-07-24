@@ -23,7 +23,7 @@
     <script src="${root }/resources/js/jquery.js"></script>
     <script src="${root }/resources/js/jquery-ui.js"></script>
 	<script src="${root }/resources/js/bootstrap.js"></script>
-	<script src="${root }/resources/js/soccerPage.js"></script>
+	<script src="${root }/resources/js/sc.js"></script>
 	<script src="${root }/resources/js/jquery.jqplot.js"></script>
 	<script src="${root }/resources/js/smlStart.js"></script>	
 	
@@ -274,7 +274,7 @@
           <ol class="breadcrumb">
   			<li class="active" id="ageChart" onclick="showAgeChart('${root}','${sportCode }')">연령별 통계</li>
   			<li id="cityChart" onclick="showCityChart('${root}','${sportCode }')">지역별 통계</li>
-  			<li id="dayChart" onclick="showDayChart('${root}','${sportCode}')">요일별 통계</li>
+  			<li id="dayChart" onclick="showDayChart('${root}','${sportCode}')">시즌별 통계</li>
 		  </ol>	
           <div id="soccerPieChart" data-holder-rendered="true" style="width:460px; height:400px;"></div>
           <div id="soccerLineChart" data-holder-rendered="true" style="width:460px; height:400px;"></div>

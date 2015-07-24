@@ -198,7 +198,7 @@
 	   		 <img class="img-circle img-responsive" src="${root}/img/teamImg/${team.emblem}" width="200" height="150"></img>	   
 	    	</a><br/>
 	    		<c:if test="${matchingDto.matchingState==null }">
-	  			&nbsp;&nbsp;&nbsp;&nbsp;<input id="teamState" type="button" class="btn btn-primary" style="color:white;" value="매칭 전">
+	  			<input id="teamState" type="button" class="btn btn-primary" style="color:white; margin-left:40px;" value="매칭 전">
 	  			</c:if>
 			  	<c:if test="${matchingDto.matchingState=='전' }">
 			  			&nbsp;&nbsp;&nbsp;&nbsp;<input id="teamState" type="button" class="btn btn-info" style="color:white;" value="매칭 대기 중">
