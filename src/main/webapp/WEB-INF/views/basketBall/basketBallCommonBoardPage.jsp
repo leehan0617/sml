@@ -120,7 +120,7 @@
           <br/>         
           <div class="table-responsive" style="background-color: ">
             <table class="table table-striped">
-              <c:if test="${soccerBoardList!=null}">	
+              <c:if test="${basketBallBoardList!=null}">	
               <thead>               
                <tr align="center" style="background-color:#E2D6D6;"> 
                	  <td>작성자</td>              	                 
@@ -131,31 +131,31 @@
               </c:if>              
               <tbody id="accordion" class="panel-group panel panel-default" >
               	             
-           	  <c:if test="${soccerBoardList==null}">	
+           	  <c:if test="${basketBallBoardList==null}">	
 			  <tr>
 			   <td align="center">작성된 공지사항이 없습니다.</td>
 			  </tr>		
 			</c:if>
 						     					
-              <c:if test="${soccerBoardList!=null}">
-           	  <c:forEach var="soccerBoardList" items="${soccerBoardList}">			         	 
+              <c:if test="${basketBallBoardList!=null}">
+           	  <c:forEach var="basketBallBoardList" items="${basketBallBoardList}">			         	 
 			  <tr align="center" style="background-color:" id="#accordion">				
-				<td width="10%" style="font-size:20px;"><span class="label label-danger glyphicon glyphicon-user">${soccerBoardList.boardWriter}</span></td>
+				<td width="10%" style="font-size:20px;"><span class="label label-danger glyphicon glyphicon-user">${basketBallBoardList.boardWriter}</span></td>
 				<td>
 				 <div style="" class="panel-group" id="accordion">				  
     				<div class="panel panel-success">
      					 <div class="panel-heading">
         				<h4 class="panel-title">
-         					 <a data-toggle="collapse" data-parent="#accordion" href="#${soccerBoardList.boardNumber}">${soccerBoardList.boardTitle}</a>
+         					 <a data-toggle="collapse" data-parent="#accordion" href="#${basketBallBoardList.boardNumber}">${basketBallBoardList.boardTitle}</a>
        				    </h4>
      				    </div>
-     			    <div id="${soccerBoardList.boardNumber}" class="panel-collapse collapse">
-        				<div class="panel-body">${soccerBoardList.boardContent}</div>
+     			    <div id="${basketBallBoardList.boardNumber}" class="panel-collapse collapse">
+        				<div class="panel-body">${basketBallBoardList.boardContent}</div>
      			    </div>
                    </div>
                   </div>
                </td>
-               <td width="10%"><span class="label label-info glyphicon glyphicon-calendar"><fmt:formatDate value="${soccerBoardList.boardDate}" type="date"/></span></td>
+               <td width="10%"><span class="label label-info glyphicon glyphicon-calendar"><fmt:formatDate value="${basketBallBoardList.boardDate}" type="date"/></span></td>
 			  </tr>
 			</c:forEach>			
 		   </c:if>		   		
@@ -181,15 +181,15 @@
 			
 			<ul class="pager">
 			<c:if test="${startPage>pageBlock }">
-				<li><a href="${root }/soccer/soccerCommonBoardPage.do?pageNumber=${startPage-pageBlock}&sportCode=${sportCode}">BACK</a></li>
+				<li><a href="${root }/basketBall/basketBallCommonBoardPage.do?pageNumber=${startPage-pageBlock}&sportCode=${sportCode}">BACK</a></li>
 			</c:if>
 			
 			<c:forEach var="i" begin="${startPage}" end="${endPage}">
-				<li><a href="${root }/soccer/soccerCommonBoardPage.do?pageNumber=${i}&sportCode=${sportCode}">${i }</a></li>
+				<li><a href="${root }/basketBall/basketBallCommonBoardPage.do?pageNumber=${i}&sportCode=${sportCode}">${i }</a></li>
 			</c:forEach>
 			
 			<c:if test="${endPage<pageCount }">
-				<li><a href="${root }/soccer/soccerCommonBoardPage.do?pageNumber=${startPage+pageBlock}&sportCode=${sportCode}">NEXT</a></li>
+				<li><a href="${root }/basketBall/basketBallCommonBoardPage.do?pageNumber=${startPage+pageBlock}&sportCode=${sportCode}">NEXT</a></li>
 			</c:if>
 			</ul>
 					
