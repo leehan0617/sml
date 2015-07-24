@@ -36,12 +36,12 @@
 	</insert>
 	
 	
-	<select id="getMemberInfo" parameterType="int" resultType="com.sml.member.dto.MemberDto">
-		select * from TeamMember where teamCode = #{teamCode}
+	<select id="getMemberInfo" parameterType="java.util.HashMap" resultType="com.sml.member.dto.MemberDto">
+		select * from TeamMember where teamCode = #{teamCode} and memberName=#{teamLeaderName}
 	</select>
 	
 	<update id="updateMemberInfoOk" parameterType="java.util.HashMap">
-		update TeamMember set memberName=#{memberName}, memberBirth=#{memberBirth}, memberRegion=#{memberRegion}, memberEmail=#{memberEmail}, memberPhone=#{memberPhone}, memberGender=#{memberGender} where teamCode=#{teamCode}
+		update TeamMember set memberName=#{memberName}, memberBirth=#{memberBirth}, memberRegion=#{memberRegion}, memberEmail=#{memberEmail}, memberPhone=#{memberPhone}, memberGender=#{memberGender} where teamCode=#{teamCode} and memberName=#{memberName}
 	</update>
 	
 	<select id="getTeamInfo" parameterType="String" resultType="com.sml.team.dto.TeamDto">

@@ -79,8 +79,11 @@ public class MemberDaoImpl implements MemberDao{
 	 * @description : 멤버 정보 가져오기
 	 */
 	@Override
-	public MemberDto getMemberInfo(int teamCode) {
-		return sqlSession.selectOne("member.dao.MemberMapper.getMemberInfo", teamCode);
+	public MemberDto getMemberInfo(int teamCode, String teamLeaderName) {
+		HashMap<String, Object> map=new HashMap<String, Object>();
+		map.put("teamCode", teamCode);
+		map.put("teamLeaderName", teamLeaderName);
+		return sqlSession.selectOne("member.dao.MemberMapper.getMemberInfo", map);
 	}
 
 	/**

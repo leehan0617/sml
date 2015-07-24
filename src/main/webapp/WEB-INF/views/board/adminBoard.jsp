@@ -18,8 +18,6 @@
 <!-- end: CSS -->
 	 
 	<title>게시판 목록보기</title>
-	
-
 </head>
 <body>
 	<div class="navbar">

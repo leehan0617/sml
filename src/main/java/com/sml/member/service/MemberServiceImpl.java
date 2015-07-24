@@ -144,7 +144,9 @@ public class MemberServiceImpl implements MemberService{
 		TeamDto teamDto=dao.getTeamInfo(teamName);
 		
 		int teamCode=teamDto.getTeamCode();
-		MemberDto memberDto=dao.getMemberInfo(teamCode);
+		String teamLeaderName=teamDto.getTeamLeaderName();
+		//System.out.println(teamLeaderName);
+		MemberDto memberDto=dao.getMemberInfo(teamCode, teamLeaderName);
 		
 		mav.addObject("teamCode", teamCode);
 		mav.addObject("memberDto", memberDto);
@@ -164,8 +166,7 @@ public class MemberServiceImpl implements MemberService{
 		HttpServletRequest request=(HttpServletRequest)map.get("request");
 		MemberDto memberDto=(MemberDto)map.get("memberDto");
 		
-		int teamCode=Integer.parseInt(request.getParameter("teamCode"));		
-		System.out.println("teamCode:" + teamCode);
+		int teamCode=Integer.parseInt(request.getParameter("teamCode"));
 		int check=dao.updateMemberInfoOk(memberDto, teamCode);
 		//System.out.println(check);
 		
