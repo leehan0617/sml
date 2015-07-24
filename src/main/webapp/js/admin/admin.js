@@ -19,10 +19,6 @@ $(document).ready(function(){
 		leaguePlace+=$("input[name='place3']").val() + ",";
 		
 		$("input[name='leaguePlace']").attr("value",leaguePlace);
-		
-		alert($("input[name='leagueRegion']").val());
-		alert($("input[name='leaguePlace']").val());
-		alert($("input[name='leagueTime']").val());
 	});
 	
 	$("input[name='searchPlace']").bind("click",function(){
