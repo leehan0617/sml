@@ -93,7 +93,7 @@
               <li class="dropdown">
                 <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false" style="color:white;">팀장관리실 <span class="caret"></span></a>
                 <ul class="dropdown-menu" role="menu">
-                <c:if test="${teamGrade !=null }">					
+                <c:if test="${teamGrade!=null&&teamGrade!=''}">					
                   <li><a data-toggle="modal" data-target="#modalTeamBoard" onclick="getTeamBoardData('${root}','${teamName}')">팀공지사항 관리</a></li>
                   <li><a href="${root }/teamPage/teamMemberInfo.do?teamName=${team.teamName}&teamCode=${team.teamCode}&teamGrade=${teamGrade}">팀원 관리</a></li>
                   <li><a href="#" onclick="viewSchedule('${root}','${team.teamName}')">팀스케쥴 관리</a></li>
@@ -204,7 +204,7 @@
 			  </tr>		
 			</c:if>
 			<c:choose>
-			<c:when test="${teamGrade=='AA'}">
+			<c:when test="${teamGrade!=null&&teamGrade!=''}">
             <c:forEach var="member" items="${teamMemberList}">
 			  <tr>
 				<td>${member.rnum}</td>
@@ -292,7 +292,7 @@
 	
 	<div class="container">  		
   	<form role="form" action="${root}/teamPage/addMember.do" method="post">  		
-  		<c:if test="${teamGrade!=null}">
+  		<c:if test="${teamGrade!=null&&teamGrade!=''}">
   		<h2>멤버 등록</h2>
   		<p>등록하실 멤의 정보를 입력해주세요.</p>	
 			
