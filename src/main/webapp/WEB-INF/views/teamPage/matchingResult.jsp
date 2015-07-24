@@ -328,7 +328,7 @@
 			<div class="container">
 			  <h2>매칭 정보</h2>
 			  <br/>
-			  <table class="table table-hover" style="width:100%;">
+			  <table class="table table-hover" style="width:60%;">
 			    <tbody>
 			      <tr>
 			        <td style="width:20%;">팀</td>
