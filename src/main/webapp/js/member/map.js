@@ -13,7 +13,6 @@ $(document).ready(function(){
 	    };  
 
 	var options = {
-		    location : new daum.maps.LatLng(centerLat, centerLng),
 		    sort : daum.maps.services.SortBy.DISTANCE, 
 		    sort : daum.maps.services.SortBy.POPULARITY
 	};
