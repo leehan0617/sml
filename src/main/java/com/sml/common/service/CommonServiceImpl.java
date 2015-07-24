@@ -137,7 +137,8 @@ public class CommonServiceImpl implements CommonService {
 	 */
 	
 	@Override
-	public void updateCommonBoardSelect(ModelAndView mav) {	
+	public void updateCommonBoardSelect(ModelAndView mav) {
+		logger.info("UpdateUpdateUpdateUpdateUpdateUpdateUpdate---------");
 		Map<String,Object> map=mav.getModelMap();
 		HttpServletRequest request=(HttpServletRequest) map.get("request");
 		

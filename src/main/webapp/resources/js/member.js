@@ -290,7 +290,7 @@ function teamIdCheck(form,root){
 
 function searchHomeground(form, root){
 	var url=root+"/member/searchHomeGround.do";
-	window.open(url,"",'width=1303,height=452');
+	window.open(url,"",'width=1030,height=663');
 }
 
 function selectHomeGround(){
