@@ -114,7 +114,7 @@ public class MatchingServiceImpl implements MatchingService {
 				}
 				
 				//상대팀 팀장 정보
-				MemberDto otherMemberDto=memberDao.getMemberInfo(otherTeamDto.getTeamCode());
+				MemberDto otherMemberDto=memberDao.getLeaderName(otherTeamDto.getTeamCode(), otherTeamDto.getTeamLeaderName());
 				
 				//일주일 날씨 파싱
 				String temp=matchingDto.getMatchingPlace();

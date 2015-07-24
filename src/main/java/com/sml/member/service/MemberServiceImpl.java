@@ -120,7 +120,7 @@ public class MemberServiceImpl implements MemberService{
 		}
 		//멤버 정보 가져오기
 		int teamCode=teamDto.getTeamCode();
-		MemberDto memberDto=dao.getMemberInfo(teamCode);
+		MemberDto memberDto=dao.getLeaderName(teamCode, teamDto.getTeamLeaderName());
 			
 		mav.addObject("homeGround", homeGround);
 		mav.addObject("teamDto", teamDto);

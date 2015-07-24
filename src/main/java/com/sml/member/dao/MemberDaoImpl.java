@@ -216,4 +216,13 @@ public class MemberDaoImpl implements MemberDao{
 		
 		return sqlSession.selectOne("member.dao.MemberMapper.getTeamLeaderName", teamName);
 	}
+
+	@Override
+	public MemberDto getLeaderName(int teamCode, String teamLeaderName) {
+		HashMap<String, Object> hMap=new HashMap<String, Object>();
+		System.out.println(teamLeaderName);
+		hMap.put("teamCode", teamCode);
+		hMap.put("teamLeaderName", teamLeaderName);
+		return sqlSession.selectOne("member.dao.MemberMapper.getLeaderName", hMap);
+	}
 }

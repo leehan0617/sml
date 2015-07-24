@@ -374,4 +374,10 @@ function showPageOne(){
 	$(".modalPageTwo").slideUp();
 	$(".modalPageOne").slideDown();
 }
+
+function showPageFour(){
+	$(".modalPageOne").slideUp();
+	$(".modalPageTwo").slideUp();
+	$("#modalPageFour").slideDown();
+}
 	

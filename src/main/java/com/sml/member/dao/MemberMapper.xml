@@ -90,4 +90,8 @@
 	<select id="getTeamLeaderName" parameterType="String" resultType="String">
 		select teamLeaderName from team where teamName=#{teamName}
 	</select>
+	
+	<select id="getLeaderName" parameterType="java.util.HashMap" resultType="com.sml.member.dto.MemberDto">
+		select * from teamMember where teamCode=#{teamCode} and memberName=#{teamLeaderName}
+	</select>
 </mapper>  

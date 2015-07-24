@@ -8,6 +8,7 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Insert title here</title>
 <link href="${root}/css/map/map.css" type="text/css" rel="stylesheet"/>
+<link id="bootstrap-style" href="${root}/resources/admin/css/bootstrap.min.css" rel="stylesheet">
 <script type="text/javascript" src="${root}/js/jquery/jquery.js"></script>
 <script type="text/javascript" src="//apis.daum.net/maps/maps3.js?apikey=1442260e0c6af86974001269a7312e42&libraries=services"></script>
 <script type="text/javascript" src="${root}/js/admin/map.js"></script>
@@ -31,9 +32,24 @@
     	</div>
 	</div>
 	
-	<div>경기장 1 : <span id="place1"></span></div>
-	<div>경기장 2 : <span id="place2"></span></div>
-	<div>경기장 3 : <span id="place3"></span></div>
+	<table class="table table-hover" style="text-align: center;">
+			    <tbody>
+			      <tr>
+			      	<td>경기장 1</td>
+			      	<td id="place1"></td>
+			      </tr>
+			      <tr>
+			      	<td>경기장 2</td>
+			      	<td id="place2"></td>
+			      </tr>
+			      <tr>
+			      	<td>경기장 3</td>
+			      	<td id="place3"></td>	      	
+			      </tr>		      
+			     <tr>
+			     </tr>
+			    </tbody>
+			  </table>
 	<div align="center">
 		<input id="selectPlace" type="button" value="해당 주소로 설정">
 	</div>
