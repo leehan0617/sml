@@ -126,7 +126,7 @@
                   <li><a data-toggle="modal" data-target="#popup" href="${root }/teamPage/manageTeamEmblem.do?teamName=${teamNameNoSpace}">팀로고 관리</a></li>
                   <li><a data-toggle="modal" data-target="#popupMyInfo" href="${root }/member/myInfoPage.do?teamName=${teamNameNoSpace }">개인정보수정</a></li>
 
-                  <li><a href="#">로그아웃</a></li>
+                  <li><a href="${root }/teamPage/logout.do">로그아웃</a></li>
                  </c:if>
                 <c:if test="${teamGrade == null }">
                 	<li class="dropdown-header">로그인을 해주세요</li>

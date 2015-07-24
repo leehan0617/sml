@@ -392,7 +392,7 @@ public class TeamServiceImpl implements TeamService{
 		MultipartFile upFile=request.getFile("teamImage");		
 		
 		String fileName=upFile.getOriginalFilename();
-		String timeName=Long.toString(System.currentTimeMillis()) + "_" +  fileName ;
+		//String timeName=Long.toString(System.currentTimeMillis()) + "_" +  fileName ;
 		long fileSize=upFile.getSize();
 	
 		if(fileSize!=0){
@@ -403,12 +403,12 @@ public class TeamServiceImpl implements TeamService{
 //				String dir=request.getSession().getServletContext().getRealPath("/img/teamImg");
 //				/Users/ihanbin/Documents/stsworkspace/smlProject/src/main/webapp/img
 				String dir="/Users/ihanbin/Documents/stsworkspace/smlProject/src/main/webapp/img/teamImg";
-				File file=new File(dir, timeName);			
+				File file=new File(dir, fileName);			
 				
 				upFile.transferTo(file);
 				
 				teamDto.setPath(file.getAbsolutePath());
-				teamDto.setEmblem(timeName);				
+				teamDto.setEmblem(fileName);				
 			}catch(Exception e){
 				logger.info("파일 입출력 에러:" + e);
 			}
