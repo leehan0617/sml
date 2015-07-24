@@ -72,6 +72,15 @@ $(function(){
 	})
 	
 	$("#roll").Scroll({line:1,speed:1500,timer:3000,up:"#topbtnid",down:"#btmbtnid",autoplay:'#bannerplay',autostop:'#bannerstop'});
+	
+	$(function(){
+		$("#goTeamPage").click(function(){
+			var text = $("input[id='searchTeamName']").val();
+			
+			var url = "/home/team/teamMain.do?teamName="+text;
+			window.open(url);
+		});
+ 	});
 });
 
 function writeReply(root,teamName){

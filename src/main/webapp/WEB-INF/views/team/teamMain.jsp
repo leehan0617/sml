@@ -24,12 +24,14 @@
 	<script src="${root }/resources/js/teamMain.js"></script>	
 	<script src="${root }/resources/js/jquery.jqplot.js"></script>
 	
-	<script src="${root }/resources/js/smlStart.js"></script>	
+		
 	
 	<script src="${root }/resources/js/jqplot.categoryAxisRenderer.js"></script>
 	<script src="${root }/resources/js/jqplot.barRenderer.js"></script>
 	<script src="${root }/resources/js/jqplot.pieRenderer.js"></script>
 	
+	<%-- <script src="${root }/resources/js/smlStart.js"></script> --%>
+
 	<%-- 
 	<!-- Bootstrap core CSS -->
     <link href="${root}/resources/css/bootstrap.css" rel="stylesheet" type="text/css"/>
@@ -77,7 +79,18 @@
 		    overflow-x: hidden;
 	    }	    
      </style>
- 	 
+ 	 	
+ <!-- 	 <script>
+ 	$(function(){
+		$("#goTeamPage").click(function(){
+			alert("succcc");
+			var text = $("input[id='searchTeamName']").val();
+			
+			var url = "/home/team/teamMain.do?teamName="+text;
+			window.open(url);
+		});
+ 	});
+	</script> -->
 </head>
 <body>
 
@@ -151,11 +164,10 @@
 			      		  <span class="glyphicon glyphicon-search" aria-hidden="true"></span>이동
 			      		</button>
 			      		</span>
-		    		</div><!-- /input-group -->
+		    		</div><!-- /input-group -->		    		
 	  			  </form>
                 </li>
              </ul>
-             
           </div><!--/.nav-collapse -->
         </div><!--/.container-fluid -->
       </nav>

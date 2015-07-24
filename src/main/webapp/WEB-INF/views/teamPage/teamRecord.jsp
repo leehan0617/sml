@@ -57,7 +57,7 @@
 	    overflow-y: scroll; 
 	    overflow-x: hidden;}
      </style>
-     
+      
   </head>
   <body>
       <nav class="navbar navbar-inverse ">
