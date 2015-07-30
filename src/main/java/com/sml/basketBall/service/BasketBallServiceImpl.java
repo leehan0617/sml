@@ -124,7 +124,7 @@ import com.sml.weather.WeatherParser;
 			switch(sportCode){
 				case 0: sportType="축구"; break;
 				case 1: sportType="야구"; break;
-				case 2: sportType="풋살"; break;
+				case 2: sportType="농구"; break;
 				case 3: sportType="족구"; break;
 			}
 			
@@ -142,7 +142,7 @@ import com.sml.weather.WeatherParser;
 			switch(sportCode){
 				case 0: sportType="축구"; break;
 				case 1: sportType="야구"; break;
-				case 2: sportType="풋살"; break;
+				case 2: sportType="농구"; break;
 				case 3: sportType="족구"; break;
 			}
 			
@@ -169,7 +169,7 @@ import com.sml.weather.WeatherParser;
 			switch(sportCode){
 				case 0: sportType="축구"; break;
 				case 1: sportType="야구"; break;
-				case 2: sportType="풋살"; break;
+				case 2: sportType="농구"; break;
 				case 3: sportType="족구"; break;
 			}
 			ArrayList<WeatherDTO> weatherList=null;
@@ -230,7 +230,7 @@ import com.sml.weather.WeatherParser;
 			switch(sportCode){
 				case 0: sportType="축구"; break;
 				case 1: sportType="야구"; break;
-				case 2: sportType="풋살"; break;
+				case 2: sportType="농구"; break;
 				case 3: sportType="족구"; break;
 			}
 			
@@ -330,11 +330,12 @@ import com.sml.weather.WeatherParser;
 			ModelAndView mav = new ModelAndView();
 			int sportCode = Integer.parseInt(request.getParameter("sportCode"));
 			String sportType = this.setSportCode(sportCode);
-				
+			System.out.println("type:"+sportType);
 			List<LeagueDto> leagueList = dao.showLeagueInfo(sportType);
 			List<LeagueDto> leagueJoin = dao.getLeagueJoin();
 			System.out.println("size:"+leagueJoin.size());
 			mav.addObject("leaguelist" , leagueList);
+			System.out.println(leagueList.size());
 			mav.addObject("leagueJoin" , leagueJoin);
 			mav.setViewName("jsonView");
 			return mav;
@@ -353,7 +354,7 @@ import com.sml.weather.WeatherParser;
 			switch(sportCode){
 				case 0: sportType="축구"; break;
 				case 1: sportType="야구"; break;
-				case 2: sportType="풋살"; break;
+				case 2: sportType="농구"; break;
 				case 3: sportType="족구"; break;
 			}
 			return sportType;
