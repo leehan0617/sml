@@ -41,7 +41,6 @@
 	<div class="modal-body">
 		<div id="readBoard">	
 			<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-			<h1>공지게시판 읽기</h1>
 			<hr/>
 			<div class="form-group">
 				<select class="form-control" name="sportCode" disabled="disabled" >
@@ -90,7 +89,7 @@
 			
 			<div id="updateBoard">
 				<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-				<h1>공지사항 수정하기</h1>
+				<h1></h1>
 				<hr/>
 				
 				<form class=""  action="${root }/board/updateCommonBoard.do"  method="post" onsubmit="" role="form">	
@@ -131,7 +130,7 @@
 					</c:if>
 						
 						
-					<input type="text" name="boardWriter" value="${commonBoard.boardWriter}"/>					
+					<input type="text" name="boardWriter" value="${commonBoard.boardWriter}"/>		
 					<input type="text" name="boardTitle" value="${commonBoard.boardTitle}" style="width:100%;">							
 					<textarea rows="14" cols="30" name="boardContent" style="width:100%;">${commonBoard.boardContent}</textarea>
 					
