@@ -136,13 +136,7 @@ function idCheck(form,root){
 		});
 	}
 
-
-
 function teamCheck(form){
-	
-	
-	
-
 
 	//아이디 입력여부 검사
 	if($("input[name='teamId']").val()==""){

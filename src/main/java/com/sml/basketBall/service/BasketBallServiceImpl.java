@@ -330,11 +330,12 @@ import com.sml.weather.WeatherParser;
 			ModelAndView mav = new ModelAndView();
 			int sportCode = Integer.parseInt(request.getParameter("sportCode"));
 			String sportType = this.setSportCode(sportCode);
-				
+			System.out.println("type:"+sportType);
 			List<LeagueDto> leagueList = dao.showLeagueInfo(sportType);
 			List<LeagueDto> leagueJoin = dao.getLeagueJoin();
 			System.out.println("size:"+leagueJoin.size());
 			mav.addObject("leaguelist" , leagueList);
+			System.out.println(leagueList.size());
 			mav.addObject("leagueJoin" , leagueJoin);
 			mav.setViewName("jsonView");
 			return mav;

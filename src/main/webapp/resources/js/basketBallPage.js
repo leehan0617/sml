@@ -239,9 +239,10 @@
 				  console.log(data);
 				  leagueList = data.leaguelist;
 				  leagueJoin = data.leagueJoin;
-				  
+				  console.log("test:"+leagueList);
 				  var check="YES";
 				  for(index in leagueList){
+					  console.log("test"+leagueList[index]);
 					  $("#leagueTable").append('<tr><td><a data-toggle="modal" data-target="#modalLeagueInfo" onclick=modalLeague('+'"'+root+'",'+leagueList[index].leagueCode+',"'+leagueList[index].leagueName+'","'+leagueList[index].leagueRegion+'",'+leagueList[index].leagueTeamNumber+',"'+leagueList[index].leagueDay+'","'+leagueList[index].leagueTime+'","'+leagueList[index].leagueStartDate+'","'+leagueList[index].leagueEndDate+'","'+check+'","'+teamName+'")>'+leagueList[index].leagueName+"</a></td><td>"+leagueList[index].leagueStartDate+" ~ "+leagueList[index].leagueEndDate+"</td><td>"+leagueList[index].leagueRegion+"</td><td>"+check+"</td></tr>");
 				  }
 			  }
