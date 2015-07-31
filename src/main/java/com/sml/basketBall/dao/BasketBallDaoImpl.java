@@ -91,7 +91,7 @@ public class BasketBallDaoImpl implements BasketBallDao{
 	 * @함수명: getAllTeamList
 	 * @작성일: 2015. 7. 17.
 	 * @작성자: 정성남
-	 * @설명 :
+	 * @설명 : 등록된 농구팀의 리스트를 호출하기위한 DB를 호출
 	 */
 	@Override
 	public List<HashMap<String,Object>> getAllTeamList(String sportType,int startRow,int endRow) {
@@ -129,7 +129,7 @@ public class BasketBallDaoImpl implements BasketBallDao{
 	 * @함수명: teamCount
 	 * @작성일: 2015. 7. 20.
 	 * @작성자: 정성남
-	 * @설명 :
+	 * @설명 : 등록된 농구팀의 수를 불러오기위한 DB호출
 	 */
 	@Override
 	public int teamCount(String sportType) {

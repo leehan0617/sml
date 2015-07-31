@@ -27,7 +27,7 @@ public class BaseballController {
 	 * @함수명: baseBallPage
 	 * @작성일: 2015. 7. 21.
 	 * @작성자: 정성남
-	 * @설명 :
+	 * @설명 : 야구페이지 호출을 위한 컨트롤러
 	 */
 	@RequestMapping(value="/baseBall/baseBallMain.do", method=RequestMethod.GET)
 	public ModelAndView baseballPage(HttpServletRequest request , HttpServletResponse response){
@@ -74,10 +74,10 @@ public class BaseballController {
 	
 	/**
 	 * 
-	 * @함수명: soccerRule
+	 * @함수명: baseBallRule
 	 * @작성일: 2015. 7. 17.
 	 * @작성자: 정성남
-	 * @설명 :
+	 * @설명 : 야구 경기규칙페이지 호출을 위한 컨트롤러
 	 */
 	@RequestMapping(value="/baseBall/baseBallRule.do", method=RequestMethod.GET)
 	public ModelAndView soccerRule(HttpServletRequest request, HttpServletResponse response){
@@ -95,7 +95,7 @@ public class BaseballController {
 	 * @함수명:viewSoccerBoard
 	 * @작성일:2015. 7. 16.
 	 * @작성자:이한빈 
-	 * @설명문:축구페이지 공지사항 게시판 보는 함수
+	 * @설명문:야구페이지 공지사항 게시판 보는 함수
 	 */
 	@RequestMapping(value="/viewBaseBallBoard" , method=RequestMethod.GET)
 	public ModelAndView viewSoccerBoard(HttpServletRequest request, HttpServletResponse response){
@@ -110,7 +110,7 @@ public class BaseballController {
 	 * @함수명:readSoccerBoard
 	 * @작성일:2015. 7. 16.
 	 * @작성자:이한빈 
-	 * @설명문:축구페이지 공지사항 읽는 함수 
+	 * @설명문:야구페이지 공지사항 읽는 함수 
 	 */
 	@RequestMapping(value="/readBaseBallBoard" , method=RequestMethod.GET)
 	public ModelAndView readSoccerBoard(HttpServletRequest request , HttpServletResponse response){
@@ -149,6 +149,12 @@ public class BaseballController {
 		return mav;
 	}
 	
+	/**
+	 * @함수명:showDayChart
+	 * @작성일:2015. 7. 17.
+	 * @작성자:이한빈 
+	 * @설명문:날짜별 통계보여주는 함수
+	 */
 	@RequestMapping(value="/baseBallshowDayChart" , method=RequestMethod.GET)
 	public ModelAndView showDayChart(HttpServletRequest request, HttpServletResponse response){
 		logger.info("SController showDayChart");
@@ -164,7 +170,7 @@ public class BaseballController {
 	 * @함수명: soccerTeamList
 	 * @작성일: 2015. 7. 17.
 	 * @작성자: 정성남
-	 * @설명 :
+	 * @설명 : 야구 팀리스트 페이지를 호출하기위한 컨트롤러
 	 */
 	@RequestMapping(value="/baseBall/baseBallTeamList.do", method=RequestMethod.GET)
 	public ModelAndView soccerTeamList(HttpServletRequest request, HttpServletResponse response){
@@ -203,6 +209,14 @@ public class BaseballController {
 		ModelAndView mav = service.leagueTable(request);
 		return mav;
 	}	
+	
+	/**
+	 * 
+	 * @함수명:joinLeague
+	 * @작성일:2015. 7. 20.
+	 * @작성자:이한빈 
+	 * @설명문:야구페이지 내의 리그참여를 위한 컨틀롤러
+	 */
 	
 	@RequestMapping(value="/baseBalljoinLeague" , method=RequestMethod.GET)
 	public ModelAndView joinLeague(HttpServletRequest request , HttpServletResponse response){
@@ -243,6 +257,14 @@ public class BaseballController {
 		ModelAndView mav = service.showRecentMatch(request);
 		return mav;
 	}
+	
+	/**
+	 * 
+	 * @함수명:findMatchTeams
+	 * @작성일:2015. 7. 21.
+	 * @작성자:이한빈 
+	 * @설명문:매칭할 팀을 검색하기 위한 함수 호출 
+	 */
 	
 	@RequestMapping(value="/baseBallfindMatchTeams",method=RequestMethod.GET)
 	public ModelAndView findMatchTeams(HttpServletRequest request , HttpServletResponse response){

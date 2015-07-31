@@ -179,7 +179,7 @@ public class MemberServiceImpl implements MemberService{
 	 * @함수명: viewTeamMemberInfo
 	 * @작성일: 2015. 7. 14.
 	 * @작성자: 정성남
-	 * @설명 :
+	 * @설명 : 팀원의 정보를 확인하기 위한 서비스함수
 	 */
 	@Override
 	public void viewTeamMemberInfo(ModelAndView mav) {
@@ -266,7 +266,7 @@ public class MemberServiceImpl implements MemberService{
 	 * @함수명: addMember
 	 * @작성일: 2015. 7. 15.
 	 * @작성자: 정성남
-	 * @설명 :
+	 * @설명 : 팀원을 추가하기 위한 서비스함수
 	 */
 	
 	@Override
@@ -300,7 +300,7 @@ public class MemberServiceImpl implements MemberService{
 	 * @함수명: deleteMember
 	 * @작성일: 2015. 7. 15.
 	 * @작성자: 정성남
-	 * @설명 :
+	 * @설명 : 팀원을 삭제하기 위한 서비스함수
 	 */
 	@Override
 	public void deleteMember(ModelAndView mav) {
@@ -330,7 +330,7 @@ public class MemberServiceImpl implements MemberService{
 	 * @함수명: searchMember
 	 * @작성일: 2015. 7. 15.
 	 * @작성자: 정성남
-	 * @설명 :
+	 * @설명 : 팀원을 검색하기 위한 서비스 함수
 	 */
 	@Override
 	public void searchMember(ModelAndView mav) {

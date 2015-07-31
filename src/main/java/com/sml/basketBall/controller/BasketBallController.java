@@ -26,7 +26,7 @@ public class BasketBallController {
 	 * @함수명: basketBallPage
 	 * @작성일: 2015. 7. 21.
 	 * @작성자: 정성남
-	 * @설명 :
+	 * @설명 : 농구 페이지 호출을 위한 컨트롤러
 	 */
 	@RequestMapping(value="/basketBall/basketBallMain.do", method=RequestMethod.GET)
 	public ModelAndView basketBallPage(HttpServletRequest request , HttpServletResponse response){
@@ -76,7 +76,7 @@ public class BasketBallController {
 	 * @함수명: basketBallRule
 	 * @작성일: 2015. 7. 17.
 	 * @작성자: 정성남
-	 * @설명 :
+	 * @설명 : 농구규칙페이지를 호출하기 위한 컨틀롤러
 	 */
 	@RequestMapping(value="/basketBall/basketBallRule.do", method=RequestMethod.GET)
 	public ModelAndView basketBallRule(HttpServletRequest request, HttpServletResponse response){

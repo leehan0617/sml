@@ -64,7 +64,7 @@ public class RefereeController {
 	 * @함수명: registerRefereeOk
 	 * @작성일: 2015. 7. 20.
 	 * @작성자: 정성남
-	 * @설명 :
+	 * @설명 : 심판을 등록하는 페이지로 이동하기 위한 컨트롤러
 	 */
 	@RequestMapping(value="/referee/registerReferee.do", method=RequestMethod.POST)
 	public ModelAndView registerRefereeOk(MultipartHttpServletRequest request, RefereeDto refereeDto){

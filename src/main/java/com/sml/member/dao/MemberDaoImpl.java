@@ -110,7 +110,7 @@ public class MemberDaoImpl implements MemberDao{
 	 * @함수명: getTeamInfo
 	 * @작성일: 2015. 7. 15.
 	 * @작성자: 정성남
-	 * @설명 :
+	 * @설명 : 팀원의 정보를 열람하기 위한 DB를 호출
 	 */
 	@Override
 	public TeamDto getTeamInfo(String teamName) {
@@ -123,7 +123,7 @@ public class MemberDaoImpl implements MemberDao{
 	 * @함수명: getTeamMemberList
 	 * @작성일: 2015. 7. 15.
 	 * @작성자: 정성남
-	 * @설명 :
+	 * @설명 : 팀원의 리스트를 호출하기 위한 DB호출
 	 */
 	@Override
 	public List<MemberDto> getTeamMemberList(String teamName, int startRow, int endRow) {
@@ -140,7 +140,7 @@ public class MemberDaoImpl implements MemberDao{
 	 * @함수명: getTeamMemberCount
 	 * @작성일: 2015. 7. 15.
 	 * @작성자: 정성남
-	 * @설명 :
+	 * @설명 : 팀원의 수를 확인하기 위한 DB호출
 	 */
 	
 	@Override
@@ -153,7 +153,7 @@ public class MemberDaoImpl implements MemberDao{
 	 * @함수명: addMember
 	 * @작성일: 2015. 7. 15.
 	 * @작성자: 정성남
-	 * @설명 :
+	 * @설명 : 팀원 등록을 위한 DB호출
 	 */
 	@Override
 	public int addMember(MemberDto member) {		
@@ -166,7 +166,7 @@ public class MemberDaoImpl implements MemberDao{
 	 * @함수명: deleteMember
 	 * @작성일: 2015. 7. 15.
 	 * @작성자: 정성남
-	 * @설명 :
+	 * @설명 : 팀원 삭제를 위한 DB호출
 	 */
 	@Override
 	public int deleteMember(int memberCode,String teamLeaderName){
@@ -181,7 +181,7 @@ public class MemberDaoImpl implements MemberDao{
 	 * @함수명: getMemberSearchList
 	 * @작성일: 2015. 7. 15.
 	 * @작성자: 정성남
-	 * @설명 :
+	 * @설명 : 팀원의 검색을 위한 DB를 호출
 	 */
 	@Override
 	public List<MemberDto> getMemberSearchList(String teamName,String searchBoxName,int startRow,int endRow) {
@@ -198,7 +198,7 @@ public class MemberDaoImpl implements MemberDao{
 	 * @함수명: getSearchTeamMemberCount
 	 * @작성일: 2015. 7. 16.
 	 * @작성자: 정성남
-	 * @설명 :
+	 * @설명 : 검색된 팀원의 수를 확인하기 위한 DB호출 
 	 */
 	@Override
 	public int getSearchTeamMemberCount(int teamCode,String searchBoxName) {
@@ -212,7 +212,7 @@ public class MemberDaoImpl implements MemberDao{
 	 * @함수명: getTeamLeaderName
 	 * @작성일: 2015. 7. 23.
 	 * @작성자: 정성남
-	 * @설명 :
+	 * @설명 : 팀장의 이름을 확인하기 위한 DB호출
 	 */
 	@Override
 	public String getTeamLeaderName(String teamName) {
