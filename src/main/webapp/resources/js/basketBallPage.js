@@ -231,7 +231,7 @@
 	   function leagueTable(root , sportCode,teamName){
 		   var addr = root +"/basketBallleagueTable?sportCode="+sportCode;
 		   $("#leagueTable").empty();
-		   alert(teamName);
+		   //alert(teamName);
 		   $.ajax({
 			  type:"GET",
 			  url:addr,

@@ -67,9 +67,7 @@
 		$("#updateTeamInfo").hide();
 	}
 </script>
-<style>
-	
-</style>
+
 <body>
 	<div class="modal-header">
 		<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
@@ -123,18 +121,6 @@
 		  </div>
 		</div>
 		
-		<%-- <div id="myProfil">
-			<h3>내 프로필</h3>
-			<div>이름 : ${memberDto.memberName}</div>
-			<div>생년월일 : ${memberDto.memberBirth}</div>
-			<div>지역 : ${memberDto.memberRegion}</div>
-			<div>이메일 : ${memberDto.memberEmail}</div>
-			<div>연락처 : ${memberDto.memberPhone}</div>
-			<div>성별 : ${memberDto.memberGender}</div>
-			<a href="${root }/member/updateMemberInfo.do?teamName=${teamDto.teamName }">수정하기</a>
-			<button type="button" onclick="updateProfil()">수정하기</button>
-		</div> --%>
-		
 		<div id="updateMyProfil">
 			<h3>프로필 수정</h3>
 			<form class="form-horizontal" action="${root}/member/updateMemberInfoOk.do" method="post" onsubmit="return teamCheck(this)" role="form">
@@ -159,17 +145,7 @@
 						</div>
 					</div>
 				</div>
-				
-				<!-- <script>
-					var values=new Array();
-					var region="${memberDto.memberRegion}";
-					values=region.split(" ");
-					
-					for(var i=0; values.size(); i++){
-						alert(values[i]);
-					}
-				</script> -->
-				
+								
 				<div class="row">
 			    	<div class="col-xs-8 col-sm-3"></div>
 			    	 <div class="col-xs-4 col-sm-6">
@@ -277,15 +253,7 @@
 		   </div>
 		  <div align="right">
 		  	<button class="btn btn-success" type="button" onclick="updateTeamInfo()">수정하기</button>
-		  </div>
-			<%-- <h3>팀 정보</h3>
-			<img src="${root }/img/teamImg/${teamDto.emblem}" alt="팀 로고"/>
-			<div>팀명 : ${teamDto.teamName }</div>
-			<div>팀 아이디 : ${teamDto.teamId }</div>
-			<div>팀장이름 : ${teamDto.teamLeaderName }</div>
-			<div>팀 종목 : ${teamDto.sportType }</div>	
-			<div>홈구장 : ${homeGround }</div>	
-			<a href="${root }/team/updateTeamInfo.do?teamName=${teamDto.teamName }">수정하기</a> --%>			
+		  </div>	
 			
 		</div>
 		
@@ -378,11 +346,7 @@
 	</div> -->
 	
 	
-	<div class="modal fade" id="popup">
-		<div class="modal-dialog">
-	    	<div class="modal-content">
-    	</div>
-    </div>
+	
 </div>
 </body>
 </html>

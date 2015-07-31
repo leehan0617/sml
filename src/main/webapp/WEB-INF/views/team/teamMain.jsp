@@ -79,18 +79,6 @@
 		    overflow-x: hidden;
 	    }	    
      </style>
- 	 	
- <!-- 	 <script>
- 	$(function(){
-		$("#goTeamPage").click(function(){
-			alert("succcc");
-			var text = $("input[id='searchTeamName']").val();
-			
-			var url = "/home/team/teamMain.do?teamName="+text;
-			window.open(url);
-		});
- 	});
-	</script> -->
 </head>
 <body>
 

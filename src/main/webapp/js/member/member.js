@@ -137,8 +137,7 @@ function idCheck(form,root){
 	}
 
 function teamCheck(form){
-
-	//아이디 입력여부 검사
+	/*//아이디 입력여부 검사
 	if($("input[name='teamId']").val()==""){
 		alert("아이디를 입력하세요");
 		$("input[name='teamId']").focus();
@@ -207,11 +206,6 @@ function teamCheck(form){
 		alert("경기장을 입력하세요");
 		$("input[name='homeGround']").focus();
 		return false;
-	}	
-	
-	
-	
-	
 	
 	
 	if($("input[name='memberName']").val()==""){
@@ -226,11 +220,7 @@ function teamCheck(form){
 		return false;
 	}
 	
-	if($("input[name='memberEmail']").val()==""){
-		alert("email을 입력하세요");
-		$("input[name='memberEmail']").focus();
-		return false;
-	}
+	
 	
 	if($("input[name='memberPhone']").val()==""){
 		alert("핸드폰번호를 입력하세요");
@@ -239,12 +229,7 @@ function teamCheck(form){
 	}
 	
 	
-	var sex=$("input[name='sexValue']:radio:checked").val();
-	/*alert(sex);*/
-	if(!sex){
-		alert("성별을 선택하세요");
-		return false;
-	}
+	
 
 	//alert(idChk + " + " + teamIdChk );
 	if(idChk==null){
@@ -255,11 +240,24 @@ function teamCheck(form){
 	if(teamIdChk==null){
 		alert("팀 중복검사를 하세요.");
 		return false;
+	}*/
+	
+	if($("input[name='memberEmail']").val()==""){
+		alert("email을 입력하세요");
+		$("input[name='memberEmail']").focus();
+		return false;
+	}
+	
+	var sex=$("input[name='sexValue']:radio:checked").val();
+	//alert(sex);
+	if(!sex){
+		alert("성별을 선택하세요");
+		return false;
 	}
 	
 	$("input[name='memberGender']").attr("value",sex);
 	$("input[name='memberRegion']").attr("value",$("#sido").val()+" "+$("#gugun").val());
-	//alert($("input[name='memberRegion']").val());
+	//alert("akjeflakjef" + $("input[name='memberRegion']").val());
 }
 
 function teamIdCheck(form,root){
