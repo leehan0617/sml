@@ -158,7 +158,7 @@ import com.sml.weather.WeatherParser;
 		 * @함수명: basketBallRule
 		 * @작성일: 2015. 7. 17.
 		 * @작성자: 정성남
-		 * @설명 :
+		 * @설명 : 농구규칙 페이지를 호출하기위한 서비스함수
 		 */
 		@Override
 		public void basketBallRule(ModelAndView mav) {
@@ -215,7 +215,7 @@ import com.sml.weather.WeatherParser;
 		 * @함수명: basketBallTeamList
 		 * @작성일: 2015. 7. 17.
 		 * @작성자: 정성남
-		 * @설명 :
+		 * @설명 : 농구 팀의 리스트를 호출하기 위한 서비스함수
 		 */
 		@Override
 		public void basketBallTeamList(ModelAndView mav) {
@@ -384,7 +384,7 @@ import com.sml.weather.WeatherParser;
 		 * @함수명: basketBallCommonBoard
 		 * @작성일: 2015. 7. 21.
 		 * @작성자: 정성남
-		 * @설명 :
+		 * @설명 : 농구 공지게시판을 불러오기위한 서비스 함수
 		 */
 		@Override
 		public void basketBallCommonBoard(ModelAndView mav) {

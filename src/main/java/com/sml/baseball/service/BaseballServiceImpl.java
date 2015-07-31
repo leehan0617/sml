@@ -32,7 +32,7 @@ import com.sml.weather.WeatherParser;
 		 * @함수명: baseBallRule
 		 * @작성일: 2015. 7. 17.
 		 * @작성자: 정성남
-		 * @설명 :
+		 * @설명 : 야구경기 규칙페이지를 호출하기 위한 서비스 함수
 		 */
 		@Override
 		public void baseBallRule(ModelAndView mav) {
@@ -216,7 +216,7 @@ import com.sml.weather.WeatherParser;
 		 * @함수명: soccerTeamList
 		 * @작성일: 2015. 7. 17.
 		 * @작성자: 정성남
-		 * @설명 :
+		 * @설명 : 야구 팀리스트를 호출하기위한 서비스 함수
 		 */
 		@Override
 		public void soccerTeamList(ModelAndView mav) {
@@ -385,7 +385,7 @@ import com.sml.weather.WeatherParser;
 		 * @함수명: soccerCommonBoard
 		 * @작성일: 2015. 7. 21.
 		 * @작성자: 정성남
-		 * @설명 :
+		 * @설명 : 야구 공지사항 게시판을 호출하기 위한 서비스 함수
 		 */
 		@Override
 		public void soccerCommonBoard(ModelAndView mav) {

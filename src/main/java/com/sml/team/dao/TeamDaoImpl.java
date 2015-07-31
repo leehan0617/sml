@@ -63,7 +63,7 @@ public class TeamDaoImpl implements TeamDao{
 	 * @함수명: recordList
 	 * @작성일: 2015. 7. 16.
 	 * @작성자: 정성남
-	 * @설명 :
+	 * @설명 : 각 팀의 경기기록 DB를 가져오기 위한 함수
 	 */
 	@Override
 	public List<HashMap<String, Object>> recordList(String teamName, int startRow, int endRow) {
@@ -78,7 +78,7 @@ public class TeamDaoImpl implements TeamDao{
 	 * @함수명: searchRecordList
 	 * @작성일: 2015. 7. 16.
 	 * @작성자: 정성남
-	 * @설명 :
+	 * @설명 : 팀검색을 통한 경기기록을 확인하기 위한 DB를 호출
 	 */
 	@Override
 	public List<HashMap<String, Object>> searchRecordList(String searchBoxName, int startRow, int endRow) {
@@ -154,7 +154,7 @@ public class TeamDaoImpl implements TeamDao{
 	 * @함수명: getTeamLogCount
 	 * @작성일: 2015. 7. 9.
 	 * @작성자: 정성남
-	 * @설명 :
+	 * @설명 : 팀페이지 게시판 댓글의 수를 가져오기 위한 함수
 	 */
 	@Override
 	public int getTeamLogCount() {		
@@ -165,7 +165,7 @@ public class TeamDaoImpl implements TeamDao{
 	 * @함수명: teamLogList
 	 * @작성일: 2015. 7. 6.
 	 * @작성자: 정성남
-	 * @설명 :
+	 * @설명 : 팀페이지 게시판 댓글을 출력하기 위한 DB호출
 	 */
 	@Override
 	public List<TeamLogDto> teamLogDtoList(int teamCode,int startRow,int endRow) {

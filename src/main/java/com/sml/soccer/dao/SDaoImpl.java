@@ -90,7 +90,7 @@ public class SDaoImpl implements SDao{
 	 * @함수명: getAllTeamList
 	 * @작성일: 2015. 7. 17.
 	 * @작성자: 정성남
-	 * @설명 :
+	 * @설명 : 등록된 축구 팀의 DB를 호출하기 위한 함수
 	 */
 	@Override
 	public List<HashMap<String,Object>> getAllTeamList(String sportType,int startRow,int endRow) {
@@ -128,7 +128,7 @@ public class SDaoImpl implements SDao{
 	 * @함수명: teamCount
 	 * @작성일: 2015. 7. 20.
 	 * @작성자: 정성남
-	 * @설명 :
+	 * @설명 : 등록된 팀의 수를 확인하기  DB를 호출하기 위한 함수
 	 */
 	@Override
 	public int teamCount(String sportType) {
@@ -151,7 +151,7 @@ public class SDaoImpl implements SDao{
 	 * @함수명: getTeamList
 	 * @작성일: 2015. 7. 23.
 	 * @작성자: 정성남
-	 * @설명 :
+	 * @설명 : 등록된 팀의 DB를 호출하기 위한 함수
 	 */
 	@Override
 	public List<HashMap<String, Object>> getTeamList(int startRow, int endRow, String sportType, String regionSido) {
@@ -169,7 +169,7 @@ public class SDaoImpl implements SDao{
 	 * @함수명: sidoList
 	 * @작성일: 2015. 7. 23.
 	 * @작성자: 정성남
-	 * @설명 :
+	 * @설명 : 지역별 카테고리 리스트를 불러오기 위한 DB를 호출
 	 */
 	@Override
 	public List<String> sidoList(String regionSido) {

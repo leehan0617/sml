@@ -27,7 +27,7 @@ public class SController {
 	 * @함수명: soccerPage
 	 * @작성일: 2015. 7. 17.
 	 * @작성자: 정성남
-	 * @설명 :  축구페이지이동
+	 * @설명 : 축구페이지이동
 	 */
 	@RequestMapping(value="/sc", method=RequestMethod.GET)
 	public ModelAndView soccerPage(HttpServletRequest request , HttpServletResponse response){
@@ -78,7 +78,7 @@ public class SController {
 	 * @함수명: soccerRule
 	 * @작성일: 2015. 7. 17.
 	 * @작성자: 정성남
-	 * @설명 :
+	 * @설명 : 축구 경기규칙페이지를 호출하기 위한 컨트롤러
 	 */
 	@RequestMapping(value="/soccer/soccerRule.do", method=RequestMethod.GET)
 	public ModelAndView soccerRule(HttpServletRequest request, HttpServletResponse response){
