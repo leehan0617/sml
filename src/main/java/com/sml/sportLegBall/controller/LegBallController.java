@@ -26,8 +26,8 @@ public class LegBallController {
 	 * 
 	 * @함수명: legBallPage
 	 * @작성일: 2015. 7. 21.
-	 * @작성자: 정성남
-	 * @설명 :
+	 * @작성자: 조영석
+	 * @설명 :  족구 사이트 이동 컨트롤러
 	 */
 	@RequestMapping(value="/sportLegBall/legBallMain.do", method=RequestMethod.GET)
 	public ModelAndView legBallPage(HttpServletRequest request , HttpServletResponse response){
@@ -77,8 +77,8 @@ public class LegBallController {
 	 * 
 	 * @함수명: legBallRule
 	 * @작성일: 2015. 7. 17.
-	 * @작성자: 정성남
-	 * @설명 :
+	 * @작성자: 조영석
+	 * @설명 : 족구 경기규칙 이동 컨트롤러
 	 */
 	@RequestMapping(value="/legBall/legBallRule.do", method=RequestMethod.GET)
 	public ModelAndView legBallRule(HttpServletRequest request, HttpServletResponse response){
@@ -163,7 +163,7 @@ public class LegBallController {
 	 * 
 	 * @함수명: legBallTeamList
 	 * @작성일: 2015. 7. 17.
-	 * @작성자: 정성남
+	 * @작성자: 조영석
 	 * @설명 : 팀리스트 이동 컨트롤러
 	 */
 	@RequestMapping(value="/legBall/legBallTeamList.do", method=RequestMethod.GET)
@@ -217,7 +217,7 @@ public class LegBallController {
 	 * 
 	 * @함수명: legBallCommonBoardPage
 	 * @작성일: 2015. 7. 21.
-	 * @작성자: 정성남
+	 * @작성자: 조영석
 	 * @설명 : 공지사항 이동 페이지
 	 */
 	@RequestMapping(value="/legBall/legBallCommonBoardPage.do", method=RequestMethod.GET)

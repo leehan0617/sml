@@ -93,8 +93,8 @@ public class LegBallDaoImpl implements LegBallDao{
 	 * 	
 	 * @함수명: getAllTeamList
 	 * @작성일: 2015. 7. 17.
-	 * @작성자: 정성남
-	 * @설명 :
+	 * @작성자: 조영석
+	 * @설명 : 족구 방영록 열람을 위한 데이터베이스 연결
 	 */
 	@Override
 	public List<HashMap<String,Object>> getAllTeamList(String sportType,int startRow,int endRow) {
@@ -131,8 +131,8 @@ public class LegBallDaoImpl implements LegBallDao{
 	/**
 	 * @함수명: teamCount
 	 * @작성일: 2015. 7. 20.
-	 * @작성자: 정성남
-	 * @설명 :
+	 * @작성자: 조영석
+	 * @설명 : 팀 카운트를 위한 데이터베이스 연결
 	 */
 	@Override
 	public int teamCount(String sportType) {
