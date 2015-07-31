@@ -105,7 +105,7 @@ public class AdminDaoImpl implements AdminDao {
 	 * @함수명: createLeague
 	 * @작성일: 2015. 6. 26.
 	 * @작성자: 정성남
-	 * @설명 :
+	 * @설명 : 리그 개설 DAO
 	 */
 	@Override
 	public int createLeague(LeagueDto leagueDto) {					
@@ -116,7 +116,7 @@ public class AdminDaoImpl implements AdminDao {
 	 * @함수명: getManageLeagueCount
 	 * @작성일: 2015. 7. 2.
 	 * @작성자: 정성남
-	 * @설명 :
+	 * @설명 : 개설된 리그의 숫자를 호출
 	 */
 	@Override
 	public int getManageLeagueCount() {
@@ -129,7 +129,7 @@ public class AdminDaoImpl implements AdminDao {
 	 * @함수명: manageLeague
 	 * @작성일: 2015. 7. 2.
 	 * @작성자: 정성남
-	 * @설명 :
+	 * @설명 : 개설된 리그 LIST DAO
 	 */
 	@Override
 	public List<LeagueDto> manageLeagueList(int startRow,int endRow){
@@ -144,7 +144,7 @@ public class AdminDaoImpl implements AdminDao {
 	 * @함수명: leagueDelete
 	 * @작성일: 2015. 7. 2.
 	 * @작성자: 정성남
-	 * @설명 :
+	 * @설명 : 개설된 리그 삭제 DAO
 	 */
 	@Override
 	public int leagueDelete(int leagueCode) {
@@ -156,7 +156,7 @@ public class AdminDaoImpl implements AdminDao {
 	 * @함수명: leagueInfo
 	 * @작성일: 2015. 7. 2.
 	 * @작성자: 정성남
-	 * @설명 :
+	 * @설명 : 리그 관련 정보 DAo
 	 */
 	@Override
 	public LeagueDto leagueInfo(int leagueCode) {
@@ -168,7 +168,7 @@ public class AdminDaoImpl implements AdminDao {
 	 * @함수명: leagueUpdate
 	 * @작성일: 2015. 7. 2.
 	 * @작성자: 정성남
-	 * @설명 :
+	 * @설명 : 리그 수정을 위한 데이터베이스 열람
 	 */
 	@Override
 	public LeagueDto leagueUpdate(int leagueCode) {
@@ -180,7 +180,7 @@ public class AdminDaoImpl implements AdminDao {
 	 * @함수명: leagueUpdateOk
 	 * @작성일: 2015. 7. 2.
 	 * @작성자: 정성남
-	 * @설명 :
+	 * @설명 : 리그 수정결과
 	 */
 	@Override
 	public int leagueUpdateOk(LeagueDto leagueDto) {
@@ -260,7 +260,13 @@ public class AdminDaoImpl implements AdminDao {
 		hMap.put("resultScore", resultScore);
 		return sqlSession.update("dao.adminDaoMapper.insertDraw",hMap);
 	}
-
+	
+	/**
+	 * @name : insertTeam1
+	 * @date : 2015. 7. 20.
+	 * @author : 이희재
+	 * @description : 홈팀의 경기 결과를 입력하기 위한 mapper
+	 */
 	@Override
 	public int insertTeam1(int gameCode, String resultScore) {
 		HashMap<String, Object> hMap=new HashMap<String, Object>();
@@ -268,7 +274,12 @@ public class AdminDaoImpl implements AdminDao {
 		hMap.put("resultScore", resultScore);
 		return sqlSession.update("dao.adminDaoMapper.insertTeam1",hMap);
 	}
-
+	/**
+	 * @name : insertTeam2
+	 * @date : 2015. 7. 20.
+	 * @author : 이희재
+	 * @description : 원정팀의 경기 결과를 입력하기 위한 mapper
+	 */
 	@Override
 	public int insertTeam2(int gameCode, String resultScore) {
 		HashMap<String, Object> hMap=new HashMap<String, Object>();

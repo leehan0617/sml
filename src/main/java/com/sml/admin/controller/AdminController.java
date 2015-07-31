@@ -136,7 +136,7 @@ public class AdminController {
 		 * @함수명: manageTeamDelete
 		 * @작성일: 2015. 6. 25.
 		 * @작성자: 정성남
-		 * @설명 :
+		 * @설명 : 팀 삭제 기능
 		 */
 		@RequestMapping(value="/admin/createLeague.do",method=RequestMethod.POST)
 		public ModelAndView createLeague(MultipartHttpServletRequest request , LeagueDto leagueDto){

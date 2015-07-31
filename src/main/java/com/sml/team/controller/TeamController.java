@@ -145,7 +145,7 @@ public class TeamController {
 	 * @함수명: viewTeamRecord
 	 * @작성일: 2015. 7. 15.
 	 * @작성자: 정성남
-	 * @설명 :
+	 * @설명 : 경기기록페이지를 불러오기위한 컨트롤러
 	 */
 	@RequestMapping(value="/teamPage/viewTeamRecord.do", method=RequestMethod.GET)
 	 public ModelAndView viewTeamRecord(HttpServletRequest request,TeamDto teamDto){
@@ -164,7 +164,7 @@ public class TeamController {
 	 * @함수명: searchRecord
 	 * @작성일: 2015. 7. 16.
 	 * @작성자: 정성남
-	 * @설명 :
+	 * @설명 : 팀검색을 통해 경기기록을 확인하기 위한 컨트롤러
 	 */
 	@RequestMapping(value="/teamPage/searchRecord.do" , method=RequestMethod.GET)
 	public ModelAndView searchRecord(HttpServletRequest request){

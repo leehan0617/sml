@@ -224,7 +224,7 @@ public class TeamServiceImpl implements TeamService{
 	 * @함수명: viewTeamRecord
 	 * @작성일: 2015. 7. 16.
 	 * @작성자: 정성남
-	 * @설명 :
+	 * @설명 : 각 팀의 기록을 출력하기 위한 서비스함수
 	 */
 	
 	@Override
@@ -299,7 +299,7 @@ public class TeamServiceImpl implements TeamService{
 	 * @함수명: searchRecord
 	 * @작성일: 2015. 7. 16.
 	 * @작성자: 정성남
-	 * @설명 :
+	 * @설명 : 검색을 통해 팀 별 기록을 출력하기 위한 함수
 	 */
 	@Override
 	public void searchRecord(ModelAndView mav) {

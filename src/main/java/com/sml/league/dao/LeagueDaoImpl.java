@@ -276,7 +276,7 @@ public class LeagueDaoImpl implements LeagueDao{
 	 * @함수명: getTeamEmblem
 	 * @작성일: 2015. 7. 22.
 	 * @작성자: 정성남
-	 * @설명 :
+	 * @설명 :  팀의 엠블럼을 호출하기 위한 컨트롤러
 	 */
 	@Override
 	public String getTeamEmblem(String teamName) {

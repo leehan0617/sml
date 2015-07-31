@@ -158,8 +158,8 @@ import com.sml.weather.WeatherParser;
 		 * 
 		 * @함수명: legBallRule
 		 * @작성일: 2015. 7. 17.
-		 * @작성자: 정성남
-		 * @설명 :
+		 * @작성자: 조영석		
+		 * @설명 : 경기규칙 열람을 위한 서비스메소드
 		 */
 		@Override
 		public void legBallRule(ModelAndView mav) {
@@ -218,8 +218,8 @@ import com.sml.weather.WeatherParser;
 		 * 
 		 * @함수명: legBallTeamList
 		 * @작성일: 2015. 7. 17.
-		 * @작성자: 정성남
-		 * @설명 :
+		 * @작성자: 조영석
+		 * @설명 : 팀 리스트 열람을 위한 서비스 메소드
 		 */
 		@Override
 		public void legBallTeamList(ModelAndView mav) {
@@ -393,8 +393,8 @@ import com.sml.weather.WeatherParser;
 		/**
 		 * @함수명: legBallCommonBoard
 		 * @작성일: 2015. 7. 21.
-		 * @작성자: 정성남
-		 * @설명 :
+		 * @작성자: 조영석
+		 * @설명 : 족구 방영록 열람을 위한 서비스 메소드
 		 */
 		@Override
 		public void legBallCommonBoard(ModelAndView mav) {

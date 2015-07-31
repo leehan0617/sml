@@ -159,7 +159,7 @@ public class SServiceImpl implements SService{
 	 * @함수명: soccerRule
 	 * @작성일: 2015. 7. 17.
 	 * @작성자: 정성남
-	 * @설명 :
+	 * @설명 : 축구경기 규칙을 불러오기 위한 서비스함수
 	 */
 	@Override
 	public void soccerRule(ModelAndView mav) {
@@ -219,7 +219,7 @@ public class SServiceImpl implements SService{
 	 * @함수명: soccerTeamList
 	 * @작성일: 2015. 7. 17.
 	 * @작성자: 정성남
-	 * @설명 :
+	 * @설명 : 등록된 축구팀을 불러오기 위한 서비스함수
 	 */
 	@Override
 	public void soccerTeamList(ModelAndView mav) {
@@ -410,7 +410,7 @@ public class SServiceImpl implements SService{
 	 * @함수명: soccerCommonBoard
 	 * @작성일: 2015. 7. 21.
 	 * @작성자: 정성남
-	 * @설명 :
+	 * @설명 : 축구 공지사항 게시판을 불러오기 위한 서비스함수
 	 */
 	@Override
 	public void soccerCommonBoard(ModelAndView mav) {

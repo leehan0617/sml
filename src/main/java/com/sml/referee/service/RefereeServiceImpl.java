@@ -34,7 +34,7 @@ public class RefereeServiceImpl implements RefereeService{
 	 * @함수명: refereeList
 	 * @작성일: 2015. 7. 20.
 	 * @작성자: 정성남
-	 * @설명 :
+	 * @설명 : 등록된 심판의 리스트를 불러오기위한 서비스 함수
 	 */
 	@Override
 	public void refereeList(ModelAndView mav) {	
@@ -147,7 +147,7 @@ public class RefereeServiceImpl implements RefereeService{
 	 * @함수명: registerReferee
 	 * @작성일: 2015. 7. 20.
 	 * @작성자: 정성남
-	 * @설명 :
+	 * @설명 : 심판을 등록하기 위한 서비스함수
 	 */
 	@Override
 	public void registerReferee(ModelAndView mav) {

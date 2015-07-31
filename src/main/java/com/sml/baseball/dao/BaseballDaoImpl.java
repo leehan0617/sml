@@ -24,7 +24,7 @@ public class BaseballDaoImpl implements BaseballDao{
 	 * @함수명:getBoardCount
 	 * @작성일:2015. 7. 16.
 	 * @작성자:이한빈 
-	 * @설명문:축구페이지 게시판 총 갯수 가져오는 함수
+	 * @설명문:야구페이지 게시판 총 갯수 가져오는 함수
 	 */
 	@Override
 	public int getBoardCount(int sportCode) {
@@ -90,7 +90,7 @@ public class BaseballDaoImpl implements BaseballDao{
 	 * @함수명: getAllTeamList
 	 * @작성일: 2015. 7. 17.
 	 * @작성자: 정성남
-	 * @설명 :
+	 * @설명 : 등록된 모든팀을 호출하기위한 DB호출
 	 */
 	@Override
 	public List<HashMap<String,Object>> getAllTeamList(String sportType,int startRow,int endRow) {
@@ -128,7 +128,7 @@ public class BaseballDaoImpl implements BaseballDao{
 	 * @함수명: teamCount
 	 * @작성일: 2015. 7. 20.
 	 * @작성자: 정성남
-	 * @설명 :
+	 * @설명 : 등록된 팀의 수를 호출하기 위한 DB 호출
 	 */
 	@Override
 	public int teamCount(String sportType) {

@@ -245,7 +245,7 @@ public class AdminServiceImpl implements AdminService{
 	 * @함수명: manageLeague
 	 * @작성일: 2015. 7. 2.
 	 * @작성자: 정성남
-	 * @설명 :
+	 * @설명 : 리그관리 정보를 DB로 보내는 서비스 클래스
 	 */
 	@Override
 	public void manageLeague(ModelAndView mav) {
@@ -285,7 +285,7 @@ public class AdminServiceImpl implements AdminService{
 	 * @함수명: leagueDelete
 	 * @작성일: 2015. 7. 2.
 	 * @작성자: 정성남
-	 * @설명 :
+	 * @설명 : 리그 삭제 정보를 DB로 보내는 서비스 클래스
 	 */
 	@Override
 	public void leagueDelete(ModelAndView mav) {
@@ -304,7 +304,7 @@ public class AdminServiceImpl implements AdminService{
 	 * @함수명: leagueInfo
 	 * @작성일: 2015. 7. 2.
 	 * @작성자: 정성남
-	 * @설명 :
+	 * @설명 : 리그정보를 확인하기 열람하기위한 정보를 DB로 보내는 서비스 클래스
 	 */
 	@Override
 	public void leagueInfo(ModelAndView mav) {
@@ -328,7 +328,7 @@ public class AdminServiceImpl implements AdminService{
 	 * @함수명: leagueUpdate
 	 * @작성일: 2015. 7. 2.
 	 * @작성자: 정성남
-	 * @설명 :
+	 * @설명 : 리그수정을 위한  정보를 DB로 보내는 서비스 클래스
 	 */
 	@Override
 	public void leagueUpdate(ModelAndView mav) {
@@ -351,7 +351,7 @@ public class AdminServiceImpl implements AdminService{
 	 * @함수명: leagueUpdateOk
 	 * @작성일: 2015. 7. 2.
 	 * @작성자: 정성남
-	 * @설명 :
+	 * @설명 : 리그수정 확인을 위한 정보를 DB로 보내는 서비스 클래스
 	 */
 	@Override
 	public void leagueUpdateOk(ModelAndView mav) {

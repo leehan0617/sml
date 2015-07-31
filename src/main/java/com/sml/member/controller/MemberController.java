@@ -107,7 +107,7 @@ public class MemberController {
 	 * @함수명: teamMemberInfo
 	 * @작성일: 2015. 7. 15.
 	 * @작성자: 정성남
-	 * @설명 :
+	 * @설명 : 팀원의 정보를 호출하기 위한 컨틀롤러
 	 */
 	@RequestMapping(value="/teamPage/teamMemberInfo.do",method=RequestMethod.GET)
 	 public ModelAndView teamMemberInfo(HttpServletRequest request){
@@ -123,7 +123,7 @@ public class MemberController {
 	 * @함수명: addMember
 	 * @작성일: 2015. 7. 14.
 	 * @작성자: 정성남
-	 * @설명 :
+	 * @설명 : 팀원을 추가하기 위한 컨트롤러
 	 */
 	@RequestMapping(value="/teamPage/addMember.do",method=RequestMethod.POST)
 	 public ModelAndView addMember(HttpServletRequest request, MemberDto member){
@@ -141,7 +141,7 @@ public class MemberController {
 	 * @함수명: deleteMember
 	 * @작성일: 2015. 7. 15.
 	 * @작성자: 정성남
-	 * @설명 :
+	 * @설명 : 팀원 삭제를 위한 컨트롤러
 	 */
 	@RequestMapping(value="/teamPage/deleteMember.do",method=RequestMethod.GET)
 	 public ModelAndView deleteMember(HttpServletRequest request,MemberDto member){
@@ -159,7 +159,7 @@ public class MemberController {
 	 * @함수명: searchMember
 	 * @작성일: 2015. 7. 15.
 	 * @작성자: 정성남
-	 * @설명 :
+	 * @설명 : 팀원 검색을 위한 컨틀롤러
 	 */
 	@RequestMapping(value="/teamPage/searchMember.do",method=RequestMethod.GET)
 	 public ModelAndView searchMember(HttpServletRequest request,MemberDto member){
